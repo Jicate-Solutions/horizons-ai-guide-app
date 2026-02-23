@@ -57,24 +57,6 @@ const CTASection = () => {
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
           </div>
-
-          <div className="mt-12 pt-8 border-t border-white/10">
-            <p className="text-white/60 text-sm mb-4">{t('cta.trustedBy')}</p>
-            <div className="flex flex-wrap items-center justify-center gap-8 text-white/40">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400" />
-                <span className="text-sm">{t('cta.partners')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-sm">{t('cta.alumni')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                <span className="text-sm">{t('cta.placement')}</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
