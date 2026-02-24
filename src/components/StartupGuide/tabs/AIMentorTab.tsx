@@ -209,7 +209,7 @@ export const AIMentorTab = ({ chatHistory, profile, onSendMessage, onSaveChatMes
         </div>
         <div className="ml-auto flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[10px] text-white/50">Online</span>
+          <span className="text-[10px] text-white/50">Back</span>
         </div>
       </div>
 
