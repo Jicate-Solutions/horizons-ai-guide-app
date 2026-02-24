@@ -111,6 +111,22 @@ export const AIMentorTab = ({ chatHistory, profile, onSendMessage, onSaveChatMes
     const msg = input.trim();
     setInput('');
 
+    // If user types during initial onboarding (before picking a field), guide them
+    if (onboardingStep === 'init') {
+      addUserMessage(msg);
+      // Check if they typed a field name
+      const fields = ['healthcare', 'automotive', 'agriculture', 'food', 'fashion', 'education', 'finance', 'construction', 'technology', 'environment'];
+      const matchedField = fields.find(f => msg.toLowerCase().includes(f));
+      if (matchedField) {
+        handleFieldSelect(matchedField.charAt(0).toUpperCase() + matchedField.slice(1));
+      } else {
+        setTimeout(() => {
+          addBotMessage(`Great to meet you! 👋\n\nTo get started, please **pick your field of interest** from the buttons above! 👆\n\nOr type one: Healthcare, Technology, Education, Agriculture, Food, Fashion, Finance, Automotive, Construction, or Environment.`);
+        }, 300);
+      }
+      return;
+    }
+
     if (onboardingStep === 'subdomain') {
       addUserMessage(msg);
       setPendingProfile(prev => ({ ...prev, subDomain: msg }));
@@ -140,7 +156,7 @@ export const AIMentorTab = ({ chatHistory, profile, onSendMessage, onSaveChatMes
       const reply = await onSendMessage(msg, history);
 
       // Check if API actually worked or returned error message
-      if (reply.includes('CLAUDE_API_KEY') || reply.includes('not connected')) {
+      if (!reply || reply.includes('CLAUDE_API_KEY') || reply.includes('not connected') || reply.includes('not configured') || reply.includes('To activate')) {
         // API not configured — give a local helpful response
         addBotMessage(getLocalMentorReply(msg, profile));
       } else {

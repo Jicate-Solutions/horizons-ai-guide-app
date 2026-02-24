@@ -21,6 +21,30 @@ interface AIChatModalProps {
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/jkkn-chat`;
 
+// Local responses when API is unavailable
+function getLocalChatReply(msg: string): string {
+  const lower = msg.toLowerCase();
+  if (lower.match(/^(hi|hello|hey|vanakkam)/)) {
+    return `👋 Hello! I'm your VAZHIKAATTI AI Assistant.\n\nI can help you with:\n🎯 Career options after 10th & 12th\n🏫 College & course suggestions\n📝 Exam preparation (JEE, NEET, TNEA)\n💼 Job search & interview tips\n💰 Scholarship information\n\nWhat would you like to know?`;
+  }
+  if (lower.includes('12th') || lower.includes('career')) {
+    return `🎓 **Career Options After 12th:**\n\n**Science:** Engineering (JEE/TNEA), Medical (NEET), B.Sc., BCA\n**Commerce:** B.Com, BBA, CA, CS, Banking\n**Arts:** BA, Law, Mass Communication, Hotel Management\n\nTell me your stream for specific guidance!`;
+  }
+  if (lower.includes('neet') || lower.includes('medical')) {
+    return `📚 **NEET UG Guide:**\n200 MCQs | 3h 20min | 720 marks\n\nTips: Focus NCERT textbooks, practice 10 years papers, Biology has highest weightage, take weekly mocks.`;
+  }
+  if (lower.includes('jee') || lower.includes('engineering')) {
+    return `📚 **JEE Main:** 90 MCQs | 3 hours | 300 marks\nFor NITs, IIITs. Master NCERT → HC Verma → practice daily.\n\n**TNEA:** Based on 12th marks only. Maths 50% + Physics 25% + Chemistry 25%.`;
+  }
+  if (lower.includes('job') || lower.includes('salary') || lower.includes('placement')) {
+    return `💼 **High-Demand Jobs:**\n• Software Developer — ₹4-15 LPA\n• Data Analyst — ₹3-10 LPA\n• Digital Marketing — ₹3-8 LPA\n\nUse Naukri.com, LinkedIn, Indeed for job search. Build a strong resume & LinkedIn profile!`;
+  }
+  if (lower.includes('scholarship') || lower.includes('loan') || lower.includes('fee')) {
+    return `💰 **Scholarships:** BC/MBC/SC/ST (TN Govt), Post-Matric (Central), Pragati (girls in tech)\n**Loans:** SBI Scholar Loan up to ₹20L, Vidya Lakshmi Portal to compare\n\nApply early — deadlines matter!`;
+  }
+  return `Thank you for your question! 🤔\n\nTry asking about:\n🎯 "Career options after 12th"\n📚 "How to prepare for NEET/JEE"\n💼 "How to find jobs"\n💰 "Scholarships available"\n\nI'm here to help! 😊`;
+}
+
 // Speech recognition types
 interface SpeechRecognitionEvent extends Event {
   results: SpeechRecognitionResultList;
@@ -403,8 +427,10 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
       await streamChat(newMessages);
     } catch (error) {
       console.error("Chat error:", error);
-      toast.error(error instanceof Error ? error.message : "Failed to send message");
-      setMessages(messages);
+      // Show a helpful local response instead of error
+      const localReply = getLocalChatReply(input.trim());
+      const localMsg: Message = { role: "assistant", content: localReply };
+      setMessages([...newMessages, localMsg]);
     } finally {
       setIsLoading(false);
     }

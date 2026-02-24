@@ -148,6 +148,57 @@ const CAREER_CATEGORIES_12TH = [
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/jkkn-chat`;
 
+// Local AI career responses when API is unavailable
+function getLocalCareerReply(msg: string): string {
+  const lower = msg.toLowerCase();
+  
+  if (lower.match(/^(hi|hello|hey|vanakkam|good morning|good evening)/)) {
+    return `👋 Hello! I'm your VAZHIKAATTI Career Guide.\n\nI can help you with:\n\n🎯 **Career options** after 10th & 12th\n🏫 **College & course** suggestions\n📝 **Exam preparation** (JEE, NEET, TNEA)\n💼 **Job search** & interview tips\n📚 **Skill development** guidance\n💰 **Scholarship** information\n\nWhat would you like to know about?`;
+  }
+  
+  if ((lower.includes('12th') || lower.includes('12')) && (lower.includes('science') || lower.includes('pcm') || lower.includes('maths'))) {
+    return `🎓 **Top Career Options After 12th Science (PCM):**\n\n**Engineering:**\n• B.Tech/B.E. — through JEE Main/Advanced or TNEA\n• Top branches: Computer Science, AI/ML, Electronics, Mechanical\n\n**Other Options:**\n• B.Sc. in Physics, Maths, Statistics\n• B.Arch (Architecture) — through NATA\n• BCA (Computer Applications)\n• B.Sc. Data Science / AI\n• Merchant Navy\n• NDA (National Defence Academy)\n\n**Top Exams to Prepare:**\n• JEE Main & Advanced\n• TNEA (Tamil Nadu Engineering)\n• BITSAT, VITEEE, SRMJEE\n\nWould you like details about any specific career?`;
+  }
+  
+  if ((lower.includes('12th') || lower.includes('12')) && (lower.includes('bio') || lower.includes('pcb') || lower.includes('neet'))) {
+    return `🎓 **Top Career Options After 12th Science (PCB/Biology):**\n\n**Medical:**\n• MBBS — through NEET UG\n• BDS (Dental Surgery)\n• BAMS (Ayurveda), BHMS (Homeopathy)\n• B.Pharm (Pharmacy)\n\n**Allied Health:**\n• Nursing (B.Sc. Nursing)\n• Physiotherapy (BPT)\n• Medical Lab Technology\n• Radiology & Imaging\n\n**Other Options:**\n• B.Sc. Biotechnology, Microbiology\n• B.Sc. Agriculture\n• Veterinary Science (BVSc)\n\n**Key Exam:** NEET UG is the main exam for medical courses.`;
+  }
+  
+  if (lower.includes('12th') || lower.includes('after 12') || lower.includes('career option') || lower.includes('career')) {
+    return `🎓 **Career Options After 12th:**\n\n**Science Stream:**\n• Engineering (JEE/TNEA)\n• Medical (NEET)\n• B.Sc., BCA, B.Sc. IT\n\n**Commerce Stream:**\n• B.Com, BBA, CA, CS\n• Banking & Finance\n\n**Arts Stream:**\n• BA, Law (BA LLB)\n• Mass Communication\n• Hotel Management\n\n**Competitive Exams:**\n• UPSC, SSC, Banking, TNPSC\n\nTell me your stream (Science/Commerce/Arts) for more specific guidance!`;
+  }
+  
+  if (lower.includes('neet')) {
+    return `📚 **NEET UG Exam Guide:**\n\n**Pattern:** 200 MCQs — Physics, Chemistry, Biology\n**Duration:** 3 hours 20 minutes | **Total:** 720 marks\n\n**Preparation Tips:**\n1. Focus on NCERT textbooks — 60% questions from NCERT\n2. Practice last 10 years papers\n3. Biology has highest weightage\n4. Take weekly mock tests\n5. Revise daily with flashcards\n\n**Important Topics:**\n• Biology: Human Physiology, Genetics, Ecology\n• Chemistry: Organic Chemistry, Chemical Bonding\n• Physics: Mechanics, Optics`;
+  }
+  
+  if (lower.includes('jee')) {
+    return `📚 **JEE Main & Advanced Guide:**\n\n**JEE Main:** For NITs, IIITs — 90 MCQs, 3 hours, 300 marks\n**JEE Advanced:** For IITs — top 2.5 lakh from Main qualify\n\n**Tips:**\n1. Master NCERT, then HC Verma & RD Sharma\n2. Practice 50+ problems daily\n3. Focus on Maths — highest scoring\n4. Mock tests every week\n\n**Key Topics:**\n• Maths: Calculus, Coordinate Geometry\n• Physics: Mechanics, Electrostatics\n• Chemistry: Organic Chemistry, Mole Concept`;
+  }
+  
+  if (lower.includes('tnea') || lower.includes('counselling')) {
+    return `📚 **TNEA Engineering Admissions:**\n\nBased on 12th marks (no entrance exam!)\n\n**Cutoff:** Maths 50% + Physics 25% + Chemistry 25% = 200 marks\n\n**Top TN Colleges:**\n• Anna University, Chennai\n• PSG Tech, Coimbatore\n• SSN College, Chennai\n• Kongu Engineering, Erode\n\n**In-Demand Branches:**\n1. Computer Science\n2. AI & Machine Learning\n3. Data Science\n4. Electronics & Communication`;
+  }
+  
+  if (lower.includes('job') || lower.includes('placement') || lower.includes('salary') || lower.includes('employ')) {
+    return `💼 **Job & Career Guidance:**\n\n**High-Demand Jobs:**\n• Software Developer — ₹4-15 LPA\n• Data Analyst — ₹3-10 LPA\n• Digital Marketing — ₹3-8 LPA\n• Nursing — ₹3-6 LPA\n\n**Job Portals:** Naukri.com, LinkedIn, Indeed, Freshersworld\n**Govt Jobs:** ssc.nic.in, tnpsc.gov.in\n\n**Tips:**\n1. Build a strong resume\n2. Create a LinkedIn profile\n3. Practice aptitude tests\n4. Prepare for technical interviews`;
+  }
+  
+  if (lower.includes('scholarship') || lower.includes('fee') || lower.includes('loan')) {
+    return `💰 **Scholarships & Financial Aid:**\n\n**Government:**\n• BC/MBC/SC/ST Scholarship — TN Govt\n• Post-Matric Scholarship — Central Govt\n• Pragati Scholarship (girls in tech)\n\n**Private:**\n• JKKN Institution Scholarships\n• Tata Trusts, Reliance Foundation\n\n**Education Loans:**\n• SBI Scholar Loan — up to ₹20 lakhs\n• Vidya Lakshmi Portal — compare loans`;
+  }
+  
+  if (lower.includes('government') || lower.includes('govt') || lower.includes('tnpsc') || lower.includes('upsc')) {
+    return `🏛️ **Government Job Exams:**\n\n**Tamil Nadu:** TNPSC Group 1, 2, 4 | TN TRB | TNUSRB\n**Central:** UPSC | SSC CGL, CHSL | RRB | IBPS\n\n**Tips:**\n1. Start with NCERT (6th to 12th)\n2. Read newspapers daily\n3. Practice previous year papers\n4. Take weekly mock tests`;
+  }
+  
+  if (lower.includes('skill') || lower.includes('course') || lower.includes('learn')) {
+    return `📚 **In-Demand Skills (2025-26):**\n\n1. Programming (Python, Java)\n2. Data Science & AI\n3. Digital Marketing\n4. Cloud Computing\n5. UI/UX Design\n\n**Free Platforms:**\n• NPTEL, Coursera, Khan Academy, freeCodeCamp\n\n**Tip:** Pick ONE skill, spend 1 hour daily for 3 months!`;
+  }
+  
+  return `Thank you for your question! 🤔\n\nI can help you with:\n\n🎯 **Career guidance** — "What are the options after 12th Science?"\n📚 **Exam preparation** — "How to prepare for NEET/JEE/TNEA?"\n💼 **Job search** — "How to find jobs as a fresher?"\n💰 **Scholarships** — "What scholarships are available?"\n🏛️ **Government exams** — "How to prepare for TNPSC?"\n📖 **Skill development** — "What skills should I learn?"\n\nTry asking one of these questions! 😊`;
+}
+
 const CareerChat = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -465,22 +516,18 @@ const CareerChat = () => {
       await saveMessage(assistantMessage);
       speakText(assistantContent);
     } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : 'Failed to get response. Please try again.';
-      toast({
-        title: 'Error',
-        description: message,
-        variant: 'destructive'
-      });
-      // Remove placeholder assistant message (only if it exists)
+      console.error('Chat error:', error);
+      // Instead of showing error, provide a helpful local response
+      const userMsg = userMessages[userMessages.length - 1]?.content || '';
+      const localReply = getLocalCareerReply(userMsg);
+      
       setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last?.role === 'assistant' && last.content === '') {
-          return prev.slice(0, -1);
+          // Replace empty placeholder with local response
+          return [...prev.slice(0, -1), { role: 'assistant' as const, content: localReply, timestamp: new Date() }];
         }
-        return prev;
+        return [...prev, { role: 'assistant' as const, content: localReply, timestamp: new Date() }];
       });
     } finally {
       setIsLoading(false);
