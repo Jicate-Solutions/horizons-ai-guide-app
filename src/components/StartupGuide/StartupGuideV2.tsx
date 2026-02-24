@@ -259,6 +259,7 @@ export const StartupGuide = () => {
             onSendMessage={handleSendMessage}
             onSaveChatMessage={data.saveChatMessage}
             onProfileDetected={handleProfileDetected}
+            onReset={data.resetAll}
           />
         </TabsContent>
 

@@ -10,6 +10,7 @@ interface AIMentorTabProps {
   onSendMessage: (message: string, history: { role: string; content: string }[]) => Promise<string>;
   onSaveChatMessage: (role: 'user' | 'assistant', content: string) => void;
   onProfileDetected: (profile: UserProfile) => void;
+  onReset: () => void;
 }
 
 const FIELDS = [
@@ -33,7 +34,7 @@ const EXPERIENCE = [
 
 type OnboardingStep = 'field' | 'subdomain' | 'location' | 'experience' | 'done';
 
-export const AIMentorTab = ({ chatHistory, profile, onSendMessage, onSaveChatMessage, onProfileDetected }: AIMentorTabProps) => {
+export const AIMentorTab = ({ chatHistory, profile, onSendMessage, onSaveChatMessage, onProfileDetected, onReset }: AIMentorTabProps) => {
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -207,9 +208,12 @@ export const AIMentorTab = ({ chatHistory, profile, onSendMessage, onSaveChatMes
           <p className="text-sm font-bold text-white">AI Startup Mentor</p>
           <p className="text-[10px] text-white/50">{profile ? `Guiding you in ${profile.field}` : 'Ready to help you start'}</p>
         </div>
-        <div className="ml-auto flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[10px] text-white/50">Back</span>
+        <div className="ml-auto flex items-center gap-1.5 cursor-pointer rounded-full bg-white/10 px-3 py-1 hover:bg-white/20 transition-all" onClick={() => {
+          if (window.confirm('⚠️ This will reset your Startup Guide and start fresh.\n\nAre you sure?')) {
+            onReset();
+          }
+        }}>
+          <span className="text-[11px] text-white font-medium">← Back</span>
         </div>
       </div>
 
