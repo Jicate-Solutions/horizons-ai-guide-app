@@ -1,7 +1,6 @@
 import TopBar from "@/components/TopBar";
 import NewsTicker from "@/components/NewsTicker";
 import HeroSection from "@/components/HeroSection";
-import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
 
 
@@ -25,7 +24,6 @@ const Index = () => {
         <TopBar />
         <NewsTicker />
         <HeroSection />
-        <StatsBar />
         <ServicesSection />
         <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
           <AISmartStudyPlanner />
