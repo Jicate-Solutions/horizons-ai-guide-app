@@ -33,8 +33,33 @@ const StudentDashboard = () => {
 
       if (profile?.display_name) {
         setDisplayName(profile.display_name);
-      } else if (user.email) {
-        setDisplayName(user.email.split('@')[0]);
+      } else if (user.user_metadata?.full_name) {
+        setDisplayName(user.user_metadata.full_name);
+      } else {
+        // Check registration tables for full name
+        const { data: reg12 } = await supabase
+          .from('registrations_12th')
+          .select('full_name')
+          .eq('email', user.email)
+          .maybeSingle();
+        
+        if (reg12?.full_name) {
+          setDisplayName(reg12.full_name);
+        } else {
+          const { data: regLearner } = await supabase
+            .from('learner_registrations')
+            .select('full_name')
+            .eq('email', user.email)
+            .maybeSingle();
+          
+          if (regLearner?.full_name) {
+            setDisplayName(regLearner.full_name);
+          } else if (user.email) {
+            // Capitalize email username as fallback
+            const name = user.email.split('@')[0];
+            setDisplayName(name.charAt(0).toUpperCase() + name.slice(1));
+          }
+        }
       }
 
       const { data: attempts } = await supabase

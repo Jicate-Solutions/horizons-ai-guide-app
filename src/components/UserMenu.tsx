@@ -11,10 +11,51 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { User, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 const UserMenu = () => {
   const { user, signOut } = useAuth();
   const { toast } = useToast();
+  const [displayName, setDisplayName] = useState<string>('');
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchName = async () => {
+      // 1. Check profiles table
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('display_name')
+        .eq('user_id', user.id)
+        .maybeSingle();
+      if (profile?.display_name) { setDisplayName(profile.display_name); return; }
+
+      // 2. Check user_metadata
+      if (user.user_metadata?.full_name) { setDisplayName(user.user_metadata.full_name); return; }
+
+      // 3. Check registration tables
+      const { data: reg12 } = await supabase
+        .from('registrations_12th')
+        .select('full_name')
+        .eq('email', user.email)
+        .maybeSingle();
+      if (reg12?.full_name) { setDisplayName(reg12.full_name); return; }
+
+      const { data: regLearner } = await supabase
+        .from('learner_registrations')
+        .select('full_name')
+        .eq('email', user.email)
+        .maybeSingle();
+      if (regLearner?.full_name) { setDisplayName(regLearner.full_name); return; }
+
+      // 4. Fallback: capitalize email username
+      if (user.email) {
+        const name = user.email.split('@')[0];
+        setDisplayName(name.charAt(0).toUpperCase() + name.slice(1));
+      }
+    };
+    fetchName();
+  }, [user]);
 
   const handleSignOut = async () => {
     await signOut();
@@ -34,7 +75,9 @@ const UserMenu = () => {
     );
   }
 
-  const initials = user.email?.substring(0, 2).toUpperCase() || 'U';
+  const initials = displayName
+    ? displayName.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase()
+    : user.email?.substring(0, 2).toUpperCase() || 'U';
 
   return (
     <DropdownMenu>
@@ -50,7 +93,8 @@ const UserMenu = () => {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            <p className="font-medium text-sm text-foreground">{user.email}</p>
+            {displayName && <p className="font-semibold text-sm text-foreground">{displayName}</p>}
+            <p className="text-xs text-muted-foreground">{user.email}</p>
           </div>
         </div>
         <DropdownMenuSeparator />
