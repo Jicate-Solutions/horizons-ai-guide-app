@@ -1746,6 +1746,7 @@ export const examTopicData: ExamTopicMap = {
   'wb-jee': wbJeeTopics,
   'viteee': viteeeTopics,
   'neet': neetTopics,
+  'neet-ug': neetTopics,
   'aiims': aiimsTopics,
   'class-12': class12Topics,
   'neet-pg': neetPgTopics,
