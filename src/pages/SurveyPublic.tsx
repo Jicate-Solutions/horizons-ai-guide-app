@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,6 +9,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 const SurveyPublic = () => {
   const { surveyId } = useParams<{ surveyId: string }>();
+  const [searchParams] = useSearchParams();
   const [survey, setSurvey] = useState<any>(null);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [loading, setLoading] = useState(true);
@@ -22,33 +23,45 @@ const SurveyPublic = () => {
 
   const loadSurvey = async () => {
     try {
-      // Try loading by survey id first (new format)
-      const { data: d1 } = await supabase
-        .from('startup_surveys')
-        .select('*')
-        .eq('id', surveyId)
-        .maybeSingle();
-
-      if (d1) {
-        setSurvey(d1);
-        setLoading(false);
-        return;
+      // Priority 1: Decode survey data from URL parameter (works on ANY device)
+      const encodedData = searchParams.get('d');
+      if (encodedData) {
+        try {
+          const decoded = JSON.parse(decodeURIComponent(atob(encodedData)));
+          setSurvey({
+            id: surveyId,
+            questions: decoded.q,
+            problem_statement: decoded.p,
+            target_customer: decoded.t,
+            response_count: 0,
+          });
+          setLoading(false);
+          return;
+        } catch (e) {
+          console.error('Failed to decode survey from URL:', e);
+        }
       }
       
-      // Try by user_id (old share link format)
-      const { data: d2 } = await supabase
-        .from('startup_surveys')
-        .select('*')
-        .eq('user_id', surveyId)
-        .maybeSingle();
-
-      if (d2) {
-        setSurvey(d2);
-        setLoading(false);
-        return;
+      // Priority 2: Try Supabase
+      try {
+        const { data: d1 } = await supabase
+          .from('startup_surveys')
+          .select('*')
+          .eq('id', surveyId)
+          .maybeSingle();
+        if (d1) { setSurvey(d1); setLoading(false); return; }
+        
+        const { data: d2 } = await supabase
+          .from('startup_surveys')
+          .select('*')
+          .eq('user_id', surveyId)
+          .maybeSingle();
+        if (d2) { setSurvey(d2); setLoading(false); return; }
+      } catch (e) {
+        console.log('Supabase lookup failed, trying localStorage...');
       }
       
-      // Fallback: try loading from localStorage (same device)
+      // Priority 3: localStorage fallback (same device only)
       try {
         const localData = localStorage.getItem('vazhikatti_startup_v2');
         if (localData) {
@@ -65,30 +78,10 @@ const SurveyPublic = () => {
             return;
           }
         }
-      } catch (e) {
-        console.error('localStorage fallback failed:', e);
-      }
+      } catch (e) {}
       
       setError('Survey not found.');
     } catch (e) {
-      // If Supabase tables don't exist, try localStorage
-      try {
-        const localData = localStorage.getItem('vazhikatti_startup_v2');
-        if (localData) {
-          const parsed = JSON.parse(localData);
-          if (parsed.survey) {
-            setSurvey({
-              id: parsed.survey.id,
-              questions: parsed.survey.questions,
-              problem_statement: parsed.survey.problemStatement,
-              target_customer: parsed.survey.targetCustomer,
-              response_count: parsed.survey.responseCount || 0,
-            });
-            setLoading(false);
-            return;
-          }
-        }
-      } catch (e2) {}
       setError('Could not load survey.');
     }
     setLoading(false);
