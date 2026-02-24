@@ -15,15 +15,6 @@ const ServicesSection = () => {
       shadowColor: "shadow-amber-100",
     },
     {
-      title: t('services.careerPathFinder'),
-      description: t('services.careerPathFinderDesc'),
-      icon: Compass,
-      gradient: "from-emerald-500 to-green-600",
-      bgGradient: "from-emerald-50 to-green-50",
-      borderColor: "border-emerald-200 hover:border-emerald-400",
-      shadowColor: "shadow-emerald-100",
-    },
-    {
       title: t('services.jobPortal'),
       description: t('services.jobPortalDesc'),
       icon: Briefcase,
