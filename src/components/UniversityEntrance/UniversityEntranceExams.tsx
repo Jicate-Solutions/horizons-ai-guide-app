@@ -200,21 +200,7 @@ export const UniversityEntranceExams = () => {
 
       {/* Quick Action Cards */}
       <section className="max-w-7xl mx-auto px-4 -mt-6 relative z-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {/* Check Eligibility */}
-          <Card 
-            className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/20"
-            onClick={() => setShowEligibility(true)}
-          >
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-2xl bg-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <CheckCircle className="h-7 w-7 md:h-8 md:w-8 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <h3 className="font-semibold text-sm md:text-base mb-1">Check Eligibility</h3>
-              <p className="text-xs text-muted-foreground font-tamil">தகுதி சரிபார்க்க</p>
-            </CardContent>
-          </Card>
-
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {/* Explore Colleges */}
           <Card 
             className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20"
