@@ -31,8 +31,8 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
             Back
           </Button>
           
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-3">
+          <div>
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-serif font-bold text-white tracking-tight mb-3">
               EduNavigator - Find your way through career and higher studies
             </h1>
             <p className="text-lg md:text-xl text-amber-300 font-tamil mb-4">
