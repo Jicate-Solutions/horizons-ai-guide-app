@@ -234,7 +234,17 @@ export const useStartupGuideData = () => {
   }, []);
 
   const refreshSurveyCount = useCallback(async () => {
-    // In localStorage mode, count stays manual. Users can increment for testing.
+    // Count responses from localStorage
+    try {
+      const responses = JSON.parse(localStorage.getItem('vazhikatti_survey_responses') || '[]');
+      const count = responses.length;
+      setData(prev => {
+        if (!prev.survey) return prev;
+        const next = { ...prev, survey: { ...prev.survey, responseCount: count } };
+        next.score = calcScore(next);
+        return next;
+      });
+    } catch (e) {}
   }, []);
 
   const resetAll = useCallback(async () => {

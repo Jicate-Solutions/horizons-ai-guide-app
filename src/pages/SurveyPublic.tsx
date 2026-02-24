@@ -97,6 +97,16 @@ const SurveyPublic = () => {
       const existing = JSON.parse(localStorage.getItem('vazhikatti_survey_responses') || '[]');
       existing.push({ survey_id: survey.id, answers, submitted_at: new Date().toISOString() });
       localStorage.setItem('vazhikatti_survey_responses', JSON.stringify(existing));
+      
+      // Also update the main startup data's response count
+      try {
+        const mainData = JSON.parse(localStorage.getItem('vazhikatti_startup_v2') || '{}');
+        if (mainData.survey) {
+          mainData.survey.responseCount = (mainData.survey.responseCount || 0) + 1;
+          localStorage.setItem('vazhikatti_startup_v2', JSON.stringify(mainData));
+        }
+      } catch (e2) {}
+      
       setSubmitted(true);
     } catch (e) {
       setError('Failed to submit. Please try again.');

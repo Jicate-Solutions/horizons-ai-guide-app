@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -23,6 +23,11 @@ interface ProblemSurveyTabProps {
 export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field, subDomain, location, onDetectProblem, onGenerateSurvey, onRefreshCount, onReset }: ProblemSurveyTabProps) => {
   const [detecting, setDetecting] = useState(false);
   const [generating, setGenerating] = useState(false);
+
+  // Auto-refresh survey response count when tab loads
+  useEffect(() => {
+    onRefreshCount();
+  }, []);
 
   if (!unlocked) {
     return (
@@ -164,10 +169,8 @@ export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="text-sm font-bold text-foreground">📊 Your Survey is Live!</h4>
                     <Button onClick={() => {
-                      if (window.confirm('⚠️ This will reset your Startup Guide and start fresh. All your data (profile, tasks, reflections, survey) will be cleared.\n\nAre you sure?')) {
-                        onReset();
-                        toast.success('✅ Startup Guide reset! Starting fresh...');
-                      }
+                      onRefreshCount();
+                      toast.success('Survey count refreshed! ✅');
                     }} variant="ghost" size="sm" className="text-xs">
                       🔄 Refresh
                     </Button>
