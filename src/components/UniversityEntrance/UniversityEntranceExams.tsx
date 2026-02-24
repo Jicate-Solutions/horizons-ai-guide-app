@@ -229,20 +229,6 @@ export const UniversityEntranceExams = () => {
             </CardContent>
           </Card>
 
-          {/* View Cutoffs */}
-          <Card 
-            className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-950/30 dark:to-purple-900/20"
-            onClick={() => navigate('/tn-university-entrance/compare')}
-          >
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-2xl bg-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <BarChart3 className="h-7 w-7 md:h-8 md:w-8 text-purple-600 dark:text-purple-400" />
-              </div>
-              <h3 className="font-semibold text-sm md:text-base mb-1">View Cutoffs</h3>
-              <p className="text-xs text-muted-foreground font-tamil">கட்ஆஃப் பார்க்க</p>
-            </CardContent>
-          </Card>
-
           {/* Admission Calendar */}
           <Card 
             className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20"
