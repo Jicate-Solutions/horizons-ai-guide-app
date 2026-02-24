@@ -53,6 +53,21 @@ export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field
     setDetecting(false);
   };
 
+  // Compute the correct share link (auto-convert old UUID format to new encoded format)
+  const getShareLink = () => {
+    if (!survey) return '';
+    // Check if link is already in new format (contains encoded data)
+    if (survey.shareLink && survey.shareLink.includes('/survey/eyJ')) {
+      return survey.shareLink;
+    }
+    // Convert to new format: encode problem statement in URL
+    const miniData = JSON.stringify({ p: survey.problemStatement || problem?.problemStatement || '', t: survey.targetCustomer || problem?.targetCustomer || '' });
+    const encoded = btoa(unescape(encodeURIComponent(miniData)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+    return `${window.location.origin}/survey/${encoded}`;
+  };
+  const shareLink = getShareLink();
+
   const handleGenerate = async () => {
     setGenerating(true);
     await onGenerateSurvey();
@@ -61,14 +76,14 @@ export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field
 
   const handleShare = (platform: string) => {
     if (!survey) return;
-    const text = `Help me validate my startup idea! Take this quick 2-min survey: ${survey.shareLink}`;
+    const text = `Help me validate my startup idea! Take this quick 2-min survey: ${shareLink}`;
     const urls: Record<string, string> = {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(text)}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(survey.shareLink)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareLink)}`,
       copy: '',
     };
     if (platform === 'copy') {
-      navigator.clipboard.writeText(survey.shareLink);
+      navigator.clipboard.writeText(shareLink);
       toast.success('Survey link copied! 📋');
     } else {
       window.open(urls[platform], '_blank');
@@ -164,7 +179,7 @@ export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field
                   <div className="bg-gray-50 rounded-lg p-3 mb-3">
                     <p className="text-[10px] text-muted-foreground font-medium mb-1">Share Link:</p>
                     <div className="flex items-center gap-2">
-                      <code className="text-xs text-foreground flex-1 truncate bg-white px-2 py-1 rounded border">{survey.shareLink}</code>
+                      <code className="text-xs text-foreground flex-1 truncate bg-white px-2 py-1 rounded border">{shareLink}</code>
                       <Button onClick={() => handleShare('copy')} size="sm" variant="outline" className="text-xs px-2">
                         <Link2 className="w-3 h-3" />
                       </Button>
