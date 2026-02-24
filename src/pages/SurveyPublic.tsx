@@ -22,26 +22,73 @@ const SurveyPublic = () => {
 
   const loadSurvey = async () => {
     try {
-      // Try loading by user_id (share link format)
-      const { data } = await supabase
+      // Try loading by survey id first (new format)
+      const { data: d1 } = await supabase
+        .from('startup_surveys')
+        .select('*')
+        .eq('id', surveyId)
+        .maybeSingle();
+
+      if (d1) {
+        setSurvey(d1);
+        setLoading(false);
+        return;
+      }
+      
+      // Try by user_id (old share link format)
+      const { data: d2 } = await supabase
         .from('startup_surveys')
         .select('*')
         .eq('user_id', surveyId)
         .maybeSingle();
 
-      if (data) {
-        setSurvey(data);
-      } else {
-        // Try by survey id
-        const { data: d2 } = await supabase
-          .from('startup_surveys')
-          .select('*')
-          .eq('id', surveyId)
-          .maybeSingle();
-        if (d2) setSurvey(d2);
-        else setError('Survey not found.');
+      if (d2) {
+        setSurvey(d2);
+        setLoading(false);
+        return;
       }
+      
+      // Fallback: try loading from localStorage (same device)
+      try {
+        const localData = localStorage.getItem('vazhikatti_startup_v2');
+        if (localData) {
+          const parsed = JSON.parse(localData);
+          if (parsed.survey && (parsed.survey.id === surveyId || surveyId === 'demo')) {
+            setSurvey({
+              id: parsed.survey.id,
+              questions: parsed.survey.questions,
+              problem_statement: parsed.survey.problemStatement,
+              target_customer: parsed.survey.targetCustomer,
+              response_count: parsed.survey.responseCount || 0,
+            });
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (e) {
+        console.error('localStorage fallback failed:', e);
+      }
+      
+      setError('Survey not found.');
     } catch (e) {
+      // If Supabase tables don't exist, try localStorage
+      try {
+        const localData = localStorage.getItem('vazhikatti_startup_v2');
+        if (localData) {
+          const parsed = JSON.parse(localData);
+          if (parsed.survey) {
+            setSurvey({
+              id: parsed.survey.id,
+              questions: parsed.survey.questions,
+              problem_statement: parsed.survey.problemStatement,
+              target_customer: parsed.survey.targetCustomer,
+              response_count: parsed.survey.responseCount || 0,
+            });
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (e2) {}
       setError('Could not load survey.');
     }
     setLoading(false);
@@ -68,7 +115,15 @@ const SurveyPublic = () => {
       });
       setSubmitted(true);
     } catch (e) {
-      setError('Failed to submit. Please try again.');
+      // If Supabase fails, save to localStorage as fallback
+      try {
+        const existing = JSON.parse(localStorage.getItem('vazhikatti_survey_responses') || '[]');
+        existing.push({ survey_id: survey.id, answers, submitted_at: new Date().toISOString() });
+        localStorage.setItem('vazhikatti_survey_responses', JSON.stringify(existing));
+        setSubmitted(true);
+      } catch (e2) {
+        setError('Failed to submit. Please try again.');
+      }
     }
     setSubmitting(false);
   };

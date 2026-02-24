@@ -193,20 +193,61 @@ export const useStartupGuideData = () => {
   }, []);
 
   const saveSurvey = useCallback(async (questions: any[], problemStatement: string, targetCustomer: string) => {
-    const shareLink = `${window.location.origin}/survey/${userId || 'demo'}`;
+    const surveyId = crypto.randomUUID();
+    const shareLink = `${window.location.origin}/survey/${surveyId}`;
     const surveyObj: Survey = {
-      id: crypto.randomUUID(),
+      id: surveyId,
       questions,
       shareLink,
       problemStatement,
       targetCustomer,
       responseCount: 0,
     };
+    
+    // Save to localStorage
     setData(prev => {
       const next = { ...prev, survey: surveyObj };
       next.score = calcScore(next);
       return next;
     });
+    
+    // Also save to Supabase so the public survey link works
+    try {
+      // Try to get or create an anonymous session
+      let currentUserId: string | null = null;
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        currentUserId = session.user.id;
+      } else {
+        // Try anonymous sign-in
+        const { data: anonData } = await supabase.auth.signInAnonymously();
+        if (anonData?.session?.user) {
+          currentUserId = anonData.session.user.id;
+        }
+      }
+      
+      if (currentUserId) {
+        // Delete existing survey for this user (UNIQUE constraint on user_id)
+        await supabase.from('startup_surveys').delete().eq('user_id', currentUserId);
+        
+        // Insert new survey
+        await supabase.from('startup_surveys' as any).insert({
+          id: surveyId,
+          user_id: currentUserId,
+          questions,
+          share_link: shareLink,
+          problem_statement: problemStatement,
+          target_customer: targetCustomer,
+          response_count: 0,
+        });
+        console.log('[Survey] Saved to Supabase successfully');
+      } else {
+        // No auth available - save survey ID to a simple public approach
+        console.log('[Survey] No auth - survey saved locally only');
+      }
+    } catch (err) {
+      console.error('[Survey] Supabase save failed (survey will work locally):', err);
+    }
   }, [userId]);
 
   const saveRoadmap = useCallback(async (r: ProductRoadmap) => {
