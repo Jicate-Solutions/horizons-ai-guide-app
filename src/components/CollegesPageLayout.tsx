@@ -33,7 +33,7 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
           
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-3">
-              EduNavigator <span className="text-lg md:text-xl lg:text-2xl font-normal text-amber-300">- Find your way through career and higher studies</span>
+              EduNavigator - Find your way through career and higher studies
             </h1>
             <p className="text-lg md:text-xl text-amber-300 font-tamil mb-4">
               கல்லூரி கற்றவர்களுக்கான வாழ்க்கை மதிப்பீட்டு மையம்
