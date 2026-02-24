@@ -197,42 +197,37 @@ serve(async (req) => {
   }
 
   try {
-    // 1. Verify user authentication
+    // 1. Try to verify user authentication (optional - allow anonymous access)
     const authHeader = req.headers.get('Authorization');
-    if (!authHeader) {
-      return new Response(
-        JSON.stringify({ error: 'Authentication required. Please sign in to use the chat.' }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
+    let userId = 'anonymous-guest';
+    
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL')!,
       Deno.env.get('SUPABASE_ANON_KEY')!,
       { 
         global: { 
-          headers: { Authorization: authHeader } 
+          headers: authHeader ? { Authorization: authHeader } : {} 
         } 
       }
     );
 
-    // Verify the JWT and get user
-    const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
-    
-    if (authError || !user) {
-      console.error('Auth error:', authError);
-      return new Response(
-        JSON.stringify({ error: 'Invalid or expired token. Please sign in again.' }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (authHeader) {
+      // Try to get authenticated user
+      const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+      if (user && !authError) {
+        userId = user.id;
+        console.log(`Authenticated user: ${userId}`);
+      } else {
+        console.log('Anonymous user (auth failed, allowing anyway)');
+      }
+    } else {
+      console.log('Anonymous user (no auth header)');
     }
 
-    console.log(`Authenticated user: ${user.id}`);
-
     // 2. Check rate limit
-    const rateLimit = await checkRateLimit(user.id);
+    const rateLimit = await checkRateLimit(userId);
     if (!rateLimit.allowed) {
-      console.log(`Rate limit exceeded for user: ${user.id}`);
+      console.log(`Rate limit exceeded for user: ${userId}`);
       return new Response(
         JSON.stringify({ 
           error: 'Rate limit exceeded. Please try again later.',
@@ -266,7 +261,7 @@ serve(async (req) => {
     // Check if this is an image generation request
     if (generateImage || isImageGenerationRequest(userText)) {
       const imagePrompt = extractImagePrompt(userText);
-      console.log(`User ${user.id} generating image with prompt:`, imagePrompt);
+      console.log(`User ${userId} generating image with prompt:`, imagePrompt);
       
       const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
@@ -301,7 +296,7 @@ serve(async (req) => {
       }
 
       const imageData = await imageResponse.json();
-      console.log(`Image generation response received for user: ${user.id}`);
+      console.log(`Image generation response received for user: ${userId}`);
       
       const imageUrl = imageData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
       const textContent = imageData.choices?.[0]?.message?.content || "Here's the image you requested!";
@@ -317,7 +312,7 @@ serve(async (req) => {
     }
 
     // Regular chat request
-    console.log(`User ${user.id} processing chat request with ${messages.length} messages`);
+    console.log(`User ${userId} processing chat request with ${messages.length} messages`);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -358,7 +353,7 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Streaming response from AI Gateway for user: ${user.id}`);
+    console.log(`Streaming response from AI Gateway for user: ${userId}`);
     
     return new Response(response.body, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
