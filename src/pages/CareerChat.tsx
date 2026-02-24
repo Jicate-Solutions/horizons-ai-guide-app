@@ -407,124 +407,115 @@ const CareerChat = () => {
     setIsLoading(true);
 
     try {
-      // Get current session
-      let { data: { session } } = await supabase.auth.getSession();
+      // First, try to get a session and call the API
+      let apiSuccess = false;
       
-      // If no session, auto-create anonymous session
-      if (!session?.access_token) {
-        console.log('[Chat] No session, trying anonymous sign-in...');
-        const { data: anonData, error: anonError } = await supabase.auth.signInAnonymously();
-        if (!anonError && anonData.session) {
-          session = anonData.session;
-          console.log('[Chat] Anonymous sign-in success');
-        } else {
-          console.log('[Chat] Anonymous sign-in failed:', anonError?.message, '- trying guest signup...');
-          // Fallback: create guest account
-          const guestEmail = `guest_${Date.now()}@vazhikaatti.app`;
-          const guestPass = `G_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-          const { data: guestData, error: guestError } = await supabase.auth.signUp({
-            email: guestEmail,
-            password: guestPass,
+      try {
+        let { data: { session } } = await supabase.auth.getSession();
+        
+        if (session?.access_token) {
+          const response = await fetch(CHAT_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${session.access_token}`
+            },
+            body: JSON.stringify({
+              messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
+            })
           });
-          if (!guestError && guestData.session) {
-            session = guestData.session;
-            console.log('[Chat] Guest signup success');
-          } else {
-            console.error('[Chat] Guest signup failed:', guestError?.message);
-            // Last resort: try with just the anon key
-            console.log('[Chat] Attempting with anon key only...');
-          }
-        }
-      }
-      
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-      };
-      
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-      } else {
-        // Use anon key as bearer token as last resort
-        headers['Authorization'] = `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`;
-        headers['apikey'] = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-      }
-      
-      const response = await fetch(CHAT_URL, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
-        })
-      });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        if (response.status === 429) {
-          throw new Error(errorData.error || 'Rate limit exceeded. Please try again later.');
-        }
-        throw new Error(errorData.error || 'Chat failed');
-      }
-      if (!response.body) throw new Error('No response body');
+          if (response.ok && response.body) {
+            apiSuccess = true;
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let assistantContent = '';
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let assistantContent = '';
+            setMessages((prev) => [
+              ...prev,
+              { role: 'assistant', content: '', timestamp: new Date() }
+            ]);
 
-      // Add placeholder assistant message
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: '', timestamp: new Date() }
-      ]);
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+              const chunk = decoder.decode(value, { stream: true });
+              const lines = chunk.split('\n');
 
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n');
-
-        for (const line of lines) {
-          if (line.startsWith('data: ') && line.trim() !== 'data: [DONE]') {
-            try {
-              const json = JSON.parse(line.slice(6));
-              const delta = json.choices?.[0]?.delta?.content;
-              if (delta) {
-                assistantContent += delta;
-                setMessages((prev) => {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = {
-                    role: 'assistant',
-                    content: assistantContent,
-                    timestamp: new Date()
-                  };
-                  return updated;
-                });
+              for (const line of lines) {
+                if (line.startsWith('data: ') && line.trim() !== 'data: [DONE]') {
+                  try {
+                    const data = JSON.parse(line.slice(6));
+                    const content = data.choices?.[0]?.delta?.content || '';
+                    if (content) {
+                      assistantContent += content;
+                      setMessages((prev) => {
+                        const updated = [...prev];
+                        updated[updated.length - 1] = {
+                          role: 'assistant',
+                          content: assistantContent,
+                          timestamp: new Date()
+                        };
+                        return updated;
+                      });
+                    }
+                  } catch {
+                    // Skip malformed JSON
+                  }
+                }
               }
-            } catch {
-              // Skip malformed JSON
             }
+
+            const assistantMessage: Message = {
+              role: 'assistant',
+              content: assistantContent,
+              timestamp: new Date()
+            };
+            await saveMessage(assistantMessage);
+            speakText(assistantContent);
           }
         }
+      } catch (apiError) {
+        console.log('[Chat] API unavailable, using local responses:', apiError);
       }
 
-      // Save assistant message
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: assistantContent,
-        timestamp: new Date()
-      };
-      await saveMessage(assistantMessage);
-      speakText(assistantContent);
+      // If API didn't work, use local responses
+      if (!apiSuccess) {
+        const userMsg = userMessages[userMessages.length - 1]?.content || '';
+        const localReply = getLocalCareerReply(userMsg);
+        
+        // Simulate typing effect
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: '', timestamp: new Date() }
+        ]);
+        
+        // Type out response character by character for natural feel
+        let displayed = '';
+        const words = localReply.split(' ');
+        for (let i = 0; i < words.length; i++) {
+          displayed += (i > 0 ? ' ' : '') + words[i];
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = {
+              role: 'assistant',
+              content: displayed,
+              timestamp: new Date()
+            };
+            return updated;
+          });
+          await new Promise(r => setTimeout(r, 20));
+        }
+      }
     } catch (error) {
       console.error('Chat error:', error);
-      // Instead of showing error, provide a helpful local response
+      // Fallback to local response
       const userMsg = userMessages[userMessages.length - 1]?.content || '';
       const localReply = getLocalCareerReply(userMsg);
-      
       setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last?.role === 'assistant' && last.content === '') {
-          // Replace empty placeholder with local response
           return [...prev.slice(0, -1), { role: 'assistant' as const, content: localReply, timestamp: new Date() }];
         }
         return [...prev, { role: 'assistant' as const, content: localReply, timestamp: new Date() }];
