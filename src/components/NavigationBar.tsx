@@ -63,12 +63,12 @@ const NavigationBar = () => {
             
           {/* Mobile Motivational Line - Centered */}
           <div 
-            className={`lg:hidden flex-1 flex items-center justify-center gap-2 transition-all duration-300 ${
+            className={`lg:hidden flex-1 flex items-center justify-center gap-1.5 px-2 transition-all duration-300 ${
               isMotiveVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}
           >
             <MotiveIcon className="w-4 h-4 text-primary" />
-            <span className="font-bold text-sm text-foreground">{currentMotive.text}</span>
+            <span className="font-bold text-xs sm:text-sm text-foreground truncate">{currentMotive.text}</span>
           </div>
 
           {/* Desktop Navigation */}

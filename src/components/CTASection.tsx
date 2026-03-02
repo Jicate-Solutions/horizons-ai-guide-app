@@ -37,7 +37,7 @@ const CTASection = () => {
             <span className="text-sm font-medium text-white">{t('cta.startJourney')}</span>
           </div>
 
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             {t('cta.title')}
           </h2>
 

@@ -1627,3 +1627,96 @@
     }
   }
 }
+
+/* ============ MOBILE OPTIMIZATIONS ============ */
+
+/* Prevent horizontal scroll globally */
+html, body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Safe area for notch devices (iPhone etc) */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Better tap targets on mobile */
+@media (max-width: 640px) {
+  /* Prevent text overflow everywhere */
+  h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label, div {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix font sizes that are too large on mobile */
+  .text-5xl { font-size: 1.875rem !important; line-height: 2.25rem !important; }
+  .text-6xl { font-size: 2.25rem !important; line-height: 2.5rem !important; }
+  
+  /* Better card spacing on mobile */
+  .container { padding-left: 12px; padding-right: 12px; }
+  
+  /* Fix modal positioning on mobile */
+  [role="dialog"] {
+    max-height: 90vh !important;
+    max-width: 95vw !important;
+    margin: auto;
+  }
+  
+  /* Fix tables to scroll horizontally */
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+  
+  /* Better spacing for sections */
+  .py-20 { padding-top: 3rem; padding-bottom: 3rem; }
+  .py-28 { padding-top: 4rem; padding-bottom: 4rem; }
+  
+  /* Fix grid items from overflowing */
+  .grid { gap: 0.75rem; }
+  
+  /* Reduce oversized avatars and icons */
+  .w-24.h-24 { width: 4rem; height: 4rem; }
+  
+  /* Fix select dropdowns */
+  select, [role="combobox"] { max-width: 100%; }
+}
+
+/* Small mobile (iPhone SE etc) */
+@media (max-width: 375px) {
+  .container { padding-left: 8px; padding-right: 8px; }
+  .text-4xl { font-size: 1.5rem !important; line-height: 2rem !important; }
+  .text-3xl { font-size: 1.25rem !important; line-height: 1.75rem !important; }
+}
+
+/* Tablet fixes */
+@media (max-width: 768px) {
+  /* Make fixed-width selects responsive */
+  [class*="w-[180px]"], [class*="w-[170px]"], [class*="w-[160px]"], [class*="w-[150px]"], [class*="w-[140px]"] {
+    width: 100% !important;
+  }
+}
+
+/* Improve touch scrolling */
+.overflow-y-auto, .overflow-auto, .overflow-y-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix images from overflowing */
+img { max-width: 100%; height: auto; }
+
+/* Fix videos from overflowing */
+video, iframe { max-width: 100%; }
+
+/* Better focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}

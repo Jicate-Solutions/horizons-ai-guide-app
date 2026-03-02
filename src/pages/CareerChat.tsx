@@ -1219,24 +1219,24 @@ Be empathetic and respect Indian family values while helping the student communi
       {/* Enhanced Header */}
       <header className="bg-gradient-to-r from-emerald-700 via-green-700 to-emerald-800 sticky top-0 z-20 shadow-xl">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.05%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
-        <div className="container mx-auto px-4 py-5 relative z-10">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-5 relative z-10">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => navigate('/career-assessment/colleges')}
-                className="text-white/90 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300"
+                className="text-white/90 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300 h-9 w-9 sm:h-10 sm:w-10"
               >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/30 animate-pulse">
-                  <Bot className="h-6 w-6 text-white" />
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/30 animate-pulse">
+                  <Bot className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-serif font-bold text-white tracking-tight">AI Career Counselor</h1>
-                  <p className="text-sm text-emerald-100 font-tamil">AI தொழில் ஆலோசகர்</p>
+                  <h1 className="text-base sm:text-2xl font-serif font-bold text-white tracking-tight">AI Career Counselor</h1>
+                  <p className="text-xs sm:text-sm text-emerald-100 font-tamil">AI தொழில் ஆலோசகர்</p>
                 </div>
               </div>
             </div>
@@ -1300,12 +1300,12 @@ Be empathetic and respect Indian family values while helping the student communi
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6 max-w-4xl">
+      <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-6 max-w-4xl">
         {/* Enhanced Chat Area */}
-        <Card className="bg-white/70 backdrop-blur-xl border-2 border-white/60 shadow-2xl shadow-emerald-900/5 rounded-3xl mb-6 overflow-hidden">
+        <Card className="bg-white/70 backdrop-blur-xl border-2 border-white/60 shadow-2xl shadow-emerald-900/5 rounded-2xl sm:rounded-3xl mb-3 sm:mb-6 overflow-hidden">
           <CardContent className="p-0">
-            <ScrollArea className="h-[55vh]">
-              <div className="p-6">
+            <ScrollArea className="h-[calc(100vh-280px)] sm:h-[55vh]">
+              <div className="p-3 sm:p-6">
                 {messages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-center py-16">
                     {/* Animated avatar */}
@@ -1525,12 +1525,12 @@ Be empathetic and respect Indian family values while helping the student communi
         </Card>
 
         {/* Enhanced Input Area */}
-        <div className="bg-white/80 backdrop-blur-xl rounded-2xl border-2 border-white/60 shadow-xl p-3 flex gap-3 items-center">
+        <div className="bg-white/80 backdrop-blur-xl rounded-xl sm:rounded-2xl border-2 border-white/60 shadow-xl p-2 sm:p-3 flex gap-2 sm:gap-3 items-center">
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleVoiceInput}
-            className={`rounded-xl h-12 w-12 transition-all duration-300 ${
+            className={`rounded-xl h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 transition-all duration-300 ${
               isListening 
                 ? 'bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-lg shadow-red-200 animate-pulse' 
                 : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'
@@ -1543,13 +1543,13 @@ Be empathetic and respect Indian family values while helping the student communi
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
             placeholder={t('chat.inputPlaceholder')}
-            className="flex-1 border-0 bg-transparent text-gray-800 placeholder:text-gray-400 focus-visible:ring-0 text-base h-12"
+            className="flex-1 border-0 bg-transparent text-gray-800 placeholder:text-gray-400 focus-visible:ring-0 text-sm sm:text-base h-10 sm:h-12"
             disabled={isLoading}
           />
           <Button 
             onClick={handleSend} 
             disabled={isLoading || !input.trim()} 
-            className="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white shadow-lg shadow-emerald-200/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+            className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white shadow-lg shadow-emerald-200/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
           >
             {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
           </Button>

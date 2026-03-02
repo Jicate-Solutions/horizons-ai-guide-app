@@ -24,7 +24,7 @@ const HeroSection = () => {
   const parallaxOffset = scrollY * 0.4;
 
   return (
-    <section className="relative h-[calc(100vh-180px)] min-h-[500px] flex items-center overflow-hidden">
+    <section className="relative h-[calc(100vh-130px)] sm:h-[calc(100vh-180px)] min-h-[400px] sm:min-h-[500px] flex items-center overflow-hidden">
       {/* Background Image with Parallax Effect */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
@@ -77,22 +77,22 @@ const HeroSection = () => {
             </span>
 
             <div className="space-y-3">
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold italic animate-fade-up tracking-tight" style={{ animationDelay: '0.1s' }}>
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold italic animate-fade-up tracking-tight" style={{ animationDelay: '0.1s' }}>
                 {t('hero.title')}
               </h1>
 
-              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
                   {t('hero.subtitle')}
                 </span>
               </h2>
 
-              <p className="font-tamil text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              <p className="font-tamil text-base sm:text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.3s' }}>
                 <span className="underline decoration-amber-400/60 decoration-2 underline-offset-4">{t('hero.tamilSubtitle')}</span>
               </p>
             </div>
 
-            <p className="text-base md:text-lg text-emerald-50/80 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <p className="text-sm sm:text-base md:text-lg text-emerald-50/80 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.4s' }}>
               {t('hero.description')}
             </p>
 

@@ -68,14 +68,14 @@ const TopBar = () => {
           <span className="text-primary-foreground/50 text-[10px]">• {currentMessage.translation}</span>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
           <GlobalLanguageSelector />
           
-          {/* Theme Toggle */}
+          {/* Theme Toggle - hidden on small mobile */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button 
-                className="p-2 hover:bg-primary-foreground/10 rounded-full transition-colors"
+                className="hidden sm:flex p-2 hover:bg-primary-foreground/10 rounded-full transition-colors"
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? (
@@ -114,7 +114,7 @@ const TopBar = () => {
           
           <Button 
             size="sm" 
-            className="relative bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-8 px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
+            className="relative bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-7 sm:h-8 px-2.5 sm:px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
             onClick={openChat}
           >
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
@@ -124,7 +124,7 @@ const TopBar = () => {
             <MessageSquareText className="w-3.5 h-3.5 mr-1.5" />
             {t('topbar.aiChat')}
           </Button>
-          <button className="relative p-2 hover:bg-primary-foreground/10 rounded-full transition-colors">
+          <button className="relative p-2 hover:bg-primary-foreground/10 rounded-full transition-colors hidden sm:block">
             <Bell className="w-4 h-4" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-secondary rounded-full"></span>
           </button>

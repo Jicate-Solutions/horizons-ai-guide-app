@@ -31,10 +31,10 @@ const TwelfthLearnersSection = () => {
               For 12th Learners
             </span>
             
-            <h2 className="font-serif text-4xl md:text-5xl font-bold italic text-white mb-6">
+            <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold italic text-white mb-6">
               Confused About Your Future After 12th?
             </h2>
-            <p className="text-emerald-100/80 text-lg md:text-xl mb-10 leading-relaxed">
+            <p className="text-emerald-100/80 text-base sm:text-lg md:text-xl mb-10 leading-relaxed">
               VAZHIKAATTI is designed especially for 12th Learners who want clarity about their career path. Our AI-powered platform helps you discover your strengths and find the perfect course.
             </p>
 

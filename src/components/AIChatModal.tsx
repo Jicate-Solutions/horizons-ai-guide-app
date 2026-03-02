@@ -437,7 +437,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-24 right-6 z-50 bg-card border border-border rounded-lg shadow-lg p-3 flex items-center gap-3 animate-scale-in">
+      <div className="fixed bottom-24 right-4 sm:right-6 z-50 bg-card border border-border rounded-lg shadow-lg p-3 flex items-center gap-3 animate-scale-in">
         <span className="font-medium text-sm">VAZHIKAATTI AI Assistant</span>
         <Button size="icon" variant="ghost" onClick={() => setIsMinimized(false)}>
           <Maximize2 className="w-4 h-4" />
@@ -450,7 +450,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   }
 
   return (
-    <div className="fixed bottom-24 right-6 z-50 w-[380px] h-[520px] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-scale-in">
+    <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[380px] h-[70vh] sm:h-[520px] max-h-[520px] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-scale-in">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border bg-primary/5">
         <div>
