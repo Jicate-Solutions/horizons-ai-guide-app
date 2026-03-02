@@ -197,6 +197,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com',
     address: 'Komarapalayam (Operates both Aided and Self-Financing streams)',
     feeRange: '₹5,000 - ₹25,000 per year',
+    website: 'https://artsci.jkkn.ac.in',
     isJKKN: true,
   },
 
@@ -211,6 +212,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     courses: 'B.Sc, B.Com, BCA, BBA, M.Sc, M.Com, MBA',
     address: 'Komarapalayam',
     feeRange: '₹25,000 - ₹75,000 per year',
+    website: 'https://artsci.jkkn.ac.in',
     isJKKN: true,
   },
   {
@@ -433,6 +435,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam | TNEA Code: 2647',
     feeRange: '₹60,000 - ₹1,50,000 per year',
     accreditation: 'NBA Accredited, AICTE Approved',
+    website: 'https://engg.jkkn.ac.in',
     isJKKN: true,
   },
   {
@@ -618,6 +621,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹3,00,000 - ₹8,00,000 per year',
     accreditation: 'DCI Approved',
+    website: 'https://dental.jkkn.ac.in',
     isJKKN: true,
   },
   {
@@ -629,6 +633,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹50,000 - ₹1,50,000 per year',
     accreditation: 'PCI Approved',
+    website: 'https://pharmacy.jkkn.ac.in/admission-process',
     isJKKN: true,
   },
   {
@@ -640,6 +645,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹40,000 - ₹1,20,000 per year',
     accreditation: 'INC Approved',
+    website: 'https://nursing.sresakthimayeil.jkkn.ac.in',
     isJKKN: true,
   },
   {
@@ -722,6 +728,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹50,000 - ₹1,20,000 per year',
     accreditation: 'TN Dr. M.G.R. Medical University Affiliated',
+    website: 'https://ahs.jkkn.ac.in',
     isJKKN: true,
   },
   {
@@ -799,6 +806,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹40,000 - ₹1,20,000 per year',
     accreditation: 'INC Approved',
+    website: 'https://nursing.sresakthimayeil.jkkn.ac.in',
     isJKKN: true,
   },
   {
@@ -869,6 +877,8 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹40,000 - ₹1,00,000 per year',
     accreditation: 'INC Approved',
+    website: 'https://nursing.sresakthimayeil.jkkn.ac.in',
+    isJKKN: true,
   },
   {
     id: 'ksr_nursing',
