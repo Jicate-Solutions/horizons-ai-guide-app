@@ -1350,6 +1350,120 @@ export const ERODE_FEATURED_COLLEGES: College[] = [
     feeRange: '₹15,000 - ₹40,000 per year',
     accreditation: 'AICTE Approved',
   },
+
+  // ============================================
+  // 6. ADDITIONAL ENGINEERING COLLEGES
+  // ============================================
+  {
+    id: 'aishwarya_engineering',
+    name: 'Aishwarya College of Engineering & Technology, Bhavani',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
+    address: 'Bhavani, Erode',
+    feeRange: '₹45,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+
+  // ============================================
+  // 7. ADDITIONAL ARTS & SCIENCE COLLEGES
+  // ============================================
+  {
+    id: 'vetias_erode',
+    name: 'VET Institute of Arts and Science (VETIAS), Erode',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Erode',
+    feeRange: '₹18,000 - ₹45,000 per year',
+  },
+
+  // ============================================
+  // 8. ADDITIONAL MEDICAL, DENTAL & HEALTH COLLEGES
+  // ============================================
+  {
+    id: 'nandha_dental',
+    name: 'Nandha Dental College and Hospital, Erode',
+    type: 'private',
+    category: 'dental',
+    courses: 'BDS, MDS',
+    address: 'Vaikkalmedu, Erode',
+    feeRange: '₹3,00,000 - ₹8,00,000 per year',
+    accreditation: 'DCI Approved',
+  },
+  {
+    id: 'erode_pharmacy',
+    name: 'Erode College of Pharmacy, Erode',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm, M.Pharm',
+    address: 'Erode',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+    accreditation: 'PCI Approved',
+  },
+  {
+    id: 'govt_nursing_erode',
+    name: 'Government College of Nursing, Erode',
+    type: 'government',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'Erode',
+    feeRange: '₹5,000 - ₹15,000 per year',
+    accreditation: 'INC Approved',
+  },
+  {
+    id: 'vellalar_nursing',
+    name: 'Vellalar College of Nursing, Erode',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, M.Sc Nursing, GNM',
+    address: 'Thindal, Erode',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'INC Approved',
+  },
+  {
+    id: 'nandha_allied_health',
+    name: 'Nandha College of Allied Health Sciences, Erode',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health Sciences, DMLT, B.Sc MLT, B.Sc Radiology',
+    address: 'Erode',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+  },
+
+  // ============================================
+  // 9. EDUCATION COLLEGES (B.Ed)
+  // ============================================
+  {
+    id: 'vellalar_education',
+    name: 'Vellalar College of Education, Erode',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Thindal, Erode',
+    feeRange: '₹30,000 - ₹60,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'nandha_education',
+    name: 'Nandha College of Education, Erode',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Erode',
+    feeRange: '₹30,000 - ₹60,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'gandhi_education',
+    name: 'Gandhi College of Education, Erode',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Erode',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
 ];
 
 // Salem District Colleges - Complete List
