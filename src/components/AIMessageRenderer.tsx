@@ -30,19 +30,19 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
           
           // Paragraphs with optimized typography
           p: ({ children }) => (
-            <p className="text-[15px] leading-[1.75] tracking-[0.01em] text-foreground/80 mb-3 last:mb-0">
+            <p className="text-[15px] leading-[1.75] tracking-[0.01em] text-black font-semibold mb-3 last:mb-0">
               {children}
             </p>
           ),
           
           // Bold text stands out
           strong: ({ children }) => (
-            <strong className="font-semibold text-foreground">{children}</strong>
+            <strong className="font-bold text-black">{children}</strong>
           ),
           
           // Italic for emphasis
           em: ({ children }) => (
-            <em className="italic text-foreground/80">{children}</em>
+            <em className="italic text-black">{children}</em>
           ),
           
           // Professional unordered lists
@@ -58,7 +58,7 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
           // List items with styled bullets
           li: ({ children }) => {
             return (
-              <li className="flex items-start gap-3 text-[15px] leading-[1.75] text-foreground/80">
+              <li className="flex items-start gap-3 text-[15px] leading-[1.75] text-black font-semibold">
                 <span className="flex-shrink-0 mt-1">
                   <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary/10">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -93,7 +93,7 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
           
           // Blockquotes for important notes
           blockquote: ({ children }) => (
-            <blockquote className="my-3 pl-4 border-l-4 border-accent bg-accent/20 py-2 pr-3 rounded-r-lg text-foreground/80 italic">
+            <blockquote className="my-3 pl-4 border-l-4 border-accent bg-accent/20 py-2 pr-3 rounded-r-lg text-black font-semibold italic">
               {children}
             </blockquote>
           ),
@@ -136,7 +136,7 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-3 py-2 text-sm text-foreground/80">{children}</td>
+            <td className="px-3 py-2 text-sm text-black font-semibold">{children}</td>
           ),
         }}
       >
