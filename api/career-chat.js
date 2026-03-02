@@ -38,8 +38,9 @@ export default async function handler(req, res) {
     if (isImageRequest) {
       const userMessage = messages[messages.length - 1]?.content || '';
       
-      // Use Claude to create a better image prompt
+      // Use Claude to create a career-themed image prompt AND career tips
       let imagePrompt = userMessage;
+      let careerTips = '';
       try {
         const promptResponse = await fetch('https://api.anthropic.com/v1/messages', {
           method: 'POST',
@@ -50,17 +51,37 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify({
             model: 'claude-sonnet-4-20250514',
-            max_tokens: 200,
+            max_tokens: 500,
             messages: [{
               role: 'user',
-              content: `Extract a clear, detailed image generation prompt from this user request. Return ONLY the image description, nothing else. Make it detailed and visual.\n\nUser request: "${userMessage}"`
+              content: `The user wants to generate an image of: "${userMessage}"
+
+You must do TWO things. Respond in this EXACT format with the separator ---TIPS---:
+
+1. First, write a detailed image generation prompt that transforms the user's request into a CAREER MOTIVATION themed image. Connect the subject (tree, dog, ball, temple, etc.) to career growth, success, education, or motivation. Make it inspirational and professional looking. Include words like: motivational, professional, inspirational poster style, clean modern design. Return ONLY the image prompt, no explanation.
+
+---TIPS---
+
+2. Then, write 3-4 career reflection tips or motivational insights that connect the subject (${userMessage}) to career/life success. Use emojis and bold formatting with **. Make each tip 1-2 lines. Connect the metaphor naturally.
+
+Example for "tree":
+Image prompt: A majestic growing tree with branches forming career paths and opportunities, roots representing education and knowledge, leaves glowing with golden light, inspirational motivational poster style, professional clean modern design
+
+---TIPS---
+🌳 **Like a tree, your career grows stronger with deep roots of education and patience.**
+📚 **Every branch represents a new skill — keep learning, keep growing!**
+💪 **Storms make trees take deeper roots — challenges make you stronger in your career.**
+🎯 **Plant your career seed today, nurture it with hard work, and watch it become mighty.**`
             }],
           }),
         });
 
         if (promptResponse.ok) {
           const promptData = await promptResponse.json();
-          imagePrompt = promptData.content?.[0]?.text || userMessage;
+          const fullResponse = promptData.content?.[0]?.text || '';
+          const parts = fullResponse.split('---TIPS---');
+          imagePrompt = (parts[0] || userMessage).trim();
+          careerTips = (parts[1] || '').trim();
         }
       } catch (e) {
         // Use original message as prompt
@@ -70,10 +91,12 @@ export default async function handler(req, res) {
       const encodedPrompt = encodeURIComponent(imagePrompt);
       const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&nologo=true&seed=${Date.now()}`;
 
+      const tipsText = careerTips || `🎯 **Every image tells a career story — find your path and keep moving forward!**\n💡 **Success comes to those who stay focused and never stop learning.**`;
+
       return res.status(200).json({
         type: 'image',
         imageUrl: imageUrl,
-        content: `🎨 **Image Generated!**\n\nHere's your image 👇 (takes a few seconds to appear)\n\n💡 **Tip:** You can ask me to generate more images or modify this one!`
+        content: `🎨 **Career Reflection Image Generated!**\n\n👇 Your image is loading below (takes 5-10 seconds)\n\n---\n\n**🌟 Career Reflection:**\n\n${tipsText}\n\n---\n\n💡 *Ask me to generate more career reflection images with any topic!*`
       });
     }
 
