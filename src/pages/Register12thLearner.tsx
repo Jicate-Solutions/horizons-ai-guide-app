@@ -174,29 +174,37 @@ const Register12thLearner = () => {
 
       if (error) throw error;
 
-      // Send confirmation email to login email (non-blocking)
+      // Send confirmation email (try both Supabase Edge Function and Vercel API)
       const loginEmail = user?.email;
       if (loginEmail) {
+        const emailPayload = {
+          fullName: validatedData.fullName,
+          email: loginEmail,
+          phone: validatedData.phone,
+          school: validatedData.school || '',
+          board: validatedData.board || '',
+          stream: validatedData.stream || '',
+          expectedYear: validatedData.expectedYear || '',
+        };
+
+        // Try Supabase Edge Function
+        supabase.functions.invoke('send-registration-email', {
+          body: emailPayload,
+        }).then(({ data, error }) => {
+          console.log('Registration email (Edge Function):', error || data);
+        }).catch(err => {
+          console.error('Edge Function email error:', err);
+        });
+
+        // Also try Vercel API as backup
         fetch('/api/send-registration-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fullName: validatedData.fullName,
-            email: loginEmail,
-            phone: validatedData.phone,
-            school: validatedData.school || '',
-            board: validatedData.board || '',
-            stream: validatedData.stream || '',
-            expectedYear: validatedData.expectedYear || '',
-          }),
+          body: JSON.stringify(emailPayload),
         }).then(res => res.json()).then(data => {
-          if (data.success) {
-            console.log('Confirmation email sent to:', loginEmail);
-          } else {
-            console.error('Email send error:', data);
-          }
+          console.log('Registration email (Vercel API):', data);
         }).catch(err => {
-          console.error('Email send error:', err);
+          console.error('Vercel API email error:', err);
         });
       }
       

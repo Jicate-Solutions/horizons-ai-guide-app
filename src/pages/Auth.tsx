@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -130,15 +131,32 @@ const Auth = () => {
           // Show registration success screen
           setRegistrationSuccess(true);
           
-          // Send welcome email (non-blocking)
+          // Send welcome email (try Supabase Edge Function first, then Vercel API)
           try {
-            fetch('/api/send-welcome-email', {
+            // Try Supabase Edge Function
+            const { data: edgeData, error: edgeError } = await supabase.functions.invoke('send-registration-email', {
+              body: { 
+                fullName: displayName || email.split('@')[0], 
+                email, 
+                phone: '-', 
+                school: '-', 
+                board: '-', 
+                stream: '-', 
+                expectedYear: '2026' 
+              },
+            });
+            console.log('Welcome email (Edge Function):', edgeError || edgeData);
+
+            // Also try Vercel API as backup
+            const vercelRes = await fetch('/api/send-welcome-email', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ email, displayName: displayName || email.split('@')[0] }),
             });
+            const vercelData = await vercelRes.json();
+            console.log('Welcome email (Vercel API):', vercelData);
           } catch (emailErr) {
-            console.log('Welcome email send attempted');
+            console.error('Welcome email error:', emailErr);
           }
         }
       }
