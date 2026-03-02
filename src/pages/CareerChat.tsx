@@ -285,30 +285,8 @@ const CareerChat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Load chat history
-  useEffect(() => {
-    const loadHistory = async () => {
-      if (!user) return;
-
-      const { data } = await supabase
-        .from('chat_messages')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: true });
-
-      if (data && data.length > 0) {
-        setMessages(
-          data.map((m) => ({
-            role: m.role as 'user' | 'assistant',
-            content: m.content,
-            timestamp: new Date(m.created_at)
-          }))
-        );
-      }
-    };
-
-    loadHistory();
-  }, [user]);
+  // Chat starts fresh each session - no history loading
+  // Previous messages are still saved to database for reference
 
   // Initialize speech recognition
   useEffect(() => {

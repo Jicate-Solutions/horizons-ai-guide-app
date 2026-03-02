@@ -105,38 +105,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const speechSynthRef = useRef<SpeechSynthesisUtterance | null>(null);
 
-  // Load chat history from database
-  useEffect(() => {
-    const loadChatHistory = async () => {
-      if (!user) return;
-      
-      setIsLoadingHistory(true);
-      try {
-        const { data, error } = await supabase
-          .from("chat_messages")
-          .select("*")
-          .eq("user_id", user.id)
-          .order("created_at", { ascending: true });
-        
-        if (error) throw error;
-        
-        if (data) {
-          setMessages(data.map(msg => ({
-            id: msg.id,
-            role: msg.role as "user" | "assistant",
-            content: msg.content,
-            imageUrl: msg.image_url || undefined
-          })));
-        }
-      } catch (error) {
-        console.error("Error loading chat history:", error);
-      } finally {
-        setIsLoadingHistory(false);
-      }
-    };
-    
-    loadChatHistory();
-  }, [user]);
+  // Chat starts fresh each session - no history loading
 
   // Save message to database
   const saveMessage = useCallback(async (message: Message) => {
