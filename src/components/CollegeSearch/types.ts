@@ -223,6 +223,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     courses: 'B.Sc, B.Com, BCA, BBA, M.Sc, M.Com, MBA',
     address: 'Tiruchengode',
     feeRange: '₹30,000 - ₹80,000 per year',
+    website: 'https://www.ksrcas.edu',
   },
   {
     id: 'selvamm_arts_science',
@@ -312,6 +313,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Tiruchengode | TNEA Code: 2607',
     feeRange: '₹70,000 - ₹1,50,000 per year',
     accreditation: 'NBA Accredited, AICTE Approved',
+    website: 'https://www.ksrct.ac.in',
   },
   {
     id: 'ksr_engineering',
@@ -322,6 +324,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Tiruchengode | TNEA Code: 2613',
     feeRange: '₹60,000 - ₹1,20,000 per year',
     accreditation: 'AICTE Approved, Autonomous',
+    website: 'https://ksrce.ac.in',
   },
   {
     id: 'mahendra_engineering',
@@ -657,6 +660,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Tiruchengode',
     feeRange: '₹3,50,000 - ₹9,00,000 per year',
     accreditation: 'DCI Approved',
+    website: 'https://www.ksridsr.edu.in',
   },
   {
     id: 'vivekanandha_dental',
@@ -889,6 +893,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Tiruchengode',
     feeRange: '₹40,000 - ₹1,20,000 per year',
     accreditation: 'INC Approved',
+    website: 'https://www.ksrei.org',
   },
   {
     id: 'sengunthar_nursing',
