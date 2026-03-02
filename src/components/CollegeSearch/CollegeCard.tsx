@@ -39,7 +39,17 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                 </Badge>
               )}
             </div>
-            <h3 className="font-semibold text-lg leading-tight">{college.name}</h3>
+            <h3 
+              className="font-semibold text-lg leading-tight cursor-pointer hover:text-emerald-700 hover:underline transition-colors"
+              onClick={() => {
+                const url = college.website 
+                  ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
+                  : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website')}`;
+                window.open(url, '_blank', 'noopener,noreferrer');
+              }}
+            >
+              {college.name}
+            </h3>
           </div>
         </div>
       </CardHeader>
@@ -145,10 +155,30 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               )}
 
               <div className="flex gap-2 mt-3">
-                <Button size="sm" className="bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white">
+                <Button 
+                  size="sm" 
+                  className="bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white"
+                  onClick={() => {
+                    const url = college.website 
+                      ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
+                      : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website admission')}`;
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }}
+                >
+                  <ExternalLink className="h-3 w-3 mr-1" />
                   Apply Now
                 </Button>
-                <Button size="sm" variant="outline">
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  onClick={() => {
+                    const url = college.website 
+                      ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
+                      : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' contact enquiry')}`;
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }}
+                >
+                  <Globe className="h-3 w-3 mr-1" />
                   Enquiry
                 </Button>
               </div>
