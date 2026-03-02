@@ -125,6 +125,17 @@ const Auth = () => {
             title: "Account Created!",
             description: "Welcome! Your account has been created successfully.",
           });
+          
+          // Send welcome email (non-blocking)
+          try {
+            fetch('/api/send-welcome-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, displayName: displayName || email.split('@')[0] }),
+            });
+          } catch (emailErr) {
+            console.log('Welcome email send attempted');
+          }
         }
       }
     } finally {
