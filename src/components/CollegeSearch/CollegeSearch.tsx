@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
-import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES } from './types';
+import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES } from './types';
 
 // Helper function to normalize college name for comparison
 const normalizeCollegeName = (name: string): string => {
@@ -86,42 +86,39 @@ export const CollegeSearch = () => {
   const fetchColleges = async (district: string) => {
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke('college-search', {
-        body: { district }
-      });
+      // Local college data for supported districts
+      const localData: Record<string, College[]> = {
+        'Namakkal': NAMAKKAL_FEATURED_COLLEGES,
+        'Erode': ERODE_FEATURED_COLLEGES,
+        'Salem': SALEM_FEATURED_COLLEGES,
+        'Coimbatore': COIMBATORE_FEATURED_COLLEGES,
+        'Tirupur': TIRUPUR_FEATURED_COLLEGES,
+      };
 
-      if (error) throw error;
+      if (localData[district]) {
+        // Use local data directly - no API call needed
+        setColleges(localData[district]);
+      } else {
+        // Try Supabase for other districts
+        try {
+          const { data, error } = await supabase.functions.invoke('college-search', {
+            body: { district }
+          });
 
-      let fetchedColleges: College[] = data.colleges || [];
+          if (error) throw error;
 
-      // For Namakkal, add featured colleges (JKKN and aided colleges) at the start
-      if (district === 'Namakkal') {
-        // Remove any JKKN-related colleges from AI results to avoid duplicates
-        fetchedColleges = fetchedColleges.filter(c => 
-          !c.name.toLowerCase().includes('jkkn') && 
-          !c.name.toLowerCase().includes('j.k.k.') &&
-          !c.name.toLowerCase().includes('jkk ')
-        );
-        
-        // Add featured Namakkal colleges first
-        fetchedColleges = [...NAMAKKAL_FEATURED_COLLEGES, ...fetchedColleges];
-      }
-
-      // Remove duplicates from all results
-      fetchedColleges = removeDuplicates(fetchedColleges);
-
-      setColleges(fetchedColleges);
-    } catch (error) {
-      console.error('Error fetching colleges:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch colleges. Please try again.',
-        variant: 'destructive',
-      });
-      
-      // If API fails for Namakkal, at least show featured colleges
-      if (district === 'Namakkal') {
-        setColleges(NAMAKKAL_FEATURED_COLLEGES);
+          let fetchedColleges: College[] = data.colleges || [];
+          fetchedColleges = removeDuplicates(fetchedColleges);
+          setColleges(fetchedColleges);
+        } catch (apiError) {
+          console.error('Error fetching colleges:', apiError);
+          // Show empty state with helpful message instead of error
+          setColleges([]);
+          toast({
+            title: 'Coming Soon',
+            description: `College data for ${district} district is being updated. Try Namakkal, Erode, Salem, Coimbatore, or Tirupur.`,
+          });
+        }
       }
     } finally {
       setLoading(false);
