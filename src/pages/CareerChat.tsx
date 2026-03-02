@@ -1636,39 +1636,29 @@ Be empathetic and respect Indian family values while helping the student communi
                             <>
                               <AIMessageRenderer content={message.content} />
                               {message.imageUrl && (
-                                <div className="mt-3">
-                                  <div className="relative">
-                                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-xl animate-pulse" id={`img-loader-${index}`}>
-                                      <div className="text-center">
-                                        <Loader2 className="h-8 w-8 animate-spin text-emerald-500 mx-auto mb-2" />
-                                        <p className="text-sm text-gray-500 font-medium">Generating image...</p>
-                                      </div>
-                                    </div>
-                                    <img 
-                                      src={message.imageUrl} 
-                                      alt="AI Generated Image" 
-                                      className="w-full max-w-md rounded-xl shadow-lg border border-gray-200"
-                                      loading="eager"
-                                      onLoad={(e) => {
-                                        const loader = document.getElementById(`img-loader-${index}`);
-                                        if (loader) loader.style.display = 'none';
-                                        (e.target as HTMLImageElement).style.opacity = '1';
-                                      }}
-                                      onError={(e) => {
-                                        const loader = document.getElementById(`img-loader-${index}`);
-                                        if (loader) loader.innerHTML = '<p class="text-sm text-red-500 p-4">⚠️ Image failed to load. Click "Open full size" to try again.</p>';
-                                      }}
-                                      style={{ opacity: 0, transition: 'opacity 0.5s ease-in' }}
-                                    />
+                                <div className="mt-3 space-y-2">
+                                  <img 
+                                    src={message.imageUrl} 
+                                    alt="AI Generated Image" 
+                                    className="w-full max-w-md rounded-xl shadow-lg border border-gray-200 bg-gray-100 min-h-[200px]"
+                                  />
+                                  <div className="flex items-center gap-3">
+                                    <a 
+                                      href={message.imageUrl} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-xs text-emerald-600 hover:text-emerald-700 font-semibold bg-emerald-50 px-3 py-1.5 rounded-lg"
+                                    >
+                                      🔗 Open full size
+                                    </a>
+                                    <a
+                                      href={message.imageUrl}
+                                      download="generated-image.png"
+                                      className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 font-semibold bg-blue-50 px-3 py-1.5 rounded-lg"
+                                    >
+                                      ⬇️ Download
+                                    </a>
                                   </div>
-                                  <a 
-                                    href={message.imageUrl} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 mt-2 text-xs text-emerald-600 hover:text-emerald-700 font-medium"
-                                  >
-                                    🔗 Open full size
-                                  </a>
                                 </div>
                               )}
                             </>

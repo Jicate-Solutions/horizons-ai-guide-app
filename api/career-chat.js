@@ -68,12 +68,12 @@ export default async function handler(req, res) {
 
       // Generate image using Pollinations.ai (free, no API key needed)
       const encodedPrompt = encodeURIComponent(imagePrompt);
-      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${Date.now()}`;
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&nologo=true&seed=${Date.now()}`;
 
       return res.status(200).json({
         type: 'image',
         imageUrl: imageUrl,
-        content: `🎨 **Image Generated!**\n\nHere's the image based on your request.\n\n💡 **Tip:** You can ask me to generate more images or modify this one!`
+        content: `🎨 **Image Generated!**\n\nHere's your image 👇 (takes a few seconds to appear)\n\n💡 **Tip:** You can ask me to generate more images or modify this one!`
       });
     }
 
