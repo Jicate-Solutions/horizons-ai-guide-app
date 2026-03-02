@@ -299,81 +299,59 @@ const CareerChat = () => {
         .order('created_at', { ascending: true });
 
       if (data && data.length > 0) {
-        // Group messages into sessions by [SESSION_END] markers or time gaps (>10 min)
+        // Group: each user message + its following assistant response = one entry
         const sessions: { date: string; preview: string; messages: Message[] }[] = [];
-        let currentSession: Message[] = [];
-        let lastTime: Date | null = null;
+        let currentPair: Message[] = [];
 
         data.forEach((m) => {
-          const msgTime = new Date(m.created_at);
-
-          // Session separator marker
-          if (m.content === '[SESSION_END]') {
-            if (currentSession.length > 0) {
-              const firstUserMsg = currentSession.find(msg => msg.role === 'user');
-              const preview = firstUserMsg?.content?.slice(0, 50) || 'Chat session';
-              const sessionDate = currentSession[0].timestamp.toLocaleDateString('en-IN', {
-                day: 'numeric', month: 'short', year: 'numeric'
-              });
-              const sessionTime = currentSession[0].timestamp.toLocaleTimeString('en-IN', {
-                hour: '2-digit', minute: '2-digit'
-              });
-              sessions.push({
-                date: `${sessionDate}, ${sessionTime}`,
-                preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''),
-                messages: [...currentSession]
-              });
-              currentSession = [];
-            }
-            lastTime = msgTime;
-            return;
-          }
+          if (m.content === '[SESSION_END]') return; // skip markers
 
           const msg: Message = {
             role: m.role as 'user' | 'assistant',
             content: m.content,
-            timestamp: msgTime
+            timestamp: new Date(m.created_at)
           };
 
-          // If gap > 10 minutes, also start new session
-          if (lastTime && (msgTime.getTime() - lastTime.getTime()) > 10 * 60 * 1000) {
-            if (currentSession.length > 0) {
-              const firstUserMsg = currentSession.find(msg => msg.role === 'user');
-              const preview = firstUserMsg?.content?.slice(0, 50) || 'Chat session';
-              const sessionDate = currentSession[0].timestamp.toLocaleDateString('en-IN', {
+          // When we hit a new user message and already have a pair, save the previous one
+          if (msg.role === 'user' && currentPair.length > 0) {
+            const userMsg = currentPair.find(m => m.role === 'user');
+            if (userMsg) {
+              const preview = userMsg.content.slice(0, 60);
+              const sessionDate = userMsg.timestamp.toLocaleDateString('en-IN', {
                 day: 'numeric', month: 'short', year: 'numeric'
               });
-              const sessionTime = currentSession[0].timestamp.toLocaleTimeString('en-IN', {
+              const sessionTime = userMsg.timestamp.toLocaleTimeString('en-IN', {
                 hour: '2-digit', minute: '2-digit'
               });
               sessions.push({
                 date: `${sessionDate}, ${sessionTime}`,
-                preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''),
-                messages: [...currentSession]
+                preview: preview + (userMsg.content.length > 60 ? '...' : ''),
+                messages: [...currentPair]
               });
             }
-            currentSession = [];
+            currentPair = [];
           }
 
-          currentSession.push(msg);
-          lastTime = msgTime;
+          currentPair.push(msg);
         });
 
-        // Push last session
-        if (currentSession.length > 0) {
-          const firstUserMsg = currentSession.find(msg => msg.role === 'user');
-          const preview = firstUserMsg?.content?.slice(0, 50) || 'Chat session';
-          const sessionDate = currentSession[0].timestamp.toLocaleDateString('en-IN', {
-            day: 'numeric', month: 'short', year: 'numeric'
-          });
-          const sessionTime = currentSession[0].timestamp.toLocaleTimeString('en-IN', {
-            hour: '2-digit', minute: '2-digit'
-          });
-          sessions.push({
-            date: `${sessionDate}, ${sessionTime}`,
-            preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''),
-            messages: [...currentSession]
-          });
+        // Push last pair
+        if (currentPair.length > 0) {
+          const userMsg = currentPair.find(m => m.role === 'user');
+          if (userMsg) {
+            const preview = userMsg.content.slice(0, 60);
+            const sessionDate = userMsg.timestamp.toLocaleDateString('en-IN', {
+              day: 'numeric', month: 'short', year: 'numeric'
+            });
+            const sessionTime = userMsg.timestamp.toLocaleTimeString('en-IN', {
+              hour: '2-digit', minute: '2-digit'
+            });
+            sessions.push({
+              date: `${sessionDate}, ${sessionTime}`,
+              preview: preview + (userMsg.content.length > 60 ? '...' : ''),
+              messages: [...currentPair]
+            });
+          }
         }
 
         setChatSessions(sessions.reverse()); // newest first
