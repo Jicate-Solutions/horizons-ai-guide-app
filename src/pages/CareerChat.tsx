@@ -1335,18 +1335,19 @@ Be empathetic and respect Indian family values while helping the student communi
                 <SheetTrigger asChild>
                   <Button
                     variant="ghost"
-                    size="icon"
-                    className="text-white/80 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300"
-                    title="Your Chats"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300 gap-1.5 px-2 sm:px-3"
+                    title="Chat History"
                   >
-                    <History className="h-5 w-5" />
+                    <History className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="text-xs font-medium">Chat History</span>
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0">
                   <SheetHeader className="px-5 pt-5 pb-3 border-b bg-gradient-to-r from-emerald-50 to-green-50">
                     <SheetTitle className="flex items-center gap-2 text-emerald-800">
                       <History className="h-5 w-5" />
-                      Your Chats
+                      Chat History
                     </SheetTitle>
                     <SheetDescription className="text-emerald-600/80">
                       View your previous conversations
