@@ -1778,6 +1778,347 @@ export const ERODE_FEATURED_COLLEGES: College[] = [
     feeRange: '₹25,000 - ₹50,000 per year',
     accreditation: 'NCTE Approved',
   },
+
+  // ============================================
+  // ADDITIONAL - Arts & Science
+  // ============================================
+  {
+    id: 'rd_govt_arts_sivagiri',
+    name: 'R.D. Government Arts College, Sivagiri',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Sivagiri, Erode',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'govt_arts_science_gobi',
+    name: 'Government Arts & Science College, Gobichettipalayam',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Gobichettipalayam, Erode',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'vivekananda_women_arts',
+    name: 'Vivekananda College of Arts and Science for Women, Erode',
+    type: 'government-aided',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Erode',
+    feeRange: '₹5,000 - ₹25,000 per year',
+  },
+  {
+    id: 'nirmala_college_women',
+    name: 'Nirmala College for Women, Erode',
+    type: 'government-aided',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Erode',
+    feeRange: '₹5,000 - ₹25,000 per year',
+  },
+  {
+    id: 'sri_sarada_women_erode',
+    name: 'Sri Sarada College for Women, Erode',
+    type: 'government-aided',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Erode',
+    feeRange: '₹5,000 - ₹25,000 per year',
+  },
+  {
+    id: 'rd_international_arts',
+    name: 'RD International College of Arts and Science, Erode',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Erode',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Medical
+  // ============================================
+  {
+    id: 'nandha_ayurveda',
+    name: 'Nandha Ayurveda Medical College and Hospital, Erode',
+    type: 'private',
+    category: 'medical',
+    courses: 'BAMS (Bachelor of Ayurvedic Medicine & Surgery)',
+    address: 'Erode',
+    feeRange: '₹2,00,000 - ₹5,00,000 per year',
+    accreditation: 'CCIM Approved',
+  },
+  {
+    id: 'nandha_siddha',
+    name: 'Nandha Siddha Medical College and Hospital, Erode',
+    type: 'private',
+    category: 'medical',
+    courses: 'BSMS (Bachelor of Siddha Medicine & Surgery)',
+    address: 'Erode',
+    feeRange: '₹1,50,000 - ₹4,00,000 per year',
+    accreditation: 'CCIM Approved',
+  },
+  {
+    id: 'nandha_naturopathy',
+    name: 'Nandha Naturopathy and Yoga Medical College, Erode',
+    type: 'private',
+    category: 'medical',
+    courses: 'BNYS (Bachelor of Naturopathy & Yogic Sciences)',
+    address: 'Erode',
+    feeRange: '₹1,50,000 - ₹4,00,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Dental
+  // ============================================
+  {
+    id: 'erode_dental_college',
+    name: 'Erode Dental College & Hospital, Erode',
+    type: 'private',
+    category: 'dental',
+    courses: 'BDS, MDS',
+    address: 'Erode',
+    feeRange: '₹3,00,000 - ₹8,00,000 per year',
+    accreditation: 'DCI Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Engineering
+  // ============================================
+  {
+    id: 'ranganathan_engineering',
+    name: 'Ranganathan Engineering College, Erode',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech)',
+    address: 'Erode',
+    feeRange: '₹40,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'pa_engineering',
+    name: 'P.A. College of Engineering & Technology, Erode',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
+    address: 'Erode',
+    feeRange: '₹45,000 - ₹1,00,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Nursing
+  // ============================================
+  {
+    id: 'nandha_school_nursing',
+    name: 'Nandha School of Nursing, Erode',
+    type: 'private',
+    category: 'nursing',
+    courses: 'GNM, ANM',
+    address: 'Erode',
+    feeRange: '₹30,000 - ₹80,000 per year',
+    accreditation: 'INC Approved',
+  },
+  {
+    id: 'kongu_nursing',
+    name: 'Kongu College of Nursing, Perundurai',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'Perundurai, Erode',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'INC Approved',
+  },
+  {
+    id: 'bannari_nursing',
+    name: 'Bannari Amman College of Nursing, Sathyamangalam',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'Sathyamangalam, Erode',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'INC Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Law
+  // ============================================
+  {
+    id: 'govt_law_erode',
+    name: 'Government Law College, Erode',
+    type: 'government',
+    category: 'law',
+    courses: 'B.A. LL.B (5 Year), LL.B (3 Year)',
+    address: 'Erode',
+    feeRange: '₹2,000 - ₹10,000 per year',
+    accreditation: 'Bar Council of India Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Agriculture
+  // ============================================
+  {
+    id: 'tnau_agri_gobi',
+    name: 'Agricultural College & Research Institute (TNAU), Gobichettipalayam',
+    type: 'government',
+    category: 'agricultural',
+    courses: 'B.Sc Agriculture, M.Sc Agriculture, Ph.D',
+    address: 'Gobichettipalayam, Erode',
+    feeRange: '₹5,000 - ₹20,000 per year',
+    accreditation: 'ICAR Accredited, TNAU Affiliated',
+  },
+
+  // ============================================
+  // ADDITIONAL - Pharmacy
+  // ============================================
+  {
+    id: 'kongu_pharmacy',
+    name: 'Kongu College of Pharmacy, Perundurai',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Perundurai, Erode',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'PCI Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Allied Health Sciences
+  // ============================================
+  {
+    id: 'nandha_academy_allied',
+    name: 'Nandha Academy of Allied Health Sciences, Erode',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc MLT, B.Sc Radiology, DMLT',
+    address: 'Erode',
+    feeRange: '₹35,000 - ₹1,00,000 per year',
+  },
+  {
+    id: 'nandha_institute_health',
+    name: 'Nandha Institute of Health Science, Erode',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health, Paramedical Programs',
+    address: 'Erode',
+    feeRange: '₹35,000 - ₹1,00,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Education (B.Ed)
+  // ============================================
+  {
+    id: 'govt_bed_erode',
+    name: 'Government B.Ed College, Erode',
+    type: 'government',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Erode',
+    feeRange: '₹2,000 - ₹10,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'vivekananda_education_erode',
+    name: 'Vivekananda College of Education, Erode',
+    type: 'government-aided',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Erode',
+    feeRange: '₹10,000 - ₹30,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'nirmala_education_erode',
+    name: 'Nirmala College of Education, Erode',
+    type: 'government-aided',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Erode',
+    feeRange: '₹10,000 - ₹30,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'nandha_teacher_training',
+    name: 'Nandha Teacher Training Institute, Erode',
+    type: 'private',
+    category: 'education',
+    courses: 'D.T.Ed (Diploma in Teacher Education)',
+    address: 'Erode',
+    feeRange: '₹20,000 - ₹40,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Hotel Management
+  // ============================================
+  {
+    id: 'kongu_hotel_management',
+    name: 'Kongu College of Hotel Management, Perundurai',
+    type: 'private',
+    category: 'hotel_management',
+    courses: 'B.Sc Hotel Management, Diploma in HM',
+    address: 'Perundurai, Erode',
+    feeRange: '₹30,000 - ₹60,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Fine Arts
+  // ============================================
+  {
+    id: 'govt_fine_arts_erode',
+    name: 'Government College of Fine Arts, Erode',
+    type: 'government',
+    category: 'fine_arts',
+    courses: 'BFA (Bachelor of Fine Arts), MFA',
+    address: 'Erode',
+    feeRange: '₹2,000 - ₹10,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Polytechnic
+  // ============================================
+  {
+    id: 'govt_polytechnic_erode',
+    name: 'Government Polytechnic College, Erode',
+    type: 'government',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Erode',
+    feeRange: '₹2,000 - ₹5,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'govt_polytechnic_gobi',
+    name: 'Government Polytechnic College, Gobichettipalayam',
+    type: 'government',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Gobichettipalayam, Erode',
+    feeRange: '₹2,000 - ₹5,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'bannari_polytechnic',
+    name: 'Bannari Amman Polytechnic College, Sathyamangalam',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Sathyamangalam, Erode',
+    feeRange: '₹15,000 - ₹30,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'erode_sengunthar_polytechnic',
+    name: 'Erode Sengunthar Polytechnic College, Erode',
+    type: 'government-aided',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Erode',
+    feeRange: '₹5,000 - ₹15,000 per year',
+    accreditation: 'AICTE Approved',
+  },
 ];
 
 // Salem District Colleges - Complete List
