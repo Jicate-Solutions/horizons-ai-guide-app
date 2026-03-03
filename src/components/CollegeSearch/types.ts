@@ -949,6 +949,296 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹5,000 - ₹15,000 per year',
     accreditation: 'VCI Approved, TANUVAS Affiliated',
   },
+
+  // ============================================
+  // ADDITIONAL COLLEGES - Arts & Science
+  // ============================================
+  {
+    id: 'annai_mathammal_arts',
+    name: 'Annai Mathammal Sheela Arts & Science College, Namakkal',
+    type: 'government-aided',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Namakkal',
+    feeRange: '₹5,000 - ₹25,000 per year',
+  },
+  {
+    id: 'excel_arts_science',
+    name: 'Excel College of Arts and Science, Komarapalayam',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Komarapalayam, Namakkal',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'paavai_arts_science',
+    name: 'Paavai College of Arts and Science, Pachal',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Pachal, Namakkal',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'govt_arts_science_tiruchengodu',
+    name: 'Government Arts & Science College, Tiruchengodu',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Tiruchengodu, Namakkal',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Medical & Dental
+  // ============================================
+  {
+    id: 'vm_medical_namakkal',
+    name: "Vinayaka Mission's Medical College, Namakkal",
+    type: 'autonomous',
+    category: 'medical',
+    courses: 'MBBS, MD, MS',
+    address: 'Namakkal',
+    feeRange: '₹10,00,000 - ₹25,00,000 per year',
+    accreditation: 'NMC Approved, Autonomous',
+  },
+  {
+    id: 'vm_dental_namakkal',
+    name: "Vinayaka Mission's Sankarachariyar Dental College, Namakkal",
+    type: 'autonomous',
+    category: 'dental',
+    courses: 'BDS, MDS',
+    address: 'Namakkal',
+    feeRange: '₹3,00,000 - ₹10,00,000 per year',
+    accreditation: 'DCI Approved, Autonomous',
+  },
+
+  // ============================================
+  // ADDITIONAL - Nursing
+  // ============================================
+  {
+    id: 'vm_nursing_namakkal',
+    name: "Vinayaka Mission's College of Nursing, Namakkal",
+    type: 'autonomous',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, M.Sc Nursing, GNM',
+    address: 'Namakkal',
+    feeRange: '₹50,000 - ₹1,50,000 per year',
+    accreditation: 'INC Approved, Autonomous',
+  },
+  {
+    id: 'mahendra_nursing_namakkal',
+    name: 'Mahendra College of Nursing, Namakkal',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'Namakkal',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'INC Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Pharmacy
+  // ============================================
+  {
+    id: 'vm_pharmacy_namakkal',
+    name: "Vinayaka Mission's College of Pharmacy, Namakkal",
+    type: 'autonomous',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm, M.Pharm, Pharm.D',
+    address: 'Namakkal',
+    feeRange: '₹50,000 - ₹1,50,000 per year',
+    accreditation: 'PCI Approved, Autonomous',
+  },
+  {
+    id: 'mahendra_pharmacy_namakkal',
+    name: 'Mahendra College of Pharmacy, Namakkal',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Namakkal',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'PCI Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Allied Health
+  // ============================================
+  {
+    id: 'vm_allied_health_namakkal',
+    name: "Vinayaka Mission's Allied Health Sciences, Namakkal",
+    type: 'autonomous',
+    category: 'allied_health',
+    courses: 'BPT, BOT, B.Sc MLT, B.Sc Radiology, B.Sc Optometry',
+    address: 'Namakkal',
+    feeRange: '₹50,000 - ₹1,50,000 per year',
+    accreditation: 'Autonomous',
+  },
+
+  // ============================================
+  // ADDITIONAL - Education (B.Ed)
+  // ============================================
+  {
+    id: 'govt_bed_namakkal',
+    name: 'Government B.Ed College, Namakkal',
+    type: 'government',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Namakkal',
+    feeRange: '₹2,000 - ₹10,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'annai_mathammal_education',
+    name: 'Annai Mathammal Sheela College of Education, Namakkal',
+    type: 'government-aided',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Namakkal',
+    feeRange: '₹10,000 - ₹30,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'jkkn_education',
+    name: 'JKKN College of Education, Komarapalayam',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Komarapalayam, Namakkal',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'mahendra_education_namakkal',
+    name: 'Mahendra College of Education, Namakkal',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Namakkal',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'paavai_education',
+    name: 'Paavai College of Education, Namakkal',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Pachal, Namakkal',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Hotel Management
+  // ============================================
+  {
+    id: 'jkkn_hotel_management',
+    name: 'JKKN Institute of Hotel Management, Komarapalayam',
+    type: 'private',
+    category: 'hotel_management',
+    courses: 'B.Sc Hotel Management, Diploma in HM',
+    address: 'Komarapalayam, Namakkal',
+    feeRange: '₹30,000 - ₹60,000 per year',
+  },
+  {
+    id: 'mahendra_hotel_management',
+    name: 'Mahendra Institute of Hotel Management, Namakkal',
+    type: 'private',
+    category: 'hotel_management',
+    courses: 'B.Sc Hotel Management, Diploma in HM',
+    address: 'Namakkal',
+    feeRange: '₹30,000 - ₹60,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Agriculture
+  // ============================================
+  {
+    id: 'tnau_agri_namakkal',
+    name: 'Agricultural College & Research Institute (TNAU), Namakkal',
+    type: 'government',
+    category: 'agricultural',
+    courses: 'B.Sc Agriculture, M.Sc Agriculture, Ph.D',
+    address: 'Namakkal',
+    feeRange: '₹5,000 - ₹20,000 per year',
+    accreditation: 'ICAR Accredited, TNAU Affiliated',
+  },
+
+  // ============================================
+  // ADDITIONAL - Polytechnic Colleges
+  // ============================================
+  {
+    id: 'govt_polytechnic_namakkal',
+    name: 'Government Polytechnic College, Namakkal',
+    type: 'government',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Namakkal',
+    feeRange: '₹2,000 - ₹5,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'govt_polytechnic_tiruchengodu',
+    name: 'Government Polytechnic College, Tiruchengodu',
+    type: 'government',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Tiruchengodu, Namakkal',
+    feeRange: '₹2,000 - ₹5,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'jkkn_polytechnic',
+    name: 'JKKN Polytechnic College, Komarapalayam',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Komarapalayam, Namakkal',
+    feeRange: '₹15,000 - ₹30,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'mahendra_polytechnic_namakkal',
+    name: 'Mahendra Polytechnic College, Namakkal',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Namakkal',
+    feeRange: '₹12,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'excel_polytechnic',
+    name: 'Excel Polytechnic College, Komarapalayam',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Komarapalayam, Namakkal',
+    feeRange: '₹12,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'paavai_polytechnic',
+    name: 'Paavai Polytechnic College, Namakkal',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Pachal, Namakkal',
+    feeRange: '₹12,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'muthayammal_polytechnic',
+    name: 'Muthayammal Polytechnic College, Rasipuram',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Rasipuram, Namakkal',
+    feeRange: '₹12,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
 ];
 
 // Erode District Colleges - Complete List
