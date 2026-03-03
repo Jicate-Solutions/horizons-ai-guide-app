@@ -1788,7 +1788,7 @@ export const ERODE_FEATURED_COLLEGES: College[] = [
     type: 'government',
     category: 'arts_science',
     courses: 'B.A, B.Sc, B.Com',
-    address: 'Sivagiri, Erode',
+    address: 'Elumathur, Erode',
     feeRange: '₹1,000 - ₹5,000 per year',
   },
   {
