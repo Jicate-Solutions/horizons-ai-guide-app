@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
-import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES } from './types';
+import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES } from './types';
 
 // Helper function to normalize college name for comparison
 const normalizeCollegeName = (name: string): string => {
@@ -96,6 +96,7 @@ export const CollegeSearch = () => {
         'Karur': KARUR_FEATURED_COLLEGES,
         'Ariyalur': ARIYALUR_FEATURED_COLLEGES,
         'Chengalpattu': CHENGALPATTU_FEATURED_COLLEGES,
+        'Chennai': CHENNAI_FEATURED_COLLEGES,
       };
 
       if (localData[district]) {
@@ -119,7 +120,7 @@ export const CollegeSearch = () => {
           setColleges([]);
           toast({
             title: 'Coming Soon',
-            description: `College data for ${district} district is being updated. Try Namakkal, Erode, Salem, Coimbatore, Tirupur, Karur, Ariyalur, or Chengalpattu.`,
+            description: `College data for ${district} district is being updated. Try Chennai, Coimbatore, Namakkal, Erode, Salem, Tirupur, Chengalpattu, Karur, or Ariyalur.`,
           });
         }
       }
