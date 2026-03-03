@@ -161,7 +161,7 @@ export const CollegeSearch = () => {
     }
   };
 
-  // Calculate type counts
+  // Calculate type counts - use smart detection for autonomous
   const typeCounts = useMemo(() => {
     const counts: Record<string, number> = {
       government: 0,
@@ -170,7 +170,10 @@ export const CollegeSearch = () => {
       autonomous: 0,
     };
     colleges.forEach(c => {
-      if (counts[c.type] !== undefined) {
+      // Smart autonomous detection: check name, accreditation, AND type
+      if (isAutonomousCollege(c)) {
+        counts['autonomous']++;
+      } else if (counts[c.type] !== undefined) {
         counts[c.type]++;
       }
     });

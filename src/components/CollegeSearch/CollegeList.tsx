@@ -44,9 +44,13 @@ export const CollegeList = ({
       result = result.filter(isAutonomousCollege);
     }
 
-    // Apply type filter
+    // Apply type filter - smart detection for autonomous
     if (selectedTypes.length > 0) {
-      result = result.filter(c => selectedTypes.includes(c.type));
+      result = result.filter(c => {
+        // Determine display type: autonomous colleges get 'autonomous' regardless of stored type
+        const displayType = isAutonomousCollege(c) ? 'autonomous' : c.type;
+        return selectedTypes.includes(displayType);
+      });
     }
 
     // Apply category filter
