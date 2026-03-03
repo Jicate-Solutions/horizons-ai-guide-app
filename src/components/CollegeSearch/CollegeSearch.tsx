@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
-import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES, KANYAKUMARI_FEATURED_COLLEGES, KRISHNAGIRI_FEATURED_COLLEGES, MADURAI_FEATURED_COLLEGES } from './types';
+import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES, KANYAKUMARI_FEATURED_COLLEGES, KRISHNAGIRI_FEATURED_COLLEGES, MADURAI_FEATURED_COLLEGES, MAYILADUTHURAI_FEATURED_COLLEGES, NAGAPATTINAM_FEATURED_COLLEGES, NILGIRIS_FEATURED_COLLEGES, PERAMBALUR_FEATURED_COLLEGES, PUDUKKOTTAI_FEATURED_COLLEGES, RAMANATHAPURAM_FEATURED_COLLEGES, RANIPET_FEATURED_COLLEGES } from './types';
 
 // Helper function to normalize college name for comparison
 const normalizeCollegeName = (name: string): string => {
@@ -105,6 +105,13 @@ export const CollegeSearch = () => {
         'Kanyakumari': KANYAKUMARI_FEATURED_COLLEGES,
         'Krishnagiri': KRISHNAGIRI_FEATURED_COLLEGES,
         'Madurai': MADURAI_FEATURED_COLLEGES,
+        'Mayiladuthurai': MAYILADUTHURAI_FEATURED_COLLEGES,
+        'Nagapattinam': NAGAPATTINAM_FEATURED_COLLEGES,
+        'Nilgiris': NILGIRIS_FEATURED_COLLEGES,
+        'Perambalur': PERAMBALUR_FEATURED_COLLEGES,
+        'Pudukkottai': PUDUKKOTTAI_FEATURED_COLLEGES,
+        'Ramanathapuram': RAMANATHAPURAM_FEATURED_COLLEGES,
+        'Ranipet': RANIPET_FEATURED_COLLEGES,
       };
 
       if (localData[district]) {
@@ -128,7 +135,7 @@ export const CollegeSearch = () => {
           setColleges([]);
           toast({
             title: 'Coming Soon',
-            description: `College data for ${district} district is being updated. Try Ariyalur, Chennai, Chengalpattu, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Erode, Kallakurichi, Kanchipuram, Kanyakumari, Karur, Krishnagiri, Madurai, Namakkal, Salem, or Tirupur.`,
+            description: `College data for ${district} district is being updated. We have 24 districts available — select from the dropdown to explore.`,
           });
         }
       }
