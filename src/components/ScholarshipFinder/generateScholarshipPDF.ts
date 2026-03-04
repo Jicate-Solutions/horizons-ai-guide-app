@@ -1,238 +1,334 @@
 import jsPDF from 'jspdf';
 import { Scholarship } from './types';
 
-export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
-  const doc = new jsPDF();
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 15;
-  let yPos = margin;
+/* ══════════════════════════════════════════════════════════════
+   VAZHIKATTI — Scholarship Brochure PDF Generator
+   Professional, colorful, well-structured design
+   ══════════════════════════════════════════════════════════════ */
 
-  // Helper function to add new page if needed
-  const checkPageBreak = (requiredSpace: number) => {
-    if (yPos + requiredSpace > pageHeight - margin) {
-      doc.addPage();
-      yPos = margin;
-      return true;
-    }
+type RGB = [number, number, number];
+
+const C = {
+  dkGreen: [27, 94, 32] as RGB,
+  mdGreen: [46, 125, 50] as RGB,
+  ltGreen: [200, 230, 201] as RGB,
+  paleGrn: [232, 245, 233] as RGB,
+  gold:    [218, 165, 32] as RGB,
+  white:   [255, 255, 255] as RGB,
+  black:   [33, 33, 33] as RGB,
+  grey:    [120, 120, 120] as RGB,
+  ltGrey:  [245, 245, 245] as RGB,
+  blue:    [41, 98, 255] as RGB,
+  govt:    [230, 126, 34] as RGB,
+  govtBg:  [255, 243, 224] as RGB,
+  corp:    [41, 98, 255] as RGB,
+  corpBg:  [227, 242, 253] as RGB,
+  ngo:     [76, 175, 80] as RGB,
+  ngoBg:   [232, 245, 233] as RGB,
+  sport:   [229, 57, 53] as RGB,
+  sportBg: [255, 235, 238] as RGB,
+};
+
+const TYPE_CFG: Record<string, { color: RGB; bg: RGB; label: string }> = {
+  government: { color: C.govt, bg: C.govtBg, label: 'GOVERNMENT' },
+  corporate:  { color: C.corp, bg: C.corpBg, label: 'CORPORATE' },
+  ngo:        { color: C.ngo,  bg: C.ngoBg,  label: 'NGO / TRUST' },
+  sports:     { color: C.sport, bg: C.sportBg, label: 'SPORTS' },
+};
+
+export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
+  const doc = new jsPDF('p', 'mm', 'a4');
+  const W = doc.internal.pageSize.getWidth();
+  const H = doc.internal.pageSize.getHeight();
+  const M = 14;
+  const CW = W - M * 2;
+  let y = M;
+
+  const tc = (c: RGB) => doc.setTextColor(c[0], c[1], c[2]);
+  const fc = (c: RGB) => doc.setFillColor(c[0], c[1], c[2]);
+  const dc = (c: RGB) => doc.setDrawColor(c[0], c[1], c[2]);
+  const rr = (x: number, yy: number, w: number, h: number, r: number, fill: RGB, stroke?: RGB) => {
+    fc(fill);
+    if (stroke) { dc(stroke); doc.roundedRect(x, yy, w, h, r, r, 'FD'); }
+    else doc.roundedRect(x, yy, w, h, r, r, 'F');
+  };
+  const wrap = (text: string, maxW: number, size: number): string[] => {
+    doc.setFontSize(size);
+    return doc.splitTextToSize(text, maxW);
+  };
+  const np = (space: number): boolean => {
+    if (y + space > H - 18) { doc.addPage(); y = M; return true; }
     return false;
   };
 
-  // Helper function to wrap text
-  const addWrappedText = (text: string, x: number, maxWidth: number, fontSize: number = 10) => {
-    doc.setFontSize(fontSize);
-    const lines = doc.splitTextToSize(text, maxWidth);
-    lines.forEach((line: string) => {
-      checkPageBreak(6);
-      doc.text(line, x, yPos);
-      yPos += fontSize * 0.4;
-    });
-  };
+  // ═══════════════════════════════════════════════════════
+  // ██ COVER PAGE
+  // ═══════════════════════════════════════════════════════
 
-  // Title Page
-  doc.setFillColor(10, 46, 31); // Dark green
-  doc.rect(0, 0, pageWidth, 60, 'F');
-  
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(24);
-  doc.setFont('helvetica', 'bold');
-  doc.text('Scholarship Brochure', pageWidth / 2, 30, { align: 'center' });
-  
-  doc.setFontSize(12);
-  doc.setFont('helvetica', 'normal');
-  doc.text('JKKN Institutions', pageWidth / 2, 42, { align: 'center' });
-  doc.text(`Generated on ${new Date().toLocaleDateString('en-IN')}`, pageWidth / 2, 52, { align: 'center' });
+  // Dark green header block
+  fc(C.dkGreen); doc.rect(0, 0, W, 100, 'F');
+  // Gold accent line
+  fc(C.gold); doc.rect(0, 100, W, 2.5, 'F');
 
-  yPos = 75;
-  doc.setTextColor(0, 0, 0);
+  // Title
+  tc(C.white);
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(34);
+  doc.text('SCHOLARSHIP', W / 2, 36, { align: 'center' });
+  tc(C.gold); doc.setFontSize(30);
+  doc.text('BROCHURE', W / 2, 52, { align: 'center' });
 
-  // Summary Section
-  doc.setFillColor(255, 107, 53); // Orange
-  doc.rect(margin, yPos, pageWidth - margin * 2, 25, 'F');
-  
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(14);
-  doc.setFont('helvetica', 'bold');
-  doc.text('Summary', margin + 5, yPos + 10);
-  
-  doc.setFontSize(11);
-  doc.setFont('helvetica', 'normal');
-  doc.text(`Total Scholarships: ${scholarships.length}`, margin + 5, yPos + 20);
-  
-  const govtCount = scholarships.filter(s => s.type === 'government').length;
-  const corpCount = scholarships.filter(s => s.type === 'corporate').length;
-  const ngoCount = scholarships.filter(s => s.type === 'ngo').length;
-  const sportsCount = scholarships.filter(s => s.type === 'sports').length;
-  
-  doc.text(`Govt: ${govtCount} | Corporate: ${corpCount} | NGO: ${ngoCount} | Sports: ${sportsCount}`, pageWidth / 2, yPos + 20, { align: 'center' });
+  // Subtitle
+  tc(C.ltGreen); doc.setFontSize(11); doc.setFont('helvetica', 'normal');
+  doc.text('Complete Guide to Financial Aid for Students', W / 2, 66, { align: 'center' });
 
-  yPos += 40;
-  doc.setTextColor(0, 0, 0);
+  // Institution
+  tc(C.white); doc.setFontSize(14); doc.setFont('helvetica', 'bold');
+  doc.text('JKKN INSTITUTIONS', W / 2, 82, { align: 'center' });
+  tc(C.ltGreen); doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+  doc.text('Powered by VAZHIKATTI — AI Career Guidance Platform', W / 2, 90, { align: 'center' });
 
-  // Scholarship Details
-  scholarships.forEach((scholarship, index) => {
-    checkPageBreak(80);
+  // ─── Summary Box ───────────────────────────────────────
+  y = 115;
+  const govtN = scholarships.filter(s => s.type === 'government').length;
+  const corpN = scholarships.filter(s => s.type === 'corporate').length;
+  const ngoN  = scholarships.filter(s => s.type === 'ngo').length;
+  const sportN = scholarships.filter(s => s.type === 'sports').length;
 
-    // Scholarship header
-    const typeColors: Record<string, [number, number, number]> = {
-      government: [37, 99, 235],
-      corporate: [124, 58, 237],
-      ngo: [236, 72, 153],
-      sports: [229, 57, 53]
-    };
-    
-    const color = typeColors[scholarship.type] || [100, 100, 100];
-    doc.setFillColor(color[0], color[1], color[2]);
-    doc.rect(margin, yPos, pageWidth - margin * 2, 12, 'F');
-    
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'bold');
-    doc.text(`${index + 1}. ${scholarship.name}`, margin + 3, yPos + 8);
-    
-    const typeLabel = scholarship.type === 'government' ? 'Government' :
-                      scholarship.type === 'corporate' ? 'Corporate' :
-                      scholarship.type === 'sports' ? 'Sports' : 'NGO/Trust';
-    doc.setFontSize(9);
-    doc.text(typeLabel, pageWidth - margin - 3, yPos + 8, { align: 'right' });
+  rr(M, y, CW, 22, 3, C.paleGrn, C.ltGreen);
+  tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(15);
+  doc.text(`${scholarships.length} Scholarships`, M + 8, y + 10);
+  tc(C.grey); doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+  doc.text(new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }), M + 8, y + 18);
+  tc(C.mdGreen); doc.setFontSize(9); doc.setFont('helvetica', 'bold');
+  doc.text(`Govt: ${govtN}  |  Corporate: ${corpN}  |  NGO: ${ngoN}  |  Sports: ${sportN}`, W - M - 6, y + 14, { align: 'right' });
+  y += 30;
 
-    yPos += 16;
-    doc.setTextColor(0, 0, 0);
+  // ─── 4 Category Cards ─────────────────────────────────
+  const cW = (CW - 9) / 4;
+  [
+    { key: 'government', n: govtN },
+    { key: 'corporate',  n: corpN },
+    { key: 'ngo',        n: ngoN },
+    { key: 'sports',     n: sportN },
+  ].forEach((cat, i) => {
+    const cfg = TYPE_CFG[cat.key];
+    const cx = M + i * (cW + 3);
+    rr(cx, y, cW, 20, 2, cfg.bg, cfg.color);
+    fc(cfg.color); doc.rect(cx, y, cW, 2.5, 'F');
+    tc(cfg.color); doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5);
+    doc.text(cfg.label, cx + cW / 2, y + 10, { align: 'center' });
+    doc.setFontSize(13);
+    doc.text(`${cat.n}`, cx + cW / 2, y + 17.5, { align: 'center' });
+  });
+  y += 30;
 
-    // Provider and Amount
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Provider:', margin, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(scholarship.provider, margin + 25, yPos);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.text('Amount:', pageWidth / 2, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(scholarship.amount, pageWidth / 2 + 22, yPos);
-    yPos += 6;
+  // ─── Table of Contents ─────────────────────────────────
+  tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(15);
+  doc.text('TABLE OF CONTENTS', M, y);
+  fc(C.gold); doc.rect(M, y + 2, 48, 1.5, 'F');
+  y += 10;
 
-    // Deadline
-    doc.setFont('helvetica', 'bold');
-    doc.text('Deadline:', margin, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(scholarship.deadline, margin + 25, yPos);
-    yPos += 8;
+  const grouped: Record<string, Scholarship[]> = {};
+  scholarships.forEach(s => { if (!grouped[s.type]) grouped[s.type] = []; grouped[s.type].push(s); });
 
-    // Description
-    doc.setFont('helvetica', 'bold');
-    doc.text('Description:', margin, yPos);
-    yPos += 5;
-    doc.setFont('helvetica', 'normal');
-    addWrappedText(scholarship.description, margin, pageWidth - margin * 2, 9);
-    yPos += 3;
+  let tocNum = 1;
+  Object.entries(grouped).forEach(([type, list]) => {
+    const cfg = TYPE_CFG[type] || TYPE_CFG.government;
+    np(8 + list.length * 5.5);
 
-    // Eligibility
-    checkPageBreak(20);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.text('Eligibility Criteria:', margin, yPos);
-    yPos += 5;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    scholarship.eligibility.forEach((criteria) => {
-      checkPageBreak(5);
-      doc.text(`• ${criteria}`, margin + 3, yPos);
-      yPos += 4;
-    });
-    yPos += 3;
+    tc(cfg.color); doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+    doc.text(`${cfg.label}  (${list.length})`, M + 2, y);
+    y += 5;
 
-    // Documents Required
-    checkPageBreak(20);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.text('Documents Required:', margin, yPos);
-    yPos += 5;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    scholarship.documents.forEach((docItem) => {
-      checkPageBreak(5);
-      doc.text(`• ${docItem}`, margin + 3, yPos);
-      yPos += 4;
-    });
-    yPos += 3;
-
-    // How to Apply
-    checkPageBreak(25);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.text('How to Apply:', margin, yPos);
-    yPos += 5;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    scholarship.howToApply.forEach((step, idx) => {
-      checkPageBreak(5);
-      doc.text(`${idx + 1}. ${step}`, margin + 3, yPos);
-      yPos += 4;
-    });
-    yPos += 3;
-
-    // Benefits
-    if (scholarship.benefits && scholarship.benefits.length > 0) {
-      checkPageBreak(15);
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(10);
-      doc.text('Benefits:', margin, yPos);
-      yPos += 5;
+    list.forEach(s => {
+      np(5.5);
+      tc(C.black); doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5);
+      doc.text(`${tocNum}.`, M + 4, y);
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
-      scholarship.benefits.forEach((benefit) => {
-        checkPageBreak(5);
-        doc.text(`• ${benefit.label}: ${benefit.value}`, margin + 3, yPos);
-        yPos += 4;
-      });
-      yPos += 3;
-    }
-
-    // Contact Info
-    checkPageBreak(15);
-    doc.setFillColor(245, 245, 245);
-    doc.rect(margin, yPos, pageWidth - margin * 2, 12, 'F');
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Apply:', margin + 3, yPos + 5);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(37, 99, 235);
-    doc.text(scholarship.applicationUrl, margin + 20, yPos + 5);
-    doc.setTextColor(0, 0, 0);
-    if (scholarship.helpline) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Helpline:', margin + 3, yPos + 10);
-      doc.setFont('helvetica', 'normal');
-      doc.text(scholarship.helpline, margin + 28, yPos + 10);
-    }
-
-    yPos += 20;
-
-    // Separator
-    if (index < scholarships.length - 1) {
-      checkPageBreak(10);
-      doc.setDrawColor(200, 200, 200);
-      doc.line(margin, yPos, pageWidth - margin, yPos);
-      yPos += 8;
-    }
+      const nm = s.name.length > 50 ? s.name.substring(0, 47) + '...' : s.name;
+      doc.text(nm, M + 12, y);
+      tc(C.grey); doc.setFontSize(7.5);
+      const am = s.amount.length > 28 ? s.amount.substring(0, 25) + '...' : s.amount;
+      doc.text(am, W - M, y, { align: 'right' });
+      y += 5;
+      tocNum++;
+    });
+    y += 4;
   });
 
-  // Footer on last page
-  const totalPages = doc.internal.pages.length - 1;
-  for (let i = 1; i <= totalPages; i++) {
+  // ═══════════════════════════════════════════════════════
+  // ██ SCHOLARSHIP DETAIL PAGES
+  // ═══════════════════════════════════════════════════════
+  let gIdx = 0;
+
+  Object.entries(grouped).forEach(([type, list]) => {
+    const cfg = TYPE_CFG[type] || TYPE_CFG.government;
+
+    // ─── Category Divider Page ───────────────────────
+    doc.addPage(); y = M;
+    fc(cfg.color); doc.rect(0, 0, W, 42, 'F');
+    fc(C.gold); doc.rect(0, 42, W, 2, 'F');
+    tc(C.white); doc.setFont('helvetica', 'bold'); doc.setFontSize(28);
+    doc.text(cfg.label, W / 2, 20, { align: 'center' });
+    doc.setFontSize(12); doc.setFont('helvetica', 'normal');
+    doc.text(`${list.length} Scholarships Available`, W / 2, 33, { align: 'center' });
+    y = 55;
+
+    // ─── Each Scholarship ────────────────────────────
+    list.forEach((s, idx) => {
+      gIdx++;
+      np(70);
+
+      // ▌ Left accent + Name
+      fc(cfg.color); doc.rect(M, y, 2.5, 7, 'F');
+      tc(cfg.color); doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
+      const nmLines = wrap(`${gIdx}. ${s.name}`, CW - 10, 12);
+      nmLines.forEach((line, li) => { doc.text(line, M + 6, y + 5 + li * 5); });
+      y += 5 + nmLines.length * 5 + 1;
+
+      // Provider
+      tc(C.grey); doc.setFont('helvetica', 'italic'); doc.setFontSize(8.5);
+      doc.text(`by ${s.provider}`, M + 6, y);
+      y += 6;
+
+      // ── Info Bar (Amount | Deadline | Type) ────
+      rr(M, y, CW, 16, 2, cfg.bg);
+
+      // Amount column
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(7);
+      doc.text('AMOUNT', M + 5, y + 5);
+      tc(C.black); doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5);
+      const amtTxt = s.amount.length > 26 ? s.amount.substring(0, 23) + '...' : s.amount;
+      doc.text(amtTxt, M + 5, y + 11.5);
+
+      // Deadline column
+      const c2 = M + CW * 0.42;
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(7);
+      doc.text('DEADLINE', c2, y + 5);
+      tc(C.black); doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5);
+      doc.text(s.deadline, c2, y + 11.5);
+
+      // Type badge
+      const c3 = M + CW * 0.75;
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(7);
+      doc.text('CATEGORY', c3, y + 5);
+      rr(c3, y + 7.5, 30, 5.5, 1.5, cfg.color);
+      tc(C.white); doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+      doc.text(cfg.label, c3 + 15, y + 11.2, { align: 'center' });
+
+      y += 20;
+
+      // ── Description ────────────────────────────
+      np(14);
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.text('DESCRIPTION', M + 2, y);
+      y += 4.5;
+      tc(C.black); doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5);
+      const dLines = wrap(s.description, CW - 4, 8.5);
+      dLines.slice(0, 6).forEach(line => { np(4); doc.text(line, M + 2, y); y += 3.8; });
+      y += 3;
+
+      // ── Eligibility ────────────────────────────
+      np(12);
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.text('ELIGIBILITY', M + 2, y);
+      y += 4.5;
+      tc(C.black); doc.setFont('helvetica', 'normal'); doc.setFontSize(8);
+      s.eligibility.slice(0, 5).forEach(item => {
+        np(4.5);
+        const iLines = wrap(`•  ${item}`, CW - 8, 8);
+        iLines.forEach(line => { doc.text(line, M + 4, y); y += 3.5; });
+      });
+      y += 3;
+
+      // ── Documents + How to Apply (2 columns) ──
+      np(22);
+      const lW = CW * 0.47;
+      const rX = M + CW * 0.53;
+      const rW = CW * 0.47;
+      const colStartY = y;
+
+      // LEFT: Documents
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.text('DOCUMENTS REQUIRED', M + 2, y);
+      y += 4.5;
+      tc(C.black); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5);
+      s.documents.slice(0, 6).forEach(d => {
+        np(4);
+        const dL = wrap(`•  ${d}`, lW - 6, 7.5);
+        dL.forEach(line => { doc.text(line, M + 4, y); y += 3.3; });
+      });
+      const leftEnd = y;
+
+      // RIGHT: How to Apply
+      y = colStartY;
+      tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.text('HOW TO APPLY', rX, y);
+      y += 4.5;
+      tc(C.black); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5);
+      s.howToApply.slice(0, 5).forEach((step, si) => {
+        const sL = wrap(`${si + 1}. ${step}`, rW - 4, 7.5);
+        sL.forEach(line => { doc.text(line, rX + 2, y); y += 3.3; });
+      });
+      y = Math.max(y, leftEnd) + 3;
+
+      // ── Benefits Row ───────────────────────────
+      if (s.benefits && s.benefits.length > 0) {
+        np(13);
+        rr(M, y, CW, 11, 2, C.paleGrn, C.ltGreen);
+        const bw = CW / Math.min(s.benefits.length, 4);
+        s.benefits.slice(0, 4).forEach((b, bi) => {
+          const bx = M + bi * bw;
+          tc(C.dkGreen); doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5);
+          doc.text(b.label.toUpperCase(), bx + bw / 2, y + 4, { align: 'center' });
+          tc(C.black); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
+          const bVal = b.value.length > 16 ? b.value.substring(0, 13) + '...' : b.value;
+          doc.text(bVal, bx + bw / 2, y + 8.5, { align: 'center' });
+        });
+        y += 14;
+      }
+
+      // ── Contact Bar ────────────────────────────
+      np(10);
+      rr(M, y, CW, 8, 2, C.ltGrey);
+      doc.setFontSize(7); doc.setFont('helvetica', 'bold'); tc(C.grey);
+      doc.text('APPLY:', M + 4, y + 5);
+      doc.setFont('helvetica', 'normal'); tc(C.blue);
+      const urlTxt = s.applicationUrl.length > 42 ? s.applicationUrl.substring(0, 39) + '...' : s.applicationUrl;
+      doc.text(urlTxt, M + 17, y + 5);
+      if (s.helpline) {
+        tc(C.grey); doc.setFont('helvetica', 'bold');
+        doc.text('HELPLINE:', W - M - 42, y + 5);
+        doc.setFont('helvetica', 'normal'); tc(C.black);
+        doc.text(s.helpline, W - M - 22, y + 5);
+      }
+      y += 12;
+
+      // ── Separator ──────────────────────────────
+      if (idx < list.length - 1) {
+        np(5);
+        dc(C.ltGreen);
+        doc.setLineDashPattern([2, 2], 0);
+        doc.line(M + 20, y, W - M - 20, y);
+        doc.setLineDashPattern([], 0);
+        y += 6;
+      }
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // ██ FOOTER ON ALL PAGES
+  // ═══════════════════════════════════════════════════════
+  const total = doc.internal.pages.length - 1;
+  for (let i = 1; i <= total; i++) {
     doc.setPage(i);
-    doc.setFontSize(8);
-    doc.setTextColor(128, 128, 128);
-    doc.text(
-      `Page ${i} of ${totalPages} | VAZHIKAATTI | www.vazhikatti.com`,
-      pageWidth / 2,
-      pageHeight - 8,
-      { align: 'center' }
-    );
+    fc(C.dkGreen); doc.rect(0, H - 9, W, 9, 'F');
+    fc(C.gold); doc.rect(0, H - 9, W, 0.7, 'F');
+    tc(C.white); doc.setFontSize(7); doc.setFont('helvetica', 'normal');
+    doc.text('VAZHIKATTI — AI Career Guidance  |  JKKN Institutions', M, H - 3.5);
+    doc.text(`Page ${i} of ${total}`, W - M, H - 3.5, { align: 'right' });
   }
 
-  // Save the PDF
-  const fileName = `JKKN_Scholarship_Brochure_${new Date().toISOString().split('T')[0]}.pdf`;
-  doc.save(fileName);
+  // ─── Save ──────────────────────────────────────────────
+  doc.save(`JKKN_Scholarship_Brochure_${new Date().toISOString().split('T')[0]}.pdf`);
 };
