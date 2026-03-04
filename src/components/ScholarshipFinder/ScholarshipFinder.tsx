@@ -435,14 +435,6 @@ export const ScholarshipFinder = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 10;
 
-  // Reset to page 1 when filtered results change
-  const filteredLen = filtered.length;
-  useEffect(() => { setCurrentPage(1); }, [filteredLen]);
-
-  // Pagination
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paginatedScholarships = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-
   // ─── Type counts ────────────────────────────────────────
   const typeCounts = useMemo(() => {
     const c: Record<string, number> = {};
@@ -485,6 +477,13 @@ export const ScholarshipFinder = () => {
     }
     return result;
   }, [searchQuery, selectedCategory, selectedTypes, selectedEduLevels, selectedCats, selectedIncome, sortBy]);
+
+  // ─── Pagination (MUST be after filtered is defined) ─────
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginatedScholarships = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  // Reset to page 1 when filters change
+  useEffect(() => { setCurrentPage(1); }, [filtered.length]);
 
   // ─── Highest value ──────────────────────────────────────
   const highestVal = useMemo(() => {
