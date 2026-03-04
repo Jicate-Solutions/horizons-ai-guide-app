@@ -535,7 +535,7 @@ export const ScholarshipFinder = () => {
   );
 
   return (
-    <div className="relative" style={{ fontFamily: 'Outfit, sans-serif' }}>
+    <div className="relative rounded-2xl" style={{ fontFamily: 'Outfit, sans-serif', background: 'linear-gradient(180deg, #E8F5E9 0%, #F1F8E9 40%, #E8F5E9 100%)', minHeight: '80vh', padding: '1.5rem 0' }}>
       {/* ─── GLOBAL STYLES ──────────────────────────────────── */}
       <style>{`
         @keyframes sfFadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
