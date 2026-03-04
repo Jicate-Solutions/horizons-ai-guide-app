@@ -577,7 +577,7 @@ export const ScholarshipFinder = () => {
         @keyframes sfSlideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
         @keyframes sfSlideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
         .sf-stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .sf-cat-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .sf-cat-btn:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.14); }
         .sf-cards-scroll::-webkit-scrollbar { width: 6px; }
         .sf-cards-scroll::-webkit-scrollbar-track { background: #F5F0E8; border-radius: 3px; }
         .sf-cards-scroll::-webkit-scrollbar-thumb { background: #C8E6C9; border-radius: 3px; }
@@ -670,63 +670,77 @@ export const ScholarshipFinder = () => {
           </div>
         </div>
 
-        {/* ═══ CATEGORY NAVIGATION ═══ */}
-        <div className="max-w-5xl mx-auto px-4 mb-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {/* ═══ CATEGORY NAVIGATION (BIG TABS) ═══ */}
+        <div className="max-w-5xl mx-auto px-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Object.entries(CATEGORY_CONFIG).map(([key, cfg]) => {
               const isActive = selectedCategory === key;
+              const count = typeCounts[key] || 0;
               return (
                 <button
                   key={key}
                   onClick={() => setSelectedCategory(isActive ? null : key)}
-                  className="sf-cat-btn rounded-xl text-left transition-all duration-300 overflow-hidden relative"
+                  className="sf-cat-btn rounded-2xl text-left transition-all duration-300 overflow-hidden relative group"
                   style={{
-                    border: `2px solid ${isActive ? cfg.color : cfg.color + '40'}`,
+                    border: `2.5px solid ${isActive ? cfg.color : cfg.color + '50'}`,
                     boxShadow: isActive
-                      ? `0 6px 20px ${cfg.color}30, 0 0 0 1px ${cfg.color}20`
-                      : `0 2px 8px rgba(0,0,0,0.06)`,
+                      ? `0 8px 30px ${cfg.color}35, 0 0 0 2px ${cfg.color}15`
+                      : `0 4px 15px rgba(0,0,0,0.08)`,
                     background: isActive
-                      ? `linear-gradient(135deg, ${cfg.bg}, white)`
+                      ? `linear-gradient(145deg, ${cfg.bg}, white 60%)`
                       : 'white',
                   }}
                 >
-                  {/* Colored top accent bar */}
+                  {/* Thick colored top accent bar */}
                   <div
-                    className="h-1 w-full"
-                    style={{ background: `linear-gradient(90deg, ${cfg.color}, ${cfg.color}80)` }}
+                    className="h-1.5 w-full"
+                    style={{ background: `linear-gradient(90deg, ${cfg.color}, ${cfg.color}90, ${cfg.color}60)` }}
                   />
-                  <div className="p-4">
-                    <div className="flex items-center gap-3">
+                  <div className="px-4 py-5 md:px-5 md:py-6">
+                    {/* Large centered icon */}
+                    <div className="flex justify-center mb-3">
                       <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-sm"
+                        className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl shadow-md transition-transform duration-300 group-hover:scale-110"
                         style={{
-                          background: `linear-gradient(135deg, ${cfg.bg}, ${cfg.color}15)`,
-                          border: `1.5px solid ${cfg.color}30`,
+                          background: `linear-gradient(145deg, ${cfg.bg}, ${cfg.color}20)`,
+                          border: `2px solid ${cfg.color}35`,
                         }}
                       >
                         {cfg.icon}
                       </div>
-                      <div>
-                        <p className="font-bold text-sm" style={{ color: isActive ? cfg.color : '#1B5E20' }}>
-                          {cfg.label}
-                        </p>
-                        <p className="text-xs" style={{ color: '#8B7355' }}>{cfg.desc}</p>
-                      </div>
                     </div>
-                    <div className="mt-2.5 flex items-center justify-between">
+                    {/* Category name - big and bold */}
+                    <p
+                      className="text-center font-bold text-base md:text-lg mb-0.5"
+                      style={{ color: isActive ? cfg.color : '#1B5E20', fontFamily: 'Playfair Display, serif' }}
+                    >
+                      {cfg.label}
+                    </p>
+                    {/* Description */}
+                    <p className="text-center text-xs mb-3" style={{ color: '#8B7355' }}>
+                      {cfg.desc}
+                    </p>
+                    {/* Count badge - prominent */}
+                    <div className="flex justify-center">
                       <span
-                        className="text-xs font-bold px-2.5 py-1 rounded-full"
+                        className="text-sm font-bold px-4 py-1.5 rounded-full transition-all duration-300"
                         style={{
                           backgroundColor: isActive ? cfg.color : cfg.bg,
                           color: isActive ? 'white' : cfg.color,
+                          border: `1.5px solid ${isActive ? cfg.color : cfg.color + '40'}`,
                         }}
                       >
-                        {typeCounts[key] || 0} Scholarships
+                        {count} Scholarships
                       </span>
-                      {isActive && (
-                        <span className="text-xs font-semibold" style={{ color: cfg.color }}>✓ Active</span>
-                      )}
                     </div>
+                    {/* Active indicator */}
+                    {isActive && (
+                      <div className="flex justify-center mt-2">
+                        <span className="text-xs font-bold flex items-center gap-1" style={{ color: cfg.color }}>
+                          <Check size={12} /> Active Filter
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </button>
               );
