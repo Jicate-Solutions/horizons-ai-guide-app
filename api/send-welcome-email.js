@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ';
     if (!RESEND_API_KEY) {
       console.log('RESEND_API_KEY not configured');
       return res.status(200).json({ success: true, message: 'Email not configured' });

@@ -21,7 +21,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    const resendApiKey = Deno.env.get("RESEND_API_KEY") || "re_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ";
     if (!resendApiKey) {
       console.log("RESEND_API_KEY not configured, skipping email");
       return new Response(
