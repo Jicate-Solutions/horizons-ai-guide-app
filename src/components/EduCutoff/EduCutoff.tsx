@@ -133,6 +133,73 @@ export const EduCutoff = () => {
         </div>
       </div>
 
+      {/* ─── CLEAR CUTOFF EXPLANATION BANNER ─── */}
+      <div className="rounded-2xl overflow-hidden border-2 border-emerald-200">
+        <div className="bg-gradient-to-r from-emerald-700 to-emerald-800 px-6 py-3">
+          <h3 className="text-white font-bold text-base flex items-center gap-2">💡 Who Needs Cutoff? - Quick Guide for 12th Students</h3>
+        </div>
+        <div className="bg-white p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Cutoff Required */}
+            <div className="border-2 border-blue-200 rounded-xl p-4 bg-blue-50/50">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">CUTOFF REQUIRED</span>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-0.5">1.</span>
+                  <div>
+                    <p className="font-semibold text-sm text-gray-800">Engineering (B.E / B.Tech) - TNEA</p>
+                    <p className="text-xs text-gray-500">Cutoff = Maths + Physics/2 + Chemistry/2 (Out of 200)</p>
+                    <p className="text-xs text-gray-500">Groups: 100 Series (101-106) only</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-0.5">2.</span>
+                  <div>
+                    <p className="font-semibold text-sm text-gray-800">Medical (MBBS / BDS) - NEET</p>
+                    <p className="text-xs text-gray-500">NEET Score required (Out of 720) + Min 50% in PCB</p>
+                    <p className="text-xs text-gray-500">Groups: 200 Series (201-208) & 103, 104</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* No Cutoff */}
+            <div className="border-2 border-green-200 rounded-xl p-4 bg-green-50/50">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">NO CUTOFF NEEDED</span>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-0.5">1.</span>
+                  <div>
+                    <p className="font-semibold text-sm text-gray-800">Arts / Humanities Courses (BA, BLit, etc.)</p>
+                    <p className="text-xs text-gray-500">Admission based on 12th mark percentage only</p>
+                    <p className="text-xs text-gray-500">Groups: 400 Series (401-406)</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-0.5">2.</span>
+                  <div>
+                    <p className="font-semibold text-sm text-gray-800">Commerce Courses (B.Com, BBA, CA, etc.)</p>
+                    <p className="text-xs text-gray-500">Admission based on 12th mark percentage only</p>
+                    <p className="text-xs text-gray-500">Groups: 300 Series (301-308)</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-0.5">3.</span>
+                  <div>
+                    <p className="font-semibold text-sm text-gray-800">B.Sc / Nursing / Agriculture / B.Pharm</p>
+                    <p className="text-xs text-gray-500">Admission based on 12th mark percentage + entrance (if any)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="text-center text-xs text-gray-400 mt-3">Select your group below to calculate your eligibility score</p>
+        </div>
+      </div>
+
       {/* Step 1: Group Selection */}
       <div className="fresh-card p-6 rounded-2xl">
         <GroupSelector selectedGroup={selectedGroup} onSelectGroup={setSelectedGroup} />

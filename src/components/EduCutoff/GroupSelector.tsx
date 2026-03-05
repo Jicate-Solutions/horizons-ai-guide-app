@@ -136,6 +136,10 @@
                    </div>
                  </div>
                  <div className="flex items-center gap-2">
+                   {/* Cutoff badge */}
+                   {cat.category === 'science_maths' && <span className="text-[10px] bg-blue-100 text-blue-700 border border-blue-300 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">CUTOFF NEEDED</span>}
+                   {cat.category === 'science_bio' && <span className="text-[10px] bg-amber-100 text-amber-700 border border-amber-300 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NEET NEEDED</span>}
+                   {(cat.category === 'commerce' || cat.category === 'arts') && <span className="text-[10px] bg-green-100 text-green-700 border border-green-300 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NO CUTOFF</span>}
                    {hasSelectedGroup && (
                      <span className="text-xs bg-white/80 px-2 py-1 rounded font-medium">
                        {selectedGroup}
