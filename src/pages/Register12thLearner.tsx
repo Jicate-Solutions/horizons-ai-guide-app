@@ -174,12 +174,16 @@ const Register12thLearner = () => {
 
       if (error) throw error;
 
-      // Send confirmation email (try both Supabase Edge Function and Vercel API)
+      // Send confirmation email
       const loginEmail = user?.email;
-      if (loginEmail) {
+      const formEmail = validatedData.email;
+      // Determine the best email to send to: form email first, then login email
+      const targetEmail = formEmail || loginEmail;
+      
+      if (targetEmail) {
         const emailPayload = {
           fullName: validatedData.fullName,
-          email: loginEmail,
+          email: targetEmail,
           phone: validatedData.phone,
           school: validatedData.school || '',
           board: validatedData.board || '',
@@ -206,6 +210,16 @@ const Register12thLearner = () => {
         }).catch(err => {
           console.error('Vercel API email error:', err);
         });
+
+        // If form email is different from login email, send to login email too
+        if (loginEmail && formEmail && loginEmail !== formEmail) {
+          const loginEmailPayload = { ...emailPayload, email: loginEmail };
+          fetch('/api/send-registration-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginEmailPayload),
+          }).catch(err => console.error('Backup email error:', err));
+        }
       }
       
       toast.success(t('reg12.registrationSuccess'));
