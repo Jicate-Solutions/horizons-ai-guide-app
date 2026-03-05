@@ -77,9 +77,18 @@ export const CounsellingSimulator = () => {
   const [allotmentResult, setAllotmentResult] = useState<AllotmentResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [showTipsGuide, setShowTipsGuide] = useState(false);
+  const [renderError, setRenderError] = useState<string | null>(null);
 
-  const counsellingInfo = getCounsellingInfo(counsellingType);
-  const colleges = getCollegesByType(counsellingType);
+  let counsellingInfo: ReturnType<typeof getCounsellingInfo>;
+  let colleges: College[];
+  try {
+    counsellingInfo = getCounsellingInfo(counsellingType);
+    colleges = getCollegesByType(counsellingType);
+  } catch (err) {
+    counsellingInfo = getCounsellingInfo('tnea');
+    colleges = getCollegesByType('tnea');
+    console.error('CounsellingSimulator data error:', err);
+  }
   const parsedRank = parseInt(rank) || 0;
   const [gender, setGender] = useState<Gender>('male');
   const [community, setCommunity] = useState<string>('oc');
@@ -976,7 +985,14 @@ export const CounsellingSimulator = () => {
 
   return (
     <div className="min-h-[600px]">
-      {showTipsGuide ? (
+      {renderError && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+          <p className="text-red-700 font-semibold mb-2">Something went wrong</p>
+          <p className="text-red-500 text-sm mb-4">{renderError}</p>
+          <Button onClick={() => { setRenderError(null); setCurrentStep('home'); }}>Try Again</Button>
+        </div>
+      )}
+      {!renderError && showTipsGuide ? (
         <div className="space-y-4">
           <Button variant="ghost" onClick={() => setShowTipsGuide(false)} className="mb-2">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Simulator
@@ -986,7 +1002,7 @@ export const CounsellingSimulator = () => {
             onClose={() => setShowTipsGuide(false)} 
           />
         </div>
-      ) : (
+      ) : !renderError ? (
         <>
           {currentStep === 'home' && renderHome()}
           {currentStep === 'rank-entry' && renderRankEntry()}
@@ -995,7 +1011,7 @@ export const CounsellingSimulator = () => {
           {currentStep === 'allotment' && renderAllotment()}
           {currentStep === 'result' && renderResult()}
         </>
-      )}
+      ) : null}
     </div>
   );
 };
