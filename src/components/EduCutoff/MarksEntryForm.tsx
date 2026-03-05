@@ -170,18 +170,41 @@
        <div className="space-y-6">
          {/* Part III - Core Subjects */}
          <div>
-           <Label className="text-sm font-medium text-gray-700 mb-3 block">PART III - CORE SUBJECTS (4 × 100 = 400 marks)</Label>
+           <Label className="text-sm font-medium text-gray-700 mb-3 block">PART III - CORE SUBJECTS (4 x 100 = 400 marks)</Label>
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-             {subjects.map((subj) => (
-               <div key={subj.subject}>
-                 {renderInput(
-                   subj.subject,
-                   subj.icon,
-                   marks[subj.subject] ?? null,
-                   (v) => handleMarkChange(subj.subject, v)
-                 )}
-               </div>
-             ))}
+             {subjects.map((subj) => {
+               // Determine if this subject is used in cutoff
+               const isCutoffSubject = showTNEA && ['Mathematics', 'Physics', 'Chemistry'].includes(subj.subject);
+               const isNeetSubject = showNEET && ['Physics', 'Chemistry', 'Biology', 'Botany', 'Zoology'].includes(subj.subject);
+               const isNotUsedInCutoff = showTNEA && !['Mathematics', 'Physics', 'Chemistry'].includes(subj.subject);
+
+               return (
+                 <div key={subj.subject} className="relative">
+                   {renderInput(
+                     subj.subject,
+                     subj.icon,
+                     marks[subj.subject] ?? null,
+                     (v) => handleMarkChange(subj.subject, v)
+                   )}
+                   {/* Show what this subject is used for */}
+                   {isCutoffSubject && (
+                     <span className="mt-1 inline-block text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full">
+                       Used in TNEA Cutoff
+                     </span>
+                   )}
+                   {isNeetSubject && !isCutoffSubject && (
+                     <span className="mt-1 inline-block text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">
+                       Used for NEET eligibility
+                     </span>
+                   )}
+                   {isNotUsedInCutoff && !isNeetSubject && (
+                     <span className="mt-1 inline-block text-[10px] font-bold text-gray-400 bg-gray-50 border border-gray-200 px-2 py-0.5 rounded-full">
+                       Not used in cutoff (for overall % only)
+                     </span>
+                   )}
+                 </div>
+               );
+             })}
            </div>
          </div>
  
@@ -210,14 +233,50 @@
                  />
                </div>
              </div>
+             {category === 'science_bio' && (
+               <div className="mt-3 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                 <p className="text-sm text-amber-800 font-semibold mb-1">
+                   🩺 Medical Admission = NEET Score Only
+                 </p>
+                 <p className="text-sm text-amber-700">
+                   Your 12th marks are used for: (1) NEET eligibility — need min 50% in PCB, and (2) Direct admission to B.Sc, Nursing, Agriculture — based on overall %. 
+                   <strong> There is NO cutoff formula like engineering.</strong>
+                 </p>
+               </div>
+             )}
            </div>
          )}
  
          {/* TNEA Info for Maths groups */}
          {showTNEA && (
-           <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-             <p className="text-sm text-blue-800">
-               <strong>📐 TNEA Cutoff Formula:</strong> Maths + (Physics/2) + (Chemistry/2) = Max 200
+           <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
+             <p className="text-sm text-blue-800 font-semibold mb-2">
+               📐 TNEA Engineering Cutoff Formula:
+             </p>
+             <p className="text-base text-blue-900 font-bold bg-white rounded-lg p-3 text-center border border-blue-100">
+               Cutoff = Maths (full marks) + Physics / 2 + Chemistry / 2 = Maximum 200
+             </p>
+             <p className="text-xs text-blue-600 mt-2">
+               Only <strong>Maths, Physics & Chemistry</strong> marks are used to calculate your TNEA cutoff.
+               {(group === '103' || group === '104') && (
+                 <span className="text-rose-600 font-semibold"> Biology is NOT used in engineering cutoff — it is used for NEET medical eligibility only.</span>
+               )}
+               {!['103', '104'].includes(group) && subjects.length > 3 && (
+                 <span> Your 4th subject contributes to overall percentage only, not to cutoff.</span>
+               )}
+             </p>
+           </div>
+         )}
+
+         {/* Commerce/Arts Info */}
+         {(category === 'commerce' || category === 'arts') && (
+           <div className="p-4 bg-green-50 rounded-xl border border-green-200">
+             <p className="text-sm text-green-800 font-semibold mb-1">
+               ✅ No Cutoff Formula for {category === 'arts' ? 'Arts' : 'Commerce'} Students
+             </p>
+             <p className="text-sm text-green-700">
+               Your <strong>overall 12th percentage</strong> is directly used for college admission.
+               All 4 subject marks contribute equally to your percentage.
              </p>
            </div>
          )}
