@@ -641,6 +641,119 @@
            </div>
          </section>
  
+
+         {/* ═══ LINKEDIN SKILLS ON THE RISE 2026 ═══ */}
+         <section>
+           <div className="text-center mb-6 md:mb-8">
+             <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+               <TrendingUp className="h-4 w-4 text-blue-600" />
+               <span className="text-sm font-medium text-blue-700">LinkedIn Report 2026</span>
+             </div>
+             <h2 className="text-xl md:text-3xl font-bold text-foreground">
+               Fastest-Growing Skills in India 2026
+             </h2>
+             <p className="text-blue-600 mt-1 text-sm md:text-base">
+               Source: LinkedIn Skills on the Rise 2026 Report
+             </p>
+             <p className="text-amber-600 mt-1 font-tamil text-sm">
+               இந்தியாவில் 2026-ல் மிக வேகமாக வளரும் திறன்கள்
+             </p>
+           </div>
+
+           {/* Key Stats */}
+           <div className="grid grid-cols-3 gap-3 md:gap-4 mb-6">
+             <Card className="border-0 shadow-md bg-gradient-to-br from-red-50 to-orange-50 text-center p-3 md:p-5">
+               <p className="text-2xl md:text-4xl font-bold text-red-600">38%</p>
+               <p className="text-xs md:text-sm text-gray-600 mt-1">Indian job seekers feel unprepared</p>
+             </Card>
+             <Card className="border-0 shadow-md bg-gradient-to-br from-blue-50 to-indigo-50 text-center p-3 md:p-5">
+               <p className="text-2xl md:text-4xl font-bold text-blue-600">74%</p>
+               <p className="text-xs md:text-sm text-gray-600 mt-1">Recruiters struggle to find talent</p>
+             </Card>
+             <Card className="border-0 shadow-md bg-gradient-to-br from-green-50 to-emerald-50 text-center p-3 md:p-5">
+               <p className="text-2xl md:text-4xl font-bold text-green-600">46%</p>
+               <p className="text-xs md:text-sm text-gray-600 mt-1">Recruiters use skills data to hire</p>
+             </Card>
+           </div>
+
+           {/* 5 Skill Stacks */}
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+             {[
+               { title: 'AI & Automation', icon: '🤖', color: 'from-purple-600 to-indigo-600', bg: 'bg-purple-50', skills: ['Prompt Engineering', 'Workflow Automation', 'LLMOps', 'AutoML', 'API Integration'], note: 'Prompt Engineering now in demand across HR, Marketing, Sales & Consulting' },
+               { title: 'Data & Analytics', icon: '📊', color: 'from-blue-600 to-cyan-600', bg: 'bg-blue-50', skills: ['Querying (SQL)', 'Database Optimization', 'Data Storytelling', 'Data-Driven Decisions', 'Data Reporting'], note: 'Querying is #1 engineering skill — starting point for every AI task' },
+               { title: 'IT & Cybersecurity', icon: '🔒', color: 'from-red-600 to-rose-600', bg: 'bg-red-50', skills: ['Cybersecurity', 'Cloud Infrastructure', 'Incident Management', 'Threat Detection', 'IT Automation'], note: 'Critical as companies scale AI and cloud platforms' },
+               { title: 'Business & Growth', icon: '📈', color: 'from-amber-600 to-orange-600', bg: 'bg-amber-50', skills: ['Relationship Management', 'Negotiation', 'Process Optimization', 'Visual Storytelling'], note: 'Commerce & MBA students — these skills get you hired!' },
+               { title: 'People & Leadership', icon: '👥', color: 'from-green-600 to-emerald-600', bg: 'bg-green-50', skills: ['Collaboration', 'Team Management', 'Stakeholder Management', 'Public Speaking'], note: 'Collaboration appears in EVERY job function — most universal skill' },
+             ].map((stack, i) => (
+               <Card key={i} className="border-0 shadow-md overflow-hidden">
+                 <div className={`bg-gradient-to-r ${stack.color} px-4 py-3 text-white`}>
+                   <div className="flex items-center gap-2">
+                     <span className="text-xl">{stack.icon}</span>
+                     <h3 className="font-bold text-sm md:text-base">{stack.title}</h3>
+                   </div>
+                 </div>
+                 <CardContent className={`p-3 md:p-4 ${stack.bg}`}>
+                   <div className="flex flex-wrap gap-1.5 mb-2">
+                     {stack.skills.map((skill, j) => (
+                       <Badge key={j} variant="secondary" className="text-xs font-medium">{skill}</Badge>
+                     ))}
+                   </div>
+                   <p className="text-xs text-gray-600 italic border-t pt-2">{stack.note}</p>
+                 </CardContent>
+               </Card>
+             ))}
+           </div>
+
+           {/* Top 10 Engineering Skills */}
+           <Card className="border-0 shadow-lg overflow-hidden mb-6">
+             <CardHeader className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3">
+               <CardTitle className="text-sm md:text-lg flex items-center gap-2">
+                 <Sparkles className="h-5 w-5" />
+                 Top 10 Engineering Skills in India 2026
+               </CardTitle>
+             </CardHeader>
+             <CardContent className="p-3 md:p-4">
+               <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                 {[
+                   { rank: 1, skill: 'Querying (SQL)' },
+                   { rank: 2, skill: 'Cybersecurity' },
+                   { rank: 3, skill: 'Process Optimization' },
+                   { rank: 4, skill: 'Collaboration' },
+                   { rank: 5, skill: 'Programming' },
+                   { rank: 6, skill: 'AI Development' },
+                   { rank: 7, skill: 'Prompt Engineering' },
+                   { rank: 8, skill: 'API Expertise' },
+                   { rank: 9, skill: 'LLM Operations' },
+                   { rank: 10, skill: 'Data Storytelling' },
+                 ].map((item) => (
+                   <div key={item.rank} className="flex items-center gap-2 p-2 rounded-lg bg-gradient-to-r from-gray-50 to-indigo-50 border border-indigo-100">
+                     <span className="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">{item.rank}</span>
+                     <p className="text-xs md:text-sm font-medium text-gray-800 leading-tight">{item.skill}</p>
+                   </div>
+                 ))}
+               </div>
+             </CardContent>
+           </Card>
+
+           {/* Key Insight for Students */}
+           <Card className="border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 shadow-md">
+             <CardContent className="p-4 md:p-5">
+               <div className="flex items-start gap-3">
+                 <span className="text-2xl">💡</span>
+                 <div>
+                   <h4 className="font-bold text-green-800 text-sm md:text-base mb-2">What This Means for You (12th Students)</h4>
+                   <div className="space-y-1.5 text-xs md:text-sm text-green-700">
+                     <p><strong>Science Maths (100 Series):</strong> Learn AI, prompt engineering & cybersecurity alongside your engineering degree.</p>
+                     <p><strong>Science Bio (200 Series):</strong> Healthcare + data analytics is the winning combo. AI in healthcare is booming.</p>
+                     <p><strong>Commerce (300 Series):</strong> Focus on business analytics, negotiation & process optimization.</p>
+                     <p><strong>Arts (400 Series):</strong> Visual storytelling, collaboration & stakeholder management are YOUR strengths.</p>
+                   </div>
+                 </div>
+               </div>
+             </CardContent>
+           </Card>
+         </section>
+
          {/* Tamil Nadu Opportunities */}
          <section>
            <div className="text-center mb-8">
