@@ -133,7 +133,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               <ExternalLink className="h-3 w-3" /> Apply Now
             </a>
             <a
-              href={getCollegeUrl(college, ' contact enquiry')}
+              href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' contact enquiry admission')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 transition-colors no-underline"
@@ -141,7 +141,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               <Globe className="h-3 w-3" /> Enquiry
             </a>
             <a
-              href={getCollegeUrl(college, ' facilities hostel bus transport')}
+              href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' facilities hostel bus transport placements')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white transition-colors no-underline"
