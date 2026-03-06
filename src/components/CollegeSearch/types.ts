@@ -1756,6 +1756,15 @@ export const ERODE_FEATURED_COLLEGES: College[] = [
     address: 'Erode',
     feeRange: '₹50,000 - ₹1,20,000 per year',
   },
+  {
+    id: 'shree_venkateshwara_paramedical',
+    name: 'Shree Venkateshwara College of Paramedical Sciences, Erode',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health Sciences, B.Sc MLT, B.Sc Radiology, B.Sc Cardiac Technology, B.Sc Optometry, B.Sc Physician Assistant, DMLT',
+    address: 'Erode',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+  },
 
   // ============================================
   // 9. EDUCATION COLLEGES (B.Ed)
