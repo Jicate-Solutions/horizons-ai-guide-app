@@ -650,12 +650,12 @@ export const ScholarshipFinder = () => {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="sf-stat-card rounded-xl p-4 text-center shadow-md transition-all duration-300 cursor-default"
+                className="sf-stat-card rounded-xl p-2.5 md:p-4 text-center shadow-md transition-all duration-300 cursor-default"
                 style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}
               >
-                <span className="text-2xl block mb-1">{stat.icon}</span>
+                <span className="text-lg md:text-2xl block mb-0.5 md:mb-1">{stat.icon}</span>
                 <p
-                  className="text-xl md:text-2xl font-bold"
+                  className="text-base md:text-2xl font-bold"
                   style={{
                     background: 'linear-gradient(135deg, #DAA520, #B8860B)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
@@ -664,7 +664,7 @@ export const ScholarshipFinder = () => {
                 >
                   {stat.value}
                 </p>
-                <p className="text-xs uppercase tracking-wider font-medium mt-0.5" style={{ color: '#8B7355' }}>
+                <p className="text-[11px] md:text-xs uppercase tracking-wider font-medium mt-0.5" style={{ color: '#8B7355' }}>
                   {stat.label}
                 </p>
               </div>
@@ -698,11 +698,11 @@ export const ScholarshipFinder = () => {
                     className="h-1.5 w-full"
                     style={{ background: `linear-gradient(90deg, ${cfg.color}, ${cfg.color}90, ${cfg.color}60)` }}
                   />
-                  <div className="px-4 py-5 md:px-5 md:py-6">
-                    {/* Large centered icon */}
-                    <div className="flex justify-center mb-3">
+                  <div className="px-3 py-3 md:px-5 md:py-6">
+                    {/* Icon */}
+                    <div className="flex justify-center mb-2 md:mb-3">
                       <div
-                        className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl shadow-md transition-transform duration-300 group-hover:scale-110"
+                        className="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-3xl shadow-md transition-transform duration-300 group-hover:scale-110"
                         style={{
                           background: `linear-gradient(145deg, ${cfg.bg}, ${cfg.color}20)`,
                           border: `2px solid ${cfg.color}35`,
@@ -713,19 +713,19 @@ export const ScholarshipFinder = () => {
                     </div>
                     {/* Category name - big and bold */}
                     <p
-                      className="text-center font-bold text-base md:text-lg mb-0.5"
+                      className="text-center font-bold text-sm md:text-lg mb-0.5"
                       style={{ color: isActive ? cfg.color : '#1B5E20', fontFamily: 'Playfair Display, serif' }}
                     >
                       {cfg.label}
                     </p>
                     {/* Description */}
-                    <p className="text-center text-xs mb-3" style={{ color: '#8B7355' }}>
+                    <p className="text-center text-[11px] md:text-xs mb-2 md:mb-3" style={{ color: '#8B7355' }}>
                       {cfg.desc}
                     </p>
-                    {/* Count badge - prominent */}
+                    {/* Count badge */}
                     <div className="flex justify-center">
                       <span
-                        className="text-sm font-bold px-4 py-1.5 rounded-full transition-all duration-300"
+                        className="text-xs md:text-sm font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-full transition-all duration-300"
                         style={{
                           backgroundColor: isActive ? cfg.color : cfg.bg,
                           color: isActive ? 'white' : cfg.color,

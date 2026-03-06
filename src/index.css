@@ -1728,12 +1728,59 @@ video, iframe { max-width: 100%; }
     min-height: 40px;
   }
   
-  /* Prevent text from being too small */
+  /* Prevent text from being too small — MINIMUM 12px on mobile */
   body {
     font-size: 15px;
     -webkit-text-size-adjust: 100%;
   }
-  
+
+  /* ─── FORCE READABLE FONT SIZES ON MOBILE ─── */
+  /* text-[8px], text-[9px], text-[10px] → minimum 11px */
+  .text-\[8px\], .text-\[9px\], .text-\[10px\] {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* text-[11px] → 12px */
+  .text-\[11px\] {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* text-xs (12px) → 13px for better readability */
+  .text-xs {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* text-sm (14px) is fine, but ensure line-height */
+  .text-sm {
+    line-height: 1.5 !important;
+  }
+
+  /* Make sure numbers in stats are readable */
+  .text-2xl { font-size: 1.25rem !important; }
+  .text-4xl { font-size: 1.75rem !important; }
+
+  /* ─── FIX SCHOLARSHIP FINDER MOBILE ─── */
+  /* Category tab icons - not too big on mobile */
+  .sf-cat-btn .w-16.h-16 { width: 2.5rem !important; height: 2.5rem !important; }
+  .sf-cat-btn .text-3xl { font-size: 1.25rem !important; }
+  .sf-cat-btn .text-base { font-size: 0.8125rem !important; }
+
+  /* ─── FIX GROUP SELECTOR CARDS MOBILE ─── */
+  /* Make group code buttons bigger for tapping */
+  .grid-cols-2.sm\:grid-cols-3 button {
+    min-height: 52px;
+  }
+
+  /* ─── FIX RESULT CARDS MOBILE ─── */
+  /* Ensure result score numbers are big and clear */
+  .text-4xl.font-bold {
+    font-size: 2rem !important;
+    letter-spacing: -0.02em;
+  }
+
   /* Better card padding on mobile */
   .fresh-card {
     padding: 1rem !important;
@@ -1743,6 +1790,12 @@ video, iframe { max-width: 100%; }
   [role="dialog"] > div {
     max-width: 95vw !important;
     margin: 0.5rem !important;
+  }
+
+  /* ─── FIX PILL NAVIGATION READABILITY ─── */
+  /* Ensure nav items have enough padding */
+  nav button {
+    min-height: 36px;
   }
 }
 
