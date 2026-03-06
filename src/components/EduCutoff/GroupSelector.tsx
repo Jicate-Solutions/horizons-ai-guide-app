@@ -152,34 +152,74 @@
                {/* Expanded Groups */}
                {isExpanded && (
                  <div className="p-3 bg-gray-50 border-t">
-                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                     {cat.groups.map((group) => {
+                   {/* Table Header - Fixed (Desktop only) */}
+                   <div className="hidden sm:grid sm:grid-cols-[56px_1fr_2fr] gap-2 px-3 py-2 bg-white rounded-t-lg border border-b-0 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+                     <span>Code</span>
+                     <span>Course Name</span>
+                     <span>Subjects</span>
+                   </div>
+                   {/* Group List - Scrollable */}
+                   <div className="max-h-[320px] overflow-y-auto rounded-lg sm:rounded-t-none border bg-white">
+                     {cat.groups.map((group, idx) => {
                        const isSelected = selectedGroup === group.id;
+                       const keySubject = group.subjects.find(s =>
+                         !['Physics', 'Chemistry'].includes(s) &&
+                         !(cat.category === 'commerce' && ['Economics', 'Commerce', 'Accountancy'].includes(s)) &&
+                         !(cat.category === 'arts' && ['Geography', 'History', 'Economics'].includes(s))
+                       ) || group.subjects[group.subjects.length - 1];
                        return (
                          <button
                            key={group.id}
                            onClick={() => onSelectGroup(group.id)}
                            className={cn(
-                             'p-3 rounded-lg border text-left transition-all text-sm',
+                             'w-full text-left transition-all',
+                             idx !== cat.groups.length - 1 && 'border-b',
                              isSelected
-                               ? 'bg-white border-2 border-current shadow-sm ' + cat.color
-                               : 'bg-white border-gray-200 hover:border-gray-300'
+                               ? 'bg-gradient-to-r from-white to-gray-50 ring-2 ring-inset ring-current shadow-sm ' + cat.color
+                               : 'hover:bg-gray-50'
                            )}
                          >
-                           <div className="flex items-center gap-2 mb-1">
-                             <span className="font-bold">{group.code}</span>
-                             {isSelected && <span className="text-green-500">✓</span>}
+                           {/* Mobile Layout - Stacked */}
+                           <div className="sm:hidden p-3">
+                             <div className="flex items-center gap-2 mb-1.5">
+                               <span className="text-sm font-bold min-w-[36px]">{group.code}</span>
+                               <span className="text-sm">{group.icon}</span>
+                               <span className="text-sm font-medium text-gray-700">{keySubject}</span>
+                               {isSelected && <span className="text-green-500 ml-auto text-sm">✓</span>}
+                             </div>
+                             <div className="flex flex-wrap gap-1 ml-[44px]">
+                               {group.subjects.map((subject, sIdx) => (
+                                 <span key={sIdx} className="text-[10px] px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded">
+                                   {subject}
+                                 </span>
+                               ))}
+                             </div>
                            </div>
-                           <p className="text-[10px] text-gray-500 line-clamp-2">
-                             {group.subjects.slice(2).join(', ')}
-                           </p>
+                           {/* Desktop Layout - Table Row */}
+                           <div className="hidden sm:grid sm:grid-cols-[56px_1fr_2fr] gap-2 px-3 py-2.5 items-center">
+                             <div className="flex items-center gap-1">
+                               <span className="font-bold text-sm">{group.code}</span>
+                               {isSelected && <span className="text-green-500 text-xs">✓</span>}
+                             </div>
+                             <div className="flex items-center gap-1.5">
+                               <span>{group.icon}</span>
+                               <span className="text-sm font-medium text-gray-700 truncate">{keySubject}</span>
+                             </div>
+                             <div className="flex flex-wrap gap-1">
+                               {group.subjects.map((subject, sIdx) => (
+                                 <span key={sIdx} className="text-[11px] px-2 py-0.5 bg-gray-100 text-gray-600 rounded whitespace-nowrap">
+                                   {subject}
+                                 </span>
+                               ))}
+                             </div>
+                           </div>
                          </button>
                        );
                      })}
                    </div>
                    <div className="mt-3 p-2 bg-white rounded border">
                      <p className="text-xs text-gray-600">
-                       <strong>Career Paths:</strong> {cat.careers.slice(0, 4).join(', ')}...
+                       <strong>Career Paths:</strong> {cat.careers.slice(0, 5).join(' • ')}
                      </p>
                    </div>
                  </div>

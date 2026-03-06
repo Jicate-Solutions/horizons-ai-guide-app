@@ -14,11 +14,11 @@ interface CollegeCardProps {
 export const CollegeCard = ({ college }: CollegeCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const typeInfo = COLLEGE_TYPE_INFO[college.type];
-  const collegeUrl = (college.website && (college.website.startsWith('http://') || college.website.startsWith('https://')))
-    ? college.website
-    : college.website
-      ? `https://${college.website}`
-      : `https://duckduckgo.com/?q=!ducky+${encodeURIComponent(college.name + ' official website')}`;
+  const collegeUrl = college.website
+    ? (college.website.startsWith('http://') || college.website.startsWith('https://'))
+      ? college.website
+      : `https://${college.website}`
+    : null;
   const isAutonom = isAutonomousCollege(college);
 
   return (
@@ -53,7 +53,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               )}
             </div>
             <a 
-              href={collegeUrl}
+              href={collegeUrl || `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-sm md:text-lg leading-tight cursor-pointer hover:text-emerald-700 hover:underline transition-colors block"
@@ -122,14 +122,16 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
 
           {/* Apply, Contact & Facilities */}
           <div className="flex flex-wrap gap-2 mt-1">
-            <a
-              href={collegeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white no-underline"
-            >
-              <ExternalLink className="h-3 w-3" /> Apply
-            </a>
+            {collegeUrl && (
+              <a
+                href={collegeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white no-underline"
+              >
+                <ExternalLink className="h-3 w-3" /> Apply
+              </a>
+            )}
             <a
               href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' admission contact phone')}`}
               target="_blank"
