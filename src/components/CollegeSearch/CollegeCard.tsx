@@ -10,17 +10,13 @@ interface CollegeCardProps {
   college: College;
 }
 
-const getCollegeUrl = (college: College, suffix: string = '') => {
-  if (college.website) {
-    return college.website.startsWith('http') ? college.website : `https://${college.website}`;
-  }
-  return `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website' + suffix)}`;
-};
 
 export const CollegeCard = ({ college }: CollegeCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const typeInfo = COLLEGE_TYPE_INFO[college.type];
-  const collegeUrl = getCollegeUrl(college);
+  const collegeUrl = (college.website && (college.website.startsWith('http://') || college.website.startsWith('https://')))
+    ? college.website
+    : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website')}`;
   const isAutonom = isAutonomousCollege(college);
 
   return (
@@ -124,30 +120,24 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
 
           {/* Apply Now, Enquiry & Facilities */}
           <div className="flex flex-wrap gap-2 mt-1">
-            <a
-              href={collegeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white transition-colors no-underline"
+            <button
+              onClick={() => window.open(collegeUrl, "_blank")}
+              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white"
             >
-              <ExternalLink className="h-3 w-3" /> Apply Now
-            </a>
-            <a
-              href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' contact enquiry admission')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 transition-colors no-underline"
+              <ExternalLink className="h-3 w-3" /> Apply
+            </button>
+            <button
+              onClick={() => window.open("https://www.google.com/search?q=" + encodeURIComponent(college.name + " admission contact phone"), "_blank")}
+              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium border border-gray-300 bg-white hover:bg-gray-50 text-gray-700"
             >
-              <Globe className="h-3 w-3" /> Enquiry
-            </a>
-            <a
-              href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' facilities hostel bus transport placements')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white transition-colors no-underline"
+              <Phone className="h-3 w-3" /> Contact
+            </button>
+            <button
+              onClick={() => window.open("https://www.google.com/search?q=" + encodeURIComponent(college.name + " hostel bus facilities placements"), "_blank")}
+              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white"
             >
-              <Phone className="h-3 w-3" /> Facility Details
-            </a>
+              <Globe className="h-3 w-3" /> Facilities
+            </button>
           </div>
 
           {/* Expandable Details */}
