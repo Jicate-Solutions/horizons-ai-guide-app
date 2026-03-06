@@ -301,9 +301,9 @@
 
   /* ===== FRESH PAGE HEADER ===== */
   .fresh-page-header {
-    @apply py-10 px-8 rounded-3xl relative overflow-hidden;
+    @apply py-6 px-4 md:py-10 md:px-8 rounded-2xl md:rounded-3xl relative overflow-hidden;
     background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 50%, #004D40 100%);
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 
   .fresh-page-header::before {

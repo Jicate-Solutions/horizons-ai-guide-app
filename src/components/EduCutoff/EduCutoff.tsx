@@ -91,60 +91,57 @@ export const EduCutoff = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 md:space-y-8">
       {/* Premium Header Section */}
       <div className="fresh-page-header rounded-2xl p-6 md:p-8 relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
-              <Calculator className="h-6 w-6 text-white" />
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
+              <Calculator className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-white">EduCutoff & College Predictor</h2>
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-serif font-bold text-white">Cutoff & College Predictor</h2>
           </div>
-          <p className="text-fresh-gold-medium text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
-          <p className="text-white/90 text-sm mb-6">
+          <p className="text-fresh-gold-medium text-sm md:text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
+          <p className="text-white/90 text-xs md:text-sm mb-4 md:mb-6">
             Calculate your cutoff & discover courses you're eligible for
           </p>
-          <p className="text-white/80 text-sm font-tamil">
-            உங்கள் தகுதியை கணக்கிட்டு சரியான படிப்பை கண்டறியுங்கள்
-          </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            <div className="fresh-card p-4 text-center">
-              <GraduationCap className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
-              <div className="text-2xl font-bold text-fresh-green-dark">1000+</div>
-              <div className="text-xs fresh-muted">Colleges</div>
+          <div className="grid grid-cols-4 gap-2 md:gap-4 mt-4 md:mt-6">
+            <div className="fresh-card p-2 md:p-4 text-center">
+              <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">1000+</div>
+              <div className="text-[9px] md:text-xs fresh-muted">Colleges</div>
             </div>
-            <div className="fresh-card p-4 text-center">
-              <Building2 className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
-              <div className="text-2xl font-bold text-fresh-green-dark">200+</div>
-              <div className="text-xs fresh-muted">Courses</div>
+            <div className="fresh-card p-2 md:p-4 text-center">
+              <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">200+</div>
+              <div className="text-[9px] md:text-xs fresh-muted">Courses</div>
             </div>
-            <div className="fresh-card p-4 text-center">
-              <MapPin className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
-              <div className="text-2xl font-bold text-fresh-green-dark">38</div>
-              <div className="text-xs fresh-muted">Districts</div>
+            <div className="fresh-card p-2 md:p-4 text-center">
+              <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">38</div>
+              <div className="text-[9px] md:text-xs fresh-muted">Districts</div>
             </div>
-            <div className="fresh-card p-4 text-center">
-              <CheckCircle className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
-              <div className="text-2xl font-bold text-fresh-green-dark">All</div>
-              <div className="text-xs fresh-muted">Groups</div>
+            <div className="fresh-card p-2 md:p-4 text-center">
+              <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">All</div>
+              <div className="text-[9px] md:text-xs fresh-muted">Groups</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* ─── CLEAR CUTOFF EXPLANATION BANNER ─── */}
-      <div className="rounded-2xl overflow-hidden border-2 border-emerald-200">
-        <div className="bg-gradient-to-r from-emerald-700 to-emerald-800 px-6 py-3">
-          <h3 className="text-white font-bold text-base flex items-center gap-2">💡 Who Needs Cutoff? - Quick Guide for 12th Students</h3>
+      <div className="rounded-xl md:rounded-2xl overflow-hidden border-2 border-emerald-200">
+        <div className="bg-gradient-to-r from-emerald-700 to-emerald-800 px-4 py-2 md:px-6 md:py-3">
+          <h3 className="text-white font-bold text-xs md:text-base flex items-center gap-2">💡 Who Needs Cutoff?</h3>
         </div>
-        <div className="bg-white p-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white p-3 md:p-5">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
             {/* Cutoff Required */}
-            <div className="border-2 border-blue-200 rounded-xl p-4 bg-blue-50/50">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">CUTOFF REQUIRED</span>
+            <div className="border-2 border-blue-200 rounded-xl p-3 md:p-4 bg-blue-50/50">
+              <div className="flex items-center gap-2 mb-2 md:mb-3">
+                <span className="bg-blue-600 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full">CUTOFF REQUIRED</span>
               </div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
@@ -166,9 +163,9 @@ export const EduCutoff = () => {
               </div>
             </div>
             {/* No Cutoff */}
-            <div className="border-2 border-green-200 rounded-xl p-4 bg-green-50/50">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">NO CUTOFF NEEDED</span>
+            <div className="border-2 border-green-200 rounded-xl p-3 md:p-4 bg-green-50/50">
+              <div className="flex items-center gap-2 mb-2 md:mb-3">
+                <span className="bg-green-600 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full">NO CUTOFF NEEDED</span>
               </div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
@@ -202,20 +199,20 @@ export const EduCutoff = () => {
       </div>
 
       {/* Step 1: Group Selection */}
-      <div className="fresh-card p-6 rounded-2xl">
+      <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
         <GroupSelector selectedGroup={selectedGroup} onSelectGroup={setSelectedGroup} />
       </div>
 
       {/* Step 2: Marks Entry */}
       {selectedGroup && (
-        <div className="fresh-card p-6 rounded-2xl">
+        <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
           <MarksEntryForm group={selectedGroup} onMarksChange={handleMarksChange} />
         </div>
       )}
 
       {/* Step 3: Category Selection */}
       {selectedGroup && (
-        <div className="fresh-card p-6 rounded-2xl">
+        <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
           <CategorySelector
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}
@@ -230,7 +227,7 @@ export const EduCutoff = () => {
         <div className="flex justify-center">
           <Button
             size="lg"
-            className="btn-premium-primary px-12 py-6 text-lg rounded-full"
+            className="btn-premium-primary w-full md:w-auto px-8 md:px-12 py-4 md:py-6 text-base md:text-lg rounded-xl md:rounded-full"
             onClick={calculateCutoff}
             disabled={!canCalculate() || isCalculating}
           >
