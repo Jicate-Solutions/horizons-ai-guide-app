@@ -31,6 +31,19 @@ const DemandBar = ({ level }: { level: number }) => (
 const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // LinkedIn Skills on the Rise 2026 - match course skills against trending skills
+  const trendingSkills2026 = [
+    'AI', 'Machine Learning', 'Prompt Engineering', 'Cybersecurity', 'Data Analytics',
+    'Cloud Computing', 'Automation', 'LLM', 'API', 'Data Science', 'Python', 'SQL',
+    'Programming', 'Deep Learning', 'NLP', 'DevOps', 'Blockchain', 'IoT',
+    'Digital Marketing', 'Business Analytics', 'FinTech', 'Data Storytelling',
+    'Collaboration', 'Negotiation', 'Stakeholder Management', 'Visual Storytelling',
+  ];
+  const matchingTrending = course.skills.filter(skill =>
+    trendingSkills2026.some(t => skill.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(skill.toLowerCase()))
+  );
+  const hasTrending = matchingTrending.length > 0;
+
   return (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-all">
       <div className="p-4">
@@ -46,6 +59,9 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
               )}
               {!course.entranceRequired && (
                 <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-emerald-300 text-emerald-700">Merit</Badge>
+              )}
+              {hasTrending && (
+                <Badge className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-[10px] px-1.5 py-0">📈 Trending 2026</Badge>
               )}
             </div>
             <p className="text-xs text-gray-500">{course.name}</p>
@@ -122,10 +138,23 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
           <div>
             <p className="text-xs font-semibold text-gray-700 mb-1.5">🎯 Key Skills</p>
             <div className="flex flex-wrap gap-1">
-              {course.skills.map((s, i) => (
-                <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">{s}</span>
-              ))}
+              {course.skills.map((s, i) => {
+                const isTrending = trendingSkills2026.some(t => s.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(s.toLowerCase()));
+                return (
+                  <span key={i} className={cn(
+                    "text-[10px] px-2 py-0.5 rounded-full",
+                    isTrending ? "bg-blue-100 text-blue-700 border border-blue-300 font-semibold" : "bg-emerald-100 text-emerald-700"
+                  )}>
+                    {isTrending && '📈 '}{s}
+                  </span>
+                );
+              })}
             </div>
+            {hasTrending && (
+              <p className="text-[10px] text-blue-600 mt-1.5 italic">
+                📈 = LinkedIn Trending Skill 2026 — High demand in India
+              </p>
+            )}
           </div>
 
           {course.neetCutoff && (
