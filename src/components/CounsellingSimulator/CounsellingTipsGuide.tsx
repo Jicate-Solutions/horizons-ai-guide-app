@@ -44,40 +44,40 @@ const videoTutorials: Record<CounsellingType, VideoTutorial[]> = {
       id: '1',
       title: 'TNEA 2026 Complete Counselling Guide',
       duration: '15:30',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Complete Guide'
     },
     {
       id: '2',
       title: 'How to Choose the Right College in TNEA',
       duration: '12:45',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'College Selection'
     },
     {
       id: '3',
       title: 'TNEA Branch Selection Strategy',
       duration: '10:20',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Branch Selection'
     },
     {
       id: '4',
       title: 'Understanding TNEA Cutoff Trends',
       duration: '8:15',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Cutoff Analysis'
     },
     {
       id: '5',
       title: 'Preference Order Tips for TNEA',
       duration: '11:00',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Preference Strategy'
     }
   ],
@@ -86,40 +86,40 @@ const videoTutorials: Record<CounsellingType, VideoTutorial[]> = {
       id: '1',
       title: 'NEET UG 2026 Counselling Process Explained',
       duration: '18:00',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Complete Guide'
     },
     {
       id: '2',
       title: 'AIIMS vs Government Medical Colleges',
       duration: '14:30',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'College Comparison'
     },
     {
       id: '3',
       title: 'State Quota vs All India Quota Strategy',
       duration: '12:00',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Quota Strategy'
     },
     {
       id: '4',
       title: 'MBBS vs BDS - Making the Right Choice',
       duration: '10:45',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Course Selection'
     },
     {
       id: '5',
       title: 'Documents Required for NEET Counselling',
       duration: '7:30',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Documentation'
     }
   ],
@@ -128,40 +128,40 @@ const videoTutorials: Record<CounsellingType, VideoTutorial[]> = {
       id: '1',
       title: 'JoSAA 2026 Complete Counselling Process',
       duration: '20:00',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Complete Guide'
     },
     {
       id: '2',
       title: 'IIT vs NIT vs IIIT - Which to Choose?',
       duration: '16:30',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Institute Comparison'
     },
     {
       id: '3',
       title: 'Branch vs College Priority Strategy',
       duration: '14:15',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Priority Strategy'
     },
     {
       id: '4',
       title: 'Understanding JoSAA Rounds & Upgrades',
       duration: '11:45',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Rounds System'
     },
     {
       id: '5',
       title: 'Freeze, Float, Slide Options Explained',
       duration: '9:00',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://img.youtube.com/vi/dpZGnpVoYyg/mqdefault.jpg',
+      youtubeUrl: 'https://www.youtube.com/watch?v=dpZGnpVoYyg',
       category: 'Seat Options'
     }
   ]

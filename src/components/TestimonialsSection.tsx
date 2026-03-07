@@ -7,6 +7,7 @@ const testimonials = [
     role: "Class 12, Government Higher Secondary School, Veppadai",
     quote: "This app helped me understand my strengths and explore suitable career options.",
     avatar: "TG",
+    photo: "/images/testimonials/thenmozhi.png",
     gradient: "from-rose-400 to-pink-500",
     date: "28/01/2026"
   },
@@ -15,6 +16,7 @@ const testimonials = [
     role: "Class 12, Government Boys Higher Secondary School, Kumarapalayam",
     quote: "I was confused about my future before using this app. Now I feel more confident in my choices.",
     avatar: "CS",
+    photo: "/images/testimonials/chandru.png",
     gradient: "from-violet-400 to-purple-500",
     date: "06/01/2026"
   },
@@ -23,6 +25,7 @@ const testimonials = [
     role: "Class 12, Pallipalayam Boys Higher Secondary School",
     quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKAATTI is a game-changer.",
     avatar: "KK",
+    photo: "/images/testimonials/karthick.png",
     gradient: "from-blue-400 to-indigo-500",
     date: "28/11/2026"
   },
@@ -31,6 +34,7 @@ const testimonials = [
     role: "Class 12, Government Higher Secondary School (Boys), Chithode",
     quote: "Thanks to the career discovery sessions, I now have a clear roadmap for my future. The AI assistant helped me understand which courses align with my interests.",
     avatar: "MB",
+    photo: "/images/testimonials/bharanee.png",
     gradient: "from-emerald-400 to-green-500",
     date: "05/12/2026"
   },
@@ -39,6 +43,7 @@ const testimonials = [
     role: "Class 12, Government Higher Secondary School, Anupparpalayam, Tirupur",
     quote: "VAZHIKAATTI opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
     avatar: "MV",
+    photo: "/images/testimonials/mahalakshmi.png",
     gradient: "from-amber-400 to-orange-500",
     date: "08/01/2026"
   },
@@ -134,8 +139,8 @@ const TestimonialsSection = () => {
 
                   {/* Author */}
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center flex-shrink-0`}>
-                      <span className="text-white font-bold text-xs">{t.avatar}</span>
+                    <div className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden border-2 border-white/30">
+                      <img src={t.photo} alt={t.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="font-bold text-gray-900 text-sm">{t.name}</p>
