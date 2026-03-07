@@ -237,7 +237,7 @@
                  <Progress value={(cutoff / 200) * 100} className="h-2" />
                </div>
                <div className="mt-2 text-xs text-muted-foreground">
-                 Formula: Maths ({marks.maths || 0}) + Physics/2 ({(parseFloat(marks.physics) || 0)/2}) + Chemistry/2 ({(parseFloat(marks.chemistry) || 0)/2}) = <strong>{cutoff}</strong>
+                 Formula: Maths/2 ({(parseFloat(marks.maths) || 0)/2}) + Physics/4 ({(parseFloat(marks.physics) || 0)/4}) + Chemistry/4 ({(parseFloat(marks.chemistry) || 0)/4}) = <strong>{Math.round(cutoff / 2 * 10) / 10}/100</strong> → <strong>{cutoff}/200</strong>
                </div>
              </div>
            )}

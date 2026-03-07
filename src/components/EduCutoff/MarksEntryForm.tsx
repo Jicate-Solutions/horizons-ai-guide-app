@@ -183,11 +183,14 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
                 <div className="mt-3 p-3 bg-white rounded-lg border border-blue-200 text-center">
                   <p className="text-xs text-blue-600 mb-1">Your TNEA Cutoff</p>
                   <p className="text-2xl font-bold text-blue-800">
-                    {Math.round(((marks.Mathematics ?? 0) + (marks.Physics ?? 0) / 2 + (marks.Chemistry ?? 0) / 2) * 10) / 10}
+                    {Math.round(((marks.Mathematics ?? 0) / 2 + (marks.Physics ?? 0) / 4 + (marks.Chemistry ?? 0) / 4) * 10) / 10}
+                    <span className="text-sm font-normal text-blue-500"> / 100</span>
+                    <span className="text-sm font-normal text-gray-400 mx-1">→</span>
+                    {Math.round(((marks.Mathematics ?? 0) / 2 + (marks.Physics ?? 0) / 4 + (marks.Chemistry ?? 0) / 4) * 2 * 10) / 10}
                     <span className="text-sm font-normal text-blue-500"> / 200</span>
                   </p>
                   <p className="text-[10px] text-gray-500 mt-1">
-                    = {marks.Mathematics} + {marks.Physics}/2 + {marks.Chemistry}/2
+                    = {marks.Mathematics}/2 + {marks.Physics}/4 + {marks.Chemistry}/4
                   </p>
                 </div>
               )}
@@ -306,7 +309,7 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
         {isTNEA && (
           <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
             <p className="text-xs text-blue-800">
-              <strong>📐 Formula:</strong> Cutoff = Maths + Physics/2 + Chemistry/2 = out of 200. Only 3 subjects needed.
+              <strong>📐 Formula:</strong> Cutoff = Maths/2 + Physics/4 + Chemistry/4 = out of 100 → ×2 = out of 200
             </p>
           </div>
         )}
