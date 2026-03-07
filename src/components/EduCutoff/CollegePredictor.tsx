@@ -44,7 +44,7 @@
  const governmentColleges: PredictedCollege[] = [
    {
      id: '1',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=CEG&background=1a237e&color=fff&size=128&bold=true&rounded=true',
      name: 'College of Engineering, Guindy (Anna University)',
      nameTamil: 'அண்ணா பல்கலைக்கழகம், கிண்டி',
      location: 'Chennai',
@@ -74,7 +74,7 @@
    },
    {
      id: '2',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=MIT&background=0d47a1&color=fff&size=128&bold=true&rounded=true',
      name: 'Madras Institute of Technology (MIT)',
      nameTamil: 'மெட்ராஸ் தொழில்நுட்ப நிறுவனம்',
      location: 'Chennai',
@@ -103,7 +103,7 @@
    },
    {
      id: '3',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=ACT&background=1b5e20&color=fff&size=128&bold=true&rounded=true',
      name: 'Alagappa College of Technology (ACT)',
      nameTamil: 'அழகப்பா தொழில்நுட்ப கல்லூரி',
      location: 'Chennai',
@@ -127,7 +127,7 @@
    },
    {
      id: '4',
-     logo: 'https://www.google.com/s2/favicons?domain=gcesalem.edu.in&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+S&background=37474f&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Salem',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, சேலம்',
      location: 'Salem',
@@ -147,7 +147,7 @@
    },
    {
      id: '5',
-     logo: 'https://www.google.com/s2/favicons?domain=gcetly.ac.in&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+T&background=4e342e&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Tirunelveli',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, திருநெல்வேலி',
      location: 'Tirunelveli',
@@ -167,7 +167,7 @@
    },
    {
      id: '6',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+B&background=546e7a&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Bargur',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, பார்கூர்',
      location: 'Bargur',
@@ -185,7 +185,7 @@
    },
    {
      id: '7',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+R&background=5d4037&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Srirangam',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, ஸ்ரீரங்கம்',
      location: 'Trichy',
@@ -203,7 +203,7 @@
    },
    {
      id: '8',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+J&background=d84315&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Thanjavur',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, தஞ்சாவூர்',
      location: 'Thanjavur',
@@ -242,7 +242,7 @@
    },
    {
      id: '10',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+E&background=e8a628&color=000&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Erode',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, ஈரோடு',
      location: 'Erode',
@@ -260,7 +260,7 @@
    },
    {
      id: '11',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+D&background=6d4c41&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Dharmapuri',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, தர்மபுரி',
      location: 'Dharmapuri',
@@ -278,7 +278,7 @@
    },
    {
      id: '12',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=GCE+K&background=795548&color=fff&size=128&bold=true&rounded=true',
      name: 'Govt. College of Engineering, Bodinayakkanur',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, போடிநாயக்கனூர்',
      location: 'Bodinayakkanur',
@@ -296,7 +296,7 @@
    },
    {
      id: '13',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+N&background=33691e&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Nagercoil',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, நாகர்கோவில்',
      location: 'Nagercoil',
@@ -333,7 +333,7 @@
    },
    {
      id: '15',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+A&background=263238&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Ariyalur',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, அரியலூர்',
      location: 'Ariyalur',
@@ -351,7 +351,7 @@
    },
    {
      id: '16',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+R&background=1b5e20&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Ramanathapuram',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, ராமநாதபுரம்',
      location: 'Ramanathapuram',
@@ -369,7 +369,7 @@
    },
    {
      id: '17',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+D&background=0277bd&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Dindigul',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, திண்டுக்கல்',
      location: 'Dindigul',
@@ -387,7 +387,7 @@
    },
    {
      id: '18',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+P&background=bf360c&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Pattukkottai',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, பட்டுக்கோட்டை',
      location: 'Pattukkottai',
@@ -405,7 +405,7 @@
    },
    {
      id: '19',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+U&background=4a148c&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Villupuram',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, விழுப்புரம்',
      location: 'Villupuram',
@@ -423,7 +423,7 @@
    },
    {
      id: '20',
-     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
+     logo: 'https://ui-avatars.com/api/?name=UCE+K&background=880e4f&color=fff&size=128&bold=true&rounded=true',
      name: 'University College of Engineering, Kanchipuram',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, காஞ்சிபுரம்',
      location: 'Kanchipuram',
