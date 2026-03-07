@@ -44,7 +44,7 @@
  const governmentColleges: PredictedCollege[] = [
    {
      id: '1',
-     logo: '/images/colleges/anna-ceg.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'College of Engineering, Guindy (Anna University)',
      nameTamil: 'அண்ணா பல்கலைக்கழகம், கிண்டி',
      location: 'Chennai',
@@ -74,7 +74,7 @@
    },
    {
      id: '2',
-     logo: '/images/colleges/anna-mit.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Madras Institute of Technology (MIT)',
      nameTamil: 'மெட்ராஸ் தொழில்நுட்ப நிறுவனம்',
      location: 'Chennai',
@@ -103,7 +103,7 @@
    },
    {
      id: '3',
-     logo: '/images/colleges/anna-act.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Alagappa College of Technology (ACT)',
      nameTamil: 'அழகப்பா தொழில்நுட்ப கல்லூரி',
      location: 'Chennai',
@@ -127,7 +127,7 @@
    },
    {
      id: '4',
-     logo: '/images/colleges/gce-salem.png',
+     logo: 'https://www.google.com/s2/favicons?domain=gcesalem.edu.in&sz=128',
      name: 'Govt. College of Engineering, Salem',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, சேலம்',
      location: 'Salem',
@@ -147,7 +147,7 @@
    },
    {
      id: '5',
-     logo: '/images/colleges/gce-tirunelveli.png',
+     logo: 'https://www.google.com/s2/favicons?domain=gcetly.ac.in&sz=128',
      name: 'Govt. College of Engineering, Tirunelveli',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, திருநெல்வேலி',
      location: 'Tirunelveli',
@@ -167,7 +167,7 @@
    },
    {
      id: '6',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Govt. College of Engineering, Bargur',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, பார்கூர்',
      location: 'Bargur',
@@ -185,7 +185,7 @@
    },
    {
      id: '7',
-     logo: '/images/colleges/gce-srirangam.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Govt. College of Engineering, Srirangam',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, ஸ்ரீரங்கம்',
      location: 'Trichy',
@@ -203,7 +203,7 @@
    },
    {
      id: '8',
-     logo: '/images/colleges/gce-thanjavur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Govt. College of Engineering, Thanjavur',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, தஞ்சாவூர்',
      location: 'Thanjavur',
@@ -221,7 +221,7 @@
    },
    {
      id: '9',
-     logo: '/images/colleges/cit-coimbatore.png',
+     logo: 'https://www.google.com/s2/favicons?domain=cit.edu.in&sz=128',
      name: 'Coimbatore Institute of Technology',
      nameTamil: 'கோவை தொழில்நுட்ப நிறுவனம்',
      location: 'Coimbatore',
@@ -242,7 +242,7 @@
    },
    {
      id: '10',
-     logo: '/images/colleges/gce-erode.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Govt. College of Engineering, Erode',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, ஈரோடு',
      location: 'Erode',
@@ -260,7 +260,7 @@
    },
    {
      id: '11',
-     logo: '/images/colleges/gce-erode.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Govt. College of Engineering, Dharmapuri',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, தர்மபுரி',
      location: 'Dharmapuri',
@@ -278,7 +278,7 @@
    },
    {
      id: '12',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'Govt. College of Engineering, Bodinayakkanur',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, போடிநாயக்கனூர்',
      location: 'Bodinayakkanur',
@@ -296,7 +296,7 @@
    },
    {
      id: '13',
-     logo: '/images/colleges/uce-nagercoil.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Nagercoil',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, நாகர்கோவில்',
      location: 'Nagercoil',
@@ -315,7 +315,7 @@
    },
    {
      id: '14',
-     logo: '/images/colleges/gce-tirunelveli.png',
+     logo: 'https://www.google.com/s2/favicons?domain=gcetly.ac.in&sz=128',
      name: 'University College of Engineering, Tindivanam',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, திண்டிவனம்',
      location: 'Tindivanam',
@@ -333,7 +333,7 @@
    },
    {
      id: '15',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Ariyalur',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, அரியலூர்',
      location: 'Ariyalur',
@@ -351,7 +351,7 @@
    },
    {
      id: '16',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Ramanathapuram',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, ராமநாதபுரம்',
      location: 'Ramanathapuram',
@@ -369,7 +369,7 @@
    },
    {
      id: '17',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Dindigul',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, திண்டுக்கல்',
      location: 'Dindigul',
@@ -387,7 +387,7 @@
    },
    {
      id: '18',
-     logo: '/images/colleges/gce-thanjavur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Pattukkottai',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, பட்டுக்கோட்டை',
      location: 'Pattukkottai',
@@ -405,7 +405,7 @@
    },
    {
      id: '19',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Villupuram',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, விழுப்புரம்',
      location: 'Villupuram',
@@ -423,7 +423,7 @@
    },
    {
      id: '20',
-     logo: '/images/colleges/gce-bargur.png',
+     logo: 'https://www.google.com/s2/favicons?domain=annauniv.edu&sz=128',
      name: 'University College of Engineering, Kanchipuram',
      nameTamil: 'பல்கலைக்கழக பொறியியல் கல்லூரி, காஞ்சிபுரம்',
      location: 'Kanchipuram',
@@ -445,7 +445,7 @@
 const topPrivateColleges: PredictedCollege[] = [
   {
     id: 'p1',
-     logo: '/images/colleges/psg-tech.png',
+     logo: 'https://www.google.com/s2/favicons?domain=psgtech.edu&sz=128',
     name: 'PSG College of Technology',
     nameTamil: 'PSG தொழில்நுட்ப கல்லூரி',
     location: 'Coimbatore',
@@ -467,7 +467,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p2',
-     logo: '/images/colleges/ssn.png',
+     logo: 'https://www.google.com/s2/favicons?domain=ssn.edu.in&sz=128',
     name: 'SSN College of Engineering',
     nameTamil: 'SSN பொறியியல் கல்லூரி',
     location: 'Chennai',
@@ -490,7 +490,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p3',
-     logo: '/images/colleges/thiagarajar.png',
+     logo: 'https://www.google.com/s2/favicons?domain=tce.edu&sz=128',
     name: 'Thiagarajar College of Engineering',
     nameTamil: 'திருவாளர் தியாகராஜர் பொறியியல் கல்லூரி',
     location: 'Madurai',
@@ -512,7 +512,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p4',
-     logo: '/images/colleges/kumaraguru.png',
+     logo: 'https://www.google.com/s2/favicons?domain=kct.ac.in&sz=128',
     name: 'Kumaraguru College of Technology',
     nameTamil: 'குமரகுரு தொழில்நுட்ப கல்லூரி',
     location: 'Coimbatore',
@@ -533,7 +533,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p5',
-     logo: '/images/colleges/velammal.png',
+     logo: 'https://www.google.com/s2/favicons?domain=velammal.edu.in&sz=128',
     name: 'Velammal Engineering College',
     nameTamil: 'வேளம்மாள் பொறியியல் கல்லூரி',
     location: 'Chennai',
@@ -554,7 +554,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p6',
-     logo: '/images/colleges/kongu.png',
+     logo: 'https://www.google.com/s2/favicons?domain=kongu.edu&sz=128',
     name: 'Kongu Engineering College',
     nameTamil: 'கொங்கு பொறியியல் கல்லூரி',
     location: 'Erode',
@@ -573,7 +573,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p7',
-     logo: '/images/colleges/kpr.png',
+     logo: 'https://www.google.com/s2/favicons?domain=kpriet.ac.in&sz=128',
     name: 'KPR Institute of Engineering & Technology',
     nameTamil: 'KPR பொறியியல் நிறுவனம்',
     location: 'Coimbatore',
@@ -592,7 +592,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p8',
-     logo: '/images/colleges/sri-krishna.png',
+     logo: 'https://www.google.com/s2/favicons?domain=skcet.ac.in&sz=128',
     name: 'Sri Krishna College of Engineering & Technology',
     nameTamil: 'ஸ்ரீ கிருஷ்ணா பொறியியல் கல்லூரி',
     location: 'Coimbatore',
@@ -610,7 +610,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p9',
-     logo: '/images/colleges/bannari-amman.png',
+     logo: 'https://www.google.com/s2/favicons?domain=bitsathy.ac.in&sz=128',
     name: 'Bannari Amman Institute of Technology',
     nameTamil: 'பன்னாரி அம்மன் தொழில்நுட்ப நிறுவனம்',
     location: 'Sathyamangalam',
@@ -631,7 +631,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p10',
-     logo: '/images/colleges/sns.png',
+     logo: 'https://www.google.com/s2/favicons?domain=snsct.org&sz=128',
     name: 'SNS College of Technology',
     nameTamil: 'SNS தொழில்நுட்ப கல்லூரி',
     location: 'Coimbatore',
@@ -649,7 +649,7 @@ const topPrivateColleges: PredictedCollege[] = [
   },
   {
     id: 'p11',
-     logo: '/images/colleges/karpagam.png',
+     logo: 'https://www.google.com/s2/favicons?domain=karpagamtech.ac.in&sz=128',
     name: 'Karpagam College of Engineering',
     nameTamil: 'கற்பகம் பொறியியல் கல்லூரி',
     location: 'Coimbatore',
@@ -834,7 +834,12 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                    <div className="flex items-start justify-between gap-2">
                      <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0">
                        {college.logo && (
-                         <img src={college.logo} alt="" className="w-9 h-9 md:w-11 md:h-11 rounded-full flex-shrink-0 border-2 border-white shadow-sm" />
+                         <img 
+                           src={college.logo} 
+                           alt="" 
+                           className="w-9 h-9 md:w-11 md:h-11 rounded-full flex-shrink-0 border-2 border-white shadow-sm bg-gray-100" 
+                           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                         />
                        )}
                        <div className="min-w-0">
                          <h4 className="font-semibold text-sm md:text-base text-foreground leading-tight">{college.name}</h4>
