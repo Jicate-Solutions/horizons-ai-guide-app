@@ -80,7 +80,14 @@ export const EduCutoff = () => {
   const canCalculate = () => {
     if (!selectedGroup) return false;
     
-    // Get subjects for the selected group
+    const category = getGroupCategory(selectedGroup);
+    
+    // For engineering groups: specifically require Maths + Physics + Chemistry
+    if (isEligibleForTNEA(selectedGroup)) {
+      return marks.Mathematics != null && marks.Physics != null && marks.Chemistry != null;
+    }
+    
+    // For other groups: at least 3 out of 4 subjects filled
     let requiredSubjects: string[] = [];
     for (const cat of groupCategories) {
       const group = cat.groups.find(g => g.id === selectedGroup);
@@ -89,8 +96,6 @@ export const EduCutoff = () => {
         break;
       }
     }
-
-    // Check if at least 3 core subjects are filled
     const filledSubjects = requiredSubjects.filter(
       subject => marks[subject] !== null && marks[subject] !== undefined
     );
