@@ -65,56 +65,89 @@ export const EntranceExams = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header Section - Light Green + Golden Theme */}
-      <div className="text-center space-y-4 bg-gradient-to-br from-[#E8F5E9] via-[#F0FDF4] to-[#FFF8E1] rounded-2xl p-6 border border-[#C8E6C9] relative overflow-hidden" style={{backgroundImage: "url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format)", backgroundSize: "cover", backgroundPosition: "center", backgroundBlendMode: "overlay"}}>
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-[#1B5E20]">
-          📝 Entrance Exams for Tamil Nadu 12th Students
+      {/* Header - Short title only */}
+      <div className="text-center space-y-3 bg-gradient-to-br from-[#E8F5E9] via-[#F0FDF4] to-[#FFF8E1] rounded-2xl p-5 border border-[#C8E6C9] relative overflow-hidden" style={{backgroundImage: "url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format)", backgroundSize: "cover", backgroundPosition: "center", backgroundBlendMode: "overlay"}}>
+        <h2 className="font-playfair text-2xl md:text-3xl font-bold text-[#1B5E20]">
+          📝 Entrance Exams & Practice
         </h2>
-        <p className="text-lg md:text-xl text-[#B8860B] font-tamil">
-          தமிழ்நாடு 12-ஆம் வகுப்பு மாணவர்களுக்கான நுழைவுத் தேர்வுகள்
+        <p className="text-sm md:text-base text-[#B8860B] font-tamil">
+          நுழைவுத் தேர்வுகள் & பயிற்சி வினாக்கள்
         </p>
-        
-        {/* TN Focus Badge */}
-        <div className="flex justify-center">
-          <Badge className="bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white px-4 py-2 text-sm shadow-md">
-            <MapPin className="h-4 w-4 mr-2" />
-            தமிழ்நாடு மாணவர்களுக்கான விரிவான வழிகாட்டி
-          </Badge>
-        </div>
+      </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
+      {/* ═══ PAGE VIEW TOGGLE ═══ */}
+      <div className="bg-white rounded-2xl p-1.5 border border-gray-200 shadow-sm">
+        <div className="grid grid-cols-2 gap-1">
+          <button
+            onClick={() => setPageView('exams')}
+            className={cn(
+              "flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all",
+              pageView === 'exams'
+                ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-md"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+            )}
+          >
+            <FileText className="w-4 h-4" />
+            Exam Guide
+          </button>
+          <button
+            onClick={() => setPageView('practice')}
+            className={cn(
+              "flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all",
+              pageView === 'practice'
+                ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+            )}
+          >
+            <Target className="w-4 h-4" />
+            Practice Questions
+          </button>
+        </div>
+      </div>
+
+      {/* ═══ PRACTICE VIEW ═══ */}
+      {pageView === 'practice' && (
+        <PreviousYearQuestions />
+      )}
+
+      {/* ═══ EXAM GUIDE VIEW ═══ */}
+      {pageView === 'exams' && (<>
+
+      {/* Stats */}
+      <div className="text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
             <div className="flex items-center justify-center gap-2">
-              <FileText className="h-5 w-5 text-[#2E7D32]" />
-              <div className="text-2xl font-bold text-[#2E7D32]">{stats.total}</div>
+              <FileText className="h-4 w-4 text-[#2E7D32]" />
+              <div className="text-xl font-bold text-[#2E7D32]">{stats.total}</div>
             </div>
-            <div className="text-sm text-[#6B7280]">Exams</div>
+            <div className="text-xs text-[#6B7280]">Exams</div>
           </div>
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
+          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
             <div className="flex items-center justify-center gap-2">
-              <Building2 className="h-5 w-5 text-[#B8860B]" />
-              <div className="text-2xl font-bold text-[#B8860B]">{stats.colleges}</div>
+              <Building2 className="h-4 w-4 text-[#B8860B]" />
+              <div className="text-xl font-bold text-[#B8860B]">{stats.colleges}</div>
             </div>
-            <div className="text-sm text-[#6B7280]">TN Colleges</div>
+            <div className="text-xs text-[#6B7280]">TN Colleges</div>
           </div>
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
+          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
             <div className="flex items-center justify-center gap-2">
-              <CalendarDays className="h-5 w-5 text-[#1976D2]" />
-              <div className="text-2xl font-bold text-[#1976D2]">{stats.updated}</div>
+              <CalendarDays className="h-4 w-4 text-[#1976D2]" />
+              <div className="text-xl font-bold text-[#1976D2]">{stats.updated}</div>
             </div>
-            <div className="text-sm text-[#6B7280]">Updated</div>
+            <div className="text-xs text-[#6B7280]">Updated</div>
           </div>
-          <div className="bg-white/80 backdrop-blur rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
+          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
             <div className="flex items-center justify-center gap-2">
-              <GraduationCap className="h-5 w-5 text-[#7B1FA2]" />
-              <div className="text-2xl font-bold text-[#7B1FA2]">{stats.streams}</div>
+              <GraduationCap className="h-4 w-4 text-[#7B1FA2]" />
+              <div className="text-xl font-bold text-[#7B1FA2]">{stats.streams}</div>
             </div>
-            <div className="text-sm text-[#6B7280]">Streams</div>
+            <div className="text-xs text-[#6B7280]">Streams</div>
           </div>
         </div>
+      </div>
 
-        {/* Quick Reference Section */}
+      {/* Quick Reference Section */}
         <div className="mt-6 grid md:grid-cols-2 gap-4 text-left">
           {/* Stream-wise Guide */}
           <div className="bg-white rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
@@ -220,47 +253,6 @@ export const EntranceExams = () => {
             Saved ({bookmarkedCount})
           </Button>
         </div>
-      </div>
-
-      {/* ═══ PAGE VIEW TOGGLE ═══ */}
-      <div className="bg-white rounded-2xl p-1.5 border border-gray-200 shadow-sm">
-        <div className="grid grid-cols-2 gap-1">
-          <button
-            onClick={() => setPageView('exams')}
-            className={cn(
-              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
-              pageView === 'exams'
-                ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-md"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-            )}
-          >
-            <FileText className="w-4 h-4" />
-            <span>Exam Guide</span>
-            <span className="text-xs opacity-70">📋</span>
-          </button>
-          <button
-            onClick={() => setPageView('practice')}
-            className={cn(
-              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
-              pageView === 'practice'
-                ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-            )}
-          >
-            <Target className="w-4 h-4" />
-            <span>Practice Questions</span>
-            <span className="text-xs opacity-70">📝</span>
-          </button>
-        </div>
-      </div>
-
-      {/* ═══ PRACTICE VIEW ═══ */}
-      {pageView === 'practice' && (
-        <PreviousYearQuestions />
-      )}
-
-      {/* ═══ EXAM GUIDE VIEW ═══ */}
-      {pageView === 'exams' && (<>
 
       {/* 6 Category Sub-tabs with Tamil */}
       <div className="overflow-x-auto pb-2">
