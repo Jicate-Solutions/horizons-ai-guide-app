@@ -21,7 +21,6 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-import { ExamPracticeSection } from './ExamPracticeSection';
 
 interface ExamCardProps {
   exam: EntranceExam;
@@ -220,9 +219,6 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             {exam.officialWebsite}
           </a>
         </div>
-
-        {/* Practice & Preparation */}
-        <ExamPracticeSection examId={exam.id} examName={exam.name} />
 
         {/* Action Buttons */}
         <div className="flex gap-2 pt-2">

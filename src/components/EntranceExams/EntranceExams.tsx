@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Search, GraduationCap, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin } from 'lucide-react';
+import { Search, GraduationCap, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin, BookOpen, Target } from 'lucide-react';
 import { ExamCard } from './ExamCard';
 import { ExamCompare } from './ExamCompare';
 import { CategoryOverview } from './CategoryOverview';
@@ -10,12 +10,14 @@ import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamCalendar } from './ExamCalendar';
 import { ExamRecommendationQuiz } from './ExamRecommendationQuiz';
 import { JeeTneaGuide } from './JeeTneaGuide';
+import { PreviousYearQuestions } from '@/components/PreviousYearQuestions/PreviousYearQuestions';
 import { examCategories, entranceExams, getExamsByCategory } from './examData';
 import { ExamCategory } from './types';
 import { useBookmarkedExams } from './useBookmarkedExams';
 import { cn } from '@/lib/utils';
 
 export const EntranceExams = () => {
+  const [pageView, setPageView] = useState<'exams' | 'practice'>('exams');
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('engineering');
   const [searchQuery, setSearchQuery] = useState('');
   const [showCompare, setShowCompare] = useState(false);
@@ -220,6 +222,46 @@ export const EntranceExams = () => {
         </div>
       </div>
 
+      {/* ═══ PAGE VIEW TOGGLE ═══ */}
+      <div className="bg-white rounded-2xl p-1.5 border border-gray-200 shadow-sm">
+        <div className="grid grid-cols-2 gap-1">
+          <button
+            onClick={() => setPageView('exams')}
+            className={cn(
+              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
+              pageView === 'exams'
+                ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-md"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+            )}
+          >
+            <FileText className="w-4 h-4" />
+            <span>Exam Guide</span>
+            <span className="text-xs opacity-70">📋</span>
+          </button>
+          <button
+            onClick={() => setPageView('practice')}
+            className={cn(
+              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
+              pageView === 'practice'
+                ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+            )}
+          >
+            <Target className="w-4 h-4" />
+            <span>Practice Questions</span>
+            <span className="text-xs opacity-70">📝</span>
+          </button>
+        </div>
+      </div>
+
+      {/* ═══ PRACTICE VIEW ═══ */}
+      {pageView === 'practice' && (
+        <PreviousYearQuestions />
+      )}
+
+      {/* ═══ EXAM GUIDE VIEW ═══ */}
+      {pageView === 'exams' && (<>
+
       {/* 6 Category Sub-tabs with Tamil */}
       <div className="overflow-x-auto pb-2">
         <div className="flex gap-2 min-w-max justify-center">
@@ -336,6 +378,8 @@ export const EntranceExams = () => {
           Note: Dates are tentative. Always verify from official websites before applying.
         </p>
       </div>
+
+      </>)}
 
       {/* Compare Modal */}
       <ExamCompare isOpen={showCompare} onClose={() => setShowCompare(false)} />
