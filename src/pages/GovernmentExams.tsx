@@ -1,230 +1,417 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ArrowLeft, Search, BookOpen, Users, Banknote, Sparkles,
+  ArrowLeft, Search, BookOpen, Users, Banknote,
   GraduationCap, ChevronRight, ChevronDown, FileText,
-  CalendarClock, Flame, X, ExternalLink, Star, Clock, Filter, Trophy
+  CalendarClock, Flame, X, ExternalLink, Star, Clock,
+  Trophy, Target, Zap, BookMarked, Play, Shield, Train,
+  Building2, Landmark, Briefcase, Timer, ArrowUpRight,
+  CheckCircle2, AlertTriangle, TrendingUp
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useLanguage } from '@/hooks/useLanguage';
-import { governmentExamCategories } from '@/data/government-exams-data';
+import { governmentExamCategories, getCategoryById } from '@/data/government-exams-data';
 import { governmentExams } from '@/components/GovernmentJobs/governmentExamsData';
 import { cn } from '@/lib/utils';
 
-type CategoryFilter = 'all' | 'defence' | 'railway' | 'ssc' | 'banking' | 'state' | 'central';
-type StatusFilter = 'all' | 'open' | 'upcoming' | 'closed';
-type SortOption = 'salary-high' | 'salary-low' | 'deadline' | 'name';
-
-const categoryMeta: Record<string, { emoji: string; gradient: string; border: string; bg: string; text: string; label: string; labelTa: string }> = {
-  defence: { emoji: '🛡️', gradient: 'from-amber-500 to-yellow-600', border: 'border-l-amber-500', bg: 'bg-amber-50', text: 'text-amber-700', label: 'Defence & Paramilitary', labelTa: 'பாதுகாப்பு & துணை ராணுவம்' },
-  railway: { emoji: '🚂', gradient: 'from-red-500 to-rose-600', border: 'border-l-red-500', bg: 'bg-red-50', text: 'text-red-700', label: 'Railway Jobs', labelTa: 'ரயில்வே வேலைகள்' },
-  ssc: { emoji: '📋', gradient: 'from-blue-500 to-indigo-600', border: 'border-l-blue-500', bg: 'bg-blue-50', text: 'text-blue-700', label: 'SSC', labelTa: 'SSC' },
-  banking: { emoji: '🏦', gradient: 'from-emerald-500 to-green-600', border: 'border-l-emerald-500', bg: 'bg-emerald-50', text: 'text-emerald-700', label: 'Banking & Insurance', labelTa: 'வங்கி & காப்பீடு' },
-  state: { emoji: '🏛️', gradient: 'from-teal-500 to-cyan-600', border: 'border-l-teal-500', bg: 'bg-teal-50', text: 'text-teal-700', label: 'TN State Govt', labelTa: 'தமிழ்நாடு மாநில அரசு' },
-  central: { emoji: '🏢', gradient: 'from-purple-500 to-violet-600', border: 'border-l-purple-500', bg: 'bg-purple-50', text: 'text-purple-700', label: 'Other Central Govt', labelTa: 'பிற மத்திய அரசு' },
-};
+type ViewTab = 'all' | 'central' | 'state';
 
 const fmt = (n: number) => n >= 100000 ? `₹${(n / 100000).toFixed(1)}L` : `₹${(n / 1000).toFixed(0)}K`;
+
+// Map exam IDs to their detailed data category for syllabus/PYQ links
+const getExamDetailLink = (examId: string): { categoryId: string; examId: string } | null => {
+  for (const cat of governmentExamCategories) {
+    const found = cat.exams.find(e => e.id === examId);
+    if (found) return { categoryId: cat.id, examId: found.id };
+  }
+  return null;
+};
+
+// Get PYQ count for an exam from detailed data
+const getExamPYQCount = (examId: string): number => {
+  for (const cat of governmentExamCategories) {
+    const found = cat.exams.find(e => e.id === examId);
+    if (found) return found.pyq.length;
+  }
+  return 0;
+};
+
+// Get syllabus topic count for an exam from detailed data
+const getExamSyllabusCount = (examId: string): number => {
+  for (const cat of governmentExamCategories) {
+    const found = cat.exams.find(e => e.id === examId);
+    if (found) {
+      return Object.values(found.syllabus).reduce((total, sections) => {
+        return total + sections.reduce((acc, section) => acc + section.topics.length, 0);
+      }, 0);
+    }
+  }
+  return 0;
+};
+
+const categoryStyles: Record<string, { emoji: string; color: string; bg: string; border: string; accent: string; label: string; labelTa: string }> = {
+  defence: { emoji: '🛡️', color: 'from-orange-500 to-amber-600', bg: 'bg-orange-50', border: 'border-orange-200', accent: 'text-orange-700', label: 'Defence & Paramilitary', labelTa: 'பாதுகாப்பு' },
+  railway: { emoji: '🚂', color: 'from-red-500 to-rose-600', bg: 'bg-red-50', border: 'border-red-200', accent: 'text-red-700', label: 'Railway', labelTa: 'ரயில்வே' },
+  ssc: { emoji: '📋', color: 'from-blue-500 to-indigo-600', bg: 'bg-blue-50', border: 'border-blue-200', accent: 'text-blue-700', label: 'SSC', labelTa: 'SSC' },
+  banking: { emoji: '🏦', color: 'from-emerald-500 to-green-600', bg: 'bg-emerald-50', border: 'border-emerald-200', accent: 'text-emerald-700', label: 'Banking', labelTa: 'வங்கி' },
+  state: { emoji: '🏛️', color: 'from-violet-500 to-purple-600', bg: 'bg-violet-50', border: 'border-violet-200', accent: 'text-violet-700', label: 'TN State', labelTa: 'தமிழ்நாடு' },
+  central: { emoji: '🏢', color: 'from-cyan-500 to-teal-600', bg: 'bg-cyan-50', border: 'border-cyan-200', accent: 'text-cyan-700', label: 'Central Govt', labelTa: 'மத்திய அரசு' },
+};
+
+const centralCategories = ['defence', 'railway', 'ssc', 'banking', 'central'];
+const stateCategories = ['state'];
 
 const GovernmentExams = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const t = language === 'ta';
+  const ta = language === 'ta';
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
-  const [selectedStatus, setSelectedStatus] = useState<StatusFilter>('all');
-  const [sortBy, setSortBy] = useState<SortOption>('deadline');
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(Object.keys(categoryMeta)));
+  const [activeTab, setActiveTab] = useState<ViewTab>('all');
+  const [expandedExam, setExpandedExam] = useState<string | null>(null);
 
-  const toggleCategory = (cat: string) => {
-    setExpandedCategories(prev => {
-      const next = new Set(prev);
-      next.has(cat) ? next.delete(cat) : next.add(cat);
-      return next;
-    });
-  };
-
-  // Open applications  
+  // Categorized exams
+  const centralExams = useMemo(() => governmentExams.filter(e => centralCategories.includes(e.category)), []);
+  const stateExams = useMemo(() => governmentExams.filter(e => stateCategories.includes(e.category)), []);
   const openExams = useMemo(() => governmentExams.filter(e => e.applicationStatus === 'open'), []);
+  const upcomingExams = useMemo(() => governmentExams.filter(e => e.applicationStatus === 'upcoming'), []);
 
-  // Filtered exams
-  const filteredExams = useMemo(() => {
-    let exams = [...governmentExams];
-    if (selectedCategory !== 'all') exams = exams.filter(e => e.category === selectedCategory);
-    if (selectedStatus !== 'all') exams = exams.filter(e => e.applicationStatus === selectedStatus);
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      exams = exams.filter(e =>
-        e.name.toLowerCase().includes(q) || e.nameTamil.toLowerCase().includes(q) ||
-        e.description.toLowerCase().includes(q) ||
-        (e.posts && e.posts.some(p => p.toLowerCase().includes(q)))
-      );
-    }
-    switch (sortBy) {
-      case 'salary-high': exams.sort((a, b) => b.salaryMax - a.salaryMax); break;
-      case 'salary-low': exams.sort((a, b) => a.salaryMin - b.salaryMin); break;
-      case 'name': exams.sort((a, b) => a.name.localeCompare(b.name)); break;
-      default:
-        exams.sort((a, b) => {
-          if (!a.nextExamDate && !b.nextExamDate) return 0;
-          if (!a.nextExamDate) return 1;
-          if (!b.nextExamDate) return -1;
-          return new Date(a.nextExamDate).getTime() - new Date(b.nextExamDate).getTime();
-        });
-    }
-    return exams;
-  }, [selectedCategory, selectedStatus, searchQuery, sortBy]);
+  // Search filtered
+  const searchFiltered = useMemo(() => {
+    if (!searchQuery.trim()) return null;
+    const q = searchQuery.toLowerCase();
+    return governmentExams.filter(e =>
+      e.name.toLowerCase().includes(q) || e.nameTamil.toLowerCase().includes(q) ||
+      e.description.toLowerCase().includes(q) ||
+      (e.posts && e.posts.some(p => p.toLowerCase().includes(q)))
+    );
+  }, [searchQuery]);
 
-  // Group by category
-  const groupedExams = useMemo(() => {
-    const groups: Record<string, typeof filteredExams> = {};
-    filteredExams.forEach(e => {
+  // Total PYQ count
+  const totalPYQ = useMemo(() => {
+    return governmentExamCategories.reduce((total, cat) =>
+      total + cat.exams.reduce((acc, exam) => acc + exam.pyq.length, 0), 0);
+  }, []);
+
+  // Group exams by category
+  const groupByCategory = (exams: typeof governmentExams) => {
+    const groups: Record<string, typeof governmentExams> = {};
+    exams.forEach(e => {
       if (!groups[e.category]) groups[e.category] = [];
       groups[e.category].push(e);
     });
     return groups;
-  }, [filteredExams]);
-
-  const categoryCounts = useMemo(() => {
-    const c: Record<string, number> = { all: governmentExams.length };
-    governmentExams.forEach(e => { c[e.category] = (c[e.category] || 0) + 1; });
-    return c;
-  }, []);
-
-  const findDetailedExam = (examId: string) => {
-    for (const cat of governmentExamCategories) {
-      const found = cat.exams.find(e => e.id === examId);
-      if (found) return { categoryId: cat.id, examId: found.id };
-    }
-    return null;
   };
 
-  const isSearchActive = searchQuery.trim() || selectedCategory !== 'all' || selectedStatus !== 'all';
-
-  // ─── Exam Card Component ───
-  const ExamCard = ({ exam }: { exam: typeof governmentExams[0] }) => {
-    const meta = categoryMeta[exam.category];
-    const detail = findDetailedExam(exam.id);
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // EXAM CARD — the core visual unit
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const ExamCard = ({ exam, index = 0 }: { exam: typeof governmentExams[0]; index?: number }) => {
+    const style = categoryStyles[exam.category];
+    const detail = getExamDetailLink(exam.id);
+    const pyqCount = getExamPYQCount(exam.id);
+    const syllabusCount = getExamSyllabusCount(exam.id);
     const examDate = exam.nextExamDate ? new Date(exam.nextExamDate) : null;
     const daysLeft = examDate ? Math.ceil((examDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)) : null;
-
-    const statusColor = exam.applicationStatus === 'open' ? 'bg-emerald-500' : exam.applicationStatus === 'upcoming' ? 'bg-amber-500' : 'bg-gray-400';
-    const statusLabel = exam.applicationStatus === 'open' ? (t ? 'திறந்தது' : 'Open') : exam.applicationStatus === 'upcoming' ? (t ? 'வரும்' : 'Upcoming') : (t ? 'முடிந்தது' : 'Closed');
+    const isExpanded = expandedExam === exam.id;
 
     return (
-      <Card className={cn("border-l-4 hover:shadow-md transition-all bg-white dark:bg-slate-800", meta?.border)}>
-        <CardContent className="p-3.5">
-          {/* Row 1: Name + Status */}
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-lg flex-shrink-0">{meta?.emoji}</span>
-            <h3 className="font-bold text-[13px] text-gray-800 dark:text-gray-100 flex-1 min-w-0 truncate">{exam.name}</h3>
-            <span className={cn("flex items-center gap-1 text-[10px] font-medium text-white px-2 py-0.5 rounded-full flex-shrink-0", statusColor)}>
-              <span className="w-1 h-1 rounded-full bg-white/70 inline-block" />
-              {statusLabel}
-            </span>
-          </div>
-          <p className="text-[11px] text-gray-400 mb-2.5 ml-7">{exam.nameTamil}</p>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: Math.min(index * 0.04, 0.3), duration: 0.35 }}
+      >
+        <Card className={cn(
+          "overflow-hidden transition-all duration-300 border bg-white dark:bg-slate-800",
+          isExpanded ? "shadow-xl ring-2 ring-indigo-100 dark:ring-indigo-900" : "hover:shadow-lg",
+          style?.border
+        )}>
+          {/* ── Top accent bar ── */}
+          <div className={cn("h-1.5 bg-gradient-to-r", style?.color)} />
 
-          {/* Row 2: Key Info Chips */}
-          <div className="flex flex-wrap gap-1.5 ml-7 mb-2.5">
-            <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 font-medium">
-              <Banknote className="w-3 h-3" /> {fmt(exam.salaryMin)}–{fmt(exam.salaryMax)}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-medium">
-              <Users className="w-3 h-3" /> {exam.ageMin}–{exam.ageMax} {t ? 'வயது' : 'yrs'}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-md bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 font-medium">
-              <GraduationCap className="w-3 h-3" /> {exam.qualification}
-            </span>
-            {examDate && (
-              <span className={cn("inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-md font-medium",
-                daysLeft && daysLeft <= 15 ? "bg-red-50 text-red-600" : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300")}>
-                <CalendarClock className="w-3 h-3" />
-                {examDate.toLocaleDateString(t ? 'ta-IN' : 'en-IN', { month: 'short', year: 'numeric' })}
-                {daysLeft && daysLeft > 0 && ` (${daysLeft}d)`}
-              </span>
-            )}
-          </div>
+          <CardContent className="p-0">
+            {/* ── MAIN CARD ── */}
+            <div className="p-4" onClick={() => setExpandedExam(isExpanded ? null : exam.id)}>
+              {/* Row 1: Category + Status */}
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{style?.emoji}</span>
+                  <span className={cn("text-[10px] font-bold uppercase tracking-wider", style?.accent)}>
+                    {ta ? style?.labelTa : style?.label}
+                  </span>
+                </div>
+                {exam.applicationStatus === 'open' ? (
+                  <span className="flex items-center gap-1 text-[10px] font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full animate-pulse">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white" /> {ta ? 'விண்ணப்பிக்கலாம்' : 'APPLY NOW'}
+                  </span>
+                ) : exam.applicationStatus === 'upcoming' ? (
+                  <span className="flex items-center gap-1 text-[10px] font-semibold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full">
+                    <Clock className="w-3 h-3" /> {ta ? 'வரவிருக்கிறது' : 'UPCOMING'}
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full">{ta ? 'மூடப்பட்டது' : 'CLOSED'}</span>
+                )}
+              </div>
 
-          {/* Row 3: Posts */}
-          {exam.posts && exam.posts.length > 0 && (
-            <div className="flex flex-wrap gap-1 ml-7 mb-2.5">
-              {exam.posts.slice(0, 3).map((p, i) => (
-                <span key={i} className="text-[9px] px-1.5 py-0.5 rounded bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400">{p}</span>
-              ))}
-              {exam.posts.length > 3 && <span className="text-[9px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400">+{exam.posts.length - 3}</span>}
+              {/* Row 2: Exam Name */}
+              <h3 className="text-base font-extrabold text-gray-900 dark:text-white leading-tight mb-0.5">
+                {exam.name}
+              </h3>
+              <p className="text-[11px] text-gray-400 mb-3">{exam.nameTamil}</p>
+
+              {/* Row 3: Key Stats - Big visual pills */}
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-xl p-2.5 text-center border border-emerald-100 dark:border-emerald-800">
+                  <Banknote className="w-4 h-4 mx-auto text-emerald-600 mb-1" />
+                  <div className="text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300">{fmt(exam.salaryMin)}–{fmt(exam.salaryMax)}</div>
+                  <div className="text-[8px] text-emerald-500 uppercase tracking-wide font-semibold">{ta ? 'மாத சம்பளம்' : 'Monthly Salary'}</div>
+                </div>
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-2.5 text-center border border-blue-100 dark:border-blue-800">
+                  <Users className="w-4 h-4 mx-auto text-blue-600 mb-1" />
+                  <div className="text-[11px] font-extrabold text-blue-700 dark:text-blue-300">{exam.ageMin}–{exam.ageMax} {ta ? 'வயது' : 'Years'}</div>
+                  <div className="text-[8px] text-blue-500 uppercase tracking-wide font-semibold">{ta ? 'வயது வரம்பு' : 'Age Limit'}</div>
+                </div>
+                <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 rounded-xl p-2.5 text-center border border-purple-100 dark:border-purple-800">
+                  <GraduationCap className="w-4 h-4 mx-auto text-purple-600 mb-1" />
+                  <div className="text-[11px] font-extrabold text-purple-700 dark:text-purple-300">{exam.qualification}</div>
+                  <div className="text-[8px] text-purple-500 uppercase tracking-wide font-semibold">{ta ? 'தகுதி' : 'Eligibility'}</div>
+                </div>
+              </div>
+
+              {/* Row 4: Exam date + Pattern + Expand hint */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3 flex-wrap">
+                  {examDate && (
+                    <div className="flex items-center gap-1.5">
+                      <CalendarClock className="w-3.5 h-3.5 text-amber-500" />
+                      <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-300">
+                        {examDate.toLocaleDateString(ta ? 'ta-IN' : 'en-IN', { month: 'short', year: 'numeric' })}
+                      </span>
+                      {daysLeft !== null && daysLeft > 0 && daysLeft <= 60 && (
+                        <span className={cn("text-[9px] font-bold px-1.5 py-0.5 rounded-full",
+                          daysLeft <= 15 ? "bg-red-100 text-red-600" : daysLeft <= 30 ? "bg-amber-100 text-amber-600" : "bg-gray-100 text-gray-500")}>
+                          {daysLeft}d
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <div className="flex items-center gap-1 text-[11px] text-gray-400">
+                    <FileText className="w-3 h-3" />
+                    {exam.examPattern}
+                  </div>
+                </div>
+                <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform duration-300", isExpanded && "rotate-180")} />
+              </div>
             </div>
-          )}
 
-          {/* Row 4: Actions */}
-          <div className="flex gap-2 ml-7">
-            {detail && (
-              <Button
-                size="sm" variant="outline"
-                className="flex-1 text-[11px] h-8 rounded-lg border-indigo-200 text-indigo-600 hover:bg-indigo-50 dark:border-indigo-800 dark:text-indigo-400"
-                onClick={() => navigate(`/government-exams/${detail.categoryId}/${detail.examId}`)}
-              >
-                <BookOpen className="w-3 h-3 mr-1" /> {t ? 'பாடத்திட்டம் & PYQ' : 'Syllabus & PYQ'}
-              </Button>
-            )}
-            <Button
-              size="sm"
-              className={cn("flex-1 text-[11px] h-8 rounded-lg text-white",
-                exam.applicationStatus === 'open' ? "bg-emerald-600 hover:bg-emerald-700"
-                : exam.applicationStatus === 'upcoming' ? "bg-amber-500 hover:bg-amber-600"
-                : "bg-gray-300 cursor-not-allowed"
+            {/* ── EXPANDED SECTION ── */}
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-4 pb-4 space-y-3 border-t border-gray-100 dark:border-slate-700 pt-3">
+                    {/* Description */}
+                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{exam.description}</p>
+
+                    {/* Selection Process */}
+                    <div className="bg-gray-50 dark:bg-slate-700/50 rounded-xl p-3">
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">{ta ? 'தேர்வு முறை' : 'Selection Process'}</p>
+                      <div className="flex items-center gap-1 flex-wrap">
+                        {exam.selectionProcess.map((step, i) => (
+                          <div key={i} className="flex items-center gap-1">
+                            <span className="text-[10px] font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-600 px-2 py-1 rounded-lg border border-gray-200 dark:border-slate-500">
+                              {step}
+                            </span>
+                            {i < exam.selectionProcess.length - 1 && <ChevronRight className="w-3 h-3 text-gray-300" />}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Posts */}
+                    {exam.posts && exam.posts.length > 0 && (
+                      <div>
+                        <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">{ta ? 'பதவிகள்' : 'Available Posts'}</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {exam.posts.map((post, i) => (
+                            <span key={i} className="text-[10px] px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium border border-indigo-100 dark:border-indigo-800">
+                              {post}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ── ACTION BUTTONS — THE MOST IMPORTANT PART ── */}
+                    <div className="grid grid-cols-2 gap-2 pt-1">
+                      {/* Syllabus */}
+                      {detail && syllabusCount > 0 && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-12 rounded-xl border-2 border-indigo-200 dark:border-indigo-800 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex flex-col items-center gap-0.5 text-indigo-700 dark:text-indigo-300"
+                          onClick={(e) => { e.stopPropagation(); navigate(`/government-exams/${detail.categoryId}/${detail.examId}`); }}
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">{ta ? 'பாடத்திட்டம்' : 'Syllabus'}</span>
+                          </div>
+                          <span className="text-[9px] text-indigo-400">{syllabusCount} {ta ? 'தலைப்புகள்' : 'Topics'}</span>
+                        </Button>
+                      )}
+
+                      {/* PYQ */}
+                      {detail && pyqCount > 0 && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-12 rounded-xl border-2 border-amber-200 dark:border-amber-800 hover:bg-amber-50 dark:hover:bg-amber-900/30 flex flex-col items-center gap-0.5 text-amber-700 dark:text-amber-300"
+                          onClick={(e) => { e.stopPropagation(); navigate(`/government-exams/${detail.categoryId}/${detail.examId}`); }}
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <Target className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">PYQ</span>
+                          </div>
+                          <span className="text-[9px] text-amber-400">{pyqCount} {ta ? 'கேள்விகள்' : 'Questions'}</span>
+                        </Button>
+                      )}
+
+                      {/* Mock Test */}
+                      {detail && pyqCount > 0 && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-12 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 flex flex-col items-center gap-0.5 text-emerald-700 dark:text-emerald-300"
+                          onClick={(e) => { e.stopPropagation(); navigate(`/government-exams/${detail.categoryId}/${detail.examId}`); }}
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <Play className="w-3.5 h-3.5" />
+                            <span className="text-[11px] font-bold">{ta ? 'மாக் டெஸ்ட்' : 'Mock Test'}</span>
+                          </div>
+                          <span className="text-[9px] text-emerald-400">{ta ? 'இப்போது தொடங்கு' : 'Start Now'}</span>
+                        </Button>
+                      )}
+
+                      {/* Apply / Official Site */}
+                      <Button
+                        size="sm"
+                        className={cn(
+                          "h-12 rounded-xl flex flex-col items-center gap-0.5 text-white",
+                          exam.applicationStatus === 'open'
+                            ? "bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 shadow-lg shadow-emerald-200 dark:shadow-none"
+                            : exam.applicationStatus === 'upcoming'
+                              ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                              : "bg-gray-300 dark:bg-gray-600 cursor-not-allowed"
+                        )}
+                        onClick={(e) => { e.stopPropagation(); exam.applicationStatus !== 'closed' && window.open(exam.applyLink, '_blank'); }}
+                        disabled={exam.applicationStatus === 'closed'}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span className="text-[11px] font-bold">
+                            {exam.applicationStatus === 'open' ? (ta ? 'விண்ணப்பிக்க' : 'Apply Now')
+                              : exam.applicationStatus === 'upcoming' ? (ta ? 'அதிகாரப்பூர்வ தளம்' : 'Official Site')
+                              : (ta ? 'மூடப்பட்டது' : 'Closed')}
+                          </span>
+                        </div>
+                        {exam.applicationStatus === 'open' && (
+                          <span className="text-[9px] text-white/70">{ta ? 'கடைசி தேதி சரிபார்க்கவும்' : 'Check last date'}</span>
+                        )}
+                      </Button>
+                    </div>
+
+                    {/* No syllabus/PYQ message */}
+                    {!detail && (
+                      <div className="text-center py-2 bg-gray-50 dark:bg-slate-700/50 rounded-xl">
+                        <p className="text-[11px] text-gray-500">
+                          {ta ? '📚 பாடத்திட்டம் & PYQ விரைவில் சேர்க்கப்படும்' : '📚 Syllabus & PYQ coming soon'}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
               )}
-              onClick={() => exam.applicationStatus !== 'closed' && window.open(exam.applyLink, '_blank')}
-              disabled={exam.applicationStatus === 'closed'}
-            >
-              <ExternalLink className="w-3 h-3 mr-1" />
-              {exam.applicationStatus === 'open' ? (t ? 'விண்ணப்பி' : 'Apply')
-                : exam.applicationStatus === 'upcoming' ? (t ? 'தளம்' : 'Website')
-                : (t ? 'மூடப்பட்டது' : 'Closed')}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+            </AnimatePresence>
+          </CardContent>
+        </Card>
+      </motion.div>
     );
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
-      {/* ═══════ HEADER ═══════ */}
-      <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-gray-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-72 h-72 bg-amber-500/10 rounded-full -translate-y-1/3 translate-x-1/4 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-56 h-56 bg-indigo-500/10 rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl" />
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // CATEGORY GROUP
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const CategoryGroup = ({ category, exams }: { category: string; exams: typeof governmentExams }) => {
+    const style = categoryStyles[category];
+    if (!style) return null;
+    return (
+      <div className="mb-6">
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm bg-gradient-to-br shadow-md", style.color)}>
+            {style.emoji}
+          </div>
+          <div className="flex-1">
+            <h3 className="text-sm font-bold text-gray-800 dark:text-white">{ta ? style.labelTa : style.label}</h3>
+            <p className="text-[10px] text-gray-400">{exams.length} {ta ? 'தேர்வுகள்' : 'exams'} • {exams.filter(e => e.applicationStatus === 'open').length} {ta ? 'திறந்தது' : 'open'}</p>
+          </div>
         </div>
+        <div className="space-y-3">
+          {exams.map((exam, i) => <ExamCard key={exam.id} exam={exam} index={i} />)}
+        </div>
+      </div>
+    );
+  };
 
-        <div className="container mx-auto px-4 pt-4 pb-6 relative z-10">
-          <div className="flex items-center gap-3 mb-5">
-            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} className="text-white/60 hover:text-white hover:bg-white/10 h-8 w-8 rounded-lg">
+  // Which exams to show
+  const displayExams = searchFiltered ?? (
+    activeTab === 'central' ? centralExams :
+    activeTab === 'state' ? stateExams :
+    governmentExams
+  );
+
+  const displayGrouped = groupByCategory(displayExams);
+
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 pb-6">
+      {/* ═══════════════════════════════════════════════
+           HEADER — Dark, bold, commanding
+         ═══════════════════════════════════════════════ */}
+      <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800 text-white relative overflow-hidden">
+        {/* Background texture */}
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-4 pt-4 pb-5 relative z-10">
+          {/* Nav */}
+          <div className="flex items-center gap-3 mb-4">
+            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} className="text-white/50 hover:text-white hover:bg-white/10 h-8 w-8 rounded-lg">
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div className="flex-1">
-              <h1 className="text-lg font-bold">{t ? 'அரசு தேர்வுகள் & வேலைகள்' : 'Government Exams & Jobs'}</h1>
-              <p className="text-white/50 text-[11px]">{t ? '12ஆம் வகுப்பு தேர்ச்சி — பட்டம் தேவையில்லை' : '12th Pass — No Degree Required'}</p>
-            </div>
-            <div className="text-right">
-              <div className="text-xl font-bold text-amber-400">{governmentExams.length}</div>
-              <div className="text-[10px] text-white/40">{t ? 'தேர்வுகள்' : 'Exams'}</div>
+              <h1 className="text-lg font-black tracking-tight">{ta ? 'அரசு தேர்வுகள்' : 'Govt Exam Hub'}</h1>
+              <p className="text-[10px] text-white/40 font-medium">{ta ? '12ஆம் வகுப்பு — பட்டம் தேவையில்லை' : '12th Pass — No Degree Required'}</p>
             </div>
           </div>
 
           {/* Search */}
           <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/25" />
             <Input
-              placeholder={t ? 'NDA, ரயில்வே, SSC தேடுங்கள்...' : 'Search NDA, Railway, SSC, Banking...'}
+              placeholder={ta ? 'NDA, ரயில்வே, TNPSC தேடுங்கள்...' : 'Search NDA, Railway, TNPSC, SSC, Banking...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-9 h-10 bg-white/8 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm focus:bg-white/12 focus:border-white/25"
+              className="pl-9 pr-9 h-10 bg-white/8 border-white/10 text-white placeholder:text-white/25 rounded-xl text-sm"
             />
             {searchQuery && (
               <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60">
@@ -233,100 +420,79 @@ const GovernmentExams = () => {
             )}
           </div>
 
-          {/* Quick Stats Row */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => setSelectedStatus('open')}
-              className={cn("flex-1 rounded-xl p-2.5 text-center transition-all border",
-                selectedStatus === 'open' ? "bg-emerald-500/20 border-emerald-400/30" : "bg-white/5 border-white/5 hover:bg-white/8")}
-            >
-              <div className="text-base font-bold text-emerald-400">{openExams.length}</div>
-              <div className="text-[9px] text-white/40">{t ? '🟢 திறந்தது' : '🟢 Open Now'}</div>
-            </button>
-            <button
-              onClick={() => setSelectedStatus('upcoming')}
-              className={cn("flex-1 rounded-xl p-2.5 text-center transition-all border",
-                selectedStatus === 'upcoming' ? "bg-amber-500/20 border-amber-400/30" : "bg-white/5 border-white/5 hover:bg-white/8")}
-            >
-              <div className="text-base font-bold text-amber-400">{governmentExams.filter(e => e.applicationStatus === 'upcoming').length}</div>
-              <div className="text-[9px] text-white/40">{t ? '🟡 வரும்' : '🟡 Upcoming'}</div>
-            </button>
-            <button
-              onClick={() => { setSelectedStatus('all'); setSelectedCategory('all'); }}
-              className={cn("flex-1 rounded-xl p-2.5 text-center transition-all border",
-                selectedStatus === 'all' && selectedCategory === 'all' ? "bg-white/10 border-white/15" : "bg-white/5 border-white/5 hover:bg-white/8")}
-            >
-              <div className="text-base font-bold text-white/80">{governmentExams.length}</div>
-              <div className="text-[9px] text-white/40">{t ? '📋 அனைத்தும்' : '📋 All'}</div>
-            </button>
+          {/* ── HERO STATS ── */}
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-white/6 backdrop-blur-sm rounded-xl p-2.5 text-center border border-white/5">
+              <div className="text-lg font-black text-white">{governmentExams.length}</div>
+              <div className="text-[8px] text-white/35 uppercase tracking-wider font-bold">{ta ? 'தேர்வுகள்' : 'Exams'}</div>
+            </div>
+            <div className="bg-emerald-500/15 rounded-xl p-2.5 text-center border border-emerald-400/15">
+              <div className="text-lg font-black text-emerald-400">{openExams.length}</div>
+              <div className="text-[8px] text-emerald-400/60 uppercase tracking-wider font-bold">{ta ? 'திறந்தது' : 'Open'}</div>
+            </div>
+            <div className="bg-amber-500/15 rounded-xl p-2.5 text-center border border-amber-400/15">
+              <div className="text-lg font-black text-amber-400">{totalPYQ}</div>
+              <div className="text-[8px] text-amber-400/60 uppercase tracking-wider font-bold">PYQ</div>
+            </div>
+            <div className="bg-blue-500/15 rounded-xl p-2.5 text-center border border-blue-400/15">
+              <div className="text-lg font-black text-blue-400">6</div>
+              <div className="text-[8px] text-blue-400/60 uppercase tracking-wider font-bold">{ta ? 'வகைகள்' : 'Categories'}</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-4">
-        {/* ═══════ CATEGORY PILLS ═══════ */}
-        <div className="overflow-x-auto -mx-1 px-1 mb-3">
-          <div className="flex gap-2 min-w-max pb-2">
-            {Object.entries(categoryMeta).map(([key, meta]) => {
-              const isActive = selectedCategory === key;
-              const count = categoryCounts[key] || 0;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setSelectedCategory(isActive ? 'all' : key as CategoryFilter)}
-                  className={cn(
-                    "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all border",
-                    isActive
-                      ? `bg-gradient-to-r ${meta.gradient} text-white border-transparent shadow-md`
-                      : "bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-slate-700 hover:border-gray-300"
-                  )}
-                >
-                  {meta.emoji} {t ? meta.labelTa.split(' ')[0] : meta.label.split(' ')[0]}
-                  <span className={cn("text-[9px] px-1 py-0.5 rounded-full", isActive ? "bg-white/20" : "bg-gray-100 dark:bg-slate-700 text-gray-500")}>{count}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Sort bar */}
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-[11px] text-gray-400">
-            {t ? `${filteredExams.length} தேர்வுகள்` : `${filteredExams.length} exams`}
-            {isSearchActive && <button onClick={() => { setSearchQuery(''); setSelectedCategory('all'); setSelectedStatus('all'); }} className="text-indigo-500 ml-2 underline">{t ? 'அழி' : 'Clear'}</button>}
-          </p>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="text-[11px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg px-2 py-1 text-gray-500 outline-none"
-          >
-            <option value="deadline">{t ? 'தேதி' : 'By Date'}</option>
-            <option value="salary-high">{t ? 'அதிக ₹' : 'Salary ↓'}</option>
-            <option value="salary-low">{t ? 'குறைந்த ₹' : 'Salary ↑'}</option>
-            <option value="name">A–Z</option>
-          </select>
-        </div>
-
-        {/* ═══════ OPEN APPLICATIONS ALERT ═══════ */}
-        {!isSearchActive && openExams.length > 0 && (
-          <div className="mb-5">
-            <div className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-2xl border border-emerald-200/80 dark:border-emerald-800 p-3.5">
-              <div className="flex items-center gap-2 mb-2.5">
-                <Flame className="w-4 h-4 text-emerald-600" />
-                <span className="text-xs font-bold text-emerald-800 dark:text-emerald-200">{t ? 'இப்போது விண்ணப்பிக்கலாம்!' : 'Apply Now — Open Applications!'}</span>
+      <div className="container mx-auto px-4">
+        {/* ═══════════════════════════════════════════════
+             QUICK ACTION CARDS
+           ═══════════════════════════════════════════════ */}
+        <div className="grid grid-cols-4 gap-2 -mt-3 mb-5 relative z-20">
+          {[
+            { icon: BookMarked, label: ta ? 'பாடத்திட்டம்' : 'Syllabus', labelShort: ta ? 'பாடம்' : 'Syllabus', color: 'bg-indigo-500', action: () => document.getElementById('exam-list')?.scrollIntoView({ behavior: 'smooth' }) },
+            { icon: Target, label: ta ? 'PYQ' : 'PYQ', labelShort: 'PYQ', color: 'bg-amber-500', action: () => document.getElementById('exam-list')?.scrollIntoView({ behavior: 'smooth' }) },
+            { icon: Play, label: ta ? 'மாக் டெஸ்ட்' : 'Mock Test', labelShort: ta ? 'மாக்' : 'Mock', color: 'bg-emerald-500', action: () => document.getElementById('exam-list')?.scrollIntoView({ behavior: 'smooth' }) },
+            { icon: Zap, label: ta ? 'விண்ணப்பி' : 'Apply', labelShort: ta ? 'விண்ணப்பி' : 'Apply', color: 'bg-rose-500', action: () => document.getElementById('open-section')?.scrollIntoView({ behavior: 'smooth' }) },
+          ].map((item, i) => (
+            <motion.button
+              key={i}
+              onClick={item.action}
+              className="bg-white dark:bg-slate-800 rounded-xl p-3 text-center shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-all hover:-translate-y-0.5"
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className={cn("w-9 h-9 rounded-xl mx-auto flex items-center justify-center text-white mb-1.5 shadow-md", item.color)}>
+                <item.icon className="w-4 h-4" />
               </div>
-              <div className="space-y-1.5">
-                {openExams.slice(0, 4).map(exam => {
-                  const meta = categoryMeta[exam.category];
+              <p className="text-[10px] font-bold text-gray-700 dark:text-gray-200 leading-tight">{item.labelShort}</p>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* ═══════════════════════════════════════════════
+             🔥 OPEN APPLICATIONS — URGENCY SECTION
+           ═══════════════════════════════════════════════ */}
+        {openExams.length > 0 && !searchQuery && (
+          <div id="open-section" className="mb-6">
+            <div className="bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl p-4 text-white shadow-xl shadow-emerald-200/50 dark:shadow-none">
+              <div className="flex items-center gap-2 mb-3">
+                <Flame className="w-5 h-5" />
+                <h2 className="text-sm font-black uppercase tracking-wide">{ta ? '🔥 இப்போதே விண்ணப்பிக்கலாம்!' : '🔥 Apply Now — Don\'t Miss Out!'}</h2>
+              </div>
+              <div className="space-y-2">
+                {openExams.slice(0, 5).map(exam => {
+                  const style = categoryStyles[exam.category];
                   return (
-                    <div key={exam.id} className="flex items-center gap-2.5 bg-white dark:bg-slate-800 rounded-lg px-3 py-2 cursor-pointer hover:shadow-sm transition-all" onClick={() => window.open(exam.applyLink, '_blank')}>
-                      <span className="text-sm">{meta?.emoji}</span>
+                    <button
+                      key={exam.id}
+                      className="w-full flex items-center gap-3 bg-white/15 hover:bg-white/25 rounded-xl px-3 py-2.5 transition-all text-left"
+                      onClick={() => window.open(exam.applyLink, '_blank')}
+                    >
+                      <span className="text-lg">{style?.emoji}</span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[11px] font-semibold text-gray-800 dark:text-gray-200 truncate">{exam.name}</p>
-                        <p className="text-[9px] text-gray-400">{fmt(exam.salaryMin)}–{fmt(exam.salaryMax)}</p>
+                        <p className="text-[12px] font-bold truncate">{exam.name}</p>
+                        <p className="text-[10px] text-white/60">{fmt(exam.salaryMin)}–{fmt(exam.salaryMax)} / {ta ? 'மாதம்' : 'month'}</p>
                       </div>
-                      <ExternalLink className="w-3 h-3 text-emerald-500 flex-shrink-0" />
-                    </div>
+                      <ArrowUpRight className="w-4 h-4 text-white/60 flex-shrink-0" />
+                    </button>
                   );
                 })}
               </div>
@@ -334,119 +500,156 @@ const GovernmentExams = () => {
           </div>
         )}
 
-        {/* ═══════ EXAM LISTINGS ═══════ */}
-        {filteredExams.length === 0 ? (
-          <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700">
-            <div className="text-5xl mb-3">🔍</div>
-            <p className="text-sm text-gray-500 font-medium">{t ? 'தேர்வுகள் கிடைக்கவில்லை' : 'No exams found'}</p>
-            <Button variant="link" className="text-indigo-500 text-xs mt-2" onClick={() => { setSearchQuery(''); setSelectedCategory('all'); setSelectedStatus('all'); }}>
-              {t ? 'அனைத்தும் காட்டு' : 'Show all exams'}
+        {/* ═══════════════════════════════════════════════
+             TAB NAVIGATION: Central | State | All
+           ═══════════════════════════════════════════════ */}
+        <div id="exam-list" className="mb-4">
+          {!searchQuery && (
+            <div className="flex gap-1.5 bg-gray-100 dark:bg-slate-800 p-1 rounded-xl mb-4">
+              {([
+                { key: 'all' as ViewTab, label: ta ? 'அனைத்தும்' : 'All Exams', count: governmentExams.length },
+                { key: 'central' as ViewTab, label: ta ? 'மத்திய அரசு' : 'Central Govt', count: centralExams.length },
+                { key: 'state' as ViewTab, label: ta ? 'மாநில அரசு' : 'State Govt', count: stateExams.length },
+              ]).map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={cn(
+                    "flex-1 py-2.5 rounded-lg text-xs font-bold transition-all",
+                    activeTab === tab.key
+                      ? "bg-white dark:bg-slate-700 text-gray-900 dark:text-white shadow-sm"
+                      : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                  )}
+                >
+                  {tab.label}
+                  <span className={cn("ml-1 text-[9px] px-1.5 py-0.5 rounded-full",
+                    activeTab === tab.key ? "bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300" : "bg-gray-200 dark:bg-slate-600 text-gray-400"
+                  )}>{tab.count}</span>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Search results indicator */}
+          {searchQuery && (
+            <div className="flex items-center gap-2 mb-3">
+              <p className="text-xs text-gray-500">
+                {searchFiltered?.length || 0} {ta ? 'முடிவுகள்' : 'results'} for "<span className="font-bold text-gray-700">{searchQuery}</span>"
+              </p>
+              <button onClick={() => setSearchQuery('')} className="text-[11px] text-indigo-500 font-semibold">{ta ? 'அழி' : 'Clear'}</button>
+            </div>
+          )}
+        </div>
+
+        {/* ═══════════════════════════════════════════════
+             EXAM CARDS — Grouped by Category
+           ═══════════════════════════════════════════════ */}
+        {displayExams.length === 0 ? (
+          <div className="text-center py-20 bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700">
+            <div className="text-5xl mb-4">🔍</div>
+            <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">{ta ? 'தேர்வுகள் கிடைக்கவில்லை' : 'No exams found'}</p>
+            <p className="text-xs text-gray-400 mt-1">{ta ? 'வேறு வார்த்தையை முயற்சிக்கவும்' : 'Try a different search term'}</p>
+            <Button variant="link" className="text-indigo-500 text-xs mt-3" onClick={() => setSearchQuery('')}>
+              {ta ? 'அனைத்தும் காட்டு' : 'Show all exams'}
             </Button>
           </div>
-        ) : selectedCategory !== 'all' || isSearchActive ? (
-          // Flat list when filtering
-          <div className="space-y-2.5">
-            {filteredExams.map((exam, i) => (
-              <motion.div key={exam.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: Math.min(i * 0.02, 0.2) }}>
-                <ExamCard exam={exam} />
-              </motion.div>
-            ))}
-          </div>
         ) : (
-          // Grouped by category when showing all
-          <div className="space-y-5">
-            {Object.entries(groupedExams).map(([cat, exams]) => {
-              const meta = categoryMeta[cat];
-              const isOpen = expandedCategories.has(cat);
-              if (!meta) return null;
-              return (
-                <div key={cat}>
-                  {/* Category Header */}
-                  <button
-                    onClick={() => toggleCategory(cat)}
-                    className={cn("w-full flex items-center gap-3 p-3 rounded-xl mb-2 transition-all", meta.bg, "dark:bg-slate-800/50 hover:shadow-sm")}
-                  >
-                    <div className={cn("w-9 h-9 rounded-lg flex items-center justify-center text-white text-lg bg-gradient-to-br shadow-sm", meta.gradient)}>
-                      {meta.emoji}
-                    </div>
-                    <div className="flex-1 text-left">
-                      <h3 className={cn("text-sm font-bold", meta.text, "dark:text-gray-100")}>{t ? meta.labelTa : meta.label}</h3>
-                      <p className="text-[10px] text-gray-500">{exams.length} {t ? 'தேர்வுகள்' : 'exams'}</p>
-                    </div>
-                    <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform", isOpen && "rotate-180")} />
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="space-y-2.5 pb-2">
-                          {exams.map((exam, i) => (
-                            <motion.div key={exam.id} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
-                              <ExamCard exam={exam} />
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
+          <div>
+            {Object.entries(displayGrouped).map(([category, exams]) => (
+              <CategoryGroup key={category} category={category} exams={exams} />
+            ))}
           </div>
         )}
 
-        {/* ═══════ STUDY RESOURCES ═══════ */}
-        <div className="mt-8">
+        {/* ═══════════════════════════════════════════════
+             STUDY RESOURCES — Quick access to detailed pages
+           ═══════════════════════════════════════════════ */}
+        <div className="mt-8 mb-4">
           <div className="flex items-center gap-2 mb-3">
-            <Trophy className="w-4 h-4 text-indigo-600" />
-            <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100">{t ? 'படிப்பு வளங்கள் & PYQ' : 'Study Materials & PYQ'}</h3>
+            <Trophy className="w-4 h-4 text-amber-500" />
+            <h3 className="text-sm font-black text-gray-800 dark:text-white">{ta ? 'பாடத்திட்டம் & PYQ தொகுப்பு' : 'Syllabus & PYQ Collection'}</h3>
           </div>
-          <div className="grid grid-cols-3 gap-2">
-            {governmentExamCategories.map((category) => (
-              <Card
-                key={category.id}
-                className={cn("cursor-pointer hover:shadow-md transition-all border hover:scale-[1.02]", category.borderColor, category.bgColor, "dark:bg-slate-800/50")}
-                onClick={() => navigate(`/government-exams/${category.id}`)}
-              >
-                <CardContent className="p-3 text-center">
-                  <div className={cn("text-2xl mb-1 w-9 h-9 mx-auto rounded-lg flex items-center justify-center bg-gradient-to-br text-white shadow-sm", category.color)}>
-                    {category.icon}
-                  </div>
-                  <h4 className="font-bold text-[10px] text-gray-800 dark:text-gray-100 leading-tight">
-                    {t ? category.nameTamil.split(' ')[0] : category.name.split(' ')[0]}
-                  </h4>
-                  <div className="flex items-center justify-center gap-0.5 mt-1 text-[9px] text-indigo-600 dark:text-indigo-400 font-medium">
-                    PYQ <ChevronRight className="w-2.5 h-2.5" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-2 gap-2.5">
+            {governmentExamCategories.map((category) => {
+              const totalQ = category.exams.reduce((acc, e) => acc + e.pyq.length, 0);
+              const totalTopics = category.exams.reduce((acc, e) =>
+                acc + Object.values(e.syllabus).reduce((t, s) =>
+                  t + s.reduce((a, sec) => a + sec.topics.length, 0), 0), 0);
+              const style = categoryStyles[category.id];
+              return (
+                <Card
+                  key={category.id}
+                  className={cn("cursor-pointer hover:shadow-lg transition-all border-2 hover:scale-[1.02]", style?.border, style?.bg, "dark:bg-slate-800/50")}
+                  onClick={() => navigate(`/government-exams/${category.id}`)}
+                >
+                  <CardContent className="p-3.5">
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm bg-gradient-to-br shadow-md", style?.color)}>
+                        {category.icon}
+                      </div>
+                      <h4 className="font-bold text-[11px] text-gray-800 dark:text-gray-100 flex-1">
+                        {ta ? category.nameTamil : category.name}
+                      </h4>
+                    </div>
+                    <div className="flex gap-3 mb-2">
+                      <div className="text-[10px]">
+                        <span className="font-bold text-gray-700 dark:text-gray-200">{category.exams.length}</span>
+                        <span className="text-gray-400 ml-0.5">{ta ? 'தேர்வுகள்' : 'exams'}</span>
+                      </div>
+                      <div className="text-[10px]">
+                        <span className="font-bold text-amber-600">{totalQ}</span>
+                        <span className="text-gray-400 ml-0.5">PYQ</span>
+                      </div>
+                      <div className="text-[10px]">
+                        <span className="font-bold text-indigo-600">{totalTopics}</span>
+                        <span className="text-gray-400 ml-0.5">{ta ? 'தலைப்பு' : 'topics'}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 text-[10px] text-indigo-600 dark:text-indigo-400 font-bold">
+                      {ta ? 'படிக்க தொடங்கு' : 'Start Studying'} <ChevronRight className="w-3 h-3" />
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
 
-        {/* ═══════ TIPS ═══════ */}
-        <div className="mt-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-200/50 dark:border-indigo-800 rounded-xl p-3.5">
-          <h4 className="text-[11px] font-bold text-indigo-800 dark:text-indigo-200 mb-1.5 flex items-center gap-1.5">
-            <Star className="w-3.5 h-3.5" /> {t ? 'படிப்பு குறிப்புகள்' : 'Quick Tips'}
+        {/* ═══════════════════════════════════════════════
+             PREPARATION TIPS
+           ═══════════════════════════════════════════════ */}
+        <div className="bg-gradient-to-br from-slate-800 to-gray-900 rounded-2xl p-4 mt-6 text-white">
+          <h4 className="text-xs font-black uppercase tracking-wider mb-3 flex items-center gap-2">
+            <Star className="w-4 h-4 text-amber-400" /> {ta ? 'தினசரி படிப்பு குறிப்புகள்' : 'Daily Study Blueprint'}
           </h4>
-          <div className="grid grid-cols-2 gap-1.5">
-            {(t ? ['✅ பாடத்திட்டத்தை படிக்கவும்', '✅ தினமும் 2 மணி நேரம்', '✅ PYQ தீர்க்கவும்', '✅ மாக் டெஸ்ட் எழுதுங்கள்']
-              : ['✅ Study the full syllabus', '✅ 2 hours daily practice', '✅ Solve PYQ papers', '✅ Take mock tests regularly']
-            ).map((tip, i) => (
-              <p key={i} className="text-[10px] text-indigo-700/70 dark:text-indigo-300/70">{tip}</p>
+          <div className="space-y-2">
+            {(ta ? [
+              { icon: '📖', text: 'முதலில் பாடத்திட்டத்தை முழுமையாகப் படிக்கவும்' },
+              { icon: '⏰', text: 'தினமும் குறைந்தது 2 மணி நேரம் ஒதுக்கவும்' },
+              { icon: '✍️', text: 'ஒவ்வொரு நாளும் PYQ 10 கேள்விகள் தீர்க்கவும்' },
+              { icon: '🎯', text: 'வாரம் ஒரு முறை மாக் டெஸ்ட் எழுதுங்கள்' },
+              { icon: '📰', text: 'தினமும் தேசிய செய்திகள் படிக்கவும் (Current Affairs)' },
+            ] : [
+              { icon: '📖', text: 'Start with full syllabus — know every topic before studying' },
+              { icon: '⏰', text: 'Dedicate minimum 2 hours every day — consistency wins' },
+              { icon: '✍️', text: 'Solve 10 PYQ questions daily — builds real exam readiness' },
+              { icon: '🎯', text: 'Take 1 full mock test every week — track your improvement' },
+              { icon: '📰', text: 'Read daily news for Current Affairs — 30% of most exams' },
+            ]).map((tip, i) => (
+              <div key={i} className="flex items-start gap-2.5 bg-white/5 rounded-lg px-3 py-2">
+                <span className="text-sm mt-0.5">{tip.icon}</span>
+                <p className="text-[11px] text-white/70 leading-relaxed">{tip.text}</p>
+              </div>
             ))}
           </div>
         </div>
 
-        <div className="mt-3 mb-6 text-center">
+        {/* Disclaimer */}
+        <div className="mt-4 text-center pb-4">
           <p className="text-[10px] text-gray-400">
-            💡 {t ? 'தேதிகள் மாறலாம். அதிகாரப்பூர்வ தளங்களில் சரிபார்க்கவும்.' : 'Dates may change. Verify from official government websites.'}
+            ⚠️ {ta
+              ? 'தேதிகள் & தகுதிகள் மாறலாம். விண்ணப்பிக்கும் முன் அதிகாரப்பூர்வ தளத்தில் சரிபார்க்கவும்.'
+              : 'Dates & eligibility may change. Always verify from official websites before applying.'}
           </p>
         </div>
       </div>
