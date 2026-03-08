@@ -88,7 +88,7 @@ const FilterSection = ({ title, icon, children, defaultOpen = true }: {
   return (
     <div style={{ borderBottom: '1px solid #C8E6C9' }}>
       {/* Header Image */}
-      <div className="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-4">
+      <div className="w-full h-28 md:h-36 rounded-xl overflow-hidden mb-4">
         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=300&fit=crop&auto=format" alt="Scholarships" className="w-full h-full object-cover" loading="lazy" />
       </div>
       <button

@@ -30,15 +30,17 @@ const CourseExplorer = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-pink-500 text-white p-6 rounded-2xl">
+      <div className="bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-2xl overflow-hidden">
+        <div className="relative h-28 md:h-36 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=300&fit=crop&auto=format" alt="Education" className="w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-purple-600 via-purple-600/60 to-transparent" />
+        </div>
+        <div className="p-6 -mt-8 relative z-10">
         <div className="flex items-center gap-3 mb-2">
-          <div className="bg-white/20 p-3 rounded-xl">
+          <div className="bg-white/20 p-3 rounded-xl border-2 border-white/30">
             <BookOpen className="w-8 h-8" />
           </div>
           <div>
-            <div className="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-3">
-              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=300&fit=crop&auto=format" alt="Education" className="w-full h-full object-cover" loading="lazy" />
-            </div>
             <h1 className="text-2xl font-bold">Course Explorer</h1>
             <p className="text-white/80 text-sm">Discover the perfect course for your future</p>
           </div>
@@ -46,6 +48,7 @@ const CourseExplorer = () => {
         <p className="text-sm text-white/70 mt-2">
           உங்கள் எதிர்காலத்திற்கான சரியான படிப்பைக் கண்டறியுங்கள்
         </p>
+        </div>
       </div>
 
       {/* Board Selector */}
