@@ -1375,31 +1375,97 @@ const sscExams: Exam[] = [
   {
     id: 'ssc-gd',
     name: 'SSC GD Constable (CAPFs) 2027',
-    nameTamil: 'SSC GD காவலர்',
+    nameTamil: 'SSC GD காவலர் (CAPFs) 2027',
     qualification: '10th/12th Pass',
     qualificationTamil: '10/12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 23 years',
     salary: '₹23,527/month',
-    selectionProcess: 'CBT → PET/PST → Medical → Document Verification',
-    selectionProcessTamil: 'CBT → உடல் தகுதி → மருத்துவம் → ஆவண சரிபார்ப்பு',
-    posts: ['BSF', 'CRPF', 'CISF', 'ITBP', 'SSB', 'Assam Rifles'],
-    postsTamil: ['BSF', 'CRPF', 'CISF', 'ITBP', 'SSB', 'அசாம் ரைபிள்ஸ்'],
+    selectionProcess: 'Computer Based Test (CBT) → Physical Efficiency Test (PET) → Physical Standard Test (PST) → Medical Examination → Document Verification',
+    selectionProcessTamil: 'கணினி அடிப்படை தேர்வு (CBT) → உடல் திறன் தேர்வு (PET) → உடல் தரநிலை தேர்வு (PST) → மருத்துவப் பரிசோதனை → ஆவண சரிபார்ப்பு',
+    posts: ['BSF Constable (GD)', 'CISF Constable (GD)', 'CRPF Constable (GD)', 'ITBP Constable (GD)', 'SSB Constable (GD)', 'SSF Constable (GD)', 'Rifleman (GD) in Assam Rifles'],
+    postsTamil: ['BSF காவலர் (GD)', 'CISF காவலர் (GD)', 'CRPF காவலர் (GD)', 'ITBP காவலர் (GD)', 'SSB காவலர் (GD)', 'SSF காவலர் (GD)', 'அசாம் ரைபிள்ஸ் ரைஃபிள்மேன் (GD)'],
+    examPattern: [
+      { paper: 'Computer Based Test (CBT)', paperTamil: 'கணினி அடிப்படை தேர்வு (CBT)', marks: 160, duration: '60 minutes', questions: 80 }
+    ],
     syllabus: {
-      main: [
+      'Written Exam — CBT (80 Questions, 160 Marks, 60 Minutes)': [
         {
-          name: 'SSC GD Constable Syllabus',
-          nameTamil: 'SSC GD காவலர் பாடத்திட்டம்',
+          name: 'General Intelligence & Reasoning (20 Qs, 40 Marks)',
+          nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (20 கேள்விகள், 40 மதிப்பெண்கள்)',
           topics: [
-            { name: 'General Intelligence & Reasoning', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம்', subtopics: ['Analogies', 'Similarities & Differences', 'Spatial Visualization', 'Analysis', 'Judgment', 'Decision Making', 'Problem Solving', 'Discrimination', 'Relationship Concepts', 'Arithmetical Number Series', 'Figure Classification'] },
-            { name: 'General Knowledge & General Awareness', nameTamil: 'பொது அறிவு & பொது விழிப்புணர்வு', subtopics: ['India & its Neighbouring Countries', 'History', 'Culture', 'Geography', 'Economic Scene', 'General Polity', 'Indian Constitution', 'Scientific Research'] },
-            { name: 'Elementary Mathematics', nameTamil: 'அடிப்படை கணிதம்', subtopics: ['Number Systems', 'Decimals & Fractions', 'LCM, HCF', 'Percentages', 'Ratio & Proportion', 'Averages', 'Interest', 'Profit & Loss', 'Discount', 'Mensuration', 'Time & Distance', 'Time & Work'] },
-            { name: 'English/Hindi', nameTamil: 'ஆங்கிலம்/இந்தி', subtopics: ['Error Detection', 'Fill in the Blanks', 'Synonyms/Antonyms', 'Spelling', 'Idioms', 'One Word Substitution', 'Sentence Improvement', 'Comprehension'] }
+            { name: 'Verbal Reasoning', nameTamil: 'சொல் தர்க்கம்', subtopics: ['Analogies — Word & Number Relationships', 'Coding-Decoding — Letter, Number & Symbol Coding', 'Blood Relations — Family Tree Problems', 'Number Series — Missing Number, Wrong Number', 'Alphabet Series & Ranking'] },
+            { name: 'Non-Verbal & Analytical', nameTamil: 'சொல்லற்ற & பகுப்பாய்வு', subtopics: ['Venn Diagrams — Set Theory Problems', 'Spatial Visualization — Mirror Image, Water Image, Paper Folding', 'Classification — Odd One Out', 'Similarities & Differences', 'Pattern Recognition — Figure Series, Embedded Figures', 'Data Interpretation — Tables, Charts'] }
+          ]
+        },
+        {
+          name: 'General Knowledge & Awareness (20 Qs, 40 Marks)',
+          nameTamil: 'பொது அறிவு & விழிப்புணர்வு (20 கேள்விகள், 40 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Indian History & Culture', nameTamil: 'இந்திய வரலாறு & கலாச்சாரம்', subtopics: ['Ancient India — Indus Valley, Vedic, Maurya, Gupta', 'Medieval India — Delhi Sultanate, Mughal Empire', 'Modern India — British Rule, Freedom Movement', 'Indian Art, Culture, Dance, Music, Heritage Sites'] },
+            { name: 'Geography & Polity', nameTamil: 'புவியியல் & அரசியல்', subtopics: ['Indian Geography — Rivers, Mountains, Plains, Climate, Soil', 'Indian Constitution — Fundamental Rights, Duties, DPSP', 'Indian Economy — GDP, Budget, Banking, Five Year Plans', 'India & its Neighbouring Countries — Borders, Relations'] },
+            { name: 'Current Affairs & Science', nameTamil: 'நடப்பு நிகழ்வுகள் & அறிவியல்', subtopics: ['National & International Current Affairs', 'Sports — Olympics, Commonwealth, Cricket, Asian Games', 'Awards & Honours — Padma, Bharat Ratna, Nobel', 'General Science — Physics, Chemistry, Biology basics', 'Scientific Research & Discoveries'] }
+          ]
+        },
+        {
+          name: 'Elementary Mathematics (20 Qs, 40 Marks)',
+          nameTamil: 'அடிப்படை கணிதம் (20 கேள்விகள், 40 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Arithmetic & Number System', nameTamil: 'எண்கணிதம் & எண் முறை', subtopics: ['Number Systems — Natural, Whole, Integers, Rational', 'Decimals & Fractions', 'LCM & HCF', 'Percentages — Increase, Decrease, Successive', 'Ratio & Proportion — Direct & Inverse'] },
+            { name: 'Commercial & Applied Math', nameTamil: 'வணிக & பயன்பாட்டு கணிதம்', subtopics: ['Averages — Simple & Weighted', 'Profit & Loss — Cost Price, Selling Price, Discount', 'Simple Interest & Compound Interest', 'Time & Distance — Speed, Trains, Boats & Streams', 'Time & Work — Pipe & Cistern, Efficiency', 'Mensuration — Area, Perimeter, Volume of 2D & 3D Shapes'] }
+          ]
+        },
+        {
+          name: 'English / Hindi — Candidate\'s Choice (20 Qs, 40 Marks)',
+          nameTamil: 'ஆங்கிலம் / இந்தி — விண்ணப்பதாரரின் தேர்வு (20 கேள்விகள், 40 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'English Grammar & Vocabulary', nameTamil: 'ஆங்கில இலக்கணம் & சொல்வளம்', subtopics: ['Error Spotting — Sentence Correction', 'Fill in the Blanks — Grammar & Vocabulary Based', 'Synonyms & Antonyms', 'Spelling Errors — Commonly Misspelled Words', 'Idioms & Phrases', 'One Word Substitution', 'Sentence Improvement'] },
+            { name: 'Comprehension', nameTamil: 'புரிதல்', subtopics: ['Reading Comprehension — Passage Based Questions', 'Cloze Test — Fill in Blanks in a Passage', 'Para Jumbles — Sentence Rearrangement'] }
+          ]
+        }
+      ],
+      'Physical Standard Test (PST) — Qualifying': [
+        {
+          name: 'Height Requirements (Category-wise)',
+          nameTamil: 'உயர தேவைகள் (பிரிவு வாரியாக)',
+          topics: [
+            { name: 'Male Candidates', nameTamil: 'ஆண் விண்ணப்பதாரர்கள்', subtopics: ['General / OBC / SC: 170 cm', 'Scheduled Tribes (ST): 162.5 cm', 'Candidates from Garhwal, Kumaon, Gorkhas, Dogras, Marathas: Relaxed as per rules', 'NE States — Arunachal, Manipur, Meghalaya, Mizoram, Nagaland, Sikkim, Tripura: Relaxed'] },
+            { name: 'Female Candidates', nameTamil: 'பெண் விண்ணப்பதாரர்கள்', subtopics: ['General / OBC / SC: 157 cm', 'Scheduled Tribes (ST): 150 cm', 'NE States & Hill Area candidates: Relaxed as per rules'] },
+            { name: 'Chest (Male Only)', nameTamil: 'மார்பு (ஆண் மட்டும்)', subtopics: ['General / OBC / SC: 80 cm unexpanded (minimum 5 cm expansion)', 'Scheduled Tribes (ST): 76 cm unexpanded (minimum 5 cm expansion)'] }
+          ]
+        }
+      ],
+      'Physical Efficiency Test (PET) — Qualifying': [
+        {
+          name: 'Running Test Requirements',
+          nameTamil: 'ஓட்டத் தேர்வு தேவைகள்',
+          topics: [
+            { name: 'Standard Regions', nameTamil: 'பொது பகுதிகள்', subtopics: ['Male: 5 km run in 24 minutes', 'Female: 1.6 km run in 8 minutes 30 seconds'] },
+            { name: 'Ladakh Region (Special Relaxation)', nameTamil: 'லடாக் பகுதி (சிறப்பு சலுகை)', subtopics: ['Male (Ladakh): 1.6 km run in 6 minutes 30 seconds', 'Female (Ladakh): 800 meters run in 4 minutes'] }
+          ]
+        }
+      ],
+      'Medical Examination Standards': [
+        {
+          name: 'Medical Fitness Requirements',
+          nameTamil: 'மருத்துவ தகுதி தேவைகள்',
+          topics: [
+            { name: 'Vision & Physical Health', nameTamil: 'பார்வை & உடல் நலம்', subtopics: ['Vision: 6/6 in both eyes (without glasses) is required', 'Hearing: Normal hearing in both ears', 'Musculoskeletal: No flat feet, knock knees, or bow legs', 'No color blindness', 'Overall physical and mental fitness required', 'Detailed medical check-up conducted at designated medical centres'] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'gd-gk-1', question: 'CRPF was established in:', questionTamil: 'CRPF நிறுவப்பட்ட ஆண்டு:', options: ['1939', '1947', '1950', '1962'], optionsTamil: ['1939', '1947', '1950', '1962'], answer: 0, explanation: 'CRPF was established on 27 July 1939 as Crown Representative Police', explanationTamil: 'CRPF 1939 ஜூலை 27 அன்று Crown Representative Police ஆக நிறுவப்பட்டது', subject: 'General Knowledge', difficulty: 'easy' }
+      { id: 'gd-gk-1', question: 'CRPF was established in:', questionTamil: 'CRPF நிறுவப்பட்ட ஆண்டு:', options: ['1939', '1947', '1950', '1962'], optionsTamil: ['1939', '1947', '1950', '1962'], answer: 0, explanation: 'CRPF was established on 27 July 1939 as Crown Representative\'s Police. After independence, it became Central Reserve Police Force on 28 December 1949.', explanationTamil: 'CRPF 1939 ஜூலை 27 அன்று Crown Representative\'s Police ஆக நிறுவப்பட்டது. சுதந்திரத்திற்குப் பின் 1949 இல் CRPF ஆனது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'gd-gk-2', question: 'BSF guards the border with which countries?', questionTamil: 'BSF எந்த நாடுகளின் எல்லையை காவல் காக்கிறது?', options: ['Pakistan & Bangladesh', 'China & Nepal', 'Myanmar & Bangladesh', 'Pakistan & China'], optionsTamil: ['பாகிஸ்தான் & வங்கதேசம்', 'சீனா & நேபாளம்', 'மியான்மர் & வங்கதேசம்', 'பாகிஸ்தான் & சீனா'], answer: 0, explanation: 'BSF (Border Security Force) is responsible for guarding the India-Pakistan border and India-Bangladesh border.', explanationTamil: 'BSF இந்தியா-பாகிஸ்தான் எல்லை மற்றும் இந்தியா-வங்கதேசம் எல்லையை காவல் காக்கிறது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'gd-gk-3', question: 'ITBP was raised to guard the border with:', questionTamil: 'ITBP எந்த நாட்டின் எல்லையை காவல் காக்க எழுப்பப்பட்டது?', options: ['China', 'Pakistan', 'Nepal', 'Myanmar'], optionsTamil: ['சீனா', 'பாகிஸ்தான்', 'நேபாளம்', 'மியான்மர்'], answer: 0, explanation: 'ITBP (Indo-Tibetan Border Police) was raised on 24 October 1962, during the India-China War, to guard the India-China border.', explanationTamil: 'ITBP 1962 அக்டோபர் 24 அன்று இந்தியா-சீன போரின் போது இந்தியா-சீன எல்லையை காவல் காக்க எழுப்பப்பட்டது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'gd-gk-4', question: 'SSB guards the border with:', questionTamil: 'SSB எந்த நாடுகளின் எல்லையை காவல் காக்கிறது?', options: ['Nepal & Bhutan', 'Pakistan & China', 'Myanmar & Bangladesh', 'Sri Lanka & Maldives'], optionsTamil: ['நேபாளம் & பூடான்', 'பாகிஸ்தான் & சீனா', 'மியான்மர் & வங்கதேசம்', 'இலங்கை & மாலத்தீவு'], answer: 0, explanation: 'SSB (Sashastra Seema Bal) guards the India-Nepal border and India-Bhutan border.', explanationTamil: 'SSB இந்தியா-நேபாளம் எல்லை மற்றும் இந்தியா-பூடான் எல்லையை காவல் காக்கிறது.', subject: 'General Knowledge', difficulty: 'medium' },
+      { id: 'gd-math-1', question: 'If 25% of a number is 75, the number is:', questionTamil: 'ஒரு எண்ணின் 25% = 75 எனில், அந்த எண்:', options: ['300', '250', '200', '150'], optionsTamil: ['300', '250', '200', '150'], answer: 0, explanation: '25% × N = 75. N = 75 × 100/25 = 300', explanationTamil: '25% × N = 75. N = 75 × 100/25 = 300', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'gd-math-2', question: 'A shopkeeper sells an article at 10% loss. If the cost price is ₹500, the selling price is:', questionTamil: 'ஒரு கடைக்காரர் 10% நஷ்டத்தில் ஒரு பொருளை விற்கிறார். அடக்க விலை ₹500 எனில், விற்பனை விலை:', options: ['₹450', '₹550', '₹400', '₹500'], optionsTamil: ['₹450', '₹550', '₹400', '₹500'], answer: 0, explanation: 'Loss = 10% of 500 = ₹50. SP = CP - Loss = 500 - 50 = ₹450', explanationTamil: 'நஷ்டம் = 500 இன் 10% = ₹50. விற்பனை விலை = 500 - 50 = ₹450', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'gd-math-3', question: 'The average of 5, 10, 15, 20, 25 is:', questionTamil: '5, 10, 15, 20, 25 இன் சராசரி:', options: ['15', '20', '12', '18'], optionsTamil: ['15', '20', '12', '18'], answer: 0, explanation: 'Sum = 5+10+15+20+25 = 75. Average = 75/5 = 15', explanationTamil: 'கூட்டு = 75. சராசரி = 75/5 = 15', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'gd-reason-1', question: 'Find the odd one out: Pen, Pencil, Eraser, Book, Ink', questionTamil: 'பொருத்தமற்றதை கண்டுபிடி: பேனா, பென்சில், அழிப்பான், புத்தகம், மை', options: ['Book', 'Pen', 'Pencil', 'Eraser'], optionsTamil: ['புத்தகம்', 'பேனா', 'பென்சில்', 'அழிப்பான்'], answer: 0, explanation: 'Pen, Pencil, Eraser, Ink are all writing/stationery instruments. Book is used for reading, not writing.', explanationTamil: 'பேனா, பென்சில், அழிப்பான், மை அனைத்தும் எழுதும் கருவிகள். புத்தகம் படிக்க பயன்படும் — எழுதும் கருவி அல்ல.', subject: 'Reasoning', difficulty: 'easy' },
+      { id: 'gd-reason-2', question: 'If A = 1, B = 2, C = 3... then FACE = ?', questionTamil: 'A = 1, B = 2, C = 3... எனில் FACE = ?', options: ['15', '24', '18', '12'], optionsTamil: ['15', '24', '18', '12'], answer: 0, explanation: 'F=6, A=1, C=3, E=5. FACE = 6+1+3+5 = 15', explanationTamil: 'F=6, A=1, C=3, E=5. FACE = 6+1+3+5 = 15', subject: 'Reasoning', difficulty: 'easy' },
+      { id: 'gd-eng-1', question: 'Choose the correct synonym of "Brave":', questionTamil: '"Brave" என்ற சொல்லின் ஒத்த சொல் தேர்வு செய்:', options: ['Courageous', 'Timid', 'Fearful', 'Weak'], optionsTamil: ['தைரியமான', 'பயந்த', 'அச்சமான', 'பலவீனமான'], answer: 0, explanation: 'Brave means showing courage in the face of danger. Courageous is its synonym.', explanationTamil: 'Brave என்றால் ஆபத்தை எதிர்கொள்ளும் தைரியம். Courageous அதன் ஒத்த சொல்.', subject: 'English', difficulty: 'easy' },
+      { id: 'gd-eng-2', question: 'Spot the error: "He go to school every day."', questionTamil: 'பிழையைக் கண்டுபிடி: "He go to school every day."', options: ['go should be goes', 'school should be schools', 'every should be each', 'No error'], optionsTamil: ['go → goes ஆக இருக்க வேண்டும்', 'school → schools ஆக இருக்க வேண்டும்', 'every → each ஆக இருக்க வேண்டும்', 'பிழை இல்லை'], answer: 0, explanation: 'With third person singular subject (He/She/It), the verb takes "s" or "es" in Simple Present Tense. "He goes" is correct.', explanationTamil: 'மூன்றாம் நபர் ஒருமை (He/She/It) உடன் Simple Present Tense இல் வினைச்சொல் "s" அல்லது "es" பெறும். "He goes" சரி.', subject: 'English', difficulty: 'easy' }
     ]
   },
   {
