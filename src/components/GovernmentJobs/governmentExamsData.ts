@@ -129,8 +129,8 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'cisf-constable',
-    name: 'CISF Constable',
-    nameTamil: 'மத்திய தொழில்துறை பாதுகாப்பு படை',
+    name: 'CISF Constable (GD / Tradesman)',
+    nameTamil: 'CISF காவலர் (GD / டிரேட்ஸ்மேன்)',
     category: 'defence',
     qualification: '12th Pass',
     ageMin: 18,

@@ -790,6 +790,77 @@ const defenceExams: Exam[] = [
       { id: 'crpf-eng-1', question: 'Choose the synonym of "Enormous":', questionTamil: '"Enormous" என்ற சொல்லின் ஒத்த சொல்:', options: ['Huge', 'Tiny', 'Average', 'Narrow'], optionsTamil: ['மிகப்பெரிய', 'சிறிய', 'சராசரி', 'குறுகிய'], answer: 0, explanation: 'Enormous means extremely large or great. Huge is its closest synonym.', explanationTamil: 'Enormous என்றால் மிகவும் பெரிய. Huge அதன் ஒத்த சொல்.', subject: 'English', difficulty: 'easy' },
       { id: 'crpf-eng-2', question: 'Identify the correct sentence:', questionTamil: 'சரியான வாக்கியத்தைக் கண்டறியுங்கள்:', options: ['Neither he nor his friends were present', 'Neither he nor his friends was present', 'Neither he nor his friends are present', 'Neither him nor his friends were present'], optionsTamil: ['Neither he nor his friends were present', 'Neither he nor his friends was present', 'Neither he nor his friends are present', 'Neither him nor his friends were present'], answer: 0, explanation: 'With "neither...nor", the verb agrees with the subject nearest to it. "Friends" is plural, so "were" is correct.', explanationTamil: '"Neither...nor" உடன், வினைச்சொல் அருகிலுள்ள எழுவாயுடன் பொருந்தும். "Friends" பன்மை, எனவே "were" சரி.', subject: 'English', difficulty: 'medium' }
     ]
+  },
+  {
+    id: 'cisf-constable',
+    name: 'CISF Constable (GD / Tradesman)',
+    nameTamil: 'CISF காவலர் (GD / டிரேட்ஸ்மேன்)',
+    qualification: '12th Pass',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
+    age: '18 - 23 years',
+    salary: '₹23,527 - ₹81,100/month',
+    selectionProcess: 'Written Exam (OMR/CBT) → Physical Standard Test (PST) → Physical Efficiency Test (PET) → Trade Test (Tradesman only) → Document Verification → Medical Examination',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு (OMR/CBT) → உடல் தரநிலை தேர்வு (PST) → உடல் திறன் தேர்வு (PET) → தொழில் தேர்வு (டிரேட்ஸ்மேன் மட்டும்) → ஆவண சரிபார்ப்பு → மருத்துவப் பரிசோதனை',
+    posts: ['CISF Constable (GD)', 'CISF Constable (Tradesman)', 'CISF Constable (Fire)', 'CISF Constable (Driver)'],
+    postsTamil: ['CISF காவலர் (GD)', 'CISF காவலர் (டிரேட்ஸ்மேன்)', 'CISF காவலர் (தீயணைப்பு)', 'CISF காவலர் (ஓட்டுநர்)'],
+    examPattern: [
+      { paper: 'Constable GD (via SSC GD)', paperTamil: 'காவலர் GD (SSC GD வழியாக)', marks: 160, duration: '1 hour', questions: 80 },
+      { paper: 'Constable Tradesman/Driver/Fire (CISF Direct)', paperTamil: 'காவலர் டிரேட்ஸ்மேன்/ஓட்டுநர்/தீ (CISF நேரடி)', marks: 100, duration: '2 hours', questions: 100 }
+    ],
+    syllabus: {
+      'Constable GD — via SSC GD (80 Questions, 160 Marks, 60 Minutes)': [
+        {
+          name: 'SSC GD Pattern (2 marks per question, 0.25 negative marking)',
+          nameTamil: 'SSC GD முறை (ஒரு கேள்விக்கு 2 மதிப்பெண், 0.25 எதிர்மறை)',
+          topics: [
+            { name: 'General Intelligence & Reasoning (20 Qs)', nameTamil: 'பொது நுண்ணறிவு & தர்க்கம் (20 கேள்விகள்)', subtopics: ['Analogies — Word & Number Relationships', 'Similarities & Differences', 'Spatial Visualization — Mirror Image, Water Image', 'Coding-Decoding — Letter & Number Systems', 'Number Series — Missing Number, Wrong Number', 'Relationship Concepts — Blood Relations, Direction Sense', 'Non-Verbal Series — Pattern Completion, Figure Counting'] },
+            { name: 'General Knowledge & Awareness (20 Qs)', nameTamil: 'பொது அறிவு (20 கேள்விகள்)', subtopics: ['Current Events — National & International News', 'Indian History — Ancient, Medieval, Modern, Freedom Movement', 'Geography — Indian Rivers, Mountains, Climate, Soil Types', 'Indian Constitution — Fundamental Rights, DPSP, Amendments', 'Sports & Awards — Olympics, Commonwealth, Padma Awards', 'Everyday Science — Physics, Chemistry, Biology Basics', 'Government Schemes & Policies'] },
+            { name: 'Elementary Mathematics (20 Qs)', nameTamil: 'அடிப்படை கணிதம் (20 கேள்விகள்)', subtopics: ['Number Systems — HCF, LCM, Fractions, Decimals', 'Percentages — Increase, Decrease, Applications', 'Ratio & Proportion — Direct, Inverse Proportion', 'Averages — Simple & Weighted Average', 'Profit & Loss — Cost Price, Selling Price, Discount', 'Simple Interest & Compound Interest', 'Mensuration — Area, Perimeter, Volume of 2D & 3D Shapes', 'Time & Work — Pipe & Cistern, Efficiency', 'Time & Distance — Speed, Relative Speed, Trains, Boats'] },
+            { name: 'General English / Hindi (20 Qs)', nameTamil: 'பொது ஆங்கிலம் / இந்தி (20 கேள்விகள்)', subtopics: ['Basic Comprehension — Passage Reading & Questions', 'Grammar — Tenses, Articles, Prepositions, Verbs', 'Vocabulary — Synonyms, Antonyms, One Word Substitution', 'Sentence Structure — Active/Passive Voice, Direct/Indirect', 'Error Spotting & Sentence Correction', 'Fill in the Blanks — Vocabulary & Grammar Based'] }
+          ]
+        }
+      ],
+      'Constable Tradesman/Driver/Fire (100 Questions, 100 Marks, 2 Hours)': [
+        {
+          name: 'CISF Direct Exam (1 mark per question, No negative marking)',
+          nameTamil: 'CISF நேரடி தேர்வு (ஒரு கேள்விக்கு 1 மதிப்பெண், எதிர்மறை இல்லை)',
+          topics: [
+            { name: 'General Intelligence & Reasoning (25 Qs)', nameTamil: 'பொது நுண்ணறிவு & தர்க்கம் (25 கேள்விகள்)', subtopics: ['Analogies & Classifications', 'Coding-Decoding — Alphabetical & Numerical', 'Number & Alphabet Series', 'Spatial Visualization — Paper Folding, Dice, Cubes', 'Venn Diagrams & Syllogisms', 'Seating Arrangement & Ordering', 'Direction & Distance Problems'] },
+            { name: 'General Knowledge & Awareness (25 Qs)', nameTamil: 'பொது அறிவு (25 கேள்விகள்)', subtopics: ['Current Affairs — Last 6 Months National/International', 'Indian History — Freedom Movement, Major Events', 'Geography — Indian Physical Features, World Capitals', 'Indian Polity — Constitution, Parliament, Elections', 'General Science — Physics, Chemistry, Biology', 'Sports, Awards & Honours', 'Books & Authors, Important Days'] },
+            { name: 'Elementary Mathematics (25 Qs)', nameTamil: 'அடிப்படை கணிதம் (25 கேள்விகள்)', subtopics: ['Number System — Natural, Whole, Integers, Rational', 'Percentage, Ratio & Proportion', 'Average, Profit & Loss', 'Simple & Compound Interest', 'Time & Work, Time & Distance', 'Mensuration — 2D & 3D Figures', 'Basic Algebra — Simplification, Linear Equations', 'Data Interpretation — Tables, Graphs, Charts'] },
+            { name: 'General English / Hindi (25 Qs)', nameTamil: 'பொது ஆங்கிலம் / இந்தி (25 கேள்விகள்)', subtopics: ['Reading Comprehension Passages', 'Grammar — Tenses, Voice, Speech, Subject-Verb Agreement', 'Vocabulary — Synonyms, Antonyms, Idioms & Phrases', 'One Word Substitution', 'Error Spotting & Sentence Improvement', 'Cloze Test & Fill in the Blanks'] }
+          ]
+        }
+      ],
+      'Physical Standards & Efficiency Test (PST/PET)': [
+        {
+          name: 'Physical Standard Test (PST)',
+          nameTamil: 'உடல் தரநிலை தேர்வு (PST)',
+          topics: [
+            { name: 'Height Requirements', nameTamil: 'உயர தேவைகள்', subtopics: ['General Male: 170 cm', 'Scheduled Tribe Male: 162.5 cm', 'Garhwali, Kumaoni, Gorkha, Dogra, Maratha: 165 cm', 'General Female: 157 cm', 'Scheduled Tribe Female: 155 cm'] },
+            { name: 'Chest Measurement (Male Only)', nameTamil: 'மார்பு அளவு (ஆண் மட்டும்)', subtopics: ['General: 80 cm unexpanded, 85 cm expanded (minimum 5 cm expansion)', 'ST / candidates from hilly areas: Relaxation as per rules'] }
+          ]
+        },
+        {
+          name: 'Physical Efficiency Test (PET)',
+          nameTamil: 'உடல் திறன் தேர்வு (PET)',
+          topics: [
+            { name: 'Running Test', nameTamil: 'ஓட்டத் தேர்வு', subtopics: ['Male: 1.6 km run in 6 minutes 30 seconds', 'Female: 800 meters run in 4 minutes'] },
+            { name: 'Trade Test (Tradesman Only)', nameTamil: 'தொழில் தேர்வு (டிரேட்ஸ்மேன் மட்டும்)', subtopics: ['Practical test in chosen trade', 'Trades: Cook, Water Carrier, Washer, Barber, Sweeper, Cobbler, Tailor, Carpenter, Painter, Plumber, Electrician, etc.'] }
+          ]
+        }
+      ]
+    },
+    pyq: [
+      { id: 'cisf-gk-1', question: 'CISF stands for:', questionTamil: 'CISF என்பதன் விரிவாக்கம்:', options: ['Central Industrial Security Force', 'Central Internal Security Force', 'Central Intelligence Security Force', 'Central Indian Security Force'], optionsTamil: ['மத்திய தொழிலக பாதுகாப்புப் படை', 'மத்திய உள்நாட்டு பாதுகாப்புப் படை', 'மத்திய புலனாய்வு பாதுகாப்புப் படை', 'மத்திய இந்திய பாதுகாப்புப் படை'], answer: 0, explanation: 'CISF = Central Industrial Security Force, established on 10 March 1969 under the CISF Act 1968', explanationTamil: 'CISF = மத்திய தொழிலக பாதுகாப்புப் படை, 1969 மார்ச் 10 அன்று CISF சட்டம் 1968 இன் கீழ் நிறுவப்பட்டது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'cisf-gk-2', question: 'CISF is primarily responsible for the security of:', questionTamil: 'CISF முதன்மையாக எதன் பாதுகாப்பிற்கு பொறுப்பு:', options: ['Airports, Metro, Government buildings', 'International borders', 'VIP security only', 'Maritime security'], optionsTamil: ['விமான நிலையங்கள், மெட்ரோ, அரசு கட்டிடங்கள்', 'சர்வதேச எல்லைகள்', 'VIP பாதுகாப்பு மட்டும்', 'கடல் பாதுகாப்பு'], answer: 0, explanation: 'CISF guards 356+ industrial units, airports (67), government buildings, nuclear plants, metro systems (Delhi, Mumbai, Kolkata), and more', explanationTamil: 'CISF 356+ தொழில் நிறுவனங்கள், 67 விமான நிலையங்கள், அரசு கட்டிடங்கள், அணு உலைகள், மெட்ரோ போன்றவற்றைப் பாதுகாக்கிறது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'cisf-gk-3', question: 'CISF was established in which year?', questionTamil: 'CISF எந்த ஆண்டு நிறுவப்பட்டது?', options: ['1969', '1965', '1947', '1972'], optionsTamil: ['1969', '1965', '1947', '1972'], answer: 0, explanation: 'CISF was raised on 10 March 1969 with just 3 battalions. Today it has 180,000+ personnel.', explanationTamil: 'CISF 1969 மார்ச் 10 அன்று வெறும் 3 பட்டாலியன்களுடன் தொடங்கியது. இன்று 1,80,000+ வீரர்கள் உள்ளனர்.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'cisf-gk-4', question: 'The motto of CISF is:', questionTamil: 'CISF இன் குறிக்கோள்:', options: ['Protection and Security', 'Duty Unto Death', 'Service Before Self', 'Sentinel Always'], optionsTamil: ['பாதுகாப்பு மற்றும் காவல்', 'கடமை இறுதிவரை', 'சேவை முதலில்', 'எப்போதும் காவல்'], answer: 0, explanation: 'The motto of CISF is "Protection and Security" (Suraksha Aur Sanrakshan)', explanationTamil: 'CISF இன் குறிக்கோள் "பாதுகாப்பு மற்றும் காவல்" (சுரக்ஷா ஔர் சன்ரக்ஷண்)', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'cisf-math-1', question: 'If 20% of a number is 80, the number is:', questionTamil: 'ஒரு எண்ணின் 20% 80 எனில், அந்த எண்:', options: ['400', '200', '320', '160'], optionsTamil: ['400', '200', '320', '160'], answer: 0, explanation: '20% × N = 80 → N = 80 × 100/20 = 400', explanationTamil: '20% × N = 80 → N = 80 × 100/20 = 400', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'cisf-math-2', question: 'The average of 5 numbers is 20. If one number is excluded, the average becomes 18. The excluded number is:', questionTamil: '5 எண்களின் சராசரி 20. ஒரு எண் நீக்கப்பட்டால், சராசரி 18 ஆகிறது. நீக்கப்பட்ட எண்:', options: ['28', '24', '20', '32'], optionsTamil: ['28', '24', '20', '32'], answer: 0, explanation: 'Sum of 5 numbers = 5 × 20 = 100. Sum of 4 numbers = 4 × 18 = 72. Excluded number = 100 - 72 = 28', explanationTamil: '5 எண்களின் கூட்டு = 100. 4 எண்களின் கூட்டு = 72. நீக்கப்பட்ட எண் = 100 - 72 = 28', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'cisf-reason-1', question: 'If PENCIL is coded as QFODJM, then ERASER is coded as:', questionTamil: 'PENCIL என்பது QFODJM என குறியிடப்பட்டால், ERASER என்பது:', options: ['FSBTFS', 'FTBTFS', 'FSBSFS', 'FSBTFT'], optionsTamil: ['FSBTFS', 'FTBTFS', 'FSBSFS', 'FSBTFT'], answer: 0, explanation: 'Each letter shifts +1: E→F, R→S, A→B, S→T, E→F, R→S = FSBTFS', explanationTamil: 'ஒவ்வொரு எழுத்தும் +1 மாறும்: E→F, R→S, A→B, S→T, E→F, R→S = FSBTFS', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'cisf-eng-1', question: 'Choose the antonym of "Abundant":', questionTamil: '"Abundant" என்ற சொல்லின் எதிர்ச்சொல்:', options: ['Scarce', 'Plentiful', 'Ample', 'Sufficient'], optionsTamil: ['பற்றாக்குறையான', 'நிரம்பிய', 'ஏராளமான', 'போதுமான'], answer: 0, explanation: 'Abundant means existing in large quantities. Scarce means insufficient or in short supply — the opposite.', explanationTamil: 'Abundant என்றால் ஏராளமான. Scarce என்றால் பற்றாக்குறை — இது எதிர்ச்சொல்.', subject: 'English', difficulty: 'easy' }
+    ]
   }
 ];
 
