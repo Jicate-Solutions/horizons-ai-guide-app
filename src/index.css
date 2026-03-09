@@ -153,39 +153,38 @@
 
   html {
     scroll-behavior: smooth;
-  }
-
-  body {
-    @apply text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
     min-height: 100vh;
+    /* ═══ THE GLOBAL BACKGROUND ═══ 
+       Applied on html so it's behind EVERYTHING.
+       Green-cream gradient with golden warmth. */
     background: 
-      linear-gradient(135deg, 
-        hsl(150 30% 97%) 0%, 
-        hsl(140 20% 96%) 20%, 
-        hsl(45 40% 97%) 40%, 
-        hsl(150 25% 96%) 60%, 
-        hsl(140 20% 97%) 80%, 
-        hsl(150 30% 97%) 100%
+      linear-gradient(160deg, 
+        #e8f5e9 0%,     /* light green */
+        #f1f8e9 18%,    /* lime tint */
+        #fffde7 35%,    /* warm cream */
+        #f9fbe7 50%,    /* yellow-green */
+        #e8f5e9 65%,    /* green again */
+        #fff8e1 80%,    /* golden cream */
+        #e8f5e9 100%    /* back to green */
       );
     background-attachment: fixed;
   }
 
-  /* Branded accent line at very top */
-  body::before {
+  /* ═══ BRANDED TOP ACCENT LINE ═══ */
+  html::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, hsl(153 79% 22%), hsl(44 100% 50%), hsl(153 79% 22%));
+    background: linear-gradient(90deg, #0b6641, #f59e0b, #0b6641);
     z-index: 10000;
     pointer-events: none;
   }
 
-  /* Ambient glow spots behind content */
-  body::after {
+  /* ═══ AMBIENT GLOW SPOTS ═══ */
+  html::after {
     content: '';
     position: fixed;
     top: 0;
@@ -193,10 +192,18 @@
     right: 0;
     bottom: 0;
     background:
-      radial-gradient(ellipse 600px 400px at 5% 10%, hsl(153 60% 85% / 0.3), transparent),
-      radial-gradient(ellipse 500px 500px at 90% 85%, hsl(44 80% 88% / 0.25), transparent);
+      radial-gradient(ellipse 50% 40% at 5% 10%, rgba(76, 175, 80, 0.15), transparent),
+      radial-gradient(ellipse 50% 50% at 92% 88%, rgba(255, 193, 7, 0.12), transparent),
+      radial-gradient(ellipse 40% 35% at 50% 50%, rgba(129, 199, 132, 0.08), transparent);
     pointer-events: none;
     z-index: 0;
+  }
+
+  body {
+    @apply text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background: transparent; /* Let html background show through */
   }
 
   #root {
@@ -205,7 +212,8 @@
     min-height: 100vh;
   }
 
-  /* Subtle dot grid overlay — visible on all pages */
+  /* ═══ DOT GRID PATTERN OVERLAY ═══
+     Visible on ALL pages, sits above content */
   #root::after {
     content: '';
     position: fixed;
@@ -213,11 +221,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: radial-gradient(circle at 1px 1px, hsl(153 30% 75% / 0.12) 1px, transparent 0);
-    background-size: 32px 32px;
+    background-image: radial-gradient(circle at 1px 1px, rgba(46, 125, 50, 0.07) 1px, transparent 0);
+    background-size: 28px 28px;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: multiply;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -227,6 +234,25 @@
   .font-tamil {
     font-family: 'Noto Sans Tamil', sans-serif;
   }
+}
+
+/* ═══ FORCE PAGE WRAPPERS TO BE TRANSPARENT ═══
+   Pages use bg-background, bg-[#F5F5F5], bg-white etc. which 
+   cover the html gradient. Override ONLY page-level containers. */
+div.min-h-screen[class*="bg-background"],
+div.min-h-screen[class*="bg-white"],
+div.min-h-screen[class*="bg-gray"],
+div.min-h-screen[class*="bg-slate"],
+div.min-h-screen[class*="bg-muted"],
+div.min-h-screen[class*="F5F5F5"] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Keep gradient page backgrounds but make them semi-transparent 
+   so the html background blends through */
+div.min-h-screen[class*="bg-gradient"] {
+  opacity: 1;
 }
 
 @layer components {
