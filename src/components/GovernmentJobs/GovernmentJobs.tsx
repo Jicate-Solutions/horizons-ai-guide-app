@@ -198,11 +198,11 @@ export const GovernmentJobs = () => {
 
       {/* ══════════ EXAM CARDS ══════════ */}
       {filtered.length === 0 ? (
-        <div className="py-20 text-center bg-white rounded-2xl border border-slate-100">
-          <Search className="w-12 h-12 text-slate-200 mx-auto mb-4" />
-          <p className="text-base text-slate-500 font-medium">{ta ? 'தேர்வுகள் கிடைக்கவில்லை' : 'No exams match your filters'}</p>
+        <div className="py-16 text-center bg-white rounded-2xl border border-slate-100">
+          <Search className="w-10 h-10 text-slate-200 mx-auto mb-3" />
+          <p className="text-sm text-slate-500 font-medium">{ta ? 'தேர்வுகள் கிடைக்கவில்லை' : 'No exams match your filters'}</p>
           <button onClick={() => { setSearch(''); setActiveCat('all'); setActiveStatus('all'); }}
-            className="text-sm text-amber-600 font-bold mt-3 hover:underline">
+            className="text-sm text-amber-600 font-bold mt-2 hover:underline">
             {ta ? 'வடிகட்டிகளை அழி' : 'Reset all filters'}
           </button>
         </div>
@@ -214,6 +214,9 @@ export const GovernmentJobs = () => {
             const isSaved = savedSet.has(exam.id);
             const isOpen = exam.applicationStatus === 'open';
             const isUpcoming = exam.applicationStatus === 'upcoming';
+            const nextDate = exam.nextExamDate
+              ? new Date(exam.nextExamDate).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+              : null;
 
             return (
               <motion.div
@@ -224,121 +227,113 @@ export const GovernmentJobs = () => {
               >
                 <div className="bg-white rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-lg transition-all duration-200 overflow-hidden">
 
-                  {/* status bar */}
+                  {/* ── Top Color Bar ── */}
                   <div className={cn("h-1.5", isOpen ? 'bg-emerald-500' : isUpcoming ? 'bg-amber-400' : 'bg-slate-200')} />
 
                   <div className="p-5">
-                    {/* ── Header Row ── */}
-                    <div className="flex items-start gap-4">
-                      <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shrink-0", cfg.cardBg)}>
-                        <Icon className={cn("w-6 h-6", cfg.cardIcon)} />
+                    {/* ── Row 1: Icon + Name + Status + Save ── */}
+                    <div className="flex items-start gap-3">
+                      <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center shrink-0", cfg.cardBg)}>
+                        <Icon className={cn("w-5 h-5", cfg.cardIcon)} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-bold text-slate-800 leading-snug">{exam.name}</h3>
-                        <p className="text-sm text-slate-400 font-tamil mt-0.5">{exam.nameTamil}</p>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className="text-sm font-extrabold text-slate-800 leading-snug">{exam.name}</h3>
+                          {isOpen && <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wide">{ta ? 'திறப்பு' : 'Open'}</span>}
+                          {isUpcoming && <span className="px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-wide">{ta ? 'விரைவில்' : 'Upcoming'}</span>}
+                          {!isOpen && !isUpcoming && <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 text-[10px] font-bold uppercase tracking-wide">{ta ? 'முடிவு' : 'Closed'}</span>}
+                        </div>
+                        <p className="text-xs text-slate-400 mt-0.5">{exam.nameTamil}</p>
                       </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        {isOpen && (
-                          <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
-                            {ta ? 'திறப்பு' : 'Open'}
-                          </span>
-                        )}
-                        {isUpcoming && (
-                          <span className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold">
-                            {ta ? 'விரைவில்' : 'Upcoming'}
-                          </span>
-                        )}
-                        {!isOpen && !isUpcoming && (
-                          <span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">
-                            {ta ? 'முடிவு' : 'Closed'}
-                          </span>
-                        )}
-                        <button onClick={() => toggleSave(exam.id)} className={cn(
-                          "p-2 rounded-xl transition-all",
-                          isSaved ? "text-amber-500 bg-amber-50" : "text-slate-300 hover:text-amber-400 hover:bg-slate-50"
-                        )}>
-                          <Bookmark className={cn("w-5 h-5", isSaved && "fill-current")} />
-                        </button>
+                      <button onClick={() => toggleSave(exam.id)} className={cn(
+                        "p-2 rounded-lg transition-all shrink-0",
+                        isSaved ? "text-amber-500 bg-amber-50" : "text-slate-300 hover:text-amber-400 hover:bg-slate-50"
+                      )}>
+                        <Bookmark className={cn("w-4 h-4", isSaved && "fill-current")} />
+                      </button>
+                    </div>
+
+                    {/* ── Row 2: Description ── */}
+                    <p className="text-xs text-slate-500 mt-2.5 leading-relaxed">{exam.description}</p>
+
+                    {/* ── Row 3: 4-column Info Strip (aligned) ── */}
+                    <div className="grid grid-cols-4 gap-0 mt-4 bg-slate-50 rounded-xl overflow-hidden border border-slate-100">
+                      <div className="p-2.5 text-center border-r border-slate-100">
+                        <Banknote className="w-4 h-4 text-emerald-500 mx-auto mb-1" />
+                        <p className="text-[10px] text-slate-400 font-medium">{ta ? 'சம்பளம்' : 'Salary'}</p>
+                        <p className="text-xs font-bold text-slate-700 mt-0.5">{fmt(exam.salaryMin)}</p>
+                        <p className="text-[10px] text-slate-400">– {fmt(exam.salaryMax)}</p>
+                      </div>
+                      <div className="p-2.5 text-center border-r border-slate-100">
+                        <Users className="w-4 h-4 text-blue-500 mx-auto mb-1" />
+                        <p className="text-[10px] text-slate-400 font-medium">{ta ? 'வயது' : 'Age'}</p>
+                        <p className="text-xs font-bold text-slate-700 mt-0.5">{exam.ageMin}–{exam.ageMax}</p>
+                        <p className="text-[10px] text-slate-400">{ta ? 'வயது' : 'years'}</p>
+                      </div>
+                      <div className="p-2.5 text-center border-r border-slate-100">
+                        <GraduationCap className="w-4 h-4 text-violet-500 mx-auto mb-1" />
+                        <p className="text-[10px] text-slate-400 font-medium">{ta ? 'தகுதி' : 'Education'}</p>
+                        <p className="text-xs font-bold text-slate-700 mt-0.5 leading-tight">{exam.qualification}</p>
+                      </div>
+                      <div className="p-2.5 text-center">
+                        <Calendar className="w-4 h-4 text-rose-500 mx-auto mb-1" />
+                        <p className="text-[10px] text-slate-400 font-medium">{ta ? 'தேர்வு' : 'Exam'}</p>
+                        <p className="text-xs font-bold text-slate-700 mt-0.5">{nextDate || (ta ? 'TBA' : 'TBA')}</p>
                       </div>
                     </div>
 
-                    {/* ── Description ── */}
-                    <p className="text-sm text-slate-500 mt-3 leading-relaxed">{exam.description}</p>
-
-                    {/* ── Key Info Grid ── */}
-                    <div className="grid grid-cols-2 gap-2.5 mt-4">
-                      <div className="flex items-center gap-2.5 bg-emerald-50 rounded-xl px-3 py-2.5">
-                        <Banknote className="w-5 h-5 text-emerald-600 shrink-0" />
-                        <div>
-                          <p className="text-xs text-emerald-600 font-medium">{ta ? 'சம்பளம்' : 'Salary'}</p>
-                          <p className="text-sm font-bold text-emerald-800">{fmt(exam.salaryMin)} – {fmt(exam.salaryMax)}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2.5 bg-blue-50 rounded-xl px-3 py-2.5">
-                        <Users className="w-5 h-5 text-blue-600 shrink-0" />
-                        <div>
-                          <p className="text-xs text-blue-600 font-medium">{ta ? 'வயது' : 'Age Limit'}</p>
-                          <p className="text-sm font-bold text-blue-800">{exam.ageMin} – {exam.ageMax} {ta ? 'வயது' : 'years'}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2.5 bg-violet-50 rounded-xl px-3 py-2.5">
-                        <GraduationCap className="w-5 h-5 text-violet-600 shrink-0" />
-                        <div>
-                          <p className="text-xs text-violet-600 font-medium">{ta ? 'தகுதி' : 'Qualification'}</p>
-                          <p className="text-sm font-bold text-violet-800">{exam.qualification}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2.5 bg-rose-50 rounded-xl px-3 py-2.5">
-                        <Calendar className="w-5 h-5 text-rose-600 shrink-0" />
-                        <div>
-                          <p className="text-xs text-rose-600 font-medium">{ta ? 'அடுத்த தேர்வு' : 'Next Exam'}</p>
-                          <p className="text-sm font-bold text-rose-800">
-                            {exam.nextExamDate
-                              ? new Date(exam.nextExamDate).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })
-                              : (ta ? 'அறிவிக்கப்படும்' : 'To Be Announced')}
-                          </p>
-                        </div>
-                      </div>
+                    {/* ── Row 4: Exam Pattern + Selection Process ── */}
+                    <div className="flex items-center gap-2 mt-3 flex-wrap">
+                      {exam.examPattern && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 text-[11px] font-semibold">
+                          <Target className="w-3 h-3" /> {exam.examPattern}
+                        </span>
+                      )}
+                      {exam.selectionProcess && exam.selectionProcess.length > 0 && (
+                        <span className="text-[11px] text-slate-400">
+                          {exam.selectionProcess.join(' → ')}
+                        </span>
+                      )}
                     </div>
 
-                    {/* ── Posts ── */}
+                    {/* ── Row 5: Available Posts ── */}
                     {exam.posts && exam.posts.length > 0 && (
                       <div className="mt-3">
-                        <p className="text-xs text-slate-400 font-semibold mb-1.5">{ta ? 'பதவிகள்' : 'AVAILABLE POSTS'}</p>
+                        <p className="text-[10px] text-slate-400 font-bold tracking-wider uppercase mb-1.5">{ta ? 'பதவிகள்' : 'Available Posts'}</p>
                         <div className="flex flex-wrap gap-1.5">
                           {exam.posts.map((p, i) => (
-                            <span key={i} className="text-xs font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg">{p}</span>
+                            <span key={i} className="text-[11px] font-medium text-slate-600 bg-slate-50 border border-slate-150 px-2 py-0.5 rounded-md">{p}</span>
                           ))}
                         </div>
                       </div>
                     )}
 
-                    {/* ── Action Buttons ── */}
-                    <div className="flex gap-3 mt-5">
+                    {/* ── Row 6: Action Buttons ── */}
+                    <div className="flex gap-2.5 mt-4">
                       {isOpen ? (
                         <a href={exam.applyLink} target="_blank" rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold transition-colors shadow-sm">
-                          <ExternalLink className="w-4 h-4" />
-                          {ta ? 'இப்போது விண்ணப்பி' : 'Apply Now'}
+                          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold transition-colors shadow-sm">
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          {ta ? 'விண்ணப்பி' : 'Apply Now'}
                         </a>
                       ) : isUpcoming ? (
                         <a href={exam.applyLink} target="_blank" rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold transition-colors">
-                          <Clock className="w-4 h-4" />
-                          {ta ? 'அதிகாரப்பூர்வ தளம்' : 'Visit Official Site'}
+                          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold transition-colors">
+                          <Clock className="w-3.5 h-3.5" />
+                          {ta ? 'அதிகாரப்பூர்வ தளம்' : 'Official Site'}
                         </a>
                       ) : (
-                        <div className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-100 text-slate-400 text-sm font-bold cursor-default">
+                        <div className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-slate-50 text-slate-400 text-sm font-semibold cursor-default border border-slate-100">
                           {ta ? 'விண்ணப்பம் மூடப்பட்டது' : 'Applications Closed'}
                         </div>
                       )}
 
                       <button
                         onClick={() => navigate(`/government-exams/${exam.category}/${exam.id}`)}
-                        className="flex items-center gap-1.5 px-5 py-3 rounded-xl border-2 border-slate-200 hover:border-slate-400 hover:bg-slate-50 text-sm font-bold text-slate-700 transition-all"
+                        className="flex items-center gap-1 px-4 py-2.5 rounded-xl border-2 border-slate-200 hover:border-slate-400 hover:bg-slate-50 text-sm font-bold text-slate-700 transition-all"
                       >
-                        {ta ? 'பாடத்திட்டம் & PYQ' : 'Syllabus & PYQ'}
-                        <ChevronRight className="w-4 h-4" />
+                        📚 {ta ? 'Syllabus' : 'Syllabus'}
+                        <ChevronRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
