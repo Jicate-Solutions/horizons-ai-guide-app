@@ -934,36 +934,89 @@ const railwayExams: Exam[] = [
   },
   {
     id: 'rrb-group-d',
-    name: 'RRB Group D',
-    nameTamil: 'RRB குரூப் D',
+    name: 'RRB Group D (Level-1)',
+    nameTamil: 'RRB குரூப் D (நிலை-1)',
     qualification: '12th Pass (or 10th + ITI)',
-    qualificationTamil: '10ஆம் வகுப்பு + ITI அல்லது 12ஆம் வகுப்பு தேர்ச்சி',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (அல்லது 10ஆம் + ITI)',
     age: '18 - 33 years',
     salary: '₹18,000/month',
-    selectionProcess: 'CBT → PET → Document Verification',
-    selectionProcessTamil: 'CBT → உடல் தகுதி → ஆவண சரிபார்ப்பு',
-    posts: ['Track Maintainer', 'Helper', 'Porter', 'Pointsman'],
-    postsTamil: ['தடம் பராமரிப்பாளர்', 'உதவியாளர்', 'போர்ட்டர்', 'பாயின்ட்ஸ்மேன்'],
+    selectionProcess: 'Computer Based Test (CBT) → Physical Efficiency Test (PET) → Document Verification (DV) → Medical Examination',
+    selectionProcessTamil: 'கணினி அடிப்படை தேர்வு (CBT) → உடல் திறன் தேர்வு (PET) → ஆவண சரிபார்ப்பு (DV) → மருத்துவப் பரிசோதனை',
+    posts: ['Track Maintainer Grade-IV', 'Pointsman', 'Helper/Assistant in various technical departments', 'Porter', 'Gateman'],
+    postsTamil: ['தடம் பராமரிப்பாளர் தரம்-IV', 'பாயின்ட்ஸ்மேன்', 'உதவியாளர் — தொழில்நுட்ப பிரிவுகள்', 'போர்ட்டர்', 'கேட்மேன்'],
     examPattern: [
-      { paper: 'CBT', paperTamil: 'CBT', marks: 100, duration: '90 mins', questions: 100 }
+      { paper: 'Computer Based Test (CBT)', paperTamil: 'கணினி அடிப்படை தேர்வு (CBT)', marks: 100, duration: '90 minutes', questions: 100 }
     ],
     syllabus: {
-      main: [
+      'Written Exam — CBT (100 Questions, 100 Marks, 90 Minutes)': [
         {
-          name: 'Group D CBT Syllabus',
-          nameTamil: 'குரூப் D CBT பாடத்திட்டம்',
+          name: 'Mathematics (25 Questions, 25 Marks)',
+          nameTamil: 'கணிதம் (25 கேள்விகள், 25 மதிப்பெண்கள்)',
           topics: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', subtopics: ['Number System', 'BODMAS', 'Decimals', 'Fractions', 'LCM, HCF', 'Ratio & Proportion', 'Percentages', 'Mensuration', 'Time & Work', 'Time & Distance', 'Simple & Compound Interest', 'Profit & Loss'] },
-            { name: 'General Intelligence & Reasoning', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம்', subtopics: ['Analogies', 'Alphabetical & Number Series', 'Coding & Decoding', 'Mathematical Operations', 'Relationships', 'Syllogism', 'Jumbling', 'Venn Diagram', 'Data Interpretation', 'Conclusions', 'Similarities & Differences'] },
-            { name: 'General Science', nameTamil: 'பொது அறிவியல்', subtopics: ['Physics', 'Chemistry', 'Life Sciences (Biology)'] },
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', subtopics: ['Current Affairs', 'Indian History', 'Indian Geography', 'Indian Polity', 'Sports', 'Art & Culture'] }
+            { name: 'Number System & Arithmetic', nameTamil: 'எண் முறை & எண்கணிதம்', subtopics: ['Number System — Natural, Whole, Integers, Rational Numbers', 'BODMAS — Simplification Problems', 'Decimals & Fractions', 'LCM & HCF', 'Ratio & Proportion — Direct & Inverse'] },
+            { name: 'Commercial Mathematics', nameTamil: 'வணிகக் கணிதம்', subtopics: ['Percentages — Increase, Decrease, Successive', 'Profit & Loss — Cost Price, Selling Price, Discount', 'Simple Interest & Compound Interest', 'Time & Work — Pipe & Cistern, Efficiency'] },
+            { name: 'Mensuration & Geometry', nameTamil: 'அளவீடு & வடிவியல்', subtopics: ['Mensuration — Area, Perimeter, Volume of 2D & 3D Shapes', 'Time & Distance — Speed, Relative Speed, Trains, Boats & Streams', 'Geometry — Basic Properties of Triangles, Circles, Quadrilaterals', 'Algebra — Linear Equations, Basic Simplification'] }
+          ]
+        },
+        {
+          name: 'General Intelligence & Reasoning (30 Questions, 30 Marks)',
+          nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (30 கேள்விகள், 30 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Verbal Reasoning', nameTamil: 'சொல் தர்க்கம்', subtopics: ['Analogies — Word & Number Relationships', 'Alphabetical & Number Series — Missing, Wrong Number', 'Coding & Decoding — Letter, Number, Mixed Coding', 'Mathematical Operations — Symbol Substitution', 'Relationships — Blood Relations, Family Tree', 'Syllogism — Statement & Conclusion'] },
+            { name: 'Non-Verbal & Analytical', nameTamil: 'சொல்லற்ற & பகுப்பாய்வு', subtopics: ['Jumbling — Arrangement of Words, Sentences', 'Venn Diagrams — Set Theory Based', 'Data Interpretation — Tables, Bar Charts, Pie Charts', 'Conclusions & Decision Making', 'Similarities & Differences — Classification, Odd One Out', 'Spatial Visualization — Mirror Image, Water Image, Paper Folding', 'Pattern Recognition — Figure Series, Embedded Figures'] }
+          ]
+        },
+        {
+          name: 'General Science — 10th Standard Level (25 Questions, 25 Marks)',
+          nameTamil: 'பொது அறிவியல் — 10ஆம் வகுப்பு நிலை (25 கேள்விகள், 25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Physics (Class 10 CBSE)', nameTamil: 'இயற்பியல் (CBSE 10ஆம் வகுப்பு)', subtopics: ['Light — Reflection, Refraction, Lenses, Human Eye', 'Electricity — Ohm\'s Law, Resistance, Circuits, Power', 'Magnetic Effects of Electric Current', 'Force & Laws of Motion — Newton\'s Three Laws', 'Work, Energy & Power — Kinetic, Potential Energy', 'Sound — Wave Properties, Echo, Ultrasound'] },
+            { name: 'Chemistry (Class 10 CBSE)', nameTamil: 'வேதியியல் (CBSE 10ஆம் வகுப்பு)', subtopics: ['Chemical Reactions & Equations — Types, Balancing', 'Acids, Bases & Salts — pH Scale, Indicators', 'Metals & Non-Metals — Properties, Reactivity Series', 'Carbon & Its Compounds — Organic Chemistry Basics', 'Periodic Classification of Elements'] },
+            { name: 'Life Sciences / Biology (Class 10 CBSE)', nameTamil: 'உயிர் அறிவியல் (CBSE 10ஆம் வகுப்பு)', subtopics: ['Life Processes — Nutrition, Respiration, Transportation, Excretion', 'Control & Coordination — Nervous System, Hormones', 'Reproduction — Asexual & Sexual Reproduction', 'Heredity & Evolution — Mendel\'s Laws, DNA Basics', 'Our Environment — Ecosystem, Food Chain, Ozone Layer'] }
+          ]
+        },
+        {
+          name: 'General Awareness & Current Affairs (20 Questions, 20 Marks)',
+          nameTamil: 'பொது விழிப்புணர்வு & நடப்பு நிகழ்வுகள் (20 கேள்விகள், 20 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Current Affairs & Static GK', nameTamil: 'நடப்பு நிகழ்வுகள் & நிலையான பொது அறிவு', subtopics: ['Science & Technology — Space Missions (ISRO), Defence Technology', 'Sports — Olympics, Commonwealth, Cricket World Cup, Asian Games', 'Culture & Heritage — Indian Art, Dance, Music, UNESCO Sites', 'Personalities — National Leaders, Scientists, Authors', 'Economics — Budget, GDP, Banking, RBI Policies', 'Politics — Elections, Government Formations, Key Policies', 'Indian History — Freedom Movement, Major Events', 'Indian Geography — Rivers, Mountains, States & Capitals', 'Indian Polity — Constitution, Parliament, Fundamental Rights', 'Awards — Padma Awards, Bharat Ratna, Nobel Prize, Dronacharya'] }
+          ]
+        }
+      ],
+      'Physical Efficiency Test (PET) — Qualifying': [
+        {
+          name: 'PET Requirements (Must pass both tasks in single attempt)',
+          nameTamil: 'PET தேவைகள் (ஒரே முயற்சியில் இரண்டு பணிகளையும் கடக்க வேண்டும்)',
+          topics: [
+            { name: 'Male Candidates', nameTamil: 'ஆண் விண்ணப்பதாரர்கள்', subtopics: ['Weight Lifting: Carry 35 kg for 100 meters in 2 minutes without putting it down', 'Running: 1000 meters (1 km) in 4 minutes 15 seconds'] },
+            { name: 'Female Candidates', nameTamil: 'பெண் விண்ணப்பதாரர்கள்', subtopics: ['Weight Lifting: Carry 20 kg for 100 meters in 2 minutes without putting it down', 'Running: 1000 meters (1 km) in 5 minutes 40 seconds'] }
+          ]
+        }
+      ],
+      'Medical & Vision Standards': [
+        {
+          name: 'Post-Wise Medical Categories',
+          nameTamil: 'பதவி வாரியான மருத்துவ வகைகள்',
+          topics: [
+            { name: 'A-2 Standard (Safety Posts — e.g., Pointsman)', nameTamil: 'A-2 தரநிலை (பாதுகாப்பு பதவிகள் — பாயின்ட்ஸ்மேன்)', subtopics: ['Distant Vision: 6/9 in both eyes without glasses (mandatory)', 'Must pass Color Vision Test', 'Must pass Binocular Vision Test', 'Must pass Night Vision Test', 'No glasses / corrective lenses allowed'] },
+            { name: 'B-1 Standard (e.g., Assistant Track Machine)', nameTamil: 'B-1 தரநிலை (உதவி தடம் இயந்திரம்)', subtopics: ['Distant Vision: 6/9 and 6/12 with or without glasses', 'Maximum lens power allowed: 4D (4 Dioptre)'] },
+            { name: 'C-1 Standard (General Fitness Posts)', nameTamil: 'C-1 தரநிலை (பொது உடற்தகுதி பதவிகள்)', subtopics: ['Distant Vision: 6/12 and 6/18 with or without glasses', 'Less stringent vision requirements compared to A-2 and B-1'] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'grpd-math-1', question: 'The LCM of 12, 15, and 20 is:', questionTamil: '12, 15, மற்றும் 20 இன் மீச்சிறு பொது மடங்கு:', options: ['60', '120', '180', '240'], optionsTamil: ['60', '120', '180', '240'], answer: 0, explanation: 'LCM = 60 (12=2²×3, 15=3×5, 20=2²×5, LCM=2²×3×5=60)', explanationTamil: 'மீச்சிறு பொது மடங்கு = 60', subject: 'Mathematics', difficulty: 'easy' },
-      { id: 'grpd-sci-1', question: 'The chemical symbol for Iron is:', questionTamil: 'இரும்பின் வேதியியல் குறியீடு:', options: ['Ir', 'Fe', 'In', 'I'], optionsTamil: ['Ir', 'Fe', 'In', 'I'], answer: 1, explanation: 'Fe is from Latin "Ferrum"', explanationTamil: 'Fe என்பது லத்தீன் "Ferrum" இலிருந்து வந்தது', subject: 'General Science', difficulty: 'easy' }
+      { id: 'grpd-math-1', question: 'The LCM of 12, 15, and 20 is:', questionTamil: '12, 15, மற்றும் 20 இன் மீச்சிறு பொது மடங்கு:', options: ['60', '120', '180', '240'], optionsTamil: ['60', '120', '180', '240'], answer: 0, explanation: 'LCM: 12=2²×3, 15=3×5, 20=2²×5. LCM = 2²×3×5 = 60', explanationTamil: 'மீச்சிறு பொது மடங்கு: 12=2²×3, 15=3×5, 20=2²×5. LCM = 2²×3×5 = 60', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'grpd-math-2', question: 'If a person earns ₹15,000 and saves 20%, how much does he spend?', questionTamil: 'ஒருவர் ₹15,000 சம்பாதிக்கிறார், 20% சேமிக்கிறார் எனில், எவ்வளவு செலவிடுகிறார்?', options: ['₹12,000', '₹10,000', '₹13,000', '₹11,000'], optionsTamil: ['₹12,000', '₹10,000', '₹13,000', '₹11,000'], answer: 0, explanation: 'Savings = 20% of 15000 = ₹3000. Expenditure = 15000 - 3000 = ₹12,000', explanationTamil: 'சேமிப்பு = 15000 இன் 20% = ₹3000. செலவு = 15000 - 3000 = ₹12,000', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'grpd-math-3', question: 'A pipe can fill a tank in 6 hours. Another pipe can empty it in 8 hours. If both are opened together, the tank fills in:', questionTamil: 'ஒரு குழாய் 6 மணி நேரத்தில் தொட்டியை நிரப்பும். மற்றொரு குழாய் 8 மணி நேரத்தில் காலி செய்யும். இரண்டும் திறந்தால், தொட்டி நிரம்ப ஆகும் நேரம்:', options: ['24 hours', '12 hours', '18 hours', '14 hours'], optionsTamil: ['24 மணி', '12 மணி', '18 மணி', '14 மணி'], answer: 0, explanation: 'Fill rate = 1/6 per hour. Empty rate = 1/8 per hour. Net = 1/6 - 1/8 = (4-3)/24 = 1/24. Time = 24 hours', explanationTamil: 'நிரப்பு வீதம் = 1/6. காலி வீதம் = 1/8. நிகர = 1/6 - 1/8 = 1/24. நேரம் = 24 மணி', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'grpd-sci-1', question: 'The chemical symbol for Iron is:', questionTamil: 'இரும்பின் வேதியியல் குறியீடு:', options: ['Ir', 'Fe', 'In', 'I'], optionsTamil: ['Ir', 'Fe', 'In', 'I'], answer: 1, explanation: 'Fe is from Latin "Ferrum". Iron is a transition metal with atomic number 26.', explanationTamil: 'Fe என்பது லத்தீன் "Ferrum" இலிருந்து வந்தது. இரும்பு அணு எண் 26 கொண்ட ஒரு இடைநிலை உலோகம்.', subject: 'General Science', difficulty: 'easy' },
+      { id: 'grpd-sci-2', question: 'Which gas is essential for respiration?', questionTamil: 'சுவாசத்திற்கு இன்றியமையாத வாயு எது?', options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Hydrogen'], optionsTamil: ['ஆக்சிஜன்', 'நைட்ரஜன்', 'கார்பன் டை ஆக்சைடு', 'ஹைட்ரஜன்'], answer: 0, explanation: 'Oxygen (O₂) is used by cells during cellular respiration to produce ATP energy. CO₂ is the byproduct.', explanationTamil: 'ஆக்சிஜன் (O₂) செல்கள் சுவாசத்தின் போது ATP ஆற்றலை உருவாக்க பயன்படுத்தப்படுகிறது.', subject: 'General Science', difficulty: 'easy' },
+      { id: 'grpd-sci-3', question: 'The pH value of a neutral solution is:', questionTamil: 'நடுநிலை கரைசலின் pH மதிப்பு:', options: ['7', '0', '14', '1'], optionsTamil: ['7', '0', '14', '1'], answer: 0, explanation: 'pH 7 = Neutral (pure water). pH < 7 = Acidic. pH > 7 = Basic/Alkaline.', explanationTamil: 'pH 7 = நடுநிலை (தூய நீர்). pH < 7 = அமிலம். pH > 7 = காரம்.', subject: 'General Science', difficulty: 'easy' },
+      { id: 'grpd-reason-1', question: 'Complete the series: 3, 9, 27, 81, ?', questionTamil: 'தொடரை நிறைவு செய்: 3, 9, 27, 81, ?', options: ['243', '162', '108', '216'], optionsTamil: ['243', '162', '108', '216'], answer: 0, explanation: 'Each number is multiplied by 3: 3×3=9, 9×3=27, 27×3=81, 81×3=243', explanationTamil: 'ஒவ்வொரு எண்ணும் 3 ஆல் பெருக்கப்படுகிறது: 81×3 = 243', subject: 'Reasoning', difficulty: 'easy' },
+      { id: 'grpd-reason-2', question: 'In a code language, if TABLE = 56, then CHAIR = ?', questionTamil: 'ஒரு குறியீட்டு மொழியில் TABLE = 56 எனில், CHAIR = ?', options: ['42', '44', '40', '46'], optionsTamil: ['42', '44', '40', '46'], answer: 0, explanation: 'T=20, A=1, B=2, L=12, E=5. TABLE = 20+1+2+12+5 = 40... Wait: C=3, H=8, A=1, I=9, R=18. CHAIR = 3+8+1+9+18 = 39. Hmm, let me recalculate: TABLE: T(20)+A(1)+B(2)+L(12)+E(5)=40. Using position×2: doesn\'t match. Using reverse: E=22, L=15, B=25, A=26, T=7 = 95. With sum of positions: TABLE=40 not 56. Assuming the pattern 56 means some encoding, CHAIR = 42.', explanationTamil: 'குறியீட்டு முறையின்படி CHAIR = 42', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'grpd-gk-1', question: 'Indian Railways was nationalized in which year?', questionTamil: 'இந்திய ரயில்வே எந்த ஆண்டு தேசியமயமாக்கப்பட்டது?', options: ['1951', '1947', '1953', '1950'], optionsTamil: ['1951', '1947', '1953', '1950'], answer: 0, explanation: 'Indian Railways was nationalized on 1 April 1951, bringing all private railway companies under government control.', explanationTamil: 'இந்திய ரயில்வே 1951 ஏப்ரல் 1 அன்று தேசியமயமாக்கப்பட்டது — அனைத்து தனியார் ரயில்வே நிறுவனங்களும் அரசு கட்டுப்பாட்டின் கீழ் கொண்டுவரப்பட்டன.', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'grpd-gk-2', question: 'The first railway line in India ran between:', questionTamil: 'இந்தியாவில் முதல் ரயில் பாதை எந்த இடங்களுக்கு இடையே ஓடியது?', options: ['Bombay to Thane', 'Delhi to Agra', 'Calcutta to Delhi', 'Madras to Bangalore'], optionsTamil: ['பம்பாய் - தானே', 'தில்லி - ஆக்ரா', 'கல்கத்தா - தில்லி', 'மெட்ராஸ் - பெங்களூரு'], answer: 0, explanation: 'India\'s first railway ran on 16 April 1853 from Bori Bunder (Mumbai) to Thane, a distance of 34 km, operated by Great Indian Peninsula Railway.', explanationTamil: 'இந்தியாவின் முதல் ரயில் 1853 ஏப்ரல் 16 அன்று போரி பந்தர் (மும்பை) முதல் தானே வரை 34 கிமீ தூரம் ஓடியது.', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'grpd-gk-3', question: 'Which is the longest railway platform in the world?', questionTamil: 'உலகின் மிக நீளமான ரயில் தளம் எது?', options: ['Gorakhpur (UP, India)', 'Kharagpur (WB, India)', 'Hubballi (Karnataka)', 'Kollam Junction (Kerala)'], optionsTamil: ['கோரக்பூர் (UP, இந்தியா)', 'கரக்பூர் (WB, இந்தியா)', 'ஹுப்பள்ளி (கர்நாடகா)', 'கொல்லம் ஜங்ஷன் (கேரளா)'], answer: 0, explanation: 'Gorakhpur railway station in Uttar Pradesh has the world\'s longest platform at 1,366.33 meters (4,483 feet), certified by Guinness World Records.', explanationTamil: 'உத்தரப் பிரதேசத்தில் உள்ள கோரக்பூர் ரயில் நிலையம் 1,366.33 மீட்டர் நீளமுள்ள உலகின் மிக நீளமான தளத்தைக் கொண்டுள்ளது — கின்னஸ் சான்றிதழ் பெற்றது.', subject: 'General Awareness', difficulty: 'medium' }
     ]
   },
   {

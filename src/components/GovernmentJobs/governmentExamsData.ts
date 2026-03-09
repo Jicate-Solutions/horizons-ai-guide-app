@@ -183,7 +183,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'rrb-group-d',
-    name: 'RRB Group D',
+    name: 'RRB Group D (Level-1)',
     nameTamil: 'ரயில்வே குரூப் டி',
     category: 'railway',
     qualification: '12th Pass',
