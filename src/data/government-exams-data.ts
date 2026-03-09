@@ -1246,34 +1246,83 @@ const sscExams: Exam[] = [
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 27 years',
     salary: '₹25,500 - ₹81,100/month',
-    selectionProcess: 'Tier 1 (CBT) → Tier 2 (Descriptive) → Typing Test',
-    selectionProcessTamil: 'நிலை 1 (CBT) → நிலை 2 (விளக்க) → தட்டச்சு சோதனை',
-    posts: ['LDC (Lower Division Clerk)', 'DEO (Data Entry Operator)', 'PA (Postal Assistant)', 'SA (Sorting Assistant)'],
-    postsTamil: ['கீழ் பிரிவு எழுத்தர்', 'தரவு உள்ளீட்டு ஆபரேட்டர்', 'தபால் உதவியாளர்', 'வரிசைப்படுத்தும் உதவியாளர்'],
+    selectionProcess: 'Tier 1 CBT (Qualifying) → Tier 2 CBT (Final Merit — 2 Sessions + Computer Test) → Skill/Typing Test',
+    selectionProcessTamil: 'நிலை 1 CBT (தகுதி) → நிலை 2 CBT (இறுதி தகுதி — 2 அமர்வுகள் + கணினி சோதனை) → திறன்/தட்டச்சு சோதனை',
+    posts: ['LDC/JSA (Lower Division Clerk / Junior Secretariat Assistant)', 'DEO (Data Entry Operator)', 'DEO Grade A (C&AG)', 'PA (Postal Assistant)', 'SA (Sorting Assistant)'],
+    postsTamil: ['கீழ் பிரிவு எழுத்தர் / இளநிலை செயலக உதவியாளர்', 'தரவு உள்ளீட்டு ஆபரேட்டர்', 'DEO தரம் A (C&AG)', 'தபால் உதவியாளர்', 'வரிசைப்படுத்தும் உதவியாளர்'],
     examPattern: [
-      { paper: 'Tier 1 - CBT', paperTamil: 'நிலை 1 - CBT', marks: 200, duration: '60 mins', questions: 100 },
-      { paper: 'Tier 2 - Descriptive', paperTamil: 'நிலை 2 - விளக்க', marks: 200, duration: '60 mins', questions: 2 }
+      { paper: 'Tier 1 - CBT (Qualifying)', paperTamil: 'நிலை 1 - CBT (தகுதிப்படுத்தும்)', marks: 200, duration: '60 mins', questions: 100 },
+      { paper: 'Tier 2 Session 1 - Math & Reasoning', paperTamil: 'நிலை 2 அமர்வு 1 - கணிதம் & தர்க்கம்', marks: 60, duration: '60 mins', questions: 60 },
+      { paper: 'Tier 2 Session 2 - English & GA', paperTamil: 'நிலை 2 அமர்வு 2 - ஆங்கிலம் & பொது அறிவு', marks: 60, duration: '60 mins', questions: 60 },
+      { paper: 'Tier 2 Session 2 - Computer Knowledge', paperTamil: 'நிலை 2 அமர்வு 2 - கணினி அறிவு', marks: 15, duration: 'Included', questions: 15 }
     ],
     syllabus: {
-      tier1: [
+      'Tier 1 — Qualifying CBT (100 Qs, 200 Marks, 60 Minutes)': [
         {
-          name: 'Tier 1 - Computer Based Test (100 Questions, 60 Minutes)',
-          nameTamil: 'நிலை 1 - கணினி அடிப்படை தேர்வு (100 கேள்விகள், 60 நிமிடங்கள்)',
+          name: 'Tier 1 Exam (2 marks/correct, -0.50 per wrong answer)',
+          nameTamil: 'நிலை 1 தேர்வு (சரி: 2 மதிப்பெண், தவறு: -0.50)',
           topics: [
-            { name: 'General Intelligence (25 Questions, 50 Marks)', nameTamil: 'பொது புத்திசாலித்தனம் (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['Semantic Analogy', 'Symbolic/Number Analogy', 'Semantic Classification', 'Symbolic/Number Classification', 'Figural Classification', 'Semantic Series', 'Number Series', 'Figural Series', 'Problem Solving', 'Word Building', 'Coding & Decoding', 'Numerical Operations', 'Trends', 'Space Orientation', 'Venn Diagrams', 'Figural Pattern', 'Embedded Figures', 'Critical Thinking'] },
-            { name: 'English Language (25 Questions, 50 Marks)', nameTamil: 'ஆங்கில மொழி (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['Spot the Error', 'Fill in the Blanks', 'Synonyms', 'Antonyms', 'Spelling/Detecting Misspelt Words', 'Idioms & Phrases', 'One Word Substitution', 'Improvement of Sentences', 'Active/Passive Voice', 'Direct/Indirect Speech', 'Shuffling of Sentence Parts', 'Cloze Passage', 'Comprehension Passage'] },
-            { name: 'Quantitative Aptitude (25 Questions, 50 Marks)', nameTamil: 'அளவு திறன் (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['Number Systems', 'Fundamental Operations', 'Percentages', 'Ratio & Proportion', 'Square Roots', 'Averages', 'Interest', 'Profit & Loss', 'Discount', 'Partnership', 'Mixture & Alligation', 'Time & Distance', 'Time & Work', 'Geometry', 'Mensuration', 'Trigonometry', 'Statistical Charts', 'Data Interpretation'] },
-            { name: 'General Awareness (25 Questions, 50 Marks)', nameTamil: 'பொது விழிப்புணர்வு (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['India & its Neighbours', 'History', 'Culture', 'Geography', 'Economic Scene', 'General Polity', 'Indian Constitution', 'Scientific Research', 'Current Affairs'] }
+            { name: 'General Intelligence / Reasoning (25 Qs, 50 Marks)', nameTamil: 'பொது புத்திசாலித்தனம் / தர்க்கம் (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['Semantic Analogy & Symbolic/Number Analogy', 'Semantic & Symbolic/Number Classification', 'Figural Classification & Series', 'Number Series & Figural Series', 'Problem Solving & Word Building', 'Coding & Decoding — Letter, Number, Mixed', 'Numerical Operations & Trends', 'Space Orientation & Venn Diagrams', 'Figural Pattern & Embedded Figures', 'Critical Thinking & Statement-Conclusion'] },
+            { name: 'English Language (25 Qs, 50 Marks)', nameTamil: 'ஆங்கில மொழி (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['Spot the Error — Sentence Correction', 'Fill in the Blanks', 'Synonyms & Antonyms', 'Spelling / Detecting Misspelt Words', 'Idioms & Phrases — Meaning & Usage', 'One Word Substitution', 'Improvement of Sentences', 'Active/Passive Voice Conversion', 'Direct/Indirect Speech Conversion', 'Shuffling of Sentence Parts', 'Cloze Passage — Fill Blanks in Passage', 'Comprehension Passage'] },
+            { name: 'Quantitative Aptitude (25 Qs, 50 Marks)', nameTamil: 'அளவு திறன் (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['Number Systems & Fundamental Operations', 'Percentages & Square Roots', 'Ratio & Proportion, Averages', 'Interest — Simple & Compound', 'Profit & Loss, Discount', 'Partnership & Mixture/Alligation', 'Time & Distance, Time & Work', 'Geometry — Lines, Triangles, Circles, Quadrilaterals', 'Mensuration — Area, Volume of Basic & Advanced Shapes', 'Trigonometry — Basic Ratios, Heights & Distances', 'Algebra — Linear Equations, Quadratic Equations', 'Statistical Charts & Data Interpretation — Bar, Pie, Line, Table'] },
+            { name: 'General Awareness (25 Qs, 50 Marks)', nameTamil: 'பொது விழிப்புணர்வு (25 கேள்விகள், 50 மதிப்பெண்கள்)', subtopics: ['India & its Neighbouring Countries', 'Indian History — Ancient, Medieval, Modern', 'Culture & Heritage — Art, Dance, Architecture', 'Geography — Physical, Indian, World', 'Economic Scene — Budget, GDP, Policies', 'General Polity — Parliament, President, Judiciary', 'Indian Constitution — Fundamental Rights, DPSP', 'Scientific Research — Space, Defence, Health', 'Current Affairs — Last 6 months National/International'] }
           ]
         }
       ],
-      tier2: [
+      'Tier 2 — Final Merit CBT (Same Day, 2 Sessions)': [
         {
-          name: 'Tier 2 - Descriptive Paper (60 Minutes)',
-          nameTamil: 'நிலை 2 - விளக்க தாள் (60 நிமிடங்கள்)',
+          name: 'Session 1: Mathematical Abilities + Reasoning',
+          nameTamil: 'அமர்வு 1: கணித திறன் + தர்க்கம்',
           topics: [
-            { name: 'Essay Writing (100 Marks)', nameTamil: 'கட்டுரை எழுதுதல் (100 மதிப்பெண்கள்)', subtopics: ['200-250 words on given topics'] },
-            { name: 'Letter/Application Writing (100 Marks)', nameTamil: 'கடிதம்/விண்ணப்பம் எழுதுதல் (100 மதிப்பெண்கள்)', subtopics: ['Formal Letter', 'Informal Letter', 'Application Writing'] }
+            { name: 'Mathematical Abilities (30 Questions)', nameTamil: 'கணித திறன் (30 கேள்விகள்)', subtopics: ['Number Systems — HCF/LCM, Simplification', 'Algebra — Equations, Polynomials', 'Geometry — Congruence, Similarity, Coordinate Geometry', 'Trigonometry — Identities, Heights & Distances', 'Mensuration — 2D & 3D figures', 'Statistics — Mean, Median, Mode, Standard Deviation', 'Data Interpretation — Advanced Charts & Tables'] },
+            { name: 'General Intelligence & Reasoning (30 Questions)', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (30 கேள்விகள்)', subtopics: ['Advanced Analogies & Classification', 'Coding-Decoding — Complex Patterns', 'Seating Arrangement & Scheduling', 'Syllogism — Multi-Statement', 'Blood Relations & Direction Sense', 'Input-Output — Machine Operations', 'Paper Folding, Cutting & Mirror Images'] }
+          ]
+        },
+        {
+          name: 'Session 2: English + General Awareness + Computer',
+          nameTamil: 'அமர்வு 2: ஆங்கிலம் + பொது அறிவு + கணினி',
+          topics: [
+            { name: 'English Language (40 Questions)', nameTamil: 'ஆங்கில மொழி (40 கேள்விகள்)', subtopics: ['Advanced Grammar — Tenses, Modals, Conditionals', 'Reading Comprehension — Long Passages', 'Vocabulary — Context-Based Meaning', 'Sentence Rearrangement / Para Jumbles', 'Error Detection — Advanced Level', 'Cloze Test — Advanced Passages', 'Précis Writing Concepts'] },
+            { name: 'General Awareness (20 Questions)', nameTamil: 'பொது விழிப்புணர்வு (20 கேள்விகள்)', subtopics: ['Current Affairs — In-depth National & International', 'Static GK — History, Geography, Polity, Economy, Science', 'Awards, Books, Summits, International Organizations'] },
+            { name: 'Computer Knowledge (15 Questions — Qualifying Only)', nameTamil: 'கணினி அறிவு (15 கேள்விகள் — தகுதி மட்டும்)', subtopics: ['Computer Basics — Hardware, Software, OS', 'MS Office — Word, Excel, PowerPoint', 'Internet & Email — Browsers, Protocols', 'Computer Security — Virus, Firewall, Encryption', 'Number Systems — Binary, Octal, Hexadecimal', 'Database Basics — DBMS Concepts'] }
+          ]
+        }
+      ],
+      'Skill / Typing Test': [
+        {
+          name: 'Typing & Data Entry Requirements',
+          nameTamil: 'தட்டச்சு & தரவு உள்ளீடு தேவைகள்',
+          topics: [
+            { name: 'Typing Test (for LDC/JSA/PA/SA)', nameTamil: 'தட்டச்சு சோதனை (LDC/JSA/PA/SA)', subtopics: [
+              'English Typing: 35 words per minute (wpm)',
+              'Hindi Typing: 30 words per minute (wpm)',
+              'Time allowed: 10 minutes',
+              'Qualifying only — marks not added to merit',
+              'Candidates can choose English or Hindi'
+            ] },
+            { name: 'Data Entry Speed Test (for DEO)', nameTamil: 'தரவு உள்ளீட்டு வேகச் சோதனை (DEO)', subtopics: [
+              'DEO: 8,000 key depressions per hour',
+              'DEO Grade A (C&AG): 15,000 key depressions per hour',
+              'Qualifying only — marks not added to merit'
+            ] }
+          ]
+        }
+      ],
+      'Eligibility & Age Relaxation': [
+        {
+          name: 'Who Can Apply for SSC CHSL 2026',
+          nameTamil: 'SSC CHSL 2026 க்கு யார் விண்ணப்பிக்கலாம்',
+          topics: [
+            { name: 'Eligibility Criteria', nameTamil: 'தகுதி அளவுகோல்கள்', subtopics: [
+              'Education: Must have passed 12th Standard / Higher Secondary or equivalent',
+              'DEO (C&AG) special requirement: 12th pass in Science stream with Mathematics as a subject',
+              'Age: 18 to 27 years (as of cutoff date in notification)',
+              'SC/ST Age Relaxation: +5 years (up to 32 years)',
+              'OBC Age Relaxation: +3 years (up to 30 years)',
+              'PwBD Age Relaxation: +10 years',
+              'Ex-Servicemen: As per government rules',
+              'Negative Marking: Tier 1 = -0.50 per wrong answer, Tier 2 = -1.00 per wrong answer'
+            ] }
           ]
         }
       ]
