@@ -209,76 +209,103 @@ const GovernmentExams = () => {
                           <AnimatePresence>
                             {isOpen && (
                               <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
-                                <div className="px-4 pb-4 border-t border-gray-100">
+                                <div className="px-4 pb-5 border-t border-gray-100">
                                   <div className="pt-4 space-y-4">
-                                    <p className="text-xs text-gray-600 leading-relaxed">{exam.description}</p>
+                                    
+                                    {/* Description */}
+                                    <p className="text-sm text-gray-600 leading-relaxed">{exam.description}</p>
 
-                                    {/* Info Grid */}
-                                    <div className="grid grid-cols-3 gap-2.5">
-                                      <div className="rounded-xl bg-gray-50 border border-gray-100 p-3 text-center">
-                                        <GraduationCap className="w-4 h-4 text-blue-500 mx-auto mb-1.5" />
-                                        <p className="text-xs font-bold text-gray-800 leading-tight">{exam.qualification}</p>
-                                        <p className="text-[11px] text-gray-400 mt-1">{t ? 'தகுதி' : 'Eligibility'}</p>
+                                    {/* ── KEY INFO — 2×2 Grid (wider boxes, nothing cut off) ── */}
+                                    <div className="grid grid-cols-2 gap-2.5">
+                                      <div className="flex items-center gap-3 rounded-xl bg-emerald-50 border border-emerald-100 p-3.5">
+                                        <Banknote className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                                        <div>
+                                          <p className="text-sm font-bold text-emerald-700">{fmt(exam.salaryMin)} – {fmt(exam.salaryMax)}</p>
+                                          <p className="text-xs text-emerald-600/70">{t ? 'மாத சம்பளம்' : 'Monthly Salary'}</p>
+                                        </div>
                                       </div>
-                                      <div className="rounded-xl bg-gray-50 border border-gray-100 p-3 text-center">
-                                        <Banknote className="w-4 h-4 text-emerald-500 mx-auto mb-1.5" />
-                                        <p className="text-xs font-bold text-emerald-700 leading-tight">{fmt(exam.salaryMin)}–{fmt(exam.salaryMax)}</p>
-                                        <p className="text-[11px] text-gray-400 mt-1">{t ? 'சம்பளம்' : 'Salary/mo'}</p>
+                                      <div className="flex items-center gap-3 rounded-xl bg-blue-50 border border-blue-100 p-3.5">
+                                        <Users className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                                        <div>
+                                          <p className="text-sm font-bold text-blue-700">{exam.ageMin} – {exam.ageMax} {t ? 'வயது' : 'years'}</p>
+                                          <p className="text-xs text-blue-600/70">{t ? 'வயது வரம்பு' : 'Age Limit'}</p>
+                                        </div>
                                       </div>
-                                      <div className="rounded-xl bg-gray-50 border border-gray-100 p-3 text-center">
-                                        <FileText className="w-4 h-4 text-violet-500 mx-auto mb-1.5" />
-                                        <p className="text-xs font-bold text-gray-800 leading-tight">{exam.examPattern}</p>
-                                        <p className="text-[11px] text-gray-400 mt-1">{t ? 'தேர்வு' : 'Pattern'}</p>
+                                      <div className="flex items-center gap-3 rounded-xl bg-violet-50 border border-violet-100 p-3.5">
+                                        <GraduationCap className="w-5 h-5 text-violet-600 flex-shrink-0" />
+                                        <div>
+                                          <p className="text-sm font-bold text-violet-700">{exam.qualification}</p>
+                                          <p className="text-xs text-violet-600/70">{t ? 'கல்வித் தகுதி' : 'Education'}</p>
+                                        </div>
+                                      </div>
+                                      <div className="flex items-center gap-3 rounded-xl bg-amber-50 border border-amber-100 p-3.5">
+                                        <CalendarClock className="w-5 h-5 text-amber-600 flex-shrink-0" />
+                                        <div>
+                                          <p className="text-sm font-bold text-amber-700">
+                                            {examDate ? examDate.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : t ? 'அறிவிக்கப்படும்' : 'TBA'}
+                                          </p>
+                                          <p className="text-xs text-amber-600/70">{t ? 'தேர்வு தேதி' : 'Exam Date'}</p>
+                                        </div>
                                       </div>
                                     </div>
 
-                                    {/* Selection Process */}
+                                    {/* ── EXAM PATTERN — Highlight Bar ── */}
+                                    <div className="flex items-center gap-3 bg-gray-900 text-white rounded-xl px-4 py-3">
+                                      <FileText className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                                      <div>
+                                        <p className="text-xs font-bold text-white">{exam.examPattern}</p>
+                                        <p className="text-xs text-gray-400">{t ? 'தேர்வு முறை' : 'Exam Pattern'}</p>
+                                      </div>
+                                    </div>
+
+                                    {/* ── SELECTION PROCESS — Numbered Steps ── */}
                                     <div>
-                                      <p className="text-xs font-bold text-gray-700 mb-2">{t ? 'தேர்வு செயல்முறை' : 'Selection Process'}</p>
-                                      <div className="flex items-center gap-1 flex-wrap">
+                                      <p className="text-xs font-bold text-gray-700 mb-2.5">{t ? 'தேர்வு செயல்முறை' : 'Selection Process'}</p>
+                                      <div className="space-y-1.5">
                                         {exam.selectionProcess.map((step: string, i: number) => (
-                                          <span key={i} className="flex items-center gap-1">
-                                            <span className="text-xs font-medium text-gray-700 bg-gray-100 px-2.5 py-1.5 rounded-lg border border-gray-200">{step}</span>
-                                            {i < exam.selectionProcess.length - 1 && <ChevronRight className="w-3.5 h-3.5 text-gray-300 flex-shrink-0" />}
-                                          </span>
+                                          <div key={i} className="flex items-center gap-2.5">
+                                            <div className="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">{i + 1}</div>
+                                            <p className="text-sm text-gray-700 font-medium">{step}</p>
+                                          </div>
                                         ))}
                                       </div>
                                     </div>
 
-                                    {/* Posts */}
+                                    {/* ── POSTS — Clean Badges ── */}
                                     {exam.posts && exam.posts.length > 0 && (
                                       <div>
-                                        <p className="text-xs font-bold text-gray-700 mb-2">{t ? 'பதவிகள்' : 'Posts Available'}</p>
+                                        <p className="text-xs font-bold text-gray-700 mb-2">{t ? 'பதவிகள்' : 'Available Posts'}</p>
                                         <div className="flex gap-2 flex-wrap">
                                           {exam.posts.map((p: string, i: number) => (
-                                            <span key={i} className="text-xs font-medium px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200">{p}</span>
+                                            <span key={i} className="text-sm font-medium px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-200">{p}</span>
                                           ))}
                                         </div>
                                       </div>
                                     )}
 
-                                    {/* Action Buttons */}
-                                    <div className="grid grid-cols-2 gap-2.5 pt-1">
+                                    {/* ── ACTION BUTTONS ── */}
+                                    <div className="grid grid-cols-2 gap-2.5 pt-2">
                                       {detail && detail.topics > 0 && (
-                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-11 rounded-xl border-2 border-indigo-200 bg-indigo-50 text-xs font-bold text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 transition-all">
-                                          <BookOpen className="w-4 h-4" /> {t ? 'பாடத்திட்டம்' : 'Syllabus'} ({detail.topics})
+                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-12 rounded-xl border-2 border-indigo-200 bg-indigo-50 text-sm font-bold text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 transition-all active:scale-95">
+                                          <BookOpen className="w-4.5 h-4.5" /> {t ? 'பாடத்திட்டம்' : 'Syllabus'} ({detail.topics})
                                         </button>
                                       )}
                                       {detail && detail.pyq > 0 && (
-                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-11 rounded-xl border-2 border-amber-200 bg-amber-50 text-xs font-bold text-amber-700 hover:bg-amber-100 hover:border-amber-300 transition-all">
-                                          <Target className="w-4 h-4" /> PYQ ({detail.pyq})
+                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-12 rounded-xl border-2 border-amber-200 bg-amber-50 text-sm font-bold text-amber-700 hover:bg-amber-100 hover:border-amber-300 transition-all active:scale-95">
+                                          <Target className="w-4.5 h-4.5" /> PYQ ({detail.pyq})
                                         </button>
                                       )}
                                       {detail && detail.pyq > 0 && (
-                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-11 rounded-xl border-2 border-emerald-200 bg-emerald-50 text-xs font-bold text-emerald-700 hover:bg-emerald-100 hover:border-emerald-300 transition-all">
-                                          <Play className="w-4 h-4" /> {t ? 'மாக் டெஸ்ட்' : 'Mock Test'}
+                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-12 rounded-xl border-2 border-emerald-200 bg-emerald-50 text-sm font-bold text-emerald-700 hover:bg-emerald-100 hover:border-emerald-300 transition-all active:scale-95">
+                                          <Play className="w-4.5 h-4.5" /> {t ? 'மாக் டெஸ்ட்' : 'Mock Test'}
                                         </button>
                                       )}
-                                      <button onClick={() => exam.applicationStatus !== 'closed' && window.open(exam.applyLink, '_blank')} disabled={exam.applicationStatus === 'closed'} className={cn("flex items-center justify-center gap-2 h-11 rounded-xl text-xs font-bold transition-all", st.btn)}>
-                                        <ExternalLink className="w-4 h-4" />
-                                        {exam.applicationStatus === 'open' ? (t ? 'விண்ணப்பிக்க' : 'Apply Now') : exam.applicationStatus === 'upcoming' ? (t ? 'அதிகாரப்பூர்வ தளம்' : 'Official Site') : (t ? 'மூடப்பட்டது' : 'Closed')}
+                                      <button onClick={() => exam.applicationStatus !== 'closed' && window.open(exam.applyLink, '_blank')} disabled={exam.applicationStatus === 'closed'} className={cn("flex items-center justify-center gap-2 h-12 rounded-xl text-sm font-bold transition-all active:scale-95", st.btn)}>
+                                        <ExternalLink className="w-4.5 h-4.5" />
+                                        {exam.applicationStatus === 'open' ? (t ? 'விண்ணப்பிக்க' : 'Apply Now') : exam.applicationStatus === 'upcoming' ? (t ? 'அதிகாரப்பூர்வ' : 'Official Site') : (t ? 'மூடப்பட்டது' : 'Closed')}
                                       </button>
                                     </div>
+
                                   </div>
                                 </div>
                               </motion.div>
