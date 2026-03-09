@@ -1471,30 +1471,113 @@ const sscExams: Exam[] = [
   {
     id: 'ssc-steno',
     name: 'SSC Stenographer Grade C & D 2026',
-    nameTamil: 'SSC சுருக்கெழுத்தாளர்',
+    nameTamil: 'SSC சுருக்கெழுத்தாளர் தரம் C & D 2026',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
-    age: '18 - 27 years',
+    age: '18 - 30 years (Grade C) / 18 - 27 years (Grade D)',
     salary: '₹25,500 - ₹81,100/month',
-    selectionProcess: 'CBT → Skill Test (Stenography)',
-    selectionProcessTamil: 'CBT → திறன் சோதனை (சுருக்கெழுத்து)',
-    posts: ['Stenographer Grade C', 'Stenographer Grade D'],
-    postsTamil: ['சுருக்கெழுத்தாளர் தரம் C', 'சுருக்கெழுத்தாளர் தரம் D'],
+    selectionProcess: 'Computer Based Test (CBT — 200 Qs, 2 Hours) → Stenography Skill Test (Dictation + Transcription) → Document Verification',
+    selectionProcessTamil: 'கணினி அடிப்படை தேர்வு (CBT — 200 கேள்விகள், 2 மணி) → சுருக்கெழுத்து திறன் சோதனை (எழுத்தாக்கம் + படியெடுப்பு) → ஆவண சரிபார்ப்பு',
+    posts: ['Stenographer Grade C (Group B, Non-Gazetted)', 'Stenographer Grade D (Group C)'],
+    postsTamil: ['சுருக்கெழுத்தாளர் தரம் C (குழு B, அறிவிக்கப்படாத)', 'சுருக்கெழுத்தாளர் தரம் D (குழு C)'],
+    examPattern: [
+      { paper: 'Computer Based Test (CBT)', paperTamil: 'கணினி அடிப்படை தேர்வு (CBT)', marks: 200, duration: '2 hours', questions: 200 }
+    ],
     syllabus: {
-      main: [
+      'Written Exam — CBT (200 Questions, 200 Marks, 2 Hours)': [
         {
-          name: 'SSC Stenographer Syllabus',
-          nameTamil: 'SSC சுருக்கெழுத்தாளர் பாடத்திட்டம்',
+          name: 'English Language & Comprehension (100 Questions, 100 Marks)',
+          nameTamil: 'ஆங்கில மொழி & புரிதல் (100 கேள்விகள், 100 மதிப்பெண்கள்)',
           topics: [
-            { name: 'General Intelligence & Reasoning', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம்', subtopics: ['Analogies', 'Similarities & Differences', 'Spatial Visualization', 'Decision Making', 'Problem Solving', 'Analysis', 'Judgment', 'Coding-Decoding', 'Series'] },
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', subtopics: ['Current Events', 'History', 'Geography', 'Culture', 'General Polity', 'Constitution', 'Economic Scene', 'Scientific Research'] },
-            { name: 'English Language & Comprehension', nameTamil: 'ஆங்கில மொழி & புரிதல்', subtopics: ['Spot the Error', 'Fill in Blanks', 'Synonyms', 'Antonyms', 'Spelling', 'Idioms & Phrases', 'One Word Substitution', 'Sentence Improvement', 'Active/Passive Voice', 'Direct/Indirect Speech', 'Comprehension'] }
+            { name: 'Grammar & Sentence Structure', nameTamil: 'இலக்கணம் & வாக்கிய அமைப்பு', subtopics: ['Spot the Error — Identify grammatical mistakes in sentences', 'Fill in the Blanks — Prepositions, Articles, Conjunctions', 'Sentence Improvement — Choose the correct replacement', 'Active & Passive Voice — Conversion', 'Direct & Indirect Speech — Narration change', 'Sentence Rearrangement / Para Jumbles', 'Spelling Correction — Commonly misspelled words'] },
+            { name: 'Vocabulary', nameTamil: 'சொல்வளம்', subtopics: ['Synonyms — Words with similar meanings', 'Antonyms — Words with opposite meanings', 'Idioms & Phrases — Meaning and usage', 'One Word Substitution — Single word for a phrase', 'Homonyms, Homophones & Word Usage'] },
+            { name: 'Comprehension & Cloze', nameTamil: 'புரிதல் & க்ளோஸ்', subtopics: ['Reading Comprehension — Passage-based questions', 'Cloze Passage — Fill blanks in a paragraph', 'Sentence Completion', 'Theme & Tone detection of passages'] }
+          ]
+        },
+        {
+          name: 'General Intelligence & Reasoning (50 Questions, 50 Marks)',
+          nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (50 கேள்விகள், 50 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Verbal & Analytical Reasoning', nameTamil: 'சொல் & பகுப்பாய்வு தர்க்கம்', subtopics: ['Analogies — Word, Number & Letter Relationships', 'Similarities & Differences — Classification, Odd One Out', 'Problem Solving — Logical Puzzles', 'Analysis & Decision Making', 'Judgment — Statement & Conclusion', 'Number Series — Missing, Wrong Number patterns', 'Coding-Decoding — Letter, Number & Mixed codes'] },
+            { name: 'Non-Verbal Reasoning', nameTamil: 'சொல்லற்ற தர்க்கம்', subtopics: ['Space Visualization — 2D to 3D conversion', 'Visual Memory — Pattern recall', 'Discriminating Observation — Spot differences', 'Relationship Concepts — Blood Relations, Direction Sense', 'Figure Classification & Completion', 'Embedded Figures — Hidden patterns', 'Mirror & Water Images', 'Venn Diagrams'] }
+          ]
+        },
+        {
+          name: 'General Awareness (50 Questions, 50 Marks)',
+          nameTamil: 'பொது விழிப்புணர்வு (50 கேள்விகள், 50 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Current Affairs & India', nameTamil: 'நடப்பு நிகழ்வுகள் & இந்தியா', subtopics: ['Current Events — National & International news', 'India & Its Neighboring Countries — Relations, Geography, Politics', 'History — Ancient, Medieval, Modern Indian History', 'Culture — Art, Dance, Music, Festivals, Architecture', 'Geography — Indian & World Geography, Climate, Rivers, Mountains'] },
+            { name: 'Polity, Economy & Science', nameTamil: 'அரசியல், பொருளாதாரம் & அறிவியல்', subtopics: ['General Polity — Indian Constitution, Fundamental Rights, Parliament', 'Indian Constitution — Preamble, Amendments, Schedules', 'Economic Scene — Budget, GDP, Banking, Taxation, Five Year Plans', 'Scientific Research — Recent discoveries, Space missions, Technology', 'Awards & Honours — Padma Awards, Nobel Prize, Sports Awards'] }
+          ]
+        }
+      ],
+      'Stenography Skill Test (Qualifying — After CBT)': [
+        {
+          name: 'Stenographer Grade C — Skill Test',
+          nameTamil: 'சுருக்கெழுத்தாளர் தரம் C — திறன் சோதனை',
+          topics: [
+            { name: 'Grade C Requirements (100 WPM)', nameTamil: 'தரம் C தேவைகள் (100 WPM)', subtopics: [
+              'Dictation Speed: 100 words per minute',
+              'Dictation Duration: 10 minutes (total ~1000 words)',
+              'Transcription Time (English Medium): 40 minutes',
+              'Transcription Time (Hindi Medium): 55 minutes',
+              'Transcription on Computer — no handwriting',
+              'Choose either English or Hindi as medium (at application time)',
+              'Grade C posts are Group B, Non-Gazetted — higher pay scale'
+            ] }
+          ]
+        },
+        {
+          name: 'Stenographer Grade D — Skill Test',
+          nameTamil: 'சுருக்கெழுத்தாளர் தரம் D — திறன் சோதனை',
+          topics: [
+            { name: 'Grade D Requirements (80 WPM)', nameTamil: 'தரம் D தேவைகள் (80 WPM)', subtopics: [
+              'Dictation Speed: 80 words per minute',
+              'Dictation Duration: 10 minutes (total ~800 words)',
+              'Transcription Time (English Medium): 50 minutes',
+              'Transcription Time (Hindi Medium): 65 minutes',
+              'Transcription on Computer — no handwriting',
+              'Choose either English or Hindi as medium (at application time)',
+              'Grade D posts are Group C — entry-level stenographer'
+            ] }
+          ]
+        }
+      ],
+      'Eligibility Criteria 2026': [
+        {
+          name: 'Age & Education Requirements',
+          nameTamil: 'வயது & கல்வி தேவைகள்',
+          topics: [
+            { name: 'Educational Qualification', nameTamil: 'கல்வித் தகுதி', subtopics: [
+              'Must have passed 12th Standard (10+2) or equivalent',
+              'From any recognized Board (CBSE, State Board, ICSE, NIOS, etc.)',
+              'No minimum percentage required — just pass is enough',
+              'Must possess qualification by the application deadline'
+            ] },
+            { name: 'Age Limit (as of cut-off date)', nameTamil: 'வயது வரம்பு', subtopics: [
+              'Stenographer Grade C: 18 to 30 years',
+              'Stenographer Grade D: 18 to 27 years',
+              'SC/ST Relaxation: +5 years',
+              'OBC Relaxation: +3 years',
+              'PwBD (Unreserved): +10 years',
+              'PwBD (OBC): +13 years',
+              'PwBD (SC/ST): +15 years',
+              'Ex-Servicemen: As per government rules'
+            ] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'steno-eng-1', question: 'Choose the synonym of "ELOQUENT":', questionTamil: '"ELOQUENT" இன் ஒத்த சொல்:', options: ['Shy', 'Fluent', 'Silent', 'Dumb'], optionsTamil: ['வெட்கமான', 'சரளமான', 'அமைதியான', 'ஊமை'], answer: 1, explanation: 'Eloquent means fluent or persuasive in speaking or writing', explanationTamil: 'Eloquent என்றால் பேச்சு அல்லது எழுத்தில் சரளமான அல்லது நம்பகமான', subject: 'English', difficulty: 'easy' }
+      { id: 'steno-eng-1', question: 'Choose the synonym of "ELOQUENT":', questionTamil: '"ELOQUENT" இன் ஒத்த சொல்:', options: ['Shy', 'Fluent', 'Silent', 'Dumb'], optionsTamil: ['வெட்கமான', 'சரளமான', 'அமைதியான', 'ஊமை'], answer: 1, explanation: 'Eloquent means fluent or persuasive in speaking or writing', explanationTamil: 'Eloquent என்றால் பேச்சு அல்லது எழுத்தில் சரளமான', subject: 'English', difficulty: 'easy' },
+      { id: 'steno-eng-2', question: 'Choose the antonym of "TRANSPARENT":', questionTamil: '"TRANSPARENT" இன் எதிர்ச்சொல்:', options: ['Opaque', 'Clear', 'Visible', 'Bright'], optionsTamil: ['ஒளிபுகா', 'தெளிவான', 'காணக்கூடிய', 'பிரகாசமான'], answer: 0, explanation: 'Transparent means allowing light to pass through. Opaque means not allowing light to pass — opposite meaning.', explanationTamil: 'Transparent என்றால் ஒளி ஊடுருவ அனுமதிக்கும். Opaque என்றால் ஒளி ஊடுருவாத — எதிர்ப்பொருள்.', subject: 'English', difficulty: 'easy' },
+      { id: 'steno-eng-3', question: 'Identify the error: "Each of the boys have done their homework."', questionTamil: 'பிழையை கண்டறி: "Each of the boys have done their homework."', options: ['have → has', 'their → his', 'Both A and B', 'No error'], optionsTamil: ['have → has', 'their → his', 'A மற்றும் B இரண்டும்', 'பிழை இல்லை'], answer: 2, explanation: '"Each" is singular, so it takes "has" (not "have") and "his" (not "their"). Correct: "Each of the boys has done his homework."', explanationTamil: '"Each" ஒருமை, எனவே "has" (have அல்ல) மற்றும் "his" (their அல்ல) வரும்.', subject: 'English', difficulty: 'medium' },
+      { id: 'steno-eng-4', question: 'The idiom "Break the ice" means:', questionTamil: '"Break the ice" என்ற மரபுத்தொடரின் பொருள்:', options: ['To start a conversation in a social setting', 'To break something frozen', 'To end a friendship', 'To fail in an exam'], optionsTamil: ['சமூக சூழலில் உரையாடலைத் தொடங்குவது', 'உறைந்ததை உடைப்பது', 'நட்பை முறிப்பது', 'தேர்வில் தோல்வியடைவது'], answer: 0, explanation: '"Break the ice" means to initiate conversation or relieve tension in a social situation, especially with strangers.', explanationTamil: '"Break the ice" என்றால் குறிப்பாக அந்நியர்களுடன் சமூக சூழலில் உரையாடலைத் தொடங்குவது.', subject: 'English', difficulty: 'easy' },
+      { id: 'steno-reason-1', question: 'If STRONG is coded as TUSPOH, how is FATHER coded?', questionTamil: 'STRONG = TUSPOH என குறியிடப்பட்டால், FATHER எப்படி குறியிடப்படும்?', options: ['GBUIFS', 'GBUJFS', 'GCUIFS', 'GBUIFR'], optionsTamil: ['GBUIFS', 'GBUJFS', 'GCUIFS', 'GBUIFR'], answer: 0, explanation: 'Each letter shifts +1: S→T, T→U, R→S, O→P, N→O, G→H. So F→G, A→B, T→U, H→I, E→F, R→S = GBUIFS', explanationTamil: 'ஒவ்வொரு எழுத்தும் +1 நகரும்: F→G, A→B, T→U, H→I, E→F, R→S = GBUIFS', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'steno-reason-2', question: 'Find the odd one out: January, March, May, November', questionTamil: 'பொருத்தமற்றதை கண்டுபிடி: ஜனவரி, மார்ச், மே, நவம்பர்', options: ['November', 'January', 'March', 'May'], optionsTamil: ['நவம்பர்', 'ஜனவரி', 'மார்ச்', 'மே'], answer: 0, explanation: 'January, March, and May all have 31 days. November has only 30 days — so it is the odd one out.', explanationTamil: 'ஜனவரி, மார்ச், மே அனைத்தும் 31 நாட்கள் கொண்டவை. நவம்பர் 30 நாட்கள் மட்டுமே — எனவே இது பொருத்தமற்றது.', subject: 'Reasoning', difficulty: 'easy' },
+      { id: 'steno-gk-1', question: 'The Preamble of the Indian Constitution starts with:', questionTamil: 'இந்திய அரசியலமைப்பின் முகவுரை தொடங்குவது:', options: ['We, the people of India', 'The Government of India', 'The Parliament of India', 'The President of India'], optionsTamil: ['நாம், இந்திய மக்கள்', 'இந்திய அரசு', 'இந்திய நாடாளுமன்றம்', 'இந்தியக் குடியரசுத் தலைவர்'], answer: 0, explanation: 'The Preamble begins with "We, the people of India" — establishing that the Constitution derives its authority from the people.', explanationTamil: 'முகவுரை "நாம், இந்திய மக்கள்" என்று தொடங்குகிறது — அரசியலமைப்பு மக்களிடமிருந்து அதிகாரம் பெறுகிறது என்பதை நிறுவுகிறது.', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'steno-gk-2', question: 'Which article of the Indian Constitution abolishes untouchability?', questionTamil: 'இந்திய அரசியலமைப்பின் எந்த பிரிவு தீண்டாமையை ஒழிக்கிறது?', options: ['Article 17', 'Article 14', 'Article 21', 'Article 32'], optionsTamil: ['பிரிவு 17', 'பிரிவு 14', 'பிரிவு 21', 'பிரிவு 32'], answer: 0, explanation: 'Article 17 abolishes untouchability and forbids its practice in any form. It is a Fundamental Right under Part III of the Constitution.', explanationTamil: 'பிரிவு 17 தீண்டாமையை ஒழித்து, எந்த வடிவத்திலும் அதன் நடைமுறையை தடை செய்கிறது. இது அரசியலமைப்பின் பகுதி III இன் கீழ் அடிப்படை உரிமை.', subject: 'General Awareness', difficulty: 'medium' },
+      { id: 'steno-gk-3', question: 'ISRO headquarters is located at:', questionTamil: 'ISRO தலைமையகம் அமைந்துள்ள இடம்:', options: ['Bengaluru', 'New Delhi', 'Sriharikota', 'Ahmedabad'], optionsTamil: ['பெங்களூரு', 'புது தில்லி', 'ஸ்ரீஹரிகோட்டா', 'அகமதாபாத்'], answer: 0, explanation: 'ISRO (Indian Space Research Organisation) headquarters is at Bengaluru, Karnataka. Sriharikota is the launch centre.', explanationTamil: 'ISRO தலைமையகம் கர்நாடகாவில் பெங்களூருவில் உள்ளது. ஸ்ரீஹரிகோட்டா ஏவுதளம்.', subject: 'General Awareness', difficulty: 'easy' }
     ]
   }
 ];
