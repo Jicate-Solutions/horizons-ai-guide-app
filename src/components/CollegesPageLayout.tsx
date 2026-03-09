@@ -38,8 +38,18 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
 
       {/* ═══ STICKY NAVIGATION ═══ */}
       <div className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
-        <div className="px-2 py-1.5 md:px-4 md:py-2">
-          <PillNavigation activeTab={activeTab} />
+        <div className="px-2 py-1.5 md:px-4 md:py-2 flex items-center gap-1.5">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            className="h-8 w-8 flex-shrink-0 rounded-lg hover:bg-emerald-50 text-emerald-700"
+            onClick={() => navigate('/')}
+          >
+            <Home className="h-4 w-4" />
+          </Button>
+          <div className="flex-1 overflow-hidden">
+            <PillNavigation activeTab={activeTab} />
+          </div>
         </div>
       </div>
 

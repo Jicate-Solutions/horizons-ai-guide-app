@@ -119,7 +119,7 @@ const GovernmentExamDetail = () => {
       <div className="bg-gray-900 text-white">
         <div className="container mx-auto px-4 pt-3 pb-4">
           <div className="flex items-center gap-3 mb-3">
-            <button onClick={() => navigate(-1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+            <button onClick={() => navigate('/government-exams')} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
               <ArrowLeft className="w-4 h-4" />
             </button>
             <div className="flex-1 min-w-0">
