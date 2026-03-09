@@ -122,8 +122,8 @@ export const UniversityEntranceExams = () => {
                 <GraduationCap className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>
-                <h1 className="font-bold text-lg">TN Admissions</h1>
-                <p className="text-xs text-muted-foreground font-tamil">தமிழ்நாடு சேர்க்கை</p>
+                <h1 className="font-bold text-lg">Universities Admissions</h1>
+                <p className="text-xs text-muted-foreground font-tamil">பல்கலைக்கழக சேர்க்கைகள்</p>
               </div>
             </div>
             <GlobalLanguageSelector />
@@ -166,8 +166,8 @@ export const UniversityEntranceExams = () => {
               <GraduationCap className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="font-bold text-lg">TN Admissions</h1>
-              <p className="text-xs text-muted-foreground font-tamil">தமிழ்நாடு சேர்க்கை</p>
+              <h1 className="font-bold text-lg">Universities Admissions</h1>
+              <p className="text-xs text-muted-foreground font-tamil">பல்கலைக்கழக சேர்க்கைகள்</p>
             </div>
           </div>
           <GlobalLanguageSelector />
