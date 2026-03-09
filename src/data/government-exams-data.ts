@@ -856,10 +856,12 @@ const stateExams: Exam[] = [
     posts: ['Deputy Collector', 'DSP', 'Assistant Commissioner', 'District Registrar', 'RTO', 'Asst Director of Agriculture'],
     postsTamil: ['துணை ஆட்சியர்', 'DSP', 'உதவி ஆணையர்', 'மாவட்ட பதிவாளர்', 'RTO', 'உதவி விவசாய இயக்குநர்'],
     examPattern: [
-      { paper: 'Preliminary (CSSE-I)', paperTamil: 'முதல்நிலை (CSSE-I)', marks: 200, duration: '3 hours', questions: 200 },
-      { paper: 'Main Exam - Paper I (General Studies)', paperTamil: 'முதன்மை - தாள் I (பொது அறிவு)', marks: 300, duration: '3 hours', questions: 0 },
-      { paper: 'Main Exam - Paper II (Aptitude)', paperTamil: 'முதன்மை - தாள் II (திறன்)', marks: 300, duration: '3 hours', questions: 0 },
-      { paper: 'Main Exam - Paper III (GS-II)', paperTamil: 'முதன்மை - தாள் III (பொது அறிவு-II)', marks: 300, duration: '3 hours', questions: 0 }
+      { paper: 'Preliminary (CCSE-I)', paperTamil: 'முதல்நிலை (CCSE-I)', marks: 200, duration: '3 hours', questions: 200 },
+      { paper: 'Main Paper I: Tamil Language (Qualifying)', paperTamil: 'முதன்மை தாள் I: தமிழ் மொழி (தகுதி)', marks: 100, duration: '3 hours', questions: 0 },
+      { paper: 'Main Paper II: General Studies I', paperTamil: 'முதன்மை தாள் II: பொது அறிவு I', marks: 250, duration: '3 hours', questions: 0 },
+      { paper: 'Main Paper III: General Studies II', paperTamil: 'முதன்மை தாள் III: பொது அறிவு II', marks: 250, duration: '3 hours', questions: 0 },
+      { paper: 'Main Paper IV: General Studies III', paperTamil: 'முதன்மை தாள் IV: பொது அறிவு III', marks: 250, duration: '3 hours', questions: 0 },
+      { paper: 'Oral Test (Interview)', paperTamil: 'வாய்மொழி தேர்வு (நேர்காணல்)', marks: 75, duration: '15-30 mins', questions: 0 }
     ],
     syllabus: {
       prelims: [
@@ -886,14 +888,48 @@ const stateExams: Exam[] = [
           ]
         }
       ],
-      mains: [
+      mainsPaper1: [
         {
-          name: 'Main Exam Papers (Descriptive)',
-          nameTamil: 'முதன்மை தேர்வு (விரிவான)',
+          name: 'Paper I: Tamil Language Eligibility Test (SSLC Standard — 100 Marks — Qualifying)',
+          nameTamil: 'தாள் I: தமிழ் மொழி தகுதித் தேர்வு (SSLC தரம் — 100 மதிப்பெண்கள் — தகுதி)',
           topics: [
-            { name: 'Paper I: Role & Impact of Science & Technology', nameTamil: 'தாள் I: அறிவியல் & தொழில்நுட்பம்', subtopics: ['Science & Tech in everyday life', 'IT & Communications', 'Energy Resources', 'Environmental Issues', 'Bio-Technology', 'Space Technology'] },
-            { name: 'Paper II: Aptitude & CSAT', nameTamil: 'தாள் II: திறன் & CSAT', subtopics: ['Comprehension', 'Logical Reasoning', 'Analytical Ability', 'Data Interpretation', 'Decision Making'] },
-            { name: 'Paper III: General Studies', nameTamil: 'தாள் III: பொது அறிவு', subtopics: ['Indian & TN History', 'Constitution & Polity', 'Geography', 'Economy', 'Indian Society'] }
+            { name: 'Translation & Précis Writing', nameTamil: 'மொழிபெயர்ப்பு & சுருக்கம்', subtopics: ['Translation: Tamil to English', 'Translation: English to Tamil', 'Précis Writing'] },
+            { name: 'Comprehension & Hints Development', nameTamil: 'புரிதல் & குறிப்பு விரிவாக்கம்', subtopics: ['Reading Comprehension passages', 'Hints Development (expanding hints into paragraphs)'] },
+            { name: 'Essay Writing on Thirukkural', nameTamil: 'திருக்குறள் கட்டுரை', subtopics: ['Secular nature of Thirukkural', 'Relevance to everyday life', 'Impact on humanity & universal values'] },
+            { name: 'Letter Writing & Grammar', nameTamil: 'கடிதம் & இலக்கணம்', subtopics: ['Official correspondence & formal letters', 'Contemporary events & social issues', 'Indian economy, science & technology', 'Dravidian & Self-Respect Movements', 'Grammar: Sentence formation, antonyms, error correction, identifying meaning differences'] }
+          ]
+        }
+      ],
+      mainsPaper2: [
+        {
+          name: 'Paper II: General Studies I (Degree Standard — 250 Marks)',
+          nameTamil: 'தாள் II: பொது அறிவு I (பட்டப்படிப்பு தரம் — 250 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Unit I: Modern History of India & Indian Culture (100 Marks)', nameTamil: 'அலகு I: நவீன இந்திய வரலாறு & பண்பாடு (100 மதிப்பெண்கள்)', subtopics: ['Advent of Europeans & establishment of British rule', 'Expansion of British rule: Subsidiary Alliance, Doctrine of Lapse', 'Early uprisings: South Indian Rebellion (1799-1801), Vellore Mutiny (1806)', 'Sepoy Mutiny 1857 — causes, course, and results', 'Indian National Movements & Constitutional developments (1773-1950)', 'Final phase of independence & partition', 'Role of Tamil Nadu: Bharathiar, V.O. Chidambaranar, Kamarajar, Thanthai Periyar', 'Indian Culture: Salient features, unity in diversity, national symbols'] },
+            { name: 'Unit II: Social Issues in India & Tamil Nadu (100 Marks)', nameTamil: 'அலகு II: இந்தியா & தமிழ்நாட்டின் சமூக பிரச்சினைகள் (100 மதிப்பெண்கள்)', subtopics: ['Population explosion, poverty & illiteracy', 'Rural-urban migration & urbanization challenges', 'Child labor, child abuse & protection laws', 'Problems of minorities & vulnerable sections', 'Women empowerment & gender justice', 'Social justice & reservation policy', 'Rural & urban sanitation programs', 'Human Development Index & indicators', 'Health policy & public health programs', 'Programs for children, aged & differently-abled'] },
+            { name: 'Unit III: Ethics & Integrity (50 Marks)', nameTamil: 'அலகு III: நெறிமுறை & நேர்மை (50 மதிப்பெண்கள்)', subtopics: ['Definition of ethics & its importance', 'Ethics in Indian philosophy — Dharma, Karma, Ahimsa', 'Ethics of Thirukkural — relevance to governance', 'Philosophical basis of governance & public administration', 'Codes of conduct for civil servants', 'Transparency, accountability & good governance', 'Challenges of corruption in public life', 'Ethical dilemmas in government decision-making'] }
+          ]
+        }
+      ],
+      mainsPaper3: [
+        {
+          name: 'Paper III: General Studies II (Degree Standard — 250 Marks)',
+          nameTamil: 'தாள் III: பொது அறிவு II (பட்டப்படிப்பு தரம் — 250 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Unit I: Indian Polity & Global Political Trends (100 Marks)', nameTamil: 'அலகு I: இந்திய அரசியல் & உலக அரசியல் போக்குகள் (100 மதிப்பெண்கள்)', subtopics: ['Union Government: Legislature (Parliament), Executive, Judiciary', 'State Government: Legislature, Executive & Judiciary', 'Fundamental Rights, Duties & Directive Principles of State Policy', 'Union-State relations & Spirit of Federalism', 'Administrative framework & local governance', 'India\'s Foreign Policy — Non-Alignment to present', 'Relationship with world countries & neighbours', 'International organizations: UN, WTO, BRICS, G20', 'International Pacts, Summits & Treaties'] },
+            { name: 'Unit II: Role & Impact of Science & Technology (100 Marks)', nameTamil: 'அலகு II: அறிவியல் & தொழில்நுட்பத்தின் பங்கு (100 மதிப்பெண்கள்)', subtopics: ['Energy: Renewable (solar, wind) & Non-renewable sources', 'Space Research: ISRO, satellite programs, Mars & Moon missions', 'Nano-science & its applications', 'Robotics & Artificial Intelligence (AI)', 'Information Technology & Cybersecurity', 'Genetic Engineering & Bio-Technology', 'Organic farming & agricultural technology', 'Human diseases: Prevention, diagnosis & treatment', 'Organ transplantation: Ethics & technology'] },
+            { name: 'Unit III: Tamil Society — Culture & Heritage (50 Marks)', nameTamil: 'அலகு III: தமிழ்ச் சமூகம் — பண்பாடு & பாரம்பரியம் (50 மதிப்பெண்கள்)', subtopics: ['Archaeology: Excavations at Keeladi, Arikkamedu, Adhichanallur', 'Socio-cultural life from Sangam age to modern era', 'Evolution of Tamil literature across periods', 'Growth of rationalist & social reform movements', 'Tamil heritage & cultural contributions to India'] }
+          ]
+        }
+      ],
+      mainsPaper4: [
+        {
+          name: 'Paper IV: General Studies III (Degree Standard — 250 Marks)',
+          nameTamil: 'தாள் IV: பொது அறிவு III (பட்டப்படிப்பு தரம் — 250 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Unit I: Geography of India & Tamil Nadu (75 Marks)', nameTamil: 'அலகு I: இந்தியா & தமிழ்நாடு புவியியல் (75 மதிப்பெண்கள்)', subtopics: ['Solar system, atmosphere & climate zones', 'Lithosphere: Rocks, mountains, plateaus & plains', 'Drainage systems: Rivers of India & Tamil Nadu', 'Soil types, minerals & energy resources', 'Agricultural revolutions: Green, White, Blue', 'Remote Sensing, GIS & GNSS technology'] },
+            { name: 'Unit II: Environment, Biodiversity & Disaster Management (75 Marks)', nameTamil: 'அலகு II: சுற்றுச்சூழல், பல்லுயிர் & பேரிடர் மேலாண்மை (75 மதிப்பெண்கள்)', subtopics: ['Ecosystem functions & ecological balance', 'Biodiversity hotspots & conservation measures', 'International conventions: CITES, IUCN Red List, CBD', 'Air, water & soil pollution management', 'Environmental Impact Assessment (EIA)', 'Climate Change: Paris Agreement & SDGs (Sustainable Development Goals)', 'Man-made & natural calamities', 'National Disaster Management Authority (NDMA)'] },
+            { name: 'Unit III: Indian Economy & Global Trends (100 Marks)', nameTamil: 'அலகு III: இந்திய பொருளாதாரம் & உலகப் போக்குகள் (100 மதிப்பெண்கள்)', subtopics: ['National Income: GDP, GNP & per capita income', 'NITI Aayog — role & functions', 'New Economic Policy: LPG (Liberalization, Privatization, Globalization)', 'RBI: Autonomy, monetary policy & interest rates', 'Stock market reforms: SEBI & capital markets', 'GST, Fiscal Policy & Finance Commission', 'Public Finance: Budget process & fiscal deficit', 'TN Economy: GSDP trends & growth sectors', 'Organic farming policy in Tamil Nadu', 'Social infrastructure: Education, health & housing in TN'] }
           ]
         }
       ]
