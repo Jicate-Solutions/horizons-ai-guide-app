@@ -93,7 +93,7 @@ export const GovernmentJobs = () => {
       {/* ── CATEGORY PILLS ── */}
       <div className="overflow-x-auto pb-1 -mx-1 px-1">
         <div className="flex gap-2 min-w-max">
-          {(['all', 'defence', 'railway', 'ssc', 'banking', 'state', 'central'] as CategoryType[]).map((cat) => {
+          {(['all', 'defence', 'railway', 'ssc', 'state', 'central'] as CategoryType[]).map((cat) => {
             const isActive = selectedCategory === cat;
             const label = language === 'ta' ? catLabels[cat]?.ta : catLabels[cat]?.en;
             return (

@@ -49,12 +49,9 @@ const Auth = () => {
   const redirectParam = searchParams.get('redirect');
 
   useEffect(() => {
-    console.log('Auth: auth state, user:', user?.id, 'loading:', loading);
 
     if (user && !loading) {
       const redirectUrl = redirectParam || '/career-assessment/colleges';
-      console.log('Auth: redirect param =', redirectParam);
-      console.log('Auth: After login, redirecting to:', redirectUrl);
       navigate(redirectUrl, { replace: true });
     }
   }, [user, loading, redirectParam, navigate]);
@@ -117,7 +114,6 @@ const Auth = () => {
         });
       }
     } catch (err) {
-      console.error('Phone lookup error:', err);
       setErrors({ phone: 'Error looking up phone number. Please try with email.' });
     } finally {
       setIsLookingUp(false);
@@ -208,7 +204,6 @@ const Auth = () => {
                 expectedYear: '2026' 
               },
             });
-            console.log('Welcome email (Edge Function):', edgeError || edgeData);
 
             // Also try Vercel API as backup
             const vercelRes = await fetch('/api/send-welcome-email', {
@@ -217,9 +212,7 @@ const Auth = () => {
               body: JSON.stringify({ email, displayName: displayName || email.split('@')[0] }),
             });
             const vercelData = await vercelRes.json();
-            console.log('Welcome email (Vercel API):', vercelData);
           } catch (emailErr) {
-            console.error('Welcome email error:', emailErr);
           }
         }
       }

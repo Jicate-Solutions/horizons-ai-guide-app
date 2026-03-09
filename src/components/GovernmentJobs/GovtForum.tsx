@@ -209,9 +209,7 @@ export const GovtForum = () => {
     switch (category) {
       case 'defence': return Shield;
       case 'railway': return Train;
-      case 'ssc': return FileText;
-      case 'banking': return Landmark;
-      case 'state': return MapPin;
+      case 'ssc': return FileText;case 'state': return MapPin;
       default: return MessageSquare;
     }
   };

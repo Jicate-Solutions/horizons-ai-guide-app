@@ -359,7 +359,6 @@ const CareerChat = () => {
         setChatSessions([]);
       }
     } catch (error) {
-      console.error('Error loading chat sessions:', error);
     } finally {
       setIsLoadingSessions(false);
     }
@@ -549,7 +548,6 @@ const CareerChat = () => {
             // Non-streaming JSON response (including image generation)
             const data = await response.json();
             if (data.error) {
-              console.error('[Chat] API error:', data.error);
             } else if (data.type === 'image' && data.imageUrl) {
               // Image generation response
               apiSuccess = true;
@@ -591,7 +589,6 @@ const CareerChat = () => {
           }
         }
       } catch (apiError) {
-        console.log('[Chat] API unavailable, using local responses:', apiError);
       }
 
       // If API didn't work, use local responses
@@ -619,7 +616,6 @@ const CareerChat = () => {
         }
       }
     } catch (error) {
-      console.error('Chat error:', error);
       const userMsg = userMessages[userMessages.length - 1]?.content || '';
       const localReply = getLocalCareerReply(userMsg);
       setMessages((prev) => {

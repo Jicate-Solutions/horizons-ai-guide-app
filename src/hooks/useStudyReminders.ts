@@ -77,7 +77,6 @@ export const useStudyReminders = () => {
   // Request notification permission
   const requestPermission = useCallback(async (): Promise<boolean> => {
     if (!('Notification' in window)) {
-      console.log('Notifications not supported');
       return false;
     }
 

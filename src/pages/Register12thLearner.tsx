@@ -58,7 +58,6 @@ const Register12thLearner = () => {
           }
         }
       } catch (error) {
-        console.error('Error checking registration:', error);
       }
     };
 
@@ -195,9 +194,7 @@ const Register12thLearner = () => {
         supabase.functions.invoke('send-registration-email', {
           body: emailPayload,
         }).then(({ data, error }) => {
-          console.log('Registration email (Edge Function):', error || data);
         }).catch(err => {
-          console.error('Edge Function email error:', err);
         });
 
         // Also try Vercel API as backup
@@ -206,9 +203,7 @@ const Register12thLearner = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(emailPayload),
         }).then(res => res.json()).then(data => {
-          console.log('Registration email (Vercel API):', data);
         }).catch(err => {
-          console.error('Vercel API email error:', err);
         });
 
         // If form email is different from login email, send to login email too
@@ -235,7 +230,6 @@ const Register12thLearner = () => {
         toast.error(error.errors[0]?.message || "Please fix the form errors");
         return;
       }
-      console.error("Registration error:", error);
       toast.error(t('reg12.registrationFailed'));
     } finally {
       setIsSubmitting(false);

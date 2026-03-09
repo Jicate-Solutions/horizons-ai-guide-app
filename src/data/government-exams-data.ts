@@ -599,8 +599,7 @@ const sscExams: Exam[] = [
   }
 ];
 
-// (Banking exams removed — degree required. India Post GDS moved to Central)
-const bankingExams: Exam[] = [];
+// (Banking exams removed — all require Graduation Degree, not eligible for 12th pass)
 
 // ==================== TAMIL NADU STATE GOVT ====================
 const stateExams: Exam[] = [

@@ -29,9 +29,7 @@ const getCategoryIcon = (category: string) => {
   switch (category) {
     case 'defence': return Shield;
     case 'railway': return Train;
-    case 'ssc': return FileText;
-    case 'banking': return Landmark;
-    case 'state': return MapPin;
+    case 'ssc': return FileText;case 'state': return MapPin;
     case 'central': return Building2;
     default: return CalendarIcon;
   }
@@ -41,9 +39,7 @@ const getCategoryColor = (category: string) => {
   switch (category) {
     case 'defence': return '#8B5CF6';
     case 'railway': return '#F97316';
-    case 'ssc': return '#3B82F6';
-    case 'banking': return '#10B981';
-    case 'state': return '#EC4899';
+    case 'ssc': return '#3B82F6';case 'state': return '#EC4899';
     case 'central': return '#6366F1';
     default: return '#6B7280';
   }

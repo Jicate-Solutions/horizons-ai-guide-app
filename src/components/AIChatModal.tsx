@@ -123,7 +123,6 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
       
       if (error) throw error;
     } catch (error) {
-      console.error("Error saving message:", error);
     }
   }, [user]);
 
@@ -172,7 +171,6 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
       };
       
       recognitionRef.current.onerror = (event) => {
-        console.error("Speech recognition error:", event);
         setIsListening(false);
         setVoiceStatus("");
         toast.error("Voice input error. Please try again.");
@@ -242,7 +240,6 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
         recognitionRef.current.start();
         setIsListening(true);
       } catch (error) {
-        console.error("Error starting speech recognition:", error);
         toast.error("Could not start voice input");
       }
     }
@@ -318,7 +315,6 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
         }
       }
     } catch (apiError) {
-      console.log('[Chat Modal] API unavailable:', apiError);
     }
 
     // If API didn't work, use local response
@@ -352,7 +348,6 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
     try {
       await streamChat(newMessages);
     } catch (error) {
-      console.error("Chat error:", error);
       // Show a helpful local response instead of error
       const localReply = getLocalChatReply(input.trim());
       const localMsg: Message = { role: "assistant", content: localReply };
@@ -387,7 +382,6 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
       setMessages([]);
       toast.success("Chat cleared");
     } catch (error) {
-      console.error("Error clearing chat:", error);
       toast.error("Failed to clear chat history");
     }
   };

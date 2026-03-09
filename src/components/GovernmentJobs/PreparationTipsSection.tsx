@@ -136,7 +136,7 @@ const preparationTips: CategoryTips[] = [
     timeRecommendationTamil: '5-6 மாதங்கள் மாதிரி தேர்வுகளுடன்',
   },
   {
-    category: 'banking',
+    category: 'central',
     icon: Landmark,
     color: 'from-green-500 to-emerald-600',
     bgColor: 'bg-green-50',

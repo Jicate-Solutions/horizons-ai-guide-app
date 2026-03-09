@@ -740,7 +740,7 @@ export const govtExamSyllabus: CategorySyllabus[] = [
     ],
   },
   {
-    category: 'banking',
+    category: 'central',
     totalQuestions: 100,
     subjects: [
       {
