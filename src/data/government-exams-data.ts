@@ -1588,28 +1588,140 @@ const sscExams: Exam[] = [
 const stateExams: Exam[] = [
   {
     id: 'tnpsc-group4',
-    name: 'TNPSC Group 4',
-    nameTamil: 'TNPSC குரூப் 4',
+    name: 'TNPSC Group 4 (CCSE-IV) 2026',
+    nameTamil: 'TNPSC குரூப் 4 (CCSE-IV) 2026',
     qualification: 'SSLC / 12th Pass (varies by post)',
     qualificationTamil: 'SSLC / 12ஆம் வகுப்பு தேர்ச்சி (பதவிக்கேற்ப மாறுபடும்)',
     age: '18 - 30 years',
     salary: '₹19,500 - ₹62,000/month',
-    selectionProcess: 'Written Exam → Certificate Verification',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → சான்றிதழ் சரிபார்ப்பு',
+    selectionProcess: 'Single Paper Written Exam (OMR — 200 Qs, 3 Hours, 300 Marks) → Certificate Verification',
+    selectionProcessTamil: 'ஒற்றை தாள் எழுத்துத் தேர்வு (OMR — 200 கேள்விகள், 3 மணி, 300 மதிப்பெண்) → சான்றிதழ் சரிபார்ப்பு',
     posts: ['VAO (Village Administrative Officer)', 'Junior Assistant', 'Typist', 'Steno-Typist', 'Field Surveyor'],
     postsTamil: ['கிராம நிர்வாக அலுவலர்', 'இளநிலை உதவியாளர்', 'தட்டச்சர்', 'சுருக்கெழுத்து தட்டச்சர்', 'களப்புல அளவீட்டாளர்'],
     examPattern: [
-      { paper: 'Combined Exam', paperTamil: 'ஒருங்கிணைந்த தேர்வு', marks: 300, duration: '3 hours', questions: 200 }
+      { paper: 'Single Paper (Part A + B + C)', paperTamil: 'ஒற்றை தாள் (பகுதி A + B + C)', marks: 300, duration: '3 hours', questions: 200 }
     ],
     syllabus: {
-      main: [
+      'Part A: General Studies — SSLC Standard (75 Questions)': [
         {
-          name: 'TNPSC Group 4 Syllabus (200 Questions, 3 Hours)',
-          nameTamil: 'TNPSC குரூப் 4 பாடத்திட்டம் (200 கேள்விகள், 3 மணி நேரம்)',
+          name: 'Unit I: General Science (5 Questions)',
+          nameTamil: 'அலகு I: பொது அறிவியல் (5 கேள்விகள்)',
           topics: [
-            { name: 'Tamil (100 Questions)', nameTamil: 'தமிழ் (100 கேள்விகள்)', subtopics: ['Tamil Grammar (இலக்கணம்)', 'Tamil Literature (இலக்கியம்)', 'Comprehension', 'Translation', 'Synonyms & Antonyms', 'Proverbs', 'Sangam Literature', 'Modern Tamil Literature'] },
-            { name: 'General Studies (75 Questions)', nameTamil: 'பொது அறிவு (75 கேள்விகள்)', subtopics: ['History - Indian & Tamil Nadu History', 'Geography - Indian & TN Geography', 'Indian Polity & Constitution', 'Indian Economy', 'General Science (Physics, Chemistry, Biology)', 'Current Affairs - National & State'] },
-            { name: 'Aptitude & Mental Ability (25 Questions)', nameTamil: 'திறன் & மன திறன் (25 கேள்விகள்)', subtopics: ['Number Series', 'Logical Reasoning', 'Analogies', 'Coding-Decoding', 'Blood Relations', 'Direction Sense', 'Simple Math'] }
+            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: ['Nature of Universe', 'Measurement of physical quantities', 'General scientific laws in motion', 'Force, Pressure, and Energy', 'Mechanics, Electricity, Magnetism, Light, Sound, Heat, Nuclear Physics — everyday applications'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: ['Elements and Compounds', 'Acids, Bases, Salts', 'Petroleum products', 'Fertilizers, Pesticides', 'Metallurgy', 'Food Adulterants'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', subtopics: ['Classification of Living Organisms', 'Evolution, Genetics, Physiology', 'Nutrition, Health and Hygiene', 'Human Diseases', 'Environmental Science'] },
+            { name: 'Current Science', nameTamil: 'தற்கால அறிவியல்', subtopics: ['Latest Inventions in Science and Technology', 'Current Affairs in Science'] }
+          ]
+        },
+        {
+          name: 'Unit II: Geography (5 Questions)',
+          nameTamil: 'அலகு II: புவியியல் (5 கேள்விகள்)',
+          topics: [
+            { name: 'Indian & TN Geography', nameTamil: 'இந்திய & தமிழ்நாடு புவியியல்', subtopics: ['Earth location — Physical features', 'Monsoon, Rainfall, Weather, and Climate', 'Water resources — Rivers', 'Soil, Minerals, and Natural resources', 'Forest and Wildlife', 'Agriculture pattern', 'Transport — Communication', 'Population density and distribution (TN & India)', 'Calamities — Disaster management', 'Environment — Climate change', 'Geographical landmarks', 'Current affairs'] }
+          ]
+        },
+        {
+          name: 'Unit III: History, Culture & Indian National Movement (10 Questions)',
+          nameTamil: 'அலகு III: வரலாறு, கலாச்சாரம் & தேசிய இயக்கம் (10 கேள்விகள்)',
+          topics: [
+            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', subtopics: ['Indus Valley Civilization', 'Guptas, Delhi Sultans, Mughals, and Marathas', 'South Indian History'] },
+            { name: 'Freedom Movement & Leaders', nameTamil: 'சுதந்திர இயக்கம் & தலைவர்கள்', subtopics: ['National Renaissance — Early uprising against British', 'Indian National Congress', 'B.R. Ambedkar, Bhagat Singh, Bharathiar, V.O. Chidambaranar', 'Thanthai Periyar, Jawaharlal Nehru, Rabindranath Tagore', 'Kamarajar, Mahatma Gandhi, Maulana Abul Kalam Azad', 'Rajaji, Subhash Chandra Bose, Muthulaksmi Ammaiyar', 'Muvalur Ramamirtham, and other National Leaders', 'Different modes of agitation of Tamil Nadu'] },
+            { name: 'Indian Culture', nameTamil: 'இந்திய கலாச்சாரம்', subtopics: ['Characteristics of Indian Culture', 'Unity in Diversity — Race, Language, Custom', 'India as a Secular State'] }
+          ]
+        },
+        {
+          name: 'Unit IV: Indian Polity (15 Questions)',
+          nameTamil: 'அலகு IV: இந்திய அரசியல் (15 கேள்விகள்)',
+          topics: [
+            { name: 'Constitution of India', nameTamil: 'இந்திய அரசியலமைப்பு', subtopics: ['Preamble to the Constitution', 'Salient features of the Constitution', 'Union, State, and Union Territory', 'Citizenship', 'Fundamental Rights, Fundamental Duties', 'Directive Principles of State Policy'] },
+            { name: 'Government Structure', nameTamil: 'அரசு அமைப்பு', subtopics: ['Union Executive, Union Legislature', 'State Executive, State Legislature', 'Local Governments, Panchayat Raj', 'Spirit of federalism: Centre-State relationships', 'Election — Judiciary in India — Rule of Law'] },
+            { name: 'Governance & Rights', nameTamil: 'ஆட்சி & உரிமைகள்', subtopics: ['Corruption in public life — Anti-Corruption measures', 'Lokpal and Lokayukta', 'Right to Information', 'Empowerment of Women', 'Consumer Protection Forums', 'Human Rights Charter', 'Political parties and political system in TN and India'] }
+          ]
+        },
+        {
+          name: 'Unit V: Indian Economy & TN Development (20 Questions)',
+          nameTamil: 'அலகு V: இந்திய பொருளாதாரம் & தமிழ்நாடு வளர்ச்சி (20 கேள்விகள்)',
+          topics: [
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', subtopics: ['Nature of Indian economy', 'Five-year plan models — assessment', 'Planning Commission and NITI Aayog', 'Sources of revenue — RBI — Finance Commission', 'Resource sharing between Union and State', 'Goods and Services Tax (GST)'] },
+            { name: 'Development & Welfare', nameTamil: 'வளர்ச்சி & நலன்', subtopics: ['Economic trends — Employment generation', 'Land reforms and Agriculture', 'Application of Science and Technology in Agriculture', 'Industrial growth', 'Rural Welfare oriented programmes', 'Population, Education, Health, Employment, Poverty', 'Social Justice and Social Harmony'] },
+            { name: 'Tamil Nadu Specific', nameTamil: 'தமிழ்நாடு குறிப்பிட்ட', subtopics: ['Education and Health systems in Tamil Nadu', 'Geography of Tamil Nadu and its impact on economic growth', 'Welfare schemes of Government', 'Current socio-economic issues'] }
+          ]
+        },
+        {
+          name: 'Unit VI: TN History, Culture & Socio-Political Movements (20 Questions)',
+          nameTamil: 'அலகு VI: தமிழ்நாடு வரலாறு, கலாச்சாரம் & சமூக-அரசியல் இயக்கங்கள் (20 கேள்விகள்)',
+          topics: [
+            { name: 'Tamil Heritage', nameTamil: 'தமிழ் பாரம்பரியம்', subtopics: ['History of Tamil Society — Archaeological discoveries', 'Tamil Literature from Sangam age to contemporary', 'Thirukkural — Significance as Secular Literature', 'Thirukkural — Relevance to everyday life', 'Thirukkural — Impact on Humanity & Universal Values', 'Thirukkural — Relevance to socio-politico-economic affairs', 'Philosophical content in Thirukkural'] },
+            { name: 'TN Freedom & Reform', nameTamil: 'தமிழ்நாடு சுதந்திரம் & சீர்திருத்தம்', subtopics: ['Role of Tamil Nadu in freedom struggle', 'Early agitations against British Rule', 'Role of women in freedom struggle', 'Various Social reformers', 'Social reform movements', 'Social transformation of Tamil Nadu'] }
+          ]
+        }
+      ],
+      'Part B: Aptitude & Mental Ability — SSLC Standard (25 Questions)': [
+        {
+          name: 'Unit I: Aptitude (15 Questions)',
+          nameTamil: 'அலகு I: திறன் (15 கேள்விகள்)',
+          topics: [
+            { name: 'Mathematical Aptitude', nameTamil: 'கணிதத் திறன்', subtopics: ['Simplification', 'Percentage', 'Highest Common Factor (HCF)', 'Lowest Common Multiple (LCM)', 'Ratio and Proportion', 'Simple Interest', 'Compound Interest', 'Area', 'Volume', 'Time and Work'] }
+          ]
+        },
+        {
+          name: 'Unit II: Reasoning (10 Questions)',
+          nameTamil: 'அலகு II: தர்க்கம் (10 கேள்விகள்)',
+          topics: [
+            { name: 'Reasoning Ability', nameTamil: 'தர்க்க திறன்', subtopics: ['Logical Reasoning', 'Puzzles', 'Dice', 'Visual Reasoning', 'Alpha Numeric Reasoning', 'Number Series'] }
+          ]
+        }
+      ],
+      'Part C: Tamil Eligibility-cum-Scoring Test — SSLC Standard (100 Questions)': [
+        {
+          name: 'அலகு I: இலக்கணம் (25 கேள்விகள்)',
+          nameTamil: 'அலகு I: இலக்கணம் (25 கேள்விகள்)',
+          topics: [
+            { name: 'எழுத்து (Letters)', nameTamil: 'எழுத்து', subtopics: ['பிரித்து எழுதுதல் – சேர்த்து எழுதுதல்', 'சந்திப்பிழை', 'குறில், நெடில் வேறுபாடு', 'லகர, ளகர, ழகர வேறுபாடு', 'னகர, ணகர வேறுபாடு', 'ரகர, றகர வேறுபாடு', 'இனநெழுத்துகள் அறிதல்', 'சுட்டு எழுத்துகள், வினா எழுத்துகள்', 'ஒருமை பன்மை அறிதல்'] },
+            { name: 'சொல் (Words)', nameTamil: 'சொல்', subtopics: ['வேர்ச்சொல் அறிதல்', 'வினைமுற்று, வினையெச்சம், வினையாலணையும் பெயர் அறிதல்', 'அனற்சொல் – தமிழ்ச்சொல்', 'எதிர்ச்சொல், வினைச்சொல்', 'எழுத்துப் பிழை, ஒற்றுப்பிழை அறிதல்', 'இரண்டு வினைச் சொற்களின் வேறுபாடு'] }
+          ]
+        },
+        {
+          name: 'அலகு II: சொல்லகராதி (15 கேள்விகள்)',
+          nameTamil: 'அலகு II: சொல்லகராதி (15 கேள்விகள்)',
+          topics: [
+            { name: 'சொல் அறிவு', nameTamil: 'சொல் அறிவு', subtopics: ['எதிர்ச்சொல் எடுத்தெழுதுதல்', 'ஓரெழுத்து ஒரு மொழி', 'உரிய பொருளைக் கண்டறிதல்', 'ஒருபொருள் தரும் பல சொற்கள்', 'பொருந்தா சொல் கண்டறிதல்', 'அகர வரிசைப்படி சொற்களை சீர்செய்தல்', 'ஒருபொருள் பன்மொழி', 'இருபொருள் குறிக்கும் சொற்கள்', 'பேச்சு வழக்கு, எழுத்து வழக்கு', 'கோடிட்ட இடம் நிரப்புதல்', 'பொருத்தமான பொருளைத் தெரிவு செய்தல்', 'ஊர்ப் பெயர்களின் மரூஉ', 'பிழை திருத்துக', 'தூய தமிழ்ச் சொற்கள்'] }
+          ]
+        },
+        {
+          name: 'அலகு III: எழுதும் திறன் (15 கேள்விகள்)',
+          nameTamil: 'அலகு III: எழுதும் திறன் (15 கேள்விகள்)',
+          topics: [
+            { name: 'எழுத்து திறன்', nameTamil: 'எழுத்து திறன்', subtopics: ['சொற்களை ஒழுங்குபடுத்தி சொற்றொடர் அமைத்தல்', 'தொடர் வகைகள் — செய்வினை, செயப்பாட்டு வினை', 'தன்வினை, பிறவினை', 'ஒருமை பன்மை பிழையறிந்து சரியான தொடர் அறிதல்', 'மரபுத் தமிழ் — திணை மரபு (உயர்திணை, அஃறிணை)', 'பால் மரபு (ஆண்பால், பெண்பால், பலர்பால்)', 'காலம் (இறந்தகாலம், நிகழ்காலம், எதிர்காலம்)', 'இளமைப் பெயர், ஒலிமரபு, வினைமரபு, தொகை மரபு', 'நிறுத்தல் குறியீடுகள் — கால்புள்ளி, அரைப்புள்ளி, முக்கால் புள்ளி, முற்றுப்புள்ளி, வியப்புக்குறி, வினாக்குறி'] }
+          ]
+        },
+        {
+          name: 'அலகு IV: கலைச் சொற்கள் (10 கேள்விகள்)',
+          nameTamil: 'அலகு IV: கலைச் சொற்கள் (10 கேள்விகள்)',
+          topics: [
+            { name: 'பல்துறை கலைச் சொற்கள்', nameTamil: 'பல்துறை கலைச் சொற்கள்', subtopics: ['அறிவியல் கலைச் சொற்கள் (e.g., Allergy = ஒவ்வாமை)', 'கல்வி கலைச் சொற்கள்', 'மருத்துவ கலைச் சொற்கள்', 'மேலாண்மை கலைச் சொற்கள்', 'சட்ட கலைச் சொற்கள்', 'புவியியல் கலைச் சொற்கள் (e.g., Migration = வலசை)', 'தொழில்நுட்ப கலைச் சொற்கள் (e.g., Search Engine = தேடு பொறி)', 'ஊடக கலைச் சொற்கள்', 'தகவல் தொழில்நுட்ப கலைச் சொற்கள்', 'Gene = மரபணு, Nautical Mile = கடல் மைல்'] }
+          ]
+        },
+        {
+          name: 'அலகு V: வாசித்தல் — புரிந்து கொள்ளும் திறன் (15 கேள்விகள்)',
+          nameTamil: 'அலகு V: வாசித்தல் — புரிந்து கொள்ளும் திறன் (15 கேள்விகள்)',
+          topics: [
+            { name: 'வாசிப்பு திறன்', nameTamil: 'வாசிப்பு திறன்', subtopics: ['கொடுக்கப்பட்ட பத்தியிலிருந்து வினாக்களுக்கு விடை', 'செய்தித்தாள் — தலையங்கம் — முகப்புச் செய்திகள்', 'அரசு சார்ந்த செய்திகள் — கட்டுரைகள்', 'உவமைத் தொடரின் பொருள் அறிதல்', 'மரபுத் தொடரின் பொருள் அறிதல்', 'பழமொழிகள் பொருள் அறிதல்', 'ஆவண உள்ளடக்கங்களைப் புரிந்து கொள்ளும் திறன்'] }
+          ]
+        },
+        {
+          name: 'அலகு VI: எளிய மொழி பெயர்ப்பு (5 கேள்விகள்)',
+          nameTamil: 'அலகு VI: எளிய மொழி பெயர்ப்பு (5 கேள்விகள்)',
+          topics: [
+            { name: 'மொழிபெயர்ப்பு', nameTamil: 'மொழிபெயர்ப்பு', subtopics: ['ஆங்கிலம் & பிற மொழிச் சொற்களுக்கு இணையான தமிழ்ச் சொற்கள்', 'பயன்பாட்டில் உள்ள ஆங்கிலச் சொற்களை மொழிபெயர்த்தல்', 'e.g., pendrive, printer, computer, keyboard', 'ஆவணங்களின் தலைப்பு — கோப்புகள் — கடிதங்கள் — மனுக்கள்', 'மொழிபெயர்ப்பு புரிந்து கொள்ளுதல்'] }
+          ]
+        },
+        {
+          name: 'அலகு VII: இலக்கியம், தமிழ் அறிஞர்கள் & தமிழ்த்தொண்டு (15 கேள்விகள்)',
+          nameTamil: 'அலகு VII: இலக்கியம், தமிழ் அறிஞர்கள் & தமிழ்த்தொண்டு (15 கேள்விகள்)',
+          topics: [
+            { name: 'திருக்குறள் (20 அதிகாரங்கள்)', nameTamil: 'திருக்குறள் (20 அதிகாரங்கள்)', subtopics: ['ஒழுக்கமுடைமை, பொறையுடைமை, ஊக்கமுடைமை', 'விருந்தோம்பல், அறன் வலியுறுத்தல், ஈகை', 'பெரியாரைத் துணைக்கோடல், வினை செயல்வகை', 'அவையஞ்சாமை, கண்ணோட்டம், அன்புடைமை', 'கல்வி, நடுவிலைமை, கூடா ஒழுக்கம்', 'கல்லாமை, வெங்கோன்மை, பண்புடைமை', 'நட்பாராய்தல், புறங்கூறாமை, அருளுடைமை'] },
+            { name: 'அற நூல்கள் & தமிழ் அறிஞர்கள்', nameTamil: 'அற நூல்கள் & தமிழ் அறிஞர்கள்', subtopics: ['நாலடியார், நான்மணிக்கடிகை, பழமொழி நானூறு', 'முதுமொழிக்காஞ்சி, திரிகடுகம், இன்னாநாற்பது', 'சிறுபஞ்சமூலம், ஏலாதி, ஔவையார் பாடல்கள்', 'தமிழின் தொன்மை, சிறப்பு, திராவிட மொழிகள்', 'உ.வே.சாமிநாத ஐயர், தெ.பொ.மீனாட்சி சுந்தரம்', 'சி.இலக்குவனார் தமிழ்ப்பணி', 'தேவநேய பாவாணர், ஜி.யு.போப், வீரமாமுனிவர்', 'பாவேந்தர், டி.கே.சிதம்பரனாதர், குன்றக்குடி அடிகளார்', 'கண்ணதாசன், காவிசே மில்லத், தாரா பாரதி', 'வேலுமாச்சியார், பட்டுக்கோட்டை கல்யாணசுந்தரம்', 'முடியரசன், தமிழ் ஒளி, கி.ஆ.ப.விசுவநாதம்'] }
           ]
         }
       ]
@@ -1618,13 +1730,13 @@ const stateExams: Exam[] = [
       { id: 'tnpsc-gs-1', question: 'Who founded the Self-Respect Movement?', questionTamil: 'சுயமரியாதை இயக்கத்தை நிறுவியவர் யார்?', options: ['E.V. Ramasamy Periyar', 'C.N. Annadurai', 'Kamaraj', 'Rajaji'], optionsTamil: ['ஈ.வெ. ராமசாமி பெரியார்', 'சி.என். அண்ணாதுரை', 'காமராஜ்', 'ராஜாஜி'], answer: 0, explanation: 'E.V. Ramasamy (Periyar) started Self-Respect Movement in 1925', explanationTamil: 'ஈ.வெ. ராமசாமி (பெரியார்) 1925 இல் சுயமரியாதை இயக்கத்தை தொடங்கினார்', subject: 'Tamil Nadu History', difficulty: 'easy' },
       { id: 'tnpsc-gs-2', question: 'The capital of Chola dynasty was:', questionTamil: 'சோழ வம்சத்தின் தலைநகரம்:', options: ['Madurai', 'Thanjavur', 'Kanchipuram', 'Trichy'], optionsTamil: ['மதுரை', 'தஞ்சாவூர்', 'காஞ்சிபுரம்', 'திருச்சி'], answer: 1, explanation: 'Thanjavur (Tanjore) was the capital of Chola dynasty', explanationTamil: 'தஞ்சாவூர் சோழ வம்சத்தின் தலைநகரமாக இருந்தது', subject: 'Tamil Nadu History', difficulty: 'easy' },
       { id: 'tnpsc-gs-3', question: 'Which river is known as "Dakshina Ganga"?', questionTamil: '"தட்சிண கங்கா" என்று அழைக்கப்படும் நதி எது?', options: ['Krishna', 'Kaveri', 'Godavari', 'Tungabhadra'], optionsTamil: ['கிருஷ்ணா', 'காவிரி', 'கோதாவரி', 'துங்கபத்ரா'], answer: 2, explanation: 'Godavari is called Dakshina Ganga (Ganges of South)', explanationTamil: 'கோதாவரி தட்சிண கங்கா (தெற்கின் கங்கை) என்று அழைக்கப்படுகிறது', subject: 'Geography', difficulty: 'medium' },
-      { id: 'tnpsc-gs-4', question: 'The highest peak in Tamil Nadu is:', questionTamil: 'தமிழ்நாட்டின் உயரமான சிகரம்:', options: ['Doddabetta', 'Anaimudi', 'Nilgiri Peak', 'Agasthyamalai'], optionsTamil: ['தொட்டபெட்டா', 'ஆனைமுடி', 'நீலகிரி சிகரம்', 'அகஸ்தியமலை'], answer: 0, explanation: 'Doddabetta (2,637m) is highest peak in Tamil Nadu', explanationTamil: 'தொட்டபெட்டா (2,637 மீ) தமிழ்நாட்டின் உயரமான சிகரம்', subject: 'Geography', difficulty: 'easy' },
+      { id: 'tnpsc-gs-4', question: 'The highest peak in Tamil Nadu is:', questionTamil: 'தமிழ்நாட்டின் உயரமான சிகரம்:', options: ['Doddabetta', 'Anaimudi', 'Nilgiri Peak', 'Agasthyamalai'], optionsTamil: ['தொட்டபெட்டா', 'ஆனைமுடி', 'நீலகிரி சிகரம்', 'அகஸ்தியமலை'], answer: 0, explanation: 'Doddabetta (2,637m) is highest peak in Tamil Nadu, in the Nilgiri Hills', explanationTamil: 'தொட்டபெட்டா (2,637 மீ) தமிழ்நாட்டின் உயரமான சிகரம், நீலகிரி மலையில் உள்ளது', subject: 'Geography', difficulty: 'easy' },
       { id: 'tnpsc-gs-5', question: 'First Chief Minister of Tamil Nadu was:', questionTamil: 'தமிழ்நாட்டின் முதல் முதலமைச்சர்:', options: ['C.N. Annadurai', 'O.P. Ramaswamy Reddiyar', 'Kamaraj', 'Rajaji'], optionsTamil: ['சி.என். அண்ணாதுரை', 'ஓ.பி. ராமசாமி ரெட்டியார்', 'காமராஜ்', 'ராஜாஜி'], answer: 1, explanation: 'O.P. Ramaswamy Reddiyar was first CM of Madras State (1947)', explanationTamil: 'ஓ.பி. ராமசாமி ரெட்டியார் மெட்ராஸ் மாநிலத்தின் முதல் முதலமைச்சர் (1947)', subject: 'Tamil Nadu History', difficulty: 'medium' },
-      { id: 'tnpsc-gs-6', question: 'Who built the Brihadeeswara Temple?', questionTamil: 'பிரகதீஸ்வரர் கோவிலை கட்டியவர் யார்?', options: ['Rajendra Chola', 'Rajaraja Chola I', 'Kulottunga Chola', 'Vijayalaya Chola'], optionsTamil: ['ராஜேந்திர சோழன்', 'முதலாம் ராஜராஜ சோழன்', 'குலோத்துங்க சோழன்', 'விஜயாலய சோழன்'], answer: 1, explanation: 'Rajaraja Chola I built Brihadeeswara Temple in Thanjavur', explanationTamil: 'முதலாம் ராஜராஜ சோழன் தஞ்சாவூரில் பிரகதீஸ்வரர் கோவிலை கட்டினார்', subject: 'Tamil Nadu History', difficulty: 'easy' },
+      { id: 'tnpsc-gs-6', question: 'Who built the Brihadeeswara Temple?', questionTamil: 'பிரகதீஸ்வரர் கோவிலை கட்டியவர் யார்?', options: ['Rajendra Chola', 'Rajaraja Chola I', 'Kulottunga Chola', 'Vijayalaya Chola'], optionsTamil: ['ராஜேந்திர சோழன்', 'முதலாம் ராஜராஜ சோழன்', 'குலோத்துங்க சோழன்', 'விஜயாலய சோழன்'], answer: 1, explanation: 'Rajaraja Chola I built the Brihadeeswara Temple in Thanjavur around 1010 CE', explanationTamil: 'முதலாம் ராஜராஜ சோழன் கி.பி. 1010 அளவில் தஞ்சாவூரில் பிரகதீஸ்வரர் கோவிலை கட்டினார்', subject: 'Tamil Nadu History', difficulty: 'easy' },
       { id: 'tnpsc-ta-1', question: '"ஆத்திசூடி" யை எழுதியவர் யார்?', options: ['திருவள்ளுவர்', 'ஔவையார்', 'கம்பர்', 'இளங்கோவடிகள்'], answer: 1, explanation: 'ஔவையார் ஆத்திசூடியை எழுதினார்', subject: 'Tamil Literature', difficulty: 'easy' },
-      { id: 'tnpsc-ta-2', question: 'தமிழின் முதல் இலக்கண நூல்:', options: ['நன்னூல்', 'தொல்காப்பியம்', 'அகத்தியம்', 'யாப்பருங்கலம்'], answer: 1, explanation: 'தொல்காப்பியம் தமிழின் முதல் இலக்கண நூல்', subject: 'Tamil Literature', difficulty: 'easy' },
-      { id: 'tnpsc-ta-3', question: 'சிலப்பதிகாரத்தை எழுதியவர்:', options: ['கம்பர்', 'இளங்கோவடிகள்', 'சீத்தலைச்சாத்தனார்', 'திருதக்கதேவர்'], answer: 1, explanation: 'இளங்கோவடிகள் சிலப்பதிகாரத்தை எழுதினார்', subject: 'Tamil Literature', difficulty: 'easy' },
-      { id: 'tnpsc-ta-4', question: 'திருக்குறளில் உள்ள அதிகாரங்கள்:', options: ['133', '108', '120', '100'], answer: 0, explanation: 'திருக்குறளில் 133 அதிகாரங்கள் உள்ளன', subject: 'Tamil Literature', difficulty: 'easy' }
+      { id: 'tnpsc-ta-2', question: 'தமிழின் முதல் இலக்கண நூல்:', options: ['நன்னூல்', 'தொல்காப்பியம்', 'அகத்தியம்', 'யாப்பருங்கலம்'], answer: 1, explanation: 'தொல்காப்பியம் தமிழின் முதல் இலக்கண நூல் — தொல்காப்பியர் எழுதியது', subject: 'Tamil Literature', difficulty: 'easy' },
+      { id: 'tnpsc-ta-3', question: 'சிலப்பதிகாரத்தை எழுதியவர்:', options: ['கம்பர்', 'இளங்கோவடிகள்', 'சீத்தலைச்சாத்தனார்', 'திருதக்கதேவர்'], answer: 1, explanation: 'இளங்கோவடிகள் சிலப்பதிகாரத்தை எழுதினார் — ஐம்பெருங்காப்பியங்களில் ஒன்று', subject: 'Tamil Literature', difficulty: 'easy' },
+      { id: 'tnpsc-ta-4', question: 'திருக்குறளில் உள்ள அதிகாரங்கள்:', options: ['133', '108', '120', '100'], answer: 0, explanation: 'திருக்குறளில் 133 அதிகாரங்கள், 1330 குறள்கள் உள்ளன — அறத்துப்பால் (38), பொருட்பால் (70), காமத்துப்பால் (25)', subject: 'Tamil Literature', difficulty: 'easy' }
     ]
   },
   {

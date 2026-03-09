@@ -313,7 +313,7 @@ export const governmentExams: GovernmentExam[] = [
   // STATE GOVERNMENT - TAMIL NADU
   {
     id: 'tnpsc-group4',
-    name: 'TNPSC Group IV (CCSE-IV)',
+    name: 'TNPSC Group 4 (CCSE-IV) 2026',
     nameTamil: 'TNPSC குரூப் IV (CCSE-IV)',
     category: 'state',
     qualification: 'SSLC / 12th Pass',
