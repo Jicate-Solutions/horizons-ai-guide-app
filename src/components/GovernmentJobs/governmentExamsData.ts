@@ -58,8 +58,8 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'agniveer-navy',
-    name: 'Agniveer Navy',
-    nameTamil: 'அக்னிவீர் கடற்படை',
+    name: 'Agniveer Navy (SSR/MR)',
+    nameTamil: 'அக்னிவீர் கடற்படை (SSR/MR)',
     category: 'defence',
     qualification: '12th Pass',
     ageMin: 17.5,

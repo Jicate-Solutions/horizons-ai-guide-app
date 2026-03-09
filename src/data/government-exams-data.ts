@@ -296,34 +296,94 @@ const defenceExams: Exam[] = [
   },
   {
     id: 'agniveer-navy',
-    name: 'Agniveer Navy',
-    nameTamil: 'அக்னிவீர் கடற்படை',
+    name: 'Agniveer Navy (SSR/MR)',
+    nameTamil: 'அக்னிவீர் கடற்படை (SSR/MR)',
     qualification: '12th Pass (PCM - 50%)',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (PCM - 50%)',
     age: '17.5 - 23 years',
     salary: '₹30,000/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    selectionProcess: 'Online CBT → Physical Fitness Test (PFT) → Medical Examination',
+    selectionProcessTamil: 'ஆன்லைன் CBT → உடற்தகுதி தேர்வு (PFT) → மருத்துவப் பரிசோதனை',
     examPattern: [
-      { paper: 'Written Exam', paperTamil: 'எழுத்துத் தேர்வு', marks: 100, duration: '1 hour', questions: 100 }
+      { paper: 'Online CBT (SSR — 10+2 Level)', paperTamil: 'ஆன்லைன் CBT (SSR — 10+2 நிலை)', marks: 100, duration: '1 hour', questions: 100 },
+      { paper: 'Online CBT (MR — 10th Level)', paperTamil: 'ஆன்லைன் CBT (MR — 10ஆம் வகுப்பு நிலை)', marks: 100, duration: '1 hour', questions: 100 }
     ],
     syllabus: {
-      main: [
+      'SSR Syllabus (10+2 Level — 100 Questions, 60 Minutes)': [
         {
-          name: 'Agniveer Navy Syllabus',
-          nameTamil: 'அக்னிவீர் கடற்படை பாடத்திட்டம்',
+          name: 'Science (25 Questions)',
+          nameTamil: 'அறிவியல் (25 கேள்விகள்)',
           topics: [
-            { name: 'Science', nameTamil: 'அறிவியல்', subtopics: ['Physics: Mechanics, Heat, Light, Sound, Electricity', 'Chemistry: Elements, Compounds, Reactions', 'Mathematics: Algebra, Trigonometry, Geometry'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: ['Grammar', 'Vocabulary', 'Comprehension', 'Synonyms & Antonyms'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'Geography', 'History', 'Indian Polity', 'Defence'] }
+            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: ['Laws of Motion', 'Work, Energy & Power', 'Heat & Thermodynamics', 'Light & Optics', 'Electricity & Magnetism', 'Atomic Structure', 'Wave Motion', 'Units & Measurements'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: ['Metals & Non-metals', 'Organic Chemistry', 'Environmental Chemistry', 'Acids, Bases & Salts', 'Periodic Classification', 'Chemical Bonding', 'Electrochemistry'] },
+            { name: 'Biology (Basic)', nameTamil: 'உயிரியல் (அடிப்படை)', subtopics: ['Basic Human Anatomy', 'Nutrition & Digestion', 'Respiratory System', 'Circulatory System'] }
+          ]
+        },
+        {
+          name: 'Mathematics (25 Questions)',
+          nameTamil: 'கணிதம் (25 கேள்விகள்)',
+          topics: [
+            { name: 'Algebra & Functions', nameTamil: 'இயற்கணிதம் & சார்புகள்', subtopics: ['Relations & Functions', 'Logarithms', 'Complex Numbers', 'Quadratic Equations', 'Sequences & Series', 'Binomial Theorem'] },
+            { name: 'Trigonometry & Geometry', nameTamil: 'முக்கோணமிதி & வடிவியல்', subtopics: ['Trigonometric Functions', 'Inverse Trigonometry', 'Cartesian System of Coordinates', 'Straight Lines', 'Circles & Conic Sections'] },
+            { name: 'Permutations & Probability', nameTamil: 'வரிசைமாற்றம் & நிகழ்தகவு', subtopics: ['Permutations & Combinations', 'Probability', 'Statistics & Mean/Median/Mode'] }
+          ]
+        },
+        {
+          name: 'English (25 Questions)',
+          nameTamil: 'ஆங்கிலம் (25 கேள்விகள்)',
+          topics: [
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', subtopics: ['Tenses (Past, Present, Future)', 'Active & Passive Voice', 'Direct & Indirect Speech', 'Parts of Speech', 'Subject-Verb Agreement', 'Articles & Prepositions'] },
+            { name: 'Vocabulary', nameTamil: 'சொல்வளம்', subtopics: ['Synonyms & Antonyms', 'Idioms & Phrases', 'One Word Substitution', 'Spelling Errors', 'Fill in the Blanks'] },
+            { name: 'Comprehension', nameTamil: 'புரிதல்', subtopics: ['Reading Comprehension Passages', 'Sentence Rearrangement', 'Error Spotting'] }
+          ]
+        },
+        {
+          name: 'General Awareness (25 Questions)',
+          nameTamil: 'பொது அறிவு (25 கேள்விகள்)',
+          topics: [
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['National & International News', 'Sports & Awards', 'Defence News & Updates', 'Science & Technology Developments', 'Government Schemes'] },
+            { name: 'History & Civics', nameTamil: 'வரலாறு & குடிமையியல்', subtopics: ['Indian History — Ancient, Medieval, Modern', 'Indian Freedom Movement', 'Indian Constitution', 'Indian Polity & Governance'] },
+            { name: 'Geography & Reasoning', nameTamil: 'புவியியல் & தர்க்கம்', subtopics: ['Indian Geography — Soil, Rivers, Mountains, Climate', 'World Geography', 'Basic Reasoning — Verbal & Non-verbal', 'Analogies, Coding-Decoding, Patterns'] }
+          ]
+        }
+      ],
+      'MR Syllabus (10th Level — 100 Questions, 60 Minutes)': [
+        {
+          name: 'Science (MR Level)',
+          nameTamil: 'அறிவியல் (MR நிலை)',
+          topics: [
+            { name: 'Physics & Chemistry (10th)', nameTamil: 'இயற்பியல் & வேதியியல் (10ஆம்)', subtopics: ['Nature of Matter — States of Matter', 'Force and Motion — Newton\'s Laws', 'Work and Energy — Kinetic & Potential', 'Heat — Conduction, Convection, Radiation', 'Light — Reflection, Refraction', 'Electricity — Ohm\'s Law, Circuits', 'Atomic Structure — Atoms, Molecules', 'Chemical Reactions — Types & Equations', 'Life Processes — Respiration, Excretion'] }
+          ]
+        },
+        {
+          name: 'Mathematics (MR Level)',
+          nameTamil: 'கணிதம் (MR நிலை)',
+          topics: [
+            { name: 'Arithmetic & Algebra (10th)', nameTamil: 'எண்கணிதம் & இயற்கணிதம் (10ஆம்)', subtopics: ['Number Systems & Rational Numbers', 'Arithmetic — Percentage, Ratio, Profit/Loss', 'Linear Equations', 'Quadratic Equations', 'Basic Algebra', 'Geometry — Triangles, Circles, Angles', 'Mensuration — Area, Volume, Surface Area', 'Basic Trigonometry — Sin, Cos, Tan'] }
+          ]
+        },
+        {
+          name: 'General Awareness (MR Level)',
+          nameTamil: 'பொது அறிவு (MR நிலை)',
+          topics: [
+            { name: 'GK & Current Affairs (10th)', nameTamil: 'பொது அறிவு & நடப்பு (10ஆம்)', subtopics: ['Geography — Rivers, Mountains, Ports, Capitals', 'History — Indian Freedom Movement, Culture & Heritage', 'Civics — Indian Constitution, Democracy, Parliament', 'Current Affairs — National & International Events', 'Sports — Commonwealth, Olympics, Cricket', 'Awards & Honours — Padma, Nobel, Bharat Ratna', 'Abbreviations — UN, NATO, WHO, ISRO, DRDO'] }
           ]
         }
       ]
     },
     pyq: [
       { id: 'navy-phy-1', question: 'The SI unit of electric current is:', questionTamil: 'மின்னோட்டத்தின் SI அலகு:', options: ['Ampere', 'Volt', 'Ohm', 'Watt'], optionsTamil: ['ஆம்பியர்', 'வோல்ட்', 'ஓம்', 'வாட்'], answer: 0, explanation: 'Ampere (A) is the SI unit of electric current', explanationTamil: 'ஆம்பியர் (A) மின்னோட்டத்தின் SI அலகு', subject: 'Physics', difficulty: 'easy' },
+      { id: 'navy-phy-2', question: 'Newton\'s First Law of Motion is also called:', questionTamil: 'நியூட்டனின் முதல் இயக்க விதி எவ்வாறு அழைக்கப்படுகிறது:', options: ['Law of Inertia', 'Law of Acceleration', 'Law of Action-Reaction', 'Law of Gravitation'], optionsTamil: ['நிலைமத் தன்மை விதி', 'முடுக்கம் விதி', 'செயல்-எதிர்செயல் விதி', 'ஈர்ப்பு விதி'], answer: 0, explanation: 'Newton\'s First Law states that a body at rest stays at rest unless acted upon by an external force — this is the Law of Inertia', explanationTamil: 'நியூட்டனின் முதல் விதி: ஒரு பொருள் வெளிப்புற விசை செயல்படாத வரை ஓய்வு நிலையில் இருக்கும் — இது நிலைமத் தன்மை விதி', subject: 'Physics', difficulty: 'easy' },
       { id: 'navy-chem-1', question: 'The chemical formula of water is:', questionTamil: 'நீரின் வேதிச் சூத்திரம்:', options: ['H₂O', 'CO₂', 'NaCl', 'H₂SO₄'], optionsTamil: ['H₂O', 'CO₂', 'NaCl', 'H₂SO₄'], answer: 0, explanation: 'Water is composed of 2 hydrogen and 1 oxygen atom: H₂O', explanationTamil: 'நீர் 2 ஹைட்ரஜன் மற்றும் 1 ஆக்சிஜன் அணுவால் ஆனது: H₂O', subject: 'Chemistry', difficulty: 'easy' },
-      { id: 'navy-gk-1', question: 'Indian Navy Day is celebrated on:', questionTamil: 'இந்திய கடற்படை தினம் கொண்டாடப்படும் நாள்:', options: ['December 4', 'January 15', 'October 8', 'November 14'], optionsTamil: ['டிசம்பர் 4', 'ஜனவரி 15', 'அக்டோபர் 8', 'நவம்பர் 14'], answer: 0, explanation: 'Navy Day is on December 4 to commemorate Operation Trident (1971)', explanationTamil: 'கடற்படை தினம் டிசம்பர் 4 - ஆபரேஷன் ட்ரைடன்ட் (1971) நினைவாக', subject: 'General Knowledge', difficulty: 'easy' }
+      { id: 'navy-chem-2', question: 'Which gas is produced when metals react with acids?', questionTamil: 'உலோகங்கள் அமிலங்களுடன் வினைபுரியும்போது எந்த வாயு உருவாகிறது?', options: ['Hydrogen', 'Oxygen', 'Carbon dioxide', 'Nitrogen'], optionsTamil: ['ஹைட்ரஜன்', 'ஆக்சிஜன்', 'கார்பன் டை ஆக்சைடு', 'நைட்ரஜன்'], answer: 0, explanation: 'When metals react with dilute acids, hydrogen gas is liberated. For example: Zn + H₂SO₄ → ZnSO₄ + H₂↑', explanationTamil: 'உலோகங்கள் நீர்த்த அமிலங்களுடன் வினைபுரியும்போது ஹைட்ரஜன் வாயு வெளியாகும்', subject: 'Chemistry', difficulty: 'easy' },
+      { id: 'navy-math-1', question: 'If sin θ = 3/5, then cos θ = ?', questionTamil: 'sin θ = 3/5 எனில், cos θ = ?', options: ['4/5', '3/4', '5/3', '5/4'], optionsTamil: ['4/5', '3/4', '5/3', '5/4'], answer: 0, explanation: 'Using sin²θ + cos²θ = 1: (3/5)² + cos²θ = 1, cos²θ = 1 - 9/25 = 16/25, cos θ = 4/5', explanationTamil: 'sin²θ + cos²θ = 1 பயன்படுத்தி: (3/5)² + cos²θ = 1, cos²θ = 16/25, cos θ = 4/5', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'navy-math-2', question: 'The sum of the first 10 natural numbers is:', questionTamil: 'முதல் 10 இயல் எண்களின் கூட்டுத்தொகை:', options: ['55', '50', '45', '60'], optionsTamil: ['55', '50', '45', '60'], answer: 0, explanation: 'Sum = n(n+1)/2 = 10 × 11/2 = 55', explanationTamil: 'கூட்டு = n(n+1)/2 = 10 × 11/2 = 55', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'navy-eng-1', question: 'Choose the correct passive voice: "She writes a letter."', questionTamil: '"She writes a letter." — சரியான செயப்பாட்டு வாக்கியம் தேர்ந்தெடு:', options: ['A letter is written by her', 'A letter was written by her', 'A letter has been written by her', 'A letter will be written by her'], optionsTamil: ['A letter is written by her', 'A letter was written by her', 'A letter has been written by her', 'A letter will be written by her'], answer: 0, explanation: 'Simple Present Active → Simple Present Passive: Subject + is/are + past participle + by + agent', explanationTamil: 'Simple Present Active → Simple Present Passive: Subject + is/are + past participle + by + agent', subject: 'English', difficulty: 'easy' },
+      { id: 'navy-eng-2', question: 'The synonym of "Brave" is:', questionTamil: '"Brave" என்ற சொல்லின் ஒத்த சொல்:', options: ['Courageous', 'Timid', 'Cowardly', 'Weak'], optionsTamil: ['தைரியமான', 'பயந்த', 'கோழையான', 'பலவீனமான'], answer: 0, explanation: 'Brave means showing courage. Courageous is its synonym.', explanationTamil: 'Brave என்றால் தைரியம் காட்டுவது. Courageous அதன் ஒத்த சொல்.', subject: 'English', difficulty: 'easy' },
+      { id: 'navy-gk-1', question: 'Indian Navy Day is celebrated on:', questionTamil: 'இந்திய கடற்படை தினம் கொண்டாடப்படும் நாள்:', options: ['December 4', 'January 15', 'October 8', 'November 14'], optionsTamil: ['டிசம்பர் 4', 'ஜனவரி 15', 'அக்டோபர் 8', 'நவம்பர் 14'], answer: 0, explanation: 'Navy Day is on December 4 to commemorate Operation Trident (1971 India-Pakistan War)', explanationTamil: 'கடற்படை தினம் டிசம்பர் 4 - ஆபரேஷன் ட்ரைடன்ட் (1971 இந்தியா-பாகிஸ்தான் போர்) நினைவாக', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'navy-gk-2', question: 'The headquarters of the Indian Navy is in:', questionTamil: 'இந்திய கடற்படையின் தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Visakhapatnam', 'Kochi'], optionsTamil: ['புது தில்லி', 'மும்பை', 'விசாகப்பட்டினம்', 'கொச்சி'], answer: 0, explanation: 'The headquarters of the Indian Navy (Integrated Headquarters of Ministry of Defence — Navy) is in New Delhi', explanationTamil: 'இந்திய கடற்படையின் தலைமையகம் புது தில்லியில் உள்ளது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'navy-gk-3', question: 'INS Vikrant is India\'s first:', questionTamil: 'INS விக்ராந்த் இந்தியாவின் முதல்:', options: ['Indigenous Aircraft Carrier', 'Nuclear Submarine', 'Destroyer Ship', 'Frigate'], optionsTamil: ['உள்நாட்டில் உருவாக்கப்பட்ட விமானம் தாங்கி கப்பல்', 'அணு நீர்மூழ்கிக் கப்பல்', 'அழிப்புக் கப்பல்', 'போர்க்கப்பல்'], answer: 0, explanation: 'INS Vikrant (IAC-1) is India\'s first indigenously designed and built aircraft carrier, commissioned on 2 September 2022', explanationTamil: 'INS விக்ராந்த் (IAC-1) இந்தியாவின் முதல் உள்நாட்டில் வடிவமைக்கப்பட்ட விமானம் தாங்கி கப்பல் — 2 செப்டம்பர் 2022 அன்று நியமிக்கப்பட்டது', subject: 'General Knowledge', difficulty: 'medium' },
+      { id: 'navy-phy-3', question: 'Ohm\'s Law states that V = ?', questionTamil: 'ஓமின் விதிப்படி V = ?', options: ['I × R', 'I / R', 'R / I', 'I + R'], optionsTamil: ['I × R', 'I / R', 'R / I', 'I + R'], answer: 0, explanation: 'Ohm\'s Law: Voltage (V) = Current (I) × Resistance (R)', explanationTamil: 'ஓமின் விதி: மின்னழுத்தம் (V) = மின்னோட்டம் (I) × மின்தடை (R)', subject: 'Physics', difficulty: 'easy' }
     ]
   },
   {
