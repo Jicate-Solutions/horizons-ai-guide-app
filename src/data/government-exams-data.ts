@@ -142,33 +142,141 @@ const defenceExams: Exam[] = [
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (50%)',
     age: '17.5 - 23 years',
     salary: '₹30,000/month',
-    selectionProcess: 'CEE → Physical → Medical',
-    selectionProcessTamil: 'பொது நுழைவுத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    selectionProcess: 'Online CEE → Physical Fitness → Medical',
+    selectionProcessTamil: 'ஆன்லைன் CEE → உடற்தகுதி → மருத்துவம்',
     examPattern: [
-      { paper: 'Common Entrance Exam', paperTamil: 'பொது நுழைவுத் தேர்வு', marks: 100, duration: '1 hour', questions: 50 }
+      { paper: 'Common Entrance Exam (CEE) — Online', paperTamil: 'பொது நுழைவுத் தேர்வு (CEE) — ஆன்லைன்', marks: 200, duration: '1 hour', questions: 50 }
     ],
     syllabus: {
-      generalDuty: [
+      'General Duty (GD) — 10th Level': [
         {
-          name: 'Agniveer General Duty Syllabus',
-          nameTamil: 'அக்னிவீர் பொது கடமை பாடத்திட்டம்',
+          name: 'Agniveer General Duty (GD) Syllabus — 50 Questions, 200 Marks',
+          nameTamil: 'அக்னிவீர் பொது கடமை (GD) பாடத்திட்டம் — 50 கேள்விகள், 200 மதிப்பெண்கள்',
           topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Indian History', 'Geography', 'Indian Polity', 'Economy Basics', 'Current Affairs', 'Sports & Awards', 'Important Days', 'Books & Authors'] },
-            { name: 'General Science', nameTamil: 'பொது அறிவியல்', subtopics: ['Physics: Motion, Force, Energy, Light, Sound, Electricity', 'Chemistry: Elements, Compounds, Acids & Bases, Metals', 'Biology: Human Body, Diseases, Nutrition, Environment'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', subtopics: ['Number System', 'HCF & LCM', 'Percentage', 'Average', 'Ratio & Proportion', 'Simple & Compound Interest', 'Time & Work', 'Time & Distance', 'Profit & Loss'] },
-            { name: 'Reasoning', nameTamil: 'தர்க்கம்', subtopics: ['Coding-Decoding', 'Analogy', 'Series Completion', 'Blood Relations', 'Direction Sense', 'Alphabet Test', 'Classification'] }
+            { name: 'General Knowledge (GK)', nameTamil: 'பொது அறிவு', subtopics: [
+              'Indian History — Ancient, Medieval, Freedom Movement',
+              'Indian Geography — Rivers, Mountains, Climate, States & Capitals',
+              'Indian Constitution — Fundamental Rights, Duties, Parliament, President',
+              'Sports — National & International Awards, Olympic, Commonwealth',
+              'Awards & Honours — Bharat Ratna, Padma Awards, Gallantry Awards',
+              'Abbreviations — National & International Organizations',
+              'Current Affairs — National & International Events',
+              'Important Days & Dates',
+              'Books & Authors',
+              'United Nations & International Bodies'
+            ] },
+            { name: 'General Science (10th Level)', nameTamil: 'பொது அறிவியல் (10ஆம் வகுப்பு நிலை)', subtopics: [
+              'Physics — Motion, Force, Energy, Work, Light, Sound, Electricity, Magnetism',
+              'Chemistry — Elements, Compounds, Mixtures, Acids & Bases, Metals & Non-Metals, Chemical Reactions',
+              'Biology — Human Body Systems, Nutrition & Digestion, Cell Structure, Diseases & Prevention',
+              'Biology — Blood Groups, Vitamins & Deficiency Diseases, Environment & Ecology',
+              'Daily Life Science — Inventions, Scientific Instruments, Units & Measurements'
+            ] },
+            { name: 'Mathematics (10th Level)', nameTamil: 'கணிதம் (10ஆம் வகுப்பு நிலை)', subtopics: [
+              'Number System — Natural, Whole, Integers, Rational, Real Numbers',
+              'Arithmetic — Percentage, Ratio & Proportion, Average',
+              'Arithmetic — Simple & Compound Interest, Profit & Loss, Discount',
+              'Arithmetic — Time & Work, Time & Distance, Speed',
+              'Algebra — HCF & LCM, Factors, Linear Equations, Quadratic Equations',
+              'Geometry — Lines, Angles, Triangles, Circles, Area & Perimeter',
+              'Mensuration — Area & Volume of Cube, Cylinder, Sphere, Cone',
+              'Statistics — Mean, Median, Mode'
+            ] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க ஆற்றல்', subtopics: [
+              'Coding-Decoding — Letter & Number Coding',
+              'Series Completion — Number, Alphabet, Mixed Series',
+              'Analogy — Word & Number Relationships',
+              'Blood Relations — Family Tree Problems',
+              'Direction Sense — North, South, East, West Based Problems',
+              'Classification — Odd One Out',
+              'Alphabet Test — Position & Arrangement'
+            ] }
           ]
         }
       ],
-      clerkSKT: [
+      'Technical — 12th Level PCM': [
         {
-          name: 'Agniveer Clerk/SKT Syllabus',
-          nameTamil: 'அக்னிவீர் எழுத்தர்/SKT பாடத்திட்டம்',
+          name: 'Agniveer Technical Syllabus — 50 Questions, 200 Marks (12th Level PCM)',
+          nameTamil: 'அக்னிவீர் தொழில்நுட்ப பாடத்திட்டம் — 50 கேள்விகள் (12ஆம் வகுப்பு PCM)',
           topics: [
-            { name: 'General Knowledge + Computer', nameTamil: 'பொது அறிவு + கணினி', subtopics: ['All GK Topics + Computer Awareness'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', subtopics: ['Arithmetic', 'Algebra', 'Geometry', 'Mensuration', 'Statistics'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: ['Grammar', 'Vocabulary', 'Comprehension', 'Sentence Formation', 'Error Spotting'] },
-            { name: 'Computer', nameTamil: 'கணினி', subtopics: ['MS Word', 'MS Excel', 'MS PowerPoint', 'Internet Basics', 'Computer Shortcuts', 'Operating System Basics'] }
+            { name: 'Physics (12th Level)', nameTamil: 'இயற்பியல் (12ஆம் வகுப்பு நிலை)', subtopics: [
+              'Physical World & Measurement — Units, Dimensions, Errors',
+              'Kinematics — Motion in Straight Line, Projectile Motion',
+              'Laws of Motion — Newton\'s Laws, Friction, Circular Motion',
+              'Work, Energy & Power — Conservation Laws, Collisions',
+              'Thermodynamics — Heat, Temperature, Laws of Thermodynamics',
+              'Optics — Reflection, Refraction, Lenses, Mirrors, Wave Optics',
+              'Electricity & Magnetism — Current, Resistance, Ohm\'s Law, EMF',
+              'Modern Physics — Atomic Structure, Nuclear Physics, Semiconductors',
+              'Waves & Sound — Types of Waves, Doppler Effect'
+            ] },
+            { name: 'Chemistry (12th Level)', nameTamil: 'வேதியியல் (12ஆம் வகுப்பு நிலை)', subtopics: [
+              'Atomic Structure & Chemical Bonding',
+              'States of Matter — Solid, Liquid, Gas',
+              'Chemical Equilibrium & Kinetics',
+              'Acids, Bases, Salts & pH Scale',
+              'Electrochemistry — Cells, Batteries, Electrolysis',
+              'Organic Chemistry — Hydrocarbons, Polymers, Biomolecules',
+              'Periodic Table — Classification, Properties, Trends',
+              'Environmental Chemistry — Pollution, Ozone Depletion'
+            ] },
+            { name: 'Mathematics (12th Level)', nameTamil: 'கணிதம் (12ஆம் வகுப்பு நிலை)', subtopics: [
+              'Algebra — Sets, Relations, Functions, Complex Numbers',
+              'Matrices & Determinants',
+              'Trigonometry — Ratios, Identities, Heights & Distances',
+              'Calculus — Limits, Differentiation, Integration',
+              'Coordinate Geometry — Straight Lines, Circles, Conic Sections',
+              'Probability & Statistics',
+              'Vectors & 3D Geometry',
+              'Sequences & Series — AP, GP, HP'
+            ] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: [
+              'Grammar — Tenses, Voice, Narration, Articles, Prepositions',
+              'Vocabulary — Synonyms, Antonyms, One Word Substitution',
+              'Comprehension — Reading Passage & Questions',
+              'Sentence Correction — Error Spotting',
+              'Idioms & Phrases'
+            ] }
+          ]
+        }
+      ],
+      'Clerk / Store Keeper': [
+        {
+          name: 'Agniveer Clerk / Store Keeper (SKT) Syllabus — 50 Questions, 200 Marks',
+          nameTamil: 'அக்னிவீர் எழுத்தர் / பண்டகசாலை (SKT) பாடத்திட்டம்',
+          topics: [
+            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: [
+              'Grammar — Tenses, Voice, Narration, Articles, Prepositions',
+              'Vocabulary — Synonyms, Antonyms, One Word Substitution, Spelling',
+              'Reading Comprehension — Passage Based Questions',
+              'Sentence Formation & Transformation',
+              'Error Spotting & Correction',
+              'Cloze Test & Fill in the Blanks'
+            ] },
+            { name: 'Mathematics (Arithmetic)', nameTamil: 'கணிதம் (எண்கணிதம்)', subtopics: [
+              'Number System — Whole Numbers, Fractions, Decimals',
+              'Percentage, Ratio & Proportion',
+              'Simple & Compound Interest',
+              'Profit, Loss & Discount',
+              'Average, Time & Work, Time & Distance',
+              'HCF & LCM, Simplification'
+            ] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: [
+              'Indian History, Geography, Polity',
+              'Current Affairs — National & International',
+              'Sports, Awards & Honours',
+              'Important Days, Abbreviations',
+              'Defence Related Knowledge'
+            ] },
+            { name: 'Computer Knowledge', nameTamil: 'கணினி அறிவு', subtopics: [
+              'Computer Fundamentals — CPU, RAM, ROM, Input/Output Devices',
+              'Operating System — Windows, Basics of Linux',
+              'MS Office — Word, Excel, PowerPoint',
+              'Internet — Browser, Email, Search Engine Basics',
+              'Computer Shortcuts & File Management',
+              'Binary & Number Systems',
+              'Computer Viruses & Security Basics'
+            ] }
           ]
         }
       ]
