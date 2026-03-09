@@ -145,15 +145,16 @@ const defenceExams: Exam[] = [
     selectionProcess: 'Online CEE → Physical Fitness → Medical',
     selectionProcessTamil: 'ஆன்லைன் CEE → உடற்தகுதி → மருத்துவம்',
     examPattern: [
-      { paper: 'Common Entrance Exam (CEE) — Online', paperTamil: 'பொது நுழைவுத் தேர்வு (CEE) — ஆன்லைன்', marks: 200, duration: '1 hour', questions: 50 }
+      { paper: 'Common Entrance Exam — Soldier GD (10th Level)', paperTamil: 'பொது நுழைவுத் தேர்வு — சோல்ஜர் GD (10ஆம் நிலை)', marks: 100, duration: '1 hour', questions: 50 },
+      { paper: 'Common Entrance Exam — Technical (12th PCM)', paperTamil: 'பொது நுழைவுத் தேர்வு — தொழில்நுட்பம் (12ஆம் PCM)', marks: 200, duration: '1 hour', questions: 50 }
     ],
     syllabus: {
       'General Duty (GD) — 10th Level': [
         {
-          name: 'Agniveer General Duty (GD) Syllabus — 50 Questions, 200 Marks',
-          nameTamil: 'அக்னிவீர் பொது கடமை (GD) பாடத்திட்டம் — 50 கேள்விகள், 200 மதிப்பெண்கள்',
+          name: 'Soldier General Duty (GD) — 50 Questions, 100 Marks',
+          nameTamil: 'சோல்ஜர் பொது கடமை (GD) — 50 கேள்விகள், 100 மதிப்பெண்கள்',
           topics: [
-            { name: 'General Knowledge (GK)', nameTamil: 'பொது அறிவு', subtopics: [
+            { name: 'General Knowledge — 15 Questions, 30 Marks', nameTamil: 'பொது அறிவு — 15 கேள்விகள், 30 மதிப்பெண்கள்', subtopics: [
               'Indian History — Ancient, Medieval, Freedom Movement',
               'Indian Geography — Rivers, Mountains, Climate, States & Capitals',
               'Indian Constitution — Fundamental Rights, Duties, Parliament, President',
@@ -165,14 +166,14 @@ const defenceExams: Exam[] = [
               'Books & Authors',
               'United Nations & International Bodies'
             ] },
-            { name: 'General Science (10th Level)', nameTamil: 'பொது அறிவியல் (10ஆம் வகுப்பு நிலை)', subtopics: [
+            { name: 'General Science — 20 Questions, 40 Marks (10th Level)', nameTamil: 'பொது அறிவியல் — 20 கேள்விகள், 40 மதிப்பெண்கள்', subtopics: [
               'Physics — Motion, Force, Energy, Work, Light, Sound, Electricity, Magnetism',
               'Chemistry — Elements, Compounds, Mixtures, Acids & Bases, Metals & Non-Metals, Chemical Reactions',
               'Biology — Human Body Systems, Nutrition & Digestion, Cell Structure, Diseases & Prevention',
               'Biology — Blood Groups, Vitamins & Deficiency Diseases, Environment & Ecology',
               'Daily Life Science — Inventions, Scientific Instruments, Units & Measurements'
             ] },
-            { name: 'Mathematics (10th Level)', nameTamil: 'கணிதம் (10ஆம் வகுப்பு நிலை)', subtopics: [
+            { name: 'Mathematics — 15 Questions, 30 Marks (10th Level)', nameTamil: 'கணிதம் — 15 கேள்விகள், 30 மதிப்பெண்கள்', subtopics: [
               'Number System — Natural, Whole, Integers, Rational, Real Numbers',
               'Arithmetic — Percentage, Ratio & Proportion, Average',
               'Arithmetic — Simple & Compound Interest, Profit & Loss, Discount',
@@ -1741,29 +1742,171 @@ const stateExams: Exam[] = [
   },
   {
     id: 'tn-police-constable',
-    name: 'TN Police Constable',
-    nameTamil: 'TN போலீஸ் காவலர்',
+    name: 'TN Police Constable / Jail Warder / Fireman',
+    nameTamil: 'TN போலீஸ் காவலர் / சிறை காவலர் / தீயணைப்பாளர்',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 24 years',
     salary: '₹22,000/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    selectionProcess: 'Part I: Tamil Eligibility Test (OMR, 80 Qs, 80 min — min 40% required) → Part II: Main Written Exam (OMR, 70 Qs, 80 min) → Physical Measurement Test → Physical Efficiency Test → Certificate Verification → Medical Exam',
+    selectionProcessTamil: 'பகுதி I: தமிழ் தகுதி தேர்வு (OMR, 80 கேள்விகள், 80 நிமிடம் — குறைந்தது 40% தேவை) → பகுதி II: முதன்மை எழுத்துத் தேர்வு (OMR, 70 கேள்விகள், 80 நிமிடம்) → உடல் அளவீடு → உடல் திறன் தேர்வு → சான்றிதழ் சரிபார்ப்பு → மருத்துவம்',
+    posts: ['Grade II Police Constable', 'Jail Warder', 'Fireman'],
+    postsTamil: ['தரம் II போலீஸ் காவலர்', 'சிறை காவலர்', 'தீயணைப்பாளர்'],
+    examPattern: [
+      { paper: 'Part I — Tamil Language Eligibility Test', paperTamil: 'பகுதி I — தமிழ் மொழி தகுதித் தேர்வு', marks: 80, duration: '80 minutes', questions: 80 },
+      { paper: 'Part II — Main Written Examination', paperTamil: 'பகுதி II — முதன்மை எழுத்துத் தேர்வு', marks: 70, duration: '80 minutes', questions: 70 }
+    ],
     syllabus: {
-      main: [
+      'Part I — Tamil Language Eligibility Test (80 Qs, 80 Marks, 80 Min)': [
         {
-          name: 'TN Police Constable Syllabus',
-          nameTamil: 'TN போலீஸ் காவலர் பாடத்திட்டம்',
+          name: 'Tamil Language — Minimum 32 Marks (40%) Required to Qualify',
+          nameTamil: 'தமிழ் மொழி — தகுதி பெற குறைந்தது 32 மதிப்பெண்கள் (40%) தேவை',
           topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'History', 'Geography', 'Polity', 'Science'] },
-            { name: 'Tamil', nameTamil: 'தமிழ்', subtopics: ['Grammar', 'Literature', 'Comprehension'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', subtopics: ['Mathematics', 'Reasoning', 'Mental Ability'] }
+            { name: 'Tamil Grammar (Ilakkanam)', nameTamil: 'தமிழ் இலக்கணம்', subtopics: [
+              'Ezhuthu Ilakkanam (Letter Grammar) — Uyir, Mei, Uyirmei',
+              'Sol Ilakkanam (Word Grammar) — Noun, Verb, Adjective classification',
+              'Porul Ilakkanam (Meaning Grammar) — Akam, Puram',
+              'Yaapu Ilakkanam (Prosody) — Asiriyappa, Venpa, Kalippa',
+              'Ani Ilakkanam (Figure of Speech) — Uvamai, Uyarvuneri, Thazhvuneri',
+              'Tholkappiyam basics — Ezhuthathikaram, Solathikaram, Porulathikaram',
+              'Nannool basics — Grammar rules',
+              'Sandhi (Joining rules), Punarchi (Combination rules)'
+            ] },
+            { name: 'Tamil Literature (Ilakkiyam)', nameTamil: 'தமிழ் இலக்கியம்', subtopics: [
+              'Sangam Literature — Ettuthogai, Pathupaattu',
+              'Thirukkural — Selected Athikarams and their meaning',
+              'Naladiyar, Pazhamozhi Naanooru',
+              'Epic Literature — Silapathikaram, Manimekalai',
+              'Devotional Literature — Thevaram, Thiruvasagam, Divya Prabandham',
+              'Modern Tamil Literature — Bharathiar, Bharathidasan poems',
+              'Tamil Prose — Comprehension passages from 10th standard textbook'
+            ] },
+            { name: 'Tamil Scholars & Their Contributions', nameTamil: 'தமிழ் அறிஞர்கள் & அவர்களின் பங்களிப்புகள்', subtopics: [
+              'Thiruvalluvar — Thirukkural',
+              'Kambar — Kambaramayanam',
+              'Ilango Adigal — Silapathikaram',
+              'Bharathiar — Patriotic & Reform Poetry',
+              'Bharathidasan — Social Reform Literature',
+              'U.V. Swaminatha Iyer — Revival of Sangam Literature',
+              'Maraimalai Adigal — Tamil Renaissance Movement'
+            ] }
+          ]
+        }
+      ],
+      'Part II — Main Exam: General Knowledge (45 Marks)': [
+        {
+          name: 'General Knowledge Section (45 Questions, 45 Marks)',
+          nameTamil: 'பொது அறிவு பிரிவு (45 கேள்விகள், 45 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: [
+              'Mechanics — Force, Motion, Newton\'s Laws, Work, Energy, Power',
+              'Heat & Thermodynamics — Temperature, Conduction, Convection',
+              'Light & Optics — Reflection, Refraction, Lenses, Mirrors',
+              'Sound — Wave properties, Echo, Ultrasound',
+              'Electricity & Magnetism — Circuits, Ohm\'s Law, Magnetic Fields',
+              'Units & Measurements — SI Units, Conversions'
+            ] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: [
+              'Elements, Compounds & Mixtures',
+              'Acids, Bases & Salts — pH Scale, Indicators',
+              'Metals & Non-Metals — Properties, Reactivity Series',
+              'Chemical Reactions — Types, Balancing Equations',
+              'Periodic Table — Groups, Periods, Properties',
+              'Carbon & Its Compounds — Organic Chemistry basics'
+            ] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', subtopics: [
+              'Human Body — Organ Systems, Skeleton, Muscles',
+              'Nutrition & Digestion — Carbohydrates, Proteins, Fats, Vitamins',
+              'Blood Groups — A, B, AB, O, Rh factor',
+              'Diseases — Communicable, Non-communicable, Prevention',
+              'Cell Biology — Structure, Functions, Cell Division'
+            ] },
+            { name: 'Environment & Food/Nutrition', nameTamil: 'சுற்றுச்சூழல் & உணவு/ஊட்டச்சத்து', subtopics: [
+              'Environment — Pollution (Air, Water, Soil), Climate Change',
+              'Ecosystem — Food Chain, Food Web, Biodiversity',
+              'Conservation — National Parks, Wildlife Sanctuaries in TN',
+              'Food & Nutrition — Balanced Diet, Malnutrition, Food Preservation'
+            ] },
+            { name: 'History', nameTamil: 'வரலாறு', subtopics: [
+              'Ancient India — Indus Valley, Vedic Period, Maurya, Gupta',
+              'Medieval India — Delhi Sultanate, Mughal Empire, Vijayanagara',
+              'Modern India — British Rule, Freedom Movement, Important Leaders',
+              'Tamil Nadu History — Chola, Chera, Pandya Kingdoms',
+              'TN Freedom Fighters — V.O.C., Subramania Siva, Bharathiar'
+            ] },
+            { name: 'Geography', nameTamil: 'புவியியல்', subtopics: [
+              'Indian Geography — Rivers, Mountains, Plateaus, Plains',
+              'Tamil Nadu Geography — Districts, Rivers (Cauvery, Vaigai), Western Ghats',
+              'Climate — Monsoons, Seasons, Rainfall patterns',
+              'Natural Resources — Minerals, Agriculture, Forests'
+            ] },
+            { name: 'Indian Polity & Economics', nameTamil: 'இந்திய அரசியல் & பொருளாதாரம்', subtopics: [
+              'Indian Constitution — Preamble, Fundamental Rights, Duties, DPSP',
+              'Parliament — Lok Sabha, Rajya Sabha, Legislative Process',
+              'State Government — Governor, CM, State Legislature, Panchayati Raj',
+              'Indian Economy — GDP, Budget, Banking, Five Year Plans',
+              'Tamil Nadu Government — Structure, Chief Ministers, Policies'
+            ] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: [
+              'National & International Current Events',
+              'Tamil Nadu Government Schemes & Policies',
+              'Sports — Olympics, Commonwealth, Cricket, Asian Games',
+              'Awards — Padma Awards, Nobel Prize, Sports Awards',
+              'Science & Technology — Space Missions, Defence, Digital India'
+            ] }
+          ]
+        }
+      ],
+      'Part II — Main Exam: Psychology & Mental Ability (25 Marks)': [
+        {
+          name: 'Psychology & Mental Ability (25 Questions, 25 Marks)',
+          nameTamil: 'உளவியல் & மன திறன் (25 கேள்விகள், 25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Communication Skills', nameTamil: 'தகவல் தொடர்பு திறன்கள்', subtopics: [
+              'Verbal Communication — Effective speaking, listening skills',
+              'Written Communication — Report writing, letter format',
+              'Non-Verbal Communication — Body language, gestures',
+              'Interpersonal Skills — Team work, public dealing'
+            ] },
+            { name: 'Numerical Analysis', nameTamil: 'எண் பகுப்பாய்வு', subtopics: [
+              'Number Puzzles — Missing numbers, pattern recognition',
+              'Data Interpretation — Tables, Charts, Graphs',
+              'Basic Calculations — Speed, Accuracy under time pressure',
+              'Arithmetic Reasoning — Word problems'
+            ] },
+            { name: 'Logical Analysis', nameTamil: 'தர்க்க பகுப்பாய்வு', subtopics: [
+              'Statement & Conclusion — Logical deductions',
+              'Cause & Effect — Identifying relationships',
+              'Assertion & Reason — True/False evaluation',
+              'Logical Sequence — Arrangement of events/ideas'
+            ] },
+            { name: 'Mental Ability', nameTamil: 'மன திறன்', subtopics: [
+              'Coding-Decoding — Letter, Number, Symbol coding',
+              'Analogies — Word & Number relationships',
+              'Series Completion — Number, Alphabet, Mixed',
+              'Blood Relations — Family tree problems',
+              'Direction Sense — Compass-based problems',
+              'Mirror & Water Images',
+              'Odd One Out — Classification'
+            ] },
+            { name: 'Information Handling Skills', nameTamil: 'தகவல் கையாளும் திறன்கள்', subtopics: [
+              'Data Organization — Sorting, Categorizing information',
+              'Information Extraction — Reading comprehension of data',
+              'Decision Making — Situational judgment',
+              'Problem Solving — Practical reasoning',
+              'Observation & Memory — Visual recall, pattern detection'
+            ] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'tnp-gk-1', question: 'Who was the first Director General of Police in Tamil Nadu?', questionTamil: 'தமிழ்நாட்டின் முதல் காவல் துறை தலைவர் யார்?', options: ['C.V. Narasimhan', 'R. Natarajan', 'T.K. Rajendran', 'K. Vijay Kumar'], optionsTamil: ['சி.வி. நரசிம்மன்', 'ஆர். நடராஜன்', 'டி.கே. ராஜேந்திரன்', 'கே. விஜய் குமார்'], answer: 0, explanation: 'C.V. Narasimhan was the first DGP of Tamil Nadu', explanationTamil: 'சி.வி. நரசிம்மன் தமிழ்நாட்டின் முதல் DGP ஆவார்', subject: 'General Knowledge', difficulty: 'medium' }
+      { id: 'tnp-gk-1', question: 'Who was the first Director General of Police in Tamil Nadu?', questionTamil: 'தமிழ்நாட்டின் முதல் காவல் துறை தலைவர் யார்?', options: ['C.V. Narasimhan', 'R. Natarajan', 'T.K. Rajendran', 'K. Vijay Kumar'], optionsTamil: ['சி.வி. நரசிம்மன்', 'ஆர். நடராஜன்', 'டி.கே. ராஜேந்திரன்', 'கே. விஜய் குமார்'], answer: 0, explanation: 'C.V. Narasimhan was the first Director General of Police of Tamil Nadu state', explanationTamil: 'சி.வி. நரசிம்மன் தமிழ்நாடு மாநிலத்தின் முதல் காவல் துறை இயக்குநர் ஆவார்', subject: 'General Knowledge', difficulty: 'medium' },
+      { id: 'tnp-gk-2', question: 'The Cauvery River originates from:', questionTamil: 'காவிரி நதி உற்பத்தியாகும் இடம்:', options: ['Talakaveri, Coorg (Karnataka)', 'Mahabaleshwar (Maharashtra)', 'Amarkantak (MP)', 'Gangotri (Uttarakhand)'], optionsTamil: ['தலைக்காவேரி, குடகு (கர்நாடகா)', 'மகாபலேஷ்வர் (மகாராஷ்டிரா)', 'அமர்கண்டக் (மத்திய பிரதேசம்)', 'கங்கோத்ரி (உத்தரகாண்ட்)'], answer: 0, explanation: 'Cauvery River originates from Talakaveri in Brahmagiri Hills, Coorg district, Karnataka and flows through Tamil Nadu.', explanationTamil: 'காவிரி நதி கர்நாடகா மாநிலம் குடகு மாவட்டம் பிரம்மகிரி மலையில் உள்ள தலைக்காவேரியில் உற்பத்தியாகிறது.', subject: 'Geography', difficulty: 'easy' },
+      { id: 'tnp-sci-1', question: 'The SI unit of Force is:', questionTamil: 'விசையின் SI அலகு:', options: ['Newton', 'Joule', 'Watt', 'Pascal'], optionsTamil: ['நியூட்டன்', 'ஜூல்', 'வாட்', 'பாஸ்கல்'], answer: 0, explanation: 'Force is measured in Newton (N). 1 Newton = 1 kg × 1 m/s². Named after Sir Isaac Newton.', explanationTamil: 'விசை நியூட்டனில் (N) அளவிடப்படுகிறது. 1 நியூட்டன் = 1 kg × 1 m/s².', subject: 'Physics', difficulty: 'easy' },
+      { id: 'tnp-sci-2', question: 'Which vitamin is produced in the human body due to sunlight?', questionTamil: 'சூரிய ஒளியால் மனித உடலில் உற்பத்தியாகும் வைட்டமின்:', options: ['Vitamin D', 'Vitamin A', 'Vitamin C', 'Vitamin B12'], optionsTamil: ['வைட்டமின் D', 'வைட்டமின் A', 'வைட்டமின் C', 'வைட்டமின் B12'], answer: 0, explanation: 'Vitamin D (Cholecalciferol) is synthesized in the skin when exposed to ultraviolet B (UVB) rays from sunlight.', explanationTamil: 'சூரிய ஒளியில் உள்ள UVB கதிர்களால் தோலில் வைட்டமின் D (கோலிகால்சிஃபெரால்) உற்பத்தி செய்யப்படுகிறது.', subject: 'Biology', difficulty: 'easy' },
+      { id: 'tnp-psych-1', question: 'If you face a conflict with a colleague during duty, the best approach is:', questionTamil: 'பணியின் போது சக ஊழியருடன் மோதல் ஏற்பட்டால், சிறந்த அணுகுமுறை:', options: ['Talk calmly and resolve the issue professionally', 'Ignore and walk away', 'Report immediately to the superior', 'Argue back forcefully'], optionsTamil: ['அமைதியாக பேசி தொழில்முறையில் தீர்க்கவும்', 'புறக்கணித்துவிட்டு செல்லவும்', 'உடனடியாக மேலதிகாரிக்கு புகார்', 'வலிமையாக வாதிடவும்'], answer: 0, explanation: 'Professional communication and calm resolution is the best approach for workplace conflicts. This tests interpersonal and communication skills.', explanationTamil: 'தொழில்முறை தகவல் தொடர்பு மற்றும் அமைதியான தீர்வு பணியிட மோதல்களுக்கு சிறந்த அணுகுமுறை.', subject: 'Psychology', difficulty: 'easy' },
+      { id: 'tnp-psych-2', question: 'Complete the series: 3, 6, 11, 18, 27, ?', questionTamil: 'தொடரை நிறைவு செய்: 3, 6, 11, 18, 27, ?', options: ['38', '36', '35', '40'], optionsTamil: ['38', '36', '35', '40'], answer: 0, explanation: 'Differences: 3, 5, 7, 9, 11 (increasing by 2 each time). Next: 27 + 11 = 38', explanationTamil: 'வேறுபாடுகள்: 3, 5, 7, 9, 11 (ஒவ்வொரு முறையும் 2 அதிகரிக்கிறது). அடுத்தது: 27 + 11 = 38', subject: 'Mental Ability', difficulty: 'medium' }
     ]
   },
   {

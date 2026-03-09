@@ -331,7 +331,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'tn-police-constable',
-    name: 'TN Police Constable',
+    name: 'TN Police Constable / Jail Warder / Fireman',
     nameTamil: 'தமிழ்நாடு போலீஸ் கான்ஸ்டபிள்',
     category: 'state',
     qualification: '12th Pass',
