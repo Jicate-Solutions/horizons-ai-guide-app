@@ -165,7 +165,7 @@ export const governmentExams: GovernmentExam[] = [
   // RAILWAY JOBS
   {
     id: 'rrb-ntpc',
-    name: 'RRB NTPC (12th Pass Posts)',
+    name: 'RRB NTPC (12th Pass — UG Posts)',
     nameTamil: 'ரயில்வே NTPC (12வது தேர்ச்சி)',
     category: 'railway',
     qualification: '12th Pass',

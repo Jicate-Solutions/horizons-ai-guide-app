@@ -868,29 +868,50 @@ const defenceExams: Exam[] = [
 const railwayExams: Exam[] = [
   {
     id: 'rrb-ntpc',
-    name: 'RRB NTPC (Non-Technical Popular Categories)',
-    nameTamil: 'RRB NTPC (தொழில்நுட்பமற்ற பிரபலப் பிரிவுகள்)',
+    name: 'RRB NTPC (12th Pass — Undergraduate Posts)',
+    nameTamil: 'RRB NTPC (12ஆம் வகுப்பு — இளநிலை பதவிகள்)',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 33 years',
     salary: '₹19,900 - ₹35,400/month',
-    selectionProcess: 'CBT 1 → CBT 2 → Typing Test → Document Verification',
-    selectionProcessTamil: 'CBT 1 → CBT 2 → தட்டச்சு சோதனை → ஆவண சரிபார்ப்பு',
-    posts: ['Commercial Cum Ticket Clerk', 'Accounts Clerk', 'Junior Clerk', 'Trains Clerk'],
-    postsTamil: ['வணிக டிக்கெட் எழுத்தர்', 'கணக்கு எழுத்தர்', 'இளநிலை எழுத்தர்', 'ரயில் எழுத்தர்'],
+    selectionProcess: 'CBT Stage 1 (Qualifying) → CBT Stage 2 (Merit-Based) → Typing Skill Test (for Clerk posts) → Document Verification → Medical Examination',
+    selectionProcessTamil: 'CBT நிலை 1 (தகுதி) → CBT நிலை 2 (தகுதி அடிப்படை) → தட்டச்சு தேர்வு (எழுத்தர் பதவிகளுக்கு) → ஆவண சரிபார்ப்பு → மருத்துவப் பரிசோதனை',
+    posts: ['Commercial cum Ticket Clerk', 'Junior Clerk cum Typist', 'Accounts Clerk cum Typist', 'Trains Clerk'],
+    postsTamil: ['வணிக டிக்கெட் எழுத்தர்', 'இளநிலை எழுத்தர் தட்டச்சர்', 'கணக்கு எழுத்தர் தட்டச்சர்', 'ரயில் எழுத்தர்'],
     examPattern: [
-      { paper: 'CBT Stage 1', paperTamil: 'CBT நிலை 1', marks: 100, duration: '90 mins', questions: 100 },
-      { paper: 'CBT Stage 2', paperTamil: 'CBT நிலை 2', marks: 120, duration: '90 mins', questions: 120 }
+      { paper: 'CBT Stage 1 (Qualifying)', paperTamil: 'CBT நிலை 1 (தகுதி)', marks: 100, duration: '90 mins', questions: 100 },
+      { paper: 'CBT Stage 2 (Merit-Based)', paperTamil: 'CBT நிலை 2 (தகுதி அடிப்படை)', marks: 120, duration: '90 mins', questions: 120 }
     ],
     syllabus: {
-      cbt1: [
+      'CBT Stage 1 — Qualifying (100 Questions, 100 Marks, 90 Minutes)': [
         {
-          name: 'CBT Stage 1 (100 Questions, 90 Minutes)',
-          nameTamil: 'CBT நிலை 1 (100 கேள்விகள், 90 நிமிடங்கள்)',
+          name: 'CBT 1 Pattern (1/3 negative marking per wrong answer)',
+          nameTamil: 'CBT 1 முறை (தவறான பதிலுக்கு 1/3 எதிர்மறை)',
           topics: [
-            { name: 'General Awareness (40 Questions)', nameTamil: 'பொது விழிப்புணர்வு (40 கேள்விகள்)', subtopics: ['Current Affairs - National & International', 'Indian History - Ancient, Medieval, Modern', 'Indian Geography - Physical, Economic', 'Indian Polity - Constitution, Governance', 'Indian Economy - Banking, Budget', 'General Science - Physics, Chemistry, Biology', 'Sports & Games', 'Art & Culture', 'Important Days & Dates', 'Awards & Honours'] },
-            { name: 'Mathematics (30 Questions)', nameTamil: 'கணிதம் (30 கேள்விகள்)', subtopics: ['Number System, BODMAS', 'Decimals, Fractions', 'LCM, HCF', 'Ratio & Proportion', 'Percentage', 'Mensuration', 'Time & Work', 'Time & Distance', 'Simple & Compound Interest', 'Profit & Loss', 'Elementary Algebra', 'Geometry & Trigonometry', 'Elementary Statistics'] },
-            { name: 'General Intelligence & Reasoning (30 Questions)', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (30 கேள்விகள்)', subtopics: ['Analogies', 'Coding-Decoding', 'Syllogism', 'Puzzles', 'Data Sufficiency', 'Statement-Conclusion', 'Blood Relations', 'Venn Diagrams', 'Alphabet & Number Series', 'Mathematical Operations', 'Analytical Reasoning', 'Classification', 'Directions', 'Decision Making'] }
+            { name: 'General Awareness (40 Questions)', nameTamil: 'பொது விழிப்புணர்வு (40 கேள்விகள்)', subtopics: ['Current Affairs — National & International Events', 'Indian History — Ancient, Medieval, Modern, Freedom Struggle', 'Geography — Physical, Social & Economic Geography of India & World', 'Indian Polity — Constitution, Political System, Governance', 'Indian Economy — Banking, Budget, Five Year Plans', 'General Science — Physics, Chemistry, Life Sciences (up to 10th CBSE)', 'Art & Culture — Indian Literature, Monuments, Heritage', 'Sports & Games — Olympics, Commonwealth, Cricket World Cup', 'Awards & Honours — Padma, Bharat Ratna, Nobel Prize', 'UN & World Organizations — UN, WHO, IMF, World Bank', 'Environmental Issues — Climate Change, Pollution, Conservation', 'Basics of Computers — Hardware, Software, Internet, MS Office', 'Flora & Fauna of India — National Parks, Wildlife Sanctuaries'] },
+            { name: 'Mathematics (30 Questions)', nameTamil: 'கணிதம் (30 கேள்விகள்)', subtopics: ['Number Systems — Decimals, Fractions, LCM, HCF', 'Percentage — Calculation, Increase/Decrease Applications', 'Ratio & Proportion — Direct, Inverse, Partnership', 'Profit & Loss — Cost Price, Selling Price, Discount, Markup', 'Simple & Compound Interest', 'Time & Work — Efficiency, Pipe & Cistern', 'Time & Distance — Speed, Relative Speed, Trains, Boats & Streams', 'Mensuration — Area & Volume of 2D & 3D Shapes', 'Elementary Algebra — Linear Equations, Simplification', 'Geometry & Trigonometry — Triangles, Circles, Angles, Basic Trig', 'Elementary Statistics — Mean, Median, Mode, Data Interpretation'] },
+            { name: 'General Intelligence & Reasoning (30 Questions)', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (30 கேள்விகள்)', subtopics: ['Analogies — Word & Number Relationships', 'Syllogism — Statement & Conclusion', 'Venn Diagrams — Set Relations', 'Coding-Decoding — Letter & Number Systems', 'Number & Alphabetical Series — Missing & Wrong Number', 'Mathematical Operations — Symbol Replacement', 'Similarities & Differences — Odd One Out', 'Blood Relations — Family Tree Problems', 'Puzzles & Jumbling — Arrangement Problems', 'Data Sufficiency — Information Analysis', 'Statement-Conclusion & Decision Making', 'Maps & Interpretation of Graphs'] }
+          ]
+        }
+      ],
+      'CBT Stage 2 — Merit Based (120 Questions, 120 Marks, 90 Minutes)': [
+        {
+          name: 'CBT 2 Pattern (1/3 negative marking — this decides final merit)',
+          nameTamil: 'CBT 2 முறை (1/3 எதிர்மறை — இது இறுதி தகுதியை தீர்மானிக்கிறது)',
+          topics: [
+            { name: 'General Awareness (50 Questions)', nameTamil: 'பொது விழிப்புணர்வு (50 கேள்விகள்)', subtopics: ['Same topics as CBT 1 but at HIGHER difficulty level', 'More focus on Current Affairs of last 6-12 months', 'Deeper Indian History — Major battles, rulers, dates', 'Economic Survey & Union Budget highlights', 'Science & Technology — Recent achievements, ISRO, DRDO', 'Indian Constitution — Amendments, Schedules, Articles in detail', 'International Relations — India\'s neighbors, treaties, summits'] },
+            { name: 'Mathematics (35 Questions)', nameTamil: 'கணிதம் (35 கேள்விகள்)', subtopics: ['Same topics as CBT 1 but at HIGHER difficulty level', 'More complex Arithmetic — Multi-step problems', 'Advanced Mensuration — Combination of shapes', 'Algebra — Quadratic equations, Inequalities', 'Data Interpretation — Complex tables, multiple graphs', 'Number Theory — Divisibility, Remainders', 'Trigonometry — Heights & Distances problems'] },
+            { name: 'General Intelligence & Reasoning (35 Questions)', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (35 கேள்விகள்)', subtopics: ['Same topics as CBT 1 but at HIGHER difficulty level', 'Complex Puzzles — Linear & Circular seating', 'Advanced Coding-Decoding — Multi-level codes', 'Logical Venn Diagrams — 3+ set problems', 'Critical Reasoning — Assumptions, Inferences', 'Data Sufficiency — Two statement problems', 'Figure-based reasoning — Paper folding, dice, cubes'] }
+          ]
+        }
+      ],
+      'Typing Skill Test (TST) — Qualifying Only': [
+        {
+          name: 'Typing Test Details',
+          nameTamil: 'தட்டச்சு தேர்வு விவரங்கள்',
+          topics: [
+            { name: 'Typing Requirements', nameTamil: 'தட்டச்சு தேவைகள்', subtopics: ['30 WPM in English OR 25 WPM in Hindi on computer', 'Typing on computer without editing tools (no spell check, no auto-correct)', 'This is a QUALIFYING test — not merit-based', 'Required for: Junior Clerk cum Typist, Accounts Clerk cum Typist', 'NOT required for: Commercial cum Ticket Clerk, Trains Clerk'] },
+            { name: 'Important Notes', nameTamil: 'முக்கிய குறிப்புகள்', subtopics: ['PwBD candidates with locomotor disability get 120 minutes for CBT (instead of 90)', 'Scribe facility available for eligible PwBD candidates', 'All questions are objective type (MCQ)', 'Negative marking: 1/3 mark deducted for each wrong answer', 'No marks deducted for unattempted questions'] }
           ]
         }
       ]
