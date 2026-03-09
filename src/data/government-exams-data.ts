@@ -1711,22 +1711,146 @@ const stateExams: Exam[] = [
 const centralExams: Exam[] = [
   {
     id: 'india-post-gds',
-    name: 'India Post GDS (Gramin Dak Sevak)',
-    nameTamil: 'இந்திய தபால் GDS (கிராமின் டாக் சேவக்)',
-    qualification: '10th / 12th Pass',
-    qualificationTamil: '10ஆம் / 12ஆம் வகுப்பு தேர்ச்சி',
+    name: 'India Post GDS (Gramin Dak Sevak) 2026',
+    nameTamil: 'இந்திய தபால் GDS (கிராமின் டாக் சேவக்) 2026',
+    qualification: '10th Pass (with Maths & English)',
+    qualificationTamil: '10ஆம் வகுப்பு தேர்ச்சி (கணிதம் & ஆங்கிலம் தேர்ச்சி)',
     age: '18 - 40 years',
-    salary: '₹12,000 - ₹14,500/month',
-    selectionProcess: 'Merit Based (10th Marks)',
-    selectionProcessTamil: 'தகுதி அடிப்படையில் (10ஆம் வகுப்பு மதிப்பெண்கள்)',
+    salary: '₹10,000 - ₹29,380/month (TRCA)',
+    selectionProcess: 'Merit Based (No Exam, No Interview) → System-Generated Merit List from 10th Marks → Document Verification → Medical Fitness',
+    selectionProcessTamil: 'தகுதி அடிப்படையில் (தேர்வு இல்லை, நேர்காணல் இல்லை) → 10ஆம் வகுப்பு மதிப்பெண்களிலிருந்து கணினி உருவாக்கிய தகுதிப் பட்டியல் → ஆவண சரிபார்ப்பு → மருத்துவ தகுதி',
+    posts: ['Branch Postmaster (BPM)', 'Assistant Branch Postmaster (ABPM)', 'Dak Sevak'],
+    postsTamil: ['கிளை தபால்மாஸ்டர் (BPM)', 'உதவி கிளை தபால்மாஸ்டர் (ABPM)', 'டாக் சேவக்'],
     syllabus: {
-      main: [
+      'Selection Process (No Written Exam, No Interview)': [
         {
-          name: 'Selection Based on 10th Class Marks',
-          nameTamil: '10ஆம் வகுப்பு மதிப்பெண்கள் அடிப்படையில் தேர்வு',
+          name: 'Merit List — How Selection Works',
+          nameTamil: 'தகுதிப் பட்டியல் — தேர்வு எவ்வாறு நடக்கிறது',
           topics: [
-            { name: 'Selection Criteria', nameTamil: 'தேர்வு அளவுகோல்கள்', subtopics: ['No written exam', 'Merit based on 10th class percentage', 'Preference to local candidates', 'Computer knowledge certificate required'] },
-            { name: 'General Knowledge (for Interview)', nameTamil: 'பொது அறிவு (நேர்காணலுக்கு)', subtopics: ['Postal System in India', 'History of Indian Post', 'Types of Post Offices', 'Postal Services (Speed Post, Registered, etc.)', 'Indian Geography', 'Current Affairs'] }
+            { name: 'Merit Calculation', nameTamil: 'தகுதி கணக்கீடு', subtopics: [
+              'NO written exam — selection is 100% merit based',
+              'NO personal interview at any stage',
+              'Merit = 10th Standard (Matriculation) marks percentage',
+              'Percentage calculated up to 4 decimal places for precision',
+              'Example: If total marks = 412 out of 500, Merit = 82.4000%',
+              'System-generated merit list — no human bias'
+            ] },
+            { name: 'Grade Conversion Rule', nameTamil: 'தரம் மாற்ற விதி', subtopics: [
+              'If your board gives Grades instead of Marks:',
+              'Marks = Grade Point × 9.5',
+              'Example: Grade Point 8.0 → Marks = 8.0 × 9.5 = 76%',
+              'This applies to CBSE & other boards that use CGPA system'
+            ] },
+            { name: 'Tie-Breaking Rules', nameTamil: 'சமநிலை உடைப்பு விதிகள்', subtopics: [
+              'If two candidates have the same marks:',
+              'Rule 1: Older candidate (higher age) is preferred',
+              'Rule 2: If still tied, female candidates get preference',
+              'Rule 3: Further tie-breaking as per specific category order in notification'
+            ] }
+          ]
+        }
+      ],
+      'Eligibility Criteria 2026': [
+        {
+          name: 'Education, Age & Skills Required',
+          nameTamil: 'கல்வி, வயது & தேவையான திறன்கள்',
+          topics: [
+            { name: 'Educational Qualification', nameTamil: 'கல்வித் தகுதி', subtopics: [
+              '10th Standard (Matriculation) Pass — mandatory',
+              'Must have passed Mathematics as a subject in 10th',
+              'Must have passed English as a subject in 10th',
+              'Must have studied Local Language of the Postal Circle up to 10th standard',
+              'Example: For Tamil Nadu circle, Tamil must be studied up to 10th',
+              'Higher qualifications (12th, Degree) are allowed but merit is ONLY from 10th marks'
+            ] },
+            { name: 'Age Limit', nameTamil: 'வயது வரம்பு', subtopics: [
+              'Minimum Age: 18 years (as of application closing date)',
+              'Maximum Age: 40 years (as of application closing date)',
+              'SC/ST Relaxation: +5 years (up to 45 years)',
+              'OBC Relaxation: +3 years (up to 43 years)',
+              'PwBD (General): +10 years (up to 50 years)',
+              'PwBD (OBC): +13 years (up to 53 years)',
+              'PwBD (SC/ST): +15 years (up to 55 years)'
+            ] },
+            { name: 'Additional Mandatory Skills', nameTamil: 'கூடுதல் கட்டாய திறன்கள்', subtopics: [
+              'Basic Computer Knowledge — 60 days computer training certificate required',
+              'Certificate from any recognized institute (government or private)',
+              'Ability to ride a Bicycle — mandatory for delivery duties',
+              'Must reside in the delivery area of the applied post office',
+              'Local language proficiency (reading, writing, speaking) is essential'
+            ] }
+          ]
+        }
+      ],
+      'Post-Wise Salary (TRCA — Time Related Continuity Allowance)': [
+        {
+          name: 'Salary Details for Each Post',
+          nameTamil: 'ஒவ்வொரு பதவிக்கான சம்பள விவரங்கள்',
+          topics: [
+            { name: 'Branch Postmaster (BPM)', nameTamil: 'கிளை தபால்மாஸ்டர் (BPM)', subtopics: [
+              'Salary Range: ₹12,000 – ₹29,380 per month',
+              'This is the highest paying GDS post',
+              'Works 5 hours per day',
+              'Manages the entire Branch Post Office',
+              'Responsible for all postal transactions, savings accounts, and money orders'
+            ] },
+            { name: 'Assistant Branch Postmaster (ABPM)', nameTamil: 'உதவி கிளை தபால்மாஸ்டர் (ABPM)', subtopics: [
+              'Salary Range: ₹10,000 – ₹24,470 per month',
+              'Works 4-5 hours per day',
+              'Assists the BPM in daily operations',
+              'Handles counter work, stamp sales, and basic transactions'
+            ] },
+            { name: 'Dak Sevak', nameTamil: 'டாக் சேவக்', subtopics: [
+              'Salary Range: ₹10,000 – ₹24,470 per month',
+              'Works 4-5 hours per day',
+              'Primary duty: Mail delivery in the assigned area',
+              'Must use bicycle for delivery — bicycle riding is mandatory',
+              'Covers a defined delivery beat (route) daily'
+            ] }
+          ]
+        }
+      ],
+      'Documents Required for Verification': [
+        {
+          name: 'Original Documents Checklist',
+          nameTamil: 'அசல் ஆவணங்கள் சரிபார்ப்பு பட்டியல்',
+          topics: [
+            { name: 'Mandatory Documents', nameTamil: 'கட்டாய ஆவணங்கள்', subtopics: [
+              '10th Class Mark Sheet — original + photocopy',
+              '10th Class Passing Certificate — original + photocopy',
+              'Identity Proof — Aadhaar Card, Voter ID, Passport, or Driving License',
+              'Basic Computer Training Certificate (minimum 60 days course)',
+              'Medical Fitness Certificate — from a Government Hospital',
+              'Passport-size Photographs (recent, color)'
+            ] },
+            { name: 'Category-Specific Documents', nameTamil: 'பிரிவு சார்ந்த ஆவணங்கள்', subtopics: [
+              'SC/ST Certificate — issued by competent authority (Tahsildar/RDO)',
+              'OBC Certificate (Non-Creamy Layer) — must be recent (within 1 year)',
+              'EWS Certificate — if applying under Economically Weaker Section',
+              'PwBD Disability Certificate — from certified government medical board',
+              'Ex-Servicemen Discharge Certificate (if applicable)',
+              'Local language proof — 10th marksheet showing local language as subject'
+            ] }
+          ]
+        }
+      ],
+      'How to Apply Online': [
+        {
+          name: 'Application Process',
+          nameTamil: 'விண்ணப்ப செயல்முறை',
+          topics: [
+            { name: 'Step-by-Step Guide', nameTamil: 'படிப்படியான வழிகாட்டி', subtopics: [
+              'Step 1: Visit https://indiapostgdsonline.gov.in',
+              'Step 2: Click "New Registration" and create account with mobile & email',
+              'Step 3: Fill personal details — name, DOB, address, category',
+              'Step 4: Enter 10th Standard marks (subject-wise) and total percentage',
+              'Step 5: Select Postal Circle & Division (choose your home state/district)',
+              'Step 6: Select preferred post — BPM, ABPM, or Dak Sevak',
+              'Step 7: Upload Photo, Signature & required certificates',
+              'Step 8: Pay application fee (if applicable) — SC/ST/PwBD/Women may be exempt',
+              'Step 9: Submit and take printout of application for future reference',
+              'Important: One candidate can apply to multiple posts in the same circle'
+            ] }
           ]
         }
       ]
