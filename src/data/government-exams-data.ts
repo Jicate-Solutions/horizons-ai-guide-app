@@ -2124,31 +2124,6 @@ const stateExams: Exam[] = [
     },
     pyq: []
   },
-  {
-    id: 'tneb-assessor',
-    name: 'TNEB Assessor',
-    nameTamil: 'TNEB மதிப்பீட்டாளர்',
-    qualification: '12th Pass',
-    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
-    age: '18 - 30 years',
-    salary: '₹20,000/month',
-    selectionProcess: 'Written Exam',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு',
-    syllabus: {
-      main: [
-        {
-          name: 'TNEB Assessor Syllabus',
-          nameTamil: 'TNEB மதிப்பீட்டாளர் பாடத்திட்டம்',
-          topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'History', 'Geography', 'Science'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', subtopics: ['Mathematics', 'Reasoning'] },
-            { name: 'Tamil', nameTamil: 'தமிழ்', subtopics: ['Grammar', 'Literature'] }
-          ]
-        }
-      ]
-    },
-    pyq: []
-  },
   // ==================== TNPSC 2026 ANNUAL PLANNER EXAMS ====================
 ];
 
@@ -2304,57 +2279,129 @@ const centralExams: Exam[] = [
   },
   {
     id: 'army-clerk',
-    name: 'Indian Army Clerk/SKT',
-    nameTamil: 'இந்திய ராணுவ எழுத்தர்/SKT',
-    qualification: '12th Pass (60%)',
-    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (60%)',
-    age: '17.5 - 23 years',
-    salary: '₹25,000/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    name: 'Agniveer Army Clerk / Store Keeper Technical (SKT)',
+    nameTamil: 'அக்னிவீர் ராணுவ கிளர்க் / SKT',
+    qualification: '12th Pass (60% aggregate, 50% in each subject)',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (60% ஒட்டுமொத்தம், ஒவ்வொரு பாடத்திலும் 50%)',
+    age: '17.5 - 21 years',
+    salary: '₹30,000/month',
+    selectionProcess: 'Phase I: Computer-Based CEE (50 Qs, 200 Marks + Typing Test 30 WPM) → Phase II: Recruitment Rally (Physical Measurement + Physical Fitness Test) → Medical Examination → Document Verification',
+    selectionProcessTamil: 'நிலை I: கணினி CEE (50 கேள்விகள், 200 மதிப்பெண் + தட்டச்சு 30 WPM) → நிலை II: ஆட்சேர்ப்பு பேரணி (உடல் அளவீடு + உடல் தகுதி) → மருத்துவம் → ஆவண சரிபார்ப்பு',
+    posts: ['Agniveer Clerk', 'Agniveer Store Keeper Technical'],
+    postsTamil: ['அக்னிவீர் கிளர்க்', 'அக்னிவீர் ஸ்டோர் கீப்பர் டெக்னிக்கல்'],
+    examPattern: [
+      { paper: 'Part I: GK + Science + Maths + Computer', paperTamil: 'பகுதி I: பொது அறிவு + அறிவியல் + கணிதம் + கணினி', marks: 100, duration: '60-90 minutes', questions: 25 },
+      { paper: 'Part II: General English', paperTamil: 'பகுதி II: பொது ஆங்கிலம்', marks: 100, duration: 'Included', questions: 25 }
+    ],
     syllabus: {
-      main: [
+      'CEE Written Exam (50 Qs, 200 Marks — Must score 32+ in each Part, 80+ overall)': [
         {
-          name: 'Army Clerk Syllabus',
-          nameTamil: 'ராணுவ எழுத்தர் பாடத்திட்டம்',
+          name: 'Part I (25 Questions, 100 Marks)',
+          nameTamil: 'பகுதி I (25 கேள்விகள், 100 மதிப்பெண்கள்)',
           topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['History', 'Geography', 'Polity', 'Current Affairs', 'Defence'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', subtopics: ['Arithmetic', 'Algebra', 'Geometry', 'Statistics'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: ['Grammar', 'Vocabulary', 'Comprehension'] },
-            { name: 'Computer', nameTamil: 'கணினி', subtopics: ['MS Office', 'Internet', 'Basics'] }
+            { name: 'General Knowledge — 5 Qs, 20 Marks', nameTamil: 'பொது அறிவு — 5 கேள்விகள், 20 மதிப்பெண்கள்', subtopics: ['Indian History — Freedom Movement, Important Dates, Battles', 'Indian Geography — Rivers, Mountains, States & Capitals', 'Terminology — Scientific, Military, Administrative terms', 'Abbreviations — National & International organizations', 'Awards & Honours — Gallantry Awards (PVC, MVC, VrC), Padma Awards'] },
+            { name: 'General Science — 5 Qs, 20 Marks', nameTamil: 'பொது அறிவியல் — 5 கேள்விகள், 20 மதிப்பெண்கள்', subtopics: ['Human Body — Organ systems, Blood groups, Vitamins & Deficiency', 'Physics — Light, Sound, Electricity, Mechanics', 'Chemistry — Acids & Bases, Elements, Compounds, Reactions', 'Biology — Diseases & Prevention, Nutrition, Cell Biology'] },
+            { name: 'Mathematics — 10 Qs, 40 Marks', nameTamil: 'கணிதம் — 10 கேள்விகள், 40 மதிப்பெண்கள்', subtopics: ['Arithmetic — HCF, LCM, Percentage, Profit & Loss, Average, Ratio', 'Algebra — Linear Equations, Quadratic Equations, Factorization', 'Geometry — Triangles, Circles, Area, Perimeter', 'Mensuration — Volume of Cube, Cylinder, Sphere, Cone', 'Statistics — Mean, Median, Mode'] },
+            { name: 'Computer Science — 5 Qs, 20 Marks', nameTamil: 'கணினி அறிவியல் — 5 கேள்விகள், 20 மதிப்பெண்கள்', subtopics: ['Computer Fundamentals — Hardware, Software, Input/Output devices', 'MS Office — Word, Excel (Formulas, Functions), PowerPoint', 'Operating Systems — Windows basics, File management', 'Memory — RAM, ROM, Cache, Hard Disk, Pen Drive', 'Internet — Email, Web Browser, Search Engine basics', 'Computer Abbreviations — CPU, RAM, ROM, HTTP, URL, HTML'] }
+          ]
+        },
+        {
+          name: 'Part II: General English — 25 Questions, 100 Marks (HIGHEST WEIGHTAGE)',
+          nameTamil: 'பகுதி II: பொது ஆங்கிலம் — 25 கேள்விகள், 100 மதிப்பெண்கள் (அதிக மதிப்பெண்)',
+          topics: [
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', subtopics: ['Tenses — Past, Present, Future (all forms)', 'Active & Passive Voice — Conversion rules', 'Direct & Indirect Speech (Narration) — Reporting verbs, tense changes', 'Parts of Speech — Noun, Pronoun, Verb, Adjective, Adverb, Preposition', 'Subject-Verb Agreement', 'Articles (A, An, The) & Prepositions', 'Sentence Correction & Error Spotting'] },
+            { name: 'Vocabulary & Comprehension', nameTamil: 'சொல்வளம் & புரிதல்', subtopics: ['Synonyms & Antonyms', 'One Word Substitution', 'Idioms & Phrases', 'Fill in the Blanks', 'Sentence Rearrangement', 'Reading Comprehension — Passage-based questions', 'Cloze Test', 'Spelling Correction'] }
+          ]
+        }
+      ],
+      'Typing Test (Mandatory — During CEE)': [
+        {
+          name: 'English Typing Proficiency',
+          nameTamil: 'ஆங்கில தட்டச்சு திறன்',
+          topics: [
+            { name: 'Typing Requirements', nameTamil: 'தட்டச்சு தேவைகள்', subtopics: ['Minimum speed: 30 words per minute (WPM) in English', 'Conducted during the CEE on computer', 'Only candidates who QUALIFY typing test proceed to Phase II Rally', 'Practice typing daily to improve speed and accuracy'] }
+          ]
+        }
+      ],
+      'Physical Standards & Rally (Phase II)': [
+        {
+          name: 'Physical Measurement & Fitness Test',
+          nameTamil: 'உடல் அளவீடு & தகுதி தேர்வு',
+          topics: [
+            { name: 'Physical Measurement Test (PMT)', nameTamil: 'உடல் அளவீட்டு தேர்வு', subtopics: ['Height: Minimum 162 cm (varies slightly by region)', 'Chest: 77 cm with minimum 5 cm expansion', 'Weight: Proportionate to height and age'] },
+            { name: 'Physical Fitness Test (PFT) — Qualifying Only', nameTamil: 'உடல் தகுதி தேர்வு — தகுதி மட்டும்', subtopics: ['1.6 km Run: Must complete within 5 minutes 45 seconds (Group II)', 'Pull-Ups (Beam): Minimum 6 pull-ups to qualify', 'Zig-Zag Balance: Mandatory to qualify (no marks)', '9-Feet Ditch Jump: Mandatory to qualify (no marks)', 'Note: PFT marks NOT added to final merit for Clerk/SKT'] }
+          ]
+        }
+      ],
+      'Eligibility & Documents': [
+        {
+          name: 'Eligibility & Required Documents',
+          nameTamil: 'தகுதி & தேவையான ஆவணங்கள்',
+          topics: [
+            { name: 'Strict Academic Requirements', nameTamil: 'கடுமையான கல்வி தேவைகள்', subtopics: ['12th Pass (10+2 / Intermediate) in any stream — Arts, Commerce, or Science', '60% aggregate marks in Class 12 — mandatory', 'Minimum 50% in EACH individual subject — mandatory', 'Must have scored 50% in English in Class 12 — mandatory', 'Must have scored 50% in Maths / Accounts / Bookkeeping — mandatory', 'Age: 17.5 to 21 years'] },
+            { name: 'Documents for Rally', nameTamil: 'பேரணிக்கான ஆவணங்கள்', subtopics: ['10th & 12th Admit Card, Marksheet, Passing Certificate (originals)', 'Domicile (Nativity) Certificate — from Tehsildar / SDM', 'Caste Certificate (if applicable)', 'Unmarried Certificate — with recent photograph', 'NCC Certificate — provides bonus marks in final merit', 'Sports Certificates — National/State level provide bonus marks', 'Character Certificate from School/College Principal', 'Aadhaar Card / Identity Proof'] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'army-gk-1', question: 'Indian Army Day is celebrated on:', questionTamil: 'இந்திய ராணுவ தினம் கொண்டாடப்படும் நாள்:', options: ['January 15', 'October 8', 'December 4', 'November 14'], optionsTamil: ['ஜனவரி 15', 'அக்டோபர் 8', 'டிசம்பர் 4', 'நவம்பர் 14'], answer: 0, explanation: 'Army Day is on January 15, commemorating first Indian Army Chief K.M. Cariappa', explanationTamil: 'ராணுவ தினம் ஜனவரி 15 - முதல் இந்திய ராணுவ தலைவர் கே.எம். காரியப்பா நினைவாக', subject: 'General Knowledge', difficulty: 'easy' }
+      { id: 'army-gk-1', question: 'Indian Army Day is celebrated on:', questionTamil: 'இந்திய ராணுவ தினம் கொண்டாடப்படும் நாள்:', options: ['January 15', 'October 8', 'December 4', 'November 14'], optionsTamil: ['ஜனவரி 15', 'அக்டோபர் 8', 'டிசம்பர் 4', 'நவம்பர் 14'], answer: 0, explanation: 'Army Day is on January 15, commemorating Lt. Gen. K.M. Cariappa becoming the first Indian Commander-in-Chief of the Indian Army in 1949.', explanationTamil: 'ராணுவ தினம் ஜனவரி 15 — 1949 இல் லெப்டினன்ட் ஜெனரல் கே.எம். காரியப்பா இந்திய ராணுவத்தின் முதல் இந்திய தளபதியாக பொறுப்பேற்றதை நினைவுகூர்கிறது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'army-eng-1', question: 'Change to passive voice: "The soldiers defended the border."', questionTamil: 'செயப்பாட்டு வாக்கியமாக மாற்றுக: "The soldiers defended the border."', options: ['The border was defended by the soldiers', 'The border is defended by the soldiers', 'The border has been defended by the soldiers', 'The border will be defended by the soldiers'], optionsTamil: ['The border was defended by the soldiers', 'The border is defended by the soldiers', 'The border has been defended by the soldiers', 'The border will be defended by the soldiers'], answer: 0, explanation: 'Simple Past Active → Simple Past Passive: Subject + was/were + past participle + by + agent.', explanationTamil: 'Simple Past Active → Simple Past Passive: Subject + was/were + past participle + by + agent.', subject: 'English', difficulty: 'easy' },
+      { id: 'army-comp-1', question: 'RAM stands for:', questionTamil: 'RAM என்பதன் விரிவாக்கம்:', options: ['Random Access Memory', 'Read Access Memory', 'Run Access Memory', 'Rapid Access Memory'], optionsTamil: ['Random Access Memory', 'Read Access Memory', 'Run Access Memory', 'Rapid Access Memory'], answer: 0, explanation: 'RAM = Random Access Memory — temporary volatile memory used by the CPU for active processing.', explanationTamil: 'RAM = Random Access Memory — CPU செயலாக்கத்திற்கு பயன்படும் தற்காலிக நிலையற்ற நினைவகம்.', subject: 'Computer Science', difficulty: 'easy' }
     ]
   },
   {
     id: 'fci-watchman',
-    name: 'FCI Watchman',
-    nameTamil: 'FCI காவலாளி',
-    qualification: '10th/12th Pass',
-    qualificationTamil: '10/12ஆம் வகுப்பு தேர்ச்சி',
+    name: 'FCI Watchman (Category IV)',
+    nameTamil: 'FCI காவலாளி (வகை IV)',
+    qualification: '8th Pass (Middle School)',
+    qualificationTamil: '8ஆம் வகுப்பு தேர்ச்சி (நடுநிலைப் பள்ளி)',
     age: '18 - 25 years',
-    salary: '₹18,000/month',
-    selectionProcess: 'Written → Physical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி',
+    salary: '₹23,300 - ₹64,000/month (7th CPC)',
+    selectionProcess: 'Written Examination (120 MCQs, 90 min, No Negative Marking) → Physical Endurance Test (PET) → Final Selection based on Written Exam score',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு (120 MCQ, 90 நிமிடம், நெகட்டிவ் இல்லை) → உடல் சகிப்புத்தன்மை தேர்வு (PET) → எழுத்துத் தேர்வு மதிப்பெண் அடிப்படையில் இறுதி தேர்வு',
+    posts: ['Watchman (Category IV)'],
+    postsTamil: ['காவலாளி (வகை IV)'],
+    examPattern: [
+      { paper: 'Written Examination (OMR/Online)', paperTamil: 'எழுத்துத் தேர்வு (OMR/ஆன்லைன்)', marks: 120, duration: '90 minutes', questions: 120 }
+    ],
     syllabus: {
-      main: [
+      'Written Exam (120 MCQs, 120 Marks, 90 Minutes, No Negative Marking)': [
         {
-          name: 'FCI Watchman Syllabus',
-          nameTamil: 'FCI காவலாளி பாடத்திட்டம்',
+          name: 'Written Exam — 4 Equal Sections (30 Qs each, ~25% weightage)',
+          nameTamil: 'எழுத்துத் தேர்வு — 4 சம பிரிவுகள் (தலா 30 கேள்விகள்)',
           topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'History', 'Geography'] },
-            { name: 'Reasoning', nameTamil: 'தர்க்கம்', subtopics: ['Verbal', 'Non-Verbal'] },
-            { name: 'Numerical Ability', nameTamil: 'எண் திறன்', subtopics: ['Basic Mathematics'] }
+            { name: 'General Knowledge (~25%)', nameTamil: 'பொது அறிவு (~25%)', subtopics: ['Indian History — Ancient, Medieval, Modern India, Freedom Movement', 'Indian Geography — Rivers, Mountains, States & Capitals', 'Indian Polity — Constitution, Parliament, President, PM', 'National Symbols — Flag, Emblem, Anthem, Animal, Bird, Flower', 'Important Organizations — UN, WHO, UNESCO, UNICEF', 'Awards & Honours — Padma Awards, Bharat Ratna, Nobel Prize', 'Books & Authors'] },
+            { name: 'Current Affairs (~25%)', nameTamil: 'நடப்பு நிகழ்வுகள் (~25%)', subtopics: ['National & International Current Events', 'Who\'s Who — Current holders of important posts (President, PM, Governors, CMs)', 'Sports — Olympics, Commonwealth, Cricket, Asian Games', 'Science & Technology — Recent discoveries, Space missions, ISRO', 'Government Schemes — PM Awas Yojana, Jan Dhan, Make in India', 'Important Days & Dates'] },
+            { name: 'Mathematics (~25%)', nameTamil: 'கணிதம் (~25%)', subtopics: ['Arithmetic — Addition, Subtraction, Multiplication, Division', 'Number System — Natural, Whole, Integers', 'HCF & LCM — Problem solving', 'Percentage — Calculation, Increase, Decrease', 'Profit & Loss — Cost Price, Selling Price, Discount', 'Ratio & Proportion', 'Simple & Compound Interest', 'Average — Simple average problems', 'Time & Distance — Speed calculations'] },
+            { name: 'English Language (~25%)', nameTamil: 'ஆங்கில மொழி (~25%)', subtopics: ['Basic Grammar — Tenses, Articles, Prepositions, Conjunctions', 'Sentence Structure — Subject, Verb, Object', 'Vocabulary — Common English words, Synonyms, Antonyms', 'Fill in the Blanks', 'Error Spotting — Identify grammatical mistakes', 'Reading Comprehension — Short passages', 'Spelling Correction'] }
+          ]
+        }
+      ],
+      'Physical Endurance Test (PET) — Qualifying': [
+        {
+          name: 'PET Standards (Strictly Qualifying)',
+          nameTamil: 'PET தரநிலைகள் (கட்டாய தகுதி)',
+          topics: [
+            { name: 'Male Candidates', nameTamil: 'ஆண் விண்ணப்பதாரர்கள்', subtopics: ['Running: 1000 meters in 330 seconds (5 min 30 sec)', 'Long Jump: 3.95 meters (3 chances given)', 'High Jump: 1.14 meters (3 chances given)'] },
+            { name: 'Female Candidates', nameTamil: 'பெண் விண்ணப்பதாரர்கள்', subtopics: ['Running: 800 meters in 255 seconds (4 min 15 sec)', 'Long Jump: 2.74 meters (3 chances given)', 'High Jump: 0.90 meters (3 chances given)'] }
+          ]
+        }
+      ],
+      'Eligibility Criteria': [
+        {
+          name: 'Qualification & Age',
+          nameTamil: 'தகுதி & வயது',
+          topics: [
+            { name: 'Requirements', nameTamil: 'தேவைகள்', subtopics: ['Educational: Must have passed 8th Class (Middle School)', 'Ex-Servicemen: 5th Class pass is sufficient', 'Age — General: 18 to 25 years', 'Age — OBC: 18 to 28 years (+3 years relaxation)', 'Age — SC/ST: 18 to 30 years (+5 years relaxation)', 'Salary: ₹23,300 to ₹64,000 per month (7th Pay Commission)', 'FCI = Food Corporation of India, established in 1965'] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'fci-gk-1', question: 'FCI stands for:', questionTamil: 'FCI என்பதன் விரிவாக்கம்:', options: ['Food Corporation of India', 'Food Commission of India', 'Farm Corporation of India', 'Federal Corporation of India'], optionsTamil: ['இந்திய உணவு கழகம்', 'இந்திய உணவு ஆணையம்', 'இந்திய பண்ணை கழகம்', 'கூட்டாட்சி கழகம்'], answer: 0, explanation: 'FCI = Food Corporation of India, established in 1965', explanationTamil: 'FCI = இந்திய உணவு கழகம், 1965 இல் நிறுவப்பட்டது', subject: 'General Knowledge', difficulty: 'easy' }
+      { id: 'fci-gk-1', question: 'FCI stands for:', questionTamil: 'FCI என்பதன் விரிவாக்கம்:', options: ['Food Corporation of India', 'Food Commission of India', 'Farm Corporation of India', 'Federal Corporation of India'], optionsTamil: ['இந்திய உணவு கழகம்', 'இந்திய உணவு ஆணையம்', 'இந்திய பண்ணை கழகம்', 'கூட்டாட்சி கழகம்'], answer: 0, explanation: 'FCI = Food Corporation of India, established on 14 January 1965 under the Food Corporation Act 1964 to manage food grain procurement, storage, and distribution.', explanationTamil: 'FCI = இந்திய உணவு கழகம், 1965 ஜனவரி 14 அன்று உணவு கழக சட்டம் 1964 இன் கீழ் நிறுவப்பட்டது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'fci-gk-2', question: 'FCI headquarters is located at:', questionTamil: 'FCI தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Chennai', 'Kolkata'], optionsTamil: ['புது தில்லி', 'மும்பை', 'சென்னை', 'கொல்கத்தா'], answer: 0, explanation: 'FCI headquarters is at 16-20, Barakhamba Lane, New Delhi - 110001.', explanationTamil: 'FCI தலைமையகம் 16-20, பரகம்பா லேன், புது தில்லி - 110001 இல் உள்ளது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'fci-math-1', question: 'If 20% of a number is 50, the number is:', questionTamil: 'ஒரு எண்ணின் 20% = 50 எனில், அந்த எண்:', options: ['250', '200', '300', '150'], optionsTamil: ['250', '200', '300', '150'], answer: 0, explanation: '20% × N = 50. N = 50 × 100/20 = 250', explanationTamil: '20% × N = 50. N = 50 × 100/20 = 250', subject: 'Mathematics', difficulty: 'easy' }
     ]
   }
 ];

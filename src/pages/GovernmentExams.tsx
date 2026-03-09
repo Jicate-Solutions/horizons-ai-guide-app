@@ -66,7 +66,7 @@ const GovernmentExams = () => {
           </button>
           <div className="flex-1">
             <h1 className="text-[15px] font-bold text-gray-900 dark:text-white tracking-tight">{t ? 'அரசு தேர்வுகள்' : 'Government Exams'}</h1>
-            <p className="text-[10px] text-gray-400 tracking-wide">{t ? '12ஆம் வகுப்பு தேர்ச்சி • 27 தேர்வுகள்' : '12th Pass Eligible • 27 Exams'}</p>
+            <p className="text-[10px] text-gray-400 tracking-wide">{t ? '12ஆம் வகுப்பு தேர்ச்சி • 25 தேர்வுகள்' : '12th Pass Eligible • 25 Exams'}</p>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ const GovernmentExams = () => {
         {/* ──────────── HERO STATS ──────────── */}
         <div className="grid grid-cols-4 gap-2 mb-5">
           {[
-            { value: '27', label: t ? 'தேர்வுகள்' : 'Exams', sub: t ? 'மொத்தம்' : 'Total' },
+            { value: '25', label: t ? 'தேர்வுகள்' : 'Exams', sub: t ? 'மொத்தம்' : 'Total' },
             { value: String(openCount), label: t ? 'திறந்தது' : 'Open', sub: t ? 'விண்ணப்பிக்கலாம்' : 'Apply now' },
             { value: String(totalPYQ), label: 'PYQ', sub: t ? 'கேள்விகள்' : 'Questions' },
             { value: '6', label: t ? 'வகைகள்' : 'Sectors', sub: t ? 'துறைகள்' : 'Categories' },
