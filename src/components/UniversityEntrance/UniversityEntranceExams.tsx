@@ -166,8 +166,8 @@ export const UniversityEntranceExams = () => {
               <GraduationCap className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="font-bold text-lg">Universities Admissions</h1>
-              <p className="text-xs text-muted-foreground font-tamil">பல்கலைக்கழக சேர்க்கைகள்</p>
+              <h1 className="font-bold text-lg">University Hub</h1>
+              <p className="text-xs text-muted-foreground font-tamil">பல்கலைக்கழக மையம்</p>
             </div>
           </div>
           <GlobalLanguageSelector />
@@ -188,10 +188,10 @@ export const UniversityEntranceExams = () => {
               </div>
               
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
-                Your Complete Guide to<br className="hidden md:block" /> TN Government Universities Admissions
+                Discover Your Perfect<br className="hidden md:block" /> University & Course
               </h2>
               <p className="text-emerald-100/80 text-sm md:text-base max-w-xl leading-relaxed">
-                Find your dream government university, check eligibility, view cutoffs, and track admission deadlines — all in one place.
+                Explore State, Central & Deemed Universities — compare courses, check eligibility, view cutoffs, and track admission deadlines.
               </p>
             </div>
 
@@ -206,8 +206,8 @@ export const UniversityEntranceExams = () => {
                 <p className="text-[11px] text-emerald-200 uppercase tracking-wider">Courses</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
-                <p className="text-2xl font-bold text-white">500+</p>
-                <p className="text-[11px] text-emerald-200 uppercase tracking-wider">Colleges</p>
+                <p className="text-2xl font-bold text-white">3</p>
+                <p className="text-[11px] text-emerald-200 uppercase tracking-wider">Categories</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
                 <p className="text-2xl font-bold text-amber-300">Free</p>
@@ -230,8 +230,8 @@ export const UniversityEntranceExams = () => {
               <Building2 className="h-6 w-6 text-emerald-600" />
             </div>
             <div>
-              <h3 className="font-bold text-sm md:text-base text-gray-800">Explore Colleges</h3>
-              <p className="text-xs text-gray-500">Browse all TN universities & courses</p>
+              <h3 className="font-bold text-sm md:text-base text-gray-800">Explore Universities</h3>
+              <p className="text-xs text-gray-500">State, Central & Deemed Universities</p>
             </div>
             <ChevronRight className="h-5 w-5 text-gray-300 ml-auto group-hover:text-emerald-500 transition-colors shrink-0" />
           </button>
