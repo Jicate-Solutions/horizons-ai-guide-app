@@ -28,7 +28,7 @@ const GovernmentExamCategory = () => {
       <div className={`bg-gradient-to-r ${category.color} text-white`}>
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate('/government-exams')} className="text-white hover:bg-white/20">
+            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} className="text-white hover:bg-white/20">
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div className="flex items-center gap-3">

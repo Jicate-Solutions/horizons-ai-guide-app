@@ -70,7 +70,7 @@ const GovernmentExamDetail = () => {
         <div className="text-center">
           <p className="text-4xl mb-3">📋</p>
           <p className="text-sm text-gray-500 font-medium">{ta ? 'தேர்வு கிடைக்கவில்லை' : 'Exam not found'}</p>
-          <Button variant="link" className="mt-2 text-xs" onClick={() => navigate('/government-exams')}>{ta ? 'பின் செல்' : 'Go back'}</Button>
+          <Button variant="link" className="mt-2 text-sm" onClick={() => navigate(-1)}>{ta ? 'பின் செல்' : 'Go back'}</Button>
         </div>
       </div>
     );
@@ -119,8 +119,8 @@ const GovernmentExamDetail = () => {
       <div className="bg-gray-900 text-white">
         <div className="container mx-auto px-4 pt-3 pb-4">
           <div className="flex items-center gap-3 mb-3">
-            <button onClick={() => navigate('/government-exams')} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
+            <button onClick={() => navigate(-1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+              <ArrowLeft className="w-5 h-5" />
             </button>
             <div className="flex-1 min-w-0">
               <h1 className="text-[15px] font-bold truncate">{ta ? exam.nameTamil : exam.name}</h1>
