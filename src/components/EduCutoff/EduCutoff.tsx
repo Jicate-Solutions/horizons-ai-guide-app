@@ -9,9 +9,13 @@ import { CollegePredictor } from './CollegePredictor';
 import { PreviousYearCutoffs } from './PreviousYearCutoffs';
 import { CounsellingGuide } from './CounsellingGuide';
 import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
-import { Calculator, GraduationCap, Building2, MapPin, CheckCircle } from 'lucide-react';
+import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+type PageTab = 'calculator' | 'cutoffs' | 'counselling';
 
 export const EduCutoff = () => {
+  const [activeTab, setActiveTab] = useState<PageTab>('calculator');
   const [selectedGroup, setSelectedGroup] = useState<StudentGroup | null>(null);
   const [marks, setMarks] = useState<Record<string, number | null>>({});
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -26,7 +30,6 @@ export const EduCutoff = () => {
 
   const calculateCutoff = () => {
     if (!selectedGroup) return;
-
     setIsCalculating(true);
 
     setTimeout(() => {
@@ -42,9 +45,6 @@ export const EduCutoff = () => {
         overallPercentage = Math.round((validMarks.reduce((a, b) => a + b, 0) / validMarks.length) * 10) / 10;
       }
 
-      // TNEA Engineering Cutoff Formula:
-      // Maths/2 + Physics/4 + Chemistry/4 = out of 100
-      // Scaled to 200: multiply by 2
       let tneaCutoff100: number | undefined;
       if (isEligibleForTNEA(selectedGroup)) {
         const maths = marks.Mathematics ?? 0;
@@ -72,217 +72,175 @@ export const EduCutoff = () => {
         percentile,
         neetScore: marks.neet ?? undefined,
       });
-
       setIsCalculating(false);
     }, 800);
   };
 
   const canCalculate = () => {
     if (!selectedGroup) return false;
-    
-    const category = getGroupCategory(selectedGroup);
-    
-    // For engineering groups: specifically require Maths + Physics + Chemistry
     if (isEligibleForTNEA(selectedGroup)) {
       return marks.Mathematics != null && marks.Physics != null && marks.Chemistry != null;
     }
-    
-    // For other groups: at least 3 out of 4 subjects filled
     let requiredSubjects: string[] = [];
     for (const cat of groupCategories) {
       const group = cat.groups.find(g => g.id === selectedGroup);
-      if (group) {
-        requiredSubjects = group.subjects;
-        break;
-      }
+      if (group) { requiredSubjects = group.subjects; break; }
     }
-    const filledSubjects = requiredSubjects.filter(
-      subject => marks[subject] !== null && marks[subject] !== undefined
-    );
-    return filledSubjects.length >= 3;
+    return requiredSubjects.filter(s => marks[s] !== null && marks[s] !== undefined).length >= 3;
   };
 
+  const pageTabs = [
+    { id: 'calculator' as PageTab, label: 'Calculate Cutoff', tamil: 'கட்ஆஃப் கணக்கிடு', icon: Calculator, desc: 'Enter marks → Get cutoff → See colleges' },
+    { id: 'cutoffs' as PageTab, label: 'Previous Cutoffs', tamil: 'முந்தைய கட்ஆஃப்', icon: ClipboardList, desc: 'Browse last year marks' },
+    { id: 'counselling' as PageTab, label: 'Counselling Guide', tamil: 'கலந்தாய்வு வழிகாட்டி', icon: Calendar, desc: 'Dates, steps & apply links' },
+  ];
+
   return (
-    <div className="space-y-4 md:space-y-8">
-      {/* Premium Header Section */}
-      <div className="fresh-page-header rounded-xl md:rounded-2xl p-4 md:p-8 relative overflow-hidden">
-        <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
-              <Calculator className="h-5 w-5 md:h-6 md:w-6 text-white" />
-            </div>
-            <h2 className="text-base md:text-2xl lg:text-3xl font-serif font-bold text-white">Cutoff & College Predictor</h2>
-          </div>
-          <p className="text-fresh-gold-medium text-sm md:text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
-          <p className="text-white/90 text-xs md:text-sm mb-4 md:mb-6">
-            Calculate your cutoff & discover courses you're eligible for
-          </p>
+    <div className="space-y-4">
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 md:gap-4 mt-4 md:mt-6">
-            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
-              <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">1000+</div>
-              <div className="text-[10px] md:text-xs text-gray-500">Colleges</div>
-            </div>
-            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
-              <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">200+</div>
-              <div className="text-[10px] md:text-xs text-gray-500">Courses</div>
-            </div>
-            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
-              <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">38</div>
-              <div className="text-[10px] md:text-xs text-gray-500">Districts</div>
-            </div>
-            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
-              <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">All</div>
-              <div className="text-[10px] md:text-xs text-gray-500">Groups</div>
-            </div>
+      {/* ═══ COMPACT HEADER ═══ */}
+      <div className="bg-gradient-to-r from-violet-700 to-purple-700 rounded-2xl p-5 text-white">
+        <div className="flex items-center gap-3 mb-1">
+          <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <Calculator className="w-5 h-5" />
           </div>
+          <div>
+            <h2 className="text-lg font-extrabold">Cutoff & College Predictor</h2>
+            <p className="text-xs text-violet-200">கல்வி கட்ஆஃப் & கல்லூரி கணிப்பான்</p>
+          </div>
+        </div>
+        <p className="text-sm text-violet-200 mt-2">Enter your 12th marks → Calculate cutoff → See which colleges & courses you can get.</p>
+      </div>
+
+      {/* ═══ 3 TAB SELECTOR ═══ */}
+      <div className="bg-white rounded-2xl border-2 border-gray-200 p-1.5">
+        <div className="grid grid-cols-3 gap-1.5">
+          {pageTabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={cn(
+                "flex flex-col items-center py-3 px-2 rounded-xl transition-all text-center",
+                activeTab === tab.id
+                  ? "bg-violet-700 text-white shadow-lg"
+                  : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+              )}
+            >
+              <tab.icon className={cn("w-5 h-5 mb-1", activeTab === tab.id ? "text-white" : "text-gray-400")} />
+              <span className="text-xs font-bold leading-tight">{tab.label}</span>
+              <span className={cn("text-[10px] leading-tight mt-0.5", activeTab === tab.id ? "text-violet-200" : "text-gray-400")}>{tab.tamil}</span>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* ─── CLEAR CUTOFF EXPLANATION BANNER ─── */}
-      <div className="rounded-xl md:rounded-2xl overflow-hidden border-2 border-emerald-200">
-        <div className="bg-gradient-to-r from-emerald-700 to-emerald-800 px-4 py-2 md:px-6 md:py-3">
-          <h3 className="text-white font-bold text-xs md:text-base flex items-center gap-2">💡 Who Needs Cutoff?</h3>
-        </div>
-        <div className="bg-white p-3 md:p-5">
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
-            {/* Cutoff Required */}
-            <div className="border-2 border-blue-200 rounded-xl p-3 md:p-4 bg-blue-50/50">
-              <div className="flex items-center gap-2 mb-2 md:mb-3">
-                <span className="bg-blue-600 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full">CUTOFF REQUIRED</span>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold mt-0.5">1.</span>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-800">Engineering (B.E / B.Tech) - TNEA</p>
-                    <p className="text-xs text-gray-500">Cutoff = Maths/2 + Physics/4 + Chemistry/4 = Out of 100 → ×2 = Out of 200</p>
-                    <p className="text-xs text-gray-500">Groups: 100 Series (101-106) & Bio-Maths (103, 104)</p>
-                    <p className="text-xs text-red-500 font-medium mt-0.5">⚠️ Only PCM marks used. Biology NOT counted for Engineering cutoff.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold mt-0.5">2.</span>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-800">Medical (MBBS / BDS) - NEET</p>
-                    <p className="text-xs text-gray-500">NEET Score required (Out of 720) + Min 50% in PCB</p>
-                    <p className="text-xs text-gray-500">Groups: 200 Series (201-208) & 103, 104</p>
-                  </div>
-                </div>
-              </div>
+      {/* ═══ TAB 1: CALCULATOR ═══ */}
+      {activeTab === 'calculator' && (
+        <div className="space-y-4">
+
+          {/* Quick How-It-Works */}
+          <div className="bg-gray-50 rounded-xl border border-gray-200 p-4">
+            <p className="text-xs font-bold text-gray-700 mb-2">How it works:</p>
+            <div className="flex items-center gap-2 text-xs text-gray-600">
+              <span className="bg-violet-100 text-violet-700 font-bold px-2 py-0.5 rounded-md">1</span>
+              <span>Select Group</span>
+              <ChevronRight className="w-3 h-3 text-gray-400" />
+              <span className="bg-violet-100 text-violet-700 font-bold px-2 py-0.5 rounded-md">2</span>
+              <span>Enter Marks</span>
+              <ChevronRight className="w-3 h-3 text-gray-400" />
+              <span className="bg-violet-100 text-violet-700 font-bold px-2 py-0.5 rounded-md">3</span>
+              <span>See Results</span>
             </div>
-            {/* No Cutoff */}
-            <div className="border-2 border-green-200 rounded-xl p-3 md:p-4 bg-green-50/50">
-              <div className="flex items-center gap-2 mb-2 md:mb-3">
-                <span className="bg-green-600 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full">NO CUTOFF NEEDED</span>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <div className="text-xs bg-blue-50 border border-blue-200 rounded-lg p-2">
+                <p className="font-bold text-blue-800">Engineering (TNEA)</p>
+                <p className="text-blue-600">Cutoff = Maths/2 + Phy/4 + Chem/4</p>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold mt-0.5">1.</span>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-800">Arts / Humanities Courses (BA, BLit, etc.)</p>
-                    <p className="text-xs text-gray-500">Admission based on 12th mark percentage only</p>
-                    <p className="text-xs text-gray-500">Groups: 400 Series (401-406)</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold mt-0.5">2.</span>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-800">Commerce Courses (B.Com, BBA, CA, etc.)</p>
-                    <p className="text-xs text-gray-500">Admission based on 12th mark percentage only</p>
-                    <p className="text-xs text-gray-500">Groups: 300 Series (301-308)</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold mt-0.5">3.</span>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-800">B.Sc / Nursing / Agriculture / B.Pharm</p>
-                    <p className="text-xs text-gray-500">Admission based on 12th mark percentage + entrance (if any)</p>
-                  </div>
-                </div>
+              <div className="text-xs bg-green-50 border border-green-200 rounded-lg p-2">
+                <p className="font-bold text-green-800">Medical (NEET)</p>
+                <p className="text-green-600">Based on NEET score / 720</p>
               </div>
             </div>
           </div>
-          <p className="text-center text-xs text-gray-400 mt-3">Select your group below to calculate your eligibility score</p>
-        </div>
-      </div>
 
-      {/* ─── PREVIOUS YEAR CUTOFF MARKS — BROWSEABLE REFERENCE ─── */}
-      <PreviousYearCutoffs />
+          {/* Step 1: Group Selection */}
+          <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-7 h-7 rounded-full bg-violet-700 text-white text-xs font-bold flex items-center justify-center">1</span>
+              <p className="text-sm font-bold text-gray-900">Select Your Group</p>
+            </div>
+            <GroupSelector selectedGroup={selectedGroup} onSelectGroup={setSelectedGroup} />
+          </div>
 
-      {/* ─── COUNSELLING GUIDE — PROCEDURES, DATES, LINKS ─── */}
-      <CounsellingGuide />
-
-      {/* Step 1: Group Selection */}
-      <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
-        <GroupSelector selectedGroup={selectedGroup} onSelectGroup={setSelectedGroup} />
-      </div>
-
-      {/* Step 2: Marks Entry */}
-      {selectedGroup && (
-        <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
-          <MarksEntryForm group={selectedGroup} onMarksChange={handleMarksChange} />
-        </div>
-      )}
-
-      {/* Step 3: Category Selection */}
-      {selectedGroup && (
-        <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
-          <CategorySelector
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-            additionalOptions={additionalOptions}
-            onAdditionalOptionsChange={setAdditionalOptions}
-          />
-        </div>
-      )}
-
-      {/* Calculate Button */}
-      {selectedGroup && (
-        <div className="flex justify-center">
-          <Button
-            size="lg"
-            className="btn-premium-primary w-full md:w-auto px-8 md:px-12 py-4 md:py-6 text-base md:text-lg rounded-xl md:rounded-full"
-            onClick={calculateCutoff}
-            disabled={!canCalculate() || isCalculating}
-          >
-            {isCalculating ? (
-              <>
-                <span className="animate-spin mr-2">⏳</span>
-                Calculating...
-              </>
-            ) : (
-              <>
-                🧮 Calculate Eligibility
-              </>
-            )}
-          </Button>
-        </div>
-      )}
-
-      {/* Results Section */}
-      {result && selectedGroup && (
-        <>
-          <CutoffResults result={result} group={selectedGroup} marks={marks} category={selectedCategory || undefined} />
-          <EligibleCourses
-            group={selectedGroup}
-            cutoffScore={result.tneaCutoff ?? 0}
-            percentage={result.overallPercentage}
-            neetScore={result.neetScore}
-          />
-          {/* College Predictor — shows predicted colleges based on cutoff */}
-          {isEligibleForTNEA(selectedGroup) && result.tneaCutoff && (
-            <CollegePredictor
-              cutoffScore={result.tneaCutoff}
-              categoryCode={selectedCategory || 'OC'}
-            />
+          {/* Step 2: Marks Entry */}
+          {selectedGroup && (
+            <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-7 h-7 rounded-full bg-violet-700 text-white text-xs font-bold flex items-center justify-center">2</span>
+                <p className="text-sm font-bold text-gray-900">Enter Your 12th Marks</p>
+              </div>
+              <MarksEntryForm group={selectedGroup} onMarksChange={handleMarksChange} />
+            </div>
           )}
-        </>
+
+          {/* Step 3: Category Selection */}
+          {selectedGroup && (
+            <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-7 h-7 rounded-full bg-violet-700 text-white text-xs font-bold flex items-center justify-center">3</span>
+                <p className="text-sm font-bold text-gray-900">Select Your Community</p>
+              </div>
+              <CategorySelector
+                selectedCategory={selectedCategory}
+                onSelectCategory={setSelectedCategory}
+                additionalOptions={additionalOptions}
+                onAdditionalOptionsChange={setAdditionalOptions}
+              />
+            </div>
+          )}
+
+          {/* Calculate Button */}
+          {selectedGroup && (
+            <Button
+              size="lg"
+              className="w-full h-14 text-base font-bold rounded-xl bg-violet-700 hover:bg-violet-800 active:scale-[0.98]"
+              onClick={calculateCutoff}
+              disabled={!canCalculate() || isCalculating}
+            >
+              {isCalculating ? (
+                <><span className="animate-spin mr-2">⏳</span> Calculating...</>
+              ) : (
+                <>🧮 Calculate My Cutoff & Eligibility</>
+              )}
+            </Button>
+          )}
+
+          {/* Results */}
+          {result && selectedGroup && (
+            <div className="space-y-4">
+              <CutoffResults result={result} group={selectedGroup} marks={marks} category={selectedCategory || undefined} />
+              <EligibleCourses
+                group={selectedGroup}
+                cutoffScore={result.tneaCutoff ?? 0}
+                percentage={result.overallPercentage}
+                neetScore={result.neetScore}
+              />
+              {isEligibleForTNEA(selectedGroup) && result.tneaCutoff && (
+                <CollegePredictor
+                  cutoffScore={result.tneaCutoff}
+                  categoryCode={selectedCategory || 'OC'}
+                />
+              )}
+            </div>
+          )}
+        </div>
       )}
+
+      {/* ═══ TAB 2: PREVIOUS YEAR CUTOFFS ═══ */}
+      {activeTab === 'cutoffs' && <PreviousYearCutoffs />}
+
+      {/* ═══ TAB 3: COUNSELLING GUIDE ═══ */}
+      {activeTab === 'counselling' && <CounsellingGuide />}
     </div>
   );
 };
