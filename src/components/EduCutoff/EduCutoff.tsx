@@ -7,6 +7,7 @@ import { CutoffResults } from './CutoffResults';
 import { EligibleCourses } from './EligibleCourses';
 import { CollegePredictor } from './CollegePredictor';
 import { PreviousYearCutoffs } from './PreviousYearCutoffs';
+import { CounsellingGuide } from './CounsellingGuide';
 import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
 import { Calculator, GraduationCap, Building2, MapPin, CheckCircle } from 'lucide-react';
 
@@ -212,6 +213,9 @@ export const EduCutoff = () => {
 
       {/* ─── PREVIOUS YEAR CUTOFF MARKS — BROWSEABLE REFERENCE ─── */}
       <PreviousYearCutoffs />
+
+      {/* ─── COUNSELLING GUIDE — PROCEDURES, DATES, LINKS ─── */}
+      <CounsellingGuide />
 
       {/* Step 1: Group Selection */}
       <div className="fresh-card p-4 md:p-6 rounded-xl md:rounded-2xl">
