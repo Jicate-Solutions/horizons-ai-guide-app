@@ -8,11 +8,12 @@ import { EligibleCourses } from './EligibleCourses';
 import { CollegePredictor } from './CollegePredictor';
 import { PreviousYearCutoffs } from './PreviousYearCutoffs';
 import { CounsellingGuide } from './CounsellingGuide';
+import { CounsellingTracker } from './CounsellingTracker';
 import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
-import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight } from 'lucide-react';
+import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-type PageTab = 'calculator' | 'cutoffs' | 'counselling';
+type PageTab = 'calculator' | 'cutoffs' | 'counselling' | 'tracker';
 
 export const EduCutoff = () => {
   const [activeTab, setActiveTab] = useState<PageTab>('calculator');
@@ -92,7 +93,8 @@ export const EduCutoff = () => {
   const pageTabs = [
     { id: 'calculator' as PageTab, label: 'Calculate Cutoff', tamil: 'கட்ஆஃப் கணக்கிடு', icon: Calculator, desc: 'Enter marks → Get cutoff → See colleges' },
     { id: 'cutoffs' as PageTab, label: 'Previous Cutoffs', tamil: 'முந்தைய கட்ஆஃப்', icon: ClipboardList, desc: 'Browse last year marks' },
-    { id: 'counselling' as PageTab, label: 'Counselling Guide', tamil: 'கலந்தாய்வு வழிகாட்டி', icon: Calendar, desc: 'Dates, steps & apply links' },
+    { id: 'counselling' as PageTab, label: 'Counselling', tamil: 'கலந்தாய்வு', icon: Calendar, desc: 'Dates, steps & apply links' },
+    { id: 'tracker' as PageTab, label: 'My Tracker', tamil: 'எனது நிலை', icon: Shield, desc: 'Track your application status' },
   ];
 
   return (
@@ -114,7 +116,7 @@ export const EduCutoff = () => {
 
       {/* ═══ 3 TAB SELECTOR ═══ */}
       <div className="bg-white rounded-2xl border-2 border-gray-200 p-1.5">
-        <div className="grid grid-cols-3 gap-1.5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5">
           {pageTabs.map(tab => (
             <button
               key={tab.id}
@@ -122,13 +124,13 @@ export const EduCutoff = () => {
               className={cn(
                 "flex flex-col items-center py-3 px-2 rounded-xl transition-all text-center",
                 activeTab === tab.id
-                  ? "bg-violet-700 text-white shadow-lg"
+                  ? tab.id === 'tracker' ? "bg-red-600 text-white shadow-lg" : "bg-violet-700 text-white shadow-lg"
                   : "bg-gray-50 text-gray-600 hover:bg-gray-100"
               )}
             >
               <tab.icon className={cn("w-5 h-5 mb-1", activeTab === tab.id ? "text-white" : "text-gray-400")} />
               <span className="text-xs font-bold leading-tight">{tab.label}</span>
-              <span className={cn("text-[10px] leading-tight mt-0.5", activeTab === tab.id ? "text-violet-200" : "text-gray-400")}>{tab.tamil}</span>
+              <span className={cn("text-[10px] leading-tight mt-0.5", activeTab === tab.id ? (tab.id === 'tracker' ? "text-red-200" : "text-violet-200") : "text-gray-400")}>{tab.tamil}</span>
             </button>
           ))}
         </div>
@@ -241,6 +243,9 @@ export const EduCutoff = () => {
 
       {/* ═══ TAB 3: COUNSELLING GUIDE ═══ */}
       {activeTab === 'counselling' && <CounsellingGuide />}
+
+      {/* ═══ TAB 4: COUNSELLING TRACKER ═══ */}
+      {activeTab === 'tracker' && <CounsellingTracker />}
     </div>
   );
 };
