@@ -8,11 +8,11 @@ const corsHeaders = {
 interface RegistrationEmailRequest {
   fullName: string;
   email: string;
-  phone: string;
-  school: string;
-  board: string;
-  stream: string;
-  expectedYear: string;
+  phone?: string;
+  school?: string;
+  board?: string;
+  stream?: string;
+  expectedYear?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,7 +23,6 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const resendApiKey = Deno.env.get("RESEND_API_KEY") || "re_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ";
     if (!resendApiKey) {
-      console.log("RESEND_API_KEY not configured, skipping email");
       return new Response(
         JSON.stringify({ success: true, message: "Email not configured" }),
         { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -31,7 +30,6 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const { fullName, email, phone, school, board, stream, expectedYear }: RegistrationEmailRequest = await req.json();
-
     if (!email) {
       return new Response(
         JSON.stringify({ success: true, message: "No email provided" }),
@@ -39,75 +37,78 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log("Sending registration confirmation to:", email);
+    const name = fullName || "Student";
+    const boardDisplay = (board || "").toUpperCase();
+    const streamDisplay = stream ? stream.charAt(0).toUpperCase() + stream.slice(1) : "";
 
-    const boardDisplay = (board || '').toUpperCase();
-    const streamDisplay = stream ? stream.charAt(0).toUpperCase() + stream.slice(1) : '';
+    // Build registration details rows (only show what was provided)
+    const detailRows = [
+      { label: "👤 Name", value: name },
+      phone && phone !== "-" ? { label: "📞 Phone", value: phone } : null,
+      { label: "✉️ Email", value: email },
+      school && school !== "-" ? { label: "🏫 School", value: school } : null,
+      boardDisplay && boardDisplay !== "-" ? { label: "📚 Board", value: boardDisplay } : null,
+      streamDisplay && streamDisplay !== "-" ? { label: "🎯 Stream", value: streamDisplay } : null,
+      expectedYear && expectedYear !== "-" ? { label: "📅 Passing Year", value: expectedYear } : null,
+    ].filter(Boolean);
+
+    const detailsHTML = detailRows.map((r: any) =>
+      `<tr style="border-bottom: 1px solid #d1fae5;"><td style="padding: 10px 0; font-weight: 600; color: #059669; width: 130px; font-size: 14px;">${r.label}</td><td style="padding: 10px 0; font-size: 14px;">${r.value}</td></tr>`
+    ).join("");
 
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${resendApiKey}`,
-      },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${resendApiKey}` },
       body: JSON.stringify({
-        from: "AI Vazhikatti <onboarding@resend.dev>",
+        from: "VAZHIKATTI <onboarding@resend.dev>",
         to: [email],
-        subject: `✅ You Have Successfully Registered In AI Vazhikatti, ${fullName}!`,
-        html: `
-          <!DOCTYPE html>
-          <html>
-          <head><meta charset="utf-8"></head>
-          <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f0fdf4;">
-            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-              <div style="background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%); color: white; padding: 40px 30px; border-radius: 16px 16px 0 0; text-align: center;">
-                <div style="font-size: 56px; margin-bottom: 12px;">🎓</div>
-                <h1 style="margin: 0; font-size: 24px; font-weight: 700;">You Have Successfully Registered</h1>
-                <h2 style="margin: 8px 0 0 0; font-size: 20px; font-weight: 600; color: #FFD700;">In AI Vazhikatti!</h2>
-                <p style="margin: 12px 0 0 0; opacity: 0.9; font-size: 14px;">AI-Powered Career Guidance Platform</p>
-              </div>
-              <div style="height: 4px; background: linear-gradient(90deg, #DAA520, #FFD700, #DAA520);"></div>
-              <div style="background: white; padding: 30px; border: 1px solid #C8E6C9;">
-                <div style="text-align: center; margin-bottom: 24px;">
-                  <h2 style="color: #1B5E20; margin: 0; font-size: 22px;">Welcome, ${fullName}! 🎉</h2>
-                  <p style="color: #6b7280; font-size: 15px; margin-top: 8px;">Your registration is complete. You now have full access to AI Vazhikatti's career guidance tools.</p>
-                </div>
-                <div style="background: linear-gradient(135deg, #E8F5E9, #F1F8E9); padding: 24px; border-radius: 12px; border: 1px solid #C8E6C9; margin: 24px 0;">
-                  <h3 style="margin: 0 0 16px 0; color: #1B5E20; font-size: 16px;">📋 Your Registration Details</h3>
-                  <table style="width: 100%; border-collapse: collapse;">
-                    <tr style="border-bottom: 1px solid #C8E6C9;"><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; width: 140px; font-size: 14px;">👤 Name</td><td style="padding: 10px 0; font-size: 14px;">${fullName}</td></tr>
-                    <tr style="border-bottom: 1px solid #C8E6C9;"><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; font-size: 14px;">📞 Phone</td><td style="padding: 10px 0; font-size: 14px;">${phone}</td></tr>
-                    <tr style="border-bottom: 1px solid #C8E6C9;"><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; font-size: 14px;">✉️ Email</td><td style="padding: 10px 0; font-size: 14px;">${email}</td></tr>
-                    <tr style="border-bottom: 1px solid #C8E6C9;"><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; font-size: 14px;">🏫 School</td><td style="padding: 10px 0; font-size: 14px;">${school || 'Not provided'}</td></tr>
-                    <tr style="border-bottom: 1px solid #C8E6C9;"><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; font-size: 14px;">📚 Board</td><td style="padding: 10px 0; font-size: 14px;">${boardDisplay || 'Not provided'}</td></tr>
-                    <tr style="border-bottom: 1px solid #C8E6C9;"><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; font-size: 14px;">🎯 Stream</td><td style="padding: 10px 0; font-size: 14px;">${streamDisplay || 'Not provided'}</td></tr>
-                    <tr><td style="padding: 10px 0; font-weight: 600; color: #1B5E20; font-size: 14px;">📅 Passing Year</td><td style="padding: 10px 0; font-size: 14px;">${expectedYear || 'Not provided'}</td></tr>
-                  </table>
-                </div>
-                <div style="text-align: center; margin: 24px 0;">
-                  <a href="https://horizons-ai-guide-app.vercel.app/career-assessment/colleges" style="display: inline-block; background: linear-gradient(135deg, #1B5E20, #2E7D32); color: white; padding: 16px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px;">🎯 Start Your Career Journey</a>
-                </div>
-              </div>
-              <div style="background: #1B5E20; color: #C8E6C9; padding: 20px; text-align: center; border-radius: 0 0 16px 16px; font-size: 12px;">
-                <p style="margin: 0 0 4px 0; color: #FFD700; font-weight: 600; font-size: 14px;">AI Vazhikatti</p>
-                <p style="margin: 0;">AI-Powered Career Guidance Platform</p>
-              </div>
-            </div>
-          </body>
-          </html>
-        `,
+        subject: `Welcome to VAZHIKATTI, ${name}! 🎓 Registration Successful`,
+        html: `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background: #f0fdf4;">
+<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0891b2 100%); color: white; padding: 40px 30px; border-radius: 16px 16px 0 0; text-align: center;">
+    <div style="font-size: 48px; margin-bottom: 8px;">🎓</div>
+    <h1 style="margin: 0; font-size: 24px; font-weight: 700;">Registration Successful!</h1>
+    <p style="margin: 8px 0 0 0; opacity: 0.9; font-size: 14px;">VAZHIKATTI — AI Career Guidance</p>
+  </div>
+  <div style="height: 3px; background: linear-gradient(90deg, #f59e0b, #eab308, #f59e0b);"></div>
+  <div style="background: white; padding: 30px; border: 1px solid #d1fae5;">
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h2 style="color: #059669; margin: 0;">Welcome, ${name}! 🎉</h2>
+      <p style="color: #6b7280; font-size: 15px; margin: 10px 0 0 0;">Your registration is complete. You now have full access to VAZHIKATTI.</p>
+    </div>
+    <div style="background: #f0fdf4; padding: 20px; border-radius: 12px; border: 1px solid #d1fae5; margin: 20px 0;">
+      <h3 style="margin: 0 0 12px 0; color: #059669; font-size: 15px;">📋 Your Details</h3>
+      <table style="width: 100%; border-collapse: collapse;">${detailsHTML}</table>
+    </div>
+    <div style="background: #f0fdf4; padding: 16px; border-radius: 10px; border: 1px solid #d1fae5; margin: 20px 0;">
+      <p style="margin: 0 0 10px 0; font-size: 14px; color: #059669; font-weight: 600;">What you can do now:</p>
+      <p style="margin: 3px 0; font-size: 13px;">🏛️ 25 Govt Exams with syllabus & PYQ</p>
+      <p style="margin: 3px 0; font-size: 13px;">📝 39 Entrance Exams (JEE, NEET, CUET & more)</p>
+      <p style="margin: 3px 0; font-size: 13px;">📚 144 Courses across all streams</p>
+      <p style="margin: 3px 0; font-size: 13px;">🎯 Personalized Dashboard for your stream</p>
+    </div>
+    <div style="text-align: center; margin: 25px 0;">
+      <a href="https://horizons-ai-guide-app.vercel.app/student-dashboard" style="display: inline-block; background: linear-gradient(135deg, #059669, #0d9488); color: white; padding: 14px 36px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px;">Open My Dashboard →</a>
+    </div>
+  </div>
+  <div style="background: #1f2937; color: #9ca3af; padding: 20px; text-align: center; border-radius: 0 0 16px 16px; font-size: 12px;">
+    <p style="margin: 0 0 4px 0; font-size: 15px; font-weight: 700; color: white;">VAZHIKATTI — வழிகாட்டி</p>
+    <p style="margin: 0;">AI-Powered Career Guidance for 12th Students</p>
+  </div>
+</div>
+</body></html>`,
       }),
     });
 
     const emailData = await emailResponse.json();
-    console.log("Registration email sent:", emailData);
-
     return new Response(
       JSON.stringify({ success: true, emailId: emailData.id }),
       { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
   } catch (error: any) {
-    console.error("Error sending registration email:", error);
+    console.error("Error:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
