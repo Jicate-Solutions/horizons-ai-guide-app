@@ -34,106 +34,7 @@ const locationRegions = [
 ];
 
 // Institution types for Central Government institutions
-const institutionTypes = [
-  {
-    id: 'jnu',
-    label: 'JNU',
-    labelTamil: 'ஜவஹர்லால் நேரு பல்கலைக்கழகம்',
-    entrance: 'CUET',
-    patterns: ['JNU', 'Jawaharlal Nehru University'],
-  },
-  {
-    id: 'du',
-    label: 'Delhi University',
-    labelTamil: 'டெல்லி பல்கலைக்கழகம்',
-    entrance: 'CUET',
-    patterns: ['University of Delhi', 'Delhi University'],
-  },
-  {
-    id: 'bhu',
-    label: 'BHU',
-    labelTamil: 'பனாரஸ் இந்து பல்கலைக்கழகம்',
-    entrance: 'CUET',
-    patterns: ['BHU', 'Banaras Hindu University'],
-  },
-  {
-    id: 'amu',
-    label: 'AMU',
-    labelTamil: 'அலிகர் முஸ்லிம் பல்கலைக்கழகம்',
-    entrance: 'CUET',
-    patterns: ['AMU', 'Aligarh Muslim University'],
-  },
-  {
-    id: 'jamia',
-    label: 'Jamia Millia',
-    labelTamil: 'ஜாமியா மில்லியா இஸ்லாமியா',
-    entrance: 'CUET',
-    patterns: ['Jamia Millia', 'Jamia'],
-  },
-  {
-    id: 'pondicherry-uni',
-    label: 'Pondicherry University',
-    labelTamil: 'புதுச்சேரி பல்கலைக்கழகம்',
-    entrance: 'CUET',
-    patterns: ['Pondicherry University'],
-  },
-  {
-    id: 'cutn',
-    label: 'CUTN',
-    labelTamil: 'மத்திய பல்கலைக்கழகம் தமிழ்நாடு',
-    entrance: 'CUET',
-    patterns: ['Central University of Tamil Nadu', 'CUTN'],
-  },
-  {
-    id: 'other-central-unis',
-    label: 'Other Central Unis',
-    labelTamil: 'பிற மத்திய பல்கலைக்கழகங்கள்',
-    entrance: 'CUET',
-    patterns: ['Central University', 'University of Hyderabad', 'Visva-Bharati', 'Tezpur University', 'Assam University', 'NEHU', 'Manipur University', 'Mizoram University', 'Nagaland University', 'Tripura University', 'Sikkim University', 'Rajiv Gandhi University', 'Mahatma Gandhi', 'Hemvati Nandan', 'Babasaheb'],
-  },
-  {
-    id: 'iits',
-    label: 'IITs',
-    labelTamil: 'இந்திய தொழில்நுட்பக் கழகங்கள்',
-    entrance: 'JEE Advanced',
-    patterns: ['IIT ', 'Indian Institute of Technology'],
-  },
-  {
-    id: 'nits',
-    label: 'NITs',
-    labelTamil: 'தேசிய தொழில்நுட்ப நிறுவனங்கள்',
-    entrance: 'JEE Main',
-    patterns: ['NIT ', 'National Institute of Technology', 'MNNIT', 'MNIT', 'VNIT', 'SVNIT'],
-  },
-  {
-    id: 'aiims',
-    label: 'AIIMS',
-    labelTamil: 'அகில இந்திய மருத்துவ அறிவியல் நிறுவனங்கள்',
-    entrance: 'NEET UG',
-    patterns: ['AIIMS', 'JIPMER'],
-  },
-  {
-    id: 'iims',
-    label: 'IIMs',
-    labelTamil: 'இந்திய மேலாண்மை நிறுவனங்கள்',
-    entrance: 'CAT',
-    patterns: ['IIM ', 'Indian Institute of Management'],
-  },
-  {
-    id: 'iisers',
-    label: 'IISERs',
-    labelTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனங்கள்',
-    entrance: 'IAT / JEE Advanced',
-    patterns: ['IISER', 'Indian Institute of Science Education'],
-  },
-  {
-    id: 'iiits',
-    label: 'IIITs',
-    labelTamil: 'இந்திய தகவல் தொழில்நுட்ப நிறுவனங்கள்',
-    entrance: 'JEE Main',
-    patterns: ['IIIT', 'Indian Institute of Information Technology'],
-  },
-];
+
 
 // Fee range categories for Central Government institutions
 const feeRanges = [
@@ -194,11 +95,6 @@ const feeRanges = [
 ];
 
 
-// Helper to check if university matches institution type
-const matchesInstitutionType = (uniName: string, patterns: string[]): boolean => {
-  const nameLower = uniName.toLowerCase();
-  return patterns.some(pattern => nameLower.includes(pattern.toLowerCase()));
-};
 
 
 // Helper to check if university matches fee range
@@ -224,7 +120,6 @@ const TNUniversityBrowse = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<UniversityType>('State Government');
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
-  const [selectedInstitutionType, setSelectedInstitutionType] = useState<string | null>(null);
   const [selectedLocationInstitution, setSelectedLocationInstitution] = useState<string | null>(null);
   const [selectedFeeRange, setSelectedFeeRange] = useState<string | null>(null);
 
@@ -266,15 +161,6 @@ const TNUniversityBrowse = () => {
         matchesLocationInstitution = uni.id === selectedLocationInstitution;
       }
       
-      // Institution type filter only applies to Central Government
-      let matchesInstType = true;
-      if (selectedType === 'Central Government' && selectedInstitutionType) {
-        const instType = institutionTypes.find(t => t.id === selectedInstitutionType);
-        if (instType) {
-          matchesInstType = matchesInstitutionType(uni.name, instType.patterns);
-        }
-      }
-      
       // Fee range filter only applies to Central Government
       let matchesFee = true;
       if (selectedType === 'Central Government' && selectedFeeRange) {
@@ -284,9 +170,9 @@ const TNUniversityBrowse = () => {
         }
       }
       
-      return matchesSearch && matchesType && matchesLocation && matchesLocationInstitution && matchesInstType && matchesFee;
+      return matchesSearch && matchesType && matchesLocation && matchesLocationInstitution && matchesFee;
     });
-  }, [uniqueUniversities, searchQuery, selectedType, selectedLocation, selectedLocationInstitution, selectedInstitutionType, selectedFeeRange]);
+  }, [uniqueUniversities, searchQuery, selectedType, selectedLocation, selectedLocationInstitution, selectedFeeRange]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -313,35 +199,6 @@ const TNUniversityBrowse = () => {
     
     return counts;
   }, [uniqueUniversities]);
-
-  // Count institutions per type for Central Government (filtered by selected location)
-  const institutionTypeCounts = useMemo(() => {
-    let centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
-    
-    // If a location is selected, filter to only that location
-    if (selectedLocation) {
-      const region = locationRegions.find(r => r.id === selectedLocation);
-      if (region) {
-        centralUnis = centralUnis.filter(uni => {
-          const uniState = extractState(uni.location);
-          return region.states.some(state => 
-            uniState.toLowerCase().includes(state.toLowerCase()) ||
-            state.toLowerCase().includes(uniState.toLowerCase())
-          );
-        });
-      }
-    }
-    
-    const counts: Record<string, number> = {};
-    
-    institutionTypes.forEach(instType => {
-      counts[instType.id] = centralUnis.filter(uni => 
-        matchesInstitutionType(uni.name, instType.patterns)
-      ).length;
-    });
-    
-    return counts;
-  }, [uniqueUniversities, selectedLocation]);
 
   // Count institutions per fee range for Central Government (filtered by selected location)
   const feeRangeCounts = useMemo(() => {
@@ -427,7 +284,6 @@ const TNUniversityBrowse = () => {
     setSelectedType(type);
     if (type !== 'Central Government') {
       setSelectedLocation(null);
-      setSelectedInstitutionType(null);
       setSelectedLocationInstitution(null);
       setSelectedFeeRange(null);
     }
@@ -439,11 +295,10 @@ const TNUniversityBrowse = () => {
     setSelectedLocationInstitution(null);
   };
 
-  const hasActiveFilters = selectedLocation || selectedInstitutionType || selectedFeeRange || selectedLocationInstitution;
+  const hasActiveFilters = selectedLocation || selectedFeeRange || selectedLocationInstitution;
 
   const clearAllFilters = () => {
     setSelectedLocation(null);
-    setSelectedInstitutionType(null);
     setSelectedLocationInstitution(null);
     setSelectedFeeRange(null);
   };
