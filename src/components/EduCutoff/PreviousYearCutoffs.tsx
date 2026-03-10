@@ -62,96 +62,96 @@ const govtExamCutoffs: CutoffEntry[] = [
   { college: 'SSC CHSL', course: 'LDC / Junior Assistant', oc: 195, bc: 180, mbc: '-', sc: 155, st: 138, year: '2024', note: 'Out of 200' },
   { college: 'SSC MTS', course: 'Multi Tasking Staff', oc: 135, bc: 120, mbc: '-', sc: 105, st: 95, year: '2024', note: 'Out of 270' },
   { college: 'SSC GD Constable', course: 'GD Constable', oc: 170, bc: 155, mbc: '-', sc: 135, st: 120, year: '2024', note: 'Out of 300' },
-  { college: 'RRB NTPC', course: 'Jr Clerk / Typist', oc: 75, bc: 68, mbc: '-', sc: 55, st: 48, year: '2024', note: 'Out of 100' },
-  { college: 'RRB Group D', course: 'Track Maintainer', oc: 70, bc: 62, mbc: '-', sc: 50, st: 42, year: '2024', note: 'Out of 100' },
-  { college: 'TN Police', course: 'Grade II Constable', oc: 105, bc: 95, mbc: 85, sc: 70, st: 60, year: '2023', note: 'Out of 150' },
-  { college: 'NDA (UPSC)', course: 'Army/Navy/AF Officer', oc: 355, bc: '-', mbc: '-', sc: '-', st: '-', year: '2024', note: 'Out of 900' },
+  { college: 'RRB NTPC', course: 'Junior Clerk', oc: 75, bc: 68, mbc: '-', sc: 55, st: 48, year: '2024', note: 'Out of 100' },
+  { college: 'TN Police', course: 'Constable', oc: 105, bc: 95, mbc: 85, sc: 70, st: 60, year: '2023', note: 'Out of 150' },
+  { college: 'NDA (UPSC)', course: 'Written Cutoff', oc: 355, bc: '-', mbc: '-', sc: '-', st: '-', year: '2024', note: 'Out of 900' },
   { college: 'India Post GDS', course: 'BPM / Dak Sevak', oc: '85%', bc: '78%', mbc: '72%', sc: '65%', st: '60%', year: '2024', note: '10th Mark %' },
 ];
 
-const tabConfig = [
-  { id: 'engineering' as CourseType, label: 'Engineering', tamil: 'பொறியியல்', icon: Building2, data: engineeringCutoffs, scaleLabel: 'TNEA Cutoff (Out of 200)', scaleDesc: 'Formula: Maths/2 + Physics/4 + Chemistry/4 → scaled to 200' },
-  { id: 'medical' as CourseType, label: 'Medical', tamil: 'மருத்துவம்', icon: Stethoscope, data: medicalCutoffs, scaleLabel: 'NEET Score (Out of 720)', scaleDesc: 'Score required in NEET UG exam for TN state counselling' },
-  { id: 'govt' as CourseType, label: 'Govt Exams', tamil: 'அரசு தேர்வு', icon: Landmark, data: govtExamCutoffs, scaleLabel: 'Exam-specific Marks', scaleDesc: 'Minimum marks needed to qualify in each exam' },
-];
-
-const categoryColors: Record<string, { bg: string; text: string; label: string }> = {
-  oc:  { bg: 'bg-emerald-100', text: 'text-emerald-800', label: 'OC (General)' },
-  bc:  { bg: 'bg-blue-100', text: 'text-blue-800', label: 'BC' },
-  mbc: { bg: 'bg-violet-100', text: 'text-violet-800', label: 'MBC / DNC' },
-  sc:  { bg: 'bg-amber-100', text: 'text-amber-800', label: 'SC' },
-  st:  { bg: 'bg-rose-100', text: 'text-rose-800', label: 'ST' },
+const categoryColors: Record<string, { label: string; bg: string; text: string; dot: string }> = {
+  oc: { label: 'OC (General)', bg: 'bg-emerald-50', text: 'text-emerald-700', dot: 'bg-emerald-500' },
+  bc: { label: 'BC', bg: 'bg-blue-50', text: 'text-blue-700', dot: 'bg-blue-500' },
+  mbc: { label: 'MBC / DNC', bg: 'bg-violet-50', text: 'text-violet-700', dot: 'bg-violet-500' },
+  sc: { label: 'SC', bg: 'bg-amber-50', text: 'text-amber-700', dot: 'bg-amber-500' },
+  st: { label: 'ST', bg: 'bg-rose-50', text: 'text-rose-700', dot: 'bg-rose-500' },
 };
+
+const tabs = [
+  { id: 'engineering' as CourseType, label: 'Engineering', subLabel: 'TNEA 2024', icon: Building2, info: 'Cutoff out of 200' },
+  { id: 'medical' as CourseType, label: 'Medical', subLabel: 'NEET 2024', icon: Stethoscope, info: 'NEET score out of 720' },
+  { id: 'govt' as CourseType, label: 'Govt Exams', subLabel: '2023-24', icon: Landmark, info: 'Exam-specific marks' },
+];
 
 export const PreviousYearCutoffs = () => {
   const [activeTab, setActiveTab] = useState<CourseType>('engineering');
   const [search, setSearch] = useState('');
   const [expandedCollege, setExpandedCollege] = useState<string | null>(null);
 
-  const tab = tabConfig.find(t => t.id === activeTab)!;
-  const data = tab.data;
+  const data = activeTab === 'engineering' ? engineeringCutoffs : activeTab === 'medical' ? medicalCutoffs : govtExamCutoffs;
+  const currentTab = tabs.find(t => t.id === activeTab)!;
 
   const filtered = search.trim()
     ? data.filter(e => e.college.toLowerCase().includes(search.toLowerCase()) || e.course.toLowerCase().includes(search.toLowerCase()))
     : data;
 
   const grouped: Record<string, CutoffEntry[]> = {};
-  filtered.forEach(e => {
-    if (!grouped[e.college]) grouped[e.college] = [];
-    grouped[e.college].push(e);
-  });
+  filtered.forEach(e => { if (!grouped[e.college]) grouped[e.college] = []; grouped[e.college].push(e); });
   const collegeNames = Object.keys(grouped);
 
   return (
     <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden">
-
       {/* ── HEADER ── */}
-      <div className="bg-gradient-to-r from-violet-700 to-purple-700 p-5">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-            <GraduationCap className="w-5 h-5 text-white" />
+      <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-5">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center">
+            <GraduationCap className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-extrabold text-white">Previous Year Cutoff Marks</h3>
-            <p className="text-xs text-violet-200">முந்தைய ஆண்டு கட்ஆஃப் மதிப்பெண்கள்</p>
+            <h3 className="text-lg font-bold text-white">Previous Year Cutoff Marks</h3>
+            <p className="text-xs text-gray-400">முந்தைய ஆண்டு கட்ஆஃப் மதிப்பெண்கள்</p>
           </div>
         </div>
-        <p className="text-sm text-violet-100 leading-relaxed">
-          Check last year's cutoff marks for different colleges, courses and community categories. 
-          Compare your marks to see where you stand.
+        <p className="text-sm text-gray-300 leading-relaxed">
+          Check minimum marks needed for your dream college. Compare across categories (OC, BC, MBC, SC, ST).
         </p>
       </div>
 
-      {/* ── TABS — Big, clear, tappable ── */}
-      <div className="grid grid-cols-3 border-b-2 border-gray-200">
-        {tabConfig.map(t => (
+      {/* ── TABS ── */}
+      <div className="grid grid-cols-3 border-b border-gray-200">
+        {tabs.map(tab => (
           <button
-            key={t.id}
-            onClick={() => { setActiveTab(t.id); setSearch(''); setExpandedCollege(null); }}
+            key={tab.id}
+            onClick={() => { setActiveTab(tab.id); setSearch(''); setExpandedCollege(null); }}
             className={cn(
-              "flex flex-col items-center gap-1 py-3.5 text-center transition-all border-b-3",
-              activeTab === t.id
-                ? "bg-white border-b-[3px] border-violet-600 text-violet-700"
-                : "bg-gray-50 border-b-[3px] border-transparent text-gray-500 hover:text-gray-700"
+              "flex flex-col items-center py-3 transition-all border-b-3",
+              activeTab === tab.id
+                ? "border-b-2 border-gray-900 bg-white"
+                : "border-b-2 border-transparent bg-gray-50 text-gray-500 hover:bg-gray-100"
             )}
           >
-            <t.icon className="w-5 h-5" />
-            <span className="text-xs font-bold">{t.label}</span>
-            <span className="text-[10px] text-gray-400">{t.tamil}</span>
+            <tab.icon className={cn("w-5 h-5 mb-1", activeTab === tab.id ? "text-gray-900" : "text-gray-400")} />
+            <span className={cn("text-xs font-bold", activeTab === tab.id ? "text-gray-900" : "text-gray-500")}>{tab.label}</span>
+            <span className="text-[10px] text-gray-400">{tab.subLabel}</span>
           </button>
         ))}
       </div>
 
-      {/* ── WHAT DOES THIS MEAN? — Explanation bar ── */}
-      <div className="px-4 py-3 bg-blue-50 border-b border-blue-200 flex items-start gap-2.5">
-        <Info className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-        <div>
-          <p className="text-sm font-bold text-blue-800">{tab.scaleLabel}</p>
-          <p className="text-xs text-blue-600">{tab.scaleDesc}</p>
+      {/* ── WHAT THE NUMBERS MEAN ── */}
+      <div className="px-4 py-3 bg-blue-50 border-b border-blue-200">
+        <div className="flex items-start gap-2">
+          <Info className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-bold text-blue-800">{currentTab.info}</p>
+            <p className="text-xs text-blue-600 mt-0.5">
+              {activeTab === 'engineering' && 'TNEA Cutoff = Maths/2 + Physics/4 + Chemistry/4 (max 200). Higher = harder to get.'}
+              {activeTab === 'medical' && 'Minimum NEET score needed for admission. Out of 720 marks total.'}
+              {activeTab === 'govt' && 'Minimum marks to clear the exam. Total marks vary by exam.'}
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* ── CATEGORY LEGEND — Full names, colored ── */}
+      {/* ── CATEGORY LEGEND ── */}
       <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-200 flex gap-2 overflow-x-auto scrollbar-hide">
         {Object.entries(categoryColors).map(([key, c]) => (
           <span key={key} className={cn("text-xs font-bold px-2.5 py-1 rounded-lg whitespace-nowrap", c.bg, c.text)}>
@@ -244,9 +244,8 @@ export const PreviousYearCutoffs = () => {
 
       {/* ── FOOTER ── */}
       <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
-        <p className="text-xs text-gray-400 text-center leading-relaxed">
-          ⚠️ Cutoff marks are approximate and based on previous year data. Actual cutoffs vary each year. 
-          Always verify from official sources (DOTE, NEET counselling, TNPSC).
+        <p className="text-xs text-gray-400 text-center">
+          ⚠️ Cutoff marks are approximate based on {activeTab === 'engineering' ? 'TNEA 2024 DOTE data' : activeTab === 'medical' ? 'NEET 2024 TN counselling' : 'previous year results'}. Actual cutoffs vary each year. Always verify from official sources.
         </p>
       </div>
     </div>
