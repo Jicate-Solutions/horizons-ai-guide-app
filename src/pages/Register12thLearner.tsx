@@ -191,10 +191,14 @@ const Register12thLearner = () => {
         };
 
         // Try Supabase Edge Function
+        console.log('[VAZHIKATTI] Sending registration email to:', targetEmail);
         supabase.functions.invoke('send-registration-email', {
           body: emailPayload,
         }).then(({ data, error }) => {
+          if (error) console.warn('[VAZHIKATTI] Supabase edge error:', error);
+          else console.log('[VAZHIKATTI] Supabase edge sent:', data);
         }).catch(err => {
+          console.warn('[VAZHIKATTI] Supabase edge failed:', err);
         });
 
         // Also try Vercel API as backup
@@ -203,7 +207,20 @@ const Register12thLearner = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(emailPayload),
         }).then(res => res.json()).then(data => {
+          console.log('[VAZHIKATTI] Vercel API sent:', data);
         }).catch(err => {
+          console.warn('[VAZHIKATTI] Vercel API failed:', err);
+        });
+
+        // Also send via welcome email API (different template)
+        fetch('/api/send-welcome-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: targetEmail, displayName: emailPayload.fullName }),
+        }).then(res => res.json()).then(data => {
+          console.log('[VAZHIKATTI] Welcome email sent:', data);
+        }).catch(err => {
+          console.warn('[VAZHIKATTI] Welcome email failed:', err);
         });
 
         // If form email is different from login email, send to login email too

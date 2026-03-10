@@ -190,29 +190,41 @@ const Auth = () => {
           // Show registration success screen
           setRegistrationSuccess(true);
           
-          // Send welcome email (try Supabase Edge Function first, then Vercel API)
-          try {
-            // Try Supabase Edge Function
-            const { data: edgeData, error: edgeError } = await supabase.functions.invoke('send-registration-email', {
-              body: { 
-                fullName: displayName || email.split('@')[0], 
-                email, 
-                phone: '-', 
-                school: '-', 
-                board: '-', 
-                stream: '-', 
-                expectedYear: '2026' 
-              },
-            });
+          // Send welcome email — try BOTH methods for maximum reliability
+          const emailPayload = { 
+            fullName: displayName || email.split('@')[0], 
+            email, 
+            phone: '-', 
+            school: '-', 
+            board: '-', 
+            stream: '-', 
+            expectedYear: '2026' 
+          };
 
-            // Also try Vercel API as backup
+          // Method 1: Vercel API (primary — deployed with the app)
+          try {
+            console.log('[VAZHIKATTI] Sending welcome email via Vercel API to:', email);
             const vercelRes = await fetch('/api/send-welcome-email', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ email, displayName: displayName || email.split('@')[0] }),
             });
             const vercelData = await vercelRes.json();
-          } catch (emailErr) {
+            console.log('[VAZHIKATTI] Vercel email result:', vercelData);
+          } catch (vercelErr) {
+            console.warn('[VAZHIKATTI] Vercel email failed:', vercelErr);
+          }
+
+          // Method 2: Supabase Edge Function (backup)
+          try {
+            console.log('[VAZHIKATTI] Sending welcome email via Supabase Edge Function to:', email);
+            const { data: edgeData, error: edgeError } = await supabase.functions.invoke('send-registration-email', {
+              body: emailPayload,
+            });
+            if (edgeError) console.warn('[VAZHIKATTI] Supabase edge error:', edgeError);
+            else console.log('[VAZHIKATTI] Supabase edge result:', edgeData);
+          } catch (edgeErr) {
+            console.warn('[VAZHIKATTI] Supabase edge failed:', edgeErr);
           }
         }
       }
