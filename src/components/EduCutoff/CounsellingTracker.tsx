@@ -104,6 +104,37 @@ const trackers: CounsellingTrackerData[] = [
 
 const STORAGE_KEY = 'vzk_counselling_tracker';
 
+// Sync tracker to Supabase so n8n can send reminders
+const syncToSupabase = async (trackerId: string, completedSteps: string[], totalSteps: number) => {
+  try {
+    const { supabase } = await import('@/integrations/supabase/client');
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user?.email) return;
+
+    // Get user name from registrations
+    let fullName = user.user_metadata?.display_name || user.email.split('@')[0];
+    let phone = '';
+    try {
+      const { data: reg } = await supabase.from('registrations_12th').select('full_name, phone').eq('email', user.email).maybeSingle();
+      if (reg) { fullName = reg.full_name || fullName; phone = reg.phone || ''; }
+    } catch {}
+
+    await supabase.from('counselling_tracker').upsert({
+      user_id: user.id,
+      email: user.email,
+      phone,
+      full_name: fullName,
+      counselling_id: trackerId,
+      completed_steps: completedSteps,
+      total_steps: totalSteps,
+      is_complete: completedSteps.length >= totalSteps,
+    }, { onConflict: 'user_id,counselling_id' });
+  } catch (err) {
+    // Silently fail — localStorage still works
+    console.warn('[Tracker] Supabase sync failed:', err);
+  }
+};
+
 export const CounsellingTracker = () => {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
@@ -119,6 +150,16 @@ export const CounsellingTracker = () => {
     setChecked(prev => {
       const next = { ...prev, [stepId]: !prev[stepId] };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+
+      // Sync to Supabase for n8n reminders
+      const trackerId = stepId.split('-').slice(0, -1).join('-'); // 'tnea-1' → 'tnea'
+      // Handle IDs like 'neet-1' → 'neet-tn', 'josaa-1' → 'josaa', 'tnau-1' → 'tnau'
+      const tracker = trackers.find(t => t.steps.some(s => s.id === stepId));
+      if (tracker) {
+        const completedSteps = tracker.steps.filter(s => next[s.id]).map(s => s.id);
+        syncToSupabase(tracker.id, completedSteps, tracker.steps.length);
+      }
+
       return next;
     });
   };
@@ -130,6 +171,7 @@ export const CounsellingTracker = () => {
       const next = { ...prev };
       tracker.steps.forEach(s => delete next[s.id]);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      syncToSupabase(trackerId, [], tracker.steps.length);
       return next;
     });
   };
