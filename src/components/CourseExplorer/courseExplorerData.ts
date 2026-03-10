@@ -496,7 +496,12 @@ export const getCoursesForGroup = (groupCode: string): CourseCategory[] => {
   // ─── TN State Board (100-400 series) ───
   if (code >= 101 && code <= 106) {
     const base = [engineeringCourses, architectureCourses, pureScienceCourses, defenseCourses, aviationCourses];
-    if (code === 103 || code === 104) base.push(lifeScienceCourses);
+    // Group 103 = PCMB (has Biology + Maths) → eligible for BOTH Engineering AND Medical
+    if (code === 103) {
+      base.push(medicalCourses, nursingCourses, pharmacyCourses, alliedHealthCourses, lifeScienceCourses);
+    }
+    // Group 104 = Bio-Chemistry + Maths → Life Sciences but NOT Medical (Bio-Chemistry ≠ Biology for NEET)
+    if (code === 104) base.push(lifeScienceCourses);
     if (code === 106) base.push(hotelTourismCourses);
     return base;
   }
