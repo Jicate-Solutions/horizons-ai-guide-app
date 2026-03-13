@@ -116,6 +116,16 @@ export const CollegeFilters = ({
             {info.badge} {info.label} ({typeCounts[type] || 0})
           </Badge>
         ))}
+        <Badge
+          variant="outline"
+          className="cursor-pointer transition-all border-orange-300 text-orange-700 bg-orange-50 hover:bg-orange-100 hover:border-orange-500 font-semibold"
+          onClick={() => {
+            const el = document.getElementById('sports-quota-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
+          🏆 Sports Quota
+        </Badge>
       </div>
 
       {/* Collapsible Advanced Filters */}
