@@ -302,7 +302,7 @@ export const CollegeSearch = () => {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           selectedTypes={selectedTypes}
-          onTypeChange={(types) => { setSelectedTypes(types); setShowSportsQuota(false); }}
+          onTypeChange={setSelectedTypes}
           selectedCategories={selectedCategories}
           onCategoryChange={setSelectedCategories}
           selectedNaacGrade={selectedNaacGrade}
@@ -312,14 +312,8 @@ export const CollegeSearch = () => {
           typeCounts={typeCounts}
           showSportsQuota={showSportsQuota}
           onSportsQuotaToggle={() => {
-            if (showSportsQuota) {
-              setShowSportsQuota(false);
-              setSelectedTypes([]);
-            } else {
-              // ALL TNEA colleges have 5% sports quota — show all types
-              setShowSportsQuota(true);
-              setSelectedTypes([]);
-            }
+            // Sports Quota is independent — doesn't change type filters
+            setShowSportsQuota(!showSportsQuota);
           }}
         />
       )}
@@ -329,8 +323,12 @@ export const CollegeSearch = () => {
         <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-3 flex items-start gap-2">
           <span className="text-lg">🏆</span>
           <div>
-            <p className="text-sm font-bold text-orange-800">Sports Quota Filter Active</p>
-            <p className="text-xs text-orange-600">All colleges under TNEA have 5% sports quota seats (Government, Aided & Private). Use category filters to narrow by Arts, Engineering, Medical, Law, Agriculture, etc.</p>
+            <p className="text-sm font-bold text-orange-800">Sports Quota Active{selectedTypes.length > 0 ? ` + ${selectedTypes.map(t => t === 'government' ? 'Government' : t === 'government-aided' ? 'Govt-Aided' : t === 'private' ? 'Private' : 'Autonomous').join(' + ')}` : ''}</p>
+            <p className="text-xs text-orange-600">
+              {selectedTypes.length === 0
+                ? 'Showing all colleges — all TNEA colleges have 5% sports quota. Select Government, Aided, or Private to narrow down.'
+                : 'All colleges shown have 5% sports quota seats. Use category filters for Arts, Engineering, Medical, etc.'}
+            </p>
           </div>
         </div>
       )}
