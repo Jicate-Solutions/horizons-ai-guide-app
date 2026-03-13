@@ -41,7 +41,7 @@ export const generateComparisonPDF = (jobs: Job[], bestMatchIndex: number) => {
   const pageWidth = doc.internal.pageSize.getWidth();
   
   // Header with gradient effect (simulated)
-  doc.setFillColor(46, 125, 50); // JKKN Green
+  doc.setFillColor(46, 125, 50); // Brand Green
   doc.rect(0, 0, pageWidth, 45, 'F');
   
   // Title

@@ -49,7 +49,7 @@ export const generatePYQPDF = (data: ExamPDFData): void => {
     doc.setTextColor(230, 230, 230);
     doc.setFontSize(40);
     doc.setFont('helvetica', 'bold');
-    doc.text('JKKN', pageWidth / 2, pageHeight / 2, { 
+    doc.text('VZK', pageWidth / 2, pageHeight / 2, { 
       align: 'center', 
       angle: 45 
     });

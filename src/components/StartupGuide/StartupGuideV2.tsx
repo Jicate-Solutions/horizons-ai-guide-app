@@ -232,7 +232,7 @@ export const StartupGuide = () => {
           { week: 4, title: 'Pitch & Launch Plan', actions: [
             'Prepare a 5-slide pitch deck (Problem → Solution → Market → Revenue → Team)',
             'Practice your pitch with friends and mentors',
-            'Apply to JKKN incubator or Startup India programs',
+            'Apply to college incubator or Startup India programs',
             'Set a launch date and create a WhatsApp group for early users',
           ]},
         ],
@@ -241,7 +241,7 @@ export const StartupGuide = () => {
           { name: 'Paper & Pen', purpose: 'Sketch your app screens & ideas' },
           { name: 'Google Slides / PPT', purpose: 'Create your prototype & pitch deck' },
           { name: 'WhatsApp Groups', purpose: 'Reach your first customers' },
-          { name: 'JKKN Incubator', purpose: 'Get mentorship & funding support' },
+          { name: 'College Incubator', purpose: 'Get mentorship & funding support' },
           { name: 'Startup India Portal', purpose: 'Register & apply for government support' },
         ],
       });

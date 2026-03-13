@@ -926,7 +926,7 @@ const translations: Record<Language, Record<string, string>> = {
     'regLearner.next': 'அடுத்து',
     'regLearner.submitRegistration': 'பதிவை சமர்ப்பிக்கவும்',
     'regLearner.submitting': 'சமர்ப்பிக்கிறது...',
-    'regLearner.registrationSuccess': 'பதிவு வெற்றிகரமாக முடிந்தது! JKKN தொழில் மையத்திற்கு வரவேற்கிறோம்.',
+    'regLearner.registrationSuccess': 'பதிவு வெற்றிகரமாக முடிந்தது! VAZHIKATTI தொழில் மையத்திற்கு வரவேற்கிறோம்.',
     'regLearner.fixErrors': 'படிவத்தில் உள்ள பிழைகளை சரிசெய்யவும்',
     'regLearner.registrationFailed': 'பதிவு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்.',
     'regLearner.degree10th': '10ஆம் வகுப்பு தேர்ச்சி',
@@ -939,7 +939,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Registration Forms - Employer
     'regEmployer.pageTitle': 'முதலாளியாக பதிவு செய்க',
-    'regEmployer.subtitle': 'JKKN நிறுவனங்களின் திறமையான பட்டதாரிகளுடன் இணையுங்கள்',
+    'regEmployer.subtitle': 'தமிழ்நாட்டின் திறமையான பட்டதாரிகளுடன் இணையுங்கள்',
     'regEmployer.companyInfo': 'நிறுவன தகவல்',
     'regEmployer.contactPerson': 'தொடர்பு நபர்',
     'regEmployer.hiringNeeds': 'பணியமர்த்தல் தேவைகள்',
@@ -1287,7 +1287,7 @@ const translations: Record<Language, Record<string, string>> = {
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('jkkn_language');
+      const stored = localStorage.getItem('vzk_language');
       // Validate stored language is still supported
       if (stored && SUPPORTED_LANGUAGES.some(l => l.code === stored)) {
         return stored as Language;
@@ -1299,7 +1299,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   // Save language to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('jkkn_language', language);
+    localStorage.setItem('vzk_language', language);
     document.documentElement.lang = language;
   }, [language]);
 

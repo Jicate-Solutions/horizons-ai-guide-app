@@ -70,7 +70,7 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             <Badge className={cn("text-xs font-medium", categoryInfo?.bgColor, categoryInfo?.color)}>
               {categoryInfo?.icon} {categoryInfo?.label}
             </Badge>
-            {exam.hasJKKN && (
+            {false && (
               <Badge className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0">
                 <Star className="h-3 w-3 mr-1 fill-white" />
                 JKKN
@@ -177,11 +177,11 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
           </div>
         </div>
 
-        {/* JKKN Colleges */}
-        {exam.hasJKKN && exam.jkknColleges && exam.jkknColleges.length > 0 && (
+        {/* Partner Colleges */}
+        {false && exam.jkknColleges && exam.jkknColleges.length > 0 && (
           <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] rounded-lg p-3 border border-[#FFD54F]">
             <p className="text-xs font-semibold text-[#F59E0B] mb-2 flex items-center gap-1">
-              <Star className="h-3 w-3 fill-[#F59E0B]" /> JKKN Colleges
+              <Star className="h-3 w-3 fill-[#F59E0B]" /> Partner Colleges
             </p>
             <div className="flex flex-wrap gap-1">
               {exam.jkknColleges.map((college, idx) => (

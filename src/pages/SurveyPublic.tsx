@@ -232,7 +232,7 @@ const SurveyPublic = () => {
         </Button>
 
         <p className="text-[10px] text-center text-muted-foreground">
-          Powered by <strong>VAZHIKAATTI</strong> — AI Career Guide by JKKN Institutions
+          Powered by <strong>VAZHIKAATTI</strong> — AI Career Guide
         </p>
       </div>
     </div>

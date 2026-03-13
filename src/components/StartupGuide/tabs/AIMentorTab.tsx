@@ -344,7 +344,7 @@ function getLocalMentorReply(msg: string, profile: UserProfile | null): string {
     return `Great question! 💡 Here are some tips to find a startup idea in **${field}**:\n\n1. **Talk to 10 people** in ${location} who work in ${field}\n2. **Write down their biggest frustrations**\n3. **Look for patterns** — if 3+ people mention the same problem, that's your idea!\n\nComplete your daily tasks to discover real problems! 🚀`;
   }
   if (lower.includes('fund') || lower.includes('money') || lower.includes('invest')) {
-    return `💰 Great funding options for student startups in India:\n\n1. **Startup India Seed Fund** — up to ₹20 lakhs\n2. **MSME loans** — low interest for first-time founders\n3. **College incubators** — JKKN may have grants available\n4. **Angel investors** — pitch after you validate your idea\n\nFirst focus on validating your problem through the survey! 📊`;
+    return `💰 Great funding options for student startups in India:\n\n1. **Startup India Seed Fund** — up to ₹20 lakhs\n2. **MSME loans** — low interest for first-time founders\n3. **College incubators** — Your college may have grants available\n4. **Angel investors** — pitch after you validate your idea\n\nFirst focus on validating your problem through the survey! 📊`;
   }
   if (lower.includes('help') || lower.includes('how')) {
     return `Here's how I can help you! 🤝\n\n📋 **My Tasks tab** — Complete 7 daily observation tasks\n✍️ **Submit reflections** — Write what you observed each day\n🎯 **Problem & Survey** — I'll detect your strongest problem (unlocks after Day 7)\n📊 **Share your survey** — Get responses to validate\n🚀 **Build tab** — Get your MVP roadmap\n\nStart with your tasks today!`;

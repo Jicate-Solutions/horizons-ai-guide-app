@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
     switch (action) {
       case 'onboarding_chat': {
-        systemPrompt = `You are a friendly startup mentor AI for students at JKKN Institutions. You help students discover their entrepreneurial potential.
+        systemPrompt = `You are a friendly startup mentor AI for students at Tamil Nadu Institutions. You help students discover their entrepreneurial potential.
 
 When starting onboarding, ask these 4 questions ONE AT A TIME in a conversational, encouraging way:
 1) Field of interest — offer these options: Healthcare, Automotive, Agriculture, Food, Fashion, Education, Finance, Construction, Technology, Environment

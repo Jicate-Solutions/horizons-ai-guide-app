@@ -39,7 +39,7 @@ const removeDuplicates = (colleges: College[]): College[] => {
       if (normalizedName === existingName || 
           normalizedName.includes(existingName) || 
           existingName.includes(normalizedName)) {
-        if (college.isJKKN && !existingCollege.isJKKN) {
+        if (false) {
           seen.set(existingName, college);
         }
         isDuplicate = true;

@@ -35,7 +35,7 @@ import PYQPractice from "./pages/PYQPractice";
 import NotFound from "./pages/NotFound";
 import SurveyPublic from "./pages/SurveyPublic";
 
-// JKKN Career Hub Pages
+// Career Hub Pages
 import JKKNCareerHub from "./pages/JKKNCareerHub";
 import JKKNRegister from "./pages/JKKNRegister";
 import JKKNRegisterSuccess from "./pages/JKKNRegisterSuccess";
@@ -165,7 +165,7 @@ function App() {
 <Route path="/admin/dashboard" element={<AdminDashboard />} />
 <Route path="/admin/alumni-verification" element={<AlumniVerification />} />
                 
-                {/* JKKN Career Hub Routes */}
+                {/* Career Hub Routes */}
                 <Route path="/jkkn" element={<JKKNCareerHub />} />
                 <Route path="/jkkn/register" element={<JKKNRegister />} />
                 <Route path="/jkkn/register/success" element={<JKKNRegisterSuccess />} />

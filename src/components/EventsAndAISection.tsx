@@ -3,9 +3,9 @@ import { Calendar, MapPin, Sparkles } from "lucide-react";
 
 const events = [
   {
-    title: "JKKN Mega Job Fair 2026",
+    title: "Tamil Nadu Mega Job Fair 2026",
     date: "15 Feb 2026",
-    location: "JKKN Campus, Komarapalayam",
+    location: "Komarapalayam, Namakkal",
   },
   {
     title: "Career Guidance Workshop for 12th Learners",
@@ -15,14 +15,14 @@ const events = [
   {
     title: "Healthcare Career Summit",
     date: "5 Mar 2026",
-    location: "JKKN College of Nursing",
+    location: "Government Medical College",
   },
 ];
 
 const exampleQuestions = [
   "What can I do after 12th Science (PCB)?",
   "How do I improve my resume for IT jobs?",
-  "Tell me about JKKN Nursing courses.",
+  "Tell me about Nursing courses in Tamil Nadu.",
 ];
 
 const EventsAndAISection = () => {

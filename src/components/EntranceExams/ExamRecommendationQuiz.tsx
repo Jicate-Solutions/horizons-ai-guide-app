@@ -180,7 +180,7 @@ const getRecommendations = (stream: Stream, interests: Interest, goal: CareerGoa
       recommendations.push({
         name: 'B.Sc Nursing (Direct)',
         priority: 'recommended',
-        reason: 'Based on 12th marks - JKKN College available',
+        reason: 'Based on 12th marks - Colleges available in TN',
         website: 'tnhealth.tn.gov.in'
       });
     }

@@ -118,8 +118,8 @@ const RegisterLearner = () => {
       if (error) throw error;
 
       // Store learner email for personalization
-      localStorage.setItem('jkkn_learner_email', formData.email);
-      localStorage.setItem('jkkn_learner_name', formData.fullName);
+      localStorage.setItem('vzk_learner_email', formData.email);
+      localStorage.setItem('vzk_learner_name', formData.fullName);
 
       toast.success(t('regLearner.registrationSuccess'));
       navigate("/jkkn");

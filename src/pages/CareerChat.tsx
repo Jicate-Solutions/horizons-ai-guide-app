@@ -187,7 +187,7 @@ function getLocalCareerReply(msg: string): string {
   }
   
   if (lower.includes('scholarship') || lower.includes('fee') || lower.includes('loan')) {
-    return `💰 **Scholarships & Financial Aid:**\n\n**Government:**\n• BC/MBC/SC/ST Scholarship — TN Govt\n• Post-Matric Scholarship — Central Govt\n• Pragati Scholarship (girls in tech)\n\n**Private:**\n• JKKN Institution Scholarships\n• Tata Trusts, Reliance Foundation\n\n**Education Loans:**\n• SBI Scholar Loan — up to ₹20 lakhs\n• Vidya Lakshmi Portal — compare loans`;
+    return `💰 **Scholarships & Financial Aid:**\n\n**Government:**\n• BC/MBC/SC/ST Scholarship — TN Govt\n• Post-Matric Scholarship — Central Govt\n• Pragati Scholarship (girls in tech)\n\n**Private:**\n• College-specific Merit Scholarships\n• Tata Trusts, Reliance Foundation\n\n**Education Loans:**\n• SBI Scholar Loan — up to ₹20 lakhs\n• Vidya Lakshmi Portal — compare loans`;
   }
   
   if (lower.includes('government') || lower.includes('govt') || lower.includes('tnpsc') || lower.includes('upsc')) {

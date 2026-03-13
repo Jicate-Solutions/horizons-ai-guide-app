@@ -54,7 +54,7 @@ export default function JKKNCareerHub() {
   useEffect(() => {
     // Try to load learner profile from localStorage
     const loadLearnerProfile = async () => {
-      const learnerEmail = localStorage.getItem('jkkn_learner_email');
+      const learnerEmail = localStorage.getItem('vzk_learner_email');
       if (learnerEmail) {
         const { data } = await supabase
           .from('learners')

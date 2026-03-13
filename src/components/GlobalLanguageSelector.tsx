@@ -19,7 +19,7 @@ const LANGUAGES: Array<{ code: LangCode; name: string; nativeName: string; flag:
 
 function getSavedLang(): LangCode {
   try {
-    const saved = localStorage.getItem('jkkn_language');
+    const saved = localStorage.getItem('vzk_language');
     if (saved && LANGUAGES.some(l => l.code === saved)) return saved as LangCode;
   } catch {}
   return 'en';
@@ -66,7 +66,7 @@ const GlobalLanguageSelector = () => {
     
     // Save choice
     setSelected(code);
-    localStorage.setItem('jkkn_language', code);
+    localStorage.setItem('vzk_language', code);
     
     // Trigger Google Translate
     if (typeof (window as any).changeLanguage === 'function') {

@@ -210,7 +210,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam (Operates both Aided and Self-Financing streams)',
     feeRange: '₹5,000 - ₹25,000 per year',
     website: 'https://artsci.jkkn.ac.in',
-    isJKKN: true,
+    
   },
 
   // ============================================
@@ -225,7 +225,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     address: 'Komarapalayam',
     feeRange: '₹25,000 - ₹75,000 per year',
     website: 'https://artsci.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'ksr_arts_science',
@@ -451,7 +451,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹60,000 - ₹1,50,000 per year',
     accreditation: 'NBA Accredited, AICTE Approved',
     website: 'https://engg.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'annai_mathammal_sheela',
@@ -637,7 +637,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹3,00,000 - ₹8,00,000 per year',
     accreditation: 'DCI Approved',
     website: 'https://dental.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'jkkn_pharmacy',
@@ -649,7 +649,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹50,000 - ₹1,50,000 per year',
     accreditation: 'PCI Approved',
     website: 'https://pharmacy.jkkn.ac.in/admission-process',
-    isJKKN: true,
+    
   },
   {
     id: 'jkkn_nursing',
@@ -661,7 +661,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹40,000 - ₹1,20,000 per year',
     accreditation: 'INC Approved',
     website: 'https://nursing.sresakthimayeil.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'ksr_dental',
@@ -745,7 +745,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹50,000 - ₹1,20,000 per year',
     accreditation: 'TN Dr. M.G.R. Medical University Affiliated',
     website: 'https://ahs.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'vivekanandha_allied_health',
@@ -823,7 +823,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹40,000 - ₹1,20,000 per year',
     accreditation: 'INC Approved',
     website: 'https://nursing.sresakthimayeil.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'arvinth_nursing',
@@ -894,7 +894,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹40,000 - ₹1,00,000 per year',
     accreditation: 'INC Approved',
     website: 'https://nursing.sresakthimayeil.jkkn.ac.in',
-    isJKKN: true,
+    
   },
   {
     id: 'ksr_nursing',

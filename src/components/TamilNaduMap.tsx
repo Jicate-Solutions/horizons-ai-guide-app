@@ -216,7 +216,7 @@ const TamilNaduMap = ({ districts, selectedLocations, onToggleLocation }: TamilN
           </span>
           <span className="flex items-center gap-1">
             <span className="w-3 h-3 rounded-full border-2 border-dashed border-amber-400"></span>
-            JKKN Hub
+            Education Hub
           </span>
         </div>
       </div>

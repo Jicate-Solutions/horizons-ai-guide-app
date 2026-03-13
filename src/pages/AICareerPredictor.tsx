@@ -53,9 +53,9 @@ interface SkillRecommendation {
 
 // Testimonials
 const testimonials = [
-  { name: "Priya Sharma", role: "B.Tech CSE Student", college: "JKKN College of Engineering", quote: "This tool helped me discover my passion for Data Science!", avatar: "PS", color: "from-emerald-500 to-teal-500" },
-  { name: "Karthik Raja", role: "MBBS Student", college: "JKKN Medical College", quote: "I was confused between Engineering and Medicine. The AI predictor showed me my true calling.", avatar: "KR", color: "from-violet-500 to-purple-500" },
-  { name: "Anitha Devi", role: "B.Pharm Graduate", college: "JKKN Pharmacy College", quote: "Got personalized recommendations that matched my interests perfectly!", avatar: "AD", color: "from-amber-500 to-orange-500" },
+  { name: "Priya Sharma", role: "B.Tech CSE Student", college: "Anna University CEG", quote: "This tool helped me discover my passion for Data Science!", avatar: "PS", color: "from-emerald-500 to-teal-500" },
+  { name: "Karthik Raja", role: "MBBS Student", college: "Madras Medical College", quote: "I was confused between Engineering and Medicine. The AI predictor showed me my true calling.", avatar: "KR", color: "from-violet-500 to-purple-500" },
+  { name: "Anitha Devi", role: "B.Pharm Graduate", college: "Madras Medical College Pharmacy", quote: "Got personalized recommendations that matched my interests perfectly!", avatar: "AD", color: "from-amber-500 to-orange-500" },
 ];
 
 const TestimonialCarousel = () => {

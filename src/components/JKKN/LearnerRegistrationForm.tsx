@@ -117,7 +117,7 @@ export function LearnerRegistrationForm() {
 
       // Store learner number for success page
       if (data?.learner_number) {
-        localStorage.setItem('jkkn_learner_number', data.learner_number.toString());
+        localStorage.setItem('vzk_learner_number', data.learner_number.toString());
       }
 
       navigate('/jkkn/register/success');

@@ -98,7 +98,7 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://www.tneaonline.org',
     category: 'engineering',
     hasJKKN: true,
-    jkknColleges: ['JKKN College of Engineering & Technology, Namakkal'],
+    jkknColleges: [],
   },
   {
     id: 'jee-main',
@@ -484,7 +484,7 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnmgrmu.ac.in',
     category: 'medical',
     hasJKKN: true,
-    jkknColleges: ['JKKN College of Nursing, Namakkal'],
+    jkknColleges: [],
   },
   {
     id: 'bpharm',
@@ -523,7 +523,7 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnmgrmu.ac.in',
     category: 'medical',
     hasJKKN: true,
-    jkknColleges: ['JKKN College of Pharmacy, Namakkal'],
+    jkknColleges: [],
   },
   {
     id: 'allied-health',
@@ -564,7 +564,7 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnmgrmu.ac.in',
     category: 'medical',
     hasJKKN: true,
-    jkknColleges: ['JKKN College of Allied Health Sciences, Namakkal'],
+    jkknColleges: [],
   },
   {
     id: 'jipmer-puducherry',
@@ -719,7 +719,7 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://unom.ac.in',
     category: 'management',
     hasJKKN: true,
-    jkknColleges: ['JKKN Arts & Science College, Namakkal'],
+    jkknColleges: [],
   },
   {
     id: 'ca-cs-cma-foundation',
@@ -799,7 +799,7 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnau.ac.in',
     category: 'agriculture',
     hasJKKN: true,
-    jkknColleges: ['JKKN College of Agricultural Science, Namakkal'],
+    jkknColleges: [],
   },
   {
     id: 'tanuvas',

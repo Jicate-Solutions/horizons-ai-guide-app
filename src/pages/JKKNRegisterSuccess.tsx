@@ -8,10 +8,10 @@ export default function JKKNRegisterSuccess() {
 
   useEffect(() => {
     // Get the learner number from localStorage if stored during registration
-    const storedNumber = localStorage.getItem('jkkn_learner_number');
+    const storedNumber = localStorage.getItem('vzk_learner_number');
     if (storedNumber) {
       setLearnerNumber(parseInt(storedNumber));
-      localStorage.removeItem('jkkn_learner_number');
+      localStorage.removeItem('vzk_learner_number');
     }
   }, []);
 

@@ -75,8 +75,8 @@ export function HomeTab() {
   const fetchData = async () => {
     try {
       // Check if learner is registered (using localStorage)
-      const learnerEmail = localStorage.getItem('jkkn_learner_email');
-      const learnerName = localStorage.getItem('jkkn_learner_name');
+      const learnerEmail = localStorage.getItem('vzk_learner_email');
+      const learnerName = localStorage.getItem('vzk_learner_name');
       
       if (learnerEmail) {
         // First try to get from learners table (for existing learners)

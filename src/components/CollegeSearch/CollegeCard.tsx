@@ -23,7 +23,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
 
   return (
     <Card className={`border-l-4 transition-all hover:shadow-md ${
-      college.isJKKN 
+      false 
         ? 'border-l-[#FFB800] bg-gradient-to-r from-yellow-50/50 to-transparent' 
         : isAutonom
           ? 'border-l-[#7B1FA2] bg-gradient-to-r from-purple-50/40 to-transparent'
@@ -33,12 +33,12 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
           <div className="flex-1">
             <div className="flex items-center gap-1.5 flex-wrap mb-1">
-              {college.isJKKN && (
+              {false && (
                 <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black font-semibold text-[10px] md:text-xs">
-                  JKKN Group
+                  Featured
                 </Badge>
               )}
-              {isAutonom && !college.isJKKN && (
+              {isAutonom && !false && (
                 <Badge className="bg-gradient-to-r from-[#9C27B0] to-[#7B1FA2] text-white font-semibold text-[10px] md:text-xs">
                   Autonomous
                 </Badge>

@@ -336,8 +336,8 @@ export const tneaColleges: College[] = [
   },
   {
     id: 'jkkn',
-    name: 'JKKN College of Engineering & Technology',
-    shortName: 'JKKN Eng',
+    name: 'Namakkal Engineering College',
+    shortName: 'NEC',
     location: 'Namakkal',
     type: 'Self-Financing',
     naacGrade: 'A',
@@ -752,8 +752,8 @@ export const neetColleges: College[] = [
   // JKKN Medical Colleges
   {
     id: 'jkkn-dental',
-    name: 'JKKN Dental College',
-    shortName: 'JKKN Dental',
+    name: 'Namakkal Dental College',
+    shortName: 'NDC',
     location: 'Namakkal',
     type: 'Self-Financing',
     naacGrade: 'A',
@@ -767,8 +767,8 @@ export const neetColleges: College[] = [
   },
   {
     id: 'jkkn-nursing',
-    name: 'JKKN College of Nursing',
-    shortName: 'JKKN Nursing',
+    name: 'Namakkal Nursing College',
+    shortName: 'NNC',
     location: 'Namakkal',
     type: 'Self-Financing',
     naacGrade: 'A',
@@ -782,8 +782,8 @@ export const neetColleges: College[] = [
   },
   {
     id: 'jkkn-pharmacy',
-    name: 'JKKN College of Pharmacy',
-    shortName: 'JKKN Pharmacy',
+    name: 'Namakkal Pharmacy College',
+    shortName: 'NPC',
     location: 'Namakkal',
     type: 'Self-Financing',
     naacGrade: 'A',

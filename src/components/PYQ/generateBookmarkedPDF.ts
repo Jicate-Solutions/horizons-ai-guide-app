@@ -41,7 +41,7 @@ export const generateBookmarkedPDF = (data: BookmarkedPDFData): void => {
     doc.setTextColor(240, 240, 240);
     doc.setFontSize(40);
     doc.setFont('helvetica', 'bold');
-    doc.text('JKKN', pageWidth / 2, pageHeight / 2, { 
+    doc.text('VZK', pageWidth / 2, pageHeight / 2, { 
       align: 'center', 
       angle: 45 
     });
