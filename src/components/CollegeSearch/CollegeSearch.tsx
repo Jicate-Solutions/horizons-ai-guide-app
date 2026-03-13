@@ -329,9 +329,11 @@ export const CollegeSearch = () => {
       />
 
       {/* Sports Quota Admission Guide */}
-      <div id="sports-quota-section">
-        <SportsQuotaGuide />
-      </div>
+      {selectedDistrict && (
+        <div id="sports-quota-section">
+          <SportsQuotaGuide />
+        </div>
+      )}
     </div>
   );
 };
