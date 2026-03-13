@@ -189,14 +189,23 @@ export const SportsQuotaGuide = () => {
         </div>
 
         {/* ═══ RESULT STATS ═══ */}
-        <div className="px-4 py-2 flex items-center justify-between" style={{ background: '#111118', borderBottom: '1px solid #1f1f2a' }}>
-          <span className="text-xs text-gray-500">{filtered.length} colleges found</span>
-          <span className="text-xs text-emerald-400 font-bold">{govtInResults} Govt/Aided</span>
-        </div>
+        {(selectedDistrict !== 'All' || search.trim()) && (
+          <div className="px-4 py-2 flex items-center justify-between" style={{ background: '#111118', borderBottom: '1px solid #1f1f2a' }}>
+            <span className="text-xs text-gray-500">{filtered.length} colleges found</span>
+            <span className="text-xs text-emerald-400 font-bold">{govtInResults} Govt/Aided</span>
+          </div>
+        )}
 
         {/* ═══ COLLEGE LIST ═══ */}
         <div className="max-h-[500px] overflow-y-auto" style={{ background: '#0f0f14' }}>
-          {grouped.length === 0 ? (
+          {selectedDistrict === 'All' && !search.trim() ? (
+            <div className="p-10 text-center">
+              <p className="text-3xl mb-3">📍</p>
+              <p className="text-sm font-bold text-white">Select a District</p>
+              <p className="text-xs text-gray-500 mt-1">Choose a district from the dropdown above to see colleges</p>
+              <p className="text-xs mt-3" style={{ color: GOLD }}>{getTotalColleges()} colleges across {getDistrictCount()} districts</p>
+            </div>
+          ) : grouped.length === 0 ? (
             <div className="p-10 text-center">
               <p className="text-2xl mb-2">🔍</p>
               <p className="text-sm text-gray-500">No colleges found</p>
