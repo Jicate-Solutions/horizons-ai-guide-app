@@ -313,13 +313,12 @@ export const CollegeSearch = () => {
           showSportsQuota={showSportsQuota}
           onSportsQuotaToggle={() => {
             if (showSportsQuota) {
-              // Turn off: clear type filter
               setShowSportsQuota(false);
               setSelectedTypes([]);
             } else {
-              // Turn on: filter to govt/aided types
+              // ALL TNEA colleges have 5% sports quota — show all types
               setShowSportsQuota(true);
-              setSelectedTypes(['government', 'government-aided']);
+              setSelectedTypes([]);
             }
           }}
         />
@@ -331,7 +330,7 @@ export const CollegeSearch = () => {
           <span className="text-lg">🏆</span>
           <div>
             <p className="text-sm font-bold text-orange-800">Sports Quota Filter Active</p>
-            <p className="text-xs text-orange-600">Showing Government & Govt-Aided colleges — all have 5% sports quota seats. Use category filters below to narrow by Arts, Engineering, Medical, etc.</p>
+            <p className="text-xs text-orange-600">All colleges under TNEA have 5% sports quota seats (Government, Aided & Private). Use category filters to narrow by Arts, Engineering, Medical, Law, Agriculture, etc.</p>
           </div>
         </div>
       )}
