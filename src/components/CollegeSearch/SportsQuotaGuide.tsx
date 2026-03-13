@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Trophy, ChevronDown, ExternalLink, Medal, MapPin, GraduationCap, Info, Search } from 'lucide-react';
+import { Trophy, ChevronDown, ExternalLink, Medal, MapPin, GraduationCap, Info, Search, Building2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
+import { tneaSportsQuotaColleges, getTotalColleges, getGovtCount, getDistrictCount } from './sportsQuotaData';
 
 interface SportsCollege {
   name: string;
@@ -155,8 +156,11 @@ const certificateLevels = [
 ];
 
 export const SportsQuotaGuide = () => {
+  const [activeTab, setActiveTab] = useState<'guide' | 'districts'>('guide');
   const [search, setSearch] = useState('');
+  const [districtSearch, setDistrictSearch] = useState('');
   const [expandedCollege, setExpandedCollege] = useState<string | null>(null);
+  const [expandedDistrict, setExpandedDistrict] = useState<string | null>(null);
   const [showInfo, setShowInfo] = useState(true);
 
   const filtered = search.trim()
@@ -186,6 +190,31 @@ export const SportsQuotaGuide = () => {
         </p>
       </div>
 
+      {/* ═══ TWO TABS ═══ */}
+      <div className="grid grid-cols-2 border-b border-gray-200">
+        <button
+          onClick={() => setActiveTab('guide')}
+          className={cn(
+            "py-3 text-xs font-bold text-center border-b-2 transition-all",
+            activeTab === 'guide' ? "border-orange-600 text-orange-700 bg-orange-50" : "border-transparent text-gray-500 hover:bg-gray-50"
+          )}
+        >
+          🏆 Guide & Top Colleges
+        </button>
+        <button
+          onClick={() => setActiveTab('districts')}
+          className={cn(
+            "py-3 text-xs font-bold text-center border-b-2 transition-all",
+            activeTab === 'districts' ? "border-orange-600 text-orange-700 bg-orange-50" : "border-transparent text-gray-500 hover:bg-gray-50"
+          )}
+        >
+          📍 District-wise Colleges ({getTotalColleges()})
+        </button>
+      </div>
+
+      {/* ═══ TAB 1: GUIDE ═══ */}
+      {activeTab === 'guide' && (
+        <>
       {/* Quick Info Toggle */}
       <button
         onClick={() => setShowInfo(!showInfo)}
@@ -333,6 +362,101 @@ export const SportsQuotaGuide = () => {
           );
         })}
       </div>
+        </>
+      )}
+
+      {/* ═══ TAB 2: DISTRICT-WISE TNEA COLLEGES ═══ */}
+      {activeTab === 'districts' && (
+        <div>
+          {/* Stats Bar */}
+          <div className="px-4 py-3 bg-orange-50 border-b border-orange-200 flex flex-wrap gap-3">
+            <span className="text-xs font-bold text-orange-800 bg-orange-100 px-2.5 py-1 rounded-lg">{getTotalColleges()} Colleges</span>
+            <span className="text-xs font-bold text-green-800 bg-green-100 px-2.5 py-1 rounded-lg">{getGovtCount()} Govt/Aided</span>
+            <span className="text-xs font-bold text-blue-800 bg-blue-100 px-2.5 py-1 rounded-lg">{getDistrictCount()} Districts</span>
+            <span className="text-xs text-gray-500 ml-auto">All under TNEA 5% Sports Quota</span>
+          </div>
+
+          {/* District Search */}
+          <div className="p-3 border-b border-gray-100">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                placeholder="Search by district or college name..."
+                value={districtSearch}
+                onChange={e => setDistrictSearch(e.target.value)}
+                className="pl-9 h-11 text-sm bg-gray-50 border-gray-200"
+              />
+            </div>
+          </div>
+
+          {/* District List */}
+          <div className="max-h-[600px] overflow-y-auto divide-y divide-gray-100">
+            {tneaSportsQuotaColleges
+              .filter(d => {
+                if (!districtSearch.trim()) return true;
+                const q = districtSearch.toLowerCase();
+                return d.district.toLowerCase().includes(q) ||
+                  d.colleges.some(c => c.name.toLowerCase().includes(q) || c.code.includes(q));
+              })
+              .map(district => {
+                const isOpen = expandedDistrict === district.district;
+                const govtCount = district.colleges.filter(c => c.type === 'Govt' || c.type === 'Govt-Aided' || c.type === 'Central Govt').length;
+                return (
+                  <div key={district.district}>
+                    <button
+                      onClick={() => setExpandedDistrict(isOpen ? null : district.district)}
+                      className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 transition-all text-left"
+                    >
+                      <div className="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-bold text-gray-900">{district.district}</p>
+                          <span className="text-xs text-gray-400">{district.districtTamil}</span>
+                        </div>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="text-xs text-gray-600 font-medium">{district.colleges.length} colleges</span>
+                          {govtCount > 0 && <span className="text-xs text-green-700 bg-green-100 px-1.5 py-0.5 rounded font-bold">{govtCount} Govt</span>}
+                        </div>
+                      </div>
+                      <ChevronDown className={cn("w-5 h-5 text-gray-400 transition-transform flex-shrink-0", isOpen && "rotate-180")} />
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-4 pb-3">
+                        <div className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                          {/* Table Header */}
+                          <div className="grid grid-cols-12 gap-px bg-gray-200">
+                            <div className="bg-gray-100 px-3 py-2 col-span-2 text-xs font-bold text-gray-600">Code</div>
+                            <div className="bg-gray-100 px-3 py-2 col-span-7 text-xs font-bold text-gray-600">College Name</div>
+                            <div className="bg-gray-100 px-3 py-2 col-span-3 text-xs font-bold text-gray-600">Type</div>
+                          </div>
+                          {/* Rows */}
+                          {district.colleges.map((college, i) => (
+                            <div key={college.code} className="grid grid-cols-12 gap-px bg-gray-200">
+                              <div className="bg-white px-3 py-2.5 col-span-2 text-xs font-mono font-bold text-gray-700">{college.code}</div>
+                              <div className="bg-white px-3 py-2.5 col-span-7 text-xs font-medium text-gray-800 leading-tight">{college.name}</div>
+                              <div className="bg-white px-3 py-2.5 col-span-3">
+                                <span className={cn("text-xs font-bold px-1.5 py-0.5 rounded",
+                                  college.type === 'Govt' ? 'bg-green-100 text-green-700' :
+                                  college.type === 'Govt-Aided' ? 'bg-blue-100 text-blue-700' :
+                                  college.type === 'Central Govt' ? 'bg-emerald-100 text-emerald-700' :
+                                  college.type === 'Deemed' ? 'bg-violet-100 text-violet-700' :
+                                  'bg-orange-100 text-orange-700'
+                                )}>{college.type}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <div className="px-4 py-3 bg-amber-50 border-t border-amber-200">
