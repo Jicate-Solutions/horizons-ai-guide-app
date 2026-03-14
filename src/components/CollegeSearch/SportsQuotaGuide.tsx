@@ -32,11 +32,39 @@ export const SportsQuotaGuide = () => {
   const [search, setSearch] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState<string>('All');
   const [selectedType, setSelectedType] = useState<string>('All');
+  const [selectedField, setSelectedField] = useState<string>('All');
   const [verifyCollege, setVerifyCollege] = useState<FlatCollege | null>(null);
   const [showInfo, setShowInfo] = useState(false);
 
+  const fields = [
+    { id: 'All', label: 'All Fields', icon: '📋' },
+    { id: 'engineering', label: 'Engineering', icon: '⚙️' },
+    { id: 'arts', label: 'Arts & Science', icon: '🏛️' },
+    { id: 'medical', label: 'Medical', icon: '⚕️' },
+    { id: 'dental', label: 'Dental', icon: '🦷' },
+    { id: 'nursing', label: 'Nursing', icon: '👩‍⚕️' },
+    { id: 'pharmacy', label: 'Pharmacy', icon: '💊' },
+    { id: 'allied', label: 'Allied Health', icon: '🏥' },
+    { id: 'law', label: 'Law', icon: '⚖️' },
+    { id: 'education', label: 'B.Ed', icon: '📚' },
+    { id: 'agriculture', label: 'Agriculture', icon: '🌾' },
+    { id: 'physical_ed', label: 'Physical Education', icon: '🏋️' },
+    { id: 'polytechnic', label: 'Polytechnic', icon: '🔬' },
+  ];
+
+  // All current data is TNEA (engineering). Other fields coming soon.
+  const fieldCounts: Record<string, number> = useMemo(() => {
+    const counts: Record<string, number> = { All: allColleges.length, engineering: allColleges.length };
+    fields.forEach(f => { if (!counts[f.id]) counts[f.id] = 0; });
+    return counts;
+  }, []);
+
   const filtered = useMemo(() => {
     let result = allColleges;
+    // Field filter: current data is all engineering
+    if (selectedField !== 'All' && selectedField !== 'engineering') {
+      result = []; // No data yet for other fields
+    }
     if (search.trim()) {
       const q = search.toLowerCase();
       result = result.filter(c =>
@@ -52,7 +80,7 @@ export const SportsQuotaGuide = () => {
       result = result.filter(c => c.type === selectedType);
     }
     return result;
-  }, [search, selectedDistrict, selectedType]);
+  }, [search, selectedDistrict, selectedType, selectedField]);
 
   // Group by district for display
   const grouped = useMemo(() => {
@@ -155,6 +183,41 @@ export const SportsQuotaGuide = () => {
           </div>
         </div>
 
+        {/* ═══ FIELD FILTER ═══ */}
+        <div className="px-3 py-2.5 overflow-x-auto scrollbar-hide" style={{ background: '#111118', borderBottom: '1px solid #1f1f2a' }}>
+          <div className="flex gap-1.5 min-w-max">
+            {fields.map(f => {
+              const isActive = selectedField === f.id;
+              const count = fieldCounts[f.id] || 0;
+              const isDisabled = count === 0 && f.id !== 'All';
+              return (
+                <button
+                  key={f.id}
+                  onClick={() => !isDisabled && setSelectedField(f.id)}
+                  className={cn(
+                    "flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all",
+                    isActive
+                      ? "text-black"
+                      : isDisabled
+                        ? "text-gray-600 opacity-50 cursor-not-allowed"
+                        : "text-gray-400 hover:text-white"
+                  )}
+                  style={isActive ? { background: GOLD } : { background: '#1a1a24', border: '1px solid #2a2a35' }}
+                >
+                  <span>{f.icon}</span>
+                  <span>{f.label}</span>
+                  <span className={cn(
+                    "text-[10px] px-1.5 py-0.5 rounded-full font-bold",
+                    isActive ? "bg-black/20 text-black" : count > 0 ? "bg-white/10 text-gray-500" : "bg-white/5 text-gray-700"
+                  )}>
+                    {count > 0 ? count : 'Soon'}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* ═══ FILTERS ═══ */}
         <div className="px-3 py-2.5 flex gap-2" style={{ background: '#0f0f14', borderBottom: '1px solid #1f1f2a' }}>
           {/* District Filter */}
@@ -189,21 +252,37 @@ export const SportsQuotaGuide = () => {
         </div>
 
         {/* ═══ RESULT STATS ═══ */}
-        {(selectedDistrict !== 'All' || search.trim()) && (
+        {(selectedDistrict !== 'All' || search.trim() || (selectedField !== 'All' && selectedField === 'engineering')) && filtered.length > 0 && (
           <div className="px-4 py-2 flex items-center justify-between" style={{ background: '#111118', borderBottom: '1px solid #1f1f2a' }}>
-            <span className="text-xs text-gray-500">{filtered.length} colleges found</span>
+            <span className="text-xs text-gray-500">
+              {filtered.length} {selectedField !== 'All' ? fields.find(f => f.id === selectedField)?.label + ' ' : ''}colleges
+            </span>
             <span className="text-xs text-emerald-400 font-bold">{govtInResults} Govt/Aided</span>
           </div>
         )}
 
         {/* ═══ COLLEGE LIST ═══ */}
-        <div className="max-h-[500px] overflow-y-auto" style={{ background: '#0f0f14' }}>
-          {selectedDistrict === 'All' && !search.trim() ? (
+        <div className="max-h-[calc(100vh-350px)] overflow-y-auto" style={{ background: '#0f0f14' }}>
+          {selectedDistrict === 'All' && !search.trim() && selectedField === 'All' ? (
             <div className="p-10 text-center">
               <p className="text-3xl mb-3">📍</p>
-              <p className="text-sm font-bold text-white">Select a District</p>
-              <p className="text-xs text-gray-500 mt-1">Choose a district from the dropdown above to see colleges</p>
+              <p className="text-sm font-bold text-white">Select a District or Field</p>
+              <p className="text-xs text-gray-500 mt-1">Choose a district or field from above to see colleges</p>
               <p className="text-xs mt-3" style={{ color: GOLD }}>{getTotalColleges()} colleges across {getDistrictCount()} districts</p>
+            </div>
+          ) : selectedField !== 'All' && selectedField !== 'engineering' ? (
+            <div className="p-10 text-center">
+              <p className="text-3xl mb-3">{fields.find(f => f.id === selectedField)?.icon || '📋'}</p>
+              <p className="text-sm font-bold text-white">{fields.find(f => f.id === selectedField)?.label} Colleges</p>
+              <p className="text-xs text-gray-400 mt-2">Sports quota data for this field is coming soon.</p>
+              <p className="text-xs text-gray-500 mt-1">Currently showing Engineering colleges (TNEA data).</p>
+              <button
+                onClick={() => setSelectedField('engineering')}
+                className="mt-3 px-4 py-2 rounded-lg text-xs font-bold text-black"
+                style={{ background: GOLD }}
+              >
+                View Engineering Colleges
+              </button>
             </div>
           ) : grouped.length === 0 ? (
             <div className="p-10 text-center">
