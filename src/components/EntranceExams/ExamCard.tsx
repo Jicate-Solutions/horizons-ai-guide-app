@@ -5,6 +5,7 @@ import { EntranceExam } from './types';
 import { examCategories } from './examData';
 import { examPracticeQuestions } from './practiceQuestionsData';
 import { PracticeQuestions } from './PracticeQuestions';
+import { ExamPrepGuide } from './ExamPrepGuide';
 import { generateStudyPlannerPDF } from './generateStudyPlannerPDF';
 import { useState } from 'react';
 import { 
@@ -21,7 +22,8 @@ import {
   Star,
   MapPin,
   Download,
-  BookOpen
+  BookOpen,
+  Target
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -35,6 +37,7 @@ interface ExamCardProps {
 export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamCardProps) => {
   const { toast } = useToast();
   const [showPractice, setShowPractice] = useState(false);
+  const [showPrepGuide, setShowPrepGuide] = useState(false);
   const practiceQs = examPracticeQuestions[exam.id];
   const categoryInfo = examCategories.find(c => c.id === exam.category);
 
@@ -247,6 +250,26 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             Study Plan
           </Button>
         </div>
+
+        {/* How to Pass Guide Button */}
+        <Button
+          size="sm"
+          variant={showPrepGuide ? "default" : "outline"}
+          className={cn(
+            "w-full",
+            showPrepGuide
+              ? "bg-blue-600 hover:bg-blue-700 text-white"
+              : "border-blue-500 text-blue-600 hover:bg-blue-50"
+          )}
+          onClick={() => setShowPrepGuide(!showPrepGuide)}
+        >
+          <Target className="h-3 w-3 mr-1" />
+          {showPrepGuide ? 'Hide Preparation Guide' : 'How to Pass — Use These Features'}
+        </Button>
+
+        {showPrepGuide && (
+          <ExamPrepGuide examId={exam.id} examName={exam.name} />
+        )}
 
         {/* Practice Questions Button */}
         {practiceQs && practiceQs.length > 0 && (
