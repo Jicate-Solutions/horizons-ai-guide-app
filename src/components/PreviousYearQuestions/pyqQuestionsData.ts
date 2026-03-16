@@ -231,6 +231,125 @@ export const pyqQuestions: Record<string, PYQQuestion[]> = {
     },
   ],
 
+  // ===== JEE MAIN — PHYSICS — Rotational Motion =====
+  "jee-main::Physics::Rotational Motion": [
+    { id: 101, year: 2023, exam: "JEE Main 2023", question: "Moment of inertia of a solid sphere about its diameter is:", options: ["(2/5)MR²", "(2/3)MR²", "(1/2)MR²", "MR²"], answer: 0, topic: "Rotational Motion" },
+    { id: 102, year: 2022, exam: "JEE Main 2022", question: "Angular momentum is conserved when:", options: ["Net force is zero", "Net torque is zero", "Linear momentum is conserved", "Energy is conserved"], answer: 1, topic: "Rotational Motion" },
+    { id: 103, year: 2021, exam: "JEE Main 2021", question: "A disc and a ring of same mass and radius roll down an incline. Which reaches bottom first?", options: ["Disc", "Ring", "Both together", "Depends on angle"], answer: 0, topic: "Rotational Motion" },
+    { id: 104, year: 2024, exam: "JEE Main 2024", question: "The torque acting on a body is τ = 5t² N⋅m. Angular impulse from t=0 to t=3s is:", options: ["45 N⋅m⋅s", "15 N⋅m⋅s", "30 N⋅m⋅s", "90 N⋅m⋅s"], answer: 0, topic: "Rotational Motion" },
+    { id: 105, year: 2020, exam: "JEE Main 2020", question: "Radius of gyration of a thin rod of length L about its centre is:", options: ["L/√12", "L/√3", "L/2", "L/√6"], answer: 0, topic: "Rotational Motion" },
+  ],
+  // ===== JEE MAIN — PHYSICS — Laws of Motion =====
+  "jee-main::Physics::Laws of Motion": [
+    { id: 110, year: 2023, exam: "JEE Main 2023", question: "A 5 kg block on a frictionless surface is pushed by 20 N force. Acceleration is:", options: ["2 m/s²", "4 m/s²", "5 m/s²", "10 m/s²"], answer: 1, topic: "Laws of Motion" },
+    { id: 111, year: 2022, exam: "JEE Main 2022", question: "In a lift moving upward with acceleration a, apparent weight of a person is:", options: ["mg", "m(g+a)", "m(g-a)", "ma"], answer: 1, topic: "Laws of Motion" },
+    { id: 112, year: 2021, exam: "JEE Main 2021", question: "Two blocks 2 kg and 3 kg connected by string, pulled by 25 N. Tension in string is:", options: ["10 N", "15 N", "5 N", "20 N"], answer: 0, topic: "Laws of Motion" },
+    { id: 113, year: 2020, exam: "JEE Main 2020", question: "Coefficient of friction μ=0.5. Max angle of incline for block to stay stationary:", options: ["26.6°", "30°", "45°", "60°"], answer: 0, topic: "Laws of Motion" },
+  ],
+  // ===== JEE MAIN — PHYSICS — Work Power & Energy =====
+  "jee-main::Physics::Work Power & Energy": [
+    { id: 120, year: 2023, exam: "JEE Main 2023", question: "Spring constant 100 N/m compressed 0.2 m. PE stored:", options: ["1 J", "2 J", "4 J", "0.5 J"], answer: 1, topic: "Work Power & Energy" },
+    { id: 121, year: 2022, exam: "JEE Main 2022", question: "Power is defined as:", options: ["Force × distance", "Force × velocity", "Force × acceleration", "Mass × velocity"], answer: 1, topic: "Work Power & Energy" },
+    { id: 122, year: 2021, exam: "JEE Main 2021", question: "A 2 kg ball falls from 10 m. KE just before hitting ground (g=10):", options: ["100 J", "200 J", "20 J", "50 J"], answer: 1, topic: "Work Power & Energy" },
+    { id: 123, year: 2024, exam: "JEE Main 2024", question: "Work done by centripetal force on body moving in circle:", options: ["Positive", "Negative", "Zero", "Variable"], answer: 2, topic: "Work Power & Energy" },
+  ],
+  // ===== JEE MAIN — PHYSICS — Electrostatics =====
+  "jee-main::Physics::Electrostatics": [
+    { id: 130, year: 2023, exam: "JEE Main 2023", question: "Two charges +2μC and -2μC are 10 cm apart. Electric field at midpoint:", options: ["1.44×10⁶ N/C", "2.88×10⁶ N/C", "0", "0.72×10⁶ N/C"], answer: 1, topic: "Electrostatics" },
+    { id: 131, year: 2022, exam: "JEE Main 2022", question: "Electric flux through closed surface enclosing charge q:", options: ["q/ε₀", "qε₀", "q/4πε₀", "q²/ε₀"], answer: 0, topic: "Electrostatics" },
+    { id: 132, year: 2021, exam: "JEE Main 2021", question: "Electric potential due to point charge q at distance r:", options: ["kq/r²", "kq/r", "kq²/r", "kr/q"], answer: 1, topic: "Electrostatics" },
+    { id: 133, year: 2020, exam: "JEE Main 2020", question: "Electric field inside a charged conductor is:", options: ["Maximum", "Minimum", "Zero", "Depends on shape"], answer: 2, topic: "Electrostatics" },
+  ],
+  // ===== JEE MAIN — PHYSICS — Current Electricity =====
+  "jee-main::Physics::Current Electricity": [
+    { id: 140, year: 2023, exam: "JEE Main 2023", question: "Three resistors 2Ω, 3Ω, 6Ω in parallel. Equivalent resistance:", options: ["1Ω", "11Ω", "0.5Ω", "2Ω"], answer: 0, topic: "Current Electricity" },
+    { id: 141, year: 2022, exam: "JEE Main 2022", question: "EMF 2V, internal resistance 0.5Ω. Current through 1.5Ω external resistance:", options: ["1A", "2A", "0.5A", "4A"], answer: 0, topic: "Current Electricity" },
+    { id: 142, year: 2021, exam: "JEE Main 2021", question: "In Wheatstone bridge if P/Q=R/S, galvanometer shows:", options: ["Max deflection", "Zero deflection", "Positive deflection", "Random"], answer: 1, topic: "Current Electricity" },
+    { id: 143, year: 2024, exam: "JEE Main 2024", question: "Kirchhoff's junction rule is based on conservation of:", options: ["Energy", "Charge", "Momentum", "Mass"], answer: 1, topic: "Current Electricity" },
+  ],
+  // ===== JEE MAIN — PHYSICS — Gravitation =====
+  "jee-main::Physics::Gravitation": [
+    { id: 150, year: 2023, exam: "JEE Main 2023", question: "Acceleration due to gravity at height h (h<<R) above surface:", options: ["g(1-h/R)", "g(1-2h/R)", "g(1+h/R)", "g(1+2h/R)"], answer: 1, topic: "Gravitation" },
+    { id: 151, year: 2022, exam: "JEE Main 2022", question: "Escape velocity from Earth's surface:", options: ["7.9 km/s", "11.2 km/s", "3.1 km/s", "15 km/s"], answer: 1, topic: "Gravitation" },
+    { id: 152, year: 2021, exam: "JEE Main 2021", question: "Time period of satellite at height h: T =", options: ["2π√((R+h)³/gR²)", "2πR/g", "2π√(R/g)", "2πh/g"], answer: 0, topic: "Gravitation" },
+  ],
+  // ===== JEE MAIN — CHEMISTRY =====
+  "jee-main::Chemistry::Periodic Table & Classification": [
+    { id: 200, year: 2023, exam: "JEE Main 2023", question: "Which has the smallest atomic radius?", options: ["Na", "Mg", "Al", "Cl"], answer: 3, topic: "Periodic Table" },
+    { id: 201, year: 2022, exam: "JEE Main 2022", question: "Ionization energy increases:", options: ["Left to right in period", "Top to bottom in group", "Diagonally", "Randomly"], answer: 0, topic: "Periodic Table" },
+    { id: 202, year: 2021, exam: "JEE Main 2021", question: "Most electronegative element:", options: ["Oxygen", "Nitrogen", "Fluorine", "Chlorine"], answer: 2, topic: "Periodic Table" },
+    { id: 203, year: 2020, exam: "JEE Main 2020", question: "Electron affinity is highest for:", options: ["Fluorine", "Chlorine", "Bromine", "Iodine"], answer: 1, topic: "Periodic Table" },
+  ],
+  "jee-main::Chemistry::Chemical Bonding": [
+    { id: 210, year: 2023, exam: "JEE Main 2023", question: "Shape of BF₃ molecule:", options: ["Tetrahedral", "Trigonal planar", "Linear", "Bent"], answer: 1, topic: "Chemical Bonding" },
+    { id: 211, year: 2022, exam: "JEE Main 2022", question: "Bond angle in water molecule:", options: ["90°", "104.5°", "109.5°", "120°"], answer: 1, topic: "Chemical Bonding" },
+    { id: 212, year: 2021, exam: "JEE Main 2021", question: "σ bond is formed by:", options: ["Lateral overlap", "Head-on overlap", "Both", "Neither"], answer: 1, topic: "Chemical Bonding" },
+    { id: 213, year: 2024, exam: "JEE Main 2024", question: "Number of lone pairs on O in H₂O:", options: ["0", "1", "2", "3"], answer: 2, topic: "Chemical Bonding" },
+  ],
+  "jee-main::Chemistry::Thermodynamics": [
+    { id: 220, year: 2023, exam: "JEE Main 2023", question: "For exothermic reaction, ΔH is:", options: ["Positive", "Negative", "Zero", "Depends"], answer: 1, topic: "Thermodynamics" },
+    { id: 221, year: 2022, exam: "JEE Main 2022", question: "Entropy of universe in spontaneous process:", options: ["Decreases", "Increases", "Same", "Zero"], answer: 1, topic: "Thermodynamics" },
+    { id: 222, year: 2021, exam: "JEE Main 2021", question: "ΔG=ΔH-TΔS. Spontaneous when:", options: ["ΔG>0", "ΔG<0", "ΔG=0", "ΔH>0"], answer: 1, topic: "Thermodynamics" },
+  ],
+  // ===== JEE MAIN — MATHS =====
+  "jee-main::Maths::Sequences & Series": [
+    { id: 300, year: 2023, exam: "JEE Main 2023", question: "Sum of first n natural numbers:", options: ["n(n-1)/2", "n(n+1)/2", "n²", "n(n+1)"], answer: 1, topic: "Sequences & Series" },
+    { id: 301, year: 2022, exam: "JEE Main 2022", question: "If a, ar, ar² is GP, common ratio is:", options: ["a", "r", "ar", "a+r"], answer: 1, topic: "Sequences & Series" },
+    { id: 302, year: 2021, exam: "JEE Main 2021", question: "Sum of infinite GP with first term 1 and ratio 1/2:", options: ["1", "2", "∞", "1/2"], answer: 1, topic: "Sequences & Series" },
+  ],
+  "jee-main::Maths::Probability": [
+    { id: 310, year: 2023, exam: "JEE Main 2023", question: "P(A)=0.3, P(B)=0.4, A,B independent. P(A∩B):", options: ["0.12", "0.7", "0.1", "0.3"], answer: 0, topic: "Probability" },
+    { id: 311, year: 2022, exam: "JEE Main 2022", question: "Two dice thrown. Probability of sum 7:", options: ["1/6", "5/36", "7/36", "1/12"], answer: 0, topic: "Probability" },
+    { id: 312, year: 2021, exam: "JEE Main 2021", question: "Coin tossed 3 times. Probability of exactly 2 heads:", options: ["1/8", "3/8", "1/4", "1/2"], answer: 1, topic: "Probability" },
+  ],
+  "jee-main::Maths::Matrices & Determinants": [
+    { id: 320, year: 2023, exam: "JEE Main 2023", question: "Determinant of [[2,3],[1,4]]:", options: ["5", "8", "11", "6"], answer: 0, topic: "Matrices" },
+    { id: 321, year: 2022, exam: "JEE Main 2022", question: "If A is 3×3 with det(A)=5, then det(3A):", options: ["15", "45", "135", "5"], answer: 2, topic: "Matrices" },
+    { id: 322, year: 2021, exam: "JEE Main 2021", question: "If A is invertible, det(A⁻¹):", options: ["det(A)", "1/det(A)", "-det(A)", "det(A)²"], answer: 1, topic: "Matrices" },
+  ],
+  // ===== NEET — BIOLOGY =====
+  "neet::Biology::Genetics": [
+    { id: 400, year: 2023, exam: "NEET 2023", question: "Mendel's law of independent assortment applies to genes on:", options: ["Same chromosome", "Different chromosomes", "Sex chromosomes", "Mitochondrial DNA"], answer: 1, topic: "Genetics" },
+    { id: 401, year: 2022, exam: "NEET 2022", question: "In AaBb × AaBb cross, phenotypic ratio:", options: ["3:1", "9:3:3:1", "1:2:1", "1:1:1:1"], answer: 1, topic: "Genetics" },
+    { id: 402, year: 2021, exam: "NEET 2021", question: "Sickle cell anemia caused by:", options: ["Deletion", "Point mutation", "Duplication", "Inversion"], answer: 1, topic: "Genetics" },
+    { id: 403, year: 2020, exam: "NEET 2020", question: "Enzyme that unwinds DNA during replication:", options: ["DNA polymerase", "Helicase", "Ligase", "Primase"], answer: 1, topic: "Genetics" },
+  ],
+  "neet::Biology::Human Physiology": [
+    { id: 410, year: 2023, exam: "NEET 2023", question: "Pacemaker of the heart:", options: ["AV node", "SA node", "Bundle of His", "Purkinje fibers"], answer: 1, topic: "Human Physiology" },
+    { id: 411, year: 2022, exam: "NEET 2022", question: "Tidal volume of lungs:", options: ["500 mL", "1500 mL", "3000 mL", "150 mL"], answer: 0, topic: "Human Physiology" },
+    { id: 412, year: 2021, exam: "NEET 2021", question: "Insulin secreted by:", options: ["Alpha cells", "Beta cells", "Delta cells", "PP cells"], answer: 1, topic: "Human Physiology" },
+    { id: 413, year: 2024, exam: "NEET 2024", question: "Urea is formed in:", options: ["Kidney", "Liver", "Pancreas", "Intestine"], answer: 1, topic: "Human Physiology" },
+    { id: 414, year: 2020, exam: "NEET 2020", question: "GFR (Glomerular Filtration Rate):", options: ["25 mL/min", "125 mL/min", "500 mL/min", "1 L/min"], answer: 1, topic: "Human Physiology" },
+  ],
+  "neet::Biology::Cell Biology & Biomolecules": [
+    { id: 420, year: 2023, exam: "NEET 2023", question: "Ribosomes made of:", options: ["DNA+protein", "RNA+protein", "DNA+RNA", "Only protein"], answer: 1, topic: "Cell Biology" },
+    { id: 421, year: 2022, exam: "NEET 2022", question: "Plant cell wall made of:", options: ["Chitin", "Cellulose", "Peptidoglycan", "Starch"], answer: 1, topic: "Cell Biology" },
+    { id: 422, year: 2021, exam: "NEET 2021", question: "Suicide bag of cell:", options: ["Ribosome", "Lysosome", "Mitochondria", "Golgi"], answer: 1, topic: "Cell Biology" },
+    { id: 423, year: 2020, exam: "NEET 2020", question: "ATP has how many phosphate groups?", options: ["1", "2", "3", "4"], answer: 2, topic: "Cell Biology" },
+  ],
+  "neet::Biology::Plant Kingdom": [
+    { id: 430, year: 2023, exam: "NEET 2023", question: "Nitrogen fixation in legumes done by:", options: ["Rhizobium", "E. coli", "Yeast", "Lactobacillus"], answer: 0, topic: "Plant Kingdom" },
+    { id: 431, year: 2022, exam: "NEET 2022", question: "Stomata open when guard cells become:", options: ["Flaccid", "Turgid", "Dead", "Plasmolyzed"], answer: 1, topic: "Plant Kingdom" },
+    { id: 432, year: 2021, exam: "NEET 2021", question: "Plant hormone for fruit ripening:", options: ["Auxin", "Gibberellin", "Ethylene", "Cytokinin"], answer: 2, topic: "Plant Kingdom" },
+  ],
+  "neet::Biology::Ecology & Environment": [
+    { id: 440, year: 2023, exam: "NEET 2023", question: "10% law of energy transfer given by:", options: ["Odum", "Lindeman", "Tansley", "Elton"], answer: 1, topic: "Ecology" },
+    { id: 441, year: 2022, exam: "NEET 2022", question: "Highest biodiversity found in:", options: ["Tundra", "Desert", "Tropical rainforest", "Taiga"], answer: 2, topic: "Ecology" },
+    { id: 442, year: 2021, exam: "NEET 2021", question: "Montreal Protocol related to:", options: ["Global warming", "Ozone depletion", "Acid rain", "Water pollution"], answer: 1, topic: "Ecology" },
+  ],
+  // ===== NEET — CHEMISTRY =====
+  "neet::Chemistry::Organic Chemistry": [
+    { id: 450, year: 2023, exam: "NEET 2023", question: "IUPAC name of CH₃CH₂OH:", options: ["Methanol", "Ethanol", "Propanol", "Butanol"], answer: 1, topic: "Organic Chemistry" },
+    { id: 451, year: 2022, exam: "NEET 2022", question: "Functional group in aldehydes:", options: ["-OH", "-COOH", "-CHO", "-CO-"], answer: 2, topic: "Organic Chemistry" },
+    { id: 452, year: 2021, exam: "NEET 2021", question: "Benzene has how many carbon atoms?", options: ["4", "5", "6", "8"], answer: 2, topic: "Organic Chemistry" },
+    { id: 453, year: 2020, exam: "NEET 2020", question: "Isomers have same:", options: ["Structure", "Molecular formula", "Properties", "Boiling point"], answer: 1, topic: "Organic Chemistry" },
+  ],
+  "neet::Chemistry::Chemical Equilibrium": [
+    { id: 460, year: 2023, exam: "NEET 2023", question: "Le Chatelier: if pressure increases, equilibrium shifts towards:", options: ["More moles", "Fewer moles", "No change", "Reverse always"], answer: 1, topic: "Chemical Equilibrium" },
+    { id: 461, year: 2022, exam: "NEET 2022", question: "If Δn=0 then Kp vs Kc:", options: ["Kp>Kc", "Kp<Kc", "Kp=Kc", "Cannot tell"], answer: 2, topic: "Chemical Equilibrium" },
+    { id: 462, year: 2021, exam: "NEET 2021", question: "Catalyst in equilibrium:", options: ["Shifts right", "Shifts left", "No change to equilibrium", "Increases Kc"], answer: 2, topic: "Chemical Equilibrium" },
+  ],
+
 };
 
 // Helper to get questions for a topic
