@@ -17,7 +17,7 @@ import { useBookmarkedExams } from './useBookmarkedExams';
 import { cn } from '@/lib/utils';
 
 export const EntranceExams = () => {
-  const [pageView, setPageView] = useState<'exams' | 'practice'>('exams');
+  const [pageView, setPageView] = useState<'exams' | 'practice'>('practice');
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('engineering');
   const [searchQuery, setSearchQuery] = useState('');
   const [showCompare, setShowCompare] = useState(false);
@@ -57,31 +57,33 @@ export const EntranceExams = () => {
   return (
     <div className="space-y-4">
       {/* ═══ PAGE VIEW TOGGLE ═══ */}
-      <div className="bg-white rounded-2xl p-1.5 border border-gray-200 shadow-sm">
-        <div className="grid grid-cols-2 gap-1">
-          <button
-            onClick={() => setPageView('exams')}
-            className={cn(
-              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
-              pageView === 'exams'
-                ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-md"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-            )}
-          >
-            <FileText className="w-4 h-4" />
-            Exam Guide
-          </button>
+      <div className="bg-white rounded-2xl p-2 border-2 border-gray-200 shadow-sm">
+        <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setPageView('practice')}
             className={cn(
-              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
+              "flex flex-col items-center justify-center gap-1 py-3.5 rounded-xl font-bold transition-all",
               pageView === 'practice'
-                ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
             )}
           >
-            <Target className="w-4 h-4" />
-            Practice Questions
+            <BookOpen className="w-5 h-5" />
+            <span className="text-sm">Practice Questions</span>
+            <span className={cn("text-xs px-2 py-0.5 rounded-full font-bold", pageView === 'practice' ? "bg-white/20" : "bg-violet-100 text-violet-700")}>149 Qs</span>
+          </button>
+          <button
+            onClick={() => setPageView('exams')}
+            className={cn(
+              "flex flex-col items-center justify-center gap-1 py-3.5 rounded-xl font-bold transition-all",
+              pageView === 'exams'
+                ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-lg"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
+            )}
+          >
+            <FileText className="w-5 h-5" />
+            <span className="text-sm">Exam Guide</span>
+            <span className={cn("text-xs px-2 py-0.5 rounded-full font-bold", pageView === 'exams' ? "bg-white/20" : "bg-green-100 text-green-700")}>39 Exams</span>
           </button>
         </div>
       </div>
