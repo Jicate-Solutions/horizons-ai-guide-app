@@ -1,3 +1,13 @@
+export interface PracticeQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  answer: number;
+  explanation: string;
+  subject: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
 export interface EntranceExam {
   id: string;
   name: string;
@@ -24,6 +34,7 @@ export interface EntranceExam {
   category: ExamCategory;
   hasJKKN?: boolean;
   jkknColleges?: string[];
+  practiceQuestions?: PracticeQuestion[];
 }
 
 export interface PreparationTips {

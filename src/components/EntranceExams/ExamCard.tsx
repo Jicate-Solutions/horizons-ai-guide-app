@@ -3,7 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EntranceExam } from './types';
 import { examCategories } from './examData';
+import { examPracticeQuestions } from './practiceQuestionsData';
+import { PracticeQuestions } from './PracticeQuestions';
 import { generateStudyPlannerPDF } from './generateStudyPlannerPDF';
+import { useState } from 'react';
 import { 
   ExternalLink, 
   Calendar, 
@@ -17,7 +20,8 @@ import {
   BookmarkCheck,
   Star,
   MapPin,
-  Download
+  Download,
+  BookOpen
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -30,6 +34,8 @@ interface ExamCardProps {
 
 export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamCardProps) => {
   const { toast } = useToast();
+  const [showPractice, setShowPractice] = useState(false);
+  const practiceQs = examPracticeQuestions[exam.id];
   const categoryInfo = examCategories.find(c => c.id === exam.category);
 
   const handleSetReminder = () => {
@@ -241,6 +247,30 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             Study Plan
           </Button>
         </div>
+
+        {/* Practice Questions Button */}
+        {practiceQs && practiceQs.length > 0 && (
+          <Button
+            size="sm"
+            variant={showPractice ? "default" : "outline"}
+            className={cn(
+              "w-full",
+              showPractice
+                ? "bg-violet-600 hover:bg-violet-700 text-white"
+                : "border-violet-500 text-violet-600 hover:bg-violet-50"
+            )}
+            onClick={() => setShowPractice(!showPractice)}
+          >
+            <BookOpen className="h-3 w-3 mr-1" />
+            {showPractice ? 'Hide Practice Questions' : `Practice Questions (${practiceQs.length})`}
+          </Button>
+        )}
+
+        {/* Practice Questions Section */}
+        {showPractice && practiceQs && (
+          <PracticeQuestions questions={practiceQs} examName={exam.name} />
+        )}
+
         <Button 
           size="sm" 
           className="w-full bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white"

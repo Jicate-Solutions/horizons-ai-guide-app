@@ -1,0 +1,119 @@
+import { PracticeQuestion } from './types';
+
+// ═══ JEE MAIN — Physics, Chemistry, Maths ═══
+export const jeeMainQuestions: PracticeQuestion[] = [
+  { id: 'jee-p1', question: 'A ball is thrown vertically upward with velocity 20 m/s. The maximum height reached is (g = 10 m/s²):', options: ['10 m', '20 m', '30 m', '40 m'], answer: 1, explanation: 'Using v² = u² - 2gh, at max height v=0. So h = u²/2g = (20)²/(2×10) = 400/20 = 20 m.', subject: 'Physics', difficulty: 'easy' },
+  { id: 'jee-p2', question: 'Two resistors 3Ω and 6Ω are connected in parallel. The equivalent resistance is:', options: ['9Ω', '2Ω', '4.5Ω', '1Ω'], answer: 1, explanation: '1/R = 1/3 + 1/6 = (2+1)/6 = 3/6 = 1/2. So R = 2Ω.', subject: 'Physics', difficulty: 'easy' },
+  { id: 'jee-p3', question: 'A body of mass 2 kg is moving with velocity 4 m/s. Its kinetic energy is:', options: ['8 J', '16 J', '32 J', '4 J'], answer: 1, explanation: 'KE = ½mv² = ½ × 2 × 4² = ½ × 2 × 16 = 16 J.', subject: 'Physics', difficulty: 'easy' },
+  { id: 'jee-c1', question: 'The number of moles in 36 g of water (H₂O, molecular weight = 18) is:', options: ['1', '2', '3', '4'], answer: 1, explanation: 'Moles = mass/molecular weight = 36/18 = 2 moles.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'jee-c2', question: 'Which of the following is a noble gas?', options: ['Nitrogen', 'Argon', 'Oxygen', 'Hydrogen'], answer: 1, explanation: 'Argon (Ar) is a noble gas in Group 18. It has a complete octet and is chemically inert.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'jee-c3', question: 'The pH of a neutral solution at 25°C is:', options: ['0', '7', '14', '1'], answer: 1, explanation: 'At 25°C, pure water has [H⁺] = 10⁻⁷ M. pH = -log[H⁺] = -log(10⁻⁷) = 7.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'jee-c4', question: 'The oxidation state of Mn in KMnO₄ is:', options: ['+2', '+4', '+5', '+7'], answer: 3, explanation: 'In KMnO₄: K is +1, O is -2. So +1 + x + 4(-2) = 0. x - 7 = 0. x = +7.', subject: 'Chemistry', difficulty: 'medium' },
+  { id: 'jee-m1', question: 'If sin θ = 3/5, then cos θ is:', options: ['4/5', '3/4', '5/3', '5/4'], answer: 0, explanation: 'Using sin²θ + cos²θ = 1: cos²θ = 1 - 9/25 = 16/25. So cos θ = 4/5.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'jee-m2', question: 'The derivative of x³ with respect to x is:', options: ['x²', '3x²', '3x³', 'x³/3'], answer: 1, explanation: 'Using power rule: d/dx(xⁿ) = nxⁿ⁻¹. So d/dx(x³) = 3x².', subject: 'Maths', difficulty: 'easy' },
+  { id: 'jee-m3', question: 'The value of ∫₀¹ 2x dx is:', options: ['0', '1', '2', '½'], answer: 1, explanation: '∫₀¹ 2x dx = [x²]₀¹ = 1² - 0² = 1.', subject: 'Maths', difficulty: 'medium' },
+];
+
+// ═══ NEET UG — Physics, Chemistry, Biology ═══
+export const neetQuestions: PracticeQuestion[] = [
+  { id: 'neet-p1', question: 'The SI unit of force is:', options: ['Joule', 'Newton', 'Watt', 'Pascal'], answer: 1, explanation: 'Force = mass × acceleration. SI unit: kg⋅m/s² = Newton (N).', subject: 'Physics', difficulty: 'easy' },
+  { id: 'neet-p2', question: 'A concave mirror of focal length 15 cm forms an image at 30 cm. The object distance is:', options: ['30 cm', '10 cm', '20 cm', '15 cm'], answer: 0, explanation: 'Using 1/f = 1/v + 1/u. 1/(-15) = 1/(-30) + 1/u. 1/u = -1/15 + 1/30 = (-2+1)/30 = -1/30. u = -30 cm.', subject: 'Physics', difficulty: 'medium' },
+  { id: 'neet-c1', question: 'The electronic configuration of Carbon (Z=6) is:', options: ['1s² 2s² 2p²', '1s² 2s² 2p⁴', '1s² 2s¹ 2p³', '1s² 2s² 2p⁶'], answer: 0, explanation: 'Carbon has 6 electrons: 1s² (2) + 2s² (2) + 2p² (2) = 6 electrons total.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'neet-c2', question: 'Ethanol (C₂H₅OH) on dehydration gives:', options: ['Ethane', 'Ethene', 'Methanol', 'Acetone'], answer: 1, explanation: 'Ethanol loses water (H₂O) when heated with conc. H₂SO₄ at 170°C to form ethene (C₂H₄).', subject: 'Chemistry', difficulty: 'medium' },
+  { id: 'neet-c3', question: 'Which element has the highest electronegativity?', options: ['Oxygen', 'Nitrogen', 'Fluorine', 'Chlorine'], answer: 2, explanation: 'Fluorine (3.98 on Pauling scale) has the highest electronegativity of all elements.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'neet-b1', question: 'The powerhouse of the cell is:', options: ['Nucleus', 'Ribosome', 'Mitochondria', 'Golgi body'], answer: 2, explanation: 'Mitochondria are called powerhouses because they produce ATP through cellular respiration (oxidative phosphorylation).', subject: 'Biology', difficulty: 'easy' },
+  { id: 'neet-b2', question: 'DNA replication is:', options: ['Conservative', 'Semi-conservative', 'Dispersive', 'Non-conservative'], answer: 1, explanation: 'Watson and Crick proposed and Meselson-Stahl proved that DNA replication is semi-conservative — each new DNA has one old and one new strand.', subject: 'Biology', difficulty: 'easy' },
+  { id: 'neet-b3', question: 'The functional unit of kidney is:', options: ['Neuron', 'Nephron', 'Alveoli', 'Villus'], answer: 1, explanation: 'Nephron is the structural and functional unit of the kidney. Each human kidney has about 1 million nephrons.', subject: 'Biology', difficulty: 'easy' },
+  { id: 'neet-b4', question: 'Which blood group is called the universal donor?', options: ['A', 'B', 'AB', 'O'], answer: 3, explanation: 'Blood group O has no A or B antigens on RBCs, so it can be donated to any blood group (in emergency). O is the universal donor.', subject: 'Biology', difficulty: 'easy' },
+  { id: 'neet-b5', question: 'Mendel\'s law of segregation is also known as:', options: ['Law of dominance', 'Law of purity of gametes', 'Law of independent assortment', 'Law of variation'], answer: 1, explanation: 'The law of segregation states that alleles separate during gamete formation, each gamete receiving only one allele — hence "purity of gametes."', subject: 'Biology', difficulty: 'medium' },
+];
+
+// ═══ CUET — English, GK, Maths/Reasoning ═══
+export const cuetQuestions: PracticeQuestion[] = [
+  { id: 'cuet-e1', question: 'Choose the synonym of "Abundant":', options: ['Scarce', 'Plentiful', 'Rare', 'Limited'], answer: 1, explanation: 'Abundant means existing in large quantities. Plentiful is the closest synonym.', subject: 'English', difficulty: 'easy' },
+  { id: 'cuet-e2', question: 'Choose the antonym of "Benevolent":', options: ['Kind', 'Generous', 'Malevolent', 'Charitable'], answer: 2, explanation: 'Benevolent means well-meaning and kindly. Malevolent means having evil intent — the exact opposite.', subject: 'English', difficulty: 'easy' },
+  { id: 'cuet-e3', question: '"Break the ice" means:', options: ['To break something', 'To start a conversation', 'To freeze water', 'To end a friendship'], answer: 1, explanation: '"Break the ice" is an idiom meaning to initiate a conversation or ease tension in a social situation.', subject: 'English', difficulty: 'easy' },
+  { id: 'cuet-g1', question: 'The Tropic of Cancer passes through how many Indian states?', options: ['6', '7', '8', '9'], answer: 2, explanation: 'The Tropic of Cancer (23.5°N) passes through 8 Indian states: Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, West Bengal, Tripura, Mizoram.', subject: 'General Knowledge', difficulty: 'medium' },
+  { id: 'cuet-g2', question: 'Who wrote the Indian National Anthem "Jana Gana Mana"?', options: ['Bankim Chandra Chatterjee', 'Rabindranath Tagore', 'Sarojini Naidu', 'Subhash Chandra Bose'], answer: 1, explanation: 'Rabindranath Tagore wrote "Jana Gana Mana" in Bengali. It was adopted as India\'s national anthem on 24 January 1950.', subject: 'General Knowledge', difficulty: 'easy' },
+  { id: 'cuet-g3', question: 'Which article of the Indian Constitution abolishes untouchability?', options: ['Article 14', 'Article 15', 'Article 17', 'Article 19'], answer: 2, explanation: 'Article 17 abolishes untouchability and forbids its practice in any form. Violation is a punishable offense.', subject: 'General Knowledge', difficulty: 'medium' },
+  { id: 'cuet-m1', question: 'If A = {1, 2, 3} and B = {2, 3, 4}, then A ∩ B is:', options: ['{1, 2, 3, 4}', '{2, 3}', '{1, 4}', '{1}'], answer: 1, explanation: 'A ∩ B (intersection) contains elements common to both sets. Common elements: 2 and 3. So A ∩ B = {2, 3}.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'cuet-r1', question: 'Complete the series: 2, 6, 12, 20, 30, ?', options: ['40', '42', '44', '36'], answer: 1, explanation: 'Differences: 4, 6, 8, 10, ?. Next difference = 12. So 30 + 12 = 42. Pattern: n(n+1) where n = 1,2,3,4,5,6.', subject: 'Reasoning', difficulty: 'medium' },
+  { id: 'cuet-r2', question: 'If COMPUTER is coded as DPNQVUFS, then MOBILE is coded as:', options: ['NPCJMF', 'NPCKME', 'NPCJME', 'NPBJMF'], answer: 0, explanation: 'Each letter is shifted by +1 in the alphabet. M→N, O→P, B→C, I→J, L→M, E→F. Answer: NPCJMF.', subject: 'Reasoning', difficulty: 'medium' },
+  { id: 'cuet-g4', question: 'The largest freshwater lake in India is:', options: ['Dal Lake', 'Wular Lake', 'Chilika Lake', 'Sambhar Lake'], answer: 1, explanation: 'Wular Lake in Jammu & Kashmir is the largest freshwater lake in India. Chilika is brackish, Sambhar is saline.', subject: 'General Knowledge', difficulty: 'medium' },
+];
+
+// ═══ CLAT — Legal, English, GK, Reasoning ═══
+export const clatQuestions: PracticeQuestion[] = [
+  { id: 'clat-l1', question: 'The minimum age to become a member of Rajya Sabha is:', options: ['25 years', '30 years', '35 years', '21 years'], answer: 1, explanation: 'Article 84 of the Constitution prescribes minimum age of 30 years for Rajya Sabha membership (25 for Lok Sabha).', subject: 'Legal Aptitude', difficulty: 'easy' },
+  { id: 'clat-l2', question: 'Right to Education is a fundamental right under which Article?', options: ['Article 19', 'Article 21', 'Article 21A', 'Article 14'], answer: 2, explanation: 'Article 21A (inserted by 86th Amendment, 2002) makes free and compulsory education for children aged 6-14 a fundamental right.', subject: 'Legal Aptitude', difficulty: 'medium' },
+  { id: 'clat-l3', question: 'The concept of "Judicial Review" in India is borrowed from:', options: ['UK', 'USA', 'Canada', 'Australia'], answer: 1, explanation: 'Judicial Review — the power of courts to examine constitutionality of laws — is borrowed from the Constitution of USA.', subject: 'Legal Aptitude', difficulty: 'medium' },
+  { id: 'clat-e1', question: 'Choose the correctly punctuated sentence:', options: ['Its a beautiful day.', "It's a beautiful day.", 'Its\' a beautiful day.', "Its' a beautiful day."], answer: 1, explanation: '"It\'s" is the contraction of "it is." "Its" (no apostrophe) is the possessive form.', subject: 'English', difficulty: 'easy' },
+  { id: 'clat-e2', question: 'The word "Jurisprudence" means:', options: ['Study of law', 'Study of history', 'Study of politics', 'Study of economics'], answer: 0, explanation: 'Jurisprudence comes from Latin "juris" (law) + "prudentia" (knowledge). It means the theory or philosophy of law.', subject: 'English', difficulty: 'easy' },
+  { id: 'clat-g1', question: 'The Supreme Court of India was established on:', options: ['26 January 1950', '28 January 1950', '15 August 1947', '26 November 1949'], answer: 1, explanation: 'The Supreme Court of India came into being on 28 January 1950, two days after India became a Republic.', subject: 'General Knowledge', difficulty: 'medium' },
+  { id: 'clat-g2', question: 'Who is known as the Father of the Indian Constitution?', options: ['Jawaharlal Nehru', 'B.R. Ambedkar', 'Mahatma Gandhi', 'Sardar Patel'], answer: 1, explanation: 'Dr. B.R. Ambedkar was the Chairman of the Drafting Committee and is recognized as the principal architect of the Indian Constitution.', subject: 'General Knowledge', difficulty: 'easy' },
+  { id: 'clat-r1', question: 'Statement: All lawyers are honest. All honest people are respected. Conclusion:', options: ['All lawyers are respected', 'Some respected are lawyers', 'All respected are lawyers', 'Both A and B'], answer: 3, explanation: 'From the two statements: All lawyers → honest → respected. So all lawyers are respected (A). And since some respected people are lawyers, B is also true.', subject: 'Reasoning', difficulty: 'medium' },
+  { id: 'clat-r2', question: 'A is B\'s brother. C is A\'s mother. D is C\'s father. E is B\'s son. How is D related to E?', options: ['Grandfather', 'Great-grandfather', 'Father', 'Uncle'], answer: 1, explanation: 'D is C\'s father (grandfather of A and B). E is B\'s son (great-grandson of D). So D is E\'s great-grandfather.', subject: 'Reasoning', difficulty: 'hard' },
+  { id: 'clat-l4', question: 'Writ of Habeas Corpus is issued to:', options: ['Protect fundamental rights', 'Ensure personal liberty', 'Quash a government order', 'Prevent lower court action'], answer: 1, explanation: 'Habeas Corpus (Latin: "produce the body") is issued to ensure that a person detained is brought before the court to determine if the detention is lawful.', subject: 'Legal Aptitude', difficulty: 'easy' },
+];
+
+// ═══ NDA — Maths, General Knowledge ═══
+export const ndaQuestions: PracticeQuestion[] = [
+  { id: 'nda-m1', question: 'The value of log₂ 8 is:', options: ['2', '3', '4', '8'], answer: 1, explanation: 'log₂ 8 = log₂ 2³ = 3 (since 2³ = 8).', subject: 'Maths', difficulty: 'easy' },
+  { id: 'nda-m2', question: 'In a triangle, if two angles are 60° and 70°, the third angle is:', options: ['50°', '60°', '70°', '80°'], answer: 0, explanation: 'Sum of angles in a triangle = 180°. Third angle = 180° - 60° - 70° = 50°.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'nda-m3', question: 'The area of a circle with radius 7 cm is (π = 22/7):', options: ['154 cm²', '144 cm²', '164 cm²', '176 cm²'], answer: 0, explanation: 'Area = πr² = (22/7) × 7² = (22/7) × 49 = 22 × 7 = 154 cm².', subject: 'Maths', difficulty: 'easy' },
+  { id: 'nda-g1', question: 'The headquarter of Indian Navy\'s Southern Command is at:', options: ['Mumbai', 'Visakhapatnam', 'Kochi', 'Karwar'], answer: 2, explanation: 'Indian Navy has three commands: Western (Mumbai), Eastern (Visakhapatnam), Southern (Kochi, Kerala).', subject: 'General Knowledge', difficulty: 'medium' },
+  { id: 'nda-g2', question: 'The Rajpath in New Delhi has been renamed to:', options: ['Kartavya Path', 'Jan Path', 'Desh Path', 'Shakti Path'], answer: 0, explanation: 'Rajpath was renamed Kartavya Path (Path of Duty) in September 2022 by the Government of India.', subject: 'General Knowledge', difficulty: 'easy' },
+  { id: 'nda-g3', question: 'India\'s first indigenous aircraft carrier is:', options: ['INS Vikramaditya', 'INS Vikrant', 'INS Vishal', 'INS Viraat'], answer: 1, explanation: 'INS Vikrant (IAC-1) is India\'s first indigenously built aircraft carrier, commissioned in September 2022 at Cochin Shipyard.', subject: 'General Knowledge', difficulty: 'easy' },
+  { id: 'nda-g4', question: 'The Siachen Glacier is located in:', options: ['Himachal Pradesh', 'Uttarakhand', 'Ladakh', 'Sikkim'], answer: 2, explanation: 'Siachen Glacier is in the eastern Karakoram range in Ladakh. It is the highest battlefield in the world, guarded by the Indian Army.', subject: 'General Knowledge', difficulty: 'medium' },
+  { id: 'nda-m4', question: 'If the probability of an event is 0.3, the probability of its complement is:', options: ['0.3', '0.7', '0.5', '1.3'], answer: 1, explanation: 'P(complement) = 1 - P(event) = 1 - 0.3 = 0.7.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'nda-g5', question: 'Which missile is known as India\'s ICBM?', options: ['BrahMos', 'Agni-V', 'Prithvi', 'Akash'], answer: 1, explanation: 'Agni-V is India\'s intercontinental ballistic missile with a range of 5,000+ km, capable of reaching targets across Asia.', subject: 'General Knowledge', difficulty: 'medium' },
+  { id: 'nda-m5', question: 'The sum of first 10 natural numbers is:', options: ['45', '50', '55', '60'], answer: 2, explanation: 'Sum = n(n+1)/2 = 10 × 11/2 = 55.', subject: 'Maths', difficulty: 'easy' },
+];
+
+// ═══ BITSAT — Physics, Chemistry, Maths ═══
+export const bitsatQuestions: PracticeQuestion[] = [
+  { id: 'bit-p1', question: 'The dimensional formula of Planck\'s constant is:', options: ['[ML²T⁻¹]', '[MLT⁻¹]', '[ML²T⁻²]', '[ML²T⁻³]'], answer: 0, explanation: 'E = hν. So h = E/ν. [h] = [ML²T⁻²]/[T⁻¹] = [ML²T⁻¹].', subject: 'Physics', difficulty: 'medium' },
+  { id: 'bit-c1', question: 'The hybridization of carbon in methane (CH₄) is:', options: ['sp', 'sp²', 'sp³', 'sp³d'], answer: 2, explanation: 'In CH₄, carbon forms 4 sigma bonds with 4 H atoms. 1s + 3p orbitals hybridize to form 4 sp³ hybrid orbitals (tetrahedral).', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'bit-m1', question: 'The number of ways to arrange 4 books on a shelf is:', options: ['12', '24', '16', '4'], answer: 1, explanation: '4 books can be arranged in 4! = 4 × 3 × 2 × 1 = 24 ways.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'bit-p2', question: 'The speed of light in vacuum is approximately:', options: ['3 × 10⁶ m/s', '3 × 10⁸ m/s', '3 × 10¹⁰ m/s', '3 × 10⁵ m/s'], answer: 1, explanation: 'The speed of light in vacuum (c) is approximately 3 × 10⁸ m/s or 300,000 km/s.', subject: 'Physics', difficulty: 'easy' },
+  { id: 'bit-c2', question: 'Baking soda is chemically:', options: ['NaCl', 'NaHCO₃', 'Na₂CO₃', 'CaCO₃'], answer: 1, explanation: 'Baking soda is sodium bicarbonate (NaHCO₃). Washing soda is Na₂CO₃. Table salt is NaCl.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'bit-m2', question: 'The value of ³C₂ is:', options: ['3', '6', '9', '1'], answer: 0, explanation: '³C₂ = 3!/(2! × 1!) = (3 × 2 × 1)/(2 × 1 × 1) = 6/2 = 3.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'bit-p3', question: 'Work done by a force is zero when the angle between force and displacement is:', options: ['0°', '45°', '90°', '180°'], answer: 2, explanation: 'W = F⋅d⋅cos θ. When θ = 90°, cos 90° = 0, so W = 0. Force perpendicular to motion does no work.', subject: 'Physics', difficulty: 'easy' },
+  { id: 'bit-c3', question: 'The IUPAC name of CH₃CHO is:', options: ['Methanol', 'Ethanal', 'Propanal', 'Methanal'], answer: 1, explanation: 'CH₃CHO has 2 carbons with an aldehyde group. 2 carbons = eth-. Aldehyde = -al. IUPAC name: Ethanal (common name: Acetaldehyde).', subject: 'Chemistry', difficulty: 'medium' },
+];
+
+// ═══ VITEEE — Physics, Chemistry, Maths ═══
+export const viteeeQuestions: PracticeQuestion[] = [
+  { id: 'vit-p1', question: 'The unit of electric current is:', options: ['Volt', 'Ampere', 'Ohm', 'Watt'], answer: 1, explanation: 'Electric current is measured in Ampere (A). 1 Ampere = 1 Coulomb of charge flowing per second.', subject: 'Physics', difficulty: 'easy' },
+  { id: 'vit-c1', question: 'How many sigma bonds are there in ethylene (C₂H₄)?', options: ['3', '4', '5', '6'], answer: 2, explanation: 'Ethylene: H₂C=CH₂. Each C-H bond is sigma (4 total), C-C has 1 sigma + 1 pi. Total sigma = 5.', subject: 'Chemistry', difficulty: 'medium' },
+  { id: 'vit-m1', question: 'The determinant of matrix [[2, 3], [1, 4]] is:', options: ['5', '8', '11', '6'], answer: 0, explanation: 'Determinant of 2×2 matrix [[a,b],[c,d]] = ad - bc = (2×4) - (3×1) = 8 - 3 = 5.', subject: 'Maths', difficulty: 'easy' },
+  { id: 'vit-p2', question: 'The wavelength of visible light ranges approximately from:', options: ['100-300 nm', '400-700 nm', '700-1000 nm', '1-100 nm'], answer: 1, explanation: 'Visible light wavelength ranges from about 400 nm (violet) to 700 nm (red).', subject: 'Physics', difficulty: 'easy' },
+  { id: 'vit-c2', question: 'Which of the following is an alkali metal?', options: ['Calcium', 'Sodium', 'Aluminium', 'Iron'], answer: 1, explanation: 'Sodium (Na) belongs to Group 1 (alkali metals). Calcium is alkaline earth (Group 2). Al is Group 13.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'vit-m2', question: 'lim(x→0) sin x / x equals:', options: ['0', '1', '∞', '-1'], answer: 1, explanation: 'This is a standard limit: lim(x→0) sin x / x = 1. It can be proved using L\'Hôpital\'s rule or squeeze theorem.', subject: 'Maths', difficulty: 'medium' },
+  { id: 'vit-p3', question: 'An object placed between f and 2f of a convex lens forms:', options: ['Virtual image', 'Real, diminished image', 'Real, magnified image', 'No image'], answer: 2, explanation: 'Object between f and 2f of a convex lens forms a real, inverted, and magnified image beyond 2f on the other side.', subject: 'Physics', difficulty: 'medium' },
+  { id: 'vit-c3', question: 'The molecular formula of glucose is:', options: ['C₆H₁₂O₆', 'C₁₂H₂₂O₁₁', 'C₆H₁₀O₅', 'C₂H₅OH'], answer: 0, explanation: 'Glucose has the molecular formula C₆H₁₂O₆. Sucrose is C₁₂H₂₂O₁₁. C₂H₅OH is ethanol.', subject: 'Chemistry', difficulty: 'easy' },
+];
+
+// ═══ TNAU — PCB/PCM for Agriculture ═══
+export const tnauQuestions: PracticeQuestion[] = [
+  { id: 'tnau-b1', question: 'Nitrogen fixation in leguminous plants is done by:', options: ['Rhizobium', 'E. coli', 'Lactobacillus', 'Yeast'], answer: 0, explanation: 'Rhizobium bacteria form root nodules in legumes and fix atmospheric N₂ into NH₃ (ammonia) usable by plants.', subject: 'Biology', difficulty: 'easy' },
+  { id: 'tnau-b2', question: 'The process by which green plants make food is:', options: ['Respiration', 'Photosynthesis', 'Transpiration', 'Fermentation'], answer: 1, explanation: 'Photosynthesis: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (in presence of sunlight and chlorophyll).', subject: 'Biology', difficulty: 'easy' },
+  { id: 'tnau-b3', question: 'Which plant hormone promotes cell elongation?', options: ['Ethylene', 'Abscisic acid', 'Auxin', 'Cytokinin'], answer: 2, explanation: 'Auxin (IAA — Indole Acetic Acid) promotes cell elongation, phototropism, and apical dominance in plants.', subject: 'Biology', difficulty: 'easy' },
+  { id: 'tnau-c1', question: 'The chemical formula of urea is:', options: ['NH₄NO₃', 'CO(NH₂)₂', '(NH₄)₂SO₄', 'Ca(NO₃)₂'], answer: 1, explanation: 'Urea — CO(NH₂)₂ — contains 46% nitrogen. It is the most widely used nitrogenous fertilizer in agriculture.', subject: 'Chemistry', difficulty: 'easy' },
+  { id: 'tnau-b4', question: 'Green Revolution in India was led by:', options: ['Verghese Kurien', 'M.S. Swaminathan', 'Jagdish Chandra Bose', 'Homi Bhabha'], answer: 1, explanation: 'M.S. Swaminathan is known as the Father of the Green Revolution in India for introducing high-yielding wheat and rice varieties.', subject: 'Agriculture', difficulty: 'easy' },
+  { id: 'tnau-p1', question: 'Soil pH of 7.0 indicates:', options: ['Acidic soil', 'Neutral soil', 'Alkaline soil', 'Saline soil'], answer: 1, explanation: 'pH 7.0 = neutral. Below 7 = acidic. Above 7 = alkaline. Most crops grow best in pH 6.0-7.5 range.', subject: 'Agriculture', difficulty: 'easy' },
+  { id: 'tnau-b5', question: 'Which of these is a Kharif crop?', options: ['Wheat', 'Rice', 'Mustard', 'Gram'], answer: 1, explanation: 'Rice is a Kharif (monsoon) crop sown in June-July, harvested in Sept-Oct. Wheat, mustard, gram are Rabi (winter) crops.', subject: 'Agriculture', difficulty: 'easy' },
+  { id: 'tnau-c2', question: 'NPK in fertilizers stands for:', options: ['Nitrogen, Potassium, Krypton', 'Nitrogen, Phosphorus, Potassium', 'Neon, Phosphorus, Krypton', 'Nitrogen, Platinum, Krypton'], answer: 1, explanation: 'NPK: N = Nitrogen (growth), P = Phosphorus (roots & flowers), K = Potassium (Kalium — disease resistance & fruit quality).', subject: 'Chemistry', difficulty: 'easy' },
+];
+
+// ═══ Map exam IDs to their questions ═══
+export const examPracticeQuestions: Record<string, PracticeQuestion[]> = {
+  'jee-main': jeeMainQuestions,
+  'neet-ug': neetQuestions,
+  'cuet': cuetQuestions,
+  'clat': clatQuestions,
+  'nda': ndaQuestions,
+  'bitsat': bitsatQuestions,
+  'viteee': viteeeQuestions,
+  'tnau': tnauQuestions,
+};
