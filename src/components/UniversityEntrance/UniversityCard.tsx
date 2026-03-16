@@ -99,12 +99,12 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
             <div className="absolute inset-0 bg-gradient-to-t from-[#f8faf8] via-transparent to-transparent" />
           </div>
         )}
-        <div className={`p-5 ${university.campusImage ? 'pt-2' : ''}`}>
-        <div className="flex gap-4">
+        <div className={`p-3 md:p-5 ${university.campusImage ? 'pt-2' : ''}`}>
+        <div className="flex gap-3 md:gap-4">
           {/* Logo Section - Left */}
           <div className="shrink-0">
             {university.logo ? (
-              <div className="w-[60px] h-[60px] rounded-xl bg-white border border-slate-100 dark:border-slate-600 flex items-center justify-center overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-[48px] h-[48px] md:w-[60px] md:h-[60px] rounded-xl bg-white border border-slate-100 dark:border-slate-600 flex items-center justify-center overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
                 <img 
                   src={university.logo} 
                   alt={`${university.name} logo`}
@@ -114,7 +114,7 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
                     const target = e.currentTarget;
                     const parent = target.parentElement;
                     if (parent) {
-                      parent.className = "w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border";
+                      parent.className = "w-[48px] h-[48px] md:w-[60px] md:h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border";
                       parent.style.backgroundColor = university.logoColor || '#059669';
                       parent.style.color = '#fff';
                       parent.style.borderColor = university.logoColor || '#059669';
@@ -125,7 +125,7 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
               </div>
             ) : (
               <div 
-                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border"
+                className="w-[48px] h-[48px] md:w-[60px] md:h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border"
                 style={{ backgroundColor: university.logoColor || '#059669', color: '#fff', borderColor: university.logoColor || '#059669' }}
               >
                 {getInitials(university.name)}
@@ -184,7 +184,7 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
         </div>
         
         {/* Bottom Actions Row */}
-        <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100 dark:border-slate-700">
+        <div className="flex items-center justify-between mt-3 md:mt-4 pt-3 border-t border-slate-100 dark:border-slate-700">
           <div className="text-xs text-muted-foreground">
             <span className="font-medium text-foreground">{university.courses.length}</span> courses available
           </div>

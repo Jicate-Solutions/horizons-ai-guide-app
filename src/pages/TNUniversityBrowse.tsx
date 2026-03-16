@@ -321,11 +321,11 @@ const TNUniversityBrowse = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-3 md:px-4 py-4 md:py-6 space-y-4 md:space-y-6">
 
         {/* University Type Tabs with glass effect */}
         <Tabs value={selectedType} onValueChange={(v) => handleTypeChange(v as UniversityType)} className="w-full">
-          <TabsList className="w-full flex flex-wrap h-auto gap-2 bg-white/60 dark:bg-white/5 backdrop-blur-lg p-2.5 rounded-xl border border-white/30 dark:border-white/10 shadow-lg shadow-emerald-500/5">
+          <TabsList className="w-full flex h-auto gap-1.5 bg-white/60 dark:bg-white/5 backdrop-blur-lg p-2 rounded-xl border border-white/30 dark:border-white/10 shadow-lg shadow-emerald-500/5">
             {universityTypeTabs.map((tab) => {
               const Icon = tab.icon;
               const count = typeCounts[tab.value];
@@ -333,12 +333,11 @@ const TNUniversityBrowse = () => {
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  className="flex-1 min-w-[140px] flex items-center gap-2 py-3 px-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-600 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-emerald-500/25 rounded-lg transition-all duration-300 hover:bg-white/50 dark:hover:bg-white/10"
+                  className="flex-1 min-w-0 flex items-center justify-center gap-1.5 py-2.5 px-2 md:px-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-600 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-emerald-500/25 rounded-lg transition-all duration-300 hover:bg-white/50 dark:hover:bg-white/10"
                 >
-                  <Icon className="h-4 w-4" />
-                  <span className="hidden sm:inline font-medium">{tab.label}</span>
-                  <span className="sm:hidden text-xs font-medium">{tab.label.split(' ')[0]}</span>
-                  <span className="ml-auto bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs font-semibold px-2 py-0.5 rounded-full">{count}</span>
+                  <Icon className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-xs md:text-sm font-medium truncate">{tab.label.split(' ')[0]}</span>
+                  <span className="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-[10px] md:text-xs font-semibold px-1.5 py-0.5 rounded-full flex-shrink-0">{count}</span>
                 </TabsTrigger>
               );
             })}
@@ -347,7 +346,7 @@ const TNUniversityBrowse = () => {
 
         {/* Filters - Only for Central Government with glass effect */}
         {selectedType === 'Central Government' && (
-          <div className="space-y-5 p-5 bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-2xl border border-white/40 dark:border-white/10 shadow-xl shadow-emerald-500/5">
+          <div className="space-y-4 p-3 md:p-5 bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-2xl border border-white/40 dark:border-white/10 shadow-xl shadow-emerald-500/5">
             {/* Clear All Filters */}
             {hasActiveFilters && (
               <div className="flex justify-end">
@@ -365,12 +364,11 @@ const TNUniversityBrowse = () => {
 
             {/* Location Filter */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2.5 text-sm font-semibold text-foreground">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/30">
-                  <MapPin className="h-4 w-4 text-white" />
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground flex-wrap">
+                <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/30">
+                  <MapPin className="h-3.5 w-3.5 text-white" />
                 </div>
-                <span className="text-foreground">Filter by Location</span>
-                <span className="font-tamil text-xs text-muted-foreground">/ இடம் வாரியாக வடிகட்டு</span>
+                <span className="text-foreground text-xs md:text-sm">Filter by Location</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {locationRegions.map((region) => (
@@ -398,12 +396,12 @@ const TNUniversityBrowse = () => {
               
               {/* Sub-filter: Institutions in selected location */}
               {selectedLocation && institutionsInSelectedLocation.length > 0 && (
-                <div className="mt-3 p-3 bg-blue-50/50 dark:bg-blue-950/20 rounded-xl border border-blue-200/30 dark:border-blue-800/30">
-                  <p className="text-xs font-medium text-blue-700 dark:text-blue-300 mb-2.5 flex items-center gap-1.5">
+                <div className="mt-3 p-2.5 md:p-3 bg-blue-50/50 dark:bg-blue-950/20 rounded-xl border border-blue-200/30 dark:border-blue-800/30">
+                  <p className="text-xs font-medium text-blue-700 dark:text-blue-300 mb-2 flex items-center gap-1.5">
                     <Building2 className="h-3.5 w-3.5" />
                     Institutions in {locationRegions.find(r => r.id === selectedLocation)?.label}:
                   </p>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 max-h-[120px] overflow-y-auto">
                     {institutionsInSelectedLocation.map((inst) => (
                       <Badge
                         key={inst.id}
@@ -454,7 +452,7 @@ const TNUniversityBrowse = () => {
 
         {/* Universities Grid */}
         {filteredUniversities.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
             {filteredUniversities.map((university) => (
               <UniversityCard 
                 key={university.id} 
@@ -464,7 +462,7 @@ const TNUniversityBrowse = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white/40 dark:bg-white/5 backdrop-blur-md rounded-2xl border border-white/30 dark:border-white/10">
+          <div className="text-center py-10 md:py-16 bg-white/40 dark:bg-white/5 backdrop-blur-md rounded-2xl border border-white/30 dark:border-white/10">
             <div className="p-4 rounded-full bg-emerald-100 dark:bg-emerald-900/40 w-fit mx-auto mb-4">
               <GraduationCap className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
             </div>
