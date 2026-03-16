@@ -10,7 +10,7 @@ import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamCalendar } from './ExamCalendar';
 import { ExamRecommendationQuiz } from './ExamRecommendationQuiz';
 import { JeeTneaGuide } from './JeeTneaGuide';
-import { EntranceExamPractice } from './EntranceExamPractice';
+import { PreviousYearQuestions } from '@/components/PreviousYearQuestions/PreviousYearQuestions';
 import { examCategories, entranceExams, getExamsByCategory } from './examData';
 import { ExamCategory } from './types';
 import { useBookmarkedExams } from './useBookmarkedExams';
@@ -89,7 +89,7 @@ export const EntranceExams = () => {
       </div>
 
       {/* ═══ PRACTICE VIEW ═══ */}
-      {pageView === 'practice' && <EntranceExamPractice />}
+      {pageView === 'practice' && <PreviousYearQuestions />}
 
       {/* ═══ EXAM GUIDE VIEW ═══ */}
       {pageView === 'exams' && (<>
