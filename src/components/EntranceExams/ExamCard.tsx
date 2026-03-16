@@ -121,184 +121,116 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
       </CardHeader>
 
       <CardContent className="space-y-3 pt-4">
-        {/* Conducting Body */}
-        <div className="flex items-center gap-2 text-sm">
-          <Building2 className="h-4 w-4 text-[#2E7D32]" />
-          <span className="text-[#374151] font-medium">{exam.conductingBody}</span>
-        </div>
-
-        {/* Exam Mode & Duration */}
-        <div className="grid grid-cols-2 gap-3 text-sm bg-[#F0FDF4] rounded-lg p-3">
-          <div className="flex items-center gap-2">
-            <FileText className="h-4 w-4 text-[#2E7D32]" />
-            <div>
-              <p className="text-[#6B7280] text-xs">Mode</p>
-              <p className="text-[#1F2937] font-medium text-xs">{exam.examMode}</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-[#2E7D32]" />
-            <div>
-              <p className="text-[#6B7280] text-xs">Duration</p>
-              <p className="text-[#1F2937] font-medium text-xs">{exam.duration}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* TN Student Eligibility */}
-        <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] rounded-lg p-3 border border-[#FFE082]">
-          <p className="text-xs font-semibold text-[#B8860B] mb-1 flex items-center gap-1">
-            <MapPin className="h-3 w-3" /> TN Student Eligibility
-          </p>
-          <p className="text-xs text-[#374151]">{exam.tnEligibility}</p>
-        </div>
-
-        {/* Important Dates 2026 */}
-        <div className="bg-[#E8F5E9] rounded-lg p-3">
-          <p className="text-xs font-semibold text-[#1B5E20] mb-2 flex items-center gap-1">
-            <Calendar className="h-3 w-3" /> Important Dates 2026
-          </p>
-          <div className="grid grid-cols-1 gap-1 text-xs">
-            <div className="flex justify-between">
-              <span className="text-[#6B7280]">Registration:</span>
-              <span className="font-medium text-[#1F2937]">{exam.importantDates.registration}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#6B7280]">Exam Date:</span>
-              <span className="font-medium text-[#1F2937]">{exam.importantDates.examDate}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#6B7280]">Results:</span>
-              <span className="font-medium text-[#1F2937]">{exam.importantDates.resultDate}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Application Fee */}
-        <div className="flex items-center justify-between text-sm bg-[#F0FDF4] rounded-lg p-3 border border-[#C8E6C9]">
-          <div className="flex items-center gap-2">
-            <IndianRupee className="h-4 w-4 text-[#2E7D32]" />
-            <span className="text-[#6B7280] text-xs">Application Fee:</span>
-          </div>
-          <div className="text-right">
-            <p className="font-bold text-[#1B5E20]">{exam.applicationFee.general}</p>
-            <p className="text-xs text-[#6B7280]">SC/ST: {exam.applicationFee.scst}</p>
-          </div>
-        </div>
-
-        {/* Partner Colleges */}
-        {false && exam.jkknColleges && exam.jkknColleges.length > 0 && (
-          <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] rounded-lg p-3 border border-[#FFD54F]">
-            <p className="text-xs font-semibold text-[#F59E0B] mb-2 flex items-center gap-1">
-              <Star className="h-3 w-3 fill-[#F59E0B]" /> Partner Colleges
-            </p>
-            <div className="flex flex-wrap gap-1">
-              {exam.jkknColleges.map((college, idx) => (
-                <Badge key={idx} className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0">
-                  {college}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* TN Colleges Accepting */}
-        <div>
-          <p className="text-xs font-semibold text-[#1B5E20] mb-2 flex items-center gap-1">
-            <Users className="h-3 w-3" /> TN Colleges Accepting
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {exam.tnCollegesAccepting.slice(0, 3).map((college, idx) => (
-              <Badge key={idx} variant="outline" className="text-xs bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]">
-                {college}
-              </Badge>
-            ))}
-            {exam.tnCollegesAccepting.length > 3 && (
-              <Badge variant="outline" className="text-xs bg-white text-[#2E7D32] border-[#2E7D32]">
-                +{exam.tnCollegesAccepting.length - 3} more
-              </Badge>
-            )}
-          </div>
-        </div>
-
-        {/* Official Website */}
-        <div className="text-xs text-[#6B7280] flex items-center gap-1">
-          <ExternalLink className="h-3 w-3" />
-          <a href={exam.officialWebsite} target="_blank" rel="noopener noreferrer" className="text-[#1976D2] hover:underline truncate">
-            {exam.officialWebsite}
-          </a>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-2 pt-2">
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="flex-1 border-[#2E7D32] text-[#2E7D32] hover:bg-[#E8F5E9]"
-            onClick={handleSetReminder}
-          >
-            <Bell className="h-3 w-3 mr-1" />
-            Reminder
-          </Button>
-          <Button 
-            variant="outline"
-            size="sm" 
-            className="flex-1 border-[#1976D2] text-[#1976D2] hover:bg-[#E3F2FD]"
-            onClick={handleDownloadStudyPlan}
-          >
-            <Download className="h-3 w-3 mr-1" />
-            Study Plan
-          </Button>
-        </div>
-
-        {/* How to Pass Guide Button */}
-        <Button
-          size="sm"
-          variant={showPrepGuide ? "default" : "outline"}
-          className={cn(
-            "w-full",
-            showPrepGuide
-              ? "bg-blue-600 hover:bg-blue-700 text-white"
-              : "border-blue-500 text-blue-600 hover:bg-blue-50"
+        {/* ═══ TOP ACTIONS — Most important, visible first ═══ */}
+        <div className="grid grid-cols-2 gap-2">
+          {practiceQs && practiceQs.length > 0 && (
+            <Button
+              size="sm"
+              className={cn(
+                "h-12",
+                showPractice
+                  ? "bg-violet-600 hover:bg-violet-700 text-white"
+                  : "bg-violet-50 border-2 border-violet-300 text-violet-700 hover:bg-violet-100"
+              )}
+              onClick={() => { setShowPractice(!showPractice); setShowPrepGuide(false); }}
+            >
+              <div className="flex flex-col items-center">
+                <BookOpen className="h-4 w-4 mb-0.5" />
+                <span className="text-xs font-bold">Practice ({practiceQs.length})</span>
+              </div>
+            </Button>
           )}
-          onClick={() => setShowPrepGuide(!showPrepGuide)}
-        >
-          <Target className="h-3 w-3 mr-1" />
-          {showPrepGuide ? 'Hide Preparation Guide' : 'How to Pass — Use These Features'}
-        </Button>
-
-        {showPrepGuide && (
-          <ExamPrepGuide examId={exam.id} examName={exam.name} />
-        )}
-
-        {/* Practice Questions Button */}
-        {practiceQs && practiceQs.length > 0 && (
           <Button
             size="sm"
-            variant={showPractice ? "default" : "outline"}
             className={cn(
-              "w-full",
-              showPractice
-                ? "bg-violet-600 hover:bg-violet-700 text-white"
-                : "border-violet-500 text-violet-600 hover:bg-violet-50"
+              "h-12",
+              showPrepGuide
+                ? "bg-blue-600 hover:bg-blue-700 text-white"
+                : "bg-blue-50 border-2 border-blue-300 text-blue-700 hover:bg-blue-100"
             )}
-            onClick={() => setShowPractice(!showPractice)}
+            onClick={() => { setShowPrepGuide(!showPrepGuide); setShowPractice(false); }}
           >
-            <BookOpen className="h-3 w-3 mr-1" />
-            {showPractice ? 'Hide Practice Questions' : `Practice Questions (${practiceQs.length})`}
+            <div className="flex flex-col items-center">
+              <Target className="h-4 w-4 mb-0.5" />
+              <span className="text-xs font-bold">How to Pass</span>
+            </div>
           </Button>
-        )}
+        </div>
 
-        {/* Practice Questions Section */}
+        {/* Practice Questions — shows immediately when tapped */}
         {showPractice && practiceQs && (
           <PracticeQuestions questions={practiceQs} examName={exam.name} />
         )}
 
-        <Button 
-          size="sm" 
-          className="w-full bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white"
-          onClick={() => window.open(exam.officialWebsite, '_blank')}
-        >
+        {/* How to Pass Guide — shows immediately when tapped */}
+        {showPrepGuide && (
+          <ExamPrepGuide examId={exam.id} examName={exam.name} />
+        )}
+
+        {/* ═══ KEY INFO — Compact summary ═══ */}
+        <div className="grid grid-cols-3 gap-2 text-center">
+          <div className="bg-[#F0FDF4] rounded-lg p-2">
+            <p className="text-[10px] text-[#6B7280]">Mode</p>
+            <p className="text-xs font-bold text-[#1B5E20]">{exam.examMode.split(' ')[0]}</p>
+          </div>
+          <div className="bg-[#F0FDF4] rounded-lg p-2">
+            <p className="text-[10px] text-[#6B7280]">Duration</p>
+            <p className="text-xs font-bold text-[#1B5E20]">{exam.duration}</p>
+          </div>
+          <div className="bg-[#FFF8E1] rounded-lg p-2">
+            <p className="text-[10px] text-[#6B7280]">Fee</p>
+            <p className="text-xs font-bold text-[#B8860B]">{exam.applicationFee.general}</p>
+          </div>
+        </div>
+
+        {/* Important Dates — compact */}
+        <div className="bg-[#E8F5E9] rounded-lg p-2.5">
+          <div className="grid grid-cols-3 gap-2 text-xs">
+            <div>
+              <p className="text-[10px] text-[#6B7280]">Registration</p>
+              <p className="font-bold text-[#1B5E20]">{exam.importantDates.registration}</p>
+            </div>
+            <div>
+              <p className="text-[10px] text-[#6B7280]">Exam Date</p>
+              <p className="font-bold text-[#1B5E20]">{exam.importantDates.examDate}</p>
+            </div>
+            <div>
+              <p className="text-[10px] text-[#6B7280]">Results</p>
+              <p className="font-bold text-[#1B5E20]">{exam.importantDates.resultDate}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* TN Eligibility — compact */}
+        <div className="bg-[#FFF8E1] rounded-lg p-2.5 border border-[#FFE082]">
+          <p className="text-xs text-[#374151]"><span className="font-bold text-[#B8860B]">TN Students:</span> {exam.tnEligibility}</p>
+        </div>
+
+        {/* TN Colleges — compact */}
+        <div className="flex flex-wrap gap-1">
+          {exam.tnCollegesAccepting.slice(0, 3).map((college, idx) => (
+            <Badge key={idx} variant="outline" className="text-[10px] bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]">
+              {college}
+            </Badge>
+          ))}
+          {exam.tnCollegesAccepting.length > 3 && (
+            <Badge variant="outline" className="text-[10px] bg-white text-[#2E7D32] border-[#2E7D32]">
+              +{exam.tnCollegesAccepting.length - 3} more
+            </Badge>
+          )}
+        </div>
+
+        {/* Bottom Actions */}
+        <div className="flex gap-2 pt-1">
+          <Button variant="outline" size="sm" className="flex-1 h-9 border-[#2E7D32] text-[#2E7D32] hover:bg-[#E8F5E9] text-xs" onClick={handleSetReminder}>
+            <Bell className="h-3 w-3 mr-1" /> Reminder
+          </Button>
+          <Button variant="outline" size="sm" className="flex-1 h-9 border-[#1976D2] text-[#1976D2] hover:bg-[#E3F2FD] text-xs" onClick={handleDownloadStudyPlan}>
+            <Download className="h-3 w-3 mr-1" /> Study Plan
+          </Button>
+        </div>
+        <Button size="sm" className="w-full h-10 bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white font-bold"
+          onClick={() => window.open(exam.officialWebsite, '_blank')}>
           Apply Now <ExternalLink className="h-3 w-3 ml-1" />
         </Button>
       </CardContent>
