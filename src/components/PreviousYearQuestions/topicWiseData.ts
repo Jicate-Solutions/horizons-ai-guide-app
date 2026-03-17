@@ -1732,6 +1732,343 @@ const neetPgTopics: SubjectTopics = {
   ],
 };
 
+// ═══ UPSC PRELIMS ═══
+const upscPrelimsTopics: SubjectTopics = {
+  'General Studies': [
+    { section: 'History & Culture', topics: [
+      { name: 'Ancient India', total: 8, avg: 2, weightage: 4, trend: 5 },
+      { name: 'Medieval India', total: 6, avg: 1.5, weightage: 3, trend: -10 },
+      { name: 'Modern India & Freedom Movement', total: 12, avg: 3, weightage: 6, trend: 15 },
+      { name: 'Art & Culture', total: 8, avg: 2, weightage: 4, trend: 20 },
+    ]},
+    { section: 'Geography', topics: [
+      { name: 'Physical Geography', total: 6, avg: 1.5, weightage: 3, trend: 10 },
+      { name: 'Indian Geography', total: 10, avg: 2.5, weightage: 5, trend: 8 },
+      { name: 'World Geography', total: 4, avg: 1, weightage: 2, trend: -5 },
+      { name: 'Environment & Ecology', total: 12, avg: 3, weightage: 6, trend: 25 },
+    ]},
+    { section: 'Polity & Governance', topics: [
+      { name: 'Indian Constitution', total: 14, avg: 3.5, weightage: 7, trend: 10 },
+      { name: 'Parliament & State Legislature', total: 6, avg: 1.5, weightage: 3, trend: 5 },
+      { name: 'Judiciary', total: 5, avg: 1.2, weightage: 2.5, trend: 15 },
+      { name: 'Panchayati Raj & Local Governance', total: 4, avg: 1, weightage: 2, trend: -8 },
+      { name: 'Rights & Constitutional Bodies', total: 6, avg: 1.5, weightage: 3, trend: 12 },
+    ]},
+    { section: 'Economy', topics: [
+      { name: 'Indian Economy Basics', total: 10, avg: 2.5, weightage: 5, trend: 10 },
+      { name: 'Banking & Monetary Policy', total: 6, avg: 1.5, weightage: 3, trend: 20 },
+      { name: 'Budget & Fiscal Policy', total: 5, avg: 1.2, weightage: 2.5, trend: 8 },
+      { name: 'Agriculture & Rural Economy', total: 4, avg: 1, weightage: 2, trend: -5 },
+      { name: 'International Economy & Trade', total: 4, avg: 1, weightage: 2, trend: 15 },
+    ]},
+    { section: 'Science & Technology', topics: [
+      { name: 'General Science (Physics, Chemistry, Biology)', total: 8, avg: 2, weightage: 4, trend: -10 },
+      { name: 'Space & Defence Technology', total: 5, avg: 1.2, weightage: 2.5, trend: 30 },
+      { name: 'IT & Emerging Technology', total: 4, avg: 1, weightage: 2, trend: 40 },
+      { name: 'Health & Medicine', total: 3, avg: 0.8, weightage: 1.5, trend: 20 },
+    ]},
+    { section: 'Current Affairs', topics: [
+      { name: 'National Current Affairs', total: 15, avg: 3.7, weightage: 7.5, trend: 5 },
+      { name: 'International Current Affairs', total: 8, avg: 2, weightage: 4, trend: 10 },
+      { name: 'Awards, Summits & Reports', total: 4, avg: 1, weightage: 2, trend: -5 },
+    ]},
+  ],
+  'CSAT': [
+    { section: 'Aptitude & Reasoning', topics: [
+      { name: 'Reading Comprehension', total: 30, avg: 7.5, weightage: 15, trend: 5 },
+      { name: 'Logical Reasoning', total: 15, avg: 3.7, weightage: 7.5, trend: 10 },
+      { name: 'Analytical Ability', total: 10, avg: 2.5, weightage: 5, trend: 8 },
+      { name: 'Data Interpretation', total: 10, avg: 2.5, weightage: 5, trend: 15 },
+      { name: 'Basic Numeracy', total: 10, avg: 2.5, weightage: 5, trend: -5 },
+      { name: 'Decision Making', total: 5, avg: 1.2, weightage: 2.5, trend: 20 },
+    ]},
+  ],
+};
+
+// ═══ TNPSC GROUP 4 ═══
+const tnpscGroup4Topics: SubjectTopics = {
+  'GS': [
+    { section: 'General Science', topics: [
+      { name: 'Physics — Basic Concepts', total: 3, avg: 1, weightage: 2, trend: 5 },
+      { name: 'Chemistry — Elements & Compounds', total: 3, avg: 1, weightage: 2, trend: 0 },
+      { name: 'Biology — Human Body & Health', total: 4, avg: 1.3, weightage: 2.7, trend: 10 },
+    ]},
+    { section: 'Geography', topics: [
+      { name: 'Indian Geography', total: 5, avg: 1.7, weightage: 3.3, trend: 8 },
+      { name: 'Tamil Nadu Geography', total: 3, avg: 1, weightage: 2, trend: 15 },
+    ]},
+    { section: 'History & Culture', topics: [
+      { name: 'Ancient & Medieval Tamil Nadu', total: 8, avg: 2.7, weightage: 5.3, trend: 10 },
+      { name: 'Indian Freedom Movement', total: 10, avg: 3.3, weightage: 6.7, trend: 5 },
+      { name: 'TN Social Reform Movements', total: 8, avg: 2.7, weightage: 5.3, trend: 20 },
+    ]},
+    { section: 'Polity & Economy', topics: [
+      { name: 'Indian Constitution', total: 15, avg: 5, weightage: 10, trend: 12 },
+      { name: 'Indian Economy', total: 10, avg: 3.3, weightage: 6.7, trend: 8 },
+      { name: 'TN Economy & Development', total: 10, avg: 3.3, weightage: 6.7, trend: 25 },
+    ]},
+    { section: 'Current Affairs', topics: [
+      { name: 'National & International Affairs', total: 10, avg: 3.3, weightage: 6.7, trend: 5 },
+      { name: 'TN State Current Affairs', total: 8, avg: 2.7, weightage: 5.3, trend: 15 },
+    ]},
+  ],
+  'Tamil': [
+    { section: 'Tamil Language', topics: [
+      { name: 'Tamil Grammar (இலக்கணம்)', total: 25, avg: 8.3, weightage: 16.7, trend: 5 },
+      { name: 'Tamil Vocabulary (சொல்லகராதி)', total: 15, avg: 5, weightage: 10, trend: 0 },
+      { name: 'Tamil Literature (இலக்கியம்)', total: 15, avg: 5, weightage: 10, trend: 10 },
+      { name: 'Tamil Comprehension', total: 15, avg: 5, weightage: 10, trend: -5 },
+      { name: 'Tamil Translation', total: 5, avg: 1.7, weightage: 3.3, trend: 0 },
+    ]},
+  ],
+  'Aptitude': [
+    { section: 'Aptitude & Reasoning', topics: [
+      { name: 'Number Series & Patterns', total: 5, avg: 1.7, weightage: 3.3, trend: 10 },
+      { name: 'Percentage, Ratio & Proportion', total: 4, avg: 1.3, weightage: 2.7, trend: 5 },
+      { name: 'Time, Speed & Distance', total: 3, avg: 1, weightage: 2, trend: 0 },
+      { name: 'Profit & Loss, Interest', total: 3, avg: 1, weightage: 2, trend: -5 },
+      { name: 'Logical Reasoning & Coding', total: 5, avg: 1.7, weightage: 3.3, trend: 15 },
+      { name: 'Blood Relations & Directions', total: 3, avg: 1, weightage: 2, trend: 8 },
+    ]},
+  ],
+};
+const tnpscGroup1Topics: SubjectTopics = tnpscGroup4Topics;
+const tnpscGroup2Topics: SubjectTopics = tnpscGroup4Topics;
+
+// ═══ SSC CGL ═══
+const sscCglTopics: SubjectTopics = {
+  'Reasoning': [
+    { section: 'General Intelligence & Reasoning', topics: [
+      { name: 'Analogies', total: 5, avg: 1.7, weightage: 4, trend: 5 },
+      { name: 'Classification (Odd One Out)', total: 4, avg: 1.3, weightage: 3.2, trend: 0 },
+      { name: 'Coding-Decoding', total: 5, avg: 1.7, weightage: 4, trend: 10 },
+      { name: 'Series (Number, Letter, Figure)', total: 5, avg: 1.7, weightage: 4, trend: 8 },
+      { name: 'Blood Relations', total: 3, avg: 1, weightage: 2.4, trend: -5 },
+      { name: 'Direction Sense', total: 3, avg: 1, weightage: 2.4, trend: 0 },
+      { name: 'Syllogism', total: 3, avg: 1, weightage: 2.4, trend: 15 },
+      { name: 'Non-Verbal Reasoning (Figures)', total: 5, avg: 1.7, weightage: 4, trend: 10 },
+    ]},
+  ],
+  'Quantitative': [
+    { section: 'Quantitative Aptitude', topics: [
+      { name: 'Number System', total: 4, avg: 1.3, weightage: 3.2, trend: 5 },
+      { name: 'Percentage', total: 4, avg: 1.3, weightage: 3.2, trend: 10 },
+      { name: 'Ratio & Proportion', total: 3, avg: 1, weightage: 2.4, trend: 0 },
+      { name: 'Average', total: 3, avg: 1, weightage: 2.4, trend: -5 },
+      { name: 'Profit & Loss', total: 3, avg: 1, weightage: 2.4, trend: 8 },
+      { name: 'Simple & Compound Interest', total: 3, avg: 1, weightage: 2.4, trend: 5 },
+      { name: 'Time & Work', total: 4, avg: 1.3, weightage: 3.2, trend: 15 },
+      { name: 'Time, Speed & Distance', total: 3, avg: 1, weightage: 2.4, trend: 10 },
+      { name: 'Algebra & Geometry', total: 5, avg: 1.7, weightage: 4, trend: 12 },
+      { name: 'Trigonometry', total: 5, avg: 1.7, weightage: 4, trend: 20 },
+      { name: 'Data Interpretation', total: 5, avg: 1.7, weightage: 4, trend: 25 },
+    ]},
+  ],
+  'English': [
+    { section: 'English Language', topics: [
+      { name: 'Reading Comprehension', total: 5, avg: 1.7, weightage: 4, trend: 10 },
+      { name: 'Error Spotting', total: 5, avg: 1.7, weightage: 4, trend: 5 },
+      { name: 'Fill in the Blanks', total: 4, avg: 1.3, weightage: 3.2, trend: 0 },
+      { name: 'Synonyms & Antonyms', total: 4, avg: 1.3, weightage: 3.2, trend: -5 },
+      { name: 'Idioms & Phrases', total: 3, avg: 1, weightage: 2.4, trend: 8 },
+      { name: 'One Word Substitution', total: 3, avg: 1, weightage: 2.4, trend: 5 },
+      { name: 'Sentence Improvement', total: 4, avg: 1.3, weightage: 3.2, trend: 10 },
+      { name: 'Active/Passive & Direct/Indirect', total: 3, avg: 1, weightage: 2.4, trend: 0 },
+    ]},
+  ],
+  'GK': [
+    { section: 'General Knowledge', topics: [
+      { name: 'History', total: 5, avg: 1.7, weightage: 4, trend: 5 },
+      { name: 'Geography', total: 4, avg: 1.3, weightage: 3.2, trend: 0 },
+      { name: 'Polity & Constitution', total: 5, avg: 1.7, weightage: 4, trend: 10 },
+      { name: 'Economy', total: 4, avg: 1.3, weightage: 3.2, trend: 15 },
+      { name: 'General Science', total: 4, avg: 1.3, weightage: 3.2, trend: 8 },
+      { name: 'Current Affairs', total: 6, avg: 2, weightage: 4.8, trend: 20 },
+    ]},
+  ],
+};
+
+// ═══ SBI PO ═══
+const sbiPoTopics: SubjectTopics = {
+  'Reasoning': [
+    { section: 'Reasoning Ability', topics: [
+      { name: 'Seating Arrangement (Linear & Circular)', total: 10, avg: 3.3, weightage: 10, trend: 15 },
+      { name: 'Puzzles (Floor, Box, Scheduling)', total: 10, avg: 3.3, weightage: 10, trend: 20 },
+      { name: 'Syllogism', total: 5, avg: 1.7, weightage: 5, trend: 5 },
+      { name: 'Blood Relations', total: 3, avg: 1, weightage: 3, trend: 0 },
+      { name: 'Coding-Decoding', total: 5, avg: 1.7, weightage: 5, trend: 10 },
+      { name: 'Inequality', total: 5, avg: 1.7, weightage: 5, trend: 8 },
+      { name: 'Direction Sense', total: 2, avg: 0.7, weightage: 2, trend: -5 },
+      { name: 'Input-Output', total: 3, avg: 1, weightage: 3, trend: 12 },
+      { name: 'Data Sufficiency', total: 3, avg: 1, weightage: 3, trend: 5 },
+    ]},
+  ],
+  'Quantitative': [
+    { section: 'Quantitative Aptitude', topics: [
+      { name: 'Data Interpretation (Bar, Pie, Table)', total: 10, avg: 3.3, weightage: 10, trend: 25 },
+      { name: 'Number Series', total: 5, avg: 1.7, weightage: 5, trend: 10 },
+      { name: 'Simplification & Approximation', total: 5, avg: 1.7, weightage: 5, trend: 5 },
+      { name: 'Percentage & Ratio', total: 3, avg: 1, weightage: 3, trend: 0 },
+      { name: 'Profit & Loss', total: 3, avg: 1, weightage: 3, trend: -5 },
+      { name: 'Time & Work', total: 3, avg: 1, weightage: 3, trend: 8 },
+      { name: 'Speed, Time & Distance', total: 3, avg: 1, weightage: 3, trend: 5 },
+      { name: 'Probability & Permutation', total: 3, avg: 1, weightage: 3, trend: 15 },
+    ]},
+  ],
+  'English': [
+    { section: 'English Language', topics: [
+      { name: 'Reading Comprehension', total: 10, avg: 3.3, weightage: 10, trend: 5 },
+      { name: 'Cloze Test', total: 5, avg: 1.7, weightage: 5, trend: 10 },
+      { name: 'Error Spotting', total: 5, avg: 1.7, weightage: 5, trend: 0 },
+      { name: 'Para Jumbles', total: 5, avg: 1.7, weightage: 5, trend: 15 },
+      { name: 'Fill in the Blanks (Vocabulary)', total: 5, avg: 1.7, weightage: 5, trend: 8 },
+    ]},
+  ],
+  'Banking': [
+    { section: 'Banking & Financial Awareness', topics: [
+      { name: 'RBI & Monetary Policy', total: 5, avg: 1.7, weightage: 5, trend: 20 },
+      { name: 'Banking Regulations & Acts', total: 4, avg: 1.3, weightage: 4, trend: 10 },
+      { name: 'Financial Markets & Instruments', total: 3, avg: 1, weightage: 3, trend: 15 },
+      { name: 'Government Schemes & Policies', total: 5, avg: 1.7, weightage: 5, trend: 25 },
+      { name: 'Current Banking Affairs', total: 5, avg: 1.7, weightage: 5, trend: 10 },
+    ]},
+  ],
+};
+const ibpsPoTopics: SubjectTopics = sbiPoTopics;
+
+// ═══ RRB NTPC ═══
+const rrbNtpcTopics: SubjectTopics = {
+  'Maths': [
+    { section: 'Mathematics', topics: [
+      { name: 'Number System', total: 5, avg: 1.7, weightage: 5, trend: 5 },
+      { name: 'HCF & LCM', total: 3, avg: 1, weightage: 3, trend: 0 },
+      { name: 'Percentage', total: 4, avg: 1.3, weightage: 4, trend: 10 },
+      { name: 'Ratio & Proportion', total: 3, avg: 1, weightage: 3, trend: 5 },
+      { name: 'Profit & Loss', total: 3, avg: 1, weightage: 3, trend: 8 },
+      { name: 'Simple & Compound Interest', total: 3, avg: 1, weightage: 3, trend: -5 },
+      { name: 'Time & Work', total: 3, avg: 1, weightage: 3, trend: 10 },
+      { name: 'Time, Speed & Distance', total: 3, avg: 1, weightage: 3, trend: 5 },
+      { name: 'Mensuration & Geometry', total: 4, avg: 1.3, weightage: 4, trend: 15 },
+      { name: 'Algebra', total: 3, avg: 1, weightage: 3, trend: 8 },
+    ]},
+  ],
+  'Reasoning': [
+    { section: 'General Intelligence & Reasoning', topics: [
+      { name: 'Analogies', total: 4, avg: 1.3, weightage: 4, trend: 5 },
+      { name: 'Coding-Decoding', total: 4, avg: 1.3, weightage: 4, trend: 10 },
+      { name: 'Series (Number & Letter)', total: 4, avg: 1.3, weightage: 4, trend: 8 },
+      { name: 'Classification', total: 3, avg: 1, weightage: 3, trend: 0 },
+      { name: 'Syllogism', total: 3, avg: 1, weightage: 3, trend: 15 },
+      { name: 'Blood Relations', total: 3, avg: 1, weightage: 3, trend: -5 },
+      { name: 'Direction & Distance', total: 2, avg: 0.7, weightage: 2, trend: 0 },
+      { name: 'Non-Verbal Reasoning', total: 4, avg: 1.3, weightage: 4, trend: 12 },
+    ]},
+  ],
+  'GK': [
+    { section: 'General Knowledge & Current Affairs', topics: [
+      { name: 'Indian History', total: 5, avg: 1.7, weightage: 5, trend: 5 },
+      { name: 'Indian Geography', total: 4, avg: 1.3, weightage: 4, trend: 10 },
+      { name: 'Indian Polity', total: 5, avg: 1.7, weightage: 5, trend: 8 },
+      { name: 'Indian Economy', total: 4, avg: 1.3, weightage: 4, trend: 15 },
+      { name: 'General Science', total: 5, avg: 1.7, weightage: 5, trend: 5 },
+      { name: 'Current Affairs', total: 8, avg: 2.7, weightage: 8, trend: 20 },
+      { name: 'Computer Awareness', total: 3, avg: 1, weightage: 3, trend: 10 },
+    ]},
+  ],
+};
+
+// ═══ NDA (already in entrance but adding here for govt category) ═══
+const ndaGovtTopics: SubjectTopics = {
+  'Maths': [
+    { section: 'Mathematics', topics: [
+      { name: 'Algebra', total: 30, avg: 10, weightage: 10, trend: 5 },
+      { name: 'Trigonometry', total: 20, avg: 6.7, weightage: 6.7, trend: 10 },
+      { name: 'Matrices & Determinants', total: 15, avg: 5, weightage: 5, trend: 8 },
+      { name: 'Calculus', total: 25, avg: 8.3, weightage: 8.3, trend: 15 },
+      { name: 'Probability & Statistics', total: 15, avg: 5, weightage: 5, trend: 5 },
+      { name: 'Coordinate Geometry', total: 15, avg: 5, weightage: 5, trend: 0 },
+      { name: 'Vectors', total: 10, avg: 3.3, weightage: 3.3, trend: 12 },
+    ]},
+  ],
+  'GK': [
+    { section: 'General Ability Test', topics: [
+      { name: 'English Comprehension', total: 50, avg: 16.7, weightage: 8.3, trend: 5 },
+      { name: 'General Knowledge — History', total: 15, avg: 5, weightage: 2.5, trend: 10 },
+      { name: 'General Knowledge — Geography', total: 15, avg: 5, weightage: 2.5, trend: 8 },
+      { name: 'General Knowledge — Polity', total: 10, avg: 3.3, weightage: 1.7, trend: 5 },
+      { name: 'General Knowledge — Economy', total: 5, avg: 1.7, weightage: 0.8, trend: 15 },
+      { name: 'General Knowledge — Science', total: 15, avg: 5, weightage: 2.5, trend: 10 },
+      { name: 'Current Affairs & Defence', total: 15, avg: 5, weightage: 2.5, trend: 20 },
+    ]},
+  ],
+};
+
+// ═══ CDS ═══
+const cdsTopics: SubjectTopics = {
+  'English': [
+    { section: 'English', topics: [
+      { name: 'Reading Comprehension', total: 20, avg: 6.7, weightage: 10, trend: 5 },
+      { name: 'Spotting Errors', total: 10, avg: 3.3, weightage: 5, trend: 10 },
+      { name: 'Sentence Improvement', total: 10, avg: 3.3, weightage: 5, trend: 8 },
+      { name: 'Synonyms & Antonyms', total: 10, avg: 3.3, weightage: 5, trend: 0 },
+      { name: 'Idioms & Phrases', total: 5, avg: 1.7, weightage: 2.5, trend: 5 },
+      { name: 'Fill in the Blanks', total: 10, avg: 3.3, weightage: 5, trend: -5 },
+      { name: 'Ordering of Sentences', total: 5, avg: 1.7, weightage: 2.5, trend: 15 },
+    ]},
+  ],
+  'GK': [
+    { section: 'General Knowledge', topics: [
+      { name: 'History — Ancient, Medieval, Modern', total: 15, avg: 5, weightage: 7.5, trend: 5 },
+      { name: 'Geography — India & World', total: 12, avg: 4, weightage: 6, trend: 10 },
+      { name: 'Polity — Constitution & Governance', total: 12, avg: 4, weightage: 6, trend: 8 },
+      { name: 'Economy — Indian & Global', total: 10, avg: 3.3, weightage: 5, trend: 15 },
+      { name: 'General Science', total: 10, avg: 3.3, weightage: 5, trend: 5 },
+      { name: 'Current Affairs & Defence', total: 15, avg: 5, weightage: 7.5, trend: 20 },
+    ]},
+  ],
+  'Maths': [
+    { section: 'Elementary Mathematics', topics: [
+      { name: 'Number System', total: 8, avg: 2.7, weightage: 4, trend: 5 },
+      { name: 'Algebra', total: 10, avg: 3.3, weightage: 5, trend: 10 },
+      { name: 'Trigonometry', total: 10, avg: 3.3, weightage: 5, trend: 8 },
+      { name: 'Geometry & Mensuration', total: 10, avg: 3.3, weightage: 5, trend: 5 },
+      { name: 'Statistics', total: 5, avg: 1.7, weightage: 2.5, trend: 15 },
+    ]},
+  ],
+};
+
+// ═══ AFCAT ═══
+const afcatTopics: SubjectTopics = {
+  'Verbal': [
+    { section: 'Verbal Ability in English', topics: [
+      { name: 'Reading Comprehension', total: 10, avg: 3.3, weightage: 10, trend: 5 },
+      { name: 'Error Detection', total: 5, avg: 1.7, weightage: 5, trend: 10 },
+      { name: 'Sentence Completion', total: 5, avg: 1.7, weightage: 5, trend: 0 },
+      { name: 'Synonyms & Antonyms', total: 5, avg: 1.7, weightage: 5, trend: -5 },
+      { name: 'Idioms & Phrases', total: 3, avg: 1, weightage: 3, trend: 8 },
+    ]},
+  ],
+  'Numerical': [
+    { section: 'Numerical Ability', topics: [
+      { name: 'Decimal Fractions', total: 3, avg: 1, weightage: 3, trend: 5 },
+      { name: 'Percentage', total: 3, avg: 1, weightage: 3, trend: 10 },
+      { name: 'Average, Ratio & Proportion', total: 4, avg: 1.3, weightage: 4, trend: 8 },
+      { name: 'Profit & Loss', total: 3, avg: 1, weightage: 3, trend: 0 },
+      { name: 'Time & Distance', total: 3, avg: 1, weightage: 3, trend: 5 },
+      { name: 'Simple & Compound Interest', total: 3, avg: 1, weightage: 3, trend: -5 },
+    ]},
+  ],
+  'Reasoning': [
+    { section: 'Reasoning & Military Aptitude', topics: [
+      { name: 'Verbal Reasoning — Analogy, Classification', total: 5, avg: 1.7, weightage: 5, trend: 10 },
+      { name: 'Non-Verbal Reasoning — Figures & Patterns', total: 5, avg: 1.7, weightage: 5, trend: 8 },
+      { name: 'Spatial Reasoning', total: 3, avg: 1, weightage: 3, trend: 15 },
+      { name: 'General Awareness & Defence', total: 10, avg: 3.3, weightage: 10, trend: 20 },
+      { name: 'Current Affairs — National & International', total: 5, avg: 1.7, weightage: 5, trend: 25 },
+    ]},
+  ],
+};
+
 export const examTopicData: ExamTopicMap = {
   'jee-main': jeeMainTopics,
   'jee-advanced': jeeAdvancedTopics,
@@ -1745,4 +2082,15 @@ export const examTopicData: ExamTopicMap = {
   'aiims': aiimsTopics,
   'class-12': class12Topics,
   'neet-pg': neetPgTopics,
+  'upsc-prelims': upscPrelimsTopics,
+  'tnpsc-group1': tnpscGroup1Topics,
+  'tnpsc-group2': tnpscGroup2Topics,
+  'tnpsc-group4': tnpscGroup4Topics,
+  'ssc-cgl': sscCglTopics,
+  'sbi-po': sbiPoTopics,
+  'ibps-po': ibpsPoTopics,
+  'rrb-ntpc': rrbNtpcTopics,
+  'nda': ndaGovtTopics,
+  'cds': cdsTopics,
+  'afcat': afcatTopics,
 };

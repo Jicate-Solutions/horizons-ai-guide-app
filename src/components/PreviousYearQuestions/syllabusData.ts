@@ -428,3 +428,104 @@ syllabusData["class-12::Chemistry"] = {
 syllabusData["class-12::Mathematics"] = {
   "Mathematics — Board Exam": { officialTopics: ["Relations & functions", "Inverse trig", "Matrices & determinants", "Continuity & differentiability", "Application of derivatives", "Integrals", "Application of integrals", "Differential equations", "Vectors", "3D geometry", "Linear programming", "Probability"], books: [{ name: "NCERT Maths Class 12", author: "NCERT", why: "Board exam = NCERT — solve every exercise" }, { name: "R.D. Sharma Class 12", author: "R.D. Sharma", why: "Extra problems per chapter" }, { name: "Oswaal Sample Papers", author: "Oswaal", why: "Board exam pattern" }] },
 };
+
+// ═══ UPSC PRELIMS ═══
+syllabusData["upsc-prelims::General Studies"] = {
+  "Indian History": { officialTopics: ["Ancient India — Indus Valley, Vedic, Maurya, Gupta", "Medieval India — Delhi Sultanate, Mughals", "Modern India — British rule, Reform movements", "Indian Freedom Movement — 1857 to 1947", "Art & Culture — Architecture, Dance, Music, Paintings"], books: [{ name: "India's Struggle for Independence", author: "Bipan Chandra", why: "Best book for Modern India & Freedom Movement" }, { name: "Indian Art & Culture", author: "Nitin Singhania", why: "Complete coverage of Art & Culture for UPSC" }, { name: "Ancient & Medieval India", author: "Poonam Dalal Dahiya", why: "Concise coverage of ancient & medieval period" }] },
+  "Indian Polity": { officialTopics: ["Indian Constitution — Preamble, Fundamental Rights, DPSP", "Parliament, State Legislature", "Judiciary — Supreme Court, High Courts", "Constitutional Bodies — Election Commission, CAG, UPSC", "Panchayati Raj & Local Governance", "Emergency Provisions"], books: [{ name: "Indian Polity", author: "M. Laxmikanth", why: "Bible of Indian Polity for UPSC — covers everything" }, { name: "Introduction to the Constitution of India", author: "D.D. Basu", why: "For deeper constitutional understanding" }] },
+  "Indian Geography": { officialTopics: ["Physical Geography — Landforms, Climate, Drainage", "Indian Geography — Soil, Vegetation, Rivers, Mountains", "Economic Geography — Agriculture, Industry, Resources", "Environment & Ecology — Biodiversity, Climate Change, Pollution"], books: [{ name: "Certificate Physical & Human Geography", author: "G.C. Leong", why: "Foundation book for Physical Geography" }, { name: "Indian Geography", author: "Majid Husain", why: "Comprehensive Indian Geography" }, { name: "Environment", author: "Shankar IAS", why: "Best for Environment & Ecology" }] },
+  "Indian Economy": { officialTopics: ["Economic Planning — Five Year Plans, NITI Aayog", "Banking — RBI, Monetary Policy, Credit Policy", "Fiscal Policy — Budget, Taxation, Deficit", "Agriculture — Green Revolution, MSP, Reforms", "Industry & Infrastructure", "External Trade & Balance of Payments"], books: [{ name: "Indian Economy", author: "Ramesh Singh", why: "Most comprehensive economy book for UPSC" }, { name: "Indian Economy", author: "Sriram IAS (notes)", why: "Concise notes with current data" }] },
+  "General Science": { officialTopics: ["Physics — Basic concepts, Light, Sound, Electricity", "Chemistry — Elements, Acids, Bases, Reactions", "Biology — Human Body, Diseases, Nutrition", "Space & Defence Technology", "IT & Emerging Technology — AI, Blockchain, IoT"], books: [{ name: "NCERT Science Class 6-10", author: "NCERT", why: "UPSC science questions are at NCERT level" }, { name: "Science & Technology", author: "TMH (Tata McGraw Hill)", why: "Current S&T developments" }] },
+};
+syllabusData["upsc-prelims::CSAT"] = {
+  "CSAT Paper 2": { officialTopics: ["Reading Comprehension — English passages", "Logical Reasoning — Statements, Conclusions, Assumptions", "Analytical Ability — Puzzles, Arrangements", "Data Interpretation — Tables, Graphs, Charts", "Basic Numeracy — Arithmetic, Algebra", "Decision Making & Problem Solving"], books: [{ name: "CSAT Paper 2 Manual", author: "TMH", why: "Complete CSAT preparation guide" }, { name: "Verbal & Non-Verbal Reasoning", author: "R.S. Aggarwal", why: "Best for logical reasoning practice" }, { name: "Quantitative Aptitude", author: "R.S. Aggarwal", why: "Arithmetic and data interpretation" }] },
+};
+
+// ═══ TNPSC GROUP 4 ═══
+syllabusData["tnpsc-group4::GS"] = {
+  "General Studies": { officialTopics: ["General Science — Physics, Chemistry, Biology", "Indian Geography — Rivers, Mountains, Climate", "Tamil Nadu Geography — Districts, Rivers, Resources", "Indian History & Freedom Movement", "TN History & Social Reform Movements — Periyar, Anna, Kamaraj", "Indian Constitution — Fundamental Rights, DPSP, Amendments", "Indian Economy — Planning, Budget, Banking", "TN Economy — Agriculture, Industry, Schemes", "Current Affairs — National & TN State"], books: [{ name: "TNPSC Group 4 Study Material", author: "Sakthi/Sura Publications", why: "Complete Tamil Nadu-focused study material" }, { name: "Tamil Nadu History", author: "TNPSC Topper Notes", why: "TN history from Sangam age to modern era" }, { name: "Indian Polity", author: "M. Laxmikanth", why: "For Constitution and Polity portions" }, { name: "NCERT Social Science 6-10", author: "NCERT", why: "Foundation for History, Geography, Civics" }] },
+};
+syllabusData["tnpsc-group4::Tamil"] = {
+  "Tamil Language": { officialTopics: ["Tamil Grammar (இலக்கணம்) — எழுத்து, சொல், பொருள்", "Tamil Vocabulary — Synonyms, Antonyms, Proverbs", "Tamil Literature — Sangam, Bhakti, Modern", "Tamil Scholars & Their Works", "Comprehension & Translation", "Tamil Civilization & Culture"], books: [{ name: "TNPSC Tamil Guide", author: "Sakthi Publications", why: "Complete Tamil grammar & literature for TNPSC" }, { name: "Thamizh Ilakkanam", author: "Agathiyar/Nannool", why: "Classical Tamil grammar reference" }, { name: "6th-12th Tamil Textbooks", author: "TN State Board", why: "TNPSC Tamil questions come from school textbooks" }] },
+};
+syllabusData["tnpsc-group4::Aptitude"] = {
+  "Aptitude & Reasoning": { officialTopics: ["Number Series & Patterns", "Percentage, Ratio & Proportion", "Time & Work, Time & Distance", "Profit & Loss, Simple & Compound Interest", "Coding-Decoding", "Blood Relations & Directions", "Logical Reasoning — Syllogism, Statements"], books: [{ name: "Quantitative Aptitude", author: "R.S. Aggarwal", why: "Best aptitude book — covers all TNPSC-level topics" }, { name: "Reasoning", author: "R.S. Aggarwal", why: "Verbal & Non-verbal reasoning" }, { name: "TNPSC Aptitude Guide", author: "Sura Publications", why: "TNPSC-specific aptitude questions" }] },
+};
+syllabusData["tnpsc-group1::GS"] = syllabusData["tnpsc-group4::GS"];
+syllabusData["tnpsc-group1::Tamil"] = syllabusData["tnpsc-group4::Tamil"];
+syllabusData["tnpsc-group1::Aptitude"] = syllabusData["tnpsc-group4::Aptitude"];
+syllabusData["tnpsc-group2::GS"] = syllabusData["tnpsc-group4::GS"];
+syllabusData["tnpsc-group2::Tamil"] = syllabusData["tnpsc-group4::Tamil"];
+syllabusData["tnpsc-group2::Aptitude"] = syllabusData["tnpsc-group4::Aptitude"];
+
+// ═══ SSC CGL ═══
+syllabusData["ssc-cgl::Reasoning"] = {
+  "General Intelligence & Reasoning": { officialTopics: ["Analogies", "Classification (Odd One Out)", "Coding-Decoding", "Number & Letter Series", "Blood Relations", "Direction Sense", "Syllogism", "Non-Verbal Reasoning — Mirror Image, Paper Folding, Patterns", "Venn Diagrams", "Matrix"], books: [{ name: "Verbal & Non-Verbal Reasoning", author: "R.S. Aggarwal", why: "Best reasoning book — covers all SSC patterns" }, { name: "SSC Reasoning", author: "Rakesh Yadav", why: "SSC-specific shortcuts and tricks" }] },
+};
+syllabusData["ssc-cgl::Quantitative"] = {
+  "Quantitative Aptitude": { officialTopics: ["Number System, HCF, LCM", "Percentage", "Ratio & Proportion", "Average", "Profit & Loss", "Simple & Compound Interest", "Time & Work", "Time, Speed & Distance", "Algebra — Linear & Quadratic", "Geometry — Triangles, Circles", "Trigonometry — Heights & Distances", "Mensuration — Area, Volume", "Data Interpretation — Bar, Pie, Line Graph"], books: [{ name: "Quantitative Aptitude", author: "R.S. Aggarwal", why: "Foundation book for all aptitude topics" }, { name: "SSC Mathematics", author: "Rakesh Yadav", why: "7300+ questions — SSC-specific patterns" }, { name: "Advanced Maths", author: "Kiran Publications", why: "For SSC CGL Tier 2 level problems" }] },
+};
+syllabusData["ssc-cgl::English"] = {
+  "English Language": { officialTopics: ["Reading Comprehension", "Error Spotting", "Fill in the Blanks", "Synonyms & Antonyms", "Idioms & Phrases", "One Word Substitution", "Sentence Improvement", "Active/Passive Voice", "Direct/Indirect Speech", "Cloze Test"], books: [{ name: "Word Power Made Easy", author: "Norman Lewis", why: "Best for building vocabulary" }, { name: "Objective General English", author: "S.P. Bakshi", why: "Complete English for SSC" }, { name: "SSC English", author: "Neetu Singh (KD Campus)", why: "SSC-specific English practice" }] },
+};
+syllabusData["ssc-cgl::GK"] = {
+  "General Knowledge": { officialTopics: ["Indian History — Ancient, Medieval, Modern", "Indian Geography", "Indian Polity & Constitution", "Indian Economy", "General Science — Physics, Chemistry, Biology", "Current Affairs — Last 6 months", "Static GK — Dams, Airports, Capitals, Awards"], books: [{ name: "Lucent's General Knowledge", author: "Lucent Publications", why: "Bible of GK for all competitive exams" }, { name: "General Studies Manual", author: "TMH", why: "Comprehensive GK coverage" }, { name: "Monthly Current Affairs", author: "Pratiyogita Darpan", why: "Current affairs magazine" }] },
+};
+
+// ═══ SBI PO / IBPS PO ═══
+syllabusData["sbi-po::Reasoning"] = {
+  "Reasoning Ability": { officialTopics: ["Seating Arrangement — Linear & Circular", "Puzzles — Floor, Box, Scheduling, Month-based", "Syllogism", "Blood Relations", "Coding-Decoding", "Inequality", "Direction Sense", "Input-Output", "Data Sufficiency", "Logical Reasoning — Cause & Effect"], books: [{ name: "A New Approach to Reasoning", author: "B.S. Sijwali", why: "Best for banking-level puzzles and arrangements" }, { name: "Verbal & Non-Verbal Reasoning", author: "R.S. Aggarwal", why: "Foundation reasoning" }, { name: "Banking Reasoning", author: "Adda247/Oliveboard", why: "Bank exam-specific reasoning patterns" }] },
+};
+syllabusData["sbi-po::Quantitative"] = {
+  "Quantitative Aptitude": { officialTopics: ["Data Interpretation — Bar, Pie, Table, Line, Caselet", "Number Series", "Simplification & Approximation", "Percentage, Ratio & Proportion", "Profit & Loss, SI & CI", "Time & Work, Pipes & Cisterns", "Speed, Time & Distance, Boats & Streams", "Probability & Permutation", "Quadratic Equations", "Mensuration"], books: [{ name: "Quantitative Aptitude for Competitive Exams", author: "R.S. Aggarwal", why: "Foundation for all quant topics" }, { name: "Quant for Banking", author: "Arun Sharma", why: "Banking-specific DI and quant" }] },
+};
+syllabusData["sbi-po::English"] = {
+  "English Language": { officialTopics: ["Reading Comprehension — 2-3 passages", "Cloze Test", "Error Spotting / Phrase Replacement", "Para Jumbles", "Fill in the Blanks — Single & Double", "Sentence Correction", "Column-based / Connector-based questions"], books: [{ name: "Word Power Made Easy", author: "Norman Lewis", why: "Vocabulary building" }, { name: "Objective General English", author: "S.P. Bakshi", why: "Grammar + Comprehension" }, { name: "The Hindu Editorial Analysis", author: "Daily Practice", why: "Reading comprehension practice from The Hindu" }] },
+};
+syllabusData["sbi-po::Banking"] = {
+  "Banking & Financial Awareness": { officialTopics: ["RBI — Functions, Monetary Policy, Repo Rate", "Banking Regulations — KYC, Basel Norms, NPA", "Financial Markets — Stock Exchange, Mutual Funds", "Government Schemes — PM schemes, NABARD, SIDBI", "Insurance — IRDAI, Types of Insurance", "Current Banking Affairs — Mergers, New Banks, Digital Banking"], books: [{ name: "Banking Awareness", author: "Arihant", why: "Complete banking knowledge" }, { name: "Lucent's Banking", author: "Lucent Publications", why: "Quick revision" }, { name: "The Hindu + Livemint", author: "Daily Reading", why: "Current banking and economy news" }] },
+};
+syllabusData["ibps-po::Reasoning"] = syllabusData["sbi-po::Reasoning"];
+syllabusData["ibps-po::Quantitative"] = syllabusData["sbi-po::Quantitative"];
+syllabusData["ibps-po::English"] = syllabusData["sbi-po::English"];
+
+// ═══ RRB NTPC ═══
+syllabusData["rrb-ntpc::Maths"] = {
+  "Mathematics": { officialTopics: ["Number System, HCF, LCM", "Percentage, Ratio & Proportion", "Profit & Loss, SI & CI", "Time & Work, Time & Distance", "Mensuration — Area, Volume", "Algebra — Basic equations", "Geometry — Triangles, Circles", "Averages"], books: [{ name: "Quantitative Aptitude", author: "R.S. Aggarwal", why: "Covers all RRB-level maths topics" }, { name: "RRB NTPC Mathematics", author: "Kiran Publications", why: "Railway-specific maths questions" }] },
+};
+syllabusData["rrb-ntpc::Reasoning"] = {
+  "General Intelligence & Reasoning": { officialTopics: ["Analogies", "Coding-Decoding", "Number & Letter Series", "Classification", "Syllogism", "Blood Relations", "Direction & Distance", "Non-Verbal — Mirror Image, Paper Cutting", "Calendar & Clock", "Ranking"], books: [{ name: "Reasoning", author: "R.S. Aggarwal", why: "Complete reasoning for all competitive exams" }, { name: "RRB Reasoning", author: "Kiran Publications", why: "Railway-specific reasoning patterns" }] },
+};
+syllabusData["rrb-ntpc::GK"] = {
+  "General Knowledge": { officialTopics: ["Indian History — Ancient to Modern", "Indian Geography — Physical & Economic", "Indian Polity — Constitution, Governance", "Indian Economy — Planning, Banking, Budget", "General Science — 10th standard level", "Current Affairs — last 6 months", "Computer Awareness — Basics", "Sports, Awards, Important Days"], books: [{ name: "Lucent's General Knowledge", author: "Lucent Publications", why: "Best GK book for Railway exams" }, { name: "RRB GK & Current Affairs", author: "Kiran Publications", why: "Railway-focused GK compilation" }] },
+};
+
+// ═══ NDA (Govt category) ═══
+syllabusData["nda::Maths"] = {
+  "NDA Mathematics": { officialTopics: ["Algebra — Quadratics, Complex Numbers, Permutations", "Trigonometry — Heights & Distances, Identities", "Matrices & Determinants", "Calculus — Limits, Differentiation, Integration", "Probability & Statistics", "Coordinate Geometry — Lines, Circles, Conics", "Vectors — Dot, Cross Product, 3D", "Analytical Geometry"], books: [{ name: "NDA Mathematics", author: "R.S. Aggarwal", why: "NDA-specific maths problems" }, { name: "Pathfinder NDA & NA", author: "Arihant", why: "Complete NDA preparation — maths section" }, { name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "NDA maths is at 11-12 level" }] },
+};
+syllabusData["nda::GK"] = {
+  "General Ability Test": { officialTopics: ["English — Comprehension, Grammar, Vocabulary", "History — India & World", "Geography — India, World, Environment", "Polity — Constitution, Governance", "Economy — Basic economic concepts", "General Science — Physics, Chemistry, Biology", "Current Affairs — National, International, Defence", "Defence-specific — Regiments, Weapons, Operations"], books: [{ name: "Pathfinder NDA & NA", author: "Arihant", why: "Complete GAT preparation" }, { name: "Lucent's GK", author: "Lucent Publications", why: "GK foundation" }, { name: "Word Power Made Easy", author: "Norman Lewis", why: "For English vocabulary section" }] },
+};
+
+// ═══ CDS ═══
+syllabusData["cds::English"] = {
+  "English": { officialTopics: ["Reading Comprehension", "Spotting Errors", "Sentence Improvement", "Synonyms & Antonyms", "Idioms & Phrases", "Fill in the Blanks", "Ordering of Sentences", "Vocabulary in Context"], books: [{ name: "Pathfinder CDS", author: "Arihant", why: "Complete CDS English preparation" }, { name: "Word Power Made Easy", author: "Norman Lewis", why: "Vocabulary building" }, { name: "Objective General English", author: "S.P. Bakshi", why: "Grammar and comprehension" }] },
+};
+syllabusData["cds::GK"] = {
+  "General Knowledge": { officialTopics: ["Indian History — Ancient, Medieval, Modern, Freedom Movement", "Indian & World Geography", "Indian Polity & Constitution", "Indian Economy", "General Science", "Current Affairs — Defence, National, International", "Awards, Sports, Important Days"], books: [{ name: "Pathfinder CDS", author: "Arihant", why: "CDS-specific GK compilation" }, { name: "Lucent's GK", author: "Lucent Publications", why: "Comprehensive GK reference" }, { name: "Manorama Yearbook", author: "Manorama", why: "Annual current affairs reference" }] },
+};
+syllabusData["cds::Maths"] = {
+  "Elementary Mathematics": { officialTopics: ["Number System", "Algebra — HCF, LCM, Quadratics", "Trigonometry — Identities, Heights & Distances", "Geometry — Triangles, Circles, Quadrilaterals", "Mensuration — Area, Volume, Surface Area", "Statistics — Mean, Median, Mode, Frequency"], books: [{ name: "Pathfinder CDS", author: "Arihant", why: "Maths section with solved problems" }, { name: "Quantitative Aptitude", author: "R.S. Aggarwal", why: "All elementary maths topics" }, { name: "NCERT Maths Class 9-10", author: "NCERT", why: "CDS maths is at 10th standard level" }] },
+};
+
+// ═══ AFCAT ═══
+syllabusData["afcat::Verbal"] = {
+  "Verbal Ability in English": { officialTopics: ["Reading Comprehension", "Error Detection", "Sentence Completion", "Synonyms & Antonyms", "Idioms & Phrases", "Vocabulary", "Grammar — Tenses, Articles, Prepositions"], books: [{ name: "Pathfinder for AFCAT", author: "Arihant", why: "Complete AFCAT English preparation" }, { name: "Word Power Made Easy", author: "Norman Lewis", why: "Vocabulary" }, { name: "Objective English", author: "S.P. Bakshi", why: "Grammar practice" }] },
+};
+syllabusData["afcat::Numerical"] = {
+  "Numerical Ability": { officialTopics: ["Decimal Fractions", "Percentage", "Average, Ratio & Proportion", "Profit & Loss", "Simple & Compound Interest", "Time & Distance", "Time & Work"], books: [{ name: "Quantitative Aptitude", author: "R.S. Aggarwal", why: "Covers all numerical topics" }, { name: "Pathfinder AFCAT", author: "Arihant", why: "AFCAT-specific numerical practice" }] },
+};
+syllabusData["afcat::Reasoning"] = {
+  "Reasoning & Military Aptitude": { officialTopics: ["Verbal Reasoning — Analogy, Classification, Series", "Non-Verbal Reasoning — Figures, Patterns, Mirror Image", "Spatial Reasoning", "General Awareness — History, Geography, Polity", "Defence & Current Affairs — IAF, Military Operations, Exercises"], books: [{ name: "Pathfinder AFCAT", author: "Arihant", why: "Complete AFCAT reasoning + military aptitude" }, { name: "Verbal & Non-Verbal Reasoning", author: "R.S. Aggarwal", why: "Reasoning practice" }, { name: "Defence Current Affairs", author: "Monthly magazines", why: "For IAF and defence awareness" }] },
+};
