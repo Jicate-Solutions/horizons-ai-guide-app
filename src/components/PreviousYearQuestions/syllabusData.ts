@@ -300,3 +300,131 @@ syllabusData["ca-cs-cma-foundation::Maths"] = {
 syllabusData["ca-cs-cma-foundation::Economics"] = {
   "Business Economics": { officialTopics: ["Demand & supply", "Consumer behaviour", "Production & costs", "Market structure — perfect competition, monopoly, oligopoly", "National income", "Business cycles", "Money & banking", "Government budget"], books: [{ name: "CA Foundation Study Material — Paper 4", author: "ICAI", why: "Official ICAI economics material" }, { name: "Indian Economy", author: "Ramesh Singh", why: "For Indian economy context" }, { name: "Microeconomics & Macroeconomics", author: "NCERT Class 11 & 12", why: "Build economics fundamentals" }] },
 };
+
+// ═══════════════════════════════════════════
+// NEET — PHYSICS (Missing — Adding Now)
+// ═══════════════════════════════════════════
+syllabusData["neet::Physics"] = {
+  "Physics and Measurement": { officialTopics: ["Units & dimensions", "Dimensional analysis", "Errors in measurement", "Significant figures", "SI units"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapter 2 — NEET follows NCERT exactly" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapter 1 — conceptual problems" }] },
+  "Kinematics": { officialTopics: ["Speed & velocity", "Acceleration", "Equations of motion", "Projectile motion", "Relative motion", "Motion in a plane"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapters 3-4: Motion in Straight Line & Plane" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapters 3-4 — excellent kinematics problems" }] },
+  "Laws of Motion": { officialTopics: ["Newton's laws", "Friction", "Free body diagrams", "Pseudo forces", "Connected bodies"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapter 5: Laws of Motion" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapters 5-6 — Newton's laws problems" }] },
+  "Work, Energy and Power": { officialTopics: ["Work-energy theorem", "KE & PE", "Conservation of energy", "Power", "Collisions"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapter 6: Work, Energy and Power" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapter 8 — Work and Energy" }] },
+  "Gravitation": { officialTopics: ["Newton's law of gravitation", "g and its variation", "Kepler's laws", "Escape velocity", "Satellites"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapter 8: Gravitation" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapter 11 — Gravitation" }] },
+  "Properties of Solids and Liquids": { officialTopics: ["Elasticity", "Stress & strain", "Viscosity", "Surface tension", "Bernoulli's principle", "Fluid mechanics"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapters 9-10: Mechanical Properties" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapters 13-14 — Fluids" }] },
+  "Thermodynamics": { officialTopics: ["Laws of thermodynamics", "Isothermal & adiabatic", "Carnot engine", "Heat transfer", "Specific heat", "Kinetic theory"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapters 11-13: Thermal Physics" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 23-28 — Thermodynamics" }] },
+  "Oscillations and Waves": { officialTopics: ["SHM", "Spring-mass system", "Pendulum", "Transverse & longitudinal waves", "Superposition", "Doppler effect"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "Chapters 14-15: Oscillations and Waves" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Chapters 12, 15-17 — SHM and Waves" }] },
+  "Electrostatics": { officialTopics: ["Coulomb's law", "Electric field", "Gauss's law", "Potential", "Capacitors", "Dielectrics"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 1-2: Electrostatics" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 29-31 — Electrostatics" }] },
+  "Current Electricity": { officialTopics: ["Ohm's law", "Kirchhoff's laws", "Wheatstone bridge", "Potentiometer", "Internal resistance"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapter 3: Current Electricity" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapter 32 — Electric Current" }] },
+  "Magnetic Effects of Current and Magnetism": { officialTopics: ["Biot-Savart law", "Ampere's law", "Force on current-carrying conductor", "Solenoid", "Magnetic properties of matter"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 4-5: Magnetism" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 34-36 — Magnetic Field" }] },
+  "Electromagnetic Induction and AC": { officialTopics: ["Faraday's law", "Lenz's law", "Self & mutual inductance", "AC circuits", "Transformers", "LC oscillations"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 6-7: EMI and AC" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 38-40 — EMI" }] },
+  "Optics": { officialTopics: ["Reflection & refraction", "Lenses & mirrors", "Optical instruments", "Wave optics", "Interference", "Diffraction", "Polarization"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 9-10: Ray Optics & Wave Optics" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 18-22 — Optics" }] },
+  "Dual Nature of Matter and Radiation": { officialTopics: ["Photoelectric effect", "de Broglie wavelength", "Matter waves", "Davisson-Germer experiment"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapter 11: Dual Nature of Radiation and Matter" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapter 42 — Photoelectric Effect" }] },
+  "Atoms and Nuclei": { officialTopics: ["Bohr model", "Hydrogen spectrum", "Radioactivity", "Nuclear fission & fusion", "Mass-energy relation", "Binding energy"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 12-13: Atoms and Nuclei" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 43-46 — Modern Physics" }] },
+  "Electronic Devices": { officialTopics: ["Semiconductors", "p-n junction diode", "Transistor", "Logic gates", "Zener diode"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapter 14: Semiconductor Electronics" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapter 45 — Semiconductors" }] },
+};
+
+// ═══════════════════════════════════════════
+// JEE ADVANCED
+// ═══════════════════════════════════════════
+syllabusData["jee-advanced::Physics"] = {
+  "Mechanics": { officialTopics: ["Kinematics", "Newton's laws", "Work-energy-power", "Centre of mass", "Rotational dynamics", "Gravitation", "SHM", "Fluid mechanics"], books: [{ name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Foundation book — must complete all problems" }, { name: "Problems in General Physics", author: "I.E. Irodov", why: "Advanced-level problems essential for JEE Advanced" }, { name: "Classical Mechanics", author: "D. Kleppner & R. Kolenkow", why: "For deeper understanding of mechanics" }] },
+  "Electricity & Magnetism": { officialTopics: ["Electrostatics", "Capacitors", "Current electricity", "Magnetic field", "EMI", "AC circuits", "Electromagnetic waves"], books: [{ name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Complete all Electricity & Magnetism chapters" }, { name: "Problems in General Physics", author: "I.E. Irodov", why: "Sections 3.1-3.4 — Electrodynamics" }, { name: "Introduction to Electrodynamics", author: "D.J. Griffiths", why: "For advanced theoretical understanding" }] },
+  "Optics & Modern Physics": { officialTopics: ["Geometrical optics", "Wave optics", "Photoelectric effect", "Bohr model", "Nuclear physics", "X-rays", "Semiconductors"], books: [{ name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Optics + Modern Physics chapters" }, { name: "Optics", author: "Ajoy Ghatak", why: "Detailed wave optics and interference" }, { name: "Problems in General Physics", author: "I.E. Irodov", why: "Sections 5-6 — Optics & Atomic Physics" }] },
+  "Thermal Physics": { officialTopics: ["Calorimetry", "KTG", "Laws of thermodynamics", "Heat transfer — conduction, convection, radiation", "Thermal expansion"], books: [{ name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Chapters 23-28" }, { name: "Heat and Thermodynamics", author: "Zemansky & Dittman", why: "For advanced thermodynamics concepts" }] },
+};
+syllabusData["jee-advanced::Chemistry"] = {
+  "Physical Chemistry": { officialTopics: ["Mole concept", "Atomic structure", "Chemical bonding", "Thermodynamics", "Chemical equilibrium", "Ionic equilibrium", "Electrochemistry", "Chemical kinetics", "Solid state", "Solutions"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "Foundation — read every line" }, { name: "Physical Chemistry", author: "O.P. Tandon", why: "Best numerical problems for JEE" }, { name: "Physical Chemistry", author: "P. Bahadur", why: "Advanced numerical problems" }] },
+  "Organic Chemistry": { officialTopics: ["IUPAC nomenclature", "Isomerism", "GOC — inductive, resonance, hyperconjugation", "Reaction mechanisms", "Named reactions", "All functional groups", "Biomolecules", "Polymers"], books: [{ name: "Organic Chemistry", author: "Morrison & Boyd", why: "Gold standard for organic mechanisms" }, { name: "Organic Chemistry", author: "M.S. Chauhan (Arihant)", why: "JEE-level problems with solutions" }, { name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "Must-read for all reactions" }] },
+  "Inorganic Chemistry": { officialTopics: ["Periodic table trends", "Chemical bonding", "Coordination compounds", "Metallurgy", "s, p, d, f block elements", "Qualitative analysis", "Environmental chemistry"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "Inorganic chapters — learn every table and reaction" }, { name: "Concise Inorganic Chemistry", author: "J.D. Lee", why: "Detailed periodic trends and d-block chemistry" }, { name: "Inorganic Chemistry", author: "V.K. Jaiswal (Arihant)", why: "JEE Advanced level problems" }] },
+};
+syllabusData["jee-advanced::Mathematics"] = {
+  "Algebra": { officialTopics: ["Quadratic equations", "Complex numbers", "Permutations & combinations", "Binomial theorem", "Sequences & series", "Matrices & determinants", "Probability"], books: [{ name: "IIT Mathematics", author: "M.L. Khanna", why: "Comprehensive algebra for JEE" }, { name: "Higher Algebra", author: "Hall & Knight", why: "Classical algebra problems" }, { name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "Foundation for all algebra topics" }] },
+  "Calculus": { officialTopics: ["Limits & continuity", "Differentiation", "Application of derivatives", "Indefinite & definite integrals", "Area under curves", "Differential equations"], books: [{ name: "IIT Mathematics", author: "M.L. Khanna", why: "Excellent calculus problems for JEE" }, { name: "Problems in Calculus of One Variable", author: "I.A. Maron", why: "Advanced integration and differentiation" }, { name: "Differential Calculus", author: "Amit M. Agarwal (Arihant)", why: "JEE Advanced focused problems" }] },
+  "Coordinate Geometry & Trigonometry": { officialTopics: ["Straight lines", "Circles", "Parabola, Ellipse, Hyperbola", "Trigonometric functions", "Inverse trig", "Trigonometric equations", "Properties of triangles"], books: [{ name: "Coordinate Geometry", author: "S.L. Loney", why: "Best book for conics and coordinate geometry" }, { name: "Trigonometry", author: "S.L. Loney", why: "Classical trigonometry problems" }, { name: "IIT Mathematics", author: "M.L. Khanna", why: "Conic sections chapter" }] },
+  "Vectors & 3D": { officialTopics: ["Vector algebra", "Dot & cross product", "3D geometry — lines & planes", "Direction cosines", "Shortest distance between lines"], books: [{ name: "NCERT Maths Class 12", author: "NCERT", why: "Chapters 10-11: Vectors and 3D Geometry" }, { name: "IIT Mathematics", author: "M.L. Khanna", why: "3D geometry chapter — essential for JEE Advanced" }] },
+};
+
+// ═══════════════════════════════════════════
+// BITSAT
+// ═══════════════════════════════════════════
+syllabusData["bitsat::Physics"] = {
+  "Mechanics": { officialTopics: ["Units & dimensions", "Kinematics", "Newton's laws", "Work-energy-power", "Rotational motion", "Gravitation", "SHM", "Properties of matter"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "BITSAT syllabus is based on NCERT + CBSE Class 11-12" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Practice problems — BITSAT needs speed" }] },
+  "Electromagnetism": { officialTopics: ["Electrostatics", "Current electricity", "Magnetic effects", "EMI", "AC", "EM waves"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 1-8 — Electromagnetism" }, { name: "Concepts of Physics Vol. 2", author: "H.C. Verma", why: "Speed-building problems" }] },
+  "Optics & Modern Physics": { officialTopics: ["Geometrical optics", "Wave optics", "Dual nature", "Atoms & nuclei", "Semiconductors"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Chapters 9-14" }, { name: "BITSAT 15 Years Solved Papers", author: "Arihant/Disha", why: "Actual BITSAT questions with solutions" }] },
+};
+syllabusData["bitsat::Chemistry"] = {
+  "Physical Chemistry": { officialTopics: ["Mole concept", "Atomic structure", "Thermodynamics", "Chemical equilibrium", "Electrochemistry", "Chemical kinetics", "Solutions", "Solid state"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "BITSAT follows CBSE/NCERT syllabus" }, { name: "Physical Chemistry", author: "O.P. Tandon", why: "Numerical problems" }] },
+  "Organic Chemistry": { officialTopics: ["IUPAC nomenclature", "Isomerism", "Hydrocarbons", "Functional groups", "Biomolecules", "Polymers"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "All organic chapters" }, { name: "Organic Chemistry", author: "Morrison & Boyd", why: "Mechanism understanding" }] },
+  "Inorganic Chemistry": { officialTopics: ["Periodic table", "Chemical bonding", "s,p,d,f block", "Coordination compounds", "Metallurgy"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "Inorganic chapters" }, { name: "Concise Inorganic Chemistry", author: "J.D. Lee", why: "Extra depth" }] },
+};
+syllabusData["bitsat::Mathematics"] = {
+  "Algebra & Calculus": { officialTopics: ["Complex numbers", "Quadratic equations", "P&C, Binomial", "Sequences", "Matrices", "Limits", "Differentiation", "Integration", "Differential equations"], books: [{ name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "Foundation" }, { name: "IIT Mathematics", author: "M.L. Khanna", why: "Problem practice" }, { name: "BITSAT Solved Papers", author: "Arihant", why: "Actual paper pattern" }] },
+  "Coordinate Geometry & Trigonometry": { officialTopics: ["Straight lines", "Circles", "Conics", "3D geometry", "Trigonometric functions", "Inverse trig", "Vectors"], books: [{ name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "All coordinate geometry chapters" }, { name: "Coordinate Geometry", author: "S.L. Loney", why: "Advanced problems" }] },
+  "Probability & Statistics": { officialTopics: ["Probability — conditional, Bayes", "Statistics — mean, median, mode", "Random variables", "Linear programming"], books: [{ name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "Chapters on probability and statistics" }] },
+};
+
+// ═══════════════════════════════════════════
+// VITEEE
+// ═══════════════════════════════════════════
+syllabusData["viteee::Physics"] = {
+  "Mechanics & Properties of Matter": { officialTopics: ["Laws of motion", "Work-energy", "Rotational motion", "Gravitation", "Elasticity", "Surface tension", "Viscosity"], books: [{ name: "NCERT Physics Class 11", author: "NCERT", why: "VITEEE syllabus follows CBSE 11-12" }, { name: "Concepts of Physics Vol. 1", author: "H.C. Verma", why: "Conceptual problems" }] },
+  "Electromagnetism & Modern Physics": { officialTopics: ["Electrostatics", "Current electricity", "Magnetism", "EMI", "AC", "Optics", "Dual nature", "Nuclear physics", "Semiconductors"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "All Class 12 chapters" }, { name: "VITEEE Solved Papers", author: "Arihant/MTG", why: "Actual VITEEE pattern" }] },
+};
+syllabusData["viteee::Chemistry"] = {
+  "Chemistry — All Topics": { officialTopics: ["Atomic structure", "Chemical bonding", "Thermodynamics", "Chemical equilibrium", "Electrochemistry", "Kinetics", "Periodic table", "p-block", "d-block", "Coordination compounds", "Organic — all functional groups", "Biomolecules", "Polymers"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "Complete syllabus coverage" }, { name: "VITEEE Solved Papers", author: "Arihant", why: "Past paper practice" }] },
+};
+syllabusData["viteee::Mathematics"] = {
+  "Mathematics — All Topics": { officialTopics: ["Matrices", "Trigonometry", "Complex numbers", "Quadratics", "P&C", "Calculus", "Coordinate geometry", "Vectors", "3D", "Probability", "Differential equations"], books: [{ name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "Foundation" }, { name: "VITEEE Solved Papers", author: "Arihant", why: "Pattern understanding" }] },
+};
+
+// ═══════════════════════════════════════════
+// MHT-CET
+// ═══════════════════════════════════════════
+syllabusData["mht-cet::Physics"] = {
+  "Physics — All Topics": { officialTopics: ["Rotational dynamics", "Oscillations", "Elasticity", "Surface tension", "Wave motion", "Stationary waves", "Kinetic theory", "Electrostatics", "Current electricity", "Magnetism", "EMI", "AC", "Electrons & photons", "Atoms & nuclei", "Semiconductors", "Communication systems"], books: [{ name: "Maharashtra State Board Textbook — Std 11 & 12", author: "Balbharati", why: "MHT-CET follows Maharashtra board syllabus exactly" }, { name: "MHT-CET Physics", author: "Marvel/Target Publications", why: "Topic-wise MCQs for MHT-CET" }] },
+};
+syllabusData["mht-cet::Chemistry"] = {
+  "Chemistry — All Topics": { officialTopics: ["Solid state", "Solutions", "Electrochemistry", "Chemical kinetics", "Surface chemistry", "p-block elements", "d-block & f-block", "Coordination compounds", "Halogen derivatives", "Alcohols, Phenols, Ethers", "Aldehydes, Ketones, Acids", "Amines", "Biomolecules", "Polymers"], books: [{ name: "Maharashtra Board Textbook — Std 11 & 12", author: "Balbharati", why: "Official syllabus source" }, { name: "MHT-CET Chemistry", author: "Target Publications", why: "MCQ practice" }] },
+};
+syllabusData["mht-cet::Mathematics"] = {
+  "Mathematics — All Topics": { officialTopics: ["Mathematical logic", "Matrices", "Trigonometry", "Pair of straight lines", "Circle", "Conics", "Vectors", "3D geometry", "Line", "Plane", "Differentiation", "Integration", "Differential equations", "Probability", "Statistics"], books: [{ name: "Maharashtra Board Textbook", author: "Balbharati", why: "MHT-CET strictly follows Maharashtra board" }, { name: "MHT-CET Maths", author: "Target/Marvel Publications", why: "Chapter-wise MCQs" }] },
+};
+
+// ═══════════════════════════════════════════
+// COMEDK
+// ═══════════════════════════════════════════
+syllabusData["comedk::Physics"] = {
+  "Physics — All Topics": { officialTopics: ["Units & dimensions", "Kinematics", "Laws of motion", "Work-energy", "Rotational motion", "Gravitation", "Properties of matter", "Thermodynamics", "Oscillations", "Waves", "Electrostatics", "Current electricity", "Magnetism", "EMI", "Optics", "Modern physics", "Semiconductors"], books: [{ name: "NCERT Physics Class 11 & 12", author: "NCERT", why: "COMEDK follows NCERT/CBSE syllabus" }, { name: "Concepts of Physics", author: "H.C. Verma", why: "Practice problems" }, { name: "COMEDK Solved Papers", author: "Arihant/Disha", why: "Past paper pattern" }] },
+};
+syllabusData["comedk::Chemistry"] = {
+  "Chemistry — All Topics": { officialTopics: ["Atomic structure", "Chemical bonding", "Periodic table", "Thermodynamics", "Equilibrium", "Redox", "Electrochemistry", "Kinetics", "Organic — all groups", "Polymers", "Biomolecules"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "COMEDK follows NCERT" }, { name: "COMEDK Solved Papers", author: "Arihant", why: "Pattern practice" }] },
+};
+syllabusData["comedk::Mathematics"] = {
+  "Mathematics — All Topics": { officialTopics: ["Sets & functions", "Complex numbers", "Matrices", "P&C", "Binomial", "Sequences", "Coordinate geometry", "Calculus", "Vectors", "3D", "Probability", "Trigonometry", "Statistics"], books: [{ name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "Foundation" }, { name: "COMEDK Solved Papers", author: "Arihant", why: "Actual pattern" }] },
+};
+
+// ═══════════════════════════════════════════
+// WB-JEE
+// ═══════════════════════════════════════════
+syllabusData["wb-jee::Physics"] = {
+  "Physics — All Topics": { officialTopics: ["Mechanics", "Thermodynamics", "Waves", "Electrostatics", "Current electricity", "Magnetism", "EMI", "Optics", "Modern physics", "Semiconductors"], books: [{ name: "NCERT Physics Class 11 & 12", author: "NCERT", why: "WB-JEE follows NCERT + WB Board" }, { name: "Concepts of Physics", author: "H.C. Verma", why: "Problem practice" }, { name: "WB-JEE Solved Papers", author: "Arihant", why: "10 years solved papers" }] },
+};
+syllabusData["wb-jee::Chemistry"] = {
+  "Chemistry — All Topics": { officialTopics: ["Atomic structure", "Bonding", "Thermodynamics", "Equilibrium", "Electrochemistry", "Kinetics", "Periodic table", "d-block", "Organic chemistry — all", "Polymers"], books: [{ name: "NCERT Chemistry Class 11 & 12", author: "NCERT", why: "Primary reference" }, { name: "WB-JEE Solved Papers", author: "Arihant", why: "Pattern practice" }] },
+};
+syllabusData["wb-jee::Mathematics"] = {
+  "Mathematics — All Topics": { officialTopics: ["Algebra", "Trigonometry", "Coordinate geometry", "Calculus", "Vectors", "3D geometry", "Probability", "Statistics", "Differential equations"], books: [{ name: "NCERT Maths Class 11 & 12", author: "NCERT", why: "Foundation" }, { name: "WB-JEE Solved Papers", author: "Arihant", why: "Past papers" }] },
+};
+
+// ═══════════════════════════════════════════
+// CLASS 12 BOARDS (CBSE/TN State Board)
+// ═══════════════════════════════════════════
+syllabusData["class-12::Physics"] = {
+  "Physics — Board Exam": { officialTopics: ["Electrostatics", "Current electricity", "Magnetism", "EMI", "AC", "Electromagnetic waves", "Optics", "Dual nature", "Atoms & nuclei", "Semiconductors", "Communication"], books: [{ name: "NCERT Physics Class 12", author: "NCERT", why: "Board exam paper is set from NCERT only" }, { name: "S. Chand Physics", author: "Lakhmir Singh", why: "Extra practice MCQs" }, { name: "Oswaal Sample Papers", author: "Oswaal", why: "Board-pattern practice" }] },
+};
+syllabusData["class-12::Chemistry"] = {
+  "Chemistry — Board Exam": { officialTopics: ["Solid state", "Solutions", "Electrochemistry", "Chemical kinetics", "Surface chemistry", "p-block", "d-block & f-block", "Coordination compounds", "Organic — haloalkanes to biomolecules", "Polymers"], books: [{ name: "NCERT Chemistry Class 12", author: "NCERT", why: "100% board exam comes from NCERT" }, { name: "Together with Chemistry", author: "S. Chand", why: "Practice questions" }, { name: "Oswaal Question Bank", author: "Oswaal", why: "Chapter-wise board questions" }] },
+};
+syllabusData["class-12::Mathematics"] = {
+  "Mathematics — Board Exam": { officialTopics: ["Relations & functions", "Inverse trig", "Matrices & determinants", "Continuity & differentiability", "Application of derivatives", "Integrals", "Application of integrals", "Differential equations", "Vectors", "3D geometry", "Linear programming", "Probability"], books: [{ name: "NCERT Maths Class 12", author: "NCERT", why: "Board exam = NCERT — solve every exercise" }, { name: "R.D. Sharma Class 12", author: "R.D. Sharma", why: "Extra problems per chapter" }, { name: "Oswaal Sample Papers", author: "Oswaal", why: "Board exam pattern" }] },
+};
