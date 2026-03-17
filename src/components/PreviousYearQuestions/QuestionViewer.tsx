@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { ArrowLeft, Eye, BookOpen, Clock, ChevronUp, BookMarked, GraduationCap, CheckCircle2, Sparkles, Loader2, RotateCcw } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -59,6 +59,7 @@ export const QuestionViewer = ({ examId, examName, subject, topicName, onBack }:
           examName,
           subject,
           topicName,
+          syllabusTopics: syllabus?.officialTopics?.join(', ') || topicName,
           existingQuestions: allQuestions.map(q => q.question).slice(0, 20),
           count,
         }),
@@ -88,6 +89,13 @@ export const QuestionViewer = ({ examId, examName, subject, topicName, onBack }:
       setIsGenerating(false);
     }
   }, [examName, subject, topicName, batchCount, allQuestions]);
+
+  // Auto-generate 10 questions when topic opens
+  useEffect(() => {
+    if (savedQuestions.length < 5 && aiQuestions.length === 0) {
+      generateQuestions(10);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="space-y-4">
