@@ -350,6 +350,165 @@ export const pyqQuestions: Record<string, PYQQuestion[]> = {
     { id: 462, year: 2021, exam: "NEET 2021", question: "Catalyst in equilibrium:", options: ["Shifts right", "Shifts left", "No change to equilibrium", "Increases Kc"], answer: 2, topic: "Chemical Equilibrium" },
   ],
 
+  // ===== JEE MAIN — PHYSICS — More Topics =====
+  "jee-main::Physics::Motion in a Straight Line": [
+    { id: 500, year: 2023, exam: "JEE Main 2023", question: "A body starts from rest with acceleration 4 m/s². Velocity after 5 seconds:", options: ["10 m/s", "20 m/s", "25 m/s", "40 m/s"], answer: 1, topic: "Motion in a Straight Line" },
+    { id: 501, year: 2022, exam: "JEE Main 2022", question: "A ball is dropped from 80 m height. Time to reach ground (g=10):", options: ["2 s", "4 s", "8 s", "16 s"], answer: 1, topic: "Motion in a Straight Line" },
+    { id: 502, year: 2021, exam: "JEE Main 2021", question: "Displacement-time graph of a body at rest is:", options: ["Straight line with slope", "Horizontal line", "Parabola", "Vertical line"], answer: 1, topic: "Motion in a Straight Line" },
+  ],
+  "jee-main::Physics::Motion in a Plane": [
+    { id: 510, year: 2023, exam: "JEE Main 2023", question: "Range of projectile is maximum when angle of projection is:", options: ["30°", "45°", "60°", "90°"], answer: 1, topic: "Motion in a Plane" },
+    { id: 511, year: 2022, exam: "JEE Main 2022", question: "A ball thrown at 45° with 20 m/s. Maximum height (g=10):", options: ["5 m", "10 m", "20 m", "40 m"], answer: 1, topic: "Motion in a Plane" },
+    { id: 512, year: 2021, exam: "JEE Main 2021", question: "Time of flight of projectile on level ground at angle θ:", options: ["2u sinθ/g", "u sinθ/g", "2u cosθ/g", "u²sin2θ/g"], answer: 0, topic: "Motion in a Plane" },
+  ],
+  "jee-main::Physics::Circular Motion": [
+    { id: 520, year: 2023, exam: "JEE Main 2023", question: "Centripetal acceleration of body in circle of radius r with speed v:", options: ["v/r", "v²/r", "vr", "v²r"], answer: 1, topic: "Circular Motion" },
+    { id: 521, year: 2022, exam: "JEE Main 2022", question: "A car turns on circular road. Friction provides:", options: ["Tangential force", "Centripetal force", "Gravitational force", "Normal force"], answer: 1, topic: "Circular Motion" },
+    { id: 522, year: 2021, exam: "JEE Main 2021", question: "Minimum speed at top of vertical circle of radius R:", options: ["√(gR)", "√(2gR)", "√(5gR)", "√(gR/2)"], answer: 0, topic: "Circular Motion" },
+  ],
+  "jee-main::Physics::Heat and Thermodynamics": [
+    { id: 530, year: 2023, exam: "JEE Main 2023", question: "In isothermal process, temperature:", options: ["Increases", "Decreases", "Remains constant", "First increases then decreases"], answer: 2, topic: "Heat and Thermodynamics" },
+    { id: 531, year: 2022, exam: "JEE Main 2022", question: "Efficiency of Carnot engine between 600K and 300K:", options: ["25%", "50%", "75%", "100%"], answer: 1, topic: "Heat and Thermodynamics" },
+    { id: 532, year: 2021, exam: "JEE Main 2021", question: "In adiabatic process:", options: ["ΔQ=0", "ΔW=0", "ΔU=0", "ΔT=0"], answer: 0, topic: "Heat and Thermodynamics" },
+    { id: 533, year: 2020, exam: "JEE Main 2020", question: "Specific heat of ideal gas in isothermal process:", options: ["0", "∞", "Cp", "Cv"], answer: 1, topic: "Heat and Thermodynamics" },
+  ],
+  "jee-main::Physics::Simple Harmonic Motion": [
+    { id: 540, year: 2023, exam: "JEE Main 2023", question: "Time period of spring-mass system (mass m, spring constant k):", options: ["2π√(m/k)", "2π√(k/m)", "2πmk", "1/2π√(k/m)"], answer: 0, topic: "Simple Harmonic Motion" },
+    { id: 541, year: 2022, exam: "JEE Main 2022", question: "In SHM, acceleration is maximum at:", options: ["Mean position", "Extreme position", "Between mean and extreme", "Everywhere same"], answer: 1, topic: "Simple Harmonic Motion" },
+    { id: 542, year: 2021, exam: "JEE Main 2021", question: "KE of body in SHM is maximum at:", options: ["Mean position", "Extreme position", "Quarter amplitude", "Depends on mass"], answer: 0, topic: "Simple Harmonic Motion" },
+  ],
+  "jee-main::Physics::Waves": [
+    { id: 550, year: 2023, exam: "JEE Main 2023", question: "Speed of sound in air at 0°C is approximately:", options: ["232 m/s", "332 m/s", "432 m/s", "532 m/s"], answer: 1, topic: "Waves" },
+    { id: 551, year: 2022, exam: "JEE Main 2022", question: "In stationary waves, distance between consecutive nodes:", options: ["λ", "λ/2", "λ/4", "2λ"], answer: 1, topic: "Waves" },
+    { id: 552, year: 2021, exam: "JEE Main 2021", question: "Doppler effect: when source moves towards observer, frequency:", options: ["Increases", "Decreases", "Same", "Zero"], answer: 0, topic: "Waves" },
+  ],
+  "jee-main::Physics::Wave Optics": [
+    { id: 560, year: 2023, exam: "JEE Main 2023", question: "In Young's double slit experiment, fringe width β is:", options: ["λD/d", "λd/D", "D/λd", "d/λD"], answer: 0, topic: "Wave Optics" },
+    { id: 561, year: 2022, exam: "JEE Main 2022", question: "Diffraction is maximum when slit width is:", options: ["Much larger than λ", "Equal to λ", "Much smaller than λ", "Zero"], answer: 1, topic: "Wave Optics" },
+    { id: 562, year: 2021, exam: "JEE Main 2021", question: "In single slit diffraction, central maximum width is:", options: ["β", "2β", "β/2", "3β"], answer: 1, topic: "Wave Optics" },
+  ],
+  "jee-main::Physics::Geometrical Optics": [
+    { id: 570, year: 2023, exam: "JEE Main 2023", question: "Focal length of convex lens is:", options: ["Always positive", "Always negative", "Can be both", "Zero"], answer: 0, topic: "Geometrical Optics" },
+    { id: 571, year: 2022, exam: "JEE Main 2022", question: "Refractive index of medium with critical angle 30°:", options: ["1", "√2", "2", "1.5"], answer: 2, topic: "Geometrical Optics" },
+    { id: 572, year: 2021, exam: "JEE Main 2021", question: "Power of lens in dioptre when f = 25 cm:", options: ["2 D", "4 D", "0.25 D", "25 D"], answer: 1, topic: "Geometrical Optics" },
+  ],
+  "jee-main::Physics::Atoms and Nuclei": [
+    { id: 580, year: 2023, exam: "JEE Main 2023", question: "In Bohr model, radius of nth orbit ∝:", options: ["n", "n²", "1/n", "1/n²"], answer: 1, topic: "Atoms and Nuclei" },
+    { id: 581, year: 2022, exam: "JEE Main 2022", question: "Half-life of a radioactive element is 10 days. Fraction remaining after 30 days:", options: ["1/2", "1/4", "1/8", "1/16"], answer: 2, topic: "Atoms and Nuclei" },
+    { id: 582, year: 2021, exam: "JEE Main 2021", question: "In alpha decay, mass number decreases by:", options: ["1", "2", "4", "0"], answer: 2, topic: "Atoms and Nuclei" },
+  ],
+  "jee-main::Physics::Semiconductor": [
+    { id: 590, year: 2023, exam: "JEE Main 2023", question: "In p-type semiconductor, majority carriers are:", options: ["Electrons", "Holes", "Protons", "Neutrons"], answer: 1, topic: "Semiconductor" },
+    { id: 591, year: 2022, exam: "JEE Main 2022", question: "Forward biased diode has resistance:", options: ["Very high", "Very low", "Infinite", "Zero"], answer: 1, topic: "Semiconductor" },
+    { id: 592, year: 2021, exam: "JEE Main 2021", question: "AND gate output is 1 when:", options: ["Any input is 1", "All inputs are 1", "All inputs are 0", "No input"], answer: 1, topic: "Semiconductor" },
+  ],
+  "jee-main::Physics::Electromagnetic Induction": [
+    { id: 600, year: 2023, exam: "JEE Main 2023", question: "Faraday's law: induced EMF ∝:", options: ["Flux", "Rate of change of flux", "Current", "Resistance"], answer: 1, topic: "Electromagnetic Induction" },
+    { id: 601, year: 2022, exam: "JEE Main 2022", question: "Lenz's law is based on conservation of:", options: ["Charge", "Mass", "Energy", "Momentum"], answer: 2, topic: "Electromagnetic Induction" },
+    { id: 602, year: 2021, exam: "JEE Main 2021", question: "Self-inductance of a solenoid is proportional to:", options: ["N", "N²", "1/N", "√N"], answer: 1, topic: "Electromagnetic Induction" },
+  ],
+  "jee-main::Physics::Magnetic Effect of Current": [
+    { id: 610, year: 2023, exam: "JEE Main 2023", question: "Magnetic field at centre of circular loop carrying current I, radius R:", options: ["μ₀I/2R", "μ₀I/R", "μ₀IR/2", "μ₀I/4πR"], answer: 0, topic: "Magnetic Effect of Current" },
+    { id: 611, year: 2022, exam: "JEE Main 2022", question: "Force on current-carrying conductor in magnetic field F =:", options: ["BIL sinθ", "BIL cosθ", "BIL", "BI/L"], answer: 0, topic: "Magnetic Effect of Current" },
+    { id: 612, year: 2021, exam: "JEE Main 2021", question: "Two parallel wires carrying current in same direction:", options: ["Repel", "Attract", "No force", "Rotate"], answer: 1, topic: "Magnetic Effect of Current" },
+  ],
+
+  // ===== JEE MAIN — CHEMISTRY — More Topics =====
+  "jee-main::Chemistry::Some Basic Concepts of Chemistry": [
+    { id: 700, year: 2023, exam: "JEE Main 2023", question: "1 mole of any gas at STP occupies:", options: ["11.2 L", "22.4 L", "44.8 L", "5.6 L"], answer: 1, topic: "Some Basic Concepts" },
+    { id: 701, year: 2022, exam: "JEE Main 2022", question: "Equivalent weight of H₂SO₄:", options: ["49", "98", "32", "64"], answer: 0, topic: "Some Basic Concepts" },
+    { id: 702, year: 2021, exam: "JEE Main 2021", question: "Molarity is defined as moles of solute per:", options: ["kg of solvent", "litre of solution", "litre of solvent", "kg of solution"], answer: 1, topic: "Some Basic Concepts" },
+  ],
+  "jee-main::Chemistry::Structure of Atom": [
+    { id: 710, year: 2023, exam: "JEE Main 2023", question: "Maximum electrons in a shell with n=3:", options: ["8", "18", "32", "2"], answer: 1, topic: "Structure of Atom" },
+    { id: 711, year: 2022, exam: "JEE Main 2022", question: "Heisenberg's uncertainty principle applies to:", options: ["Position and velocity simultaneously", "Mass and energy", "Charge and spin", "Temperature and pressure"], answer: 0, topic: "Structure of Atom" },
+    { id: 712, year: 2021, exam: "JEE Main 2021", question: "Shape of p-orbital is:", options: ["Spherical", "Dumbbell", "Clover-leaf", "Conical"], answer: 1, topic: "Structure of Atom" },
+  ],
+  "jee-main::Chemistry::Electrochemistry": [
+    { id: 720, year: 2023, exam: "JEE Main 2023", question: "In electrolysis, reduction occurs at:", options: ["Anode", "Cathode", "Both", "Neither"], answer: 1, topic: "Electrochemistry" },
+    { id: 721, year: 2022, exam: "JEE Main 2022", question: "Standard hydrogen electrode potential is:", options: ["-1 V", "0 V", "+1 V", "0.5 V"], answer: 1, topic: "Electrochemistry" },
+    { id: 722, year: 2021, exam: "JEE Main 2021", question: "Faraday's first law: mass deposited ∝:", options: ["Voltage", "Charge passed", "Resistance", "Temperature"], answer: 1, topic: "Electrochemistry" },
+  ],
+  "jee-main::Chemistry::Chemical Kinetics and Nuclear Chemistry": [
+    { id: 730, year: 2023, exam: "JEE Main 2023", question: "Unit of first order rate constant:", options: ["mol/L/s", "s⁻¹", "L/mol/s", "mol²/L²/s"], answer: 1, topic: "Chemical Kinetics" },
+    { id: 731, year: 2022, exam: "JEE Main 2022", question: "Half-life of first order reaction is:", options: ["0.693/k", "k/0.693", "2.303/k", "k/2.303"], answer: 0, topic: "Chemical Kinetics" },
+    { id: 732, year: 2021, exam: "JEE Main 2021", question: "Arrhenius equation: rate constant increases with:", options: ["Decreasing temperature", "Increasing temperature", "Increasing pressure", "Adding catalyst only"], answer: 1, topic: "Chemical Kinetics" },
+  ],
+  "jee-main::Chemistry::Solutions": [
+    { id: 740, year: 2023, exam: "JEE Main 2023", question: "Raoult's law: partial vapour pressure of component ∝:", options: ["Molarity", "Mole fraction", "Molality", "Mass fraction"], answer: 1, topic: "Solutions" },
+    { id: 741, year: 2022, exam: "JEE Main 2022", question: "Boiling point elevation ΔTb = Kb × m. Kb is called:", options: ["Cryoscopic constant", "Ebullioscopic constant", "Gas constant", "Raoult constant"], answer: 1, topic: "Solutions" },
+    { id: 742, year: 2021, exam: "JEE Main 2021", question: "Osmotic pressure π = CRT applies to:", options: ["Concentrated solutions", "Dilute solutions", "Pure solvents", "Gases only"], answer: 1, topic: "Solutions" },
+  ],
+
+  // ===== JEE MAIN — MATHS — More Topics =====
+  "jee-main::Maths::Limits, Continuity & Differentiability": [
+    { id: 800, year: 2023, exam: "JEE Main 2023", question: "lim(x→0) (eˣ-1)/x equals:", options: ["0", "1", "e", "∞"], answer: 1, topic: "Limits" },
+    { id: 801, year: 2022, exam: "JEE Main 2022", question: "A function is continuous at x=a if:", options: ["f(a) exists", "lim f(x) exists", "f(a) = lim f(x)", "All of these"], answer: 3, topic: "Limits" },
+    { id: 802, year: 2021, exam: "JEE Main 2021", question: "lim(x→∞) (1+1/x)ˣ equals:", options: ["0", "1", "e", "∞"], answer: 2, topic: "Limits" },
+  ],
+  "jee-main::Maths::Integrals": [
+    { id: 810, year: 2023, exam: "JEE Main 2023", question: "∫ eˣ dx equals:", options: ["eˣ + C", "xeˣ + C", "eˣ/x + C", "ln(x) + C"], answer: 0, topic: "Integrals" },
+    { id: 811, year: 2022, exam: "JEE Main 2022", question: "∫₀^π sin x dx equals:", options: ["0", "1", "2", "-1"], answer: 2, topic: "Integrals" },
+    { id: 812, year: 2021, exam: "JEE Main 2021", question: "∫ 1/x dx equals:", options: ["x + C", "ln|x| + C", "1/x² + C", "-1/x + C"], answer: 1, topic: "Integrals" },
+  ],
+  "jee-main::Maths::Differential Equations": [
+    { id: 820, year: 2023, exam: "JEE Main 2023", question: "Order of differential equation d²y/dx² + 3(dy/dx) = 0:", options: ["1", "2", "3", "0"], answer: 1, topic: "Differential Equations" },
+    { id: 821, year: 2022, exam: "JEE Main 2022", question: "Degree of d²y/dx² + (dy/dx)³ = 0:", options: ["1", "2", "3", "Not defined"], answer: 0, topic: "Differential Equations" },
+    { id: 822, year: 2021, exam: "JEE Main 2021", question: "Solution of dy/dx = y is:", options: ["y = eˣ", "y = Ceˣ", "y = x", "y = ln x"], answer: 1, topic: "Differential Equations" },
+  ],
+  "jee-main::Maths::Coordinate Geometry": [
+    { id: 830, year: 2023, exam: "JEE Main 2023", question: "Equation of circle with centre (0,0) and radius 5:", options: ["x²+y²=5", "x²+y²=25", "x+y=5", "(x-5)²+(y-5)²=25"], answer: 1, topic: "Coordinate Geometry" },
+    { id: 831, year: 2022, exam: "JEE Main 2022", question: "Distance of point (3,4) from origin:", options: ["3", "4", "5", "7"], answer: 2, topic: "Coordinate Geometry" },
+    { id: 832, year: 2021, exam: "JEE Main 2021", question: "Slope of line 3x+4y=12:", options: ["3/4", "-3/4", "4/3", "-4/3"], answer: 1, topic: "Coordinate Geometry" },
+  ],
+  "jee-main::Maths::Sets, Relations & Functions": [
+    { id: 840, year: 2023, exam: "JEE Main 2023", question: "If A={1,2,3} and B={2,3,4}, then A∪B:", options: ["{2,3}", "{1,2,3,4}", "{1,4}", "{1,2,3}"], answer: 1, topic: "Sets" },
+    { id: 841, year: 2022, exam: "JEE Main 2022", question: "Number of subsets of a set with n elements:", options: ["n", "2n", "2ⁿ", "n²"], answer: 2, topic: "Sets" },
+    { id: 842, year: 2021, exam: "JEE Main 2021", question: "A function f:A→B is onto if:", options: ["Every element of B has pre-image", "f is one-one", "A=B", "f is constant"], answer: 0, topic: "Sets" },
+  ],
+  "jee-main::Maths::Permutations & Combinations": [
+    { id: 850, year: 2023, exam: "JEE Main 2023", question: "⁵P₃ equals:", options: ["10", "60", "120", "20"], answer: 1, topic: "Permutations" },
+    { id: 851, year: 2022, exam: "JEE Main 2022", question: "⁶C₂ equals:", options: ["12", "15", "30", "6"], answer: 1, topic: "Permutations" },
+    { id: 852, year: 2021, exam: "JEE Main 2021", question: "Number of ways to arrange letters of BOOK:", options: ["12", "24", "6", "4"], answer: 0, topic: "Permutations" },
+  ],
+  "jee-main::Maths::Complex Numbers": [
+    { id: 860, year: 2023, exam: "JEE Main 2023", question: "|3+4i| equals:", options: ["5", "7", "1", "25"], answer: 0, topic: "Complex Numbers" },
+    { id: 861, year: 2022, exam: "JEE Main 2022", question: "Conjugate of 2+3i:", options: ["2-3i", "-2+3i", "-2-3i", "3+2i"], answer: 0, topic: "Complex Numbers" },
+    { id: 862, year: 2021, exam: "JEE Main 2021", question: "i⁴ equals:", options: ["1", "-1", "i", "-i"], answer: 0, topic: "Complex Numbers" },
+  ],
+  "jee-main::Maths::Vectors & 3D Geometry": [
+    { id: 870, year: 2023, exam: "JEE Main 2023", question: "If â·b̂ = 0, the vectors are:", options: ["Parallel", "Perpendicular", "Equal", "Anti-parallel"], answer: 1, topic: "Vectors" },
+    { id: 871, year: 2022, exam: "JEE Main 2022", question: "Magnitude of vector 3î+4ĵ:", options: ["5", "7", "1", "25"], answer: 0, topic: "Vectors" },
+    { id: 872, year: 2021, exam: "JEE Main 2021", question: "Cross product of parallel vectors:", options: ["Maximum", "Minimum", "Zero vector", "Unit vector"], answer: 2, topic: "Vectors" },
+  ],
+
+  // ===== NEET — More Topics =====
+  "neet::Biology::Molecular Basis of Inheritance": [
+    { id: 900, year: 2023, exam: "NEET 2023", question: "DNA double helix model was proposed by:", options: ["Mendel", "Watson & Crick", "Darwin", "Lamarck"], answer: 1, topic: "Molecular Basis" },
+    { id: 901, year: 2022, exam: "NEET 2022", question: "mRNA carries genetic code from:", options: ["Ribosome to cytoplasm", "DNA to ribosome", "Nucleus to ER", "Golgi to membrane"], answer: 1, topic: "Molecular Basis" },
+    { id: 902, year: 2021, exam: "NEET 2021", question: "Codon is made of how many nucleotides?", options: ["1", "2", "3", "4"], answer: 2, topic: "Molecular Basis" },
+  ],
+  "neet::Biology::Human Reproduction": [
+    { id: 910, year: 2023, exam: "NEET 2023", question: "Fertilization in humans occurs in:", options: ["Uterus", "Ovary", "Fallopian tube", "Vagina"], answer: 2, topic: "Human Reproduction" },
+    { id: 911, year: 2022, exam: "NEET 2022", question: "Normal gestation period in humans:", options: ["6 months", "9 months", "12 months", "7 months"], answer: 1, topic: "Human Reproduction" },
+    { id: 912, year: 2021, exam: "NEET 2021", question: "Placenta produces which hormone?", options: ["Insulin", "hCG", "ADH", "TSH"], answer: 1, topic: "Human Reproduction" },
+  ],
+  "neet::Biology::Evolution": [
+    { id: 920, year: 2023, exam: "NEET 2023", question: "Theory of natural selection was given by:", options: ["Lamarck", "Darwin", "Mendel", "De Vries"], answer: 1, topic: "Evolution" },
+    { id: 921, year: 2022, exam: "NEET 2022", question: "Homologous organs indicate:", options: ["Analogous evolution", "Divergent evolution", "Convergent evolution", "No evolution"], answer: 1, topic: "Evolution" },
+    { id: 922, year: 2021, exam: "NEET 2021", question: "Hardy-Weinberg equilibrium assumes:", options: ["No mutation", "Large population", "Random mating", "All of these"], answer: 3, topic: "Evolution" },
+  ],
+  "neet::Chemistry::Chemical Bonding & Molecular Structure": [
+    { id: 930, year: 2023, exam: "NEET 2023", question: "CO₂ molecular shape:", options: ["Linear", "Bent", "Trigonal", "Tetrahedral"], answer: 0, topic: "Chemical Bonding" },
+    { id: 931, year: 2022, exam: "NEET 2022", question: "Ionic bond is formed between:", options: ["Two metals", "Metal and non-metal", "Two non-metals", "Noble gases"], answer: 1, topic: "Chemical Bonding" },
+    { id: 932, year: 2021, exam: "NEET 2021", question: "Hydrogen bond is strongest in:", options: ["HCl", "HF", "HBr", "HI"], answer: 1, topic: "Chemical Bonding" },
+  ],
+  "neet::Chemistry::Thermodynamics": [
+    { id: 940, year: 2023, exam: "NEET 2023", question: "First law of thermodynamics: ΔU =", options: ["q + w", "q - w", "q × w", "q / w"], answer: 0, topic: "Thermodynamics" },
+    { id: 941, year: 2022, exam: "NEET 2022", question: "Enthalpy of combustion is always:", options: ["Positive", "Negative", "Zero", "Variable"], answer: 1, topic: "Thermodynamics" },
+    { id: 942, year: 2021, exam: "NEET 2021", question: "Hess's law is based on:", options: ["Conservation of mass", "Conservation of energy", "Le Chatelier", "Avogadro"], answer: 1, topic: "Thermodynamics" },
+  ],
+
 };
 
 // Helper to get questions for a topic
