@@ -36,20 +36,24 @@ type QualFilter = 'all' | '8th' | '10th' | '12th';
 
 const qualConfig: Record<QualFilter, { label: string; ta: string; icon: string; bg: string; desc: string; descTa: string }> = {
   'all':  { label: 'All Exams', ta: 'அனைத்தும்', icon: '📋', bg: 'bg-gray-900', desc: 'All government exams', descTa: 'அனைத்து அரசு தேர்வுகள்' },
-  '8th':  { label: '8th Pass', ta: '8ஆம் வகுப்பு', icon: '📗', bg: 'bg-green-600', desc: 'Eligible after 8th', descTa: '8ஆம் வகுப்புக்கு பிறகு' },
-  '10th': { label: '10th Pass', ta: '10ஆம் வகுப்பு', icon: '📘', bg: 'bg-blue-600', desc: 'Eligible after 10th', descTa: '10ஆம் வகுப்புக்கு பிறகு' },
-  '12th': { label: '12th Pass', ta: '12ஆம் வகுப்பு', icon: '📕', bg: 'bg-red-600', desc: 'Eligible after 12th', descTa: '12ஆம் வகுப்புக்கு பிறகு' },
+  '8th':  { label: '8th Pass', ta: '8ஆம் வகுப்பு', icon: '📗', bg: 'bg-green-600', desc: 'Eligible after 8th', descTa: '8ஆம் வகுப்புக்கு தகுதி' },
+  '10th': { label: '10th Pass', ta: '10ஆம் வகுப்பு', icon: '📘', bg: 'bg-blue-600', desc: 'Eligible after 10th (includes 8th pass exams too)', descTa: '10ஆம் வகுப்புக்கு தகுதி' },
+  '12th': { label: '12th Pass', ta: '12ஆம் வகுப்பு', icon: '📕', bg: 'bg-red-600', desc: 'Eligible after 12th (includes all lower qualifications)', descTa: '12ஆம் வகுப்புக்கு தகுதி' },
 };
 
-const getQualLevel = (qual: string): string[] => {
+// Get the minimum qualification level of an exam
+const getExamMinLevel = (qual: string): number => {
   const q = qual.toLowerCase();
-  const levels: string[] = [];
-  if (q.includes('8th') || q.includes('middle')) levels.push('8th');
-  if (q.includes('10th') || q.includes('sslc') || q.includes('iti')) levels.push('10th');
-  if (q.includes('12th') || q.includes('10+2') || q.includes('higher secondary') || q.includes('intermediate')) levels.push('12th');
-  if (levels.length === 0) levels.push('12th'); // default
-  return levels;
+  if (q.includes('8th') || q.includes('middle')) return 8;
+  if (q.includes('10th') || q.includes('sslc') || q.includes('iti')) return 10;
+  return 12; // default: 12th pass
 };
+
+// Filter: show all exams where student's qualification >= exam's requirement
+// 12th student sees 8th + 10th + 12th exams
+// 10th student sees 8th + 10th exams
+// 8th student sees only 8th exams
+const qualLevelMap: Record<QualFilter, number> = { 'all': 99, '8th': 8, '10th': 10, '12th': 12 };
 
 const statusCfg = {
   open:     { label: 'Open',     ta: 'திறக்கப்பட்டது', dot: 'bg-emerald-500 animate-pulse', badge: 'bg-emerald-100 text-emerald-700 border-emerald-200', btn: 'bg-emerald-600 hover:bg-emerald-700 text-white' },
@@ -74,7 +78,7 @@ const GovernmentExams = () => {
   const filtered = useMemo(() => {
     let list = [...governmentExams];
     if (scope !== 'all') list = list.filter(e => e.category === scope);
-    if (qualFilter !== 'all') list = list.filter(e => getQualLevel(e.qualification).includes(qualFilter));
+    if (qualFilter !== 'all') list = list.filter(e => getExamMinLevel(e.qualification) <= qualLevelMap[qualFilter]);
     if (search.trim()) { const q = search.toLowerCase(); list = list.filter(e => e.name.toLowerCase().includes(q) || e.nameTamil.includes(q) || e.description.toLowerCase().includes(q) || e.posts?.some(p => p.toLowerCase().includes(q))); }
     return list;
   }, [scope, search, qualFilter]);
@@ -158,7 +162,7 @@ const GovernmentExams = () => {
           <p className="text-xs font-bold text-gray-500 mb-2">{t ? 'தகுதி நிலை' : 'Your Qualification'}</p>
           <div className="grid grid-cols-4 gap-2">
             {(Object.entries(qualConfig) as [QualFilter, typeof qualConfig['all']][]).map(([key, cfg]) => {
-              const count = key === 'all' ? governmentExams.length : governmentExams.filter(e => getQualLevel(e.qualification).includes(key)).length;
+              const count = key === 'all' ? governmentExams.length : governmentExams.filter(e => getExamMinLevel(e.qualification) <= qualLevelMap[key]).length;
               return (
                 <button key={key} onClick={() => setQualFilter(key)}
                   className={cn("flex flex-col items-center gap-1 py-3 rounded-xl text-xs font-bold transition-all border",
