@@ -49,7 +49,7 @@ const getExamResources = (examId: string): ExamResources => {
       websites: [
         { name: 'NTA Official', url: 'nta.ac.in', description: 'Official exam portal' },
         { name: 'JEE Main NIC', url: 'jeemain.nta.nic.in', description: 'Registration & results' },
-        { name: 'Embibe', url: 'embibe.com', description: 'Free mock tests & analysis' }
+        { name: 'VAZHIKATTI Practice', url: 'horizons-ai-guide-app.vercel.app', description: 'Practice questions inside our app' }
       ]
     },
     'neet': {
@@ -67,7 +67,7 @@ const getExamResources = (examId: string): ExamResources => {
       websites: [
         { name: 'NTA NEET', url: 'neet.nta.nic.in', description: 'Official NEET portal' },
         { name: 'Allen NEET', url: 'allen.ac.in/neet', description: 'Free resources & tests' },
-        { name: 'Aakash NEET', url: 'aakash.ac.in', description: 'Test series & notes' }
+        { name: 'VAZHIKATTI NEET Practice', url: 'horizons-ai-guide-app.vercel.app', description: 'NEET practice inside our app' }
       ]
     },
     'viteee': {
@@ -118,7 +118,7 @@ const getExamResources = (examId: string): ExamResources => {
       ],
       websites: [
         { name: 'CLAT Consortium', url: 'consortiumofnlus.ac.in', description: 'Official CLAT portal' },
-        { name: 'CLATapult', url: 'clatapult.com', description: 'Free mocks & resources' },
+        { name: 'VAZHIKATTI CLAT Practice', url: 'horizons-ai-guide-app.vercel.app', description: 'CLAT practice inside our app' },
         { name: 'Legal Edge', url: 'toprankers.com/clat', description: 'Test series' }
       ]
     },
