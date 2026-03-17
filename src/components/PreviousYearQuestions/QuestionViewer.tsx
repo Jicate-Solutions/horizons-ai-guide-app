@@ -50,47 +50,21 @@ export const QuestionViewer = ({ examId, examName, subject, topicName, onBack }:
     setBatchCount(newBatch);
 
     try {
-      const existingQs = allQuestions.map(q => q.question).join('\n');
-      const prompt = `You are an expert ${examName} exam question setter for ${subject} - ${topicName}.
-
-Generate exactly ${count} NEW multiple-choice questions for "${topicName}" in ${subject} for ${examName}.
-
-RULES:
-- Questions at actual ${examName} exam level
-- Mix: 3 easy, 4 medium, 3 hard
-- 4 options each, only 1 correct
-- answer = 0-indexed (0=A, 1=B, 2=C, 3=D)
-- Brief explanation for each
-- Cover different sub-concepts within ${topicName}
-- Do NOT repeat these existing questions:
-${existingQs.slice(0, 1500)}
-
-Respond ONLY with JSON array. No markdown, no backticks:
-[{"question":"...","options":["A","B","C","D"],"answer":0,"explanation":"...","difficulty":"easy"}]`;
-
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("/api/generate-questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 4000,
-          messages: [{ role: "user", content: prompt }],
+          examName,
+          subject,
+          topicName,
+          existingQuestions: allQuestions.map(q => q.question).slice(0, 20),
+          count,
         }),
       });
 
       const data = await response.json();
-      const text = data.content?.map((i: any) => i.text || "").join("") || "";
-      const clean = text.replace(/```json|```/g, "").trim();
-
-      let parsed: any[];
-      try {
-        parsed = JSON.parse(clean);
-      } catch {
-        const match = clean.match(/\[[\s\S]*\]/);
-        if (match) parsed = JSON.parse(match[0]);
-        else throw new Error("Could not parse response");
-      }
-
+      if (!response.ok || data.error) throw new Error(data.error || "API error");
+      const parsed = data.questions;
       if (!Array.isArray(parsed) || parsed.length === 0) throw new Error("No questions generated");
 
       const newQuestions: PYQQuestion[] = parsed.map((q: any, idx: number) => ({
