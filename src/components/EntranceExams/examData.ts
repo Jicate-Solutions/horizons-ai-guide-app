@@ -46,15 +46,6 @@ export const examCategories: CategoryInfo[] = [
     bgColor: 'bg-[#FFF8E1]',
     borderColor: 'border-[#F59E0B]',
   },
-  {
-    id: 'defence',
-    label: 'Defence & Others',
-    tamilLabel: 'பாதுகாப்பு படை',
-    icon: '🎖️',
-    color: 'text-[#455A64]',
-    bgColor: 'bg-[#ECEFF1]',
-    borderColor: 'border-[#455A64]',
-  },
 ];
 
 export const entranceExams: EntranceExam[] = [
@@ -994,117 +985,6 @@ export const entranceExams: EntranceExam[] = [
 
   // ============ DEFENCE & OTHERS ============
   {
-    id: 'nda',
-    name: 'NDA',
-    tamilName: 'தேசிய பாதுகாப்பு அகாடமி',
-    fullForm: 'National Defence Academy Examination',
-    conductingBody: 'UPSC',
-    examMode: 'Pen & Paper (OMR)',
-    duration: '2.5 hrs each (2 papers)',
-    syllabus: [
-      'Paper 1: Mathematics - 300 marks',
-      'Paper 2: GAT (English + GK) - 600 marks',
-      'SSB Interview - 900 marks',
-    ],
-    eligibility: [
-      '12th pass (PCM for Tech entry)',
-      'Male candidates',
-      'Age: 16.5 - 19.5 years',
-      'Unmarried',
-    ],
-    tnEligibility: 'OTA Chennai for CDS training! Many TN officers in Armed Forces',
-    importantDates: {
-      registration: 'Dec 2024 / May 2026',
-      examDate: 'April & Sept 2026',
-      resultDate: 'May & Oct 2026',
-    },
-    applicationFee: {
-      general: '₹100',
-      scst: 'Nil',
-    },
-    tnCollegesAccepting: [
-      'NDA Khadakwasla, Pune',
-      'OTA Chennai',
-      'Indian Military Academy',
-      'Air Force Academy',
-    ],
-    officialWebsite: 'https://upsc.gov.in',
-    category: 'defence',
-  },
-  {
-    id: 'navy-btech',
-    name: 'Indian Navy B.Tech Entry',
-    tamilName: 'இந்திய கடற்படை B.Tech',
-    fullForm: 'Indian Navy 10+2 B.Tech Entry',
-    conductingBody: 'Indian Navy',
-    examMode: 'Through JEE Main Score',
-    duration: '4 years B.Tech',
-    syllabus: [
-      'JEE Main Score used',
-      'No separate exam',
-      'SSB Interview after shortlist',
-    ],
-    eligibility: [
-      'JEE Main qualified',
-      '12th PCM - 70%',
-      'Male, Age: 17-19.5 years',
-    ],
-    tnEligibility: 'Free B.Tech at Naval Academy! Chennai has naval base INS Adyar',
-    importantDates: {
-      registration: 'Dec-Jan 2026',
-      examDate: 'Via JEE Main',
-      resultDate: 'Shortlist in March',
-    },
-    applicationFee: {
-      general: 'Nil',
-      scst: 'Nil',
-    },
-    tnCollegesAccepting: [
-      'Indian Naval Academy, Ezhimala',
-      'INS Shivaji (Training)',
-      'Free education + Stipend',
-    ],
-    officialWebsite: 'https://joinindiannavy.gov.in',
-    category: 'defence',
-  },
-  {
-    id: 'army-tes',
-    name: 'Indian Army TES',
-    tamilName: 'இந்திய ராணுவம் TES',
-    fullForm: 'Technical Entry Scheme - Indian Army',
-    conductingBody: 'Indian Army',
-    examMode: 'Direct SSB Interview',
-    duration: '5 years (1yr + 4yr B.Tech)',
-    syllabus: [
-      'No written exam',
-      'Direct SSB Interview',
-      'Based on 12th marks',
-    ],
-    eligibility: [
-      '12th PCM - 70%',
-      'Male, Age: 16.5-19.5 years',
-      'Unmarried',
-    ],
-    tnEligibility: 'Direct officer entry! No exam - Only SSB based on 12th marks',
-    importantDates: {
-      registration: 'July-Aug & Jan-Feb',
-      examDate: 'SSB Interview',
-      resultDate: 'After SSB',
-    },
-    applicationFee: {
-      general: 'Nil',
-      scst: 'Nil',
-    },
-    tnCollegesAccepting: [
-      'OTA Chennai (Nearby)',
-      'CME Pune',
-      'MCTE Mhow',
-      'Free B.Tech + Army Career',
-    ],
-    officialWebsite: 'https://joinindianarmy.nic.in',
-    category: 'defence',
-  },
-  {
     id: 'nchmct-jee',
     name: 'NCHMCT JEE ⭐',
     tamilName: 'ஹோட்டல் மேலாண்மை',
@@ -1367,52 +1247,8 @@ export const entranceExams: EntranceExam[] = [
   },
 
   // DEFENCE — Additional
-  {
-    id: 'coast-guard',
-    name: 'Indian Coast Guard Navik',
-    tamilName: 'இந்திய கடலோர காவல் நாவிக்',
-    fullForm: 'Indian Coast Guard Navik (General Duty / Domestic Branch)',
-    conductingBody: 'Indian Coast Guard',
-    examMode: 'Computer Based Test (CBT)',
-    duration: '75 Minutes',
-    syllabus: [
-      'Section I (10th Level): English, Mathematics, Science, GK, Reasoning — 60 MCQs',
-      'Section II (12th Level — PCM): Physics, Chemistry, Mathematics — 50 MCQs',
-      'Total: 110 MCQs in 75 Minutes',
-    ],
-    eligibility: ['12th Pass with PCM (Physics, Chemistry, Mathematics)', 'Minimum 50% in 12th aggregate', 'Age: 18-22 years'],
-    tnEligibility: 'Open to all Indian citizens. Coast Guard selection rallies held in Chennai.',
-    importantDates: { registration: 'Bi-annual (Jan & Jul)', examDate: 'As per batch cycle', resultDate: '2-3 weeks after exam' },
-    applicationFee: { general: 'Free', scst: 'Free' },
-    tnCollegesAccepting: ['Indian Coast Guard Academy, Kannur (Kerala)', 'Training at INS Chilka, Odisha'],
-    officialWebsite: 'https://joinindiancoastguard.cdac.in',
-    category: 'defence',
-  },
-  {
-    id: 'afcat',
-    name: 'Agniveer Air Force (STAR)',
-    tamilName: 'அக்னிவீர் விமானப்படை',
-    fullForm: 'Agniveer Vayu — Selection Test for Airmen Recruitment',
-    conductingBody: 'Indian Air Force',
-    examMode: 'Computer Based Test (CBT)',
-    duration: '60 Minutes',
-    syllabus: [
-      'Physics: Mechanics, Thermodynamics, Optics, Electricity, Magnetism (12th level)',
-      'Mathematics: Algebra, Trigonometry, Calculus, Probability, Vectors',
-      'English: Grammar, Vocabulary, Comprehension',
-      'Reasoning: Verbal, Non-Verbal, Spatial',
-      '100 MCQs in 60 Minutes',
-    ],
-    eligibility: ['12th Pass with PCM (Science stream)', 'Minimum 50% in 12th with PCM', 'Age: 17.5 - 23 years'],
-    tnEligibility: 'Open to all Indian citizens. Air Force selection centres across India.',
-    importantDates: { registration: 'Ongoing throughout year', examDate: 'Multiple sessions per year', resultDate: 'Within 2 weeks' },
-    applicationFee: { general: 'Free', scst: 'Free' },
-    tnCollegesAccepting: ['Air Force Training Establishments', 'Training at various Air Force Stations'],
-    officialWebsite: 'https://agnipathvayu.cdac.in',
-    category: 'defence',
-  },
-
 ];
+
 
 // Utility functions
 export const getExamsByCategory = (category: string): EntranceExam[] => {

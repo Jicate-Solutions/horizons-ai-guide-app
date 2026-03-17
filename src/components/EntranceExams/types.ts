@@ -49,8 +49,7 @@ export type ExamCategory =
   | 'medical'
   | 'management'
   | 'agriculture'
-  | 'design'
-  | 'defence';
+  | 'design';
 
 export interface CategoryInfo {
   id: ExamCategory;
