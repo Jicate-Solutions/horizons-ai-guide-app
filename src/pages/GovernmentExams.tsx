@@ -32,6 +32,24 @@ const getDetail = (id: string) => {
 };
 
 type Scope = 'all' | 'defence' | 'railway' | 'ssc' | 'state' | 'central';
+type QualFilter = 'all' | '8th' | '10th' | '12th';
+
+const qualConfig: Record<QualFilter, { label: string; ta: string; icon: string; bg: string; desc: string; descTa: string }> = {
+  'all':  { label: 'All Exams', ta: 'அனைத்தும்', icon: '📋', bg: 'bg-gray-900', desc: 'All government exams', descTa: 'அனைத்து அரசு தேர்வுகள்' },
+  '8th':  { label: '8th Pass', ta: '8ஆம் வகுப்பு', icon: '📗', bg: 'bg-green-600', desc: 'Eligible after 8th', descTa: '8ஆம் வகுப்புக்கு பிறகு' },
+  '10th': { label: '10th Pass', ta: '10ஆம் வகுப்பு', icon: '📘', bg: 'bg-blue-600', desc: 'Eligible after 10th', descTa: '10ஆம் வகுப்புக்கு பிறகு' },
+  '12th': { label: '12th Pass', ta: '12ஆம் வகுப்பு', icon: '📕', bg: 'bg-red-600', desc: 'Eligible after 12th', descTa: '12ஆம் வகுப்புக்கு பிறகு' },
+};
+
+const getQualLevel = (qual: string): string[] => {
+  const q = qual.toLowerCase();
+  const levels: string[] = [];
+  if (q.includes('8th') || q.includes('middle')) levels.push('8th');
+  if (q.includes('10th') || q.includes('sslc') || q.includes('iti')) levels.push('10th');
+  if (q.includes('12th') || q.includes('10+2') || q.includes('higher secondary') || q.includes('intermediate')) levels.push('12th');
+  if (levels.length === 0) levels.push('12th'); // default
+  return levels;
+};
 
 const statusCfg = {
   open:     { label: 'Open',     ta: 'திறக்கப்பட்டது', dot: 'bg-emerald-500 animate-pulse', badge: 'bg-emerald-100 text-emerald-700 border-emerald-200', btn: 'bg-emerald-600 hover:bg-emerald-700 text-white' },
@@ -46,6 +64,7 @@ const GovernmentExams = () => {
 
   const [search, setSearch] = useState('');
   const [scope, setScope] = useState<Scope>('all');
+  const [qualFilter, setQualFilter] = useState<QualFilter>('all');
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const totalExams = governmentExams.length;
@@ -55,9 +74,10 @@ const GovernmentExams = () => {
   const filtered = useMemo(() => {
     let list = [...governmentExams];
     if (scope !== 'all') list = list.filter(e => e.category === scope);
+    if (qualFilter !== 'all') list = list.filter(e => getQualLevel(e.qualification).includes(qualFilter));
     if (search.trim()) { const q = search.toLowerCase(); list = list.filter(e => e.name.toLowerCase().includes(q) || e.nameTamil.includes(q) || e.description.toLowerCase().includes(q) || e.posts?.some(p => p.toLowerCase().includes(q))); }
     return list;
-  }, [scope, search]);
+  }, [scope, search, qualFilter]);
 
   const grouped = useMemo(() => {
     const g: Record<string, typeof filtered> = {};
@@ -131,6 +151,33 @@ const GovernmentExams = () => {
             className="pl-10 pr-10 h-12 text-sm rounded-xl bg-white border-gray-200 focus:border-gray-400 placeholder:text-gray-400 shadow-sm"
           />
           {search && <button onClick={() => setSearch('')} className="absolute right-3.5 top-1/2 -translate-y-1/2"><X className="h-4 w-4 text-gray-400" /></button>}
+        </div>
+
+        {/* ── QUALIFICATION FILTER ── */}
+        <div className="mb-4">
+          <p className="text-xs font-bold text-gray-500 mb-2">{t ? 'தகுதி நிலை' : 'Your Qualification'}</p>
+          <div className="grid grid-cols-4 gap-2">
+            {(Object.entries(qualConfig) as [QualFilter, typeof qualConfig['all']][]).map(([key, cfg]) => {
+              const count = key === 'all' ? governmentExams.length : governmentExams.filter(e => getQualLevel(e.qualification).includes(key)).length;
+              return (
+                <button key={key} onClick={() => setQualFilter(key)}
+                  className={cn("flex flex-col items-center gap-1 py-3 rounded-xl text-xs font-bold transition-all border",
+                    qualFilter === key ? `${cfg.bg} text-white border-transparent shadow-lg` : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                  )}>
+                  <span className="text-lg">{cfg.icon}</span>
+                  <span>{t ? cfg.ta : cfg.label}</span>
+                  <span className={cn("text-[10px] px-1.5 py-0.5 rounded-full", qualFilter === key ? "bg-white/20" : "bg-gray-100")}>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+          {qualFilter !== 'all' && (
+            <div className="mt-2 p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+              <p className="text-xs text-emerald-800 font-medium">
+                ✅ {t ? `நீங்கள் ${qualConfig[qualFilter].ta} தேர்ச்சி பெற்றிருந்தால், கீழே உள்ள அனைத்து தேர்வுகளுக்கும் தகுதி உடையவர்` : `If you passed ${qualConfig[qualFilter].label}, you are eligible for all ${filtered.length} exams below`}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* ── CATEGORY PILLS ── */}
