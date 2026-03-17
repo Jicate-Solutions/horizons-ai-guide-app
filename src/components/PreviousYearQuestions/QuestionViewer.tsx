@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { getTopicQuestions, PYQQuestion } from './pyqQuestionsData';
-import { getTopicSyllabus } from './syllabusData';
+import { getTopicSyllabus, getExamPYQSources } from './syllabusData';
 
 interface QuestionViewerProps {
   examId: string;
@@ -209,15 +209,56 @@ export const QuestionViewer = ({ examId, examName, subject, topicName, onBack }:
 
       {/* No questions state */}
       {questions.length === 0 && (
-        <div className="text-center py-10 bg-white rounded-xl border border-gray-200">
+        <div className="text-center py-8 bg-white rounded-xl border border-gray-200">
           <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-700 font-bold">PYQ for "{topicName}" — Coming Soon</p>
-          <p className="text-gray-400 text-sm mt-1 px-4">We're adding verified previous year questions from official {examName} papers. Only real exam questions will appear here.</p>
+          <p className="text-gray-700 font-bold">PYQ for "{topicName}"</p>
+          <p className="text-gray-400 text-sm mt-1 px-4">Practice thousands of real questions from the official sources below</p>
           {syllabus && (
             <p className="text-emerald-600 text-sm mt-3 font-medium">📚 Syllabus & Books are available above — start preparing!</p>
           )}
         </div>
       )}
+
+      {/* ═══ OFFICIAL PYQ SOURCES — Practice 1000+ Real Questions ═══ */}
+      {(() => {
+        const sources = getExamPYQSources(examId);
+        if (sources.length === 0) return null;
+        return (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <Card className="rounded-xl border-2 border-violet-200 overflow-hidden">
+              <div className="px-4 py-3 bg-gradient-to-r from-violet-600 to-purple-600">
+                <p className="text-sm font-bold text-white flex items-center gap-1.5">
+                  🎯 Practice 1000+ Real {examName} Questions — Free
+                </p>
+                <p className="text-xs text-violet-200 mt-0.5">Official sources with verified previous year questions</p>
+              </div>
+              <CardContent className="p-3 space-y-2">
+                {sources.map((source, idx) => (
+                  <a
+                    key={idx}
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-violet-300 hover:shadow-md transition-all active:scale-[0.99]"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-lg">🔗</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold text-gray-900">{source.name}</p>
+                      <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{source.description}</p>
+                    </div>
+                    <div className="flex flex-col items-end flex-shrink-0">
+                      <Badge className="bg-violet-100 text-violet-700 border-0 text-[10px] font-bold">{source.questionCount}</Badge>
+                      <span className="text-xs text-violet-500 mt-0.5">Free →</span>
+                    </div>
+                  </a>
+                ))}
+              </CardContent>
+            </Card>
+          </motion.div>
+        );
+      })()}
 
       {/* Back Button */}
       <div className="text-center pt-2 pb-4">

@@ -428,3 +428,84 @@ syllabusData["class-12::Chemistry"] = {
 syllabusData["class-12::Mathematics"] = {
   "Mathematics — Board Exam": { officialTopics: ["Relations & functions", "Inverse trig", "Matrices & determinants", "Continuity & differentiability", "Application of derivatives", "Integrals", "Application of integrals", "Differential equations", "Vectors", "3D geometry", "Linear programming", "Probability"], books: [{ name: "NCERT Maths Class 12", author: "NCERT", why: "Board exam = NCERT — solve every exercise" }, { name: "R.D. Sharma Class 12", author: "R.D. Sharma", why: "Extra problems per chapter" }, { name: "Oswaal Sample Papers", author: "Oswaal", why: "Board exam pattern" }] },
 };
+
+// ═══ FREE PYQ SOURCES — Official & Trusted ═══
+export interface PYQSource {
+  name: string;
+  url: string;
+  description: string;
+  questionCount: string;
+}
+
+export const examPYQSources: Record<string, PYQSource[]> = {
+  "jee-main": [
+    { name: "NTA Official — JEE Main Papers", url: "https://jeemain.nta.nic.in/", description: "Official NTA JEE Main question papers with answer keys", questionCount: "All years" },
+    { name: "ExamSIDE — Chapter-wise PYQ", url: "https://questions.examside.com/past-years/jee/jee-main", description: "Free chapter-wise JEE Main PYQ with solutions (2015-2025)", questionCount: "5000+" },
+    { name: "MathonGo — Chapter-wise Solved", url: "https://www.mathongo.com/iit-jee/jee-main-chapter-wise-questions-with-solutions", description: "Chapter-wise solved JEE Main questions by IIT teachers", questionCount: "3000+" },
+    { name: "Embibe — JEE Main Practice", url: "https://www.embibe.com/exams/jee-main/", description: "Free JEE Main mock tests and chapter-wise practice", questionCount: "10000+" },
+  ],
+  "jee-advanced": [
+    { name: "NTA/JoSAA Official", url: "https://jeeadv.ac.in/", description: "Official JEE Advanced question papers", questionCount: "All years" },
+    { name: "ExamSIDE — JEE Advanced PYQ", url: "https://questions.examside.com/past-years/jee/jee-advanced", description: "Chapter-wise JEE Advanced PYQ (1978-2025)", questionCount: "8000+" },
+    { name: "MathonGo — JEE Advanced Solved", url: "https://www.mathongo.com/iit-jee/jee-advanced-chapter-wise-questions-with-solutions", description: "Chapter-wise solved JEE Advanced questions", questionCount: "4000+" },
+  ],
+  "neet": [
+    { name: "NTA Official — NEET Papers", url: "https://neet.nta.nic.in/", description: "Official NEET question papers with answer keys", questionCount: "All years" },
+    { name: "ExamSIDE — NEET Chapter-wise", url: "https://questions.examside.com/past-years/neet", description: "Free chapter-wise NEET PYQ with solutions", questionCount: "5000+" },
+    { name: "Embibe — NEET Practice", url: "https://www.embibe.com/exams/neet/", description: "Free NEET mock tests and topic-wise practice", questionCount: "10000+" },
+    { name: "AAKASH — NEET PYQ PDF", url: "https://www.aakash.ac.in/neet/previous-year-papers", description: "Free NEET previous year papers (2013-2025)", questionCount: "2000+" },
+  ],
+  "bitsat": [
+    { name: "BITS Official", url: "https://www.bitsadmission.com/", description: "Official BITSAT information and sample papers", questionCount: "Sample" },
+    { name: "Embibe — BITSAT Practice", url: "https://www.embibe.com/exams/bitsat/", description: "Free BITSAT mock tests and practice", questionCount: "3000+" },
+  ],
+  "viteee": [
+    { name: "VIT Official", url: "https://viteee.vit.ac.in/", description: "Official VITEEE information", questionCount: "Sample" },
+    { name: "Embibe — VITEEE Practice", url: "https://www.embibe.com/exams/viteee/", description: "Free VITEEE practice questions", questionCount: "2000+" },
+  ],
+  "mht-cet": [
+    { name: "MHT-CET Official", url: "https://cetcell.mahacet.org/", description: "Official MHT-CET papers", questionCount: "All years" },
+    { name: "ExamSIDE — MHT-CET PYQ", url: "https://questions.examside.com/past-years/mht-cet", description: "Chapter-wise MHT-CET previous year questions", questionCount: "3000+" },
+  ],
+  "comedk": [
+    { name: "COMEDK Official", url: "https://www.comedk.org/", description: "Official COMEDK question papers", questionCount: "All years" },
+    { name: "Embibe — COMEDK Practice", url: "https://www.embibe.com/exams/comedk-uget/", description: "Free COMEDK practice questions", questionCount: "2000+" },
+  ],
+  "wb-jee": [
+    { name: "WBJEE Official", url: "https://wbjeeb.nic.in/", description: "Official WB-JEE papers", questionCount: "All years" },
+    { name: "ExamSIDE — WB-JEE PYQ", url: "https://questions.examside.com/past-years/wb-jee", description: "Chapter-wise WB-JEE PYQ", questionCount: "2000+" },
+  ],
+  "cuet": [
+    { name: "NTA Official — CUET", url: "https://cuet.samarth.ac.in/", description: "Official CUET papers and information", questionCount: "All years" },
+    { name: "Embibe — CUET Practice", url: "https://www.embibe.com/exams/cuet/", description: "Free CUET mock tests", questionCount: "3000+" },
+  ],
+  "clat": [
+    { name: "CLAT Official", url: "https://consortiumofnlus.ac.in/", description: "Official CLAT papers", questionCount: "All years" },
+    { name: "CLATapult — Free Practice", url: "https://www.clatapult.com/", description: "Free CLAT practice and mock tests", questionCount: "2000+" },
+  ],
+  "nda": [
+    { name: "UPSC Official — NDA", url: "https://www.upsc.gov.in/", description: "Official NDA question papers", questionCount: "All years" },
+    { name: "Embibe — NDA Practice", url: "https://www.embibe.com/exams/nda/", description: "Free NDA mock tests and PYQ", questionCount: "2000+" },
+  ],
+  "ca-cs-cma-foundation": [
+    { name: "ICAI Official — Study Material", url: "https://www.icai.org/", description: "Official ICAI CA Foundation papers and study material", questionCount: "All years" },
+    { name: "CA Foundation MTPs & RTPs", url: "https://resource.cdn.icai.org/", description: "Official Mock Test Papers & Revision Test Papers by ICAI", questionCount: "500+" },
+  ],
+  "srmjeee": [
+    { name: "SRM Official", url: "https://www.srmist.edu.in/admissions", description: "Official SRMJEEE information and sample papers", questionCount: "Sample" },
+    { name: "Embibe — SRMJEEE Practice", url: "https://www.embibe.com/exams/srmjeee/", description: "Free SRMJEEE practice", questionCount: "1000+" },
+  ],
+  "tnau": [
+    { name: "TNAU Official", url: "https://www.tnau.ac.in/", description: "Tamil Nadu Agricultural University admission info", questionCount: "Merit-based" },
+  ],
+  "class-12": [
+    { name: "CBSE Official Papers", url: "https://cbseacademic.nic.in/", description: "Official CBSE Class 12 board papers (all years)", questionCount: "All years" },
+    { name: "Oswaal — Board PYQ", url: "https://www.oswaalbooks.com/", description: "Chapter-wise board exam PYQ with solutions", questionCount: "5000+" },
+  ],
+};
+
+export const getExamPYQSources = (examId: string): PYQSource[] => {
+  const idMap: Record<string, string> = { 'neet-ug': 'neet' };
+  const resolvedId = idMap[examId] || examId;
+  return examPYQSources[resolvedId] || [];
+};
