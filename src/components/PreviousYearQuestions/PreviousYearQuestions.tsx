@@ -49,8 +49,6 @@ const categories: CategoryData[] = [
     color: 'text-emerald-700', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-200',
     exams: [
       { exam: 'NEET UG', subcategory: 'neet', subjects: ['Physics', 'Chemistry', 'Biology'] },
-      { exam: 'NEET PG', subcategory: 'neet-pg', subjects: ['Anatomy', 'Physiology', 'Biochemistry', 'Pharmacology', 'Pathology', 'Microbiology', 'Medicine', 'Surgery'] },
-      { exam: 'AIIMS (Old)', subcategory: 'aiims', subjects: ['Physics', 'Chemistry', 'Biology', 'GK'] },
     ],
   },
   {
@@ -62,32 +60,10 @@ const categories: CategoryData[] = [
     ],
   },
   {
-    id: 'civil', label: 'Civil Services', labelTamil: 'அரசு பணி', icon: '🏛️',
-    color: 'text-rose-700', bgColor: 'bg-rose-50', borderColor: 'border-rose-200',
+    id: 'board', label: 'Class 12 Board', labelTamil: '12ஆம் வகுப்பு', icon: '📚',
+    color: 'text-violet-700', bgColor: 'bg-violet-50', borderColor: 'border-violet-200',
     exams: [
-      { exam: 'UPSC Prelims', subcategory: 'upsc-prelims', subjects: ['General Studies', 'CSAT'] },
-      { exam: 'TNPSC Group 1', subcategory: 'tnpsc-group1', subjects: ['GS', 'Aptitude', 'Tamil'] },
-      { exam: 'TNPSC Group 2/2A', subcategory: 'tnpsc-group2', subjects: ['GS', 'Tamil', 'Aptitude'] },
-      { exam: 'TNPSC Group 4', subcategory: 'tnpsc-group4', subjects: ['GS', 'Tamil', 'Aptitude'] },
-    ],
-  },
-  {
-    id: 'banking', label: 'Banking & SSC', labelTamil: 'வங்கி & எஸ்எஸ்சி', icon: '🏦',
-    color: 'text-indigo-700', bgColor: 'bg-indigo-50', borderColor: 'border-indigo-200',
-    exams: [
-      { exam: 'SBI PO', subcategory: 'sbi-po', subjects: ['Reasoning', 'Quantitative', 'English', 'Banking'] },
-      { exam: 'IBPS PO', subcategory: 'ibps-po', subjects: ['Reasoning', 'Quantitative', 'English'] },
-      { exam: 'SSC CGL', subcategory: 'ssc-cgl', subjects: ['Reasoning', 'Quantitative', 'English', 'GK'] },
-      { exam: 'RRB NTPC', subcategory: 'rrb-ntpc', subjects: ['Maths', 'Reasoning', 'GK'] },
-    ],
-  },
-  {
-    id: 'defence', label: 'Defence', labelTamil: 'பாதுகாப்பு', icon: '🎖️',
-    color: 'text-green-700', bgColor: 'bg-green-50', borderColor: 'border-green-200',
-    exams: [
-      { exam: 'NDA', subcategory: 'nda', subjects: ['Maths', 'GAT'] },
-      { exam: 'CDS', subcategory: 'cds', subjects: ['English', 'GK', 'Maths'] },
-      { exam: 'AFCAT', subcategory: 'afcat', subjects: ['Verbal', 'Numerical', 'Reasoning'] },
+      { exam: 'CBSE Class 12', subcategory: 'class-12', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
     ],
   },
 ];
