@@ -55,10 +55,6 @@ const Footer = () => {
               <a href="#contact" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                 {t('footer.contact')}
               </a>
-              <span className="text-primary-foreground/30">|</span>
-              <a href="/admin/login" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                {t('footer.admin')}
-              </a>
             </div>
           </div>
         </div>
