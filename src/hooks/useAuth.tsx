@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signUp = async (email: string, password: string, displayName?: string) => {
     const redirectUrl = `${window.location.origin}/`;
     
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -51,14 +51,43 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       },
     });
+
+    // Create a profile row so admin panel can see this user
+    if (!error && data?.user) {
+      try {
+        await supabase.from('profiles').upsert({
+          user_id: data.user.id,
+          display_name: displayName || email.split('@')[0],
+          bio: email, // Store email in bio for admin visibility
+        }, { onConflict: 'user_id' });
+      } catch (profileErr) {
+        console.warn('[VAZHIKATTI] Profile creation failed:', profileErr);
+      }
+    }
+
     return { error: error as Error | null };
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+
+    // Ensure profile exists for admin visibility
+    if (!error && data?.user) {
+      try {
+        await supabase.from('profiles').upsert({
+          user_id: data.user.id,
+          display_name: data.user.user_metadata?.display_name || email.split('@')[0],
+          bio: email,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'user_id' });
+      } catch (profileErr) {
+        console.warn('[VAZHIKATTI] Profile update failed:', profileErr);
+      }
+    }
+
     return { error: error as Error | null };
   };
 

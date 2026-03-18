@@ -105,16 +105,16 @@ const SimpleAdmin = () => {
 
       // Profiles (auth users)
       (profiles || []).forEach((p: any) => {
-        const email = p.email || p.full_name || p.id;
+        const email = p.bio || p.display_name || p.id;
         if (!seenEmails.has(email)) {
           seenEmails.add(email);
           allUsers.push({
             id: p.id,
-            email: p.email || '',
-            phone: p.phone || '',
+            email: p.bio || '',
+            phone: '',
             created_at: p.created_at || p.updated_at || '',
             last_sign_in: p.updated_at || p.created_at || '',
-            provider: 'Auth User',
+            provider: 'App User' + (p.display_name ? ` · ${p.display_name}` : ''),
           });
         }
       });
