@@ -87,17 +87,17 @@ function App() {
                 <Route path="/jobs" element={<ProtectedRoute><JobPortal /></ProtectedRoute>} />
                 <Route path="/jobs/*" element={<ProtectedRoute><JobPortal /></ProtectedRoute>} />
                 <Route path="/saved-jobs" element={<ProtectedRoute><SavedJobs /></ProtectedRoute>} />
-                <Route path="/register/learner" element={<RegisterLearner />} />
-                <Route path="/register/12th-learner" element={<Register12thLearner />} />
+                <Route path="/register/learner" element={<ProtectedRoute><RegisterLearner /></ProtectedRoute>} />
+                <Route path="/register/12th-learner" element={<ProtectedRoute><Register12thLearner /></ProtectedRoute>} />
                 
                 {/* Employer Routes */}
-                <Route path="/register/employer" element={<RegisterEmployer />} />
-                <Route path="/employer/register/success" element={<EmployerRegistrationSuccess />} />
-                <Route path="/employer/dashboard" element={<EmployerDashboard />} />
-                <Route path="/employer/profile" element={<EmployerProfile />} />
-                <Route path="/employer/jobs" element={<EmployerJobs />} />
-                <Route path="/employer/jobs/new" element={<EmployerPostJob />} />
-                <Route path="/employer/jobs/:id/edit" element={<EmployerPostJob />} />
+                <Route path="/register/employer" element={<ProtectedRoute><RegisterEmployer /></ProtectedRoute>} />
+                <Route path="/employer/register/success" element={<ProtectedRoute><EmployerRegistrationSuccess /></ProtectedRoute>} />
+                <Route path="/employer/dashboard" element={<ProtectedRoute><EmployerDashboard /></ProtectedRoute>} />
+                <Route path="/employer/profile" element={<ProtectedRoute><EmployerProfile /></ProtectedRoute>} />
+                <Route path="/employer/jobs" element={<ProtectedRoute><EmployerJobs /></ProtectedRoute>} />
+                <Route path="/employer/jobs/new" element={<ProtectedRoute><EmployerPostJob /></ProtectedRoute>} />
+                <Route path="/employer/jobs/:id/edit" element={<ProtectedRoute><EmployerPostJob /></ProtectedRoute>} />
                 
                 {/* Student Routes — ALL require login */}
                 <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
@@ -161,16 +161,16 @@ function App() {
 <Route path="/admin/alumni-verification" element={<AlumniVerification />} />
                 
                 {/* Career Hub Routes */}
-                <Route path="/jkkn" element={<JKKNCareerHub />} />
-                <Route path="/jkkn/register" element={<JKKNRegister />} />
-                <Route path="/jkkn/register/success" element={<JKKNRegisterSuccess />} />
-                <Route path="/jkkn/job/:id" element={<JKKNJobDetail />} />
-                <Route path="/jkkn/problem/:id" element={<JKKNProblemDetail />} />
-                <Route path="/jkkn/roadmap/:id" element={<JKKNRoadmapDetail />} />
-                <Route path="/jkkn/learner/:id" element={<JKKNLearnerProfile />} />
+                <Route path="/jkkn" element={<ProtectedRoute><JKKNCareerHub /></ProtectedRoute>} />
+                <Route path="/jkkn/register" element={<ProtectedRoute><JKKNRegister /></ProtectedRoute>} />
+                <Route path="/jkkn/register/success" element={<ProtectedRoute><JKKNRegisterSuccess /></ProtectedRoute>} />
+                <Route path="/jkkn/job/:id" element={<ProtectedRoute><JKKNJobDetail /></ProtectedRoute>} />
+                <Route path="/jkkn/problem/:id" element={<ProtectedRoute><JKKNProblemDetail /></ProtectedRoute>} />
+                <Route path="/jkkn/roadmap/:id" element={<ProtectedRoute><JKKNRoadmapDetail /></ProtectedRoute>} />
+                <Route path="/jkkn/learner/:id" element={<ProtectedRoute><JKKNLearnerProfile /></ProtectedRoute>} />
                 
                 {/* Catch-all */}
-                <Route path="/survey/:surveyId" element={<SurveyPublic />} />
+                <Route path="/survey/:surveyId" element={<ProtectedRoute><SurveyPublic /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
