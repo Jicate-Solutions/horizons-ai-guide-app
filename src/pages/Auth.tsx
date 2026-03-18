@@ -7,42 +7,24 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { z } from 'zod';
-import { Eye, EyeOff, Loader2, CheckCircle2, Mail, User, ArrowRight, Phone, Search } from 'lucide-react';
-
-const loginSchema = z.object({
-  email: z.string().trim().email({ message: "Please enter a valid email address" }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters" }),
-});
-
-const signupSchema = loginSchema.extend({
-  displayName: z.string().trim().min(2, { message: "Display name must be at least 2 characters" }).max(50, { message: "Display name must be less than 50 characters" }),
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
+import { Eye, EyeOff, Loader2, CheckCircle2, Mail, User, ArrowRight, Phone } from 'lucide-react';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(false);
-  const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [foundEmail, setFoundEmail] = useState('');
-  const [foundName, setFoundName] = useState('');
-  const [phoneLookupDone, setPhoneLookupDone] = useState(false);
-  const [isLookingUp, setIsLookingUp] = useState(false);
-  const [displayName, setDisplayName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  
-  // Learner detail fields
+
+  // Common fields
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  // Sign Up only fields
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
   const [schoolName, setSchoolName] = useState('');
-  const [contactPhone, setContactPhone] = useState('');
   const [passOutYear, setPassOutYear] = useState('');
   const [stream, setStream] = useState('');
   const [district, setDistrict] = useState('');
@@ -56,8 +38,10 @@ const Auth = () => {
   const searchParams = new URLSearchParams(location.search);
   const redirectParam = searchParams.get('redirect');
 
-  useEffect(() => {
+  // Convert mobile to auth email (Supabase needs email for auth)
+  const phoneToEmail = (phone: string) => `${phone}@vazhikatti.app`;
 
+  useEffect(() => {
     if (user && !loading) {
       const redirectUrl = redirectParam || '/career-assessment/colleges';
       navigate(redirectUrl, { replace: true });
@@ -65,111 +49,48 @@ const Auth = () => {
   }, [user, loading, redirectParam, navigate]);
 
   const validateForm = () => {
-    try {
-      if (isLogin) {
-        loginSchema.parse({ email, password });
-      } else {
-        signupSchema.parse({ email, password, confirmPassword, displayName });
-        // Validate learner fields
-        const newErrors: Record<string, string> = {};
-        if (!contactPhone || contactPhone.length < 10) newErrors.contactPhone = 'Enter a valid 10-digit phone number';
-        if (!schoolName.trim()) newErrors.schoolName = 'School name is required';
-        if (!passOutYear) newErrors.passOutYear = 'Please select your pass-out year';
-        if (!stream) newErrors.stream = 'Please select your stream';
-        if (!district) newErrors.district = 'Please select your district';
-        if (!careerInterest) newErrors.careerInterest = 'Please select your career interest';
-        if (Object.keys(newErrors).length > 0) {
-          setErrors(newErrors);
-          return false;
-        }
-      }
-      setErrors({});
-      return true;
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        const newErrors: Record<string, string> = {};
-        err.errors.forEach((error) => {
-          if (error.path[0]) {
-            newErrors[error.path[0] as string] = error.message;
-          }
-        });
-        setErrors(newErrors);
-      }
-      return false;
-    }
-  };
+    const newErrors: Record<string, string> = {};
 
-  const handlePhoneLookup = async () => {
-    if (!phone || phone.trim().length < 10) {
-      setErrors({ phone: 'Please enter a valid 10-digit phone number' });
-      return;
+    if (!mobileNumber || mobileNumber.length !== 10) {
+      newErrors.mobileNumber = 'Enter a valid 10-digit mobile number';
     }
-    setIsLookingUp(true);
-    setErrors({});
-    try {
-      // Look up from registrations_12th_learners
-      const { data, error } = await supabase
-        .from('registrations_12th_learners')
-        .select('email, full_name, user_id')
-        .eq('phone', phone.trim())
-        .limit(1);
+    if (!password || password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
 
-      if (error) throw error;
-
-      if (data && data.length > 0 && data[0].email) {
-        setFoundEmail(data[0].email);
-        setFoundName(data[0].full_name || '');
-        setPhoneLookupDone(true);
-        toast({
-          title: "Account Found! ✅",
-          description: `Welcome back, ${data[0].full_name || 'Learner'}! Enter your password to sign in.`,
-        });
-      } else {
-        // Also try looking up from auth users via user_id
-        setErrors({ phone: 'No account found with this phone number. Please sign up first.' });
-        toast({
-          title: "Not Found",
-          description: "No registration found with this phone number. Please create an account first.",
-          variant: "destructive",
-        });
+    if (!isLogin) {
+      if (!displayName || displayName.trim().length < 2) {
+        newErrors.displayName = 'Full name must be at least 2 characters';
       }
-    } catch (err) {
-      setErrors({ phone: 'Error looking up phone number. Please try with email.' });
-    } finally {
-      setIsLookingUp(false);
+      if (!confirmPassword || password !== confirmPassword) {
+        newErrors.confirmPassword = 'Passwords do not match';
+      }
+      if (!schoolName.trim()) newErrors.schoolName = 'School name is required';
+      if (!passOutYear) newErrors.passOutYear = 'Please select your pass-out year';
+      if (!stream) newErrors.stream = 'Please select your stream';
+      if (!district) newErrors.district = 'Please select your district';
+      if (!careerInterest) newErrors.careerInterest = 'Please select your career interest';
     }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // For phone login with found email
-    const loginEmail = (isLogin && loginMethod === 'phone' && phoneLookupDone) ? foundEmail : email;
+    if (!validateForm()) return;
 
-    if (isLogin && loginMethod === 'phone') {
-      if (!phoneLookupDone) {
-        handlePhoneLookup();
-        return;
-      }
-      // Validate password only
-      if (password.length < 6) {
-        setErrors({ password: 'Password must be at least 6 characters' });
-        return;
-      }
-    } else if (!validateForm()) {
-      return;
-    }
-    
     setIsLoading(true);
-    
+    const authEmail = phoneToEmail(mobileNumber);
+
     try {
       if (isLogin) {
-        const { error } = await signIn(loginEmail, password);
+        const { error } = await signIn(authEmail, password);
         if (error) {
           if (error.message.includes('Invalid login credentials')) {
             toast({
               title: "Login Failed",
-              description: "Invalid email or password. Please try again.",
+              description: "Invalid mobile number or password. Please check and try again.",
               variant: "destructive",
             });
           } else {
@@ -186,12 +107,12 @@ const Auth = () => {
           });
         }
       } else {
-        const { error } = await signUp(email, password, displayName);
+        const { error } = await signUp(authEmail, password, displayName);
         if (error) {
           if (error.message.includes('User already registered') || error.message.includes('already been registered')) {
             toast({
-              title: "Email Already Registered",
-              description: "An account with this email already exists. Please click 'Sign In' below to log in instead.",
+              title: "Mobile Number Already Registered",
+              description: "An account with this mobile number already exists. Please click 'Sign In' below.",
               variant: "destructive",
             });
           } else if (error.message.includes('rate limit') || error.message.includes('too many')) {
@@ -212,78 +133,55 @@ const Auth = () => {
             title: "Account Created!",
             description: "Welcome! Your account has been created successfully.",
           });
-          
-          // Save learner details to registrations_12th_learners table
+
+          // Save learner details to database
           try {
             const { data: authData } = await supabase.auth.getUser();
             await supabase.from('registrations_12th_learners').insert({
               user_id: authData?.user?.id || null,
               full_name: displayName,
-              phone: contactPhone,
-              email: email,
+              phone: mobileNumber,
+              email: email || null,
               school_name: schoolName,
               stream: stream,
               preferred_course: passOutYear,
               preferred_institution: district,
               career_interests: careerInterest ? [careerInterest] : [],
             });
-            console.log('[VAZHIKATTI] Learner details saved to database');
           } catch (dbErr) {
             console.warn('[VAZHIKATTI] Failed to save learner details:', dbErr);
           }
 
-          // Also create profile for admin visibility
+          // Create profile for admin visibility
           try {
             const { data: authData } = await supabase.auth.getUser();
             if (authData?.user) {
               await supabase.from('profiles').upsert({
                 user_id: authData.user.id,
-                display_name: displayName || email.split('@')[0],
-                bio: email,
+                display_name: displayName || mobileNumber,
+                bio: mobileNumber + (email ? ` | ${email}` : ''),
               }, { onConflict: 'user_id' });
             }
           } catch (profileErr) {
             console.warn('[VAZHIKATTI] Profile creation failed:', profileErr);
           }
 
-          // Show registration success screen
           setRegistrationSuccess(true);
-          
-          // Send welcome email — try BOTH methods for maximum reliability
-          const emailPayload = { 
-            fullName: displayName || email.split('@')[0], 
-            email, 
-            phone: contactPhone || '-', 
-            school: schoolName || '-', 
-            board: '-', 
-            stream: stream || '-', 
-            expectedYear: passOutYear || '2026' 
-          };
 
-          // Method 1: Vercel API (primary — deployed with the app)
-          try {
-            console.log('[VAZHIKATTI] Sending welcome email via Vercel API to:', email);
-            const vercelRes = await fetch('/api/send-welcome-email', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email, displayName: displayName || email.split('@')[0] }),
-            });
-            const vercelData = await vercelRes.json();
-            console.log('[VAZHIKATTI] Vercel email result:', vercelData);
-          } catch (vercelErr) {
-            console.warn('[VAZHIKATTI] Vercel email failed:', vercelErr);
-          }
-
-          // Method 2: Supabase Edge Function (backup)
-          try {
-            console.log('[VAZHIKATTI] Sending welcome email via Supabase Edge Function to:', email);
-            const { data: edgeData, error: edgeError } = await supabase.functions.invoke('send-registration-email', {
-              body: emailPayload,
-            });
-            if (edgeError) console.warn('[VAZHIKATTI] Supabase edge error:', edgeError);
-            else console.log('[VAZHIKATTI] Supabase edge result:', edgeData);
-          } catch (edgeErr) {
-            console.warn('[VAZHIKATTI] Supabase edge failed:', edgeErr);
+          // Send welcome email if provided
+          if (email) {
+            try {
+              await fetch('/api/send-welcome-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, displayName: displayName || mobileNumber }),
+              });
+            } catch (e) { /* silent */ }
+            try {
+              await supabase.functions.invoke('send-registration-email', {
+                body: { fullName: displayName, email, phone: mobileNumber, school: schoolName, board: '-', stream, expectedYear: passOutYear },
+              });
+            } catch (e) { /* silent */ }
           }
         }
       }
@@ -297,13 +195,10 @@ const Auth = () => {
     setErrors({});
     setPassword('');
     setConfirmPassword('');
-    setPhone('');
-    setFoundEmail('');
-    setFoundName('');
-    setPhoneLookupDone(false);
-    setLoginMethod('email');
+    setMobileNumber('');
+    setDisplayName('');
+    setEmail('');
     setSchoolName('');
-    setContactPhone('');
     setPassOutYear('');
     setStream('');
     setDistrict('');
@@ -312,10 +207,8 @@ const Auth = () => {
 
   return (
     <div className="fresh-page-wrapper page-transition flex items-center justify-center p-4">
-      {/* Registration Success Screen */}
       {registrationSuccess ? (
         <Card className="fresh-card w-full max-w-md relative z-10 overflow-hidden">
-          {/* Green Header */}
           <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-yellow-600 p-6 text-center text-white">
             <div className="flex justify-center mb-3">
               <div className="bg-white/20 rounded-full p-3">
@@ -325,49 +218,39 @@ const Auth = () => {
             <h2 className="text-2xl font-bold">Registration Successful! 🎉</h2>
             <p className="text-sm mt-1 opacity-90">Welcome to AI Vazhikatti</p>
           </div>
-
           <CardContent className="p-6 space-y-5">
-            {/* Thank You Message */}
             <div className="text-center">
               <p className="text-gray-600 text-sm">
-                Thank you for signing up, <strong className="text-emerald-700">{displayName || 'Learner'}</strong>! 
+                Thank you for signing up, <strong className="text-emerald-700">{displayName || 'Learner'}</strong>!
                 Your career journey starts now.
               </p>
             </div>
-
-            {/* Registration Details */}
             <div className="bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl p-5 border border-green-200">
-              <h3 className="text-sm font-semibold text-emerald-800 mb-3 flex items-center gap-2">
-                📋 Your Registration Details
-              </h3>
+              <h3 className="text-sm font-semibold text-emerald-800 mb-3">📋 Your Registration Details</h3>
               <div className="space-y-2">
                 <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
-                  <div className="bg-emerald-100 rounded-full p-1.5">
-                    <User className="h-3.5 w-3.5 text-emerald-700" />
-                  </div>
+                  <div className="bg-emerald-100 rounded-full p-1.5"><User className="h-3.5 w-3.5 text-emerald-700" /></div>
                   <div className="flex-1">
                     <p className="text-[10px] text-gray-500">Name</p>
-                    <p className="text-xs font-medium text-gray-800">{displayName || 'Not provided'}</p>
+                    <p className="text-xs font-medium text-gray-800">{displayName}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
-                  <div className="bg-emerald-100 rounded-full p-1.5">
-                    <Mail className="h-3.5 w-3.5 text-emerald-700" />
-                  </div>
+                  <div className="bg-emerald-100 rounded-full p-1.5"><Phone className="h-3.5 w-3.5 text-emerald-700" /></div>
                   <div className="flex-1">
-                    <p className="text-[10px] text-gray-500">Email</p>
-                    <p className="text-xs font-medium text-gray-800">{email}</p>
+                    <p className="text-[10px] text-gray-500">Mobile</p>
+                    <p className="text-xs font-medium text-gray-800">{mobileNumber}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
-                  <div className="bg-emerald-100 rounded-full p-1.5">
-                    <Phone className="h-3.5 w-3.5 text-emerald-700" />
+                {email && (
+                  <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
+                    <div className="bg-emerald-100 rounded-full p-1.5"><Mail className="h-3.5 w-3.5 text-emerald-700" /></div>
+                    <div className="flex-1">
+                      <p className="text-[10px] text-gray-500">Email</p>
+                      <p className="text-xs font-medium text-gray-800">{email}</p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="text-[10px] text-gray-500">Phone</p>
-                    <p className="text-xs font-medium text-gray-800">{contactPhone || 'Not provided'}</p>
-                  </div>
-                </div>
+                )}
                 <div className="grid grid-cols-2 gap-2">
                   <div className="bg-white rounded-lg p-2.5 shadow-sm">
                     <p className="text-[10px] text-gray-500">School</p>
@@ -392,16 +275,6 @@ const Auth = () => {
                 </div>
               </div>
             </div>
-
-            {/* Email Notification */}
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2">
-              <span className="text-lg">📧</span>
-              <p className="text-xs text-amber-800">
-                A welcome email has been sent to <strong>{email}</strong>. Please check your inbox (and spam folder).
-              </p>
-            </div>
-
-            {/* What's Next */}
             <div className="space-y-2">
               <h4 className="text-sm font-semibold text-gray-700">🚀 What you can do next:</h4>
               <div className="grid grid-cols-2 gap-2">
@@ -411,14 +284,9 @@ const Auth = () => {
                 <div className="bg-gray-50 rounded-lg p-2.5 text-center text-xs text-gray-600">💼 Job Portal</div>
               </div>
             </div>
-
-            {/* CTA Button */}
-            <Button 
+            <Button
               className="w-full bg-gradient-to-r from-[#FF6B35] to-[#e55a2a] hover:from-[#e55a2a] hover:to-[#d44a1a] text-white font-semibold py-5 text-base"
-              onClick={() => {
-                const redirectUrl = redirectParam || '/career-assessment/colleges';
-                navigate(redirectUrl);
-              }}
+              onClick={() => navigate(redirectParam || '/career-assessment/colleges')}
             >
               Start Exploring AI Vazhikatti
               <ArrowRight className="h-5 w-5 ml-2" />
@@ -426,399 +294,210 @@ const Auth = () => {
           </CardContent>
         </Card>
       ) : (
-      <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10 notranslate">
-        <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-serif text-fresh-green-dark">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
-          </CardTitle>
-          <CardDescription className="fresh-body">
-            {isLogin
-              ? 'Sign in with your email or registered phone number'
-              : 'Fill in your details to get started'}
-          </CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
-            {/* Email/Phone Toggle for Login */}
-            {isLogin && (
-              <div className="flex rounded-lg overflow-hidden border-2 border-emerald-200 mb-2">
-                <button
-                  type="button"
-                  onClick={() => { setLoginMethod('email'); setErrors({}); setPhoneLookupDone(false); setPassword(''); }}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all ${
-                    loginMethod === 'email'
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-white text-gray-600 hover:bg-emerald-50'
-                  }`}
-                >
-                  <Mail size={16} /> Sign in with Email
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setLoginMethod('phone'); setErrors({}); setPhoneLookupDone(false); setPassword(''); }}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all ${
-                    loginMethod === 'phone'
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-white text-gray-600 hover:bg-emerald-50'
-                  }`}
-                >
-                  <Phone size={16} /> Sign in with Phone
-                </button>
-              </div>
-            )}
+        <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10 notranslate">
+          <CardHeader className="space-y-1 text-center">
+            <CardTitle className="text-2xl font-serif text-fresh-green-dark">
+              {isLogin ? 'Welcome Back' : 'Create Account'}
+            </CardTitle>
+            <CardDescription className="fresh-body">
+              {isLogin
+                ? 'Sign in with your mobile number and password'
+                : 'Fill in your details to get started'}
+            </CardDescription>
+          </CardHeader>
+          <form onSubmit={handleSubmit}>
+            <CardContent className="space-y-4">
 
-            {/* PHONE SIGN-IN FLOW */}
-            {isLogin && loginMethod === 'phone' && (
-              <>
-                {!phoneLookupDone ? (
-                  <div className="space-y-3">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="fresh-label">Registered Phone Number</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="9876543210"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                          className={`fresh-input flex-1 ${errors.phone ? 'border-destructive' : ''}`}
-                          disabled={isLookingUp}
-                          onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handlePhoneLookup())}
-                        />
-                        <Button
-                          type="button"
-                          onClick={handlePhoneLookup}
-                          disabled={isLookingUp || phone.length < 10}
-                          className="bg-emerald-600 hover:bg-emerald-700 text-white px-4"
-                        >
-                          {isLookingUp ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
-                        </Button>
-                      </div>
-                      {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-                      <p className="text-xs text-gray-400">Enter the phone number you used during registration</p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    {/* Account found - show details */}
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
-                      <div className="flex items-center gap-2 mb-1">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-semibold text-emerald-700">Account Found!</span>
-                      </div>
-                      <p className="text-sm text-gray-600">
-                        <strong>{foundName}</strong> — {foundEmail.replace(/(.{2})(.*)(@.*)/, '$1***$3')}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => { setPhoneLookupDone(false); setFoundEmail(''); setFoundName(''); setPassword(''); }}
-                        className="text-xs text-emerald-600 hover:underline mt-1"
-                      >
-                        ← Use different phone number
-                      </button>
-                    </div>
-
-                    {/* Password field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="phonePassword" className="fresh-label">Password</Label>
-                      <div className="relative">
-                        <Input
-                          id="phonePassword"
-                          type={showPassword ? 'text' : 'password'}
-                          placeholder="Enter your password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          className={`fresh-input pr-10 ${errors.password ? 'border-destructive' : ''}`}
-                          disabled={isLoading}
-                          autoFocus
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-fresh-gold-dark hover:text-fresh-gold-rich transition-colors"
-                        >
-                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                        </button>
-                      </div>
-                      {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* EMAIL SIGN-IN FLOW (existing) */}
-            {(isLogin && loginMethod === 'email' || !isLogin) && (
-              <>
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="displayName" className="fresh-label">Full Name</Label>
-                <Input
-                  id="displayName"
-                  type="text"
-                  placeholder="Enter your full name"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  className={`fresh-input ${errors.displayName ? 'border-destructive' : ''}`}
-                  disabled={isLoading}
-                />
-                {errors.displayName && (
-                  <p className="text-sm text-destructive">{errors.displayName}</p>
-                )}
-              </div>
-            )}
-
-            {!isLogin && (
-              <>
+              {/* Full Name — signup only */}
+              {!isLogin && (
                 <div className="space-y-2">
-                  <Label htmlFor="contactPhone" className="fresh-label">Contact Number</Label>
-                  <Input
-                    id="contactPhone"
-                    type="tel"
-                    placeholder="9876543210"
-                    value={contactPhone}
-                    onChange={(e) => setContactPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                    className={`fresh-input ${errors.contactPhone ? 'border-destructive' : ''}`}
-                    disabled={isLoading}
-                  />
-                  {errors.contactPhone && <p className="text-sm text-destructive">{errors.contactPhone}</p>}
+                  <Label htmlFor="displayName" className="fresh-label">Full Name *</Label>
+                  <Input id="displayName" type="text" placeholder="Enter your full name"
+                    value={displayName} onChange={(e) => setDisplayName(e.target.value)}
+                    className={`fresh-input ${errors.displayName ? 'border-destructive' : ''}`} disabled={isLoading} />
+                  {errors.displayName && <p className="text-sm text-destructive">{errors.displayName}</p>}
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="schoolName" className="fresh-label">School Name</Label>
-                  <Input
-                    id="schoolName"
-                    type="text"
-                    placeholder="Enter your school name"
-                    value={schoolName}
-                    onChange={(e) => setSchoolName(e.target.value)}
-                    className={`fresh-input ${errors.schoolName ? 'border-destructive' : ''}`}
-                    disabled={isLoading}
-                  />
-                  {errors.schoolName && <p className="text-sm text-destructive">{errors.schoolName}</p>}
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-2">
-                    <Label htmlFor="passOutYear" className="fresh-label">Pass-Out Year</Label>
-                    <select
-                      id="passOutYear"
-                      value={passOutYear}
-                      onChange={(e) => setPassOutYear(e.target.value)}
-                      className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.passOutYear ? 'border-destructive' : ''}`}
-                      disabled={isLoading}
-                    >
-                      <option value="">Select Year</option>
-                      {Array.from({ length: 2050 - 1990 + 1 }, (_, i) => 2050 - i).map(year => (
-                        <option key={year} value={String(year)}>{year}</option>
-                      ))}
-                    </select>
-                    {errors.passOutYear && <p className="text-sm text-destructive">{errors.passOutYear}</p>}
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="stream" className="fresh-label">Stream</Label>
-                    <select
-                      id="stream"
-                      value={stream}
-                      onChange={(e) => setStream(e.target.value)}
-                      className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.stream ? 'border-destructive' : ''}`}
-                      disabled={isLoading}
-                    >
-                      <option value="">Select Stream</option>
-                      <option value="Science (Bio)">Science (Bio)</option>
-                      <option value="Science (Maths)">Science (Maths)</option>
-                      <option value="Science (CS)">Science (CS)</option>
-                      <option value="Commerce">Commerce</option>
-                      <option value="Arts / Humanities">Arts / Humanities</option>
-                      <option value="Vocational">Vocational</option>
-                    </select>
-                    {errors.stream && <p className="text-sm text-destructive">{errors.stream}</p>}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="district" className="fresh-label">District</Label>
-                  <select
-                    id="district"
-                    value={district}
-                    onChange={(e) => setDistrict(e.target.value)}
-                    className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.district ? 'border-destructive' : ''}`}
-                    disabled={isLoading}
-                  >
-                    <option value="">Select District</option>
-                    <option value="Ariyalur">Ariyalur</option>
-                    <option value="Chengalpattu">Chengalpattu</option>
-                    <option value="Chennai">Chennai</option>
-                    <option value="Coimbatore">Coimbatore</option>
-                    <option value="Cuddalore">Cuddalore</option>
-                    <option value="Dharmapuri">Dharmapuri</option>
-                    <option value="Dindigul">Dindigul</option>
-                    <option value="Erode">Erode</option>
-                    <option value="Kallakurichi">Kallakurichi</option>
-                    <option value="Kanchipuram">Kanchipuram</option>
-                    <option value="Kanyakumari">Kanyakumari</option>
-                    <option value="Karur">Karur</option>
-                    <option value="Krishnagiri">Krishnagiri</option>
-                    <option value="Madurai">Madurai</option>
-                    <option value="Mayiladuthurai">Mayiladuthurai</option>
-                    <option value="Nagapattinam">Nagapattinam</option>
-                    <option value="Namakkal">Namakkal</option>
-                    <option value="Nilgiris">Nilgiris</option>
-                    <option value="Perambalur">Perambalur</option>
-                    <option value="Pudukkottai">Pudukkottai</option>
-                    <option value="Ramanathapuram">Ramanathapuram</option>
-                    <option value="Ranipet">Ranipet</option>
-                    <option value="Salem">Salem</option>
-                    <option value="Sivaganga">Sivaganga</option>
-                    <option value="Tenkasi">Tenkasi</option>
-                    <option value="Thanjavur">Thanjavur</option>
-                    <option value="Theni">Theni</option>
-                    <option value="Thoothukudi">Thoothukudi</option>
-                    <option value="Tiruchirappalli">Tiruchirappalli</option>
-                    <option value="Tirunelveli">Tirunelveli</option>
-                    <option value="Tirupathur">Tirupathur</option>
-                    <option value="Tiruppur">Tiruppur</option>
-                    <option value="Tiruvallur">Tiruvallur</option>
-                    <option value="Tiruvannamalai">Tiruvannamalai</option>
-                    <option value="Tiruvarur">Tiruvarur</option>
-                    <option value="Vellore">Vellore</option>
-                    <option value="Viluppuram">Viluppuram</option>
-                    <option value="Virudhunagar">Virudhunagar</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  {errors.district && <p className="text-sm text-destructive">{errors.district}</p>}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="careerInterest" className="fresh-label">Career Interest</Label>
-                  <select
-                    id="careerInterest"
-                    value={careerInterest}
-                    onChange={(e) => setCareerInterest(e.target.value)}
-                    className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.careerInterest ? 'border-destructive' : ''}`}
-                    disabled={isLoading}
-                  >
-                    <option value="">Select Career Interest</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Medicine / MBBS">Medicine / MBBS</option>
-                    <option value="Nursing / Paramedical">Nursing / Paramedical</option>
-                    <option value="Agriculture">Agriculture</option>
-                    <option value="Arts & Science">Arts & Science</option>
-                    <option value="B.Com / CA / Finance">B.Com / CA / Finance</option>
-                    <option value="Law">Law</option>
-                    <option value="Teaching / B.Ed">Teaching / B.Ed</option>
-                    <option value="IT / Software">IT / Software</option>
-                    <option value="Design / Architecture">Design / Architecture</option>
-                    <option value="Government Jobs">Government Jobs</option>
-                    <option value="Defence / Armed Forces">Defence / Armed Forces</option>
-                    <option value="Business / Entrepreneurship">Business / Entrepreneurship</option>
-                    <option value="Hotel Management">Hotel Management</option>
-                    <option value="Media / Journalism">Media / Journalism</option>
-                    <option value="Not Sure Yet">Not Sure Yet</option>
-                  </select>
-                  {errors.careerInterest && <p className="text-sm text-destructive">{errors.careerInterest}</p>}
-                </div>
-              </>
-            )}
-            
-            <div className="space-y-2">
-              <Label htmlFor="email" className="fresh-label">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={`fresh-input ${errors.email ? 'border-destructive' : ''}`}
-                disabled={isLoading}
-              />
-              {errors.email && (
-                <p className="text-sm text-destructive">{errors.email}</p>
               )}
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="password" className="fresh-label">Password</Label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={`fresh-input pr-10 ${errors.password ? 'border-destructive' : ''}`}
-                  disabled={isLoading}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-fresh-gold-dark hover:text-fresh-gold-rich transition-colors"
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-              {errors.password && (
-                <p className="text-sm text-destructive">{errors.password}</p>
-              )}
-            </div>
-            
-            {!isLogin && (
+
+              {/* Mobile Number — both */}
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="fresh-label">Confirm Password</Label>
-                <Input
-                  id="confirmPassword"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="••••••••"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`fresh-input ${errors.confirmPassword ? 'border-destructive' : ''}`}
-                  disabled={isLoading}
-                />
-                {errors.confirmPassword && (
-                  <p className="text-sm text-destructive">{errors.confirmPassword}</p>
-                )}
+                <Label htmlFor="mobileNumber" className="fresh-label">Mobile Number *</Label>
+                <div className="flex gap-2">
+                  <div className="flex items-center justify-center px-3 bg-gray-100 border border-input rounded-md text-sm text-gray-600 font-medium">+91</div>
+                  <Input id="mobileNumber" type="tel" placeholder="9876543210"
+                    value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                    className={`fresh-input flex-1 ${errors.mobileNumber ? 'border-destructive' : ''}`} disabled={isLoading} />
+                </div>
+                {errors.mobileNumber && <p className="text-sm text-destructive">{errors.mobileNumber}</p>}
               </div>
-            )}
-              </>
-            )}
-          </CardContent>
-          
-          <CardFooter className="flex flex-col space-y-4">
-            {/* Hide submit button when in phone mode and not looked up (search button handles it) */}
-            {!(isLogin && loginMethod === 'phone' && !phoneLookupDone) && (
-            <Button 
-              type="submit" 
-              className="w-full btn-fresh-primary"
-              disabled={isLoading}
-            >
-              {isLoading ? (
+
+              {/* Signup only fields */}
+              {!isLogin && (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {isLogin ? 'Signing In...' : 'Creating Account...'}
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="fresh-label">Email <span className="text-gray-400 text-xs">(Optional)</span></Label>
+                    <Input id="email" type="email" placeholder="name@example.com"
+                      value={email} onChange={(e) => setEmail(e.target.value)}
+                      className="fresh-input" disabled={isLoading} />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="schoolName" className="fresh-label">School Name *</Label>
+                    <Input id="schoolName" type="text" placeholder="Enter your school name"
+                      value={schoolName} onChange={(e) => setSchoolName(e.target.value)}
+                      className={`fresh-input ${errors.schoolName ? 'border-destructive' : ''}`} disabled={isLoading} />
+                    {errors.schoolName && <p className="text-sm text-destructive">{errors.schoolName}</p>}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                      <Label htmlFor="passOutYear" className="fresh-label">Pass-Out Year *</Label>
+                      <select id="passOutYear" value={passOutYear} onChange={(e) => setPassOutYear(e.target.value)}
+                        className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.passOutYear ? 'border-destructive' : ''}`} disabled={isLoading}>
+                        <option value="">Select Year</option>
+                        {Array.from({ length: 2050 - 1990 + 1 }, (_, i) => 2050 - i).map(year => (
+                          <option key={year} value={String(year)}>{year}</option>
+                        ))}
+                      </select>
+                      {errors.passOutYear && <p className="text-sm text-destructive">{errors.passOutYear}</p>}
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="stream" className="fresh-label">Stream *</Label>
+                      <select id="stream" value={stream} onChange={(e) => setStream(e.target.value)}
+                        className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.stream ? 'border-destructive' : ''}`} disabled={isLoading}>
+                        <option value="">Select Stream</option>
+                        <option value="Science (Bio)">Science (Bio)</option>
+                        <option value="Science (Maths)">Science (Maths)</option>
+                        <option value="Science (CS)">Science (CS)</option>
+                        <option value="Commerce">Commerce</option>
+                        <option value="Arts / Humanities">Arts / Humanities</option>
+                        <option value="Vocational">Vocational</option>
+                      </select>
+                      {errors.stream && <p className="text-sm text-destructive">{errors.stream}</p>}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="district" className="fresh-label">District *</Label>
+                    <select id="district" value={district} onChange={(e) => setDistrict(e.target.value)}
+                      className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.district ? 'border-destructive' : ''}`} disabled={isLoading}>
+                      <option value="">Select District</option>
+                      <option value="Ariyalur">Ariyalur</option>
+                      <option value="Chengalpattu">Chengalpattu</option>
+                      <option value="Chennai">Chennai</option>
+                      <option value="Coimbatore">Coimbatore</option>
+                      <option value="Cuddalore">Cuddalore</option>
+                      <option value="Dharmapuri">Dharmapuri</option>
+                      <option value="Dindigul">Dindigul</option>
+                      <option value="Erode">Erode</option>
+                      <option value="Kallakurichi">Kallakurichi</option>
+                      <option value="Kanchipuram">Kanchipuram</option>
+                      <option value="Kanyakumari">Kanyakumari</option>
+                      <option value="Karur">Karur</option>
+                      <option value="Krishnagiri">Krishnagiri</option>
+                      <option value="Madurai">Madurai</option>
+                      <option value="Mayiladuthurai">Mayiladuthurai</option>
+                      <option value="Nagapattinam">Nagapattinam</option>
+                      <option value="Namakkal">Namakkal</option>
+                      <option value="Nilgiris">Nilgiris</option>
+                      <option value="Perambalur">Perambalur</option>
+                      <option value="Pudukkottai">Pudukkottai</option>
+                      <option value="Ramanathapuram">Ramanathapuram</option>
+                      <option value="Ranipet">Ranipet</option>
+                      <option value="Salem">Salem</option>
+                      <option value="Sivaganga">Sivaganga</option>
+                      <option value="Tenkasi">Tenkasi</option>
+                      <option value="Thanjavur">Thanjavur</option>
+                      <option value="Theni">Theni</option>
+                      <option value="Thoothukudi">Thoothukudi</option>
+                      <option value="Tiruchirappalli">Tiruchirappalli</option>
+                      <option value="Tirunelveli">Tirunelveli</option>
+                      <option value="Tirupathur">Tirupathur</option>
+                      <option value="Tiruppur">Tiruppur</option>
+                      <option value="Tiruvallur">Tiruvallur</option>
+                      <option value="Tiruvannamalai">Tiruvannamalai</option>
+                      <option value="Tiruvarur">Tiruvarur</option>
+                      <option value="Vellore">Vellore</option>
+                      <option value="Viluppuram">Viluppuram</option>
+                      <option value="Virudhunagar">Virudhunagar</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    {errors.district && <p className="text-sm text-destructive">{errors.district}</p>}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="careerInterest" className="fresh-label">Career Interest *</Label>
+                    <select id="careerInterest" value={careerInterest} onChange={(e) => setCareerInterest(e.target.value)}
+                      className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.careerInterest ? 'border-destructive' : ''}`} disabled={isLoading}>
+                      <option value="">Select Career Interest</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Medicine / MBBS">Medicine / MBBS</option>
+                      <option value="Nursing / Paramedical">Nursing / Paramedical</option>
+                      <option value="Agriculture">Agriculture</option>
+                      <option value="Arts & Science">Arts & Science</option>
+                      <option value="B.Com / CA / Finance">B.Com / CA / Finance</option>
+                      <option value="Law">Law</option>
+                      <option value="Teaching / B.Ed">Teaching / B.Ed</option>
+                      <option value="IT / Software">IT / Software</option>
+                      <option value="Design / Architecture">Design / Architecture</option>
+                      <option value="Government Jobs">Government Jobs</option>
+                      <option value="Defence / Armed Forces">Defence / Armed Forces</option>
+                      <option value="Business / Entrepreneurship">Business / Entrepreneurship</option>
+                      <option value="Hotel Management">Hotel Management</option>
+                      <option value="Media / Journalism">Media / Journalism</option>
+                      <option value="Not Sure Yet">Not Sure Yet</option>
+                    </select>
+                    {errors.careerInterest && <p className="text-sm text-destructive">{errors.careerInterest}</p>}
+                  </div>
                 </>
-              ) : (
-                isLogin ? 'Sign In' : 'Create Account'
               )}
-            </Button>
-            )}
-            
-            <div className="text-center text-sm">
-              <span className="fresh-muted">
-                {isLogin ? "Don't have an account? " : "Already have an account? "}
-              </span>
-              <button
-                type="button"
-                onClick={toggleMode}
-                className="text-fresh-green-medium hover:text-fresh-green-dark font-medium transition-colors"
-                disabled={isLoading}
-              >
-                {isLogin ? 'Sign Up' : 'Sign In'}
-              </button>
-            </div>
-          </CardFooter>
-        </form>
-      </Card>
+
+              {/* Password — both */}
+              <div className="space-y-2">
+                <Label htmlFor="password" className="fresh-label">Password *</Label>
+                <div className="relative">
+                  <Input id="password" type={showPassword ? 'text' : 'password'} placeholder="••••••••"
+                    value={password} onChange={(e) => setPassword(e.target.value)}
+                    className={`fresh-input pr-10 ${errors.password ? 'border-destructive' : ''}`} disabled={isLoading} />
+                  <button type="button" onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-fresh-gold-dark hover:text-fresh-gold-rich transition-colors">
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+                {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+              </div>
+
+              {/* Confirm Password — signup only */}
+              {!isLogin && (
+                <div className="space-y-2">
+                  <Label htmlFor="confirmPassword" className="fresh-label">Confirm Password *</Label>
+                  <Input id="confirmPassword" type={showPassword ? 'text' : 'password'} placeholder="••••••••"
+                    value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
+                    className={`fresh-input ${errors.confirmPassword ? 'border-destructive' : ''}`} disabled={isLoading} />
+                  {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
+                </div>
+              )}
+
+            </CardContent>
+
+            <CardFooter className="flex flex-col space-y-4">
+              <Button type="submit" className="w-full btn-fresh-primary" disabled={isLoading}>
+                {isLoading ? (
+                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{isLogin ? 'Signing In...' : 'Creating Account...'}</>
+                ) : (
+                  isLogin ? 'Sign In' : 'Create Account'
+                )}
+              </Button>
+              <div className="text-center text-sm">
+                <span className="fresh-muted">{isLogin ? "Don't have an account? " : "Already have an account? "}</span>
+                <button type="button" onClick={toggleMode}
+                  className="text-fresh-green-medium hover:text-fresh-green-dark font-medium transition-colors" disabled={isLoading}>
+                  {isLogin ? 'Sign Up' : 'Sign In'}
+                </button>
+              </div>
+            </CardFooter>
+          </form>
+        </Card>
       )}
     </div>
   );
