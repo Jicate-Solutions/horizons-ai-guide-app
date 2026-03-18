@@ -188,16 +188,22 @@ const Auth = () => {
       } else {
         const { error } = await signUp(email, password, displayName);
         if (error) {
-          if (error.message.includes('User already registered')) {
+          if (error.message.includes('User already registered') || error.message.includes('already been registered')) {
             toast({
-              title: "Sign Up Failed",
-              description: "An account with this email already exists. Please log in instead.",
+              title: "Email Already Registered",
+              description: "An account with this email already exists. Please click 'Sign In' below to log in instead.",
+              variant: "destructive",
+            });
+          } else if (error.message.includes('rate limit') || error.message.includes('too many')) {
+            toast({
+              title: "Too Many Attempts",
+              description: "Please wait a few minutes and try again.",
               variant: "destructive",
             });
           } else {
             toast({
               title: "Sign Up Failed",
-              description: error.message,
+              description: error.message || "Something went wrong. Please try again.",
               variant: "destructive",
             });
           }
