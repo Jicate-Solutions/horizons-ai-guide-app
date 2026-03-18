@@ -22,6 +22,7 @@ import EmployerPostJob from "./pages/EmployerPostJob";
 import AdminLogin from "./pages/AdminLogin";
 import AdminSetup from "./pages/AdminSetup";
 import AdminDashboard from "./pages/AdminDashboard";
+import SimpleAdmin from "./pages/SimpleAdmin";
 import CareerAssessmentColleges from "./pages/CareerAssessmentColleges";
 import TakeAssessment from "./pages/TakeAssessment";
 import AssessmentResults from "./pages/AssessmentResults";
@@ -161,6 +162,7 @@ function App() {
                 
 {/* Admin Routes */}
 <Route path="/admin/login" element={<AdminLogin />} />
+<Route path="/admin/monitor" element={<SimpleAdmin />} />
 <Route path="/admin/setup" element={<AdminSetup />} />
 <Route path="/admin/dashboard" element={<AdminDashboard />} />
 <Route path="/admin/alumni-verification" element={<AlumniVerification />} />
