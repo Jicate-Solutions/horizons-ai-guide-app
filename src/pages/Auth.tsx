@@ -43,7 +43,7 @@ const Auth = () => {
   // Learner detail fields
   const [schoolName, setSchoolName] = useState('');
   const [contactPhone, setContactPhone] = useState('');
-  const [passOutYear, setPassOutYear] = useState('2026');
+  const [passOutYear, setPassOutYear] = useState('');
   const [stream, setStream] = useState('');
   const [district, setDistrict] = useState('');
   const [careerInterest, setCareerInterest] = useState('');
@@ -74,6 +74,7 @@ const Auth = () => {
         const newErrors: Record<string, string> = {};
         if (!contactPhone || contactPhone.length < 10) newErrors.contactPhone = 'Enter a valid 10-digit phone number';
         if (!schoolName.trim()) newErrors.schoolName = 'School name is required';
+        if (!passOutYear) newErrors.passOutYear = 'Please select your pass-out year';
         if (!stream) newErrors.stream = 'Please select your stream';
         if (!district) newErrors.district = 'Please select your district';
         if (!careerInterest) newErrors.careerInterest = 'Please select your career interest';
@@ -297,7 +298,7 @@ const Auth = () => {
     setLoginMethod('email');
     setSchoolName('');
     setContactPhone('');
-    setPassOutYear('2026');
+    setPassOutYear('');
     setStream('');
     setDistrict('');
     setCareerInterest('');
@@ -598,14 +599,15 @@ const Auth = () => {
                       id="passOutYear"
                       value={passOutYear}
                       onChange={(e) => setPassOutYear(e.target.value)}
-                      className="fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                      className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.passOutYear ? 'border-destructive' : ''}`}
                       disabled={isLoading}
                     >
-                      <option value="2025">2025</option>
-                      <option value="2026">2026</option>
-                      <option value="2027">2027</option>
-                      <option value="2028">2028</option>
+                      <option value="">Select Year</option>
+                      {Array.from({ length: 2050 - 1990 + 1 }, (_, i) => 2050 - i).map(year => (
+                        <option key={year} value={String(year)}>{year}</option>
+                      ))}
                     </select>
+                    {errors.passOutYear && <p className="text-sm text-destructive">{errors.passOutYear}</p>}
                   </div>
 
                   <div className="space-y-2">
