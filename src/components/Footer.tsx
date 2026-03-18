@@ -55,6 +55,9 @@ const Footer = () => {
               <a href="#contact" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                 {t('footer.contact')}
               </a>
+              <a href="/admin/monitor" className="text-xs text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors">
+                v2.0
+              </a>
             </div>
           </div>
         </div>
