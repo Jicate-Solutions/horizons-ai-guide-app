@@ -39,6 +39,14 @@ const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  
+  // Learner detail fields
+  const [schoolName, setSchoolName] = useState('');
+  const [contactPhone, setContactPhone] = useState('');
+  const [passOutYear, setPassOutYear] = useState('2026');
+  const [stream, setStream] = useState('');
+  const [district, setDistrict] = useState('');
+  const [careerInterest, setCareerInterest] = useState('');
 
   const { signIn, signUp, user, loading } = useAuth();
   const navigate = useNavigate();
@@ -62,6 +70,17 @@ const Auth = () => {
         loginSchema.parse({ email, password });
       } else {
         signupSchema.parse({ email, password, confirmPassword, displayName });
+        // Validate learner fields
+        const newErrors: Record<string, string> = {};
+        if (!contactPhone || contactPhone.length < 10) newErrors.contactPhone = 'Enter a valid 10-digit phone number';
+        if (!schoolName.trim()) newErrors.schoolName = 'School name is required';
+        if (!stream) newErrors.stream = 'Please select your stream';
+        if (!district) newErrors.district = 'Please select your district';
+        if (!careerInterest) newErrors.careerInterest = 'Please select your career interest';
+        if (Object.keys(newErrors).length > 0) {
+          setErrors(newErrors);
+          return false;
+        }
       }
       setErrors({});
       return true;
@@ -187,6 +206,39 @@ const Auth = () => {
             description: "Welcome! Your account has been created successfully.",
           });
           
+          // Save learner details to registrations_12th_learners table
+          try {
+            const { data: authData } = await supabase.auth.getUser();
+            await supabase.from('registrations_12th_learners').insert({
+              user_id: authData?.user?.id || null,
+              full_name: displayName,
+              phone: contactPhone,
+              email: email,
+              school_name: schoolName,
+              stream: stream,
+              preferred_course: passOutYear,
+              preferred_institution: district,
+              career_interests: careerInterest ? [careerInterest] : [],
+            });
+            console.log('[VAZHIKATTI] Learner details saved to database');
+          } catch (dbErr) {
+            console.warn('[VAZHIKATTI] Failed to save learner details:', dbErr);
+          }
+
+          // Also create profile for admin visibility
+          try {
+            const { data: authData } = await supabase.auth.getUser();
+            if (authData?.user) {
+              await supabase.from('profiles').upsert({
+                user_id: authData.user.id,
+                display_name: displayName || email.split('@')[0],
+                bio: email,
+              }, { onConflict: 'user_id' });
+            }
+          } catch (profileErr) {
+            console.warn('[VAZHIKATTI] Profile creation failed:', profileErr);
+          }
+
           // Show registration success screen
           setRegistrationSuccess(true);
           
@@ -194,11 +246,11 @@ const Auth = () => {
           const emailPayload = { 
             fullName: displayName || email.split('@')[0], 
             email, 
-            phone: '-', 
-            school: '-', 
+            phone: contactPhone || '-', 
+            school: schoolName || '-', 
             board: '-', 
-            stream: '-', 
-            expectedYear: '2026' 
+            stream: stream || '-', 
+            expectedYear: passOutYear || '2026' 
           };
 
           // Method 1: Vercel API (primary — deployed with the app)
@@ -243,6 +295,12 @@ const Auth = () => {
     setFoundName('');
     setPhoneLookupDone(false);
     setLoginMethod('email');
+    setSchoolName('');
+    setContactPhone('');
+    setPassOutYear('2026');
+    setStream('');
+    setDistrict('');
+    setCareerInterest('');
   };
 
   return (
@@ -275,24 +333,55 @@ const Auth = () => {
               <h3 className="text-sm font-semibold text-emerald-800 mb-3 flex items-center gap-2">
                 📋 Your Registration Details
               </h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
-                  <div className="bg-emerald-100 rounded-full p-2">
-                    <User className="h-4 w-4 text-emerald-700" />
+              <div className="space-y-2">
+                <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
+                  <div className="bg-emerald-100 rounded-full p-1.5">
+                    <User className="h-3.5 w-3.5 text-emerald-700" />
                   </div>
-                  <div>
-                    <p className="text-xs text-gray-500">Name</p>
-                    <p className="text-sm font-medium text-gray-800">{displayName || 'Not provided'}</p>
+                  <div className="flex-1">
+                    <p className="text-[10px] text-gray-500">Name</p>
+                    <p className="text-xs font-medium text-gray-800">{displayName || 'Not provided'}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
-                  <div className="bg-emerald-100 rounded-full p-2">
-                    <Mail className="h-4 w-4 text-emerald-700" />
+                <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
+                  <div className="bg-emerald-100 rounded-full p-1.5">
+                    <Mail className="h-3.5 w-3.5 text-emerald-700" />
                   </div>
-                  <div>
-                    <p className="text-xs text-gray-500">Email</p>
-                    <p className="text-sm font-medium text-gray-800">{email}</p>
+                  <div className="flex-1">
+                    <p className="text-[10px] text-gray-500">Email</p>
+                    <p className="text-xs font-medium text-gray-800">{email}</p>
                   </div>
+                </div>
+                <div className="flex items-center gap-3 bg-white rounded-lg p-2.5 shadow-sm">
+                  <div className="bg-emerald-100 rounded-full p-1.5">
+                    <Phone className="h-3.5 w-3.5 text-emerald-700" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[10px] text-gray-500">Phone</p>
+                    <p className="text-xs font-medium text-gray-800">{contactPhone || 'Not provided'}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-white rounded-lg p-2.5 shadow-sm">
+                    <p className="text-[10px] text-gray-500">School</p>
+                    <p className="text-xs font-medium text-gray-800">{schoolName || '-'}</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-2.5 shadow-sm">
+                    <p className="text-[10px] text-gray-500">Stream</p>
+                    <p className="text-xs font-medium text-gray-800">{stream || '-'}</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-2.5 shadow-sm">
+                    <p className="text-[10px] text-gray-500">Pass-Out Year</p>
+                    <p className="text-xs font-medium text-gray-800">{passOutYear || '-'}</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-2.5 shadow-sm">
+                    <p className="text-[10px] text-gray-500">District</p>
+                    <p className="text-xs font-medium text-gray-800">{district || '-'}</p>
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg p-2.5 shadow-sm">
+                  <p className="text-[10px] text-gray-500">Career Interest</p>
+                  <p className="text-xs font-medium text-gray-800">{careerInterest || '-'}</p>
                 </div>
               </div>
             </div>
@@ -456,11 +545,11 @@ const Auth = () => {
               <>
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="displayName" className="fresh-label">Display Name</Label>
+                <Label htmlFor="displayName" className="fresh-label">Full Name</Label>
                 <Input
                   id="displayName"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Enter your full name"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
                   className={`fresh-input ${errors.displayName ? 'border-destructive' : ''}`}
@@ -470,6 +559,159 @@ const Auth = () => {
                   <p className="text-sm text-destructive">{errors.displayName}</p>
                 )}
               </div>
+            )}
+
+            {!isLogin && (
+              <>
+                <div className="space-y-2">
+                  <Label htmlFor="contactPhone" className="fresh-label">Contact Number</Label>
+                  <Input
+                    id="contactPhone"
+                    type="tel"
+                    placeholder="9876543210"
+                    value={contactPhone}
+                    onChange={(e) => setContactPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                    className={`fresh-input ${errors.contactPhone ? 'border-destructive' : ''}`}
+                    disabled={isLoading}
+                  />
+                  {errors.contactPhone && <p className="text-sm text-destructive">{errors.contactPhone}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="schoolName" className="fresh-label">School Name</Label>
+                  <Input
+                    id="schoolName"
+                    type="text"
+                    placeholder="Enter your school name"
+                    value={schoolName}
+                    onChange={(e) => setSchoolName(e.target.value)}
+                    className={`fresh-input ${errors.schoolName ? 'border-destructive' : ''}`}
+                    disabled={isLoading}
+                  />
+                  {errors.schoolName && <p className="text-sm text-destructive">{errors.schoolName}</p>}
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
+                    <Label htmlFor="passOutYear" className="fresh-label">Pass-Out Year</Label>
+                    <select
+                      id="passOutYear"
+                      value={passOutYear}
+                      onChange={(e) => setPassOutYear(e.target.value)}
+                      className="fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                      disabled={isLoading}
+                    >
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                      <option value="2027">2027</option>
+                      <option value="2028">2028</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="stream" className="fresh-label">Stream</Label>
+                    <select
+                      id="stream"
+                      value={stream}
+                      onChange={(e) => setStream(e.target.value)}
+                      className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.stream ? 'border-destructive' : ''}`}
+                      disabled={isLoading}
+                    >
+                      <option value="">Select Stream</option>
+                      <option value="Science (Bio)">Science (Bio)</option>
+                      <option value="Science (Maths)">Science (Maths)</option>
+                      <option value="Science (CS)">Science (CS)</option>
+                      <option value="Commerce">Commerce</option>
+                      <option value="Arts / Humanities">Arts / Humanities</option>
+                      <option value="Vocational">Vocational</option>
+                    </select>
+                    {errors.stream && <p className="text-sm text-destructive">{errors.stream}</p>}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="district" className="fresh-label">District</Label>
+                  <select
+                    id="district"
+                    value={district}
+                    onChange={(e) => setDistrict(e.target.value)}
+                    className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.district ? 'border-destructive' : ''}`}
+                    disabled={isLoading}
+                  >
+                    <option value="">Select District</option>
+                    <option value="Ariyalur">Ariyalur</option>
+                    <option value="Chengalpattu">Chengalpattu</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Cuddalore">Cuddalore</option>
+                    <option value="Dharmapuri">Dharmapuri</option>
+                    <option value="Dindigul">Dindigul</option>
+                    <option value="Erode">Erode</option>
+                    <option value="Kallakurichi">Kallakurichi</option>
+                    <option value="Kanchipuram">Kanchipuram</option>
+                    <option value="Kanyakumari">Kanyakumari</option>
+                    <option value="Karur">Karur</option>
+                    <option value="Krishnagiri">Krishnagiri</option>
+                    <option value="Madurai">Madurai</option>
+                    <option value="Mayiladuthurai">Mayiladuthurai</option>
+                    <option value="Nagapattinam">Nagapattinam</option>
+                    <option value="Namakkal">Namakkal</option>
+                    <option value="Nilgiris">Nilgiris</option>
+                    <option value="Perambalur">Perambalur</option>
+                    <option value="Pudukkottai">Pudukkottai</option>
+                    <option value="Ramanathapuram">Ramanathapuram</option>
+                    <option value="Ranipet">Ranipet</option>
+                    <option value="Salem">Salem</option>
+                    <option value="Sivaganga">Sivaganga</option>
+                    <option value="Tenkasi">Tenkasi</option>
+                    <option value="Thanjavur">Thanjavur</option>
+                    <option value="Theni">Theni</option>
+                    <option value="Thoothukudi">Thoothukudi</option>
+                    <option value="Tiruchirappalli">Tiruchirappalli</option>
+                    <option value="Tirunelveli">Tirunelveli</option>
+                    <option value="Tirupathur">Tirupathur</option>
+                    <option value="Tiruppur">Tiruppur</option>
+                    <option value="Tiruvallur">Tiruvallur</option>
+                    <option value="Tiruvannamalai">Tiruvannamalai</option>
+                    <option value="Tiruvarur">Tiruvarur</option>
+                    <option value="Vellore">Vellore</option>
+                    <option value="Viluppuram">Viluppuram</option>
+                    <option value="Virudhunagar">Virudhunagar</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  {errors.district && <p className="text-sm text-destructive">{errors.district}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="careerInterest" className="fresh-label">Career Interest</Label>
+                  <select
+                    id="careerInterest"
+                    value={careerInterest}
+                    onChange={(e) => setCareerInterest(e.target.value)}
+                    className={`fresh-input w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ${errors.careerInterest ? 'border-destructive' : ''}`}
+                    disabled={isLoading}
+                  >
+                    <option value="">Select Career Interest</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Medicine / MBBS">Medicine / MBBS</option>
+                    <option value="Nursing / Paramedical">Nursing / Paramedical</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="Arts & Science">Arts & Science</option>
+                    <option value="B.Com / CA / Finance">B.Com / CA / Finance</option>
+                    <option value="Law">Law</option>
+                    <option value="Teaching / B.Ed">Teaching / B.Ed</option>
+                    <option value="IT / Software">IT / Software</option>
+                    <option value="Design / Architecture">Design / Architecture</option>
+                    <option value="Government Jobs">Government Jobs</option>
+                    <option value="Defence / Armed Forces">Defence / Armed Forces</option>
+                    <option value="Business / Entrepreneurship">Business / Entrepreneurship</option>
+                    <option value="Hotel Management">Hotel Management</option>
+                    <option value="Media / Journalism">Media / Journalism</option>
+                    <option value="Not Sure Yet">Not Sure Yet</option>
+                  </select>
+                  {errors.careerInterest && <p className="text-sm text-destructive">{errors.careerInterest}</p>}
+                </div>
+              </>
             )}
             
             <div className="space-y-2">

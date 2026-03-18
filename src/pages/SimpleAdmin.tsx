@@ -11,6 +11,12 @@ interface AppUser {
   created_at: string;
   last_sign_in: string;
   provider: string;
+  full_name: string;
+  school_name: string;
+  stream: string;
+  district: string;
+  pass_out_year: string;
+  career_interest: string;
 }
 
 const ADMIN_PASS = 'vzk-admin-2026';
@@ -32,7 +38,7 @@ const SimpleAdmin = () => {
       // Method 1: Fetch from registrations_12th_learners table
       const { data: reg12th, error: e1 } = await supabase
         .from('registrations_12th_learners')
-        .select('id, full_name, email, phone, school_name, board, stream, preferred_course, created_at')
+        .select('id, full_name, email, phone, school_name, board, stream, preferred_course, preferred_institution, career_interests, created_at')
         .order('created_at', { ascending: false });
 
       // Method 2: Fetch from registrations_learners table
@@ -67,7 +73,13 @@ const SimpleAdmin = () => {
             phone: r.phone || '',
             created_at: r.created_at,
             last_sign_in: r.created_at,
-            provider: '12th Learner' + (r.school_name ? ` · ${r.school_name}` : '') + (r.stream ? ` · ${r.stream}` : ''),
+            provider: '12th Learner',
+            full_name: r.full_name || '',
+            school_name: r.school_name || '',
+            stream: r.stream || '',
+            district: r.preferred_institution || '',
+            pass_out_year: r.preferred_course || '',
+            career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''),
           });
         }
       });
@@ -82,7 +94,13 @@ const SimpleAdmin = () => {
             phone: r.phone || '',
             created_at: r.created_at,
             last_sign_in: r.created_at,
-            provider: 'Learner' + (r.institution ? ` · ${r.institution}` : '') + (r.degree ? ` · ${r.degree}` : ''),
+            provider: 'Learner',
+            full_name: r.full_name || '',
+            school_name: r.institution || '',
+            stream: r.degree || '',
+            district: '',
+            pass_out_year: '',
+            career_interest: '',
           });
         }
       });
@@ -98,7 +116,13 @@ const SimpleAdmin = () => {
             phone: r.contact_phone || '',
             created_at: r.created_at,
             last_sign_in: r.created_at,
-            provider: 'Employer' + (r.company_name ? ` · ${r.company_name}` : ''),
+            provider: 'Employer',
+            full_name: r.contact_name || '',
+            school_name: r.company_name || '',
+            stream: '',
+            district: '',
+            pass_out_year: '',
+            career_interest: '',
           });
         }
       });
@@ -114,7 +138,13 @@ const SimpleAdmin = () => {
             phone: '',
             created_at: p.created_at || p.updated_at || '',
             last_sign_in: p.updated_at || p.created_at || '',
-            provider: 'App User' + (p.display_name ? ` · ${p.display_name}` : ''),
+            provider: 'App User',
+            full_name: p.display_name || '',
+            school_name: '',
+            stream: '',
+            district: '',
+            pass_out_year: '',
+            career_interest: '',
           });
         }
       });
@@ -160,7 +190,7 @@ const SimpleAdmin = () => {
   const filtered = users.filter(u => {
     if (!search.trim()) return true;
     const q = search.toLowerCase();
-    return u.email.toLowerCase().includes(q) || u.phone.includes(q) || u.provider.toLowerCase().includes(q);
+    return u.email.toLowerCase().includes(q) || u.phone.includes(q) || u.provider.toLowerCase().includes(q) || u.full_name.toLowerCase().includes(q) || u.school_name.toLowerCase().includes(q) || u.stream.toLowerCase().includes(q) || u.district.toLowerCase().includes(q) || u.career_interest.toLowerCase().includes(q);
   });
 
   const formatDate = (d: string) => {
@@ -267,27 +297,51 @@ const SimpleAdmin = () => {
             </div>
             <div className="divide-y divide-gray-100">
               {filtered.map((user, idx) => (
-                <div key={user.id} className="px-4 py-3 hover:bg-gray-50">
+                <div key={user.id} className="px-4 py-4 hover:bg-gray-50">
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-white">{(user.email || user.phone || '?')[0].toUpperCase()}</span>
+                      <span className="text-xs font-bold text-white">{(user.full_name || user.email || '?')[0].toUpperCase()}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
+                      {/* Name */}
+                      {user.full_name && (
+                        <p className="text-sm font-bold text-gray-900">{user.full_name}</p>
+                      )}
+                      {/* Email & Phone */}
+                      <div className="flex items-center gap-3 flex-wrap mt-0.5">
                         {user.email && (
-                          <span className="text-sm font-bold text-gray-900 flex items-center gap-1 truncate">
+                          <span className="text-xs text-gray-600 flex items-center gap-1">
                             <Mail className="w-3 h-3 text-gray-400 flex-shrink-0" /> {user.email}
                           </span>
                         )}
                         {user.phone && (
-                          <span className="text-sm text-gray-600 flex items-center gap-1">
+                          <span className="text-xs text-gray-600 flex items-center gap-1">
                             <Phone className="w-3 h-3 text-gray-400 flex-shrink-0" /> {user.phone}
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">Joined: {formatDate(user.created_at)}</p>
-                      <div className="mt-1.5">
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{user.provider}</span>
+                      {/* Details Row */}
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {user.school_name && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">🏫 {user.school_name}</span>
+                        )}
+                        {user.stream && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">📚 {user.stream}</span>
+                        )}
+                        {user.pass_out_year && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">🎓 {user.pass_out_year}</span>
+                        )}
+                        {user.district && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">📍 {user.district}</span>
+                        )}
+                        {user.career_interest && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200">🎯 {user.career_interest}</span>
+                        )}
+                      </div>
+                      {/* Footer */}
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{user.provider}</span>
+                        <span className="text-[10px] text-gray-400">Joined: {formatDate(user.created_at)}</span>
                       </div>
                     </div>
                     <span className="text-xs text-gray-400 flex-shrink-0">#{filtered.length - idx}</span>
