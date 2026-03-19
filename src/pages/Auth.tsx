@@ -146,8 +146,12 @@ const Auth = () => {
           // Layer 1: Auth metadata already saved via signUp (guaranteed)
           console.log('[VAZHIKATTI] Layer 1: User metadata saved in auth ✅');
 
-          const { data: authData } = await supabase.auth.getUser();
-          const userId = authData?.user?.id || null;
+          // Get userId from signUp response directly (not getUser - avoids race condition)
+          const userId = signUpData?.user?.id || null;
+          console.log('[VAZHIKATTI] User ID:', userId);
+
+          // Small delay to let auth session establish fully
+          await new Promise(resolve => setTimeout(resolve, 1000));
 
           // Layer 2: Server-side API (uses service key, bypasses RLS)
           try {
@@ -172,9 +176,9 @@ const Auth = () => {
             console.warn('[VAZHIKATTI] Layer 2: Server API failed:', apiErr);
           }
 
-          // Layer 3: Direct database insert (may fail due to RLS, but try anyway)
+          // Layer 3: Direct database insert (session should be ready after delay)
           try {
-            await supabase.from('registrations_12th_learners').insert({
+            const { error: insertErr } = await supabase.from('registrations_12th_learners').insert({
               user_id: userId,
               full_name: displayName,
               phone: mobileNumber,
@@ -185,9 +189,27 @@ const Auth = () => {
               preferred_institution: district,
               career_interests: careerInterest ? [careerInterest] : [],
             });
-            console.log('[VAZHIKATTI] Layer 3: Direct insert succeeded ✅');
+            if (insertErr) {
+              console.warn('[VAZHIKATTI] Layer 3: Insert error:', insertErr.message);
+              // Retry without user_id
+              const { error: retryErr } = await supabase.from('registrations_12th_learners').insert({
+                user_id: null,
+                full_name: displayName,
+                phone: mobileNumber,
+                email: email || null,
+                school_name: schoolName,
+                stream: stream,
+                preferred_course: passOutYear,
+                preferred_institution: district,
+                career_interests: careerInterest ? [careerInterest] : [],
+              });
+              if (retryErr) console.warn('[VAZHIKATTI] Layer 3: Retry also failed:', retryErr.message);
+              else console.log('[VAZHIKATTI] Layer 3: Retry without user_id succeeded ✅');
+            } else {
+              console.log('[VAZHIKATTI] Layer 3: Direct insert succeeded ✅');
+            }
           } catch (dbErr) {
-            console.warn('[VAZHIKATTI] Layer 3: Direct insert failed (expected if RLS)');
+            console.warn('[VAZHIKATTI] Layer 3: Exception:', dbErr);
           }
 
           // Also save to profiles as backup
