@@ -593,93 +593,85 @@ export const ScholarshipFinder = () => {
       {/* ─── Content ────────────────────────────────────────── */}
       <div className="relative z-10">
 
-        {/* ═══ COMPACT ACTION BAR ═══ */}
+        {/* ═══ BIG HERO SECTION ═══ */}
         <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6">
-          <div
-            className="rounded-2xl overflow-hidden shadow-lg"
-            style={{ border: '1px solid #1B5E20' }}
-          >
-            {/* Hero Image */}
-            <div className="relative h-28 md:h-36 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=300&fit=crop&auto=format" alt="" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(27,94,32,0.92) 0%, rgba(46,125,50,0.88) 50%, rgba(56,142,60,0.92) 100%)' }} />
-              <div className="absolute inset-0 flex items-center">
-                <div className="px-5 w-full">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl">🎓</div>
-                  <div>
-                    <h2
-                      className="text-xl md:text-2xl font-bold"
-                      style={{ fontFamily: 'Playfair Display, serif', color: 'white' }}
-                    >
-                      Scholarship <span style={{ color: '#FFD54F' }}>Finder</span>
-                    </h2>
-                    <p className="text-xs" style={{ color: '#A5D6A7', fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
-                      உதவித்தொகை கண்டுபிடிப்பான் — {allScholarships.length} scholarships across 4 categories
-                    </p>
-                  </div>
+          <div className="rounded-2xl overflow-hidden shadow-xl" style={{ border: '2px solid #1B5E20' }}>
+            {/* Large Hero with Image */}
+            <div className="relative overflow-hidden" style={{ minHeight: '280px' }}>
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(27,94,32,0.93) 0%, rgba(46,125,50,0.88) 50%, rgba(27,94,32,0.93) 100%)' }} />
+              
+              {/* Decorative circles */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full -translate-y-1/2 translate-x-1/3" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-green-300/10 rounded-full translate-y-1/2 -translate-x-1/3" />
+              
+              <div className="relative z-10 p-6 md:p-10 flex flex-col items-center text-center">
+                {/* Icon */}
+                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-5 shadow-xl" style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)' }}>
+                  <span className="text-4xl">🎓</span>
                 </div>
-                <div className="flex flex-wrap items-center gap-2">
+
+                <h2 className="text-3xl md:text-5xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif', color: 'white' }}>
+                  Scholarship <span style={{ color: '#FFD54F' }}>Finder</span>
+                </h2>
+                <p className="text-base md:text-lg mb-1" style={{ color: '#A5D6A7', fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
+                  உதவித்தொகை கண்டுபிடிப்பான்
+                </p>
+                <p className="text-sm mb-6" style={{ color: '#C8E6C9' }}>
+                  {allScholarships.length} scholarships worth lakhs — Find the ones you're eligible for
+                </p>
+
+                {/* Stats inline */}
+                <div className="flex items-center gap-4 md:gap-8 mb-6">
+                  {[
+                    { value: `${allScholarships.length}+`, label: 'Scholarships' },
+                    { value: highestVal, label: 'Highest Value' },
+                    { value: `${typeCounts.government || 0}+`, label: 'Govt Schemes' },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center">
+                      <p className="text-2xl md:text-3xl font-black" style={{ color: '#FFD54F', fontFamily: 'Playfair Display, serif' }}>{s.value}</p>
+                      <p className="text-[10px] md:text-xs uppercase tracking-wider font-medium" style={{ color: '#A5D6A7' }}>{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex flex-wrap justify-center items-center gap-3">
                   <button
                     onClick={() => setShowAIWizard(true)}
-                    className="px-4 py-2.5 rounded-full font-semibold text-xs shadow-md hover:shadow-lg transition-all hover:scale-105 flex items-center gap-1.5"
+                    className="px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2"
                     style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
                   >
-                    <Sparkles size={14} /> Check Eligibility (AI)
+                    <Sparkles size={16} /> Check My Eligibility (AI)
                   </button>
                   <button
                     onClick={() => setShowApplications(true)}
-                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-green-100/20 hover:bg-green-100/30 transition-all flex items-center gap-1.5"
+                    className="px-5 py-3 rounded-xl font-semibold text-sm border-2 bg-white/10 hover:bg-white/20 transition-all flex items-center gap-2"
                     style={{ borderColor: '#A5D6A7', color: 'white' }}
                   >
-                    <ClipboardList size={14} /> My Applications ({savedIds.size})
+                    <ClipboardList size={16} /> My Applications ({savedIds.size})
                   </button>
                   <button
                     onClick={() => generateScholarshipPDF(filtered)}
-                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-green-100/20 hover:bg-green-100/30 transition-all flex items-center gap-1.5"
+                    className="px-5 py-3 rounded-xl font-semibold text-sm border-2 bg-white/10 hover:bg-white/20 transition-all flex items-center gap-2"
                     style={{ borderColor: '#FFD54F', color: '#FFD54F' }}
                   >
-                    <Download size={14} /> PDF ({filtered.length})
+                    <Download size={16} /> Download PDF
                   </button>
                 </div>
               </div>
             </div>
-            </div>
-            </div>
-          </div>
-        </div>
 
-        {/* ═══ STATS ROW ═══ */}
-        <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6 relative z-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { icon: '📋', value: `${allScholarships.length}+`, label: 'Total' },
-              { icon: '💰', value: highestVal, label: 'Highest' },
-              { icon: '🏛️', value: `${typeCounts.government || 0}+`, label: 'Govt.' },
-              { icon: '✨', value: '24/7', label: 'AI Check' },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="rounded-lg p-1.5 md:p-4 text-center shadow-sm"
-                style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}
-              >
-                <span className="text-base md:text-2xl block mb-0.5">{stat.icon}</span>
-                <p
-                  className="text-xs md:text-2xl font-bold"
-                  style={{
-                    background: 'linear-gradient(135deg, #DAA520, #B8860B)',
-                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                    fontFamily: 'Playfair Display, serif',
-                  }}
-                >
-                  {stat.value}
-                </p>
-                <p className="text-[10px] md:text-xs uppercase tracking-wide font-medium mt-0.5" style={{ color: '#8B7355' }}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+            {/* Featured Scholarships Strip */}
+            <div className="px-4 py-3 flex items-center gap-3 overflow-x-auto" style={{ background: 'linear-gradient(90deg, #FFF8E1, #FFF3E0, #FFF8E1)' }}>
+              <span className="text-xs font-bold uppercase tracking-wider flex-shrink-0 px-2 py-1 rounded" style={{ color: '#E65100', background: '#FFE0B2' }}>🔥 Featured</span>
+              {allScholarships.filter(s => s.deadlineStatus === 'always-open').slice(0, 4).map((s, i) => (
+                <div key={i} className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-amber-200 text-xs">
+                  <span className="font-bold" style={{ color: '#1B5E20' }}>{s.name}</span>
+                  <span className="font-semibold" style={{ color: '#DAA520' }}>{s.amount.split('(')[0].trim()}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
