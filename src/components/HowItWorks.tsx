@@ -57,9 +57,9 @@ const HowItWorks = () => {
             {steps.map((step, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center text-center group">
                 {/* Number badge */}
-                <div className={`w-32 h-32 rounded-3xl ${step.bg} border-2 ${step.border} flex items-center justify-center mb-5 group-hover:scale-105 transition-all duration-300 shadow-sm group-hover:shadow-lg relative`}>
-                  <step.icon className="w-14 h-14" style={{ color: step.color.includes('blue') ? '#3b82f6' : step.color.includes('emerald') ? '#10b981' : '#f59e0b' }} />
-                  <div className={`absolute -top-3 -right-3 w-10 h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white text-sm font-black shadow-lg`}>
+                <div className={`w-24 h-24 md:w-32 md:h-32 rounded-3xl ${step.bg} border-2 ${step.border} flex items-center justify-center mb-5 group-hover:scale-105 transition-all duration-300 shadow-sm group-hover:shadow-lg relative`}>
+                  <step.icon className="w-10 h-10 md:w-14 md:h-14" style={{ color: step.color.includes('blue') ? '#3b82f6' : step.color.includes('emerald') ? '#10b981' : '#f59e0b' }} />
+                  <div className={`absolute -top-2 -right-2 md:-top-3 md:-right-3 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white text-xs md:text-sm font-black shadow-lg`}>
                     {step.number}
                   </div>
                 </div>

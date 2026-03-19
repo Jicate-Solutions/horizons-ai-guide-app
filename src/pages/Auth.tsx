@@ -206,7 +206,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="fresh-page-wrapper page-transition flex items-center justify-center p-4">
+    <div className="fresh-page-wrapper page-transition flex items-start sm:items-center justify-center p-4 min-h-screen overflow-y-auto py-8">
       {registrationSuccess ? (
         <Card className="fresh-card w-full max-w-md relative z-10 overflow-hidden">
           <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-yellow-600 p-6 text-center text-white">

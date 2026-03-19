@@ -110,7 +110,7 @@ const TestimonialsSection = () => {
             {/* Top color band */}
             <div className={`${featured.bg} h-2`} />
 
-            <div className="bg-white p-8 md:p-12">
+            <div className="bg-white p-5 sm:p-8 md:p-12">
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 {/* Left - Avatar & Info */}
                 <div className="flex-shrink-0 text-center md:text-left">
@@ -134,8 +134,8 @@ const TestimonialsSection = () => {
 
                 {/* Right - Quote */}
                 <div className="flex-1 relative">
-                  <Quote className="w-12 h-12 text-gray-100 absolute -top-2 -left-2" />
-                  <p className="text-xl md:text-2xl text-gray-800 font-medium leading-relaxed relative z-10 italic pl-4 md:pl-8 border-l-4 border-emerald-400">
+                  <Quote className="w-8 h-8 md:w-12 md:h-12 text-gray-100 absolute -top-2 -left-2" />
+                  <p className="text-lg md:text-2xl text-gray-800 font-medium leading-relaxed relative z-10 italic pl-4 md:pl-8 border-l-4 border-emerald-400">
                     "{featured.quote}"
                   </p>
                   <div className={`inline-flex items-center gap-1.5 mt-6 px-3 py-1.5 rounded-full ${featured.light} ${featured.text} text-xs font-bold border ${featured.border}`}>
@@ -160,7 +160,7 @@ const TestimonialsSection = () => {
                 <button key={i} onClick={() => goTo(i)}
                   className={`rounded-full transition-all duration-300 ${
                     i === activeIndex
-                      ? `w-10 h-3 ${t.bg} shadow-md`
+                      ? `w-8 sm:w-10 h-3 ${t.bg} shadow-md`
                       : "w-3 h-3 bg-gray-200 hover:bg-gray-300"
                   }`}
                 />

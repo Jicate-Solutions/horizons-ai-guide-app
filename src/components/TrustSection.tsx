@@ -42,7 +42,7 @@ const TrustSection = () => {
         </div>
 
         {/* Trust badges */}
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 mt-14 pt-8 border-t border-gray-100">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 mt-14 pt-8 border-t border-gray-100">
           {[
             { label: 'Powered by', bold: 'AI Technology' },
             { label: 'Covers', bold: '38 TN Districts' },
