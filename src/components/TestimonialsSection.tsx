@@ -1,50 +1,60 @@
-import { Star, Quote, ChevronLeft, ChevronRight, BadgeCheck, MessageSquareQuote, Users, School, ThumbsUp } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight, BadgeCheck, ThumbsUp, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const testimonials = [
   {
     name: "T. Gokilavani",
-    role: "Class 12 Student",
-    school: "Government Higher Secondary School, Veppadai",
+    school: "Govt Hr Sec School, Veppadai",
     quote: "This app helped me understand my strengths and explore suitable career options.",
-    avatar: "TG",
-    color: "#e11d48",
+    initials: "TG",
+    bg: "bg-gradient-to-br from-rose-500 to-pink-600",
+    light: "bg-rose-50",
+    text: "text-rose-700",
+    border: "border-rose-200",
     date: "28 Jan 2026",
   },
   {
     name: "Chandru S",
-    role: "Class 12 Student",
-    school: "Government Boys Higher Secondary School, Kumarapalayam",
+    school: "Govt Boys Hr Sec School, Kumarapalayam",
     quote: "I was confused about my future before using this app. Now I feel more confident in my choices.",
-    avatar: "CS",
-    color: "#7c3aed",
+    initials: "CS",
+    bg: "bg-gradient-to-br from-violet-500 to-purple-600",
+    light: "bg-violet-50",
+    text: "text-violet-700",
+    border: "border-violet-200",
     date: "06 Jan 2026",
   },
   {
     name: "K. Karthick",
-    role: "Class 12 Student",
-    school: "Pallipalayam Boys Higher Secondary School",
+    school: "Pallipalayam Boys Hr Sec School",
     quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKAATTI is a game-changer.",
-    avatar: "KK",
-    color: "#2563eb",
+    initials: "KK",
+    bg: "bg-gradient-to-br from-emerald-500 to-green-600",
+    light: "bg-emerald-50",
+    text: "text-emerald-700",
+    border: "border-emerald-200",
     date: "28 Nov 2025",
   },
   {
     name: "M.G. Bharanee Dharan",
-    role: "Class 12 Student",
-    school: "Government Higher Secondary School (Boys), Chithode",
+    school: "Govt Hr Sec School (Boys), Chithode",
     quote: "Thanks to the career discovery sessions, I now have a clear roadmap for my future. The AI assistant helped me understand which courses align with my interests.",
-    avatar: "MB",
-    color: "#059669",
+    initials: "MB",
+    bg: "bg-gradient-to-br from-blue-500 to-indigo-600",
+    light: "bg-blue-50",
+    text: "text-blue-700",
+    border: "border-blue-200",
     date: "05 Dec 2025",
   },
   {
     name: "Mahalakshmi V",
-    role: "Class 12 Student",
-    school: "Government Higher Secondary School, Anupparpalayam, Tirupur",
+    school: "Govt Hr Sec School, Anupparpalayam, Tirupur",
     quote: "VAZHIKAATTI opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
-    avatar: "MV",
-    color: "#d97706",
+    initials: "MV",
+    bg: "bg-gradient-to-br from-amber-500 to-orange-600",
+    light: "bg-amber-50",
+    text: "text-amber-700",
+    border: "border-amber-200",
     date: "08 Jan 2026",
   },
 ];
@@ -62,202 +72,169 @@ const TestimonialsSection = () => {
     return () => clearInterval(id);
   }, [isPaused, total]);
 
-  const getVisible = () => {
-    const items = [];
-    for (let i = 0; i < 3; i++) items.push(testimonials[(activeIndex + i) % total]);
-    return items;
-  };
-
   const featured = testimonials[activeIndex];
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden" id="testimonials">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-green-800 to-emerald-900">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 15% 50%, rgba(16,185,129,0.2) 0%, transparent 50%), radial-gradient(circle at 85% 50%, rgba(245,158,11,0.1) 0%, transparent 50%)'
-        }} />
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }} />
-      </div>
+    <section className="py-20 md:py-28 relative overflow-hidden bg-white" id="testimonials">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-amber-100/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+      <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-violet-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 backdrop-blur-sm text-amber-300 px-5 py-2.5 rounded-full text-sm font-semibold mb-5 border border-amber-500/20">
-            <MessageSquareQuote className="w-4 h-4" />
-            Voices of Real Learners
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-600 text-white px-5 py-2.5 rounded-full text-sm font-bold mb-5 shadow-lg shadow-emerald-500/20">
+            <Sparkles className="w-4 h-4" />
+            Real Learner Stories
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Hear From Those Who
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight tracking-tight">
+            Students Who Discovered
             <br />
-            <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
-              Found Their Path
+            <span className="bg-gradient-to-r from-emerald-600 via-green-500 to-emerald-600 bg-clip-text text-transparent">
+              Their True Calling
             </span>
           </h2>
-          <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-            Genuine feedback from 12th standard learners across Tamil Nadu 
-            who discovered their career direction with Vazhikatti
+          <p className="text-base md:text-lg text-gray-500 max-w-xl mx-auto">
+            Real feedback from 12th standard learners across Tamil Nadu
           </p>
         </div>
 
-        {/* Featured Quote — Large Display */}
-        <div className="max-w-3xl mx-auto mb-14">
-          <div className="relative bg-white/[0.04] backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-10 text-center">
-            {/* Large quote marks */}
-            <div className="absolute top-4 left-6 opacity-10">
-              <Quote className="w-16 h-16 text-amber-300" />
-            </div>
-            <div className="absolute bottom-4 right-6 opacity-10 rotate-180">
-              <Quote className="w-16 h-16 text-amber-300" />
-            </div>
-
-            {/* Quote text */}
-            <p className="text-lg md:text-2xl text-white font-medium leading-relaxed mb-8 relative z-10 italic">
-              "{featured.quote}"
-            </p>
-
-            {/* Author */}
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg" style={{ backgroundColor: featured.color }}>
-                {featured.avatar}
-              </div>
-              <div className="text-left">
-                <div className="flex items-center gap-1.5">
-                  <p className="text-white font-bold text-sm">{featured.name}</p>
-                  <BadgeCheck className="w-4 h-4 text-emerald-400" />
-                </div>
-                <p className="text-gray-400 text-xs">{featured.school}</p>
-              </div>
-            </div>
-
-            {/* Stars */}
-            <div className="flex justify-center gap-1 mt-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Carousel */}
+        {/* Featured Large Card */}
         <div
-          className="relative max-w-6xl mx-auto px-10 md:px-12"
+          className="max-w-4xl mx-auto mb-16"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Arrows */}
-          <button onClick={() => goTo(activeIndex - 1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/15 transition-all group">
-            <ChevronLeft className="w-5 h-5 text-white/70 group-hover:text-white" />
-          </button>
-          <button onClick={() => goTo(activeIndex + 1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/15 transition-all group">
-            <ChevronRight className="w-5 h-5 text-white/70 group-hover:text-white" />
-          </button>
+          <div className={`relative rounded-3xl overflow-hidden shadow-2xl border-2 ${featured.border} transition-all duration-500`}>
+            {/* Top color band */}
+            <div className={`${featured.bg} h-2`} />
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {getVisible().map((t, index) => (
-              <div key={`${activeIndex}-${index}`} className="testimonial-card">
-                <div className="bg-white/[0.06] backdrop-blur-sm rounded-2xl p-6 h-full flex flex-col border border-white/10 hover:border-white/20 hover:bg-white/[0.08] transition-all duration-300 group">
-                  {/* Top row */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex gap-0.5">
+            <div className="bg-white p-8 md:p-12">
+              <div className="flex flex-col md:flex-row gap-8 items-start">
+                {/* Left - Avatar & Info */}
+                <div className="flex-shrink-0 text-center md:text-left">
+                  <div className={`w-20 h-20 md:w-24 md:h-24 ${featured.bg} rounded-2xl flex items-center justify-center mx-auto md:mx-0 shadow-xl`}>
+                    <span className="text-2xl md:text-3xl font-black text-white">{featured.initials}</span>
+                  </div>
+                  <div className="mt-4">
+                    <div className="flex items-center justify-center md:justify-start gap-1.5">
+                      <h3 className="text-lg font-bold text-gray-900">{featured.name}</h3>
+                      <BadgeCheck className="w-5 h-5 text-emerald-500" />
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1 max-w-[220px]">{featured.school}</p>
+                    <p className="text-xs text-gray-400 mt-1">{featured.date}</p>
+                    <div className="flex items-center justify-center md:justify-start gap-0.5 mt-2">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-                    <div className="flex items-center gap-1 text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-full border border-emerald-500/20">
-                      <BadgeCheck className="w-3 h-3" />
-                      Verified
-                    </div>
                   </div>
+                </div>
 
-                  {/* Quote */}
-                  <div className="flex-1 mb-5">
-                    <Quote className="w-6 h-6 text-amber-400/30 mb-2" />
-                    <p className="text-[15px] leading-relaxed text-gray-300 group-hover:text-gray-200 transition-colors">
-                      {t.quote}
-                    </p>
-                  </div>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-md" style={{ backgroundColor: t.color }}>
-                      {t.avatar}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="font-bold text-white text-sm truncate">{t.name}</p>
-                      <p className="text-[11px] text-gray-400 truncate">{t.school}</p>
-                    </div>
-                    <span className="text-[10px] text-gray-500 flex-shrink-0">{t.date}</span>
+                {/* Right - Quote */}
+                <div className="flex-1 relative">
+                  <Quote className="w-12 h-12 text-gray-100 absolute -top-2 -left-2" />
+                  <p className="text-xl md:text-2xl text-gray-800 font-medium leading-relaxed relative z-10 italic pl-4 md:pl-8 border-l-4 border-emerald-400">
+                    "{featured.quote}"
+                  </p>
+                  <div className={`inline-flex items-center gap-1.5 mt-6 px-3 py-1.5 rounded-full ${featured.light} ${featured.text} text-xs font-bold border ${featured.border}`}>
+                    <BadgeCheck className="w-3.5 h-3.5" />
+                    Verified Student Feedback
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2.5 mt-10">
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 ${
+          {/* Navigation arrows below */}
+          <div className="flex items-center justify-center gap-4 mt-6">
+            <button onClick={() => goTo(activeIndex - 1)}
+              className="w-10 h-10 rounded-full bg-gray-100 hover:bg-emerald-100 flex items-center justify-center transition-colors group border border-gray-200">
+              <ChevronLeft className="w-5 h-5 text-gray-400 group-hover:text-emerald-600" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex gap-2">
+              {testimonials.map((t, i) => (
+                <button key={i} onClick={() => goTo(i)}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === activeIndex
+                      ? `w-10 h-3 ${t.bg} shadow-md`
+                      : "w-3 h-3 bg-gray-200 hover:bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button onClick={() => goTo(activeIndex + 1)}
+              className="w-10 h-10 rounded-full bg-gray-100 hover:bg-emerald-100 flex items-center justify-center transition-colors group border border-gray-200">
+              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-600" />
+            </button>
+          </div>
+        </div>
+
+        {/* Small Preview Cards Row */}
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {testimonials.map((t, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`rounded-xl p-4 text-left transition-all duration-300 border-2 ${
                   i === activeIndex
-                    ? "w-10 h-2.5 bg-gradient-to-r from-amber-400 to-orange-400 shadow-lg shadow-amber-500/30"
-                    : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                    ? `${t.light} ${t.border} shadow-md scale-[1.02]`
+                    : "bg-gray-50 border-gray-100 hover:border-gray-200 hover:shadow-sm"
                 }`}
-              />
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className={`w-8 h-8 rounded-lg ${t.bg} flex items-center justify-center flex-shrink-0`}>
+                    <span className="text-[10px] font-bold text-white">{t.initials}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className={`text-xs font-bold truncate ${i === activeIndex ? t.text : 'text-gray-800'}`}>{t.name}</p>
+                    <div className="flex gap-0.5">
+                      {[...Array(5)].map((_, j) => (
+                        <Star key={j} className="w-2 h-2 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-[11px] text-gray-500 line-clamp-2 leading-relaxed">"{t.quote}"</p>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* Bottom Trust Bar */}
+        {/* Trust Footer */}
         <div className="max-w-3xl mx-auto mt-14">
-          <div className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 p-5 md:p-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="bg-gradient-to-r from-emerald-50 via-green-50 to-emerald-50 rounded-2xl border-2 border-emerald-200 p-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-5">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                  <ThumbsUp className="w-5 h-5 text-emerald-400" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 flex-shrink-0">
+                  <ThumbsUp className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-white">Feedback collected from real classroom sessions</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Government schools across Namakkal, Erode & Tirupur districts</p>
+                  <p className="text-sm font-bold text-gray-900">Collected from real classroom sessions</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Government schools across Namakkal, Erode & Tirupur</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6">
-                <div className="text-center">
-                  <p className="text-xl font-black text-amber-400">98%</p>
-                  <p className="text-[10px] text-gray-500">Satisfaction</p>
-                </div>
-                <div className="w-px h-8 bg-white/10" />
-                <div className="text-center">
-                  <p className="text-xl font-black text-emerald-400">500+</p>
-                  <p className="text-[10px] text-gray-500">Learners</p>
-                </div>
-                <div className="w-px h-8 bg-white/10" />
-                <div className="text-center">
-                  <p className="text-xl font-black text-emerald-300">50+</p>
-                  <p className="text-[10px] text-gray-500">Schools</p>
-                </div>
+              <div className="flex items-center gap-8">
+                {[
+                  { value: '98%', label: 'Satisfaction', color: 'text-emerald-600' },
+                  { value: '500+', label: 'Learners', color: 'text-green-600' },
+                  { value: '50+', label: 'Schools', color: 'text-emerald-600' },
+                ].map((s, i) => (
+                  <div key={i} className="text-center">
+                    <p className={`text-2xl font-black ${s.color}`}>{s.value}</p>
+                    <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">{s.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        .testimonial-card {
-          animation: cardFadeIn 0.6s ease-out;
-        }
-        @keyframes cardFadeIn {
-          from { opacity: 0; transform: translateY(16px) scale(0.97); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </section>
   );
 };
