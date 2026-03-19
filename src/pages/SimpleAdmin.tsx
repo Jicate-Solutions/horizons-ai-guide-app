@@ -12,6 +12,8 @@ interface AppUser {
 }
 
 const ADMIN_PASS = 'vzk-admin-2026';
+const ADMIN_EMAIL = 'admin@vazhikatti.app';
+const ADMIN_SUPABASE_PASS = 'VzkAdmin@2026Secure';
 type TimeFilter = 'all' | 'today' | 'yesterday' | 'this_week' | 'last_week' | 'this_month' | 'last_month' | 'last_3_months' | 'this_year';
 type TabView = 'analytics' | 'data';
 
@@ -96,7 +98,34 @@ const SimpleAdmin = () => {
     finally { setIsDeleting(false); }
   };
 
-  const handleLogin = () => { if (password === ADMIN_PASS) { setIsLoggedIn(true); setError(''); fetchUsers(); } else setError('Wrong password'); };
+  const handleLogin = async () => {
+    if (password !== ADMIN_PASS) { setError('Wrong password'); return; }
+    setIsLoading(true);
+    setError('');
+    try {
+      // Authenticate with Supabase so we can read data past RLS
+      const { error: signInErr } = await supabase.auth.signInWithPassword({
+        email: ADMIN_EMAIL, password: ADMIN_SUPABASE_PASS
+      });
+      if (signInErr) {
+        // Admin account doesn't exist yet — create it
+        const { error: signUpErr } = await supabase.auth.signUp({
+          email: ADMIN_EMAIL, password: ADMIN_SUPABASE_PASS,
+          options: { data: { display_name: 'Admin' } }
+        });
+        if (signUpErr) console.warn('[ADMIN] Signup failed:', signUpErr.message);
+        // Try signing in again
+        await supabase.auth.signInWithPassword({
+          email: ADMIN_EMAIL, password: ADMIN_SUPABASE_PASS
+        });
+      }
+    } catch (e) {
+      console.warn('[ADMIN] Auth setup failed, continuing anyway');
+    }
+    setIsLoggedIn(true);
+    setIsLoading(false);
+    fetchUsers();
+  };
 
   const filtered = useMemo(() => {
     const range = getTimeRange(timeFilter);
@@ -250,7 +279,7 @@ const SimpleAdmin = () => {
             <button onClick={exportCSV} className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-500/10 text-emerald-300 text-xs font-semibold border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">
               <Download className="w-3.5 h-3.5" /> Export
             </button>
-            <button onClick={() => { setIsLoggedIn(false); setPassword(''); setUsers([]); setSelectedUser(null); }} className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 transition-all">
+            <button onClick={async () => { await supabase.auth.signOut(); setIsLoggedIn(false); setPassword(''); setUsers([]); setSelectedUser(null); }} className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 transition-all">
               <LogOut className="w-4 h-4" />
             </button>
           </div>

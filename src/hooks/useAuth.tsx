@@ -52,19 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       },
     });
 
-    // Create a profile row so admin panel can see this user
-    if (!error && data?.user) {
-      try {
-        await supabase.from('profiles').upsert({
-          user_id: data.user.id,
-          display_name: displayName || email.split('@')[0],
-          bio: email, // Store email in bio for admin visibility
-        }, { onConflict: 'user_id' });
-      } catch (profileErr) {
-        console.warn('[VAZHIKATTI] Profile creation failed:', profileErr);
-      }
-    }
-
+    // Profile creation is handled in Auth.tsx with full learner details
     return { error: error as Error | null };
   };
 
