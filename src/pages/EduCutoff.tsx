@@ -20,61 +20,71 @@
        
        <main className="container mx-auto px-4 py-8">
          {/* Hero Header */}
-         <div className="fresh-page-header rounded-2xl p-6 md:p-8 mb-8 relative overflow-hidden">
-           <div className="relative z-10">
-             <div className="flex items-center gap-3 mb-3">
-               <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
-                 <Calculator className="h-7 w-7 text-white" />
-               </div>
-               <div>
-                 <h1 className="text-2xl md:text-3xl font-serif font-bold text-white">
-                   EduCutoff - Admission Predictor
-                 </h1>
-                 <p className="text-fresh-gold-medium text-lg font-tamil">
-                   கல்வி கட்ஆஃப் - சேர்க்கை கணிப்பான்
-                 </p>
-               </div>
+         <div className="rounded-2xl mb-8 relative overflow-hidden shadow-xl" style={{ minHeight: '260px' }}>
+           {/* Background Image */}
+           <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1200&h=400&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+           <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/93 via-green-800/90 to-emerald-900/93" />
+           
+           {/* Decorative */}
+           <div className="absolute top-0 right-0 w-72 h-72 bg-amber-400/10 rounded-full -translate-y-1/3 translate-x-1/3" />
+           <div className="absolute bottom-0 left-0 w-48 h-48 bg-green-300/10 rounded-full translate-y-1/3 -translate-x-1/3" />
+           
+           <div className="relative z-10 p-6 md:p-10 flex flex-col items-center text-center">
+             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center mb-4 shadow-xl shadow-amber-500/25">
+               <Calculator className="h-8 w-8 text-white" />
              </div>
-             <p className="text-white/90 text-sm max-w-2xl">
-               Calculate your Engineering Cutoff (TNEA) or check Medical College eligibility (NEET) and discover which colleges you can get admission to in Tamil Nadu.
+             
+             <h1 className="text-3xl md:text-4xl font-serif font-bold text-white mb-1">
+               EduCutoff — Admission Predictor
+             </h1>
+             <p className="text-amber-300 text-base md:text-lg font-tamil mb-2">
+               கல்வி கட்ஆஃப் — சேர்க்கை கணிப்பான்
+             </p>
+             <p className="text-emerald-100/80 text-sm max-w-xl mb-6">
+               Calculate your Engineering Cutoff (TNEA) or check Medical College eligibility (NEET) and discover which colleges you can get admission to in Tamil Nadu
              </p>
  
              {/* Stats */}
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-               <div className="fresh-card p-3 text-center">
-                 <GraduationCap className="h-5 w-5 mx-auto mb-1 text-fresh-gold-dark" />
-                 <div className="text-xl font-bold text-fresh-green-dark">550+</div>
-                 <div className="text-xs text-muted-foreground">Engineering Colleges</div>
-               </div>
-               <div className="fresh-card p-3 text-center">
-                 <Stethoscope className="h-5 w-5 mx-auto mb-1 text-fresh-gold-dark" />
-                 <div className="text-xl font-bold text-fresh-green-dark">50+</div>
-                 <div className="text-xs text-muted-foreground">Medical Colleges</div>
-               </div>
-               <div className="fresh-card p-3 text-center">
-                 <MapPin className="h-5 w-5 mx-auto mb-1 text-fresh-gold-dark" />
-                 <div className="text-xl font-bold text-fresh-green-dark">38</div>
-                 <div className="text-xs text-muted-foreground">Districts</div>
-               </div>
-               <div className="fresh-card p-3 text-center">
-                 <CheckCircle className="h-5 w-5 mx-auto mb-1 text-fresh-gold-dark" />
-                 <div className="text-xl font-bold text-fresh-green-dark">100%</div>
-                 <div className="text-xs text-muted-foreground">Accurate Formula</div>
-               </div>
+             <div className="flex items-center gap-6 md:gap-10 mb-2">
+               {[
+                 { icon: GraduationCap, value: '550+', label: 'Engineering Colleges' },
+                 { icon: Stethoscope, value: '50+', label: 'Medical Colleges' },
+                 { icon: MapPin, value: '38', label: 'Districts' },
+                 { icon: CheckCircle, value: '100%', label: 'Accurate Formula' },
+               ].map((s, i) => (
+                 <div key={i} className="text-center">
+                   <s.icon className="h-5 w-5 mx-auto mb-1 text-amber-300" />
+                   <div className="text-xl md:text-2xl font-black text-white">{s.value}</div>
+                   <div className="text-[10px] text-emerald-200/70 uppercase tracking-wider">{s.label}</div>
+                 </div>
+               ))}
              </div>
+           </div>
+           
+           {/* Quick info strip */}
+           <div className="relative z-10 bg-white/10 backdrop-blur-sm border-t border-white/10 px-4 py-2.5 flex items-center justify-center gap-4 md:gap-8 text-xs text-emerald-100/80">
+             <span className="flex items-center gap-1.5">📐 <strong className="text-white">TNEA Formula:</strong> Maths + Physics/2 + Chemistry/2</span>
+             <span className="hidden md:flex items-center gap-1.5">🏥 <strong className="text-white">NEET:</strong> Score out of 720</span>
+             <span className="hidden md:flex items-center gap-1.5">📊 <strong className="text-white">Data:</strong> 2024 Verified Cutoffs</span>
            </div>
          </div>
  
          {/* Main Tabs */}
          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-           <TabsList className="grid w-full grid-cols-2 lg:w-full max-w-[400px] h-14">
-             <TabsTrigger value="engineering" className="text-base gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+           <TabsList className="grid w-full grid-cols-2 max-w-[500px] h-16 p-1.5 bg-muted/50 rounded-2xl mx-auto md:mx-0">
+             <TabsTrigger value="engineering" className="text-sm md:text-base gap-2 rounded-xl data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg h-full font-bold">
                <Calculator className="h-5 w-5" />
-               Engineering (TNEA)
+               <div className="text-left">
+                 <div>Engineering</div>
+                 <div className="text-[10px] font-normal opacity-80">TNEA Cutoff</div>
+               </div>
              </TabsTrigger>
-             <TabsTrigger value="medical" className="text-base gap-2 data-[state=active]:bg-green-600 data-[state=active]:text-white">
+             <TabsTrigger value="medical" className="text-sm md:text-base gap-2 rounded-xl data-[state=active]:bg-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg h-full font-bold">
                <Stethoscope className="h-5 w-5" />
-               Medical (NEET)
+               <div className="text-left">
+                 <div>Medical</div>
+                 <div className="text-[10px] font-normal opacity-80">NEET Score</div>
+               </div>
              </TabsTrigger>
            </TabsList>
  
