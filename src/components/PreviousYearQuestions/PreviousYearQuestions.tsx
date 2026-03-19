@@ -119,6 +119,40 @@ export const PreviousYearQuestions = () => {
 
   return (
     <div className="space-y-4">
+      {/* ═══ HERO BANNER ═══ */}
+      {step === 'category' && (
+        <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '200px' }}>
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/95 via-violet-800/92 to-indigo-900/95" />
+          <div className="absolute -top-20 -right-20 w-60 h-60 bg-violet-500/15 rounded-full blur-3xl" />
+          <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-xl shadow-indigo-500/25 mb-4">
+              <Target className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
+              Previous Year <span className="text-amber-300">Questions</span>
+            </h2>
+            <p className="text-sm text-violet-300 font-medium mb-1">முந்தைய ஆண்டு வினாக்கள்</p>
+            <p className="text-xs text-violet-200/60 max-w-md mb-5">
+              Practice real exam questions from JEE, NEET, CLAT, NDA & more — categorized by subject and topic
+            </p>
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <p className="text-2xl font-black text-white">149+</p>
+                <p className="text-[10px] text-violet-400">Questions</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-black text-amber-300">5</p>
+                <p className="text-[10px] text-violet-400">Categories</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-black text-violet-300">10+</p>
+                <p className="text-[10px] text-violet-400">Exams</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Breadcrumb + Back */}
       {step !== 'category' && (
         <div className="flex items-center gap-2">

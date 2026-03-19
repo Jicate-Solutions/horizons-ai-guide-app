@@ -30,7 +30,7 @@ const journeyStages = [
 ];
 
 export const StartupGuide = () => {
-  const [activeTab, setActiveTab] = useState('learn');
+  const [activeTab, setActiveTab] = useState('ideas');
   const [expandedStage, setExpandedStage] = useState<number | null>(null);
   const progress = useStartupProgress();
 
@@ -108,12 +108,12 @@ export const StartupGuide = () => {
       {/* ===== WHAT YOU'LL LEARN STRIP ===== */}
       <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
         {[
-          { emoji: '🤖', label: 'AI Problem Finder' },
-          { emoji: '📊', label: 'Business Model' },
-          { emoji: '💰', label: 'Funding Guide' },
-          { emoji: '🏗️', label: 'Build & Launch' },
+          { emoji: '💡', label: 'Find Ideas' },
+          { emoji: '📚', label: 'Learn & Quiz' },
           { emoji: '🎮', label: 'Simulator' },
-          { emoji: '🗺️', label: 'TN Founders' },
+          { emoji: '🌟', label: 'TN Founders' },
+          { emoji: '🗺️', label: 'My Journey' },
+          { emoji: '🚀', label: 'Launch Kit' },
         ].map((item, i) => (
           <div key={i} className="bg-white rounded-xl p-2.5 border border-gray-200 text-center shadow-sm hover:shadow-md hover:border-emerald-300 transition-all">
             <span className="text-xl block mb-1">{item.emoji}</span>
@@ -126,78 +126,63 @@ export const StartupGuide = () => {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="bg-gradient-to-r from-[#14532d] via-[#166534] to-[#14532d] rounded-xl p-1.5 mb-5 border border-emerald-700/30 shadow-lg">
           <TabsList className="w-full flex overflow-x-auto gap-1 bg-transparent p-0 h-auto">
-            <TabsTrigger value="learn" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
-              <Brain className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Dashboard</span>
-              <span className="sm:hidden">Dashboard</span>
+            <TabsTrigger value="ideas" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
+              <Lightbulb className="w-3.5 h-3.5" />
+              <span>Find Ideas</span>
             </TabsTrigger>
-            <TabsTrigger value="discover" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
-              <BadgeCheck className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">AI Mentor</span>
-              <span className="sm:hidden">AI Mentor</span>
+            <TabsTrigger value="learn" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Learn</span>
             </TabsTrigger>
-            <TabsTrigger value="quiz" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
-              <DollarSign className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">My Tasks</span>
-              <span className="sm:hidden">My Tasks</span>
+            <TabsTrigger value="simulate" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
+              <Gamepad2 className="w-3.5 h-3.5" />
+              <span>Simulator</span>
             </TabsTrigger>
-            <TabsTrigger value="simulate" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
-              <Building2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Problem and Survey</span>
-              <span className="sm:hidden">Survey</span>
+            <TabsTrigger value="founders" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
+              <Star className="w-3.5 h-3.5" />
+              <span>TN Founders</span>
             </TabsTrigger>
-            <TabsTrigger value="mentors" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
-              <Layers className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Build My Startup</span>
-              <span className="sm:hidden">Build</span>
-            </TabsTrigger>
-            <TabsTrigger value="readiness" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
+            <TabsTrigger value="journey" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
               <Route className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">TN Inspiration Founder Journey</span>
-              <span className="sm:hidden">TN Founders</span>
-            </TabsTrigger>
-            <TabsTrigger value="profile" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
-              <Users className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Profile</span>
-              <span className="sm:hidden">Profile</span>
+              <span>My Journey</span>
             </TabsTrigger>
           </TabsList>
         </div>
 
-        <TabsContent value="learn" className="mt-4">
+        {/* === TAB 1: FIND IDEAS === */}
+        <TabsContent value="ideas" className="mt-4 space-y-4">
           <AIProblemFinder />
-        </TabsContent>
-
-        <TabsContent value="discover" className="mt-4">
           <ProblemOfTheDay onSubmit={progress.submitProblem} />
         </TabsContent>
 
-        <TabsContent value="quiz" className="mt-4">
+        {/* === TAB 2: LEARN === */}
+        <TabsContent value="learn" className="mt-4 space-y-4">
           <MoneyMinuteQuiz onComplete={progress.completeQuiz} />
         </TabsContent>
 
+        {/* === TAB 3: SIMULATOR === */}
         <TabsContent value="simulate" className="mt-4">
           <StartupSimulator completedScenarios={progress.completedScenarios} onCompleteScenario={progress.completeScenario} />
         </TabsContent>
 
-        <TabsContent value="mentors" className="mt-4">
+        {/* === TAB 4: TN FOUNDERS === */}
+        <TabsContent value="founders" className="mt-4">
           <FounderStories />
         </TabsContent>
 
-        <TabsContent value="readiness" className="mt-4">
+        {/* === TAB 5: MY JOURNEY === */}
+        <TabsContent value="journey" className="mt-4 space-y-4">
           <FounderJourney />
-        </TabsContent>
 
-        <TabsContent value="profile" className="mt-4">
-          <div className="space-y-4">
-            <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-5 border border-emerald-700/30 text-center shadow-lg">
+          {/* My Progress & Achievements */}
+          <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-5 border border-emerald-700/30 text-center shadow-lg">
               <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/25 text-amber-300 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
                 <Users className="w-3.5 h-3.5" />
-                Startup Profile
+                My Progress
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">My Founder Profile</h3>
+              <h3 className="text-lg font-bold text-white mb-1">Startup Journey Tracker</h3>
               <p className="text-xs text-white/50 max-w-md mx-auto">
-                Track your startup journey progress, achievements, and milestones.
+                Track your progress, achievements, and milestones.
               </p>
             </div>
 
@@ -308,7 +293,6 @@ export const StartupGuide = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
         </TabsContent>
       </Tabs>
 

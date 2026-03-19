@@ -175,13 +175,17 @@ export const UniversityEntranceExams = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 py-10 md:py-14 px-4 overflow-hidden">
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      <section className="relative py-10 md:py-14 px-4 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-800/95 via-emerald-700/92 to-teal-700/95" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/15 rounded-full blur-3xl" />
         
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="flex-1">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25 mb-4">
+                <GraduationCap className="w-8 h-8 text-white" />
+              </div>
               <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-4">
                 <Sparkles className="h-3.5 w-3.5 text-amber-300" />
                 <span className="text-white/90 text-sm font-medium">{universities.length}+ Universities • {totalCourses}+ Courses</span>

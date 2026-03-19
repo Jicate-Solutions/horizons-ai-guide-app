@@ -194,17 +194,40 @@ export const CollegeSearch = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white border-0 shadow-lg">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-2xl text-white">
-            <Building2 className="h-8 w-8" />
-            College Search by District
-          </CardTitle>
-          <p className="text-[#FFD54F]">
-            Find all colleges in any Tamil Nadu district with complete details
+      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '200px' }}>
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1B5E20]/95 via-[#2E7D32]/92 to-[#1B5E20]/95" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/15 rounded-full blur-3xl" />
+        <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25 mb-4">
+            <Building2 className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
+            College Search <span className="text-[#FFD54F]">by District</span>
+          </h2>
+          <p className="text-sm text-emerald-300 font-medium mb-1">மாவட்ட வாரியாக கல்லூரிகள்</p>
+          <p className="text-xs text-emerald-200/60 max-w-md mb-5">
+            Find all colleges in any Tamil Nadu district with complete details, courses & contact info
           </p>
-        </CardHeader>
-        <CardContent>
+          <div className="flex items-center gap-6">
+            <div className="text-center">
+              <p className="text-2xl font-black text-white">500+</p>
+              <p className="text-[10px] text-emerald-400">Colleges</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-black text-amber-300">38</p>
+              <p className="text-[10px] text-emerald-400">Districts</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-black text-emerald-300">436</p>
+              <p className="text-[10px] text-emerald-400">Sports Quota</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Card className="bg-white border-2 border-gray-200 shadow-sm">
+        <CardContent className="p-4">
+          <p className="text-sm font-bold text-gray-800 mb-2">Select Your District</p>
           <DistrictSelector
             selectedDistrict={selectedDistrict}
             onDistrictSelect={setSelectedDistrict}
