@@ -40,10 +40,10 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
           </Button>
           <div className="min-w-0 flex-1">
             <h1 className="text-sm md:text-xl font-bold text-white leading-tight">
-              EduNavigator
+              VAZHIKAATTI
             </h1>
             <p className="text-[10px] md:text-sm text-amber-300 leading-tight">
-              Career & Higher Studies Guide
+              AI Career Guide · வழிகாட்டி
             </p>
           </div>
           <button
