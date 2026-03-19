@@ -54,61 +54,72 @@ const SimpleAdmin = () => {
   const fetchUsers = async () => {
     setIsLoading(true); setError('');
     try {
-      const { data: r1 } = await supabase.from('registrations_12th_learners')
-        .select('id,full_name,email,phone,school_name,stream,preferred_course,preferred_institution,career_interests,created_at').order('created_at', { ascending: false });
-      const { data: r2 } = await supabase.from('registrations_learners')
-        .select('id,full_name,email,phone,institution,degree,created_at').order('created_at', { ascending: false });
-      const { data: r3 } = await supabase.from('registrations_employers')
-        .select('id,company_name,contact_name,contact_email,contact_phone,created_at').order('created_at', { ascending: false });
-      const { data: r4 } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+      let all: AppUser[] = [];
+      let usedServerAPI = false;
 
-      const all: AppUser[] = []; const seen = new Set<string>();
-      (r1 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: '12th Learner', full_name: r.full_name || '', school_name: r.school_name || '', stream: r.stream || '', district: r.preferred_institution || '', pass_out_year: r.preferred_course || '', career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''), source_table: 'registrations_12th_learners' }); } });
-      (r2 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Learner', full_name: r.full_name || '', school_name: r.institution || '', stream: r.degree || '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_learners' }); } });
-      (r3 || []).forEach(r => { const k = r.contact_phone || r.contact_email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.contact_email || '', phone: r.contact_phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Employer', full_name: r.contact_name || '', school_name: r.company_name || '', stream: '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_employers' }); } });
-      (r4 || []).forEach((p: any) => {
-        const bio = p.bio || '';
-        const parts = bio.split('|').map((s: string) => s.trim());
+      // PRIMARY: Server API (uses service key, gets auth metadata + all tables)
+      try {
+        const apiRes = await fetch('/api/admin-users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: ADMIN_PASS }),
+        });
+        const apiData = await apiRes.json();
         
-        let phoneFromBio = '';
-        let emailFromBio = '';
-        let schoolFromBio = '';
-        let streamFromBio = '';
-        let yearFromBio = '';
-        let districtFromBio = '';
-        let careerFromBio = '';
+        if (apiData.users && apiData.users.length > 0 && !apiData.setupNeeded) {
+          all = apiData.users.map((u: any) => ({
+            id: u.id || '',
+            email: u.email || '',
+            phone: u.phone || '',
+            created_at: u.created_at || '',
+            last_sign_in: u.last_sign_in || u.created_at || '',
+            provider: u.provider || 'User',
+            full_name: u.full_name || '',
+            school_name: u.school_name || '',
+            stream: u.stream || '',
+            district: u.district || '',
+            pass_out_year: u.pass_out_year || '',
+            career_interest: u.career_interest || '',
+            source_table: u.source || 'api',
+          }));
+          usedServerAPI = true;
+          console.log('[ADMIN] Server API returned', all.length, 'users');
+        }
+      } catch (apiErr) {
+        console.warn('[ADMIN] Server API failed, using fallback:', apiErr);
+      }
 
-        if (parts.length >= 3) {
-          // New format: phone | email | school | stream | year | district | career
-          phoneFromBio = parts[0] && /^\d{10}$/.test(parts[0]) ? parts[0] : '';
-          emailFromBio = parts[1] || '';
-          schoolFromBio = parts[2] || '';
-          streamFromBio = parts[3] || '';
-          yearFromBio = parts[4] || '';
-          districtFromBio = parts[5] || '';
-          careerFromBio = parts[6] || '';
-        } else {
-          // Old format: just phone number, email, or "9876543210@vazhikatti.app"
-          const raw = parts[0] || '';
-          if (/^\d{10}$/.test(raw)) {
-            phoneFromBio = raw;
-          } else if (raw.includes('@vazhikatti.app')) {
-            phoneFromBio = raw.split('@')[0];
-          } else if (raw.includes('@')) {
-            emailFromBio = raw;
+      // FALLBACK: Direct Supabase queries (if server API failed or returned empty)
+      if (!usedServerAPI) {
+        console.log('[ADMIN] Using direct Supabase fallback');
+        const seen = new Set<string>();
+
+        const { data: r1 } = await supabase.from('registrations_12th_learners')
+          .select('id,full_name,email,phone,school_name,stream,preferred_course,preferred_institution,career_interests,created_at').order('created_at', { ascending: false });
+        const { data: r2 } = await supabase.from('registrations_learners')
+          .select('id,full_name,email,phone,institution,degree,created_at').order('created_at', { ascending: false });
+        const { data: r3 } = await supabase.from('registrations_employers')
+          .select('id,company_name,contact_name,contact_email,contact_phone,created_at').order('created_at', { ascending: false });
+        const { data: r4 } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+
+        (r1 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: '12th Learner', full_name: r.full_name || '', school_name: r.school_name || '', stream: r.stream || '', district: r.preferred_institution || '', pass_out_year: r.preferred_course || '', career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''), source_table: 'registrations_12th_learners' }); } });
+        (r2 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Learner', full_name: r.full_name || '', school_name: r.institution || '', stream: r.degree || '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_learners' }); } });
+        (r3 || []).forEach(r => { const k = r.contact_phone || r.contact_email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.contact_email || '', phone: r.contact_phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Employer', full_name: r.contact_name || '', school_name: r.company_name || '', stream: '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_employers' }); } });
+        (r4 || []).forEach((p: any) => {
+          const bio = p.bio || '';
+          const parts = bio.split('|').map((s: string) => s.trim());
+          const phone = parts[0] && /^\d{10}$/.test(parts[0]) ? parts[0] : '';
+          const k = phone || p.display_name || p.id;
+          if (!seen.has(k)) {
+            seen.add(k);
+            all.push({ id: p.id, email: parts[1] || '', phone, created_at: p.created_at || '', last_sign_in: p.updated_at || '', provider: 'App User', full_name: p.display_name || '', school_name: parts[2] || '', stream: parts[3] || '', district: parts[5] || '', pass_out_year: parts[4] || '', career_interest: parts[6] || '', source_table: 'profiles' });
           }
-        }
-
-        const k = phoneFromBio || emailFromBio || p.display_name || p.id;
-        if (!seen.has(k)) {
-          seen.add(k);
-          all.push({ id: p.id, email: emailFromBio, phone: phoneFromBio, created_at: p.created_at || '', last_sign_in: p.updated_at || '', provider: 'App User', full_name: p.display_name || '', school_name: schoolFromBio, stream: streamFromBio, district: districtFromBio, pass_out_year: yearFromBio, career_interest: careerFromBio, source_table: 'profiles' });
-        }
-      });
+        });
+      }
 
       all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       setUsers(all);
-      if (all.length === 0) setError('No registered users yet.');
+      if (all.length === 0) setError('No registered users yet. Users will appear here after they register.');
     } catch (err: any) { setError('Failed to load: ' + (err?.message || '')); }
     finally { setIsLoading(false); }
   };

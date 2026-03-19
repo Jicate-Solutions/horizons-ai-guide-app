@@ -6,7 +6,10 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, displayName?: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, displayName?: string, learnerDetails?: {
+    phone?: string; schoolName?: string; stream?: string; passOutYear?: string;
+    district?: string; careerInterest?: string; userEmail?: string;
+  }) => Promise<{ error: Error | null; data?: any }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
@@ -38,7 +41,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, displayName?: string) => {
+  const signUp = async (email: string, password: string, displayName?: string, learnerDetails?: {
+    phone?: string; schoolName?: string; stream?: string; passOutYear?: string;
+    district?: string; careerInterest?: string; userEmail?: string;
+  }) => {
     const redirectUrl = `${window.location.origin}/`;
     
     const { data, error } = await supabase.auth.signUp({
@@ -48,12 +54,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         emailRedirectTo: redirectUrl,
         data: {
           display_name: displayName,
+          phone: learnerDetails?.phone || '',
+          school_name: learnerDetails?.schoolName || '',
+          stream: learnerDetails?.stream || '',
+          pass_out_year: learnerDetails?.passOutYear || '',
+          district: learnerDetails?.district || '',
+          career_interest: learnerDetails?.careerInterest || '',
+          user_email: learnerDetails?.userEmail || '',
+          registered_at: new Date().toISOString(),
         },
       },
     });
 
-    // Profile creation is handled in Auth.tsx with full learner details
-    return { error: error as Error | null };
+    return { error: error as Error | null, data };
   };
 
   const signIn = async (email: string, password: string) => {
