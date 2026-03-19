@@ -10,7 +10,7 @@ const CTASection = () => {
   return (
     <section className="relative py-20 overflow-hidden">
       <div className="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=800&fit=crop&auto=format" alt="" className="w-full h-full object-cover" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=800&fit=crop&auto=format" alt="" className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/85 to-accent/90" />
       </div>
       <div className="absolute top-0 left-0 w-72 h-72 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />

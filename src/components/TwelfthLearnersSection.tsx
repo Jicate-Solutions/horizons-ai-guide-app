@@ -66,8 +66,8 @@ const TwelfthLearnersSection = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-emerald-400/20 rounded-3xl blur-2xl" />
               <img 
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=500&fit=crop&auto=format" 
-                alt="Students celebrating graduation"
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=500&fit=crop&auto=format" 
+                alt="Students studying together"
                 className="relative rounded-3xl shadow-2xl border-4 border-white/10 w-full object-cover"
                 loading="lazy"
               />

@@ -13,7 +13,7 @@ const ServicesSection = () => {
       bgGradient: "from-amber-50 to-orange-50",
       borderColor: "border-amber-200 hover:border-amber-400",
       shadowColor: "shadow-amber-100",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop&auto=format",
+      image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.jobPortal'),
@@ -23,7 +23,7 @@ const ServicesSection = () => {
       bgGradient: "from-blue-50 to-indigo-50",
       borderColor: "border-blue-200 hover:border-blue-400",
       shadowColor: "shadow-blue-100",
-      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=200&fit=crop&auto=format",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.skillDevelopment'),
@@ -33,7 +33,7 @@ const ServicesSection = () => {
       bgGradient: "from-purple-50 to-violet-50",
       borderColor: "border-purple-200 hover:border-purple-400",
       shadowColor: "shadow-purple-100",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop&auto=format",
+      image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.expertCounseling'),
@@ -43,7 +43,7 @@ const ServicesSection = () => {
       bgGradient: "from-rose-50 to-pink-50",
       borderColor: "border-rose-200 hover:border-rose-400",
       shadowColor: "shadow-rose-100",
-      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=200&fit=crop&auto=format",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.aiAssistant'),
@@ -53,7 +53,7 @@ const ServicesSection = () => {
       bgGradient: "from-teal-50 to-cyan-50",
       borderColor: "border-teal-200 hover:border-teal-400",
       shadowColor: "shadow-teal-100",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop&auto=format",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=200&fit=crop&auto=format",
     },
   ];
 

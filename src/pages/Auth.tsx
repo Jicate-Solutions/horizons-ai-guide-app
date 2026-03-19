@@ -266,8 +266,37 @@ const Auth = () => {
 
   return (
     <div className="fresh-page-wrapper page-transition flex items-start sm:items-center justify-center p-4 min-h-screen overflow-y-auto py-8">
-      {registrationSuccess ? (
-        <Card className="fresh-card w-full max-w-md relative z-10 overflow-hidden">
+      {/* Desktop: Two column layout with image */}
+      <div className="w-full max-w-4xl flex rounded-2xl overflow-hidden shadow-xl relative z-10">
+        {/* Left panel - image and branding (desktop only) */}
+        <div className="hidden md:flex md:w-[45%] relative flex-col justify-between p-8 text-white">
+          <div className="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=1000&fit=crop&auto=format" alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/90 via-green-800/85 to-emerald-900/90" />
+          </div>
+          <div className="relative z-10">
+            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center font-serif font-bold text-xl border border-white/20 mb-4">வ</div>
+            <h2 className="text-2xl font-bold mb-2">வழிகாட்டி</h2>
+            <p className="text-emerald-200/80 text-sm">AI-Powered Career Guidance</p>
+          </div>
+          <div className="relative z-10 space-y-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+              <p className="text-sm italic text-emerald-100/90">"This app helped me discover my ideal career path after 12th."</p>
+              <p className="text-xs text-emerald-300/70 mt-2">— K. Karthick, Pallipalayam</p>
+            </div>
+            <div className="flex items-center gap-4 text-center">
+              <div><p className="text-xl font-bold">500+</p><p className="text-[10px] text-emerald-300/60">Learners</p></div>
+              <div className="w-px h-8 bg-white/20" />
+              <div><p className="text-xl font-bold">38</p><p className="text-[10px] text-emerald-300/60">Districts</p></div>
+              <div className="w-px h-8 bg-white/20" />
+              <div><p className="text-xl font-bold">100+</p><p className="text-[10px] text-emerald-300/60">Careers</p></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right panel - form */}
+        <div className="w-full md:w-[55%] bg-white">{registrationSuccess ? (
+        <Card className="fresh-card w-full relative z-10 overflow-hidden">
           <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-yellow-600 p-6 text-center text-white">
             <div className="flex justify-center mb-3">
               <div className="bg-white/20 rounded-full p-3">
@@ -353,7 +382,7 @@ const Auth = () => {
           </CardContent>
         </Card>
       ) : (
-        <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10 notranslate">
+        <Card className="fresh-card w-full border-l-fresh-green-medium relative z-10 notranslate">
           <CardHeader className="space-y-1 text-center">
             <CardTitle className="text-2xl font-serif text-fresh-green-dark">
               {isLogin ? 'Welcome Back' : 'Create Account'}
@@ -558,6 +587,8 @@ const Auth = () => {
           </form>
         </Card>
       )}
+      </div>
+      </div>
     </div>
   );
 };
