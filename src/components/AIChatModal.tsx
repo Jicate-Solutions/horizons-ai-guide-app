@@ -400,12 +400,13 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-24 right-4 sm:right-6 z-50 bg-card border border-border rounded-lg shadow-lg p-3 flex items-center gap-3 animate-scale-in">
-        <span className="font-medium text-sm">VAZHIKAATTI AI Assistant</span>
-        <Button size="icon" variant="ghost" onClick={() => setIsMinimized(false)}>
+      <div className="fixed bottom-24 right-4 sm:right-6 z-50 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl shadow-lg p-3 flex items-center gap-3 animate-scale-in">
+        <span className="text-lg">🤖</span>
+        <span className="font-bold text-sm">VAZHIKAATTI AI</span>
+        <Button size="icon" variant="ghost" onClick={() => setIsMinimized(false)} className="text-white hover:bg-white/20 h-7 w-7">
           <Maximize2 className="w-4 h-4" />
         </Button>
-        <Button size="icon" variant="ghost" onClick={onClose}>
+        <Button size="icon" variant="ghost" onClick={onClose} className="text-white hover:bg-white/20 h-7 w-7">
           <X className="w-4 h-4" />
         </Button>
       </div>
@@ -413,30 +414,36 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   }
 
   return (
-    <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[380px] h-[70vh] sm:h-[520px] max-h-[520px] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-scale-in">
+    <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[400px] h-[75vh] sm:h-[560px] max-h-[560px] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-scale-in ring-1 ring-black/5">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border bg-primary/5">
-        <div>
-          <h3 className="font-semibold text-foreground">VAZHIKAATTI AI Assistant</h3>
-          <p className="text-xs text-muted-foreground">Ask me anything! 🎤 Voice enabled</p>
+      <div className="flex items-center justify-between p-3 border-b border-border bg-gradient-to-r from-emerald-600 to-green-600 text-white">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-lg">🤖</div>
+          <div>
+            <h3 className="font-bold text-sm">VAZHIKAATTI AI</h3>
+            <div className="flex items-center gap-1.5">
+              <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-200"></span></span>
+              <p className="text-[10px] text-emerald-100">Online • Career Guide</p>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           <Button 
             size="icon" 
             variant="ghost" 
             onClick={isSpeaking ? stopSpeaking : toggleTts} 
-            title={isSpeaking ? "Stop speaking" : ttsEnabled ? "Disable voice output" : "Enable voice output"}
-            className={isSpeaking ? "text-primary animate-pulse" : ""}
+            title={isSpeaking ? "Stop speaking" : ttsEnabled ? "Disable voice" : "Enable voice"}
+            className={`text-white hover:bg-white/20 h-8 w-8 ${isSpeaking ? "animate-pulse" : ""}`}
           >
             {ttsEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </Button>
-          <Button size="icon" variant="ghost" onClick={clearChat} title="Clear chat">
+          <Button size="icon" variant="ghost" onClick={clearChat} title="Clear chat" className="text-white hover:bg-white/20 h-8 w-8">
             <Trash2 className="w-4 h-4" />
           </Button>
-          <Button size="icon" variant="ghost" onClick={() => setIsMinimized(true)} title="Minimize">
+          <Button size="icon" variant="ghost" onClick={() => setIsMinimized(true)} title="Minimize" className="text-white hover:bg-white/20 h-8 w-8">
             <Minimize2 className="w-4 h-4" />
           </Button>
-          <Button size="icon" variant="ghost" onClick={onClose} title="Close">
+          <Button size="icon" variant="ghost" onClick={onClose} title="Close" className="text-white hover:bg-white/20 h-8 w-8">
             <X className="w-4 h-4" />
           </Button>
         </div>
@@ -453,38 +460,66 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
             </div>
           </div>
         ) : messages.length === 0 ? (
-          <div className="text-center text-muted-foreground py-8">
-            <p className="text-sm">👋 Welcome! I'm your VAZHIKAATTI AI Assistant.</p>
-            <p className="text-xs mt-2">
-              Ask me about careers, education, or say "generate an image"!
-            </p>
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <button
-                onClick={() => setInput("What are the career options after 12th science?")}
-                className="text-xs bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors"
-              >
-                Career options after 12th
-              </button>
-              <button
-                onClick={() => setInput("Generate an image of a student studying")}
-                className="text-xs bg-accent/20 hover:bg-accent/30 px-3 py-1.5 rounded-full transition-colors"
-              >
-                🎨 Generate image
-              </button>
+          <div className="py-4 space-y-5">
+            {/* Welcome */}
+            <div className="text-center">
+              <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
+                <span className="text-2xl">🤖</span>
+              </div>
+              <h3 className="text-base font-bold text-foreground">VAZHIKAATTI AI Assistant</h3>
+              <p className="text-xs text-muted-foreground mt-1">Your personal career guide — ask me anything!</p>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="space-y-3">
+              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider text-center">Popular Questions</p>
+              
+              <div className="space-y-1.5">
+                {[
+                  { emoji: '🎯', text: 'Career options after 12th Science', q: 'What are the best career options after 12th Science?' },
+                  { emoji: '🏥', text: 'NEET preparation tips', q: 'How should I prepare for NEET UG? Give me a study plan.' },
+                  { emoji: '🛠️', text: 'Engineering through TNEA', q: 'How does TNEA counselling work? What cutoff do I need?' },
+                  { emoji: '💰', text: 'Scholarships for Tamil Nadu students', q: 'What scholarships are available for 12th pass students in Tamil Nadu?' },
+                  { emoji: '🏫', text: 'Best colleges in Tamil Nadu', q: 'What are the top colleges in Tamil Nadu for engineering and arts?' },
+                  { emoji: '💼', text: 'High-salary career paths', q: 'Which career paths offer the highest salary in India right now?' },
+                ].map((item, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setInput(item.q); }}
+                    className="w-full flex items-center gap-3 text-left px-3 py-2.5 rounded-xl bg-muted/50 hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-200 group"
+                  >
+                    <span className="text-base flex-shrink-0">{item.emoji}</span>
+                    <span className="text-xs font-medium text-foreground/80 group-hover:text-primary">{item.text}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-center gap-2 pt-2">
+                <span className="text-[10px] text-muted-foreground">🎤 Voice enabled</span>
+                <span className="text-muted-foreground/30">•</span>
+                <span className="text-[10px] text-muted-foreground">🎨 Image generation</span>
+                <span className="text-muted-foreground/30">•</span>
+                <span className="text-[10px] text-muted-foreground">🌐 Tamil & English</span>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
+                {msg.role === "assistant" && (
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                    <span className="text-xs">🤖</span>
+                  </div>
+                )}
                 <div
-                  className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
+                  className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm ${
                     msg.role === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-foreground"
+                      ? "bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-br-md"
+                      : "bg-muted text-foreground rounded-bl-md border border-border/50"
                   }`}
                 >
                   <p className="whitespace-pre-wrap">{msg.content}</p>
@@ -510,12 +545,15 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
               </div>
             ))}
             {isLoading && messages[messages.length - 1]?.role === "user" && (
-              <div className="flex justify-start">
-                <div className="bg-muted rounded-lg px-3 py-2">
-                  <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" />
-                    <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce [animation-delay:0.1s]" />
-                    <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce [animation-delay:0.2s]" />
+              <div className="flex gap-2 justify-start">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <span className="text-xs">🤖</span>
+                </div>
+                <div className="bg-muted rounded-2xl rounded-bl-md px-4 py-3 border border-border/50">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" />
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce [animation-delay:0.15s]" />
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce [animation-delay:0.3s]" />
                   </div>
                 </div>
               </div>
@@ -537,12 +575,12 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
 
       {/* Input */}
       <div className="p-3 border-t border-border bg-background">
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-end">
           <Button
             onClick={toggleVoiceInput}
             size="icon"
             variant={isListening ? "destructive" : "outline"}
-            className={`shrink-0 ${isListening ? "animate-pulse" : ""}`}
+            className={`shrink-0 h-10 w-10 rounded-xl ${isListening ? "animate-pulse bg-red-500" : "hover:bg-emerald-50 hover:border-emerald-300"}`}
             title={isListening ? "Stop listening" : "Start voice input"}
           >
             {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
@@ -552,15 +590,15 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type or speak your message..."
-            className="min-h-[44px] max-h-[120px] resize-none"
+            placeholder="Type your career question..."
+            className="min-h-[44px] max-h-[120px] resize-none rounded-xl text-sm"
             disabled={isLoading}
           />
           <Button
             onClick={handleSend}
             disabled={!input.trim() || isLoading}
             size="icon"
-            className="shrink-0"
+            className="shrink-0 h-10 w-10 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 shadow-md"
           >
             <Send className="w-4 h-4" />
           </Button>
