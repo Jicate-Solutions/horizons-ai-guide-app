@@ -38,18 +38,59 @@ const CourseExplorer = () => {
   return (
     <div className="space-y-5">
 
-      {/* ── COMPACT HERO ── */}
-      <div className="bg-gradient-to-br from-violet-600 to-purple-700 text-white rounded-2xl p-5">
-        <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center border border-white/30">
-            <BookOpen className="w-5 h-5" />
+      {/* ── HERO BANNER ── */}
+      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '220px' }}>
+        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/95 via-purple-800/92 to-violet-900/95" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-fuchsia-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl" />
+
+        <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center shadow-xl shadow-purple-500/25 mb-4">
+            <BookOpen className="w-8 h-8 text-white" />
           </div>
-          <div>
-            <h1 className="text-lg font-extrabold">Course Explorer</h1>
-            <p className="text-sm text-white/70">உங்கள் எதிர்காலப் படிப்பைக் கண்டறியுங்கள்</p>
+          <h1 className="text-2xl md:text-3xl font-black text-white mb-1">
+            Course <span className="text-amber-300">Explorer</span>
+          </h1>
+          <p className="text-sm text-violet-300 font-medium mb-1">உங்கள் எதிர்காலப் படிப்பைக் கண்டறியுங்கள்</p>
+          <p className="text-xs text-violet-200/60 max-w-md mb-5">
+            Discover the perfect course for your future — select your board, stream, and group to explore 144+ courses
+          </p>
+
+          <div className="flex items-center gap-6 md:gap-8 mb-4">
+            {[
+              { value: '144+', label: 'Courses', color: 'text-white' },
+              { value: String(boards.length), label: 'Boards', color: 'text-amber-300' },
+              { value: '5', label: 'Streams', color: 'text-violet-300' },
+              { value: '20+', label: 'Groups', color: 'text-emerald-300' },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <p className={cn("text-2xl md:text-3xl font-black leading-none", s.color)}>{s.value}</p>
+                <p className="text-[10px] text-purple-400 mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="inline-flex items-center gap-2 bg-violet-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-violet-400/30">
+            <span className="text-xs">📋</span>
+            <span className="text-xs font-bold text-violet-200">Board → Stream → Group → Courses</span>
           </div>
         </div>
-        <p className="text-xs text-white/60 mt-2">Select your board → stream → group → see all available courses</p>
+      </div>
+
+      {/* ── HOW IT WORKS STRIP ── */}
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { step: '1', emoji: '📚', label: 'Select Board', desc: 'TN, CBSE, ICSE...' },
+          { step: '2', emoji: '🔬', label: 'Pick Stream', desc: 'Science, Commerce...' },
+          { step: '3', emoji: '🎯', label: 'Explore Courses', desc: '144+ options' },
+        ].map((s, i) => (
+          <div key={i} className="bg-white rounded-xl p-3 border border-gray-200 text-center shadow-sm">
+            <div className="text-2xl mb-1">{s.emoji}</div>
+            <p className="text-xs font-bold text-gray-800">Step {s.step}: {s.label}</p>
+            <p className="text-[10px] text-gray-500">{s.desc}</p>
+          </div>
+        ))}
       </div>
 
       {/* ── STEP 1: BOARD SELECTOR ── */}
