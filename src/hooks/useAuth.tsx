@@ -65,12 +65,38 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Ensure profile exists for admin visibility
     if (!error && data?.user) {
       try {
-        await supabase.from('profiles').upsert({
-          user_id: data.user.id,
-          display_name: data.user.user_metadata?.display_name || email.split('@')[0],
-          bio: email,
-          updated_at: new Date().toISOString(),
-        }, { onConflict: 'user_id' });
+        const authEmail = data.user.email || email;
+        const displayName = data.user.user_metadata?.display_name || '';
+        
+        // Extract phone from vazhikatti email format: 9876543210@vazhikatti.app
+        const phone = authEmail.includes('@vazhikatti.app') 
+          ? authEmail.split('@')[0] 
+          : '';
+        
+        // Check if profile already has full details (7 parts in bio)
+        const { data: existingProfile } = await supabase
+          .from('profiles')
+          .select('bio')
+          .eq('user_id', data.user.id)
+          .limit(1);
+        
+        const existingBio = existingProfile?.[0]?.bio || '';
+        const existingParts = existingBio.split('|').map((s: string) => s.trim());
+        
+        // Only update if profile doesn't have full details yet
+        if (existingParts.length < 3) {
+          await supabase.from('profiles').upsert({
+            user_id: data.user.id,
+            display_name: displayName || phone || authEmail.split('@')[0],
+            bio: phone || authEmail,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: 'user_id' });
+        } else {
+          // Just update the timestamp
+          await supabase.from('profiles').update({
+            updated_at: new Date().toISOString(),
+          }).eq('user_id', data.user.id);
+        }
       } catch (profileErr) {
         console.warn('[VAZHIKATTI] Profile update failed:', profileErr);
       }

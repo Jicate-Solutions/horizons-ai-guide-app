@@ -68,15 +68,37 @@ const SimpleAdmin = () => {
       (r3 || []).forEach(r => { const k = r.contact_phone || r.contact_email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.contact_email || '', phone: r.contact_phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Employer', full_name: r.contact_name || '', school_name: r.company_name || '', stream: '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_employers' }); } });
       (r4 || []).forEach((p: any) => {
         const bio = p.bio || '';
-        // bio format: "phone | email | school | stream | year | district | career"
         const parts = bio.split('|').map((s: string) => s.trim());
-        const phoneFromBio = parts[0] && /^\d{10}$/.test(parts[0]) ? parts[0] : '';
-        const emailFromBio = parts[1] || '';
-        const schoolFromBio = parts[2] || '';
-        const streamFromBio = parts[3] || '';
-        const yearFromBio = parts[4] || '';
-        const districtFromBio = parts[5] || '';
-        const careerFromBio = parts[6] || '';
+        
+        let phoneFromBio = '';
+        let emailFromBio = '';
+        let schoolFromBio = '';
+        let streamFromBio = '';
+        let yearFromBio = '';
+        let districtFromBio = '';
+        let careerFromBio = '';
+
+        if (parts.length >= 3) {
+          // New format: phone | email | school | stream | year | district | career
+          phoneFromBio = parts[0] && /^\d{10}$/.test(parts[0]) ? parts[0] : '';
+          emailFromBio = parts[1] || '';
+          schoolFromBio = parts[2] || '';
+          streamFromBio = parts[3] || '';
+          yearFromBio = parts[4] || '';
+          districtFromBio = parts[5] || '';
+          careerFromBio = parts[6] || '';
+        } else {
+          // Old format: just phone number, email, or "9876543210@vazhikatti.app"
+          const raw = parts[0] || '';
+          if (/^\d{10}$/.test(raw)) {
+            phoneFromBio = raw;
+          } else if (raw.includes('@vazhikatti.app')) {
+            phoneFromBio = raw.split('@')[0];
+          } else if (raw.includes('@')) {
+            emailFromBio = raw;
+          }
+        }
+
         const k = phoneFromBio || emailFromBio || p.display_name || p.id;
         if (!seen.has(k)) {
           seen.add(k);
