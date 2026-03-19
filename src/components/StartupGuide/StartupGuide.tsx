@@ -37,70 +37,66 @@ export const StartupGuide = () => {
   return (
     <div className="space-y-0">
       {/* ===== GREEN HERO SECTION ===== */}
-      <div className="relative overflow-hidden rounded-2xl px-6 py-10 md:py-14 text-center mb-6 shadow-xl" style={{ minHeight: '280px' }}>
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#14532d]/95 via-[#166534]/92 to-[#1a4731]/95" />
-        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-amber-400/15 to-yellow-400/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-emerald-300/15 to-green-400/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+      <div className="overflow-hidden rounded-2xl mb-6 shadow-xl border border-emerald-800/50">
+        {/* TOP: Clearly visible image */}
+        <div className="relative h-44 md:h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=500&fit=crop&auto=format" alt="Startup team working together" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#14532d]" />
+          {/* Badge on image */}
+          <div className="absolute top-4 left-4">
+            <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold text-white border border-white/20 shadow-lg">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              Startup Blueprint · India 2026
+            </div>
+          </div>
+          {/* Stats floating on image */}
+          <div className="absolute bottom-4 right-4 flex gap-2">
+            <div className="bg-black/50 backdrop-blur-md rounded-lg px-3 py-2 text-center border border-white/10">
+              <p className="text-lg font-black text-amber-300">{progress.xp}</p>
+              <p className="text-[8px] text-white/60 uppercase">XP</p>
+            </div>
+            <div className="bg-black/50 backdrop-blur-md rounded-lg px-3 py-2 text-center border border-white/10">
+              <p className="text-lg font-black text-orange-300">{progress.streak}🔥</p>
+              <p className="text-[8px] text-white/60 uppercase">Streak</p>
+            </div>
+          </div>
+        </div>
 
-        <div className="relative z-10 space-y-5">
-          {/* Large Icon */}
-          <div className="w-18 h-18 mx-auto w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25">
-            <Rocket className="w-9 h-9 text-white" />
+        {/* BOTTOM: Content on solid green */}
+        <div className="bg-gradient-to-b from-[#14532d] to-[#1a4731] px-6 py-6 text-center">
+          {/* Rocket icon overlapping image */}
+          <div className="mx-auto w-[68px] h-[68px] rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30 -mt-12 border-4 border-[#14532d] mb-4">
+            <Rocket className="w-8 h-8 text-white" />
           </div>
 
-          <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            Complete Startup Blueprint · India 2026
-          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight font-serif italic">
+            The <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">Complete</span> Startup
+          </h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight font-serif italic mb-2">
+            Guide for <span className="bg-gradient-to-r from-emerald-300 to-green-300 bg-clip-text text-transparent">Student Founders</span>
+          </h2>
 
-          <div className="space-y-1">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight font-serif italic">
-              The <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">Complete</span> Startup
-            </h2>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight font-serif italic">
-              Guide for <span className="bg-gradient-to-r from-emerald-300 to-green-300 bg-clip-text text-transparent">Student Founders</span>
-            </h2>
-          </div>
-
-          <p className="text-sm text-emerald-300 font-medium">தொழில்முனைவோர் வழிகாட்டி</p>
-
-          <p className="text-sm md:text-base text-white/60 max-w-xl mx-auto leading-relaxed">
-            From identifying problems with AI to securing government funding — your complete 40-week journey to launching a real startup
+          <p className="text-sm text-emerald-300 font-medium mb-2">தொழில்முனைவோர் வழிகாட்டி</p>
+          <p className="text-xs text-white/50 max-w-lg mx-auto mb-5">
+            AI-powered problem finding → Business model → Funding guide → 40-week launch roadmap
           </p>
 
-          <div className="flex justify-center gap-6 md:gap-10 pt-2">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1.5 text-amber-300">
-                <Zap className="w-4 h-4" />
-                <span className="text-2xl font-black text-white">{progress.xp}</span>
+          {/* Stats row */}
+          <div className="flex justify-center gap-5 md:gap-8">
+            {[
+              { icon: <Zap className="w-4 h-4" />, val: progress.xp, label: 'XP Earned', color: 'text-amber-300' },
+              { icon: <Flame className="w-4 h-4" />, val: progress.streak, label: 'Day Streak', color: 'text-yellow-300' },
+              { icon: <BookOpen className="w-4 h-4" />, val: progress.completedLessons.length, label: 'Lessons', color: 'text-emerald-300' },
+              { icon: <Activity className="w-4 h-4" />, val: progress.overallScore, label: 'Readiness', color: 'text-green-300' },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className={`flex items-center justify-center gap-1.5 ${s.color}`}>
+                  {s.icon}
+                  <span className="text-xl font-black text-white">{s.val}</span>
+                </div>
+                <p className="text-[9px] text-white/40 font-medium uppercase tracking-wider mt-0.5">{s.label}</p>
               </div>
-              <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">XP Earned</p>
-            </div>
-            <div className="w-px h-10 bg-white/15 self-center" />
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1.5 text-yellow-300">
-                <Flame className="w-4 h-4" />
-                <span className="text-2xl font-black text-white">{progress.streak}</span>
-              </div>
-              <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">Day Streak</p>
-            </div>
-            <div className="w-px h-10 bg-white/15 self-center" />
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1.5 text-emerald-300">
-                <BookOpen className="w-4 h-4" />
-                <span className="text-2xl font-black text-white">{progress.completedLessons.length}</span>
-              </div>
-              <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">Lessons</p>
-            </div>
-            <div className="w-px h-10 bg-white/15 self-center" />
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1.5 text-green-300">
-                <Activity className="w-4 h-4" />
-                <span className="text-2xl font-black text-white">{progress.overallScore}</span>
-              </div>
-              <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">Readiness</p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
