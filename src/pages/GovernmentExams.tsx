@@ -91,35 +91,70 @@ const GovernmentExams = () => {
 
   return (
     <div className="min-h-screen bg-gray-50/50">
-      {/* ── HEADER ── */}
-      <div className="border-b border-gray-200 bg-white sticky top-0 z-30 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </button>
-          <div className="flex-1">
-            <h1 className="text-base font-bold text-gray-900">{t ? 'அரசு தேர்வுகள்' : 'Government Exams'}</h1>
-            <p className="text-xs text-gray-500">{t ? `12ஆம் வகுப்பு தேர்ச்சி • ${totalExams} தேர்வுகள்` : `12th Pass Eligible • ${totalExams} Exams`}</p>
+      {/* ── HERO HEADER ── */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1400&h=400&fit=crop&auto=format" alt="" className="w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-slate-800/92 to-gray-900/95" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(16,185,129,0.12),transparent_50%)]" />
+        </div>
+        
+        <div className="relative z-10">
+          {/* Nav */}
+          <div className="container mx-auto px-4 pt-4 flex items-center gap-3">
+            <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
+              <ArrowLeft className="w-5 h-5 text-white" />
+            </button>
+          </div>
+
+          {/* Hero Content */}
+          <div className="container mx-auto px-4 py-6 md:py-8 pb-8 flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-emerald-300 border border-emerald-400/30 mb-3">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                {openCount} {t ? 'விண்ணப்பம் திறக்கப்பட்டுள்ளது' : 'Applications Open Now'}
+              </div>
+              <h1 className="text-2xl md:text-4xl font-bold text-white mb-1">
+                {t ? 'அரசு வேலை வாய்ப்புகள்' : 'Government Job'} <span className="text-amber-400">{t ? '' : 'Opportunities'}</span>
+              </h1>
+              <p className="text-xs md:text-sm text-gray-400 mb-1">{t ? 'அரசு தேர்வுகள் & வேலைவாய்ப்பு வழிகாட்டி' : 'Complete exam guide with mock tests, PYQ & study plans'}</p>
+              <p className="text-xs text-gray-500 mb-5">{t ? `8, 10, 12ஆம் வகுப்பு தேர்ச்சி — ${totalExams} தேர்வுகள்` : `8th, 10th & 12th Pass Eligible — ${totalExams} Exams`}</p>
+              
+              {/* Inline stats */}
+              <div className="flex items-center justify-center md:justify-start gap-5">
+                {[
+                  { value: String(totalExams), label: t ? 'தேர்வுகள்' : 'Exams', color: 'text-white' },
+                  { value: String(openCount), label: t ? 'திறந்தது' : 'Open Now', color: 'text-emerald-400' },
+                  { value: String(totalPYQ), label: 'PYQ Papers', color: 'text-amber-400' },
+                  { value: '5', label: t ? 'துறைகள்' : 'Sectors', color: 'text-blue-400' },
+                ].map((s, i) => (
+                  <div key={i} className="text-center">
+                    <p className={cn("text-xl md:text-2xl font-black leading-none", s.color)}>{s.value}</p>
+                    <p className="text-[10px] text-gray-500 mt-1 font-medium">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right side - quick category cards */}
+            <div className="hidden md:grid grid-cols-2 gap-2 w-[280px] flex-shrink-0">
+              {Object.entries(CAT).slice(0, 4).map(([key, c]) => {
+                const count = governmentExams.filter(e => e.category === key).length;
+                return (
+                  <button key={key} onClick={() => setScope(key as Scope)}
+                    className="bg-white/10 backdrop-blur-sm rounded-xl px-3 py-3 text-left border border-white/10 hover:bg-white/20 transition-all group">
+                    <span className="text-xl block mb-1">{c.icon}</span>
+                    <p className="text-xs font-bold text-white truncate">{c.label.split('&')[0].trim()}</p>
+                    <p className="text-[10px] text-gray-400">{count} exams</p>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 pt-4 pb-10">
-
-        {/* ── HERO STATS ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mb-5">
-          {[
-            { value: String(totalExams), label: t ? 'தேர்வுகள்' : 'Exams', color: 'text-gray-900' },
-            { value: String(openCount), label: t ? 'திறந்தது' : 'Open Now', color: 'text-emerald-600' },
-            { value: String(totalPYQ), label: 'PYQ', color: 'text-blue-600' },
-            { value: '5', label: t ? 'வகைகள்' : 'Sectors', color: 'text-violet-600' },
-          ].map((s, i) => (
-            <div key={i} className="text-center py-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm">
-              <p className={cn("text-xl font-extrabold leading-none", s.color)}>{s.value}</p>
-              <p className="text-xs font-medium text-gray-500 mt-1.5">{s.label}</p>
-            </div>
-          ))}
-        </div>
 
         {/* ── OPEN APPLICATIONS ── */}
         {openCount > 0 && !search && scope === 'all' && (
