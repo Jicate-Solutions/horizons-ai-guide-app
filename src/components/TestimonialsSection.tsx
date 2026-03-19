@@ -75,7 +75,7 @@ const TestimonialsSection = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-green-800 to-emerald-900">
         <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 15% 50%, rgba(16,185,129,0.15) 0%, transparent 50%), radial-gradient(circle at 85% 50%, rgba(245,158,11,0.1) 0%, transparent 50%), radial-gradient(circle at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 40%)'
+          backgroundImage: 'radial-gradient(circle at 15% 50%, rgba(16,185,129,0.2) 0%, transparent 50%), radial-gradient(circle at 85% 50%, rgba(245,158,11,0.1) 0%, transparent 50%)'
         }} />
         {/* Subtle grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -240,7 +240,7 @@ const TestimonialsSection = () => {
                 </div>
                 <div className="w-px h-8 bg-white/10" />
                 <div className="text-center">
-                  <p className="text-xl font-black text-blue-400">50+</p>
+                  <p className="text-xl font-black text-emerald-300">50+</p>
                   <p className="text-[10px] text-gray-500">Schools</p>
                 </div>
               </div>
