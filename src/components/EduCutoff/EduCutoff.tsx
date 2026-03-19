@@ -100,18 +100,50 @@ export const EduCutoff = () => {
   return (
     <div className="space-y-4">
 
-      {/* ═══ COMPACT HEADER ═══ */}
-      <div className="bg-gradient-to-r from-violet-700 to-purple-700 rounded-2xl p-5 text-white">
-        <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-            <Calculator className="w-5 h-5" />
+      {/* ═══ HERO BANNER ═══ */}
+      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '220px' }}>
+        <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/95 via-purple-800/92 to-violet-900/95" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl" />
+
+        <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25 mb-4">
+            <Calculator className="w-8 h-8 text-white" />
           </div>
-          <div>
-            <h2 className="text-lg font-extrabold">Cutoff & College Predictor</h2>
-            <p className="text-xs text-violet-200">கல்வி கட்ஆஃப் & கல்லூரி கணிப்பான்</p>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
+            Cutoff & College <span className="text-amber-300">Predictor</span>
+          </h2>
+          <p className="text-sm text-violet-300 font-medium mb-1">கல்வி கட்ஆஃப் & கல்லூரி கணிப்பான்</p>
+          <p className="text-xs text-violet-200/60 max-w-md mb-5">
+            Enter your 12th marks → Calculate TNEA cutoff → Predict which colleges & courses you can get
+          </p>
+
+          <div className="flex items-center gap-6 md:gap-8 mb-4">
+            {[
+              { value: '200+', label: 'Colleges', color: 'text-white' },
+              { value: 'TNEA', label: 'Cutoff Calc', color: 'text-amber-300' },
+              { value: 'NEET', label: 'Eligibility', color: 'text-emerald-300' },
+              { value: 'AI', label: 'Prediction', color: 'text-violet-300' },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <p className={cn("text-2xl md:text-3xl font-black leading-none", s.color)}>{s.value}</p>
+                <p className="text-[10px] text-purple-400 mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="inline-flex items-center gap-1.5 bg-blue-500/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-blue-400/30">
+              <span className="text-xs">⚙️</span>
+              <span className="text-[11px] font-bold text-blue-200">Engineering: Maths/2 + Phy/4 + Chem/4</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 bg-emerald-500/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-emerald-400/30">
+              <span className="text-xs">🏥</span>
+              <span className="text-[11px] font-bold text-emerald-200">Medical: NEET Score / 720</span>
+            </div>
           </div>
         </div>
-        <p className="text-sm text-violet-200 mt-2">Enter your 12th marks → Calculate cutoff → See which colleges & courses you can get.</p>
       </div>
 
       {/* ═══ 3 TAB SELECTOR ═══ */}
