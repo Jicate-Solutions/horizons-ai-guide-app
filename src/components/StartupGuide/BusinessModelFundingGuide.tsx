@@ -1,304 +1,364 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, ChevronUp, ExternalLink, Lightbulb, Target, DollarSign, Users, BarChart3, Truck, Handshake, Puzzle, Building2, Banknote, GraduationCap, Award, Rocket, Globe } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  ChevronDown, ChevronUp, ExternalLink, Check, ArrowRight, ArrowLeft,
+  Puzzle, Banknote, Save, RotateCcw, Sparkles, CheckCircle2, Circle,
+  Download, Share2, Eye
+} from 'lucide-react';
+import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
-// ═══════ BUSINESS MODEL CANVAS ═══════
+// ═══════ CANVAS DATA ═══════
 const canvasBlocks = [
-  { id: 'problem', icon: '🔍', title: 'Problem', desc: 'What pain are you solving?', color: 'from-red-500 to-rose-500', bg: 'bg-red-50', border: 'border-red-200',
-    questions: ['What frustration do people face daily?', 'How are they solving it now (badly)?', 'Who suffers most from this problem?'],
-    example: 'Students waste 2-3 months choosing careers because no single platform has all info in Tamil Nadu context.' },
-  { id: 'solution', icon: '💡', title: 'Solution', desc: 'Your unique answer', color: 'from-amber-500 to-yellow-500', bg: 'bg-amber-50', border: 'border-amber-200',
-    questions: ['What is your product/service?', 'Why is it 10x better than current solutions?', 'Can you explain it in one sentence?'],
-    example: 'AI-powered career guidance app specifically for Tamil Nadu 12th students — all exams, colleges, cutoffs in one place.' },
-  { id: 'customers', icon: '👥', title: 'Customer Segments', desc: 'Who pays you?', color: 'from-blue-500 to-indigo-500', bg: 'bg-blue-50', border: 'border-blue-200',
-    questions: ['Who is your primary customer?', 'Who is your secondary customer?', 'How large is this market?'],
-    example: 'Primary: 12th students (8L+ in TN yearly). Secondary: Parents, coaching centers, colleges.' },
-  { id: 'revenue', icon: '💰', title: 'Revenue Model', desc: 'How you make money', color: 'from-emerald-500 to-green-500', bg: 'bg-emerald-50', border: 'border-emerald-200',
-    questions: ['Free or paid? Freemium?', 'Subscription, one-time, or commission?', 'What is your pricing?'],
-    example: 'Freemium: Basic free, Premium ₹299/year for AI predictor + mock tests. B2B: Schools pay ₹50K/year for bulk access.' },
-  { id: 'channels', icon: '📢', title: 'Channels', desc: 'How customers find you', color: 'from-violet-500 to-purple-500', bg: 'bg-violet-50', border: 'border-violet-200',
-    questions: ['Online or offline?', 'Social media, WhatsApp, school visits?', 'Referral or paid ads?'],
-    example: 'WhatsApp groups of parents, school partnerships, YouTube shorts in Tamil, Instagram reels.' },
-  { id: 'costs', icon: '📊', title: 'Cost Structure', desc: 'What you spend on', color: 'from-gray-600 to-slate-600', bg: 'bg-gray-50', border: 'border-gray-200',
-    questions: ['What are your fixed costs?', 'What are variable costs?', 'What is your monthly burn rate?'],
-    example: 'Server: ₹2K/mo, Domain: ₹800/yr, Marketing: ₹5K/mo, Team: ₹0 (student founders). Total: ~₹8K/mo.' },
+  { id: 'problem', step: 1, icon: '🔍', title: 'The Problem', titleTa: 'பிரச்சனை', color: 'border-red-400 bg-red-50', activeColor: 'ring-red-400', dotColor: 'bg-red-500',
+    prompt: 'Describe a real problem you\'ve seen around you. Think about your school, home, or neighbourhood.',
+    hint: 'Focus on WHO has the problem and HOW OFTEN they face it.',
+    tnExample: { startup: 'Sakthi Masala', text: 'Working women in Tamil Nadu didn\'t have time to grind fresh spices daily. They needed ready-made masalas that tasted like home.' },
+    placeholder: 'e.g. Students in my school waste hours traveling to coaching centers because there\'s no good online option in Tamil...' },
+  { id: 'customer', step: 2, icon: '👥', title: 'Your Customer', titleTa: 'வாடிக்கையாளர்', color: 'border-blue-400 bg-blue-50', activeColor: 'ring-blue-400', dotColor: 'bg-blue-500',
+    prompt: 'Who exactly has this problem? Be specific — age, location, income level.',
+    hint: 'The more specific your customer, the easier it is to sell.',
+    tnExample: { startup: 'Zoho', text: 'Small and medium businesses worldwide who couldn\'t afford expensive enterprise software like SAP or Oracle.' },
+    placeholder: 'e.g. 12th-pass students from rural Tamil Nadu towns (age 17-19), families earning less than ₹5L/year...' },
+  { id: 'solution', step: 3, icon: '💡', title: 'Your Solution', titleTa: 'தீர்வு', color: 'border-amber-400 bg-amber-50', activeColor: 'ring-amber-400', dotColor: 'bg-amber-500',
+    prompt: 'What will you build/offer to solve this problem? Keep it simple.',
+    hint: 'Can you explain it in ONE sentence? If not, simplify.',
+    tnExample: { startup: 'Aachi Group', text: 'Pre-ground, branded spice mixes at affordable prices — sold in small sachets that even low-income families could afford.' },
+    placeholder: 'e.g. A WhatsApp-based tutoring service where local college students teach 12th subjects in Tamil for ₹99/month...' },
+  { id: 'uniqueness', step: 4, icon: '⭐', title: 'What Makes You Different', titleTa: 'தனித்துவம்', color: 'border-purple-400 bg-purple-50', activeColor: 'ring-purple-400', dotColor: 'bg-purple-500',
+    prompt: 'Why would someone choose YOU over existing options?',
+    hint: 'Think: cheaper? faster? in Tamil? local? more personal?',
+    tnExample: { startup: 'Zepto', text: 'Groceries delivered in 10 minutes — when BigBasket took 2-4 hours. Speed was the only differentiator, but it changed everything.' },
+    placeholder: 'e.g. All classes in Tamil, by tutors from the same district, on WhatsApp (no app download needed)...' },
+  { id: 'revenue', step: 5, icon: '💰', title: 'How You\'ll Earn Money', titleTa: 'வருவாய்', color: 'border-emerald-400 bg-emerald-50', activeColor: 'ring-emerald-400', dotColor: 'bg-emerald-500',
+    prompt: 'How will this business actually make money? Be specific about pricing.',
+    hint: 'Start with: "Customers pay ₹___ per ___"',
+    tnExample: { startup: 'OYO Rooms', text: 'Commission model: take 20-25% from every hotel booking. Hotels get more customers, OYO gets a cut. Win-win.' },
+    placeholder: 'e.g. Students pay ₹99/month subscription. Schools pay ₹25,000/year for bulk access for all students...' },
+  { id: 'cost', step: 6, icon: '📊', title: 'What You\'ll Spend', titleTa: 'செலவு', color: 'border-gray-400 bg-gray-50', activeColor: 'ring-gray-400', dotColor: 'bg-gray-500',
+    prompt: 'What are your costs to run this? Be realistic about what you need to spend.',
+    hint: 'List monthly costs. If total cost > revenue, rethink your model.',
+    tnExample: { startup: 'Papers N Parcels (Tilak Mehta)', text: 'Started with ₹0 — used existing delivery networks (dabbawalas). No warehouse, no vehicles. Just a platform connecting people.' },
+    placeholder: 'e.g. WhatsApp Business: Free. Internet: ₹500/mo. Paying tutors: ₹3,000/mo. Marketing (pamphlets): ₹1,000/mo. Total: ~₹4,500/mo...' },
 ];
 
-// ═══════ FUNDING GUIDE ═══════
+// ═══════ FUNDING DATA ═══════
 const fundingSources = [
-  { category: '🏛️ Government Schemes (Tamil Nadu)', icon: '🏛️', color: 'from-emerald-600 to-green-700', sources: [
-    { name: 'TANSIM Startup Grant', amount: 'Up to ₹30 Lakhs', eligibility: 'TN-based startup, registered under Startup TN', link: 'https://www.startuptn.in', difficulty: 'Medium', howToApply: '1. Register on startuptn.in → 2. Submit business plan → 3. Pitch to TANSIM panel → 4. Get approved', tip: 'Having a prototype or MVP significantly increases approval chances.' },
-    { name: 'TANSEED 2.0', amount: '₹5L - ₹15L seed fund', eligibility: 'Startups incubated in TN', link: 'https://www.startuptn.in/tanseed', difficulty: 'Medium', howToApply: '1. Get incubated at a TN incubator → 2. Apply during TANSEED call → 3. Pitch to judges', tip: 'Apply through Anna University TBI or IIT-M incubator for best chances.' },
-    { name: 'Pudhumai Penn Startup Support', amount: 'Special grants for women', eligibility: 'Women entrepreneurs in TN', link: 'https://www.startuptn.in', difficulty: 'Easy', howToApply: '1. Register as woman entrepreneur → 2. Submit plan → 3. Get mentoring + funding', tip: 'Combine with Stand Up India for up to ₹1 Crore.' },
-    { name: 'TN Skill Development Corp', amount: 'Free training + placement', eligibility: 'TN youth 18-35', link: 'https://www.tnsdc.in', difficulty: 'Easy', howToApply: '1. Register on TNSDC portal → 2. Choose skill program → 3. Complete training → 4. Get certificate', tip: 'Great for building skills before starting a business.' },
-  ]},
-  { category: '🇮🇳 Central Government Schemes', icon: '🇮🇳', color: 'from-orange-500 to-red-600', sources: [
-    { name: 'Startup India (DPIIT)', amount: 'Tax benefits + ₹10Cr Fund of Funds', eligibility: 'Any startup < 10 years old', link: 'https://www.startupindia.gov.in', difficulty: 'Medium', howToApply: '1. Register on startupindia.gov.in → 2. Get DPIIT recognition number → 3. Apply for tax exemption → 4. Access Fund of Funds', tip: 'DPIIT recognition is FREE and opens doors to all government benefits.' },
-    { name: 'PMMY Mudra Loan', amount: 'Up to ₹10 Lakhs (NO collateral)', eligibility: 'Any Indian citizen with business plan', link: 'https://www.mudra.org.in', difficulty: 'Easy', howToApply: '1. Visit any bank branch → 2. Fill Mudra loan application → 3. Submit business plan → 4. Get loan in 7-14 days', tip: 'Shishu (₹50K), Kishore (₹5L), Tarun (₹10L). Start with Shishu — easiest to get!' },
-    { name: 'Stand Up India', amount: '₹10 Lakhs - ₹1 Crore', eligibility: 'SC/ST/Women entrepreneurs', link: 'https://www.standupmitra.in', difficulty: 'Easy', howToApply: '1. Register on standupmitra.in → 2. Connect with bank → 3. Submit business plan → 4. Get loan', tip: 'Every bank branch MUST give at least 1 loan to SC/ST and 1 to women. Use this right!' },
-    { name: 'MSME Udyam Registration', amount: 'Priority lending + subsidies + govt tenders', eligibility: 'All businesses', link: 'https://udyamregistration.gov.in', difficulty: 'Easy', howToApply: '1. Go to udyamregistration.gov.in → 2. Enter Aadhaar + PAN → 3. Fill business details → 4. Get certificate instantly (FREE)', tip: 'Takes just 10 minutes. Opens access to govt contracts, lower interest loans, and subsidies.' },
-    { name: 'PM Vishwakarma Scheme', amount: '₹3 Lakhs collateral-free + training', eligibility: 'Traditional artisans/craftspeople', link: 'https://pmvishwakarma.gov.in', difficulty: 'Easy', howToApply: '1. Register via CSC/gram panchayat → 2. Verify skills → 3. Get ₹15K toolkit + ₹1L-3L loan', tip: 'Perfect for food, handicraft, or manufacturing startups.' },
-    { name: 'NIDHI Seed Support (DST)', amount: 'Up to ₹25 Lakhs', eligibility: 'Startups in govt-recognized incubators', link: 'https://nidhi-sss.in', difficulty: 'Medium', howToApply: '1. Get incubated → 2. Apply through incubator → 3. Submit detailed plan → 4. Review panel', tip: 'Get incubated at IIT-M or Anna Univ TBI first, then apply.' },
-  ]},
-  { category: '🏆 Competitions, Grants & Prizes', icon: '🏆', color: 'from-amber-500 to-yellow-600', sources: [
-    { name: 'Smart India Hackathon (SIH)', amount: '₹1L - ₹5L per team', eligibility: 'College students (team of 6)', link: 'https://sih.gov.in', difficulty: 'Medium', howToApply: '1. Form team of 6 → 2. Register on SIH portal → 3. Submit solution for a problem statement → 4. Win at college → 5. National finals', tip: 'Pick a problem from Ministry of Rural Development — they fund winning solutions!' },
-    { name: 'Atal Innovation Mission (AIM)', amount: '₹10L - ₹20L', eligibility: 'School/College innovators', link: 'https://aim.gov.in', difficulty: 'Medium', howToApply: '1. Work through Atal Tinkering Lab → 2. Submit innovation → 3. Get funded', tip: 'If your school has an ATL, use it! Free equipment + mentoring.' },
-    { name: 'TiE Young Entrepreneurs', amount: 'Mentorship + up to ₹5L', eligibility: 'Age 18-28', link: 'https://tie.org', difficulty: 'Hard', howToApply: '1. Apply online → 2. Business plan review → 3. Interview → 4. 6-month mentoring program', tip: 'TiE Chennai chapter is very active. Attend their monthly events to network.' },
-    { name: 'Wadhwani Foundation', amount: 'Training + market access', eligibility: 'Student entrepreneurs', link: 'https://wfglobal.org', difficulty: 'Easy', howToApply: '1. Register on portal → 2. Complete NEN modules → 3. Get mentoring + pitch opportunities', tip: 'Free entrepreneurship training used by 1000+ colleges in India.' },
-    { name: 'NASSCOM 10K Startups', amount: 'Incubation + connections + funding access', eligibility: 'Tech startups', link: 'https://10000startups.com', difficulty: 'Hard', howToApply: '1. Apply online → 2. Screening → 3. Get incubation + investor access', tip: 'Best for tech/software startups. Gets you direct access to VCs.' },
-    { name: 'IIM Bangalore NSRCEL', amount: '₹10L - ₹50L', eligibility: 'Early-stage startups', link: 'https://www.nsrcel.org', difficulty: 'Hard', howToApply: '1. Apply to NSRCEL accelerator → 2. Selection process → 3. 6-month program → 4. Demo day + funding', tip: 'One of India\'s top accelerators. Apply even if you\'re from TN — they accept nationwide.' },
-  ]},
-  { category: '🏫 TN College Incubators', icon: '🏫', color: 'from-blue-500 to-indigo-600', sources: [
-    { name: 'IIT Madras Incubation Cell', amount: 'Office space + ₹25L seed', eligibility: 'Any startup (nationwide)', link: 'https://www.iitmincubation.in', difficulty: 'Hard', howToApply: '1. Apply online → 2. Screening → 3. Interview → 4. Get incubated', tip: 'India\'s #1 incubator. Even non-IIT students can apply!' },
-    { name: 'Anna University TBI', amount: 'Workspace + mentoring + seed funding', eligibility: 'TN students & alumni', link: 'https://www.annauniv.edu', difficulty: 'Medium', howToApply: '1. Visit Anna Univ TBI → 2. Submit application → 3. Present idea → 4. Get incubated', tip: 'Closest option for TN students. Walk-in consultations available.' },
-    { name: 'PSG STEP (Coimbatore)', amount: 'Incubation + seed funding', eligibility: 'Coimbatore/Western TN region', link: 'https://www.psgstep.in', difficulty: 'Medium', howToApply: '1. Apply online → 2. Interview → 3. 6-month incubation', tip: 'Strong manufacturing and hardware focus. Great for product startups.' },
-    { name: 'Villgro (Social Impact)', amount: 'Up to ₹50 Lakhs', eligibility: 'Social impact startups', link: 'https://villgro.org', difficulty: 'Medium', howToApply: '1. Apply during open call → 2. Due diligence → 3. Investment + mentoring', tip: 'Best for healthcare, agriculture, education, and clean energy startups.' },
-    { name: 'FORGE Accelerator (Coimbatore)', amount: 'Mentoring + ₹5L', eligibility: 'Early-stage startups', link: 'https://www.forge.co.in', difficulty: 'Easy', howToApply: '1. Apply online → 2. Selection → 3. 3-month accelerator', tip: 'Great starter program. Less competitive than IIT-M.' },
-  ]},
-  { category: '💳 Alternative Funding', icon: '💳', color: 'from-violet-500 to-purple-600', sources: [
-    { name: 'Crowdfunding (Ketto/Milaap)', amount: '₹1L - ₹50L+', eligibility: 'Anyone with a compelling story', link: 'https://www.ketto.org', difficulty: 'Medium', howToApply: '1. Create campaign on Ketto/Milaap → 2. Add video + story → 3. Share on WhatsApp/social media → 4. Collect funds', tip: 'Social impact and creative projects work best. Make a compelling 2-minute video!' },
-    { name: 'Angel Investors (via LetsVenture)', amount: '₹10L - ₹1Cr', eligibility: 'Startups with traction/MVP', link: 'https://letsventure.com', difficulty: 'Hard', howToApply: '1. Build MVP → 2. Get some users → 3. Apply on LetsVenture → 4. Pitch to angels', tip: 'Chennai Angel Network is very active. Attend startup meetups to find angels.' },
-    { name: 'Revenue-Based (Bootstrapping)', amount: 'Unlimited (self-funded)', eligibility: 'Any business with customers', difficulty: 'Easy', howToApply: '1. Start selling → 2. Reinvest profits → 3. Grow organically', tip: 'Zoho (Tenkasi, TN) was bootstrapped to $5B! No investors needed if you have customers.' },
-  ]},
+  { name: 'PMMY Mudra Loan', emoji: '🏦', amount: 'Up to ₹10 Lakhs', type: 'Loan (no collateral)', eligibility: 'Any Indian citizen 18+', difficulty: 'Easy', link: 'https://www.mudra.org.in', forWhom: ['anyone'], tags: ['loan', 'easy'] },
+  { name: 'TANSIM Startup Grant', emoji: '🏛️', amount: 'Up to ₹30 Lakhs', type: 'Grant (free money)', eligibility: 'TN-based startup', difficulty: 'Medium', link: 'https://www.startuptn.in', forWhom: ['tn'], tags: ['grant', 'tn'] },
+  { name: 'Startup India (DPIIT)', emoji: '🇮🇳', amount: 'Tax benefits + Fund access', type: 'Registration + Benefits', eligibility: 'Any startup < 10 years', difficulty: 'Medium', link: 'https://www.startupindia.gov.in', forWhom: ['anyone'], tags: ['registration'] },
+  { name: 'Stand Up India', emoji: '👩', amount: '₹10L - ₹1 Crore', type: 'Loan', eligibility: 'SC/ST or Women entrepreneurs', difficulty: 'Easy', link: 'https://www.standupmitra.in', forWhom: ['women', 'sc-st'], tags: ['loan', 'women'] },
+  { name: 'Atal Innovation Mission', emoji: '💡', amount: '₹10L - ₹20 Lakhs', type: 'Grant', eligibility: 'School/College innovators', difficulty: 'Medium', link: 'https://aim.gov.in', forWhom: ['student'], tags: ['grant', 'student'] },
+  { name: 'Smart India Hackathon', emoji: '🏆', amount: '₹1L - ₹5 Lakhs prize', type: 'Competition prize', eligibility: 'College students', difficulty: 'Medium', forWhom: ['student'], tags: ['competition'] },
+  { name: 'NIDHI Seed Support', emoji: '🌱', amount: 'Up to ₹25 Lakhs', type: 'Seed funding', eligibility: 'Incubated startups', difficulty: 'Hard', forWhom: ['incubated'], tags: ['seed'] },
+  { name: 'IIT Madras Incubation', emoji: '🎓', amount: 'Office + ₹25L seed', type: 'Incubation + Seed', eligibility: 'Any startup (apply)', difficulty: 'Hard', link: 'https://www.iitm.ac.in', forWhom: ['tech'], tags: ['incubation', 'tn'] },
+  { name: 'MSME/Udyam Registration', emoji: '📋', amount: 'Priority lending + subsidies', type: 'Registration', eligibility: 'All businesses', difficulty: 'Easy', link: 'https://udyamregistration.gov.in', forWhom: ['anyone'], tags: ['registration', 'easy'] },
+  { name: 'Villgro (Social Impact)', emoji: '💚', amount: 'Up to ₹50 Lakhs', type: 'Impact investment', eligibility: 'Social impact focus', difficulty: 'Hard', link: 'https://villgro.org', forWhom: ['social'], tags: ['investment'] },
+  { name: 'Anna University TBI', emoji: '🏫', amount: 'Workspace + Mentoring', type: 'Incubation', eligibility: 'TN students', difficulty: 'Medium', forWhom: ['student', 'tn'], tags: ['incubation', 'tn'] },
+  { name: 'TiE Young Entrepreneurs', emoji: '🤝', amount: 'Mentorship + ₹5 Lakhs', type: 'Accelerator', eligibility: '18-28 years', difficulty: 'Hard', forWhom: ['anyone'], tags: ['accelerator'] },
 ];
 
-const difficultyColor: Record<string, string> = {
-  'Easy': 'bg-emerald-100 text-emerald-700',
-  'Medium': 'bg-amber-100 text-amber-700',
-  'Hard': 'bg-red-100 text-red-700',
+const diffBadge: Record<string, string> = {
+  'Easy': 'bg-emerald-100 text-emerald-700 border-emerald-200',
+  'Medium': 'bg-amber-100 text-amber-700 border-amber-200',
+  'Hard': 'bg-red-100 text-red-700 border-red-200',
 };
 
+const STORAGE_KEY = 'vzk_business_canvas';
+
 export const BusinessModelFundingGuide = () => {
-  const [activeSection, setActiveSection] = useState<'model' | 'funding'>('model');
-  const [expandedBlock, setExpandedBlock] = useState<string | null>('problem');
-  const [expandedFunding, setExpandedFunding] = useState<number | null>(0);
+  const [section, setSection] = useState<'canvas' | 'funding'>('canvas');
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [showPreview, setShowPreview] = useState(false);
+
+  // Funding matcher
+  const [fmStep, setFmStep] = useState(0);
+  const [fmAnswers, setFmAnswers] = useState({ location: '', category: '', stage: '' });
+
+  // Load saved answers
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) setAnswers(JSON.parse(saved));
+    } catch {}
+  }, []);
+
+  const saveAnswers = useCallback((newAnswers: Record<string, string>) => {
+    setAnswers(newAnswers);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(newAnswers)); } catch {}
+  }, []);
+
+  const updateAnswer = (id: string, val: string) => {
+    const updated = { ...answers, [id]: val };
+    saveAnswers(updated);
+  };
+
+  const filledCount = canvasBlocks.filter(b => (answers[b.id] || '').trim().length > 10).length;
+  const progress = Math.round((filledCount / canvasBlocks.length) * 100);
+
+  const resetCanvas = () => {
+    saveAnswers({});
+    setCurrentStep(0);
+    toast.success('Canvas cleared. Start fresh!');
+  };
+
+  // Funding matcher filter
+  const matchedFunding = fundingSources.filter(f => {
+    if (!fmAnswers.location && !fmAnswers.category && !fmAnswers.stage) return true;
+    let score = 0;
+    if (fmAnswers.location === 'tn' && f.forWhom.includes('tn')) score++;
+    if (fmAnswers.location === 'other' && f.forWhom.includes('anyone')) score++;
+    if (fmAnswers.category === 'women' && f.forWhom.includes('women')) score++;
+    if (fmAnswers.category === 'sc-st' && f.forWhom.includes('sc-st')) score++;
+    if (fmAnswers.category === 'general' && f.forWhom.includes('anyone')) score++;
+    if (fmAnswers.stage === 'idea' && (f.tags.includes('competition') || f.tags.includes('grant'))) score++;
+    if (fmAnswers.stage === 'started' && (f.tags.includes('loan') || f.tags.includes('incubation'))) score++;
+    if (fmAnswers.stage === 'growing' && (f.tags.includes('seed') || f.tags.includes('investment'))) score++;
+    if (f.forWhom.includes('anyone')) score++;
+    if (f.forWhom.includes('student') && fmAnswers.stage === 'idea') score++;
+    return score > 0;
+  });
+
+  const block = canvasBlocks[currentStep];
 
   return (
     <div className="space-y-4">
-      {/* Hero Banner */}
-      <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '180px' }}>
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=400&fit=crop&auto=format" alt="Team building a business" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/95 via-violet-800/90 to-indigo-900/95" />
-        <div className="relative z-10 p-6 text-center">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25 mb-3">
-            <Puzzle className="w-7 h-7 text-white" />
+      {/* ═══ SECTION TOGGLE ═══ */}
+      <div className="grid grid-cols-2 gap-2">
+        <button onClick={() => setSection('canvas')}
+          className={cn("flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold transition-all border-2",
+            section === 'canvas' ? 'bg-gradient-to-br from-violet-600 to-purple-700 text-white border-violet-600 shadow-lg shadow-violet-200' : 'bg-white text-gray-500 border-gray-200 hover:border-violet-300')}>
+          <Puzzle className="w-5 h-5" />
+          <div className="text-left">
+            <p>Business Model</p>
+            <p className={cn("text-[10px] font-normal", section === 'canvas' ? 'text-violet-200' : 'text-gray-400')}>{filledCount}/6 completed</p>
           </div>
-          <h2 className="text-xl md:text-2xl font-black text-white mb-1">
-            Build Your <span className="text-amber-300">Startup</span>
-          </h2>
-          <p className="text-xs text-violet-300 font-medium mb-1">உங்கள் தொழிலை உருவாக்குங்கள்</p>
-          <p className="text-xs text-violet-200/60 max-w-md mx-auto">
-            Create your business model step-by-step and find real funding sources — all tailored for Indian student entrepreneurs
-          </p>
-          <div className="flex justify-center gap-6 mt-4">
-            <div className="text-center">
-              <p className="text-xl font-black text-white">6</p>
-              <p className="text-[9px] text-violet-400">Model Blocks</p>
-            </div>
-            <div className="text-center">
-              <p className="text-xl font-black text-amber-300">28</p>
-              <p className="text-[9px] text-violet-400">Funding Sources</p>
-            </div>
-            <div className="text-center">
-              <p className="text-xl font-black text-emerald-300">₹1Cr+</p>
-              <p className="text-[9px] text-violet-400">Max Funding</p>
-            </div>
+        </button>
+        <button onClick={() => setSection('funding')}
+          className={cn("flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-bold transition-all border-2",
+            section === 'funding' ? 'bg-gradient-to-br from-emerald-600 to-green-700 text-white border-emerald-600 shadow-lg shadow-emerald-200' : 'bg-white text-gray-500 border-gray-200 hover:border-emerald-300')}>
+          <Banknote className="w-5 h-5" />
+          <div className="text-left">
+            <p>Funding Finder</p>
+            <p className={cn("text-[10px] font-normal", section === 'funding' ? 'text-emerald-200' : 'text-gray-400')}>12 sources</p>
           </div>
-        </div>
+        </button>
       </div>
 
-      {/* Toggle */}
-      <div className="bg-white rounded-xl p-1.5 border-2 border-gray-200 shadow-sm">
-        <div className="grid grid-cols-2 gap-1.5">
-          <button onClick={() => setActiveSection('model')}
-            className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all ${activeSection === 'model' ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg' : 'text-gray-500 hover:bg-gray-50'}`}>
-            <Puzzle className="w-4 h-4" /> Business Model
-          </button>
-          <button onClick={() => setActiveSection('funding')}
-            className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all ${activeSection === 'funding' ? 'bg-gradient-to-r from-emerald-600 to-green-600 text-white shadow-lg' : 'text-gray-500 hover:bg-gray-50'}`}>
-            <Banknote className="w-4 h-4" /> Funding Guide
-          </button>
-        </div>
-      </div>
+      {/* ═══════════════════════════════════════════
+           BUSINESS MODEL CANVAS — INTERACTIVE
+         ═══════════════════════════════════════════ */}
+      {section === 'canvas' && !showPreview && (
+        <div className="space-y-4">
+          {/* Progress bar */}
+          <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs font-bold text-gray-700">Your Business Model Canvas</p>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-violet-600">{progress}%</span>
+                {filledCount === 6 && <button onClick={() => setShowPreview(true)} className="text-xs font-bold text-emerald-600 flex items-center gap-1 hover:underline"><Eye className="w-3 h-3" /> Preview</button>}
+              </div>
+            </div>
+            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+            </div>
+            {/* Step dots */}
+            <div className="flex justify-between mt-3">
+              {canvasBlocks.map((b, i) => {
+                const filled = (answers[b.id] || '').trim().length > 10;
+                return (
+                  <button key={b.id} onClick={() => setCurrentStep(i)} className="flex flex-col items-center gap-1 group">
+                    <div className={cn("w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all",
+                      i === currentStep ? `ring-2 ${b.activeColor} bg-white shadow-md` : filled ? `${b.dotColor} text-white` : 'bg-gray-100 text-gray-400')}>
+                      {filled ? <Check className="w-4 h-4" /> : b.icon}
+                    </div>
+                    <span className={cn("text-[9px] font-medium", i === currentStep ? 'text-gray-900' : 'text-gray-400')}>{b.title.split(' ').pop()}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
-      {/* ═══ BUSINESS MODEL CANVAS ═══ */}
-      {activeSection === 'model' && (
-        <div className="space-y-3">
-          <div className="bg-gradient-to-r from-violet-50 to-purple-50 rounded-xl p-4 border border-violet-200">
-            <div className="flex items-start gap-3">
-              <span className="text-2xl">📋</span>
+          {/* Current block */}
+          <div className={cn("rounded-2xl border-2 p-5 transition-all", block.color)}>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-2xl">{block.icon}</span>
               <div>
-                <h3 className="text-sm font-bold text-violet-800">Business Model Canvas</h3>
-                <p className="text-xs text-violet-600 mt-0.5">Answer these 6 blocks to build your startup's business model. Tap each block to see guiding questions and examples.</p>
+                <h3 className="text-base font-bold text-gray-900">Step {block.step}: {block.title}</h3>
+                <p className="text-[10px] text-gray-500 font-medium">{block.titleTa}</p>
               </div>
+            </div>
+
+            <p className="text-sm text-gray-700 font-medium mt-3 mb-1">{block.prompt}</p>
+            <p className="text-xs text-gray-500 mb-3">💡 {block.hint}</p>
+
+            <Textarea
+              value={answers[block.id] || ''}
+              onChange={(e) => updateAnswer(block.id, e.target.value)}
+              placeholder={block.placeholder}
+              className="min-h-[100px] text-sm bg-white border-gray-300 rounded-xl resize-none focus:ring-2 focus:ring-violet-300"
+              maxLength={500}
+            />
+            <div className="flex justify-between items-center mt-2">
+              <p className="text-[10px] text-gray-400">{(answers[block.id] || '').length}/500 characters</p>
+              {(answers[block.id] || '').trim().length > 10 && <span className="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Saved</span>}
+            </div>
+
+            {/* TN Example */}
+            <div className="mt-4 bg-white rounded-xl p-3 border border-gray-200">
+              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">🌟 Real Example — {block.tnExample.startup}</p>
+              <p className="text-xs text-gray-600 italic leading-relaxed">"{block.tnExample.text}"</p>
             </div>
           </div>
 
-          {canvasBlocks.map((block) => {
-            const isOpen = expandedBlock === block.id;
-            return (
-              <div key={block.id} className={`rounded-xl border-2 overflow-hidden transition-all ${isOpen ? block.border + ' shadow-md' : 'border-gray-200'}`}>
-                <button onClick={() => setExpandedBlock(isOpen ? null : block.id)} className={`w-full flex items-center gap-3 p-4 text-left ${isOpen ? block.bg : 'bg-white hover:bg-gray-50'}`}>
-                  <span className="text-2xl flex-shrink-0">{block.icon}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-gray-900">{block.title}</p>
-                    <p className="text-xs text-gray-500">{block.desc}</p>
-                  </div>
-                  {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
-                </button>
-                {isOpen && (
-                  <div className={`px-4 pb-4 space-y-3 ${block.bg}`}>
-                    <div>
-                      <p className="text-xs font-bold text-gray-700 mb-2">💭 Ask yourself:</p>
-                      <div className="space-y-1.5">
-                        {block.questions.map((q, i) => (
-                          <div key={i} className="flex items-start gap-2 bg-white rounded-lg p-2.5 border border-gray-200">
-                            <span className="text-xs font-bold text-gray-400 mt-0.5">{i + 1}.</span>
-                            <p className="text-xs text-gray-700">{q}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="bg-white rounded-lg p-3 border border-gray-200">
-                      <p className="text-xs font-bold text-emerald-700 mb-1">✅ Example:</p>
-                      <p className="text-xs text-gray-600 italic">{block.example}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {/* Navigation */}
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="flex-1 gap-1 rounded-xl">
+              <ArrowLeft className="w-4 h-4" /> Previous
+            </Button>
+            {currentStep < 5 ? (
+              <Button onClick={() => setCurrentStep(currentStep + 1)} className="flex-1 gap-1 rounded-xl bg-violet-600 hover:bg-violet-700">
+                Next <ArrowRight className="w-4 h-4" />
+              </Button>
+            ) : (
+              <Button onClick={() => setShowPreview(true)} className="flex-1 gap-1 rounded-xl bg-emerald-600 hover:bg-emerald-700">
+                <Eye className="w-4 h-4" /> View My Canvas
+              </Button>
+            )}
+          </div>
+
+          {/* Reset */}
+          <div className="text-center">
+            <button onClick={resetCanvas} className="text-xs text-gray-400 hover:text-red-500 flex items-center gap-1 mx-auto">
+              <RotateCcw className="w-3 h-3" /> Reset & start over
+            </button>
+          </div>
         </div>
       )}
 
-      {/* ═══ FUNDING GUIDE ═══ */}
-      {activeSection === 'funding' && (
-        <div className="space-y-3">
-          {/* Stats banner */}
-          <div className="rounded-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-emerald-700 to-green-800 p-4">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                  <Banknote className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-white">Startup Funding Sources — India 2026</h3>
-                  <p className="text-xs text-emerald-200">Complete guide for Tamil Nadu student entrepreneurs</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-4 gap-2">
-                {[
-                  { val: '28+', label: 'Sources', color: 'text-white' },
-                  { val: '5', label: 'Categories', color: 'text-amber-300' },
-                  { val: '₹1Cr+', label: 'Max Funding', color: 'text-emerald-300' },
-                  { val: 'FREE', label: 'To Apply', color: 'text-yellow-300' },
-                ].map((s, i) => (
-                  <div key={i} className="bg-white/10 rounded-lg p-2 text-center">
-                    <p className={`text-lg font-black ${s.color}`}>{s.val}</p>
-                    <p className="text-[9px] text-emerald-300">{s.label}</p>
+      {/* ═══ CANVAS PREVIEW ═══ */}
+      {section === 'canvas' && showPreview && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold text-gray-800">📋 Your Business Model Canvas</h3>
+            <Button variant="outline" size="sm" onClick={() => setShowPreview(false)} className="text-xs gap-1 rounded-lg">
+              <ArrowLeft className="w-3 h-3" /> Edit
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {canvasBlocks.map((b) => {
+              const val = (answers[b.id] || '').trim();
+              return (
+                <div key={b.id} className={cn("rounded-xl border-2 p-3 cursor-pointer hover:shadow-md transition-all", b.color)} onClick={() => { setCurrentStep(canvasBlocks.indexOf(b)); setShowPreview(false); }}>
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <span className="text-lg">{b.icon}</span>
+                    <p className="text-xs font-bold text-gray-800">{b.title}</p>
                   </div>
-                ))}
+                  {val.length > 10 ? (
+                    <p className="text-[11px] text-gray-600 leading-relaxed line-clamp-4">{val}</p>
+                  ) : (
+                    <p className="text-[11px] text-gray-400 italic">Tap to fill in...</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {filledCount === 6 && (
+            <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200 text-center">
+              <p className="text-sm font-bold text-emerald-800">🎉 Canvas Complete! You have a business model.</p>
+              <p className="text-xs text-emerald-600 mt-1">Now find funding in the "Funding Finder" tab →</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ═══════════════════════════════════════════
+           FUNDING FINDER — SMART MATCHER
+         ═══════════════════════════════════════════ */}
+      {section === 'funding' && (
+        <div className="space-y-4">
+          {/* Quick matcher */}
+          <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-4 border border-emerald-200">
+            <p className="text-sm font-bold text-emerald-800 mb-3">🎯 Find Funding That Matches You</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {/* Location */}
+              <div>
+                <p className="text-[10px] font-bold text-gray-500 uppercase mb-1.5">Your Location</p>
+                <div className="flex gap-1.5">
+                  {[{ id: 'tn', label: '📍 Tamil Nadu' }, { id: 'other', label: '🇮🇳 Other State' }].map(o => (
+                    <button key={o.id} onClick={() => setFmAnswers(p => ({ ...p, location: p.location === o.id ? '' : o.id }))}
+                      className={cn("flex-1 py-2 rounded-lg text-xs font-bold border-2 transition-all",
+                        fmAnswers.location === o.id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200')}>
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {/* Category */}
+              <div>
+                <p className="text-[10px] font-bold text-gray-500 uppercase mb-1.5">Your Category</p>
+                <div className="flex gap-1.5">
+                  {[{ id: 'general', label: 'General' }, { id: 'women', label: '👩 Women' }, { id: 'sc-st', label: 'SC/ST' }].map(o => (
+                    <button key={o.id} onClick={() => setFmAnswers(p => ({ ...p, category: p.category === o.id ? '' : o.id }))}
+                      className={cn("flex-1 py-2 rounded-lg text-xs font-bold border-2 transition-all",
+                        fmAnswers.category === o.id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200')}>
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {/* Stage */}
+              <div>
+                <p className="text-[10px] font-bold text-gray-500 uppercase mb-1.5">Your Stage</p>
+                <div className="flex gap-1.5">
+                  {[{ id: 'idea', label: '💡 Idea' }, { id: 'started', label: '🚀 Started' }, { id: 'growing', label: '📈 Growing' }].map(o => (
+                    <button key={o.id} onClick={() => setFmAnswers(p => ({ ...p, stage: p.stage === o.id ? '' : o.id }))}
+                      className={cn("flex-1 py-2 rounded-lg text-xs font-bold border-2 transition-all",
+                        fmAnswers.stage === o.id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200')}>
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-            {/* Quick tip */}
-            <div className="bg-amber-50 border-t-2 border-amber-300 px-4 py-2.5 flex items-center gap-2">
-              <span className="text-lg">💡</span>
-              <p className="text-xs text-amber-800"><strong>Pro Tip:</strong> Start with Mudra Loan (₹10L, no collateral, any bank) + MSME Registration (free, 10 mins). These two alone give you funding + govt benefits.</p>
-            </div>
+            <p className="text-[10px] text-emerald-600 mt-2 text-center">Showing {matchedFunding.length} of {fundingSources.length} funding sources</p>
           </div>
 
-          {/* Funding categories */}
-          {fundingSources.map((cat, ci) => {
-            const isOpen = expandedFunding === ci;
-            return (
-              <div key={ci} className="rounded-xl border-2 overflow-hidden bg-white transition-all" style={{ borderColor: isOpen ? '#10b981' : '#e5e7eb' }}>
-                <button onClick={() => setExpandedFunding(isOpen ? null : ci)} className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-lg text-white shadow-md`}>
-                      {cat.icon}
+          {/* Results */}
+          <div className="space-y-2.5">
+            {matchedFunding.map((f, i) => (
+              <div key={i} className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md hover:border-emerald-300 transition-all">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl flex-shrink-0">{f.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <p className="text-sm font-bold text-gray-900">{f.name}</p>
+                      <Badge className={cn("text-[9px] border", diffBadge[f.difficulty])}>{f.difficulty}</Badge>
                     </div>
-                    <div>
-                      <p className="text-sm font-bold text-gray-900">{cat.category}</p>
-                      <p className="text-xs text-gray-500">{cat.sources.length} options available</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge className="bg-emerald-100 text-emerald-700 text-[10px]">{cat.sources.length}</Badge>
-                    {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
-                  </div>
-                </button>
-                {isOpen && (
-                  <div className="px-4 pb-4 space-y-3">
-                    {cat.sources.map((s, si) => (
-                      <div key={si} className="rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-all">
-                        {/* Header */}
-                        <div className="p-3 bg-gray-50 flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <p className="text-sm font-bold text-gray-900">{s.name}</p>
-                            <Badge className={`text-[10px] ${difficultyColor[s.difficulty]}`}>{s.difficulty}</Badge>
-                          </div>
-                          <p className="text-sm font-black text-emerald-700">{s.amount}</p>
-                        </div>
-                        {/* Details */}
-                        <div className="p-3 space-y-2.5">
-                          <div className="grid grid-cols-2 gap-2">
-                            <div className="bg-blue-50 rounded-lg p-2.5 border border-blue-100">
-                              <p className="text-[10px] text-blue-500 font-medium">👤 Who Can Apply</p>
-                              <p className="text-xs font-bold text-blue-800 mt-0.5">{s.eligibility}</p>
-                            </div>
-                            <div className="bg-emerald-50 rounded-lg p-2.5 border border-emerald-100">
-                              <p className="text-[10px] text-emerald-500 font-medium">💰 Amount</p>
-                              <p className="text-xs font-bold text-emerald-800 mt-0.5">{s.amount}</p>
-                            </div>
-                          </div>
-
-                          {/* How to Apply */}
-                          {s.howToApply && (
-                            <div className="bg-violet-50 rounded-lg p-2.5 border border-violet-100">
-                              <p className="text-[10px] text-violet-600 font-bold mb-1">📋 How to Apply:</p>
-                              <p className="text-xs text-violet-800 leading-relaxed">{s.howToApply}</p>
-                            </div>
-                          )}
-
-                          {/* Pro Tip */}
-                          {s.tip && (
-                            <div className="bg-amber-50 rounded-lg p-2.5 border border-amber-200">
-                              <p className="text-[10px] text-amber-600 font-bold mb-0.5">💡 Insider Tip:</p>
-                              <p className="text-xs text-amber-800">{s.tip}</p>
-                            </div>
-                          )}
-
-                          {/* Apply button */}
-                          {s.link && (
-                            <Button
-                              size="sm"
-                              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg h-9 gap-1.5"
-                              onClick={() => window.open(s.link, '_blank')}
-                            >
-                              <ExternalLink className="w-3.5 h-3.5" /> Apply Now — Visit Official Portal
-                            </Button>
-                          )}
-                        </div>
+                    <div className="grid grid-cols-2 gap-2 mt-2">
+                      <div className="bg-emerald-50 rounded-lg p-2">
+                        <p className="text-[9px] text-gray-500 uppercase">Amount</p>
+                        <p className="text-xs font-bold text-emerald-700">{f.amount}</p>
                       </div>
-                    ))}
+                      <div className="bg-blue-50 rounded-lg p-2">
+                        <p className="text-[9px] text-gray-500 uppercase">Type</p>
+                        <p className="text-xs font-bold text-blue-700">{f.type}</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">👤 {f.eligibility}</p>
+                    {f.link && (
+                      <button onClick={() => window.open(f.link, '_blank')} className="text-xs font-bold text-emerald-600 mt-2 flex items-center gap-1 hover:underline">
+                        Apply Now <ExternalLink className="w-3 h-3" />
+                      </button>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
-            );
-          })}
-
-          {/* Bottom CTA */}
-          <div className="bg-gradient-to-r from-gray-900 to-slate-800 rounded-xl p-5 text-center">
-            <p className="text-lg font-bold text-white mb-1">🎯 Don't Know Where to Start?</p>
-            <p className="text-xs text-gray-400 mb-3 max-w-md mx-auto">Follow this order: 1. MSME Registration (free) → 2. Mudra Loan (₹10L) → 3. Startup India (tax benefits) → 4. TANSIM (₹30L grant)</p>
-            <div className="flex justify-center gap-2">
-              <Badge className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs">Step 1: MSME</Badge>
-              <Badge className="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs">Step 2: Mudra</Badge>
-              <Badge className="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs">Step 3: DPIIT</Badge>
-              <Badge className="bg-violet-500/20 text-violet-300 border border-violet-500/30 text-xs">Step 4: TANSIM</Badge>
-            </div>
+            ))}
           </div>
         </div>
       )}
