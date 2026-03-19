@@ -596,11 +596,16 @@ export const ScholarshipFinder = () => {
         {/* ═══ COMPACT ACTION BAR ═══ */}
         <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6">
           <div
-            className="rounded-2xl overflow-hidden shadow-md"
-            style={{ background: 'linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%)', border: '1px solid #1B5E20' }}
+            className="rounded-2xl overflow-hidden shadow-lg"
+            style={{ border: '1px solid #1B5E20' }}
           >
-            <div className="relative px-5 py-5">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            {/* Hero Image */}
+            <div className="relative h-28 md:h-36 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=300&fit=crop&auto=format" alt="" className="w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(27,94,32,0.92) 0%, rgba(46,125,50,0.88) 50%, rgba(56,142,60,0.92) 100%)' }} />
+              <div className="absolute inset-0 flex items-center">
+                <div className="px-5 w-full">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <div className="text-3xl">🎓</div>
                   <div>
@@ -640,6 +645,8 @@ export const ScholarshipFinder = () => {
                 </div>
               </div>
             </div>
+            </div>
+            </div>
           </div>
         </div>
 
@@ -673,6 +680,19 @@ export const ScholarshipFinder = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* ═══ QUICK TIP ═══ */}
+        <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6">
+          <div className="rounded-xl p-3 md:p-4 flex items-start gap-3" style={{ background: 'linear-gradient(135deg, #FFF8E1, #FFF3E0)', border: '1px solid #FFE082' }}>
+            <span className="text-xl flex-shrink-0 mt-0.5">💡</span>
+            <div>
+              <p className="text-sm font-semibold" style={{ color: '#E65100' }}>Pro Tip for Maximum Scholarships</p>
+              <p className="text-xs mt-0.5" style={{ color: '#BF360C' }}>
+                Apply to multiple scholarships at once! Most students are eligible for 3-5 scholarships. Use the <strong>"Check Eligibility (AI)"</strong> button to find all scholarships matching your profile instantly.
+              </p>
+            </div>
           </div>
         </div>
 
