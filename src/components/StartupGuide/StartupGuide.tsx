@@ -31,7 +31,7 @@ const journeyStages = [
 ];
 
 export const StartupGuide = () => {
-  const [activeTab, setActiveTab] = useState('ideas');
+  const [activeTab, setActiveTab] = useState('build');
   const [expandedStage, setExpandedStage] = useState<number | null>(null);
   const progress = useStartupProgress();
 
@@ -131,9 +131,10 @@ export const StartupGuide = () => {
               <BookOpen className="w-3.5 h-3.5" />
               <span>Learn</span>
             </TabsTrigger>
-            <TabsTrigger value="build" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
+            <TabsTrigger value="build" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1 relative">
               <Layers className="w-3.5 h-3.5" />
               <span>Build</span>
+              <span className="absolute -top-1.5 -right-1 bg-red-500 text-white text-[7px] font-black px-1.5 py-0.5 rounded-full leading-none shadow-md animate-pulse">NEW</span>
             </TabsTrigger>
             <TabsTrigger value="simulate" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
               <Gamepad2 className="w-3.5 h-3.5" />

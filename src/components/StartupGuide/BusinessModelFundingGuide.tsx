@@ -58,11 +58,43 @@ const difficultyColor: Record<string, string> = {
 
 export const BusinessModelFundingGuide = () => {
   const [activeSection, setActiveSection] = useState<'model' | 'funding'>('model');
-  const [expandedBlock, setExpandedBlock] = useState<string | null>(null);
+  const [expandedBlock, setExpandedBlock] = useState<string | null>('problem');
   const [expandedFunding, setExpandedFunding] = useState<number | null>(0);
 
   return (
     <div className="space-y-4">
+      {/* Hero Banner */}
+      <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '180px' }}>
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=400&fit=crop&auto=format" alt="Team building a business" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/95 via-violet-800/90 to-indigo-900/95" />
+        <div className="relative z-10 p-6 text-center">
+          <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25 mb-3">
+            <Puzzle className="w-7 h-7 text-white" />
+          </div>
+          <h2 className="text-xl md:text-2xl font-black text-white mb-1">
+            Build Your <span className="text-amber-300">Startup</span>
+          </h2>
+          <p className="text-xs text-violet-300 font-medium mb-1">உங்கள் தொழிலை உருவாக்குங்கள்</p>
+          <p className="text-xs text-violet-200/60 max-w-md mx-auto">
+            Create your business model step-by-step and find real funding sources — all tailored for Indian student entrepreneurs
+          </p>
+          <div className="flex justify-center gap-6 mt-4">
+            <div className="text-center">
+              <p className="text-xl font-black text-white">6</p>
+              <p className="text-[9px] text-violet-400">Model Blocks</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-black text-amber-300">14</p>
+              <p className="text-[9px] text-violet-400">Funding Sources</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-black text-emerald-300">₹30L+</p>
+              <p className="text-[9px] text-violet-400">Max Grants</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Toggle */}
       <div className="bg-white rounded-xl p-1.5 border-2 border-gray-200 shadow-sm">
         <div className="grid grid-cols-2 gap-1.5">
