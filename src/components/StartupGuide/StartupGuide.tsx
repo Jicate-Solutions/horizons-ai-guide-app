@@ -18,6 +18,7 @@ import { ProblemOfTheDay } from './ProblemOfTheDay';
 import { StartupSimulator } from './StartupSimulator';
 import { FounderStories } from './FounderStories';
 import { FounderJourney } from './FounderJourney';
+import { BusinessModelFundingGuide } from './BusinessModelFundingGuide';
 import { useStartupProgress } from './useStartupProgress';
 
 const journeyStages = [
@@ -106,10 +107,10 @@ export const StartupGuide = () => {
         {[
           { emoji: '💡', label: 'Find Ideas' },
           { emoji: '📚', label: 'Learn & Quiz' },
+          { emoji: '📋', label: 'Business Model' },
           { emoji: '🎮', label: 'Simulator' },
-          { emoji: '🌟', label: 'TN Founders' },
-          { emoji: '🗺️', label: 'My Journey' },
-          { emoji: '🚀', label: 'Launch Kit' },
+          { emoji: '🌟', label: 'Founders' },
+          { emoji: '💰', label: 'Funding Guide' },
         ].map((item, i) => (
           <div key={i} className="bg-white rounded-xl p-2.5 border border-gray-200 text-center shadow-sm hover:shadow-md hover:border-emerald-300 transition-all">
             <span className="text-xl block mb-1">{item.emoji}</span>
@@ -129,6 +130,10 @@ export const StartupGuide = () => {
             <TabsTrigger value="learn" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
               <BookOpen className="w-3.5 h-3.5" />
               <span>Learn</span>
+            </TabsTrigger>
+            <TabsTrigger value="build" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
+              <Layers className="w-3.5 h-3.5" />
+              <span>Build</span>
             </TabsTrigger>
             <TabsTrigger value="simulate" className="text-[11px] md:text-xs flex-1 min-w-[70px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg hover:text-white/80 font-medium gap-1">
               <Gamepad2 className="w-3.5 h-3.5" />
@@ -156,7 +161,12 @@ export const StartupGuide = () => {
           <MoneyMinuteQuiz onComplete={progress.completeQuiz} />
         </TabsContent>
 
-        {/* === TAB 3: SIMULATOR === */}
+        {/* === TAB 3: BUILD (Business Model + Funding) === */}
+        <TabsContent value="build" className="mt-4">
+          <BusinessModelFundingGuide />
+        </TabsContent>
+
+        {/* === TAB 4: SIMULATOR === */}
         <TabsContent value="simulate" className="mt-4">
           <StartupSimulator completedScenarios={progress.completedScenarios} onCompleteScenario={progress.completeScenario} />
         </TabsContent>
