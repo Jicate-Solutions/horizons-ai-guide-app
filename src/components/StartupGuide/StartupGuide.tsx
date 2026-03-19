@@ -37,6 +37,11 @@ export const StartupGuide = () => {
 
   return (
     <div className="space-y-0">
+      {/* ===== NEW FEATURES ANNOUNCEMENT ===== */}
+      <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-2xl p-4 mb-4 text-center shadow-xl animate-pulse">
+        <p className="text-white font-black text-lg">🚀 NEW: Business Model Canvas + Funding Guide Added!</p>
+        <p className="text-white/80 text-xs mt-1">Click the <strong>"Build"</strong> tab below to explore 6 business model blocks + 14 funding sources</p>
+      </div>
       {/* ===== GREEN HERO SECTION ===== */}
       <div className="overflow-hidden rounded-2xl mb-6 shadow-xl border border-emerald-800/50">
         {/* TOP: Clearly visible image */}
