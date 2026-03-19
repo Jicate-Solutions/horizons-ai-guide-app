@@ -174,33 +174,34 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Small Preview Cards Row */}
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        {/* Feedback Cards Row */}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
             {testimonials.map((t, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`rounded-xl p-4 text-left transition-all duration-300 border-2 ${
+                className={`rounded-2xl p-5 text-left transition-all duration-300 border-2 ${
                   i === activeIndex
-                    ? `${t.light} ${t.border} shadow-md scale-[1.02]`
-                    : "bg-gray-50 border-gray-100 hover:border-gray-200 hover:shadow-sm"
+                    ? `${t.light} ${t.border} shadow-lg scale-[1.03]`
+                    : "bg-gray-50 border-gray-100 hover:border-gray-200 hover:shadow-md"
                 }`}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className={`w-8 h-8 rounded-lg ${t.bg} flex items-center justify-center flex-shrink-0`}>
-                    <span className="text-[10px] font-bold text-white">{t.initials}</span>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`w-11 h-11 rounded-xl ${t.bg} flex items-center justify-center flex-shrink-0 shadow-md`}>
+                    <span className="text-sm font-bold text-white">{t.initials}</span>
                   </div>
                   <div className="min-w-0">
-                    <p className={`text-xs font-bold truncate ${i === activeIndex ? t.text : 'text-gray-800'}`}>{t.name}</p>
-                    <div className="flex gap-0.5">
+                    <p className={`text-sm font-bold truncate ${i === activeIndex ? t.text : 'text-gray-800'}`}>{t.name}</p>
+                    <div className="flex gap-0.5 mt-0.5">
                       {[...Array(5)].map((_, j) => (
-                        <Star key={j} className="w-2 h-2 fill-amber-400 text-amber-400" />
+                        <Star key={j} className="w-3 h-3 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-[11px] text-gray-500 line-clamp-2 leading-relaxed">"{t.quote}"</p>
+                <p className="text-xs text-gray-500 line-clamp-3 leading-relaxed">"{t.quote}"</p>
+                <p className="text-[10px] text-gray-400 mt-2 font-medium">{t.date}</p>
               </button>
             ))}
           </div>
