@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { BusinessModelFundingGuide } from './BusinessModelFundingGuide';
 import { FounderJourney } from './FounderJourney';
+import { AIProblemFinder } from './AIProblemFinder';
 import { cn } from '@/lib/utils';
 
 /* ═══════════════════════════════════════
@@ -134,10 +135,11 @@ export const StartupGuide = () => {
       {/* ═══════ TAB NAVIGATION ═══════ */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="bg-white rounded-xl p-1.5 border-2 border-gray-200 shadow-sm">
-          <TabsList className="w-full grid grid-cols-4 bg-transparent p-0 h-auto gap-1">
+          <TabsList className="w-full grid grid-cols-5 bg-transparent p-0 h-auto gap-1">
             {[
               { id: 'roadmap', icon: Map, label: '40-Day Plan', emoji: '🗺️' },
               { id: 'build', icon: Lightbulb, label: 'Build Model', emoji: '📋' },
+              { id: 'ai', icon: Brain, label: 'AI Lab', emoji: '🤖' },
               { id: 'funding', icon: DollarSign, label: 'Funding', emoji: '💰' },
               { id: 'founders', icon: Star, label: 'Founders', emoji: '🌟' },
             ].map(tab => (
@@ -248,7 +250,29 @@ export const StartupGuide = () => {
           <BusinessModelFundingGuide defaultSection="canvas" />
         </TabsContent>
 
-        {/* ═══════ TAB 3: FUNDING ═══════ */}
+        {/* ═══════ TAB 3: AI STARTUP LAB ═══════ */}
+        <TabsContent value="ai" className="mt-4 space-y-4">
+          {/* AI Hero */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-900 via-purple-800 to-indigo-900" />
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-violet-500/20 rounded-full blur-3xl" />
+            <div className="relative z-10 p-5 text-center">
+              <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-xl mb-3">
+                <Brain className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-1">AI Startup Lab</h3>
+              <p className="text-xs text-violet-300 mb-1">AI ஸ்டார்ட்அப் ஆய்வகம்</p>
+              <p className="text-xs text-violet-200/60 max-w-md mx-auto">
+                Use AI to analyze your startup idea — check if a problem is worth solving, find competitors, estimate market size, and get actionable feedback
+              </p>
+            </div>
+          </div>
+
+          {/* AI Problem Finder */}
+          <AIProblemFinder />
+        </TabsContent>
+
+        {/* ═══════ TAB 4: FUNDING ═══════ */}
         <TabsContent value="funding" className="mt-4">
           <BusinessModelFundingGuide defaultSection="funding" />
         </TabsContent>
