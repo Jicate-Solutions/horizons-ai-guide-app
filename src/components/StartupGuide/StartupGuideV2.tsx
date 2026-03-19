@@ -1,431 +1,261 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Brain, BadgeCheck, ListTodo, BarChart3, Rocket, User, Lock, BookOpen } from 'lucide-react';
-import { toast } from 'sonner';
-import { useStartupGuideData } from './useStartupGuideData';
-import { getLocalTasks } from './localTaskTemplates';
-import { DashboardTab } from './tabs/DashboardTab';
-import { AIMentorTab } from './tabs/AIMentorTab';
-import { MyTasksTab } from './tabs/MyTasksTab';
-import { ProblemSurveyTab } from './tabs/ProblemSurveyTab';
-import { BuildStartupTab } from './tabs/BuildStartupTab';
-import { ProfileTab } from './tabs/ProfileTab';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+  Rocket, Lightbulb, DollarSign, Star, ArrowRight, ExternalLink,
+  BookOpen, ChevronDown, ChevronUp, CheckCircle2, Users, Award,
+  Building2, BarChart3, Target, GraduationCap, Map, Zap, Globe,
+  Play, TrendingUp, Sparkles, Brain
+} from 'lucide-react';
 import { BusinessModelFundingGuide } from './BusinessModelFundingGuide';
+import { FounderJourney } from './FounderJourney';
+import { cn } from '@/lib/utils';
 
+/* ═══════════════════════════════════════
+   40-DAY ROADMAP DATA
+   ═══════════════════════════════════════ */
+const roadmapPhases = [
+  {
+    phase: 1, title: 'Discover', days: 'Day 1–10', emoji: '🔍', color: 'from-blue-500 to-indigo-600', bg: 'bg-blue-50', border: 'border-blue-300',
+    goal: 'Find a real problem worth solving',
+    tasks: [
+      'Day 1-2: List 10 problems you see daily around your school, home, or town',
+      'Day 3-4: Interview 5 people — ask "What frustrates you most about ___?"',
+      'Day 5-6: Research if anyone else is solving these problems (Google, YouTube)',
+      'Day 7-8: Pick your best 1 problem. Write: WHO has it, HOW OFTEN, WHY it matters',
+      'Day 9-10: Talk to 10 more people who have this problem. Validate it\'s real.',
+    ],
+    outcome: '✅ 1 validated problem statement with proof that real people face it',
+  },
+  {
+    phase: 2, title: 'Design', days: 'Day 11–20', emoji: '📋', color: 'from-violet-500 to-purple-600', bg: 'bg-violet-50', border: 'border-violet-300',
+    goal: 'Design your business model',
+    tasks: [
+      'Day 11-12: Write your solution in ONE sentence (the simpler, the better)',
+      'Day 13-14: Fill the Business Model Canvas (use the Build tab here!)',
+      'Day 15-16: Set pricing — ask 5 potential customers "Would you pay ₹__ for this?"',
+      'Day 17-18: Calculate costs vs revenue. Can you break even in 3 months?',
+      'Day 19-20: Create a simple prototype or mockup (paper, Canva, or WhatsApp group)',
+    ],
+    outcome: '✅ Complete business model + prototype/mockup ready',
+  },
+  {
+    phase: 3, title: 'Test', days: 'Day 21–30', emoji: '🧪', color: 'from-amber-500 to-orange-600', bg: 'bg-amber-50', border: 'border-amber-300',
+    goal: 'Test with real customers and get feedback',
+    tasks: [
+      'Day 21-22: Launch your prototype to 10 real people (friends, family, schoolmates)',
+      'Day 23-24: Collect feedback — "What worked? What didn\'t? Would you pay?"',
+      'Day 25-26: Fix the top 3 complaints. Improve the product.',
+      'Day 27-28: Try to get your FIRST paying customer or first 50 users',
+      'Day 29-30: Document everything — what you learned, numbers, testimonials',
+    ],
+    outcome: '✅ First customers/users + real feedback + improved product',
+  },
+  {
+    phase: 4, title: 'Launch', days: 'Day 31–40', emoji: '🚀', color: 'from-emerald-500 to-green-600', bg: 'bg-emerald-50', border: 'border-emerald-300',
+    goal: 'Register, fund, and officially launch',
+    tasks: [
+      'Day 31-32: Register on Startup India (DPIIT) — it\'s free!',
+      'Day 33-34: Register MSME/Udyam (free) — gets you govt subsidies',
+      'Day 35-36: Apply for TANSIM grant or Mudra loan (use Funding tab here!)',
+      'Day 37-38: Create social media presence — Instagram, WhatsApp Business',
+      'Day 39-40: Official launch! Tell 100 people. Post on social media. Celebrate! 🎉',
+    ],
+    outcome: '✅ Registered startup + funding applied + launched to the world',
+  },
+];
+
+/* ═══════════════════════════════════════
+   GOVT RESOURCES
+   ═══════════════════════════════════════ */
+const launchResources = [
+  { title: 'Startup India (DPIIT)', desc: 'Free registration. Tax benefits. Fund of Funds access.', icon: '🇮🇳', link: 'https://www.startupindia.gov.in/', gradient: 'from-orange-500 to-amber-500' },
+  { title: 'TANSIM — TN Startup', desc: 'Tamil Nadu grants up to ₹30 Lakhs + mentorship.', icon: '🏛️', link: 'https://www.startuptn.in/', gradient: 'from-emerald-500 to-green-500' },
+  { title: 'MSME/Udyam Registration', desc: 'Priority bank lending + govt subsidies. Free.', icon: '📋', link: 'https://udyamregistration.gov.in/', gradient: 'from-blue-500 to-indigo-500' },
+  { title: 'Mudra Loan (PMMY)', desc: 'Up to ₹10 Lakhs without collateral. For anyone.', icon: '🏦', link: 'https://www.mudra.org.in/', gradient: 'from-violet-500 to-purple-500' },
+  { title: 'Stand Up India', desc: '₹10L–₹1Cr for SC/ST & Women entrepreneurs.', icon: '👩', link: 'https://www.standupmitra.in/', gradient: 'from-rose-500 to-pink-500' },
+  { title: 'Atal Innovation Mission', desc: '₹10–20 Lakhs for school & college innovators.', icon: '💡', link: 'https://aim.gov.in/', gradient: 'from-cyan-500 to-teal-500' },
+];
+
+/* ═══════════════════════════════════════
+   MAIN COMPONENT
+   ═══════════════════════════════════════ */
 export const StartupGuide = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [taskLoading, setTaskLoading] = useState(false);
-  const [notification, setNotification] = useState<string | null>(null);
-  const data = useStartupGuideData();
-
-  // Listen for survey response notifications (cross-tab)
-  useEffect(() => {
-    const handleSurveyResponse = () => {
-      data.refreshSurveyCount();
-      setNotification('🎉 Someone completed your survey!');
-      toast.success('🎉 New survey response received! Build tab is now unlocked!', { duration: 5000 });
-      // Auto-switch to Build tab after a short delay
-      setTimeout(() => setActiveTab('build'), 2000);
-    };
-
-    // Listen via BroadcastChannel (instant, same browser)
-    let bc: BroadcastChannel | null = null;
-    try {
-      bc = new BroadcastChannel('vazhikatti_survey');
-      bc.onmessage = (event) => {
-        if (event.data?.type === 'response_submitted') {
-          handleSurveyResponse();
-        }
-      };
-    } catch (e) {}
-
-    // Listen via localStorage storage event (backup, cross-tab)
-    const handleStorage = (e: StorageEvent) => {
-      if (e.key === 'vazhikatti_survey_notification') {
-        handleSurveyResponse();
-      }
-    };
-    window.addEventListener('storage', handleStorage);
-
-    return () => {
-      bc?.close();
-      window.removeEventListener('storage', handleStorage);
-    };
-  }, [data.refreshSurveyCount]);
-
-  // Check for notifications on load (in case response came while page was closed)
-  useEffect(() => {
-    try {
-      const notif = localStorage.getItem('vazhikatti_survey_notification');
-      if (notif) {
-        const parsed = JSON.parse(notif);
-        // Only show if notification is less than 5 minutes old
-        if (Date.now() - parsed.timestamp < 5 * 60 * 1000) {
-          data.refreshSurveyCount();
-          setNotification('🎉 Someone completed your survey while you were away!');
-          toast.success('🎉 New survey response received!', { duration: 5000 });
-        }
-        localStorage.removeItem('vazhikatti_survey_notification');
-      }
-    } catch (e) {}
-  }, []);
-
-  // Call Claude API
-  const callAI = useCallback(async (action: string, payload: any) => {
-    try {
-      const res = await fetch('/api/startup-ai', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, data: payload }),
-      });
-      const result = await res.json();
-      if (result.error && result.error.includes('CLAUDE_API_KEY')) {
-        toast.error('🔑 Add CLAUDE_API_KEY in Vercel Environment Variables to activate AI features.');
-      }
-      return result;
-    } catch (err) {
-      console.error('AI API error:', err);
-      toast.error('AI service not reachable. Check your deployment.');
-      return null;
-    }
-  }, []);
-
-  // AI Mentor: Send message
-  const handleSendMessage = useCallback(async (message: string, history: { role: string; content: string }[]) => {
-    const result = await callAI('onboarding_chat', { message, history });
-    return result?.reply || 'Sorry, I could not process that. Please try again.';
-  }, [callAI]);
-
-  // Onboarding: Profile detected from chat
-  const handleProfileDetected = useCallback(async (profileData: any) => {
-    await data.saveProfile(profileData);
-    toast.success('🎉 Onboarding complete! Generating your weekly tasks...');
-
-    // Try AI tasks first, fallback to local templates
-    setTaskLoading(true);
-    const result = await callAI('generate_tasks', profileData);
-    if (result?.tasks && result.tasks.length > 0 && !result.error) {
-      const tasks = result.tasks.map((t: any) => ({ ...t, isCompleted: false }));
-      await data.saveTasks(tasks);
-    } else {
-      // Use local pre-built templates
-      const localTasks = getLocalTasks(profileData.field, profileData.location);
-      await data.saveTasks(localTasks);
-    }
-    toast.success('📋 7 personalized tasks ready! Check the My Tasks tab.');
-    setTaskLoading(false);
-  }, [data, callAI]);
-
-  // Generate tasks manually
-  const handleGenerateTasks = useCallback(async () => {
-    if (!data.profile) {
-      toast.error('Complete onboarding first via AI Mentor tab.');
-      return;
-    }
-    setTaskLoading(true);
-    const result = await callAI('generate_tasks', data.profile);
-    if (result?.tasks && result.tasks.length > 0 && !result.error) {
-      const tasks = result.tasks.map((t: any) => ({ ...t, isCompleted: false }));
-      await data.saveTasks(tasks);
-    } else {
-      // Use local templates
-      const localTasks = getLocalTasks(data.profile.field, data.profile.location);
-      await data.saveTasks(localTasks);
-    }
-    toast.success('📋 Tasks generated!');
-    setTaskLoading(false);
-  }, [data, callAI]);
-
-  // Detect problem from reflections
-  const handleDetectProblem = useCallback(async () => {
-    const reflArray = Array.from({ length: 7 }, (_, i) => data.reflections[String(i + 1)] || '').filter(Boolean);
-    if (reflArray.length < 7) {
-      toast.error('Complete all 7 reflections first.');
-      return;
-    }
-    const result = await callAI('detect_problem', {
-      field: data.profile?.field || '',
-      subDomain: data.profile?.subDomain || '',
-      location: data.profile?.location || '',
-      reflections: reflArray,
-    });
-    if (result?.problem && !result.error) {
-      await data.saveProblem(result.problem);
-    } else {
-      // Local fallback: generate a generic problem from reflections
-      const longestReflection = reflArray.sort((a, b) => b.length - a.length)[0];
-      await data.saveProblem({
-        problemStatement: `People in ${data.profile?.location || 'the local area'} face challenges with ${data.profile?.subDomain || data.profile?.field || 'this domain'} — based on your 7 days of observation, the most frequent complaint was about accessibility, affordability, and lack of modern solutions.`,
-        painScore: 7,
-        targetCustomer: `People in ${data.profile?.location || 'local area'} who need ${data.profile?.subDomain || data.profile?.field || 'solutions'} services`,
-        marketSize: 65,
-        uniqueness: 60,
-        existingGaps: 70,
-        validated: true,
-      });
-    }
-    toast.success('🎯 Problem detected! Now generate your validation survey.');
-  }, [data, callAI]);
-
-  // Generate survey
-  const handleGenerateSurvey = useCallback(async () => {
-    if (!data.problem) return;
-    const result = await callAI('generate_survey', {
-      problemStatement: data.problem.problemStatement,
-      targetCustomer: data.problem.targetCustomer,
-    });
-    if (result?.questions && result.questions.length > 0 && !result.error) {
-      await data.saveSurvey(result.questions, data.problem.problemStatement, data.problem.targetCustomer);
-    } else {
-      // Local fallback survey questions
-      const localQuestions = [
-        { questionNumber: 1, questionText: `Have you experienced this problem: "${data.problem.problemStatement}"?`, type: 'mcq', options: ['Yes, frequently', 'Sometimes', 'Rarely', 'Never'] },
-        { questionNumber: 2, questionText: 'How much does this problem affect your daily life?', type: 'mcq', options: ['Very much — it\'s a major pain', 'Moderately', 'Slightly', 'Not at all'] },
-        { questionNumber: 3, questionText: 'What solutions have you tried so far?', type: 'text', options: [] },
-        { questionNumber: 4, questionText: 'How much would you pay monthly for a good solution?', type: 'mcq', options: ['₹0 — should be free', '₹50-100', '₹100-500', '₹500+'] },
-        { questionNumber: 5, questionText: 'Which feature would be most important to you?', type: 'mcq', options: ['Easy to use', 'Affordable price', 'Fast service', 'Reliable quality'] },
-        { questionNumber: 6, questionText: 'How do you currently deal with this problem?', type: 'text', options: [] },
-        { questionNumber: 7, questionText: 'Would you recommend a solution to others if it worked well?', type: 'mcq', options: ['Definitely yes', 'Probably yes', 'Maybe', 'Probably not'] },
-        { questionNumber: 8, questionText: 'Any other suggestions or ideas for solving this problem?', type: 'text', options: [] },
-      ];
-      await data.saveSurvey(localQuestions, data.problem.problemStatement, data.problem.targetCustomer);
-    }
-    toast.success('📊 Survey generated! Share it to collect responses.');
-  }, [data, callAI]);
-
-  // Generate roadmap
-  const handleGenerateRoadmap = useCallback(async () => {
-    if (!data.problem) return;
-    const result = await callAI('generate_roadmap', {
-      problemStatement: data.problem.problemStatement,
-      targetCustomer: data.problem.targetCustomer,
-      field: data.profile?.field || '',
-      location: data.profile?.location || '',
-    });
-    if (result?.roadmap && !result.error) {
-      await data.saveRoadmap(result.roadmap);
-    } else {
-      // Local fallback roadmap — everything done inside VAZHIKAATTI
-      await data.saveRoadmap({
-        mvpTitle: `${data.profile?.subDomain || data.profile?.field || 'Smart'} Solution Plan`,
-        mvpDescription: `Your validated startup plan for: "${data.problem.problemStatement}" — designed for ${data.problem.targetCustomer} in ${data.profile?.location || 'your area'}. Follow the steps below to bring your idea to life!`,
-        buildTool: 'VAZHIKAATTI Startup Guide (this app!)',
-        businessModel: 'Freemium — free basic features + premium subscription ₹99-299/month',
-        weeklySteps: [
-          { week: 1, title: 'Define Your Solution', actions: [
-            'Write a one-line description of your solution',
-            'List the top 3 features your product must have',
-            'Draw 5 rough screens on paper (hand sketch is fine!)',
-            'Identify your first 10 target customers by name',
-          ]},
-          { week: 2, title: 'Build a Prototype', actions: [
-            'Create a presentation (PPT/Google Slides) showing your app screens',
-            'Write a simple script explaining your product in 2 minutes',
-            'Show your prototype to 5 people and note their feedback',
-            'Refine your design based on feedback',
-          ]},
-          { week: 3, title: 'Validate & Plan Revenue', actions: [
-            'Ask 10 people: "Would you pay ₹99/month for this?"',
-            'Calculate your costs (development, marketing, operations)',
-            'Identify 3 ways to earn revenue (subscription, ads, commission)',
-            'Write a one-page business plan',
-          ]},
-          { week: 4, title: 'Pitch & Launch Plan', actions: [
-            'Prepare a 5-slide pitch deck (Problem → Solution → Market → Revenue → Team)',
-            'Practice your pitch with friends and mentors',
-            'Apply to college incubator or Startup India programs',
-            'Set a launch date and create a WhatsApp group for early users',
-          ]},
-        ],
-        recommendedTools: [
-          { name: 'VAZHIKAATTI AI Mentor', purpose: 'Ask questions & get startup guidance' },
-          { name: 'Paper & Pen', purpose: 'Sketch your app screens & ideas' },
-          { name: 'Google Slides / PPT', purpose: 'Create your prototype & pitch deck' },
-          { name: 'WhatsApp Groups', purpose: 'Reach your first customers' },
-          { name: 'College Incubator', purpose: 'Get mentorship & funding support' },
-          { name: 'Startup India Portal', purpose: 'Register & apply for government support' },
-        ],
-      });
-    }
-    toast.success('🚀 MVP Roadmap generated!');
-  }, [data, callAI]);
-
-  const taskStreak = data.tasks.filter(t => t.isCompleted).length;
-  const surveyResponseCount = data.survey?.responseCount || 0;
-
-  const tabStyle = "text-[11px] md:text-xs flex-1 min-w-[60px] px-2 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1";
+  const [activeTab, setActiveTab] = useState('roadmap');
+  const [expandedPhase, setExpandedPhase] = useState<number | null>(1);
 
   return (
-    <div className="space-y-0">
-      {/* Hero */}
-      <div className="overflow-hidden rounded-2xl mb-4 shadow-xl border border-emerald-800/50">
-        <div className="relative h-36 md:h-44 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=400&fit=crop&auto=format" alt="Startup team" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#14532d]" />
-          <div className="absolute top-3 left-3">
-            <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold text-white border border-white/20">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              AI-Powered Startup Guide
+    <div className="space-y-4">
+
+      {/* ═══════ HERO ═══════ */}
+      <div className="overflow-hidden rounded-2xl shadow-xl border border-emerald-800/30">
+        {/* Visible image */}
+        <div className="relative h-44 md:h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=500&fit=crop&auto=format" alt="Startup team" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-[#14532d]" />
+          {/* Floating quote */}
+          <div className="absolute top-4 left-4 right-4">
+            <div className="bg-black/50 backdrop-blur-md rounded-xl px-4 py-3 border border-white/10 max-w-md">
+              <p className="text-white text-sm font-medium italic">"The best time to start a business was yesterday. The second best time is today."</p>
+              <p className="text-amber-300 text-[10px] font-bold mt-1">— Tamil Nadu has produced ₹10,000+ Crore startups from small towns</p>
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-b from-[#14532d] to-[#1a4731] px-5 py-5 text-center">
-          <div className="mx-auto w-[60px] h-[60px] rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30 -mt-10 border-4 border-[#14532d] mb-3">
+
+        {/* Content */}
+        <div className="bg-gradient-to-b from-[#14532d] to-[#1a4731] px-5 py-6 text-center">
+          <div className="mx-auto w-[64px] h-[64px] rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30 -mt-12 border-4 border-[#14532d] mb-3">
             <Rocket className="w-7 h-7 text-white" />
           </div>
-          <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight font-serif italic">
-            Build Your <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">Startup</span> in 40 Days
+          <h2 className="text-xl md:text-2xl font-black text-white mb-1">
+            From Zero to <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">Startup</span> in 40 Days
           </h2>
-          <p className="text-xs text-white/50 mt-1.5">From idea to validated MVP — powered by AI mentoring</p>
+          <p className="text-xs text-emerald-300 font-medium mb-1">தொழில்முனைவோர் வழிகாட்டி</p>
+          <p className="text-xs text-white/50 max-w-md mx-auto">A step-by-step guide designed for Tamil Nadu students — no experience needed, no money needed to start</p>
+
+          <div className="flex justify-center gap-8 mt-4">
+            {[
+              { val: '40', label: 'Day Plan', icon: '📅' },
+              { val: '₹30L', label: 'Grants Available', icon: '💰' },
+              { val: '6', label: 'Govt Schemes', icon: '🏛️' },
+              { val: '15+', label: 'Founder Stories', icon: '🌟' },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <p className="text-lg font-black text-white">{s.val}</p>
+                <p className="text-[9px] text-emerald-400/70">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Survey Response Notification Banner */}
-      {notification && (
-        <div className="bg-gradient-to-r from-amber-400 to-yellow-400 rounded-xl p-3 mb-4 flex items-center justify-between shadow-lg animate-pulse">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🔔</span>
-            <div>
-              <p className="text-sm font-bold text-amber-900">{notification}</p>
-              <p className="text-xs text-amber-800">Build Startup tab is now unlocked! 🚀</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => { setNotification(null); setActiveTab('build'); }}
-            className="bg-amber-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-amber-800"
-          >
-            Go to Build →
-          </button>
-        </div>
-      )}
-
-      {/* Tabs */}
+      {/* ═══════ TAB NAVIGATION ═══════ */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="bg-gradient-to-r from-[#14532d] via-[#166534] to-[#14532d] rounded-xl p-1.5 mb-4 border border-emerald-700/30 shadow-lg">
-          <TabsList className="w-full flex overflow-x-auto gap-0.5 bg-transparent p-0 h-auto">
-            <TabsTrigger value="dashboard" className={tabStyle}>
-              <Brain className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Dashboard</span>
-              <span className="sm:hidden">Home</span>
-            </TabsTrigger>
-            <TabsTrigger value="mentor" className={tabStyle}>
-              <BadgeCheck className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">AI Mentor</span>
-              <span className="sm:hidden">Mentor</span>
-            </TabsTrigger>
-            <TabsTrigger value="tasks" className={tabStyle} disabled={!data.onboardingComplete}>
-              {!data.onboardingComplete && <Lock className="w-3 h-3" />}
-              <ListTodo className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">My Tasks</span>
-              <span className="sm:hidden">Tasks</span>
-            </TabsTrigger>
-            <TabsTrigger value="survey" className={tabStyle} disabled={!data.onboardingComplete}>
-              {!data.surveyUnlocked && <Lock className="w-3 h-3" />}
-              <BarChart3 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Problem & Survey</span>
-              <span className="sm:hidden">Survey</span>
-            </TabsTrigger>
-            <TabsTrigger value="build" className={tabStyle} disabled={!data.onboardingComplete}>
-              {!data.buildUnlocked && <Lock className="w-3 h-3" />}
-              <Rocket className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Build Startup</span>
-              <span className="sm:hidden">Build</span>
-            </TabsTrigger>
-            <TabsTrigger value="learn" className={`${tabStyle} relative`}>
-              <BookOpen className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Business & Funding</span>
-              <span className="sm:hidden">Learn</span>
-              <span className="absolute -top-1.5 -right-0.5 bg-red-500 text-white text-[6px] font-black px-1 py-0.5 rounded-full leading-none shadow-md animate-pulse">NEW</span>
-            </TabsTrigger>
-            <TabsTrigger value="profile" className={tabStyle}>
-              <User className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Profile</span>
-              <span className="sm:hidden">Me</span>
-            </TabsTrigger>
+        <div className="bg-white rounded-xl p-1.5 border-2 border-gray-200 shadow-sm">
+          <TabsList className="w-full grid grid-cols-4 bg-transparent p-0 h-auto gap-1">
+            {[
+              { id: 'roadmap', icon: Map, label: '40-Day Plan', emoji: '🗺️' },
+              { id: 'build', icon: Lightbulb, label: 'Build Model', emoji: '📋' },
+              { id: 'funding', icon: DollarSign, label: 'Funding', emoji: '💰' },
+              { id: 'founders', icon: Star, label: 'Founders', emoji: '🌟' },
+            ].map(tab => (
+              <TabsTrigger key={tab.id} value={tab.id}
+                className={cn(
+                  "flex flex-col items-center gap-0.5 py-2.5 rounded-lg text-[11px] font-bold transition-all",
+                  "data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-600 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg",
+                  "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                )}>
+                <span className="text-lg">{tab.emoji}</span>
+                <span>{tab.label}</span>
+              </TabsTrigger>
+            ))}
           </TabsList>
         </div>
 
-        <TabsContent value="dashboard" className="mt-0">
-          <DashboardTab
-            userName={data.userName}
-            profile={data.profile}
-            score={data.score}
-            currentDay={data.currentDay}
-            tasks={data.tasks}
-            onboardingComplete={data.onboardingComplete}
-            allReflectionsDone={data.allReflectionsDone}
-            surveyResponseCount={surveyResponseCount}
-            onStartJourney={() => setActiveTab('mentor')}
-          />
+        {/* ═══════ TAB 1: 40-DAY ROADMAP ═══════ */}
+        <TabsContent value="roadmap" className="mt-4 space-y-4">
+          {/* Phase overview */}
+          <div className="grid grid-cols-4 gap-2">
+            {roadmapPhases.map(p => (
+              <button key={p.phase} onClick={() => setExpandedPhase(p.phase)}
+                className={cn("rounded-xl p-3 text-center border-2 transition-all",
+                  expandedPhase === p.phase ? `${p.bg} ${p.border} shadow-md` : 'bg-white border-gray-200 hover:border-gray-300')}>
+                <span className="text-2xl block mb-1">{p.emoji}</span>
+                <p className="text-xs font-bold text-gray-800">{p.title}</p>
+                <p className="text-[9px] text-gray-500">{p.days}</p>
+              </button>
+            ))}
+          </div>
+
+          {/* Expanded phase detail */}
+          {expandedPhase && (() => {
+            const p = roadmapPhases.find(r => r.phase === expandedPhase)!;
+            return (
+              <Card className={cn("border-2 overflow-hidden", p.border)}>
+                <div className={cn("p-4", p.bg)}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={cn("w-12 h-12 rounded-xl bg-gradient-to-br text-white flex items-center justify-center text-2xl shadow-lg", p.color)}>
+                      {p.emoji}
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-gray-900">Phase {p.phase}: {p.title}</h3>
+                      <p className="text-xs text-gray-600">{p.days} — {p.goal}</p>
+                    </div>
+                  </div>
+                </div>
+                <CardContent className="p-4 space-y-3">
+                  {p.tasks.map((task, i) => (
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100">
+                      <div className="w-6 h-6 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-[10px] font-bold text-gray-500">{i + 1}</span>
+                      </div>
+                      <p className="text-sm text-gray-700 leading-relaxed">{task}</p>
+                    </div>
+                  ))}
+                  <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-200">
+                    <p className="text-xs font-bold text-emerald-800">{p.outcome}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })()}
+
+          {/* What you'll achieve */}
+          <div className="bg-gradient-to-r from-gray-900 to-slate-800 rounded-2xl p-5 text-center">
+            <p className="text-amber-300 text-xs font-bold uppercase tracking-wider mb-2">After 40 Days, You'll Have</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { emoji: '🎯', text: 'Validated Problem' },
+                { emoji: '📋', text: 'Business Model' },
+                { emoji: '👥', text: 'First Customers' },
+                { emoji: '📄', text: 'Govt Registration' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white/10 rounded-xl p-3 border border-white/10">
+                  <span className="text-2xl block mb-1">{item.emoji}</span>
+                  <p className="text-xs font-bold text-white">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick links to govt resources */}
+          <div>
+            <p className="text-sm font-bold text-gray-800 flex items-center gap-2 mb-3">
+              <Building2 className="w-4 h-4 text-emerald-600" /> Government Resources — Start for Free
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+              {launchResources.map((r, i) => (
+                <button key={i} onClick={() => r.link && window.open(r.link, '_blank')}
+                  className="bg-white rounded-xl p-3 border border-gray-200 text-left hover:shadow-md hover:border-emerald-300 transition-all group">
+                  <span className="text-xl block mb-1.5">{r.icon}</span>
+                  <p className="text-xs font-bold text-gray-900 mb-0.5">{r.title}</p>
+                  <p className="text-[10px] text-gray-500 leading-relaxed">{r.desc}</p>
+                  {r.link && (
+                    <span className="text-[10px] font-bold text-emerald-600 flex items-center gap-0.5 mt-1.5 group-hover:underline">
+                      Visit <ExternalLink className="w-2.5 h-2.5" />
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
         </TabsContent>
 
-        <TabsContent value="mentor" className="mt-0">
-          <AIMentorTab
-            chatHistory={data.chatHistory}
-            profile={data.profile}
-            onSendMessage={handleSendMessage}
-            onSaveChatMessage={data.saveChatMessage}
-            onProfileDetected={handleProfileDetected}
-            onReset={data.resetAll}
-          />
+        {/* ═══════ TAB 2: BUILD MODEL ═══════ */}
+        <TabsContent value="build" className="mt-4">
+          <BusinessModelFundingGuide defaultSection="canvas" />
         </TabsContent>
 
-        <TabsContent value="tasks" className="mt-0">
-          <MyTasksTab
-            tasks={data.tasks}
-            currentDay={data.currentDay}
-            reflections={data.reflections}
-            onSubmitReflection={data.saveReflection}
-            onGenerateTasks={handleGenerateTasks}
-            loading={taskLoading}
-          />
+        {/* ═══════ TAB 3: FUNDING ═══════ */}
+        <TabsContent value="funding" className="mt-4">
+          <BusinessModelFundingGuide defaultSection="funding" />
         </TabsContent>
 
-        <TabsContent value="survey" className="mt-0">
-          <ProblemSurveyTab
-            unlocked={data.surveyUnlocked}
-            problem={data.problem}
-            survey={data.survey}
-            reflections={data.reflections}
-            field={data.profile?.field || ''}
-            subDomain={data.profile?.subDomain || ''}
-            location={data.profile?.location || ''}
-            onDetectProblem={handleDetectProblem}
-            onGenerateSurvey={handleGenerateSurvey}
-            onRefreshCount={data.refreshSurveyCount}
-            onReset={data.resetAll}
-          />
-        </TabsContent>
-
-        <TabsContent value="build" className="mt-0">
-          <BuildStartupTab
-            unlocked={data.buildUnlocked}
-            roadmap={data.roadmap}
-            surveyResponseCount={surveyResponseCount}
-            onGenerateRoadmap={handleGenerateRoadmap}
-          />
-        </TabsContent>
-
-        <TabsContent value="learn" className="mt-0">
-          <BusinessModelFundingGuide />
-        </TabsContent>
-
-        <TabsContent value="profile" className="mt-0">
-          <ProfileTab
-            userName={data.userName}
-            profile={data.profile}
-            score={data.score}
-            taskStreak={taskStreak}
-            surveyResponseCount={surveyResponseCount}
-            onboardingComplete={data.onboardingComplete}
-            allReflectionsDone={data.allReflectionsDone}
-            onReset={data.resetAll}
-            tasks={data.tasks}
-            reflections={data.reflections}
-            problem={data.problem}
-            survey={data.survey}
-            roadmap={data.roadmap}
-          />
+        {/* ═══════ TAB 4: FOUNDER STORIES ═══════ */}
+        <TabsContent value="founders" className="mt-4">
+          <FounderJourney />
         </TabsContent>
       </Tabs>
     </div>

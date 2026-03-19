@@ -69,8 +69,8 @@ const diffBadge: Record<string, string> = {
 
 const STORAGE_KEY = 'vzk_business_canvas';
 
-export const BusinessModelFundingGuide = () => {
-  const [section, setSection] = useState<'canvas' | 'funding'>('canvas');
+export const BusinessModelFundingGuide = ({ defaultSection = 'canvas' }: { defaultSection?: 'canvas' | 'funding' }) => {
+  const [section, setSection] = useState<'canvas' | 'funding'>(defaultSection);
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showPreview, setShowPreview] = useState(false);
