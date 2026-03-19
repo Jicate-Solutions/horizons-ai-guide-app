@@ -25,24 +25,48 @@ const CHAT_URL = '/api/career-chat';
 function getLocalChatReply(msg: string): string {
   const lower = msg.toLowerCase();
   if (lower.match(/^(hi|hello|hey|vanakkam)/)) {
-    return `👋 Hello! I'm your VAZHIKAATTI AI Assistant.\n\nI can help you with:\n🎯 Career options after 10th & 12th\n🏫 College & course suggestions\n📝 Exam preparation (JEE, NEET, TNEA)\n💼 Job search & interview tips\n💰 Scholarship information\n\nWhat would you like to know?`;
+    return `👋 வணக்கம்! Welcome! I'm your **VAZHIKAATTI AI Career Guide**.\n\nI can help you with:\n\n🎯 **Career options** after 10th & 12th\n🏫 **College & course** suggestions in Tamil Nadu\n📝 **Exam prep** — NEET, JEE, TNEA, TNPSC\n💼 **Job search** & interview tips\n💰 **Scholarship** & financial aid info\n📊 **Cutoff marks** & admission guidance\n\nJust type your question! 😊`;
+  }
+  if (lower.includes('12th') && (lower.includes('science') || lower.includes('bio'))) {
+    return `🎓 **Career Options After 12th Science (Bio):**\n\n**Medical Path:**\n🏥 MBBS (NEET UG) → Doctor\n🦷 BDS → Dentist\n💊 B.Pharm → Pharmacist\n🌿 BAMS / BHMS / BSMS (Siddha)\n\n**Non-Medical:**\n🔬 B.Sc. Biotechnology / Microbiology\n🌾 B.Sc. Agriculture\n🐾 B.V.Sc (Veterinary)\n\n**Top TN Colleges:** Madras Medical, JIPMER, Stanley, PSG\n\nWant NEET preparation tips or cutoff details?`;
+  }
+  if (lower.includes('12th') && (lower.includes('maths') || lower.includes('engineering'))) {
+    return `🎓 **Career Options After 12th Science (Maths):**\n\n**Engineering:**\n💻 B.E/B.Tech — CSE, ECE, Mech, Civil\n📱 Entry: TNEA (12th marks) or JEE Main\n\n**Other Paths:**\n📊 B.Sc. Computer Science / IT\n🏗️ B.Arch (Architecture)\n🎮 BCA (Computer Applications)\n\n**Top TN Colleges:** Anna Univ, NIT Trichy, PSG Tech, SSN, VIT\n\n**TNEA Formula:** Maths 50% + Physics 25% + Chemistry 25%\n\nWant TNEA counselling details?`;
+  }
+  if (lower.includes('commerce')) {
+    return `🎓 **Career Options After 12th Commerce:**\n\n💰 **B.Com** → Accountant, Auditor\n📊 **BBA** → Business Management\n🏦 **CA** (Chartered Accountant) → ₹7-20 LPA\n📋 **CS** (Company Secretary)\n💳 **CMA** (Cost Management)\n🏦 **Banking** → IBPS PO/Clerk\n📈 **B.Com + CFA** → Finance\n\n**Top Colleges:** Loyola, MCC, PSG CAS, Ethiraj\n\nWhich career interests you most?`;
+  }
+  if (lower.includes('arts') || lower.includes('humanities')) {
+    return `🎓 **Career Options After 12th Arts:**\n\n📖 **BA** — English, History, Economics, Political Science\n⚖️ **Law** (5-year integrated — CLAT exam)\n📰 **Mass Communication / Journalism**\n🏨 **Hotel Management**\n🎨 **Design** (NID, NIFT entrance)\n👨‍🏫 **B.Ed** → Teaching\n📚 **Library Science**\n🏛️ **Civil Services** (IAS/IPS after graduation)\n\n**Top Colleges:** Presidency, Stella Maris, MCC, WCC\n\nWhich field interests you?`;
   }
   if (lower.includes('12th') || lower.includes('career')) {
-    return `🎓 **Career Options After 12th:**\n\n**Science:** Engineering (JEE/TNEA), Medical (NEET), B.Sc., BCA\n**Commerce:** B.Com, BBA, CA, CS, Banking\n**Arts:** BA, Law, Mass Communication, Hotel Management\n\nTell me your stream for specific guidance!`;
+    return `🎓 **Career Paths After 12th — All Streams:**\n\n**Science:** Engineering (TNEA/JEE), Medical (NEET), B.Sc., BCA\n**Commerce:** B.Com, BBA, CA, CS, CMA, Banking\n**Arts:** BA, Law (CLAT), Journalism, Hotel Management\n**Government:** TNPSC, UPSC, Railway, Banking, SSC\n**Skill-Based:** Digital Marketing, Data Science, Web Dev\n\nTell me your **stream** for specific guidance! 🎯`;
   }
-  if (lower.includes('neet') || lower.includes('medical')) {
-    return `📚 **NEET UG Guide:**\n200 MCQs | 3h 20min | 720 marks\n\nTips: Focus NCERT textbooks, practice 10 years papers, Biology has highest weightage, take weekly mocks.`;
+  if (lower.includes('neet') || lower.includes('medical') || lower.includes('mbbs')) {
+    return `📚 **NEET UG 2026 Guide:**\n\n**Exam:** 200 MCQs | 3h 20min | 720 marks\n**Subjects:** Physics (45), Chemistry (45), Biology (90)\n\n**Preparation Tips:**\n1️⃣ Master NCERT textbooks completely\n2️⃣ Solve 10 years previous papers\n3️⃣ Biology has highest weightage!\n4️⃣ Take weekly mock tests\n5️⃣ Revise daily with flashcards\n\n**TN Colleges:** MMC Chennai, JIPMER, Stanley, Kilpauk\n**Cutoff:** General ~600+, OBC ~540+, SC/ST ~450+\n\nWant a month-wise study plan? 📅`;
   }
-  if (lower.includes('jee') || lower.includes('engineering')) {
-    return `📚 **JEE Main:** 90 MCQs | 3 hours | 300 marks\nFor NITs, IIITs. Master NCERT → HC Verma → practice daily.\n\n**TNEA:** Based on 12th marks only. Maths 50% + Physics 25% + Chemistry 25%.`;
+  if (lower.includes('jee') || lower.includes('tnea')) {
+    return `📚 **Engineering Admission Guide:**\n\n**TNEA (Tamil Nadu):**\n• Based on 12th marks only\n• Formula: Maths 50% + Physics 25% + Chemistry 25%\n• Apply on tneaonline.org\n• ~500 colleges participate\n\n**JEE Main (National):**\n• 90 MCQs | 3 hours | 300 marks\n• For NITs, IIITs, GFTIs\n• Study: NCERT → HC Verma → Cengage\n\n**Top Picks:** NIT Trichy, Anna Univ, PSG Tech, VIT, SRM\n\nWant step-by-step TNEA counselling process?`;
+  }
+  if (lower.includes('scholarship') || lower.includes('loan') || lower.includes('fee') || lower.includes('money')) {
+    return `💰 **Scholarships for TN Students:**\n\n**State Govt:**\n• BC/MBC/SC/ST Scholarship (Free education)\n• First Graduate Scholarship\n• Moovalur Scheme (for girls)\n\n**Central Govt:**\n• Post-Matric Scholarship\n• Pragati (girls in tech)\n• National Scholarship Portal (NSP)\n\n**Private:** HDFC, Tata Trust, Reliance Foundation\n\n**Education Loans:**\n• SBI Scholar Loan — up to ₹20 Lakhs\n• Vidya Lakshmi Portal — compare banks\n\nApply early! Deadlines matter! 📅`;
   }
   if (lower.includes('job') || lower.includes('salary') || lower.includes('placement')) {
-    return `💼 **High-Demand Jobs:**\n• Software Developer — ₹4-15 LPA\n• Data Analyst — ₹3-10 LPA\n• Digital Marketing — ₹3-8 LPA\n\nUse Naukri.com, LinkedIn, Indeed for job search. Build a strong resume & LinkedIn profile!`;
+    return `💼 **High-Demand Jobs 2026:**\n\n**Tech:** Software Dev (₹4-20 LPA), Data Scientist (₹6-25 LPA), AI Engineer (₹8-30 LPA)\n**Healthcare:** Doctor (₹6-15 LPA), Pharmacist (₹3-8 LPA)\n**Finance:** CA (₹7-15 LPA), Banking (₹5-12 LPA)\n**Government:** TNPSC, Banking PO, SSC CGL\n\n**Job Search Tips:**\n1. Build LinkedIn profile\n2. Use Naukri, Indeed, LinkedIn\n3. Learn in-demand skills\n4. Practice aptitude tests\n\nWant guidance for a specific career? 🎯`;
   }
-  if (lower.includes('scholarship') || lower.includes('loan') || lower.includes('fee')) {
-    return `💰 **Scholarships:** BC/MBC/SC/ST (TN Govt), Post-Matric (Central), Pragati (girls in tech)\n**Loans:** SBI Scholar Loan up to ₹20L, Vidya Lakshmi Portal to compare\n\nApply early — deadlines matter!`;
+  if (lower.includes('tnpsc') || lower.includes('government') || lower.includes('govt')) {
+    return `🏛️ **Government Job Guide:**\n\n**TNPSC:**\n• Group 1 — Deputy Collector, DSP (₹56K-2L/month)\n• Group 2 — Revenue Officer (₹36K-1.1L/month)\n• Group 4 — Clerk, Typist (₹19K-63K/month)\n\n**Others:** Banking (IBPS), Railway (RRB), SSC, Defence (NDA/CDS)\n\n**Preparation:**\n• Tamil Nadu GK — must study!\n• NCERT 6th-12th books\n• Current affairs daily\n• Previous year papers\n\nWhich exam interests you? 📋`;
   }
-  return `Thank you for your question! 🤔\n\nTry asking about:\n🎯 "Career options after 12th"\n📚 "How to prepare for NEET/JEE"\n💼 "How to find jobs"\n💰 "Scholarships available"\n\nI'm here to help! 😊`;
+  if (lower.includes('college') || lower.includes('university') || lower.includes('best')) {
+    return `🏫 **Top Colleges in Tamil Nadu:**\n\n**Engineering:** NIT Trichy, Anna Univ, PSG Tech, SSN, VIT, SRM, SASTRA\n**Medical:** MMC Chennai, JIPMER, Stanley, Kilpauk, Coimbatore MC\n**Arts & Science:** Loyola, Presidency, MCC, PSG CAS\n**Law:** NLSIU, TNDALU, SASTRA Law\n**Management:** IIM Trichy, XLRI, LIBA\n\nTell me your stream & marks — I'll suggest the best fit! 🎯`;
+  }
+  if (lower.includes('cutoff') || lower.includes('marks') || lower.includes('score')) {
+    return `📊 **Cutoff Guide:**\n\n**TNEA Engineering (Approx):**\n• Anna Univ CEG CSE: 195+\n• PSG Tech CSE: 194+\n• SSN CSE: 193+\n• VIT: VITEEE rank based\n\n**NEET Medical:**\n• Govt Medical (General): 600+\n• Govt Medical (OBC): 540+\n• Private Medical: 400+\n\n**Note:** Cutoffs change every year. Use our **Admission Predictor** for accurate estimates!\n\nWant cutoff for a specific college?`;
+  }
+  if (lower.includes('10th') || lower.includes('after 10')) {
+    return `🎓 **After 10th — Choose Your Stream:**\n\n**Science (Maths):** → Engineering, IT, Architecture\n**Science (Bio):** → Medical, Pharmacy, Agriculture\n**Commerce:** → CA, Banking, Business\n**Arts:** → Law, Journalism, Civil Services\n\n**Other Options:**\n🔧 ITI / Polytechnic Diploma (3 years)\n💻 Computer Courses\n🎨 Fine Arts / Design\n\n**Tip:** Choose based on your INTEREST, not just marks!\n\nWant help deciding your stream?`;
+  }
+  return `Thank you for your question! 🤔\n\nI can help you with:\n\n🎯 **"Career options after 12th"**\n📚 **"NEET/JEE/TNEA preparation"**\n🏫 **"Best colleges in Tamil Nadu"**\n💼 **"High salary jobs"**\n💰 **"Scholarships for TN students"**\n🏛️ **"Government job guide"**\n📊 **"Cutoff marks"**\n\nJust type your question! 😊`;
 }
 
 // Speech recognition types
