@@ -57,37 +57,39 @@ export const EntranceExams = () => {
   return (
     <div className="space-y-4">
       {/* ═══ HERO BANNER ═══ */}
-      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '200px' }}>
-        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/93 via-purple-800/90 to-indigo-900/93" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(139,92,246,0.15),transparent_50%)]" />
+      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '240px' }}>
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/95 via-purple-800/92 to-indigo-900/95" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-violet-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl" />
         
-        <div className="relative z-10 p-5 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-5">
-          <div className="flex-1 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 border border-amber-400/30 mb-3">
-              <Target className="w-3.5 h-3.5" />
-              {entranceExams.length} Exams • 149 Practice Questions
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-1.5" style={{ fontFamily: 'system-ui' }}>
-              Entrance Exam <span className="text-amber-300">Guide</span>
-            </h2>
-            <p className="text-xs md:text-sm text-purple-200/80 mb-1">நுழைவுத் தேர்வு வழிகாட்டி</p>
-            <p className="text-sm text-purple-100/60 max-w-lg">Complete preparation guide with practice questions, exam calendar, comparison tools, and AI-powered study planners</p>
+        <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-xl shadow-purple-500/25 mb-4">
+            <span className="text-3xl">📝</span>
           </div>
-          
-          {/* Quick stats */}
-          <div className="flex md:flex-col gap-4 md:gap-3">
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
+            Entrance Exam <span className="text-amber-300">Guide</span>
+          </h2>
+          <p className="text-sm text-purple-300 font-medium mb-1">நுழைவுத் தேர்வு வழிகாட்டி</p>
+          <p className="text-xs text-purple-200/60 max-w-md mb-5">Practice questions, exam calendar, comparison tools & AI-powered study planners — all in one place</p>
+
+          <div className="flex items-center gap-6 md:gap-8 mb-4">
             {[
-              { icon: '📝', value: '149', label: 'Practice Qs' },
-              { icon: '📅', value: '5', label: 'Categories' },
-              { icon: '📊', value: 'AI', label: 'Study Plans' },
+              { value: String(entranceExams.length), label: 'Exams', color: 'text-white' },
+              { value: '149', label: 'Practice Qs', color: 'text-amber-300' },
+              { value: '5', label: 'Categories', color: 'text-violet-300' },
+              { value: 'AI', label: 'Study Plans', color: 'text-emerald-300' },
             ].map((s, i) => (
-              <div key={i} className="text-center bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2.5 border border-white/10 min-w-[80px]">
-                <span className="text-lg block">{s.icon}</span>
-                <p className="text-lg font-black text-white">{s.value}</p>
-                <p className="text-[9px] text-purple-300 uppercase tracking-wider">{s.label}</p>
+              <div key={i} className="text-center">
+                <p className={cn("text-2xl md:text-3xl font-black leading-none", s.color)}>{s.value}</p>
+                <p className="text-[10px] text-purple-400 mt-1">{s.label}</p>
               </div>
             ))}
+          </div>
+
+          <div className="inline-flex items-center gap-2 bg-violet-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-violet-400/30">
+            <BookOpen className="w-3.5 h-3.5 text-violet-300" />
+            <span className="text-xs font-bold text-violet-200">JEE • NEET • TNEA • CLAT • NDA & more</span>
           </div>
         </div>
       </div>

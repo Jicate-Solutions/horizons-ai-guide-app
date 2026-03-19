@@ -60,38 +60,46 @@ export const GovernmentJobs = () => {
     <div className="space-y-6">
 
       {/* ══════════ HERO BANNER ══════════ */}
-      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }} />
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '220px' }}>
+        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/92 to-slate-900/95" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl" />
 
-        <div className="relative p-6">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20">
-              <Target className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h2 className="text-lg font-extrabold text-white leading-tight">
-                {ta ? 'அரசு வேலை வாய்ப்புகள்' : 'Government Job Opportunities'}
-              </h2>
-              <p className="text-sm text-slate-400 mt-0.5">
-                {ta ? '12ஆம் வகுப்பு தகுதி • பட்டம் தேவையில்லை' : '12th Pass Eligible • No Degree Required'}
-              </p>
-            </div>
+        <div className="relative p-6 md:p-8 flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25 mb-4">
+            <span className="text-3xl">🏛️</span>
           </div>
+          <h2 className="text-2xl md:text-3xl font-black text-white leading-tight mb-1">
+            {ta ? 'அரசு வேலை வாய்ப்புகள்' : 'Government Job Opportunities'}
+          </h2>
+          <p className="text-sm text-amber-300 font-medium mb-1">
+            {ta ? 'அரசு வேலை வழிகாட்டி' : 'Govt Exam Preparation & Career Guide'}
+          </p>
+          <p className="text-xs text-slate-400 mb-5">
+            {ta ? '8, 10, 12ஆம் வகுப்பு தகுதி • பட்டம் தேவையில்லை' : '8th, 10th & 12th Pass Eligible • No Degree Required'}
+          </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="flex items-center gap-5 md:gap-8 mb-4">
             {[
               { val: governmentExams.length, label: ta ? 'தேர்வுகள்' : 'Exams', color: 'text-white' },
               { val: openCount, label: ta ? 'திறப்பு' : 'Open Now', color: 'text-emerald-400' },
               { val: 5, label: ta ? 'பிரிவுகள்' : 'Sectors', color: 'text-blue-400' },
               { val: fmt(topSalary), label: ta ? 'அதிகபட்சம்' : 'Top Salary', color: 'text-amber-400' },
             ].map((s, i) => (
-              <div key={i} className="bg-white/[0.05] border border-white/[0.08] rounded-xl py-3 px-2 text-center">
-                <div className={cn("text-xl font-black leading-none", s.color)}>{s.val}</div>
-                <div className="text-xs text-slate-500 mt-1.5">{s.label}</div>
+              <div key={i} className="text-center">
+                <div className={cn("text-2xl md:text-3xl font-black leading-none", s.color)}>{s.val}</div>
+                <div className="text-[10px] text-slate-500 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
+
+          {openCount > 0 && (
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-emerald-400/30">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-bold text-emerald-300">{openCount} Applications Open — Apply Now!</span>
+            </div>
+          )}
         </div>
       </div>
 
