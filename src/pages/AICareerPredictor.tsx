@@ -322,54 +322,74 @@ const AICareerPredictor = () => {
         {/* Intro / Landing */}
         {step === 0 && (
           <motion.div
-            className="max-w-2xl mx-auto text-center py-12"
+            className="max-w-2xl mx-auto text-center py-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             {/* Card Entry Point */}
             <Card className="border-0 shadow-xl overflow-hidden mb-8">
               {/* Hero Image */}
-              <div className="relative h-32 md:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=300&fit=crop&auto=format" alt="Students planning career" className="w-full h-full object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
+              <div className="relative h-40 md:h-52 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=400&fit=crop&auto=format" alt="Students planning career" className="w-full h-full object-cover" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent" />
+                <div className="absolute top-3 right-3">
+                  <Badge className="bg-emerald-500 text-white border-0 text-xs shadow-lg">🔥 Most Popular</Badge>
+                </div>
               </div>
-              <CardContent className="p-8 md:p-12 -mt-12 relative z-10">
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                  <Brain className="h-10 w-10 text-primary" />
+              <CardContent className="p-6 md:p-10 -mt-16 relative z-10">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mx-auto mb-5 shadow-xl shadow-primary/25">
+                  <Brain className="h-10 w-10 text-white" />
                 </div>
 
-                <h1 className="text-3xl md:text-4xl font-bold mb-3">AI Career Predictor</h1>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Get AI-powered career predictions based on your interests, skills, and academic profile
+                <h1 className="text-3xl md:text-4xl font-bold mb-2">AI Career Predictor</h1>
+                <p className="text-sm text-emerald-600 font-medium mb-4">AI தொழில் கணிப்பான்</p>
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm">
+                  Answer 7 simple questions and our AI will predict your ideal career path with personalized recommendations
                 </p>
 
-                <div className="flex justify-center gap-3 mb-8">
-                  <Badge variant="secondary" className="text-sm px-4 py-1.5">✨ Personalized</Badge>
-                  <Badge variant="secondary" className="text-sm px-4 py-1.5">💡 Smart Tips</Badge>
+                <div className="flex flex-wrap justify-center gap-2 mb-8">
+                  <Badge variant="secondary" className="text-xs px-3 py-1.5">✨ Personalized</Badge>
+                  <Badge variant="secondary" className="text-xs px-3 py-1.5">🎯 95% Accurate</Badge>
+                  <Badge variant="secondary" className="text-xs px-3 py-1.5">⏱️ 5 Minutes</Badge>
+                  <Badge variant="secondary" className="text-xs px-3 py-1.5">🆓 100% Free</Badge>
+                </div>
+
+                {/* How it works - visual steps */}
+                <div className="grid grid-cols-3 gap-3 mb-8 max-w-sm mx-auto">
+                  {[
+                    { num: '1', label: 'Answer Questions', emoji: '📝' },
+                    { num: '2', label: 'AI Analyzes', emoji: '🤖' },
+                    { num: '3', label: 'Get Results', emoji: '🎯' },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center">
+                      <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-2 text-xl">{s.emoji}</div>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase">{s.label}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <Button
                   onClick={() => setStep(1)}
                   size="lg"
-                  className="w-full max-w-sm bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground text-lg py-6 rounded-2xl shadow-lg transition-all hover:shadow-xl"
+                  className="w-full max-w-sm bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground text-lg py-6 rounded-2xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Get Predictions
+                  Start Career Prediction
                 </Button>
 
                 {/* Stats */}
-                <div className="flex justify-center gap-8 mt-10 pt-8 border-t border-border/50">
+                <div className="flex justify-center gap-8 mt-10 pt-6 border-t border-border/50">
                   <div className="text-center">
                     <p className="text-2xl font-bold text-primary">50K+</p>
-                    <p className="text-xs text-muted-foreground">Students Helped</p>
+                    <p className="text-[10px] text-muted-foreground">Students Helped</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl font-bold text-primary">95%</p>
-                    <p className="text-xs text-muted-foreground">Accuracy Rate</p>
+                    <p className="text-[10px] text-muted-foreground">Accuracy Rate</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl font-bold text-primary">100+</p>
-                    <p className="text-xs text-muted-foreground">Career Paths</p>
+                    <p className="text-[10px] text-muted-foreground">Career Paths</p>
                   </div>
                 </div>
 
@@ -476,33 +496,52 @@ const AICareerPredictor = () => {
             {/* Loading */}
             {isLoading && (
               <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 animate-fade-in overflow-hidden mt-6">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-5 mb-6">
-                    <div className="relative">
-                      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                        <Loader2 className="h-8 w-8 text-primary animate-spin" />
-                      </div>
-                      <Brain className="h-4 w-4 text-primary absolute -bottom-1 -right-1 bg-background rounded-full p-0.5" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-primary text-lg">🎯 Analyzing Your Profile</h3>
-                      <p className="text-sm text-muted-foreground">{loadingMessage}</p>
+                <CardContent className="p-8 text-center">
+                  {/* Animated Brain */}
+                  <div className="relative w-24 h-24 mx-auto mb-6">
+                    <div className="absolute inset-0 rounded-full bg-primary/10 animate-ping" style={{ animationDuration: '2s' }} />
+                    <div className="absolute inset-2 rounded-full bg-primary/20 animate-ping" style={{ animationDuration: '2.5s' }} />
+                    <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-xl shadow-primary/25">
+                      <Brain className="h-12 w-12 text-white animate-pulse" />
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <div className="h-3 bg-muted rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-500 rounded-full" style={{ width: `${loadingProgress}%` }} />
+
+                  <h3 className="font-bold text-primary text-xl mb-2">AI Is Analyzing Your Profile</h3>
+                  <p className="text-sm text-muted-foreground mb-6">{loadingMessage}</p>
+
+                  {/* Progress Steps */}
+                  <div className="flex justify-center gap-3 mb-6">
+                    {['Profile', 'Skills', 'Market', 'Matching', 'Results'].map((label, i) => {
+                      const stepProgress = loadingProgress / 20;
+                      const isComplete = stepProgress > i + 1;
+                      const isActive = stepProgress > i && stepProgress <= i + 1;
+                      return (
+                        <div key={i} className="flex flex-col items-center gap-1.5">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-500 ${
+                            isComplete ? 'bg-primary text-white shadow-md' : isActive ? 'bg-primary/20 text-primary ring-2 ring-primary/30' : 'bg-muted text-muted-foreground'
+                          }`}>
+                            {isComplete ? <Check className="w-4 h-4" /> : i + 1}
+                          </div>
+                          <span className={`text-[9px] font-medium ${isComplete || isActive ? 'text-primary' : 'text-muted-foreground'}`}>{label}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="mb-4 max-w-sm mx-auto">
+                    <div className="h-2.5 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-primary via-primary/80 to-emerald-500 transition-all duration-500 rounded-full" style={{ width: `${loadingProgress}%` }} />
+                    </div>
+                    <div className="flex justify-between items-center text-xs text-muted-foreground mt-2">
+                      <span>{Math.round(loadingProgress)}% complete</span>
+                      <span>~{Math.max(1, Math.ceil((100 - loadingProgress) / 10))}s remaining</span>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center text-sm text-muted-foreground">
-                    <span>{Math.round(loadingProgress)}% complete</span>
-                    <span>Est. {Math.max(1, Math.ceil((100 - loadingProgress) / 10))}s remaining</span>
-                  </div>
-                  <div className="flex justify-center mt-6">
-                    <Button variant="outline" size="sm" onClick={cancelAnalysis} className="gap-2 bg-background/80">
-                      <X className="h-4 w-4" /> Cancel
-                    </Button>
-                  </div>
+
+                  <Button variant="outline" size="sm" onClick={cancelAnalysis} className="gap-2 bg-background/80 mt-2">
+                    <X className="h-4 w-4" /> Cancel
+                  </Button>
                 </CardContent>
               </Card>
             )}
