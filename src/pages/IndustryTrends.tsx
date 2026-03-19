@@ -1,6 +1,6 @@
  import { useState } from 'react';
  import { useNavigate } from 'react-router-dom';
- import { ArrowLeft, Download, TrendingUp, Target, Globe, Lightbulb, CheckCircle2, AlertTriangle, MapPin, Award, Sparkles, Building2, Briefcase } from 'lucide-react';
+ import { ArrowLeft, Download, TrendingUp, Target, Globe, Lightbulb, CheckCircle2, AlertTriangle, MapPin, Award, Sparkles, Building2, Briefcase, Flame, Zap } from 'lucide-react';
  import { Button } from '@/components/ui/button';
  import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
  import { Badge } from '@/components/ui/badge';
@@ -8,6 +8,7 @@
  import { useToast } from '@/hooks/use-toast';
  import { TableCell, TableRow } from '@/components/ui/table';
  import { AttractiveTable, TimeBadge, SalaryBadge, SkillsBadge, GroupsBadge } from '@/components/IndustryTrends/AttractiveTable';
+ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from 'recharts';
  
  // Job Market Outlook Data
  const jobMarketOutlook = [
@@ -212,7 +213,10 @@
      <div className="min-h-screen bg-gradient-to-b from-muted/30 via-background to-muted/20">
        {/* Professional Hero Header */}
        <div className="relative overflow-hidden">
-         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary" />
+         <div className="absolute inset-0">
+           <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=600&fit=crop&auto=format" alt="" className="w-full h-full object-cover" />
+           <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-secondary/95" />
+         </div>
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.1),transparent_50%)]" />
          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
          
@@ -261,6 +265,63 @@
        </div>
  
        <div className="container mx-auto px-4 py-12 space-y-16">
+         {/* Trending Careers Ticker */}
+         <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-4 overflow-hidden shadow-lg shadow-amber-500/20">
+           <div className="flex items-center gap-3">
+             <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full flex-shrink-0">
+               <Flame className="w-4 h-4 text-white" />
+               <span className="text-xs font-bold text-white">Trending 2026</span>
+             </div>
+             <div className="overflow-hidden flex-1">
+               <div className="flex whitespace-nowrap gap-8 animate-ticker">
+                 {['🤖 AI/ML Engineer — ₹10-25 LPA', '📊 Data Scientist — ₹8-20 LPA', '🔒 Cybersecurity Expert — ₹8-18 LPA', '⚡ EV Engineer — ₹6-15 LPA', '🏥 Healthcare AI — ₹8-15 LPA', '💰 FinTech Developer — ₹8-22 LPA', '🌱 Sustainability Manager — ₹6-12 LPA', '🎮 Game Developer — ₹5-15 LPA',
+                   '🤖 AI/ML Engineer — ₹10-25 LPA', '📊 Data Scientist — ₹8-20 LPA', '🔒 Cybersecurity Expert — ₹8-18 LPA', '⚡ EV Engineer — ₹6-15 LPA'].map((item, i) => (
+                   <span key={i} className="text-sm font-semibold text-white/90">{item}</span>
+                 ))}
+               </div>
+             </div>
+           </div>
+         </div>
+
+         {/* Salary Comparison Chart */}
+         <Card className="border-0 shadow-lg overflow-hidden">
+           <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 pb-2">
+             <div className="flex items-center justify-between">
+               <div>
+                 <CardTitle className="text-lg flex items-center gap-2">
+                   <TrendingUp className="w-5 h-5 text-blue-600" />
+                   Salary Comparison — Top Careers Across Streams
+                 </CardTitle>
+                 <p className="text-xs text-muted-foreground mt-1">Average starting salary in LPA (Lakhs Per Annum)</p>
+               </div>
+               <Badge className="bg-blue-100 text-blue-700 border-blue-200">2026 Data</Badge>
+             </div>
+           </CardHeader>
+           <CardContent className="pt-6 pb-2">
+             <ResponsiveContainer width="100%" height={280}>
+               <BarChart data={[
+                 { name: 'AI/ML Eng.', salary: 17, color: '#3b82f6' },
+                 { name: 'Doctor', salary: 15, color: '#10b981' },
+                 { name: 'CA', salary: 12, color: '#8b5cf6' },
+                 { name: 'Data Sci.', salary: 14, color: '#06b6d4' },
+                 { name: 'Cyber Sec.', salary: 13, color: '#ef4444' },
+                 { name: 'FinTech', salary: 15, color: '#f59e0b' },
+                 { name: 'Lawyer', salary: 10, color: '#ec4899' },
+                 { name: 'EV Eng.', salary: 10, color: '#14b8a6' },
+               ]} margin={{ top: 5, right: 5, left: -10, bottom: 5 }}>
+                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                 <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} />
+                 <YAxis tick={{ fontSize: 11, fill: '#6b7280' }} unit=" L" />
+                 <Tooltip formatter={(v: number) => [`₹${v} LPA`, 'Avg Salary']} contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb', fontSize: '12px' }} />
+                 <Bar dataKey="salary" radius={[6, 6, 0, 0]} maxBarSize={45}>
+                   {[0,1,2,3,4,5,6,7].map((i) => (
+                     <Cell key={i} fill={['#3b82f6','#10b981','#8b5cf6','#06b6d4','#ef4444','#f59e0b','#ec4899','#14b8a6'][i]} />
+                   ))}
+                 </Bar>
+               </BarChart>
+             </ResponsiveContainer>
+           </CardContent>
+         </Card>
          {/* Why This Matters Section */}
          <Card className="border-0 shadow-lg bg-gradient-to-br from-amber-50 to-orange-50/50 dark:from-amber-950/30 dark:to-orange-950/20">
            <CardContent className="p-8">
@@ -327,17 +388,17 @@
  
            <Tabs value={activeStream} onValueChange={setActiveStream} className="w-full">
              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 h-auto p-1.5 bg-muted/50 rounded-xl">
-               <TabsTrigger value="maths" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                 Science (Maths)
+               <TabsTrigger value="maths" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-blue-600 data-[state=active]:text-white gap-1.5">
+                 <span className="hidden md:inline">💻</span> Science (Maths)
                </TabsTrigger>
-               <TabsTrigger value="bio" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
-                 Science (Biology)
+               <TabsTrigger value="bio" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-emerald-600 data-[state=active]:text-white gap-1.5">
+                 <span className="hidden md:inline">🧬</span> Science (Biology)
                </TabsTrigger>
-               <TabsTrigger value="commerce" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-purple-600 data-[state=active]:text-white">
-                 Commerce
+               <TabsTrigger value="commerce" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-purple-600 data-[state=active]:text-white gap-1.5">
+                 <span className="hidden md:inline">📊</span> Commerce
                </TabsTrigger>
-               <TabsTrigger value="arts" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-orange-600 data-[state=active]:text-white">
-                 Arts/Humanities
+               <TabsTrigger value="arts" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-orange-600 data-[state=active]:text-white gap-1.5">
+                 <span className="hidden md:inline">📖</span> Arts/Humanities
                </TabsTrigger>
              </TabsList>
  
