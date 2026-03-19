@@ -56,6 +56,42 @@ export const EntranceExams = () => {
 
   return (
     <div className="space-y-4">
+      {/* ═══ HERO BANNER ═══ */}
+      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '200px' }}>
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/93 via-purple-800/90 to-indigo-900/93" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(139,92,246,0.15),transparent_50%)]" />
+        
+        <div className="relative z-10 p-5 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-5">
+          <div className="flex-1 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 border border-amber-400/30 mb-3">
+              <Target className="w-3.5 h-3.5" />
+              {entranceExams.length} Exams • 149 Practice Questions
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-1.5" style={{ fontFamily: 'system-ui' }}>
+              Entrance Exam <span className="text-amber-300">Guide</span>
+            </h2>
+            <p className="text-xs md:text-sm text-purple-200/80 mb-1">நுழைவுத் தேர்வு வழிகாட்டி</p>
+            <p className="text-sm text-purple-100/60 max-w-lg">Complete preparation guide with practice questions, exam calendar, comparison tools, and AI-powered study planners</p>
+          </div>
+          
+          {/* Quick stats */}
+          <div className="flex md:flex-col gap-4 md:gap-3">
+            {[
+              { icon: '📝', value: '149', label: 'Practice Qs' },
+              { icon: '📅', value: '5', label: 'Categories' },
+              { icon: '📊', value: 'AI', label: 'Study Plans' },
+            ].map((s, i) => (
+              <div key={i} className="text-center bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2.5 border border-white/10 min-w-[80px]">
+                <span className="text-lg block">{s.icon}</span>
+                <p className="text-lg font-black text-white">{s.value}</p>
+                <p className="text-[9px] text-purple-300 uppercase tracking-wider">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* ═══ PAGE VIEW TOGGLE ═══ */}
       <div className="bg-white rounded-2xl p-2 border-2 border-gray-200 shadow-sm">
         <div className="grid grid-cols-2 gap-2">
@@ -89,12 +125,40 @@ export const EntranceExams = () => {
       </div>
 
       {/* ═══ PRACTICE VIEW ═══ */}
-      {pageView === 'practice' && <PreviousYearQuestions />}
+      {pageView === 'practice' && (
+        <>
+          {/* Quick tip */}
+          <div className="rounded-xl p-3.5 flex items-start gap-3 bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200">
+            <span className="text-xl flex-shrink-0">💡</span>
+            <div>
+              <p className="text-sm font-bold text-violet-800">Practice Tip</p>
+              <p className="text-xs text-violet-600 mt-0.5">Solve at least 10 questions daily. Focus on NCERT first, then move to previous year papers. Consistent practice beats last-minute cramming!</p>
+            </div>
+          </div>
+          <PreviousYearQuestions />
+        </>
+      )}
 
       {/* ═══ EXAM GUIDE VIEW ═══ */}
       {pageView === 'exams' && (<>
 
-      {/* ── CATEGORY PILLS (compact horizontal scroll) ── */}
+      {/* Not sure banner */}
+      <div className="rounded-xl overflow-hidden shadow-sm border border-emerald-200">
+        <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">🤔</span>
+            <div>
+              <p className="text-sm font-bold text-emerald-800">Not sure which exam to take?</p>
+              <p className="text-xs text-emerald-600 mt-0.5">Our AI quiz will recommend the best exams based on your stream & interest</p>
+            </div>
+          </div>
+          <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs rounded-lg gap-1.5 flex-shrink-0" onClick={() => setShowMoreInfo(!showMoreInfo)}>
+            <Target className="w-3.5 h-3.5" /> Take Quiz
+          </Button>
+        </div>
+      </div>
+
+      {/* ── CATEGORY PILLS ── */}
       <div className="overflow-x-auto pb-1 -mx-1 px-1">
         <div className="flex gap-2 min-w-max">
           {examCategories.map((category) => {
