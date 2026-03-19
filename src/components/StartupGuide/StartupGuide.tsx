@@ -37,15 +37,21 @@ export const StartupGuide = () => {
   return (
     <div className="space-y-0">
       {/* ===== GREEN HERO SECTION ===== */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] px-6 py-10 md:py-14 text-center mb-6 shadow-xl">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=400&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay" loading="lazy" />
-        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-amber-400/10 to-yellow-400/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-emerald-300/10 to-green-400/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+      <div className="relative overflow-hidden rounded-2xl px-6 py-10 md:py-14 text-center mb-6 shadow-xl" style={{ minHeight: '280px' }}>
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#14532d]/95 via-[#166534]/92 to-[#1a4731]/95" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-amber-400/15 to-yellow-400/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-emerald-300/15 to-green-400/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 
         <div className="relative z-10 space-y-5">
+          {/* Large Icon */}
+          <div className="w-18 h-18 mx-auto w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/25">
+            <Rocket className="w-9 h-9 text-white" />
+          </div>
+
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase">
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            Complete Startup App Blueprint · India 2026
+            Complete Startup Blueprint · India 2026
           </div>
 
           <div className="space-y-1">
@@ -53,48 +59,67 @@ export const StartupGuide = () => {
               The <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">Complete</span> Startup
             </h2>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight font-serif italic">
-              App for <span className="bg-gradient-to-r from-emerald-300 to-green-300 bg-clip-text text-transparent">Student Founders</span>
+              Guide for <span className="bg-gradient-to-r from-emerald-300 to-green-300 bg-clip-text text-transparent">Student Founders</span>
             </h2>
           </div>
 
+          <p className="text-sm text-emerald-300 font-medium">தொழில்முனைவோர் வழிகாட்டி</p>
+
           <p className="text-sm md:text-base text-white/60 max-w-xl mx-auto leading-relaxed">
-            From identifying a problem with AI to finding funding from government, corporate & NGO schemes — every feature your app needs, in one blueprint.
+            From identifying problems with AI to securing government funding — your complete 40-week journey to launching a real startup
           </p>
 
           <div className="flex justify-center gap-6 md:gap-10 pt-2">
             <div className="text-center">
               <div className="flex items-center justify-center gap-1.5 text-amber-300">
                 <Zap className="w-4 h-4" />
-                <span className="text-lg font-bold text-white">{progress.xp}</span>
+                <span className="text-2xl font-black text-white">{progress.xp}</span>
               </div>
               <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">XP Earned</p>
             </div>
-            <div className="w-px h-8 bg-white/15 self-center" />
+            <div className="w-px h-10 bg-white/15 self-center" />
             <div className="text-center">
               <div className="flex items-center justify-center gap-1.5 text-yellow-300">
                 <Flame className="w-4 h-4" />
-                <span className="text-lg font-bold text-white">{progress.streak}</span>
+                <span className="text-2xl font-black text-white">{progress.streak}</span>
               </div>
               <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">Day Streak</p>
             </div>
-            <div className="w-px h-8 bg-white/15 self-center" />
+            <div className="w-px h-10 bg-white/15 self-center" />
             <div className="text-center">
               <div className="flex items-center justify-center gap-1.5 text-emerald-300">
                 <BookOpen className="w-4 h-4" />
-                <span className="text-lg font-bold text-white">{progress.completedLessons.length}</span>
+                <span className="text-2xl font-black text-white">{progress.completedLessons.length}</span>
               </div>
               <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">Lessons</p>
             </div>
-            <div className="w-px h-8 bg-white/15 self-center" />
+            <div className="w-px h-10 bg-white/15 self-center" />
             <div className="text-center">
               <div className="flex items-center justify-center gap-1.5 text-green-300">
                 <Activity className="w-4 h-4" />
-                <span className="text-lg font-bold text-white">{progress.overallScore}</span>
+                <span className="text-2xl font-black text-white">{progress.overallScore}</span>
               </div>
               <p className="text-[10px] text-white/40 font-medium uppercase tracking-wider mt-0.5">Readiness</p>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ===== WHAT YOU'LL LEARN STRIP ===== */}
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
+        {[
+          { emoji: '🤖', label: 'AI Problem Finder' },
+          { emoji: '📊', label: 'Business Model' },
+          { emoji: '💰', label: 'Funding Guide' },
+          { emoji: '🏗️', label: 'Build & Launch' },
+          { emoji: '🎮', label: 'Simulator' },
+          { emoji: '🗺️', label: 'TN Founders' },
+        ].map((item, i) => (
+          <div key={i} className="bg-white rounded-xl p-2.5 border border-gray-200 text-center shadow-sm hover:shadow-md hover:border-emerald-300 transition-all">
+            <span className="text-xl block mb-1">{item.emoji}</span>
+            <p className="text-[10px] font-bold text-gray-700 leading-tight">{item.label}</p>
+          </div>
+        ))}
       </div>
 
       {/* ===== FEATURE TABS ===== */}
