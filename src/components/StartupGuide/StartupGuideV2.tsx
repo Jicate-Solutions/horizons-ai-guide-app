@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Brain, BadgeCheck, ListTodo, BarChart3, Rocket, User, Lock } from 'lucide-react';
+import { Brain, BadgeCheck, ListTodo, BarChart3, Rocket, User, Lock, BookOpen } from 'lucide-react';
 import { toast } from 'sonner';
 import { useStartupGuideData } from './useStartupGuideData';
 import { getLocalTasks } from './localTaskTemplates';
@@ -10,6 +10,7 @@ import { MyTasksTab } from './tabs/MyTasksTab';
 import { ProblemSurveyTab } from './tabs/ProblemSurveyTab';
 import { BuildStartupTab } from './tabs/BuildStartupTab';
 import { ProfileTab } from './tabs/ProfileTab';
+import { BusinessModelFundingGuide } from './BusinessModelFundingGuide';
 
 export const StartupGuide = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -257,17 +258,25 @@ export const StartupGuide = () => {
   return (
     <div className="space-y-0">
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] px-6 py-8 md:py-10 text-center mb-4 shadow-xl">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-amber-400/10 to-yellow-400/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 px-4 py-1.5 rounded-full text-[10px] font-semibold tracking-wider uppercase mb-3">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            AI-Powered Startup Guide
+      <div className="overflow-hidden rounded-2xl mb-4 shadow-xl border border-emerald-800/50">
+        <div className="relative h-36 md:h-44 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=400&fit=crop&auto=format" alt="Startup team" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#14532d]" />
+          <div className="absolute top-3 left-3">
+            <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold text-white border border-white/20">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              AI-Powered Startup Guide
+            </div>
+          </div>
+        </div>
+        <div className="bg-gradient-to-b from-[#14532d] to-[#1a4731] px-5 py-5 text-center">
+          <div className="mx-auto w-[60px] h-[60px] rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30 -mt-10 border-4 border-[#14532d] mb-3">
+            <Rocket className="w-7 h-7 text-white" />
           </div>
           <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight font-serif italic">
             Build Your <span className="bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent">Startup</span> in 40 Days
           </h2>
-          <p className="text-xs text-white/50 mt-2 max-w-md mx-auto">From idea to validated MVP — powered by AI mentoring</p>
+          <p className="text-xs text-white/50 mt-1.5">From idea to validated MVP — powered by AI mentoring</p>
         </div>
       </div>
 
@@ -321,6 +330,12 @@ export const StartupGuide = () => {
               <Rocket className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Build Startup</span>
               <span className="sm:hidden">Build</span>
+            </TabsTrigger>
+            <TabsTrigger value="learn" className={`${tabStyle} relative`}>
+              <BookOpen className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Business & Funding</span>
+              <span className="sm:hidden">Learn</span>
+              <span className="absolute -top-1.5 -right-0.5 bg-red-500 text-white text-[6px] font-black px-1 py-0.5 rounded-full leading-none shadow-md animate-pulse">NEW</span>
             </TabsTrigger>
             <TabsTrigger value="profile" className={tabStyle}>
               <User className="w-3.5 h-3.5" />
@@ -389,6 +404,10 @@ export const StartupGuide = () => {
             surveyResponseCount={surveyResponseCount}
             onGenerateRoadmap={handleGenerateRoadmap}
           />
+        </TabsContent>
+
+        <TabsContent value="learn" className="mt-0">
+          <BusinessModelFundingGuide />
         </TabsContent>
 
         <TabsContent value="profile" className="mt-0">
