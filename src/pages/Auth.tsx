@@ -137,8 +137,10 @@ const Auth = () => {
           // Save learner details to database
           try {
             const { data: authData } = await supabase.auth.getUser();
-            await supabase.from('registrations_12th_learners').insert({
-              user_id: authData?.user?.id || null,
+            const userId = authData?.user?.id || null;
+            
+            const insertData = {
+              user_id: userId,
               full_name: displayName,
               phone: mobileNumber,
               email: email || null,
@@ -147,20 +149,54 @@ const Auth = () => {
               preferred_course: passOutYear,
               preferred_institution: district,
               career_interests: careerInterest ? [careerInterest] : [],
-            });
+            };
+
+            // Try insert first
+            const { error: insertError } = await supabase
+              .from('registrations_12th_learners')
+              .insert(insertData);
+
+            if (insertError) {
+              console.warn('[VAZHIKATTI] Insert failed, trying without user_id:', insertError.message);
+              // Retry without user_id (RLS might block it)
+              const { error: retryError } = await supabase
+                .from('registrations_12th_learners')
+                .insert({ ...insertData, user_id: null });
+              
+              if (retryError) {
+                console.error('[VAZHIKATTI] Retry also failed:', retryError.message);
+              } else {
+                console.log('[VAZHIKATTI] Learner details saved (without user_id)');
+              }
+            } else {
+              console.log('[VAZHIKATTI] Learner details saved successfully');
+            }
           } catch (dbErr) {
             console.warn('[VAZHIKATTI] Failed to save learner details:', dbErr);
           }
 
-          // Create profile for admin visibility
+          // Create profile for admin visibility (backup - stores all details)
           try {
             const { data: authData } = await supabase.auth.getUser();
             if (authData?.user) {
-              await supabase.from('profiles').upsert({
+              // Store all details in bio as structured data for admin
+              const bioData = [
+                mobileNumber,
+                email || '',
+                schoolName || '',
+                stream || '',
+                passOutYear || '',
+                district || '',
+                careerInterest || ''
+              ].join(' | ');
+              
+              const { error: profileError } = await supabase.from('profiles').upsert({
                 user_id: authData.user.id,
                 display_name: displayName || mobileNumber,
-                bio: mobileNumber + (email ? ` | ${email}` : ''),
+                bio: bioData,
               }, { onConflict: 'user_id' });
+              if (profileError) console.warn('[VAZHIKATTI] Profile error:', profileError.message);
+              else console.log('[VAZHIKATTI] Profile saved with all details');
             }
           } catch (profileErr) {
             console.warn('[VAZHIKATTI] Profile creation failed:', profileErr);

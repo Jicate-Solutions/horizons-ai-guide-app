@@ -64,7 +64,23 @@ const SimpleAdmin = () => {
       (r1 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: '12th Learner', full_name: r.full_name || '', school_name: r.school_name || '', stream: r.stream || '', district: r.preferred_institution || '', pass_out_year: r.preferred_course || '', career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''), source_table: 'registrations_12th_learners' }); } });
       (r2 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Learner', full_name: r.full_name || '', school_name: r.institution || '', stream: r.degree || '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_learners' }); } });
       (r3 || []).forEach(r => { const k = r.contact_phone || r.contact_email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.contact_email || '', phone: r.contact_phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Employer', full_name: r.contact_name || '', school_name: r.company_name || '', stream: '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_employers' }); } });
-      (r4 || []).forEach((p: any) => { const k = p.bio || p.display_name || p.id; if (!seen.has(k)) { seen.add(k); all.push({ id: p.id, email: p.bio || '', phone: '', created_at: p.created_at || '', last_sign_in: p.updated_at || '', provider: 'App User', full_name: p.display_name || '', school_name: '', stream: '', district: '', pass_out_year: '', career_interest: '', source_table: 'profiles' }); } });
+      (r4 || []).forEach((p: any) => {
+        const bio = p.bio || '';
+        // bio format: "phone | email | school | stream | year | district | career"
+        const parts = bio.split('|').map((s: string) => s.trim());
+        const phoneFromBio = parts[0] && /^\d{10}$/.test(parts[0]) ? parts[0] : '';
+        const emailFromBio = parts[1] || '';
+        const schoolFromBio = parts[2] || '';
+        const streamFromBio = parts[3] || '';
+        const yearFromBio = parts[4] || '';
+        const districtFromBio = parts[5] || '';
+        const careerFromBio = parts[6] || '';
+        const k = phoneFromBio || emailFromBio || p.display_name || p.id;
+        if (!seen.has(k)) {
+          seen.add(k);
+          all.push({ id: p.id, email: emailFromBio, phone: phoneFromBio, created_at: p.created_at || '', last_sign_in: p.updated_at || '', provider: 'App User', full_name: p.display_name || '', school_name: schoolFromBio, stream: streamFromBio, district: districtFromBio, pass_out_year: yearFromBio, career_interest: careerFromBio, source_table: 'profiles' });
+        }
+      });
 
       all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       setUsers(all);
