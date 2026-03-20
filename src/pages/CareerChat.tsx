@@ -1442,7 +1442,123 @@ Be empathetic and respect Indian family values while helping the student communi
         </div>
       </header>
 
-      <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-6 max-w-4xl">
+      <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-6 max-w-6xl">
+        <div className="flex gap-4">
+          {/* ═══ LEFT SIDEBAR — Always visible questions ═══ */}
+          <div className="hidden lg:block w-72 flex-shrink-0">
+            <div className="sticky top-20 space-y-3 max-h-[calc(100vh-120px)] overflow-y-auto pr-1">
+              <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">💡 Ask me anything</p>
+              
+              {/* Career Planning */}
+              <div>
+                <p className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded-lg mb-1.5">🎯 Career Planning</p>
+                {[
+                  { q: t("chat.q1"), icon: "🔬" },
+                  { q: t("chat.q2"), icon: "💰" },
+                  { q: t("chat.q3"), icon: "🤔" },
+                  { q: t("chat.q4"), icon: "📈" },
+                ].map((item, i) => (
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-xs text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 transition-all border border-transparent hover:border-emerald-200 mb-1">
+                    <span>{item.icon}</span>
+                    <span className="leading-tight">{item.q}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Stream Specific */}
+              <div>
+                <p className="text-[10px] font-bold text-rose-700 bg-rose-50 px-2 py-1 rounded-lg mb-1.5">🎓 By Stream</p>
+                {[
+                  { q: t("chat.stream1"), icon: "💻" },
+                  { q: t("chat.stream2"), icon: "🧬" },
+                  { q: t("chat.stream3"), icon: "📊" },
+                  { q: t("chat.stream4"), icon: "📖" },
+                ].map((item, i) => (
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-xs text-gray-700 hover:bg-rose-50 hover:text-rose-800 transition-all border border-transparent hover:border-rose-200 mb-1">
+                    <span>{item.icon}</span>
+                    <span className="leading-tight">{item.q}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Exam Prep */}
+              <div>
+                <p className="text-[10px] font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg mb-1.5">📚 Exam Preparation</p>
+                {[
+                  { q: t("chat.exam1"), icon: "🎯" },
+                  { q: t("chat.exam2"), icon: "🏥" },
+                  { q: t("chat.exam3"), icon: "🏛️" },
+                  { q: t("chat.exam4"), icon: "⚖️" },
+                ].map((item, i) => (
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-xs text-gray-700 hover:bg-violet-50 hover:text-violet-800 transition-all border border-transparent hover:border-violet-200 mb-1">
+                    <span>{item.icon}</span>
+                    <span className="leading-tight">{item.q}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Scholarships */}
+              <div>
+                <p className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg mb-1.5">💰 Scholarships</p>
+                {[
+                  { q: t("chat.scholarship1"), icon: "🎓" },
+                  { q: t("chat.scholarship2"), icon: "🏦" },
+                  { q: t("chat.scholarship3"), icon: "🏆" },
+                  { q: t("chat.scholarship4"), icon: "🌍" },
+                ].map((item, i) => (
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-xs text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 transition-all border border-transparent hover:border-emerald-200 mb-1">
+                    <span>{item.icon}</span>
+                    <span className="leading-tight">{item.q}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* College & Jobs */}
+              <div>
+                <p className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded-lg mb-1.5">🏫 College & Jobs</p>
+                {[
+                  { q: t("chat.q5"), icon: "📝" },
+                  { q: t("chat.q6"), icon: "🏫" },
+                  { q: t("chat.q7"), icon: "✈️" },
+                  { q: t("chat.q8"), icon: "🎯" },
+                ].map((item, i) => (
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-xs text-gray-700 hover:bg-blue-50 hover:text-blue-800 transition-all border border-transparent hover:border-blue-200 mb-1">
+                    <span>{item.icon}</span>
+                    <span className="leading-tight">{item.q}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ═══ MOBILE: Horizontal question strip (visible on small screens) ═══ */}
+          <div className="lg:hidden mb-2 -mx-2 px-2">
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {[
+                { q: t("chat.q1"), icon: "🔬" },
+                { q: t("chat.q3"), icon: "🤔" },
+                { q: t("chat.stream1"), icon: "💻" },
+                { q: t("chat.stream2"), icon: "🧬" },
+                { q: t("chat.exam1"), icon: "🎯" },
+                { q: t("chat.exam2"), icon: "🏥" },
+                { q: t("chat.scholarship1"), icon: "🎓" },
+                { q: t("chat.q6"), icon: "🏫" },
+              ].map((item, i) => (
+                <button key={i} onClick={() => handleQuickAction(item.q)}
+                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full bg-white border border-gray-200 text-[11px] font-medium text-gray-700 hover:border-emerald-400 hover:bg-emerald-50 transition-all whitespace-nowrap">
+                  <span>{item.icon}</span> {item.q.length > 30 ? item.q.substring(0, 30) + '...' : item.q}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ═══ MAIN CHAT AREA ═══ */}
+          <div className="flex-1 min-w-0">
         {/* Enhanced Chat Area */}
         <Card className="bg-white/70 backdrop-blur-xl border-2 border-white/60 shadow-2xl shadow-emerald-900/5 rounded-2xl sm:rounded-3xl mb-3 sm:mb-6 overflow-hidden">
           <CardContent className="p-0">
@@ -1732,6 +1848,8 @@ Be empathetic and respect Indian family values while helping the student communi
           </div>
         )}
       </div>
+      </div>{/* close flex-1 main chat */}
+      </div>{/* close flex gap-4 */}
     </div>
   );
 };
