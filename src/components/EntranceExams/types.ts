@@ -6,6 +6,7 @@ export interface PracticeQuestion {
   explanation: string;
   subject: string;
   difficulty: 'easy' | 'medium' | 'hard';
+  chapter?: string; // Links to syllabus tracker chapter ID
 }
 
 export interface EntranceExam {
