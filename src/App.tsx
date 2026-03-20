@@ -41,6 +41,7 @@ import CareerAssessment from "./pages/CareerAssessment";
 import AICareerPredictor from "./pages/AICareerPredictor";
 import SyllabusTracker from "./pages/SyllabusTracker";
 import ExamAlerts from "./pages/ExamAlerts";
+import RankPredictor from "./pages/RankPredictor";
 import SavedCourses from "./pages/SavedCourses";
 import { FindCollegesPage, ScholarshipsPage, EduCutoffPage, EntranceExamsPage, PYQPage, GovtJobsPage, TNUniversityPage, CourseExplorerPage, StartupGuidePage } from "./pages/CollegesTabPages";
 
@@ -119,6 +120,7 @@ function App() {
                 <Route path="/career-assessment/ai-predictor" element={<ProtectedRoute><AICareerPredictor /></ProtectedRoute>} />
                 <Route path="/syllabus-tracker" element={<ProtectedRoute><SyllabusTracker /></ProtectedRoute>} />
                 <Route path="/exam-alerts" element={<ProtectedRoute><ExamAlerts /></ProtectedRoute>} />
+                <Route path="/rank-predictor" element={<ProtectedRoute><RankPredictor /></ProtectedRoute>} />
                 <Route path="/career-assessment/saved-courses" element={<ProtectedRoute><SavedCourses /></ProtectedRoute>} />
                  
                  {/* EduCutoff - Admission Predictor */}

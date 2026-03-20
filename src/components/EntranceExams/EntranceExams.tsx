@@ -371,6 +371,11 @@ export const EntranceExams = () => {
                     <Bell className="w-4 h-4 text-red-600 mx-auto mb-0.5" />
                     <p className="text-[10px] font-bold text-red-700">Dates</p>
                   </button>
+                  <button onClick={() => navigate('/rank-predictor')}
+                    className="flex-1 bg-indigo-50 rounded-xl p-2.5 text-center border border-indigo-200 hover:bg-indigo-100">
+                    <Target className="w-4 h-4 text-indigo-600 mx-auto mb-0.5" />
+                    <p className="text-[10px] font-bold text-indigo-700">Rank</p>
+                  </button>
                 </div>
 
                 {/* Main exam detail */}
