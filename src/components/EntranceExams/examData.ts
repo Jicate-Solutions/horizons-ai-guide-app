@@ -71,7 +71,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'Must be Tamil Nadu domicile or have studied in TN for 7+ years',
     importantDates: {
       registration: 'May 2026',
-      examDate: 'N/A (Merit based)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'July 2026',
     },
     applicationFee: {
@@ -399,7 +399,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: '85% seats reserved for TN students! Govt college fee only ~₹14,000/year!',
     importantDates: {
       registration: 'June 2026',
-      examDate: 'N/A (Counselling)',
+      examDate: 'No Exam — Counselling Only',
       resultDate: 'July-Aug 2026',
     },
     applicationFee: {
@@ -513,7 +513,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'Govt nursing colleges through TN counselling - Many private options available',
     importantDates: {
       registration: 'June 2026',
-      examDate: 'N/A (Merit)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'July 2026',
     },
     applicationFee: {
@@ -552,7 +552,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'State quota for TN students in govt pharmacy colleges',
     importantDates: {
       registration: 'June 2026',
-      examDate: 'N/A (Merit)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'July 2026',
     },
     applicationFee: {
@@ -593,7 +593,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'Growing demand! Excellent job opportunities in hospitals across TN',
     importantDates: {
       registration: 'June 2026',
-      examDate: 'N/A (Merit)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'July 2026',
     },
     applicationFee: {
@@ -756,7 +756,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'Easiest route for TN students! No exam needed — just score 70%+ in 12th. Govt college fee is very low.',
     importantDates: {
       registration: 'April-May 2026',
-      examDate: 'N/A (Merit based)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'June-July 2026 (Counselling)',
     },
     applicationFee: {
@@ -953,7 +953,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'All TN universities accept 12th marks - Easy admission for TN students!',
     importantDates: {
       registration: 'May-June 2026',
-      examDate: 'N/A (Merit)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'June-July 2026',
     },
     applicationFee: {
@@ -1035,7 +1035,7 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: '100% State Quota - Only TN students eligible! Low fees govt education',
     importantDates: {
       registration: 'May 2026',
-      examDate: 'N/A (Merit)',
+      examDate: 'No Exam — Merit Based',
       resultDate: 'July 2026 (Counselling)',
     },
     applicationFee: {

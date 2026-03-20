@@ -46,13 +46,13 @@ const Footer = () => {
 
             {/* Navigation Links */}
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-              <a href="#about" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+              <a href="/auth" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                 {t('footer.about')}
               </a>
-              <a href="#events" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+              <a href="/exam-alerts" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                 {t('footer.events')}
               </a>
-              <a href="#contact" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+              <a href="/career-assessment/chat" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                 {t('footer.contact')}
               </a>
               <a href="/admin/monitor" className="text-xs text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors">

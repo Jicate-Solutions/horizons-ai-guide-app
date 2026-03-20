@@ -509,12 +509,110 @@ export const pyqQuestions: Record<string, PYQQuestion[]> = {
     { id: 942, year: 2021, exam: "NEET 2021", question: "Hess's law is based on:", options: ["Conservation of mass", "Conservation of energy", "Le Chatelier", "Avogadro"], answer: 1, topic: "Thermodynamics" },
   ],
 
+  // ═══ CLAT PYQs ═══
+  "clat::Legal::Principle-Fact Application": [
+    { id: 1001, year: 2023, exam: "CLAT 2023", question: "Principle: An act done in good faith for the benefit of a person without consent is not an offence. Fact: A doctor performs emergency surgery on an unconscious accident victim. The doctor is:", options: ["Liable for assault", "Not liable under good faith", "Liable for negligence", "Liable only if patient dies"], answer: 1, topic: "Principle-Fact Application" },
+    { id: 1002, year: 2022, exam: "CLAT 2022", question: "Principle: Nothing is an offence done by a child under 7. Fact: A 6-year-old throws a stone injuring a passerby. The child is:", options: ["Liable for hurt", "Not liable due to age", "Liable if parents are negligent", "Liable under tort"], answer: 1, topic: "Principle-Fact Application" },
+    { id: 1003, year: 2023, exam: "CLAT 2023", question: "Principle: Volenti non fit injuria — a person who consents to harm cannot claim damages. Fact: A spectator at a cricket match is hit by a ball. The spectator:", options: ["Can claim damages", "Cannot claim — assumed risk", "Can claim only if ball hit head", "Can claim if no safety nets"], answer: 1, topic: "Principle-Fact Application" },
+    { id: 1004, year: 2021, exam: "CLAT 2021", question: "Principle: An agreement without consideration is void. Fact: A promises to give B ₹10,000 as a gift. A later refuses. B sues. Court will:", options: ["Order A to pay", "Dismiss — no consideration", "Order partial payment", "Award damages to B"], answer: 1, topic: "Principle-Fact Application" },
+  ],
+  "clat::Legal::Law of Torts": [
+    { id: 1010, year: 2023, exam: "CLAT 2023", question: "In Rylands v Fletcher, the principle established was:", options: ["Contributory negligence", "Strict liability for dangerous things", "Vicarious liability", "Negligence per se"], answer: 1, topic: "Law of Torts" },
+    { id: 1011, year: 2022, exam: "CLAT 2022", question: "Defamation in written form is called:", options: ["Slander", "Libel", "Tort", "Nuisance"], answer: 1, topic: "Law of Torts" },
+    { id: 1012, year: 2021, exam: "CLAT 2021", question: "Nuisance affecting the general public is called:", options: ["Private nuisance", "Public nuisance", "Negligence", "Trespass"], answer: 1, topic: "Law of Torts" },
+  ],
+  "clat::English::Reading Comprehension": [
+    { id: 1020, year: 2023, exam: "CLAT 2023", question: "The author's primary purpose in the passage is to:", options: ["Entertain the reader", "Present a balanced argument", "Criticize government policy", "Describe a historical event"], answer: 1, topic: "Reading Comprehension" },
+    { id: 1021, year: 2022, exam: "CLAT 2022", question: "The word 'ubiquitous' as used in the passage most nearly means:", options: ["Rare", "Everywhere", "Dangerous", "Beautiful"], answer: 1, topic: "Reading Comprehension" },
+    { id: 1022, year: 2023, exam: "CLAT 2023", question: "Which of the following can be inferred from the passage?", options: ["The author supports the policy", "The author is neutral", "The author opposes the policy", "The author is uncertain"], answer: 2, topic: "Reading Comprehension" },
+  ],
+  "clat::GK::Constitutional Law": [
+    { id: 1030, year: 2023, exam: "CLAT 2023", question: "Which Article provides for equality before law?", options: ["Article 19", "Article 14", "Article 21", "Article 32"], answer: 1, topic: "Constitutional Law" },
+    { id: 1031, year: 2022, exam: "CLAT 2022", question: "Right to Constitutional Remedies is under:", options: ["Article 14", "Article 19", "Article 21", "Article 32"], answer: 3, topic: "Constitutional Law" },
+    { id: 1032, year: 2021, exam: "CLAT 2021", question: "73rd Amendment is related to:", options: ["Panchayati Raj", "Municipalities", "Fundamental Duties", "GST"], answer: 0, topic: "Constitutional Law" },
+    { id: 1033, year: 2023, exam: "CLAT 2023", question: "Kesavananda Bharati case established:", options: ["Judicial review", "Basic structure doctrine", "Right to property", "Emergency provisions"], answer: 1, topic: "Constitutional Law" },
+  ],
+  "clat::Logical::Critical Reasoning": [
+    { id: 1040, year: 2023, exam: "CLAT 2023", question: "Statement: All judges are lawyers. Some lawyers are politicians. Conclusion: Some judges are politicians.", options: ["Definitely true", "Probably true", "Definitely false", "Cannot be determined"], answer: 3, topic: "Critical Reasoning" },
+    { id: 1041, year: 2022, exam: "CLAT 2022", question: "If increasing taxes reduces spending, and reduced spending causes recession, then:", options: ["Increasing taxes always causes recession", "Increasing taxes may lead to recession", "Taxes and recession are unrelated", "Recession causes tax increase"], answer: 1, topic: "Critical Reasoning" },
+    { id: 1042, year: 2021, exam: "CLAT 2021", question: "Argument: 'We should ban all vehicles because they cause pollution.' This argument is weak because:", options: ["Pollution is not harmful", "It ignores benefits of vehicles", "Vehicles don't cause pollution", "Banning is unconstitutional"], answer: 1, topic: "Critical Reasoning" },
+  ],
+  "clat::Quantitative::Data Interpretation": [
+    { id: 1050, year: 2023, exam: "CLAT 2023", question: "If Company A's revenue was ₹50 Cr in 2022 and ₹60 Cr in 2023, the growth rate is:", options: ["10%", "15%", "20%", "25%"], answer: 2, topic: "Data Interpretation" },
+    { id: 1051, year: 2022, exam: "CLAT 2022", question: "A pie chart shows Education: 25%, Health: 20%, Defence: 30%, Others: 25%. If total budget is ₹1000 Cr, Defence spending is:", options: ["₹200 Cr", "₹250 Cr", "₹300 Cr", "₹350 Cr"], answer: 2, topic: "Data Interpretation" },
+  ],
+
+  // ═══ BITSAT PYQs ═══
+  "bitsat::Physics::Mechanics": [
+    { id: 1100, year: 2023, exam: "BITSAT 2023", question: "A ball is dropped from 80m. Time to reach ground (g=10):", options: ["2s", "4s", "8s", "16s"], answer: 1, topic: "Mechanics" },
+    { id: 1101, year: 2022, exam: "BITSAT 2022", question: "Two forces 3N and 4N act at right angles. Resultant is:", options: ["1N", "5N", "7N", "12N"], answer: 1, topic: "Mechanics" },
+    { id: 1102, year: 2023, exam: "BITSAT 2023", question: "A body of mass 5kg moves at 10m/s. Its momentum is:", options: ["2 kg⋅m/s", "15 kg⋅m/s", "50 kg⋅m/s", "500 kg⋅m/s"], answer: 2, topic: "Mechanics" },
+    { id: 1103, year: 2021, exam: "BITSAT 2021", question: "The centripetal acceleration of a body moving in a circle of radius 2m at 4m/s is:", options: ["2 m/s²", "4 m/s²", "8 m/s²", "16 m/s²"], answer: 2, topic: "Mechanics" },
+  ],
+  "bitsat::Chemistry::Organic": [
+    { id: 1110, year: 2023, exam: "BITSAT 2023", question: "IUPAC name of CH₃CH₂OH is:", options: ["Methanol", "Ethanol", "Propanol", "Butanol"], answer: 1, topic: "Organic" },
+    { id: 1111, year: 2022, exam: "BITSAT 2022", question: "Benzene undergoes:", options: ["Addition", "Electrophilic substitution", "Nucleophilic substitution", "Elimination"], answer: 1, topic: "Organic" },
+    { id: 1112, year: 2021, exam: "BITSAT 2021", question: "Grignard reagent is:", options: ["RLi", "RMgX", "RZnCl", "RNa"], answer: 1, topic: "Organic" },
+  ],
+  "bitsat::Maths::Calculus": [
+    { id: 1120, year: 2023, exam: "BITSAT 2023", question: "d/dx(sin x) =", options: ["cos x", "-cos x", "sin x", "-sin x"], answer: 0, topic: "Calculus" },
+    { id: 1121, year: 2022, exam: "BITSAT 2022", question: "∫cos x dx =", options: ["sin x + C", "-sin x + C", "cos x + C", "tan x + C"], answer: 0, topic: "Calculus" },
+    { id: 1122, year: 2023, exam: "BITSAT 2023", question: "The maximum value of sin x is:", options: ["0", "1", "2", "∞"], answer: 1, topic: "Calculus" },
+  ],
+  "bitsat::English::Vocabulary": [
+    { id: 1130, year: 2023, exam: "BITSAT 2023", question: "Synonym of 'Gregarious':", options: ["Shy", "Sociable", "Angry", "Silent"], answer: 1, topic: "Vocabulary" },
+    { id: 1131, year: 2022, exam: "BITSAT 2022", question: "Antonym of 'Opaque':", options: ["Dark", "Transparent", "Heavy", "Dense"], answer: 1, topic: "Vocabulary" },
+  ],
+
+  // ═══ VITEEE PYQs ═══
+  "viteee::Physics::Electromagnetism": [
+    { id: 1200, year: 2023, exam: "VITEEE 2023", question: "The SI unit of magnetic flux is:", options: ["Tesla", "Weber", "Henry", "Gauss"], answer: 1, topic: "Electromagnetism" },
+    { id: 1201, year: 2022, exam: "VITEEE 2022", question: "Faraday's law: emf = ", options: ["dΦ/dt", "-dΦ/dt", "Φ/t", "-Φ×t"], answer: 1, topic: "Electromagnetism" },
+    { id: 1202, year: 2023, exam: "VITEEE 2023", question: "A transformer with 100 primary and 500 secondary turns, input 220V gives:", options: ["44V", "1100V", "2200V", "440V"], answer: 1, topic: "Electromagnetism" },
+  ],
+  "viteee::Chemistry::Physical": [
+    { id: 1210, year: 2023, exam: "VITEEE 2023", question: "pH of 0.001 M NaOH is:", options: ["3", "11", "7", "14"], answer: 1, topic: "Physical" },
+    { id: 1211, year: 2022, exam: "VITEEE 2022", question: "Rate constant units for first order reaction:", options: ["mol/L/s", "s⁻¹", "L/mol/s", "mol²/L²/s"], answer: 1, topic: "Physical" },
+    { id: 1212, year: 2021, exam: "VITEEE 2021", question: "Nernst equation relates EMF to:", options: ["Temperature only", "Concentration of reactants/products", "Pressure only", "Volume"], answer: 1, topic: "Physical" },
+  ],
+  "viteee::Maths::Algebra": [
+    { id: 1220, year: 2023, exam: "VITEEE 2023", question: "If A is 2×2 matrix with |A|=5, then |3A| =", options: ["15", "45", "5", "9"], answer: 1, topic: "Algebra" },
+    { id: 1221, year: 2022, exam: "VITEEE 2022", question: "The number of terms in (a+b)¹⁰ is:", options: ["10", "11", "9", "20"], answer: 1, topic: "Algebra" },
+  ],
+  "viteee::Aptitude::Logical Reasoning": [
+    { id: 1230, year: 2023, exam: "VITEEE 2023", question: "If MOUSE is coded as PRXVH, then CHAIR is:", options: ["FKDLU", "FKDLR", "EKDLU", "FLDLU"], answer: 0, topic: "Logical Reasoning" },
+    { id: 1231, year: 2022, exam: "VITEEE 2022", question: "Next in series: 2, 3, 5, 7, 11, 13, ?", options: ["15", "17", "19", "21"], answer: 1, topic: "Logical Reasoning" },
+  ],
+
+  // ═══ MORE NEET PYQs — Frequently asked chapters ═══
+  "neet::Biology::Reproduction": [
+    { id: 1300, year: 2023, exam: "NEET 2023", question: "Double fertilization occurs in:", options: ["Gymnosperms", "Angiosperms", "Bryophytes", "Pteridophytes"], answer: 1, topic: "Reproduction" },
+    { id: 1301, year: 2022, exam: "NEET 2022", question: "The menstrual cycle is regulated by:", options: ["Thyroid hormones", "FSH and LH", "Insulin", "Adrenaline"], answer: 1, topic: "Reproduction" },
+    { id: 1302, year: 2021, exam: "NEET 2021", question: "Corpus luteum secretes:", options: ["Estrogen only", "Progesterone mainly", "FSH", "LH"], answer: 1, topic: "Reproduction" },
+    { id: 1303, year: 2023, exam: "NEET 2023", question: "Fertilization in humans occurs in:", options: ["Uterus", "Ampulla of fallopian tube", "Cervix", "Vagina"], answer: 1, topic: "Reproduction" },
+  ],
+  "neet::Biology::Biotechnology": [
+    { id: 1310, year: 2023, exam: "NEET 2023", question: "Restriction enzymes cut DNA at:", options: ["Random sites", "Specific palindromic sequences", "Any AT-rich region", "Telomeres only"], answer: 1, topic: "Biotechnology" },
+    { id: 1311, year: 2022, exam: "NEET 2022", question: "PCR requires:", options: ["DNA ligase", "Taq polymerase", "RNA polymerase", "Reverse transcriptase"], answer: 1, topic: "Biotechnology" },
+    { id: 1312, year: 2021, exam: "NEET 2021", question: "Bt toxin kills insects by:", options: ["Blocking nerve signals", "Creating pores in midgut", "Destroying DNA", "Inhibiting respiration"], answer: 1, topic: "Biotechnology" },
+  ],
+  "neet::Physics::Optics": [
+    { id: 1320, year: 2023, exam: "NEET 2023", question: "Power of a lens with focal length 50cm is:", options: ["0.5 D", "2 D", "5 D", "50 D"], answer: 1, topic: "Optics" },
+    { id: 1321, year: 2022, exam: "NEET 2022", question: "Critical angle for TIR depends on:", options: ["Angle of incidence", "Refractive indices of media", "Color of light only", "Intensity"], answer: 1, topic: "Optics" },
+    { id: 1322, year: 2021, exam: "NEET 2021", question: "In Young's double slit, if slit separation is halved, fringe width:", options: ["Halved", "Doubled", "Same", "Quadrupled"], answer: 1, topic: "Optics" },
+  ],
+  "neet::Chemistry::Electrochemistry": [
+    { id: 1330, year: 2023, exam: "NEET 2023", question: "In a galvanic cell, oxidation occurs at:", options: ["Cathode", "Anode", "Salt bridge", "Both electrodes"], answer: 1, topic: "Electrochemistry" },
+    { id: 1331, year: 2022, exam: "NEET 2022", question: "Faraday's first law: mass deposited is proportional to:", options: ["Voltage", "Quantity of electricity", "Resistance", "Temperature"], answer: 1, topic: "Electrochemistry" },
+    { id: 1332, year: 2021, exam: "NEET 2021", question: "Standard hydrogen electrode has E° =", options: ["-1V", "0V", "+1V", "+0.5V"], answer: 1, topic: "Electrochemistry" },
+  ],
+
 };
 
 // Helper to get questions for a topic
 export const getTopicQuestions = (examId: string, subject: string, topicName: string): PYQQuestion[] => {
   // Handle exam ID aliases
-  const idMap: Record<string, string> = { 'neet-ug': 'neet' };
+  const idMap: Record<string, string> = { 'neet-ug': 'neet', 'jee-main': 'jee-main', 'bitsat': 'bitsat', 'viteee': 'viteee', 'clat': 'clat' };
   const resolvedId = idMap[examId] || examId;
   const key = `${resolvedId}::${subject}::${topicName}`;
   return pyqQuestions[key] || [];
