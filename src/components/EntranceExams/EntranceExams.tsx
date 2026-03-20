@@ -164,9 +164,13 @@ export const EntranceExams = () => {
                   className="flex-1 py-2 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 text-[11px] font-bold flex items-center justify-center gap-1">
                   <BookOpen className="w-3 h-3" /> Study Guide
                 </button>
+                <button onClick={() => navigate('/question-bank')}
+                  className="flex-1 py-2 rounded-lg bg-violet-50 border border-violet-200 text-violet-700 text-[11px] font-bold flex items-center justify-center gap-1">
+                  <BookOpen className="w-3 h-3" /> Question Bank
+                </button>
                 <button onClick={() => navigate('/syllabus-tracker')}
                   className="flex-1 py-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-bold flex items-center justify-center gap-1">
-                  <Target className="w-3 h-3" /> Track Syllabus
+                  <Target className="w-3 h-3" /> Track
                 </button>
                 <button onClick={() => navigate('/exam-alerts')}
                   className="flex-1 py-2 rounded-lg bg-red-50 border border-red-200 text-red-700 text-[11px] font-bold flex items-center justify-center gap-1">
