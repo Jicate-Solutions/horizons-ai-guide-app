@@ -1306,6 +1306,15 @@ Be empathetic and respect Indian family values while helping the student communi
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-5 relative z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-4">
+              {/* Mobile: Questions sidebar toggle */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowQuestions(!showQuestions)}
+                className="md:hidden text-white/90 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300 h-9 w-9"
+              >
+                <MessageSquare className="h-5 w-5" />
+              </Button>
               <Button
                 variant="ghost"
                 size="icon"
@@ -1445,6 +1454,72 @@ Be empathetic and respect Indian family values while helping the student communi
       </header>
 
       <div className="mx-auto px-2 sm:px-4 py-3 sm:py-6" style={{ maxWidth: '1400px' }}>
+        {/* ═══ MOBILE: Slide-out questions panel ═══ */}
+        {showQuestions && (
+          <div className="md:hidden fixed inset-0 z-50">
+            <div className="absolute inset-0 bg-black/40" onClick={() => setShowQuestions(false)} />
+            <div className="absolute left-0 top-0 h-full w-72 bg-white shadow-2xl overflow-y-auto animate-slide-in-left">
+              <div className="sticky top-0 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between z-10">
+                <p className="text-sm font-bold text-gray-800">💡 Tap to ask</p>
+                <button onClick={() => setShowQuestions(false)} className="p-1 rounded-lg hover:bg-gray-100">
+                  <X className="w-5 h-5 text-gray-500" />
+                </button>
+              </div>
+              <div className="px-3 py-3 space-y-3">
+                {/* Career */}
+                <div>
+                  <p className="text-[10px] font-bold text-amber-600 px-2 py-1 rounded bg-amber-50 mb-1.5">🎯 Career Planning</p>
+                  {[{ q: t("chat.q1"), icon: "🔬" }, { q: t("chat.q2"), icon: "💰" }, { q: t("chat.q3"), icon: "🤔" }, { q: t("chat.q4"), icon: "📈" }].map((item, i) => (
+                    <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-emerald-50 transition-all mb-0.5">
+                      <span>{item.icon}</span><span className="leading-tight">{item.q}</span>
+                    </button>
+                  ))}
+                </div>
+                {/* Stream */}
+                <div>
+                  <p className="text-[10px] font-bold text-rose-600 px-2 py-1 rounded bg-rose-50 mb-1.5">🎓 By Stream</p>
+                  {[{ q: t("chat.stream1"), icon: "💻" }, { q: t("chat.stream2"), icon: "🧬" }, { q: t("chat.stream3"), icon: "📊" }, { q: t("chat.stream4"), icon: "📖" }].map((item, i) => (
+                    <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-rose-50 transition-all mb-0.5">
+                      <span>{item.icon}</span><span className="leading-tight">{item.q}</span>
+                    </button>
+                  ))}
+                </div>
+                {/* Exams */}
+                <div>
+                  <p className="text-[10px] font-bold text-violet-600 px-2 py-1 rounded bg-violet-50 mb-1.5">📚 Exam Preparation</p>
+                  {[{ q: t("chat.exam1"), icon: "🎯" }, { q: t("chat.exam2"), icon: "🏥" }, { q: t("chat.exam3"), icon: "🏛️" }, { q: t("chat.exam4"), icon: "⚖️" }].map((item, i) => (
+                    <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-violet-50 transition-all mb-0.5">
+                      <span>{item.icon}</span><span className="leading-tight">{item.q}</span>
+                    </button>
+                  ))}
+                </div>
+                {/* Scholarships */}
+                <div>
+                  <p className="text-[10px] font-bold text-emerald-600 px-2 py-1 rounded bg-emerald-50 mb-1.5">💰 Scholarships</p>
+                  {[{ q: t("chat.scholarship1"), icon: "🎓" }, { q: t("chat.scholarship2"), icon: "🏦" }, { q: t("chat.scholarship3"), icon: "🏆" }, { q: t("chat.scholarship4"), icon: "🌍" }].map((item, i) => (
+                    <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-emerald-50 transition-all mb-0.5">
+                      <span>{item.icon}</span><span className="leading-tight">{item.q}</span>
+                    </button>
+                  ))}
+                </div>
+                {/* College */}
+                <div>
+                  <p className="text-[10px] font-bold text-blue-600 px-2 py-1 rounded bg-blue-50 mb-1.5">🏫 College & Jobs</p>
+                  {[{ q: t("chat.q5"), icon: "📝" }, { q: t("chat.q6"), icon: "🏫" }, { q: t("chat.q7"), icon: "✈️" }, { q: t("chat.q8"), icon: "🎯" }].map((item, i) => (
+                    <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-blue-50 transition-all mb-0.5">
+                      <span>{item.icon}</span><span className="leading-tight">{item.q}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="flex gap-3">
           {/* ═══ LEFT SIDEBAR — Always visible on desktop ═══ */}
           <div className="hidden md:block w-56 flex-shrink-0">
