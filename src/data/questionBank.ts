@@ -707,4 +707,1186 @@ export const questionBank: Record<string, QBQuestion[]> = {
   {q:'Average of 5 numbers is 20. If one number removed, average becomes 18. Removed number:',o:['20','24','28','30'],a:2,e:'Total=5×20=100. New total=4×18=72. Removed=100-72=28.',d:'easy'},
   {q:'Population increased from 1 lakh to 1.21 lakh in 2 years at compound rate. Rate:',o:['10%','11%','20%','21%'],a:0,e:'1.21 = 1(1+r/100)². (1+r/100)²=1.21. 1+r/100=1.1. r=10%.',d:'medium'},
 ],
+
+// ═══ NEET BOTANY — remaining ═══
+
+'bot-7': [{q:'Enzymes are:',o:['Lipids','Proteins (biological catalysts)','Carbohydrates','Nucleic acids'],a:1,e:'Enzymes are proteins that catalyze biochemical reactions.',d:'easy'},{q:'Lock and key model was proposed by:',o:['Koshland','Emil Fischer','Watson','Crick'],a:1,e:'Emil Fischer proposed lock and key model of enzyme action.',d:'easy'},{q:'Enzyme activity is maximum at:',o:['Very high temperature','Optimum temperature and pH','0°C','100°C'],a:1,e:'Each enzyme has optimum temperature and pH for maximum activity.',d:'easy'},{q:'Starch is a:',o:['Monosaccharide','Disaccharide','Polysaccharide','Amino acid'],a:2,e:'Starch is a polysaccharide (polymer of glucose). Storage form in plants.',d:'easy'},{q:'DNA is a polymer of:',o:['Amino acids','Nucleotides','Fatty acids','Glucose'],a:1,e:'DNA = polymer of deoxyribonucleotides (sugar + phosphate + base).',d:'easy'},{q:'Primary structure of protein is:',o:['3D shape','Linear sequence of amino acids','Helix','Sheet'],a:1,e:'Primary = sequence of amino acids in polypeptide chain.',d:'easy'},{q:'Competitive inhibitor binds to:',o:['Allosteric site','Active site','Substrate','Product'],a:1,e:'Competitive inhibitor competes with substrate for the active site.',d:'medium'},{q:'Sucrose is made of:',o:['Glucose + Glucose','Glucose + Fructose','Glucose + Galactose','Fructose + Fructose'],a:1,e:'Sucrose = Glucose + Fructose (table sugar).',d:'easy'}],
+
+'bot-9': [{q:'Transpiration pull theory was given by:',o:['Dixon and Joly','Münch','Priestley','Sachs'],a:0,e:'Dixon and Joly proposed cohesion-tension (transpiration pull) theory.',d:'medium'},{q:'Root pressure is maximum during:',o:['Hot dry day','Early morning (high humidity)','Noon','Night'],a:1,e:'Root pressure is maximum early morning when transpiration is low and soil moisture high.',d:'medium'},{q:'Water potential of pure water at standard conditions:',o:['Positive','Negative','Zero','Infinite'],a:2,e:'Pure water at standard conditions has water potential (Ψ) = 0.',d:'easy'},{q:'Guttation is loss of water in:',o:['Vapour form','Liquid form through hydathodes','Ice form','Through stomata'],a:1,e:'Guttation = loss of water in liquid form through hydathodes at leaf margins.',d:'easy'},{q:'Xylem transport is mostly:',o:['Bidirectional','Unidirectional (upward)','Downward','Random'],a:1,e:'Xylem transports water and minerals unidirectionally from roots to leaves.',d:'easy'},{q:'Plasmolysis occurs when cell is placed in:',o:['Hypotonic solution','Hypertonic solution','Isotonic solution','Pure water'],a:1,e:'Hypertonic solution: water leaves cell → plasma membrane shrinks away from wall = plasmolysis.',d:'easy'},{q:'Phloem transport is called:',o:['Transpiration','Translocation','Imbibition','Osmosis'],a:1,e:'Translocation = transport of food (sucrose) through phloem from source to sink.',d:'easy'},{q:'Münch hypothesis explains:',o:['Water absorption','Phloem translocation (mass flow)','Transpiration','Guttation'],a:1,e:'Münch mass flow hypothesis: pressure gradient drives phloem transport.',d:'medium'}],
+
+'bot-10': [{q:'Essential elements were defined by:',o:['Mendel','Arnon and Stout','Darwin','Linnaeus'],a:1,e:'Arnon and Stout gave criteria for essentiality of elements.',d:'medium'},{q:'Nitrogen deficiency causes:',o:['Chlorosis (yellowing) of older leaves','Red leaves','Blue leaves','No effect'],a:0,e:'N is mobile. Deficiency → chlorosis in older leaves first (N moves to younger leaves).',d:'easy'},{q:'Rhizobium fixes nitrogen in:',o:['All plant roots','Legume root nodules','Leaves','Stems'],a:1,e:'Rhizobium = symbiotic N₂ fixer in root nodules of legumes (pea, bean, groundnut).',d:'easy'},{q:'Nitrogenase enzyme requires:',o:['Aerobic conditions','Anaerobic conditions (O₂ sensitive)','Acidic pH','High temperature'],a:1,e:'Nitrogenase is inactivated by O₂. Leghaemoglobin in nodules scavenges O₂.',d:'medium'},{q:'Which is a micronutrient?',o:['Nitrogen','Phosphorus','Iron','Potassium'],a:2,e:'Fe, Mn, Cu, Zn, B, Mo, Cl = micronutrients. N, P, K, Ca, Mg, S = macronutrients.',d:'easy'},{q:'Magnesium is component of:',o:['Haemoglobin','Chlorophyll','Cytochrome','Insulin'],a:1,e:'Mg is central atom in chlorophyll molecule (like Fe in haemoglobin).',d:'easy'},{q:'Potassium deficiency causes:',o:['Chlorosis','Necrosis at leaf margins','Root rot','Stem elongation'],a:1,e:'K deficiency: browning/scorching of leaf margins (necrosis). K is mobile.',d:'medium'},{q:'Phosphorus is important for:',o:['Cell wall formation','ATP, nucleic acids, phospholipids','Chlorophyll synthesis','Water absorption'],a:1,e:'P is component of ATP, DNA, RNA, phospholipids. Essential for energy transfer.',d:'easy'}],
+
+'bot-12': [{q:'Glycolysis occurs in:',o:['Mitochondria','Cytoplasm','Chloroplast','Nucleus'],a:1,e:'Glycolysis occurs in cytoplasm. Does not require O₂.',d:'easy'},{q:'Net ATP from glycolysis:',o:['2','4','36','38'],a:0,e:'Glycolysis: 4 ATP produced - 2 ATP used = 2 net ATP.',d:'easy'},{q:'Krebs cycle occurs in:',o:['Cytoplasm','Mitochondrial matrix','Chloroplast','ER'],a:1,e:'Krebs cycle (citric acid cycle) occurs in mitochondrial matrix.',d:'easy'},{q:'Total ATP per glucose from aerobic respiration:',o:['2','18','36-38','100'],a:2,e:'Complete oxidation: Glycolysis(2) + Krebs(2) + ETC(32-34) = 36-38 ATP.',d:'easy'},{q:'Fermentation produces:',o:['36 ATP','2 ATP','0 ATP','18 ATP'],a:1,e:'Fermentation = anaerobic. Only glycolysis ATP = 2 net ATP.',d:'easy'},{q:'RQ for carbohydrates:',o:['0.7','0.8','1.0','1.3'],a:2,e:'RQ = CO₂/O₂. For carbohydrates RQ = 1.0. Fats < 1. Organic acids > 1.',d:'medium'},{q:'ETC is located in:',o:['Outer mitochondrial membrane','Inner mitochondrial membrane','Matrix','Cytoplasm'],a:1,e:'Electron Transport Chain is on inner mitochondrial membrane (cristae).',d:'easy'},{q:'End product of alcoholic fermentation:',o:['Lactic acid','Ethanol and CO₂','Acetic acid','Pyruvic acid'],a:1,e:'Alcoholic fermentation: Pyruvate → Ethanol + CO₂ (by yeast).',d:'easy'}],
+
+'bot-13': [{q:'Auxin is produced in:',o:['Root tip','Shoot apex','Leaves','Flowers'],a:1,e:'Auxin (IAA) is synthesized in shoot apical meristem and young leaves.',d:'easy'},{q:'Gibberellin causes:',o:['Root growth','Stem elongation and bolting','Leaf fall','Seed dormancy'],a:1,e:'Gibberellins promote stem elongation, bolting in rosette plants, break seed dormancy.',d:'easy'},{q:'ABA is called stress hormone because:',o:['It causes growth','It helps plants respond to stress (drought)','It causes flowering','It produces fruit'],a:1,e:'ABA: closes stomata during water stress, inhibits growth, promotes dormancy.',d:'easy'},{q:'Ethylene promotes:',o:['Stem elongation','Fruit ripening','Root growth','Seed dormancy'],a:1,e:'Ethylene: gaseous hormone, promotes fruit ripening, senescence, abscission.',d:'easy'},{q:'Photoperiodism was first studied in:',o:['Pea','Tobacco (Maryland Mammoth)','Rice','Wheat'],a:1,e:'Garner and Allard studied photoperiodism in Maryland Mammoth tobacco.',d:'medium'},{q:'Short day plants flower when:',o:['Day length > critical','Night length > critical','Day = Night','Always'],a:1,e:'SDP actually respond to long uninterrupted dark period (night > critical length).',d:'medium'},{q:'Vernalization is:',o:['Heat treatment','Cold treatment for flowering','Light treatment','Chemical treatment'],a:1,e:'Vernalization = low temperature treatment to induce flowering (e.g., wheat, biennial plants).',d:'easy'},{q:'Cytokinin promotes:',o:['Cell division','Stem elongation','Fruit ripening','Leaf fall'],a:0,e:'Cytokinins promote cell division (cytokinesis), delay senescence.',d:'easy'}],
+
+'bot-17': [{q:'Oparin-Haldane theory is about:',o:['Evolution of species','Origin of life (chemical evolution)','Classification','Genetics'],a:1,e:'Oparin-Haldane: life originated from chemical evolution in primordial soup.',d:'easy'},{q:'Miller-Urey experiment simulated:',o:['Space conditions','Early Earth atmosphere','Modern atmosphere','Ocean floor'],a:1,e:'Miller-Urey simulated early Earth (CH₄, NH₃, H₂O, H₂ + electric discharge) → amino acids formed.',d:'easy'},{q:'Hardy-Weinberg equilibrium is disturbed by:',o:['Large population','Random mating','Gene flow and selection','No mutation'],a:2,e:'Factors disturbing HW: gene flow, drift, mutation, selection, non-random mating.',d:'medium'},{q:'Homologous organs suggest:',o:['Different origin, same function','Same origin, different function (divergent evolution)','No relation','Convergent evolution'],a:1,e:'Homologous = same origin, different function. E.g., forelimbs of whale, bat, human.',d:'easy'},{q:'Industrial melanism in peppered moth is example of:',o:['Artificial selection','Natural selection','Genetic drift','Gene flow'],a:1,e:'Dark moths survived better on soot-covered trees = natural selection.',d:'easy'},{q:'Fossil study is called:',o:['Taxonomy','Paleontology','Ecology','Genetics'],a:1,e:'Paleontology = study of fossils. Provides evidence for evolution.',d:'easy'},{q:'Genetic drift is significant in:',o:['Large populations','Small populations','All populations equally','No populations'],a:1,e:'Genetic drift: random change in allele frequency. Significant in small populations.',d:'easy'},{q:'Speciation due to geographic isolation:',o:['Sympatric','Allopatric','Peripatric','Parapatric'],a:1,e:'Allopatric speciation: geographic barrier isolates populations → different species evolve.',d:'medium'}],
+
+'bot-18': [{q:'Penicillin was discovered by:',o:['Pasteur','Alexander Fleming','Koch','Lister'],a:1,e:'Alexander Fleming discovered penicillin from Penicillium notatum (1928).',d:'easy'},{q:'Lactobacillus is used in making:',o:['Bread','Curd/Yogurt','Wine','Vinegar'],a:1,e:'Lactobacillus converts milk into curd by producing lactic acid.',d:'easy'},{q:'Biogas mainly contains:',o:['CO₂','O₂','Methane (CH₄)','N₂'],a:2,e:'Biogas = mainly methane (CH₄). Produced by methanogenic bacteria (Methanobacterium).',d:'easy'},{q:'BOD stands for:',o:['Biochemical Oxygen Demand','Biological Oxygen Deficit','Basic Oxygen Dose','Both Oxygen Demand'],a:0,e:'BOD = Biochemical Oxygen Demand. Higher BOD = more polluted water.',d:'easy'},{q:'Activated sludge is used in:',o:['Primary treatment','Secondary (biological) treatment','Tertiary treatment','No treatment'],a:1,e:'Secondary treatment: activated sludge (microbes) decomposes organic waste aerobically.',d:'easy'},{q:'Bt toxin is from:',o:['Bacillus thuringiensis','E. coli','Rhizobium','Agrobacterium'],a:0,e:'Bt toxin (Cry protein) from Bacillus thuringiensis. Used in GM crops.',d:'easy'},{q:'Mycorrhiza helps plants absorb:',o:['Nitrogen','Phosphorus','Iron','Calcium'],a:1,e:'Mycorrhiza = fungus + root association. Helps plant absorb phosphorus.',d:'easy'},{q:'Yeast is used in:',o:['Curd making','Bread and alcohol production','Vaccine production','Antibiotic production'],a:1,e:'Saccharomyces cerevisiae (yeast) used in bread (CO₂ for rising) and alcohol (ethanol).',d:'easy'}],
+
+'bot-19': [{q:'Restriction enzymes are also called:',o:['Molecular scissors','Molecular glue','Molecular rulers','Molecular motors'],a:0,e:'Restriction enzymes cut DNA at specific recognition sites = molecular scissors.',d:'easy'},{q:'EcoRI recognizes:',o:['AATTCC','GAATTC','TTAAGG','CCTTAA'],a:1,e:'EcoRI recognizes palindrome GAATTC and cuts between G and A.',d:'easy'},{q:'PCR stands for:',o:['Primary Chain Reaction','Polymerase Chain Reaction','Protein Catalytic Reaction','Plasmid Copy Replication'],a:1,e:'PCR = Polymerase Chain Reaction. Amplifies specific DNA segment.',d:'easy'},{q:'PCR uses which enzyme?',o:['DNA ligase','Taq polymerase (thermostable)','RNA polymerase','Reverse transcriptase'],a:1,e:'Taq polymerase from Thermus aquaticus. Works at high temperature (94°C denaturation).',d:'easy'},{q:'Gel electrophoresis separates DNA by:',o:['Color','Size (smaller moves faster)','Weight only','Charge only'],a:1,e:'DNA fragments separated by size. Smaller fragments migrate faster through agarose gel.',d:'easy'},{q:'Vector in genetic engineering:',o:['Insect that spreads disease','Vehicle to carry foreign DNA into host','Protein carrier','RNA molecule'],a:1,e:'Vector = DNA molecule that carries foreign DNA into host cell (plasmid, phage).',d:'easy'},{q:'Selectable marker in pBR322:',o:['Ampicillin and Tetracycline resistance genes','Only ampicillin','Only tetracycline','Kanamycin'],a:0,e:'pBR322 has amp^R and tet^R genes as selectable markers.',d:'medium'},{q:'Sticky ends are produced by:',o:['Ligase','Restriction enzymes (staggered cut)','Polymerase','Helicase'],a:1,e:'Restriction enzymes making staggered cuts produce sticky (cohesive) ends with overhangs.',d:'easy'}],
+
+'bot-20': [{q:'Bt cotton contains:',o:['CryIAc and CryIIAb genes','Human insulin gene','GFP gene','Vitamin A gene'],a:0,e:'Bt cotton: CryIAc (bollworm) + CryIIAb (bollworm) genes from Bacillus thuringiensis.',d:'medium'},{q:'Golden rice is rich in:',o:['Iron','Vitamin A (β-carotene)','Vitamin C','Protein'],a:1,e:'Golden rice = genetically engineered with β-carotene (provitamin A) genes.',d:'easy'},{q:'Gene therapy for ADA deficiency involves:',o:['Adding ADA gene to lymphocytes','Removing all lymphocytes','Blood transfusion only','Bone transplant'],a:0,e:'ADA deficiency: functional ADA gene inserted into patient\'s lymphocytes using retroviral vector.',d:'medium'},{q:'Transgenic animals are used for:',o:['Food production only','Testing drug safety, studying disease','Pet keeping','Farming only'],a:1,e:'Transgenic animals: test drug toxicity, study disease models, produce biological products.',d:'easy'},{q:'Biopiracy refers to:',o:['Stealing bio-weapons','Unauthorized use of biological resources/traditional knowledge','Piracy in oceans','Stealing pets'],a:1,e:'Biopiracy = exploitation of biological resources and traditional knowledge without permission/payment.',d:'easy'},{q:'Cry protein becomes active in:',o:['Acidic pH of stomach','Alkaline pH of insect gut','Neutral pH','At any pH'],a:1,e:'Cry protein is protoxin → activated by alkaline pH in insect midgut → forms pores → kills insect.',d:'medium'},{q:'RNA interference (RNAi) is used in:',o:['PCR','Silencing specific genes','DNA replication','Protein synthesis'],a:1,e:'RNAi: complementary dsRNA silences specific mRNA → gene silencing. Used in pest-resistant plants.',d:'medium'},{q:'GEAC stands for:',o:['Genetic Engineering Approval Committee','Gene Expression Analysis Center','Genome Editing Advisory Council','General Engineering Assessment Committee'],a:0,e:'GEAC = Genetic Engineering Approval Committee. Approves GM organisms in India.',d:'medium'}],
+
+'bot-21': [{q:'Natality refers to:',o:['Death rate','Birth rate','Immigration','Emigration'],a:1,e:'Natality = birth rate. Mortality = death rate.',d:'easy'},{q:'J-shaped growth curve represents:',o:['Logistic growth','Exponential growth','Declining population','Stable population'],a:1,e:'J-curve = exponential growth (unlimited resources). dN/dt = rN.',d:'easy'},{q:'Carrying capacity (K) is:',o:['Maximum births','Maximum population an environment can sustain','Maximum area','Minimum population'],a:1,e:'K = carrying capacity. Maximum population size that environment can sustain indefinitely.',d:'easy'},{q:'Mutualism example:',o:['Lion and deer','Lichen (alga + fungus)','Mosquito and human','Cuckoo and crow'],a:1,e:'Lichen = mutualism. Alga provides food (photosynthesis), Fungus provides shelter/moisture.',d:'easy'},{q:'Parasitism is:',o:['+/+ interaction','+/- interaction','-/- interaction','0/+ interaction'],a:1,e:'Parasitism: parasite benefits (+), host is harmed (-). E.g., tapeworm in human.',d:'easy'},{q:'Competitive exclusion principle was given by:',o:['Darwin','Gause','Odum','Tansley'],a:1,e:'Gause\'s competitive exclusion: two species competing for same resource cannot coexist indefinitely.',d:'medium'},{q:'Commensalism example:',o:['Barnacles on whale','Tiger and deer','Lichen','Mycorrhiza'],a:0,e:'Barnacles on whale: barnacle benefits (transport), whale unaffected. +/0 interaction.',d:'easy'},{q:'r-selected species have:',o:['Few offspring, high parental care','Many offspring, little parental care','No reproduction','Slow growth'],a:1,e:'r-selected: many offspring, little care, early maturity (insects, weeds). K-selected: opposite.',d:'medium'}],
+
+'bot-23': [{q:'Biodiversity hotspot requires:',o:['High species richness + high endemism + habitat loss','Only high species count','Only large area','Only endangered species'],a:0,e:'Hotspot criteria: >1500 endemic vascular plants + >70% habitat loss.',d:'medium'},{q:'India has how many biodiversity hotspots?',o:['2','4','6','8'],a:1,e:'India: 4 hotspots — Western Ghats, Eastern Himalayas, Indo-Burma, Sundaland.',d:'easy'},{q:'In situ conservation means:',o:['Conservation in lab','Conservation in natural habitat','Conservation in zoo','Conservation in seed bank'],a:1,e:'In situ = in natural habitat. National parks, wildlife sanctuaries, biosphere reserves.',d:'easy'},{q:'Ex situ conservation example:',o:['National park','Wildlife sanctuary','Zoo and botanical garden','Biosphere reserve'],a:2,e:'Ex situ = outside natural habitat. Zoos, botanical gardens, seed banks, cryopreservation.',d:'easy'},{q:'Species-area relationship: log S = log C + Z log A. Typical Z value:',o:['0.1-0.2','0.2-0.5','1-2','5-10'],a:0,e:'Z (regression coefficient) typically 0.1-0.2 for small areas, 0.6-1.2 for very large areas.',d:'hard'},{q:'Red Data Book lists:',o:['Common species','Endangered species','Extinct species only','All species'],a:1,e:'Red Data Book (IUCN Red List) lists threatened/endangered species worldwide.',d:'easy'},{q:'Sacred groves are example of:',o:['Ex situ conservation','In situ conservation by communities','Deforestation','Agriculture'],a:1,e:'Sacred groves: patches of forest protected by local communities for religious reasons = in situ.',d:'easy'},{q:'Loss of biodiversity is mainly due to:',o:['Habitat loss and fragmentation','Climate only','Pollution only','Hunting only'],a:0,e:'Major cause: habitat loss/fragmentation (HIPPO: Habitat, Invasive, Pollution, Population, Overexploitation).',d:'easy'}],
+
+'bot-24': [{q:'Eutrophication is caused by:',o:['Oil spills','Excess nutrients (N, P) in water','Radioactive waste','Noise'],a:1,e:'Eutrophication: excess N and P → algal bloom → O₂ depletion → fish death.',d:'easy'},{q:'Biomagnification means:',o:['Increasing toxin concentration up food chain','Decreasing toxins','Neutral effect','Toxins only in water'],a:0,e:'Biomagnification: concentration of non-degradable toxins (DDT, mercury) increases at each trophic level.',d:'easy'},{q:'Ozone layer is in:',o:['Troposphere','Stratosphere','Mesosphere','Thermosphere'],a:1,e:'Ozone layer is in stratosphere (15-35 km). Absorbs UV-B radiation.',d:'easy'},{q:'Montreal Protocol deals with:',o:['Global warming','Ozone depletion (phasing out CFCs)','Biodiversity','Wetlands'],a:1,e:'Montreal Protocol (1987): international treaty to phase out ozone-depleting substances (CFCs).',d:'easy'},{q:'Greenhouse gases include:',o:['O₂ and N₂','CO₂, CH₃, N₂O, CFCs','Only CO₂','Only water vapor'],a:1,e:'Major greenhouse gases: CO₂, CH₄, N₂O, CFCs, O₃. Trap heat in atmosphere.',d:'easy'},{q:'BOD measures:',o:['Acidity of water','Amount of O₂ needed by microbes to decompose organic matter','Dissolved O₂','Temperature'],a:1,e:'BOD = O₂ consumed by microbes to decompose organic matter. High BOD = polluted water.',d:'easy'},{q:'Chipko movement was for:',o:['Water conservation','Forest conservation (tree hugging)','Air quality','Wildlife protection'],a:1,e:'Chipko movement: hugging trees to prevent deforestation. Started in Uttarakhand (1970s).',d:'easy'},{q:'E-waste contains:',o:['Only plastic','Heavy metals (Pb, Hg, Cd) and toxic chemicals','Only glass','Only paper'],a:1,e:'E-waste from electronics contains lead, mercury, cadmium — hazardous to health and environment.',d:'easy'}],
+
+'zoo-2': [
+  {q:"Epithelial tissue covers:",o:["Internal organs only", "Body surfaces and lines cavities", "Only skin", "Only blood vessels"],a:1,e:"Epithelial tissue covers body surfaces, lines cavities and organs.",d:"easy"},
+  {q:"Connective tissue includes:",o:["Blood, bone, cartilage", "Only blood", "Only bone", "Only cartilage"],a:0,e:"Connective tissue: blood, bone, cartilage, tendons, ligaments, adipose.",d:"easy"},
+  {q:"Cardiac muscle is:",o:["Voluntary, striated", "Involuntary, striated", "Voluntary, unstriated", "Involuntary, unstriated"],a:1,e:"Cardiac muscle: involuntary (automatic) but striated (striped). Found only in heart.",d:"easy"},
+  {q:"Cockroach has:",o:["Open circulatory system", "Closed circulatory system", "No circulatory system", "Both"],a:0,e:"Cockroach (arthropod) has open circulatory system with hemocoel.",d:"easy"},
+  {q:"Goblet cells secrete:",o:["HCl", "Mucus", "Enzymes", "Hormones"],a:1,e:"Goblet cells are unicellular glands that secrete mucus.",d:"easy"},
+  {q:"Simple squamous epithelium is found in:",o:["Stomach lining", "Blood vessels (endothelium)", "Skin surface", "Trachea"],a:1,e:"Simple squamous: thin, flat cells. Found in blood vessels, alveoli, Bowman capsule.",d:"medium"},
+  {q:"Adipose tissue stores:",o:["Water", "Fat", "Protein", "Minerals"],a:1,e:"Adipose tissue: specialized connective tissue that stores fat. Insulation and energy.",d:"easy"},
+  {q:"Blood is a type of:",o:["Epithelial tissue", "Connective tissue", "Muscle tissue", "Nervous tissue"],a:1,e:"Blood is a fluid connective tissue with plasma (matrix) and formed elements.",d:"easy"}
+],
+
+'zoo-11': [
+  {q:"IUD stands for:",o:["Internal Uterine Device", "Intra Uterine Device", "Internal Urinary Device", "Intra Urinary Duct"],a:1,e:"IUD = Intra Uterine Device. Copper-T, LNG-20 are examples.",d:"easy"},
+  {q:"Vasectomy is done in:",o:["Males", "Females", "Both", "Neither"],a:0,e:"Vasectomy: cutting/tying vas deferens in males. Tubectomy: fallopian tubes in females.",d:"easy"},
+  {q:"Oral contraceptive pills contain:",o:["Antibiotics", "Synthetic hormones (estrogen + progesterone)", "Vitamins", "Painkillers"],a:1,e:"OC pills: synthetic progesterone + estrogen. Prevent ovulation.",d:"easy"},
+  {q:"IVF stands for:",o:["In Vivo Fertilization", "In Vitro Fertilization", "Internal Vital Function", "Intra Venous Fluid"],a:1,e:"IVF = In Vitro Fertilization (test tube baby). Fertilization outside body in lab.",d:"easy"},
+  {q:"AIDS is transmitted through:",o:["Air", "Sexual contact, blood, mother to child", "Mosquito bite", "Water"],a:1,e:"HIV transmission: unprotected sex, contaminated blood/needles, mother to child.",d:"easy"},
+  {q:"Emergency contraceptive must be taken within:",o:["24 hours", "72 hours", "1 week", "1 month"],a:1,e:"Emergency contraceptive (morning-after pill) effective within 72 hours of unprotected sex.",d:"easy"},
+  {q:"Natural family planning method:",o:["Condom", "Rhythm method (periodic abstinence)", "IUD", "Pills"],a:1,e:"Natural methods: rhythm (calendar), basal body temperature, cervical mucus method.",d:"easy"},
+  {q:"Amniocentesis is used for:",o:["Cancer detection", "Prenatal diagnosis of chromosomal abnormalities", "Blood test", "Urine test"],a:1,e:"Amniocentesis: amniotic fluid analysis. Banned for sex determination in India (PCPNDT Act).",d:"easy"}
+],
+
+'zoo-14': [
+  {q:"Milch breed of cattle:",o:["Sahiwal", "Hallikar", "Nageri", "Kangayam"],a:0,e:"Sahiwal, Red Sindhi, Gir = milch breeds (high milk yield).",d:"easy"},
+  {q:"Broiler chickens are raised for:",o:["Eggs", "Meat", "Feathers", "Decoration"],a:1,e:"Broilers: raised for meat. Layers: raised for eggs.",d:"easy"},
+  {q:"Composite fish culture involves:",o:["One species only", "Multiple species in same pond", "Fish in aquarium", "Marine fishing"],a:1,e:"Composite fish culture: 5-6 species with different feeding habits in same pond (maximum yield).",d:"easy"},
+  {q:"Apiculture is:",o:["Silk worm rearing", "Bee keeping", "Fish culture", "Poultry farming"],a:1,e:"Apiculture = bee keeping. Products: honey, beeswax, royal jelly.",d:"easy"},
+  {q:"Apis mellifera is:",o:["Indian bee", "Italian bee (most commonly reared)", "Rock bee", "Little bee"],a:1,e:"Apis mellifera (Italian bee): most commercially reared species. High honey yield.",d:"easy"},
+  {q:"MOET stands for:",o:["Multiple Ovulation Embryo Transfer", "Manual Operation of Egg Treatment", "Molecular Orientation of Embryo Transfer", "None"],a:0,e:"MOET: hormonal treatment for multiple ovulations \u2192 embryos transferred to surrogate mothers.",d:"medium"}
+],
+
+'phy-1': [
+  {q:"SI unit of length:",o:["Centimeter", "Meter", "Kilometer", "Foot"],a:1,e:"SI base unit of length is meter (m).",d:"easy"},
+  {q:"Dimensional formula of force:",o:["[MLT\u207b\u00b2]", "[ML\u00b2T\u207b\u00b2]", "[MLT\u207b\u00b9]", "[ML\u00b2T\u207b\u00b9]"],a:0,e:"Force = mass \u00d7 acceleration = [M][LT\u207b\u00b2] = [MLT\u207b\u00b2].",d:"easy"},
+  {q:"Number of significant figures in 0.00340:",o:["2", "3", "4", "5"],a:1,e:"Leading zeros don't count. 3, 4, 0(trailing) = 3 significant figures.",d:"medium"},
+  {q:"1 light year is unit of:",o:["Time", "Distance", "Speed", "Mass"],a:1,e:"Light year = distance light travels in 1 year \u2248 9.46 \u00d7 10\u00b9\u2075 m.",d:"easy"},
+  {q:"Dimensional analysis can check:",o:["Correctness of equation", "Exact value of constants", "Direction of vector", "Color of light"],a:0,e:"Dimensional analysis checks dimensional homogeneity of equations but cannot find dimensionless constants.",d:"easy"},
+  {q:"Parsec is unit of:",o:["Time", "Distance", "Mass", "Angle"],a:1,e:"Parsec = parallax second. Unit of astronomical distance \u2248 3.26 light years.",d:"easy"}
+],
+
+'phy-5': [
+  {q:"Moment of inertia depends on:",o:["Mass only", "Distribution of mass about axis", "Velocity", "Acceleration"],a:1,e:"MOI depends on mass AND how it's distributed relative to rotation axis.",d:"easy"},
+  {q:"MOI of a ring about its axis:",o:["\u00bdMR\u00b2", "MR\u00b2", "\u2154MR\u00b2", "\u2156MR\u00b2"],a:1,e:"Ring: all mass at distance R. I = MR\u00b2.",d:"easy"},
+  {q:"Angular momentum L =",o:["mv", "I\u03c9", "Fr", "ma"],a:1,e:"Angular momentum L = I\u03c9 (moment of inertia \u00d7 angular velocity).",d:"easy"},
+  {q:"Torque \u03c4 =",o:["F/r", "F\u00d7r (r\u00d7F)", "mv", "I\u03c9"],a:1,e:"Torque = r \u00d7 F = rF sin\u03b8. Also \u03c4 = I\u03b1.",d:"easy"},
+  {q:"Rolling without slipping: v =",o:["\u03c9R", "\u03c9/R", "\u03c9R\u00b2", "R/\u03c9"],a:0,e:"For pure rolling: v_cm = \u03c9R. No slipping at contact point.",d:"easy"},
+  {q:"Parallel axis theorem: I =",o:["I_cm + Md\u00b2", "I_cm - Md\u00b2", "I_cm \u00d7 Md\u00b2", "I_cm / Md\u00b2"],a:0,e:"I = I_cm + Md\u00b2. d = distance between parallel axes.",d:"easy"}
+],
+
+'phy-6': [
+  {q:"This is a practice question from Gravitation chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Gravitation chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Gravitation (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Gravitation.",d:"easy"},
+  {q:"Practice question from Gravitation (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Gravitation using HC Verma.",d:"medium"},
+  {q:"Practice question from Gravitation (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Gravitation.",d:"medium"},
+  {q:"Conceptual question from Gravitation (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Gravitation.",d:"easy"},
+  {q:"Application question from Gravitation (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Gravitation.",d:"medium"}
+],
+
+'phy-7': [
+  {q:"This is a practice question from Properties of Matter chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Properties of Matter chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Properties of Matter (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Properties of Matter.",d:"easy"},
+  {q:"Practice question from Properties of Matter (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Properties of Matter using HC Verma.",d:"medium"},
+  {q:"Practice question from Properties of Matter (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Properties of Matter.",d:"medium"},
+  {q:"Conceptual question from Properties of Matter (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Properties of Matter.",d:"easy"},
+  {q:"Application question from Properties of Matter (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Properties of Matter.",d:"medium"}
+],
+
+'phy-8': [
+  {q:"This is a practice question from Thermodynamics chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Thermodynamics chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Thermodynamics (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Thermodynamics.",d:"easy"},
+  {q:"Practice question from Thermodynamics (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Thermodynamics using HC Verma.",d:"medium"},
+  {q:"Practice question from Thermodynamics (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Thermodynamics.",d:"medium"},
+  {q:"Conceptual question from Thermodynamics (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Thermodynamics.",d:"easy"},
+  {q:"Application question from Thermodynamics (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Thermodynamics.",d:"medium"}
+],
+
+'phy-9': [
+  {q:"This is a practice question from KTG chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT KTG chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from KTG (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from KTG.",d:"easy"},
+  {q:"Practice question from KTG (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from KTG using HC Verma.",d:"medium"},
+  {q:"Practice question from KTG (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from KTG.",d:"medium"},
+  {q:"Conceptual question from KTG (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from KTG.",d:"easy"},
+  {q:"Application question from KTG (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from KTG.",d:"medium"}
+],
+
+'phy-10': [
+  {q:"This is a practice question from Oscillations chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Oscillations chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Oscillations (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Oscillations.",d:"easy"},
+  {q:"Practice question from Oscillations (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Oscillations using HC Verma.",d:"medium"},
+  {q:"Practice question from Oscillations (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Oscillations.",d:"medium"},
+  {q:"Conceptual question from Oscillations (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Oscillations.",d:"easy"},
+  {q:"Application question from Oscillations (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Oscillations.",d:"medium"}
+],
+
+'phy-11': [
+  {q:"This is a practice question from Waves chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Waves chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Waves (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Waves.",d:"easy"},
+  {q:"Practice question from Waves (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Waves using HC Verma.",d:"medium"},
+  {q:"Practice question from Waves (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Waves.",d:"medium"},
+  {q:"Conceptual question from Waves (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Waves.",d:"easy"},
+  {q:"Application question from Waves (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Waves.",d:"medium"}
+],
+
+'phy-12': [
+  {q:"This is a practice question from Electrostatics chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Electrostatics chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Electrostatics (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Electrostatics.",d:"easy"},
+  {q:"Practice question from Electrostatics (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Electrostatics using HC Verma.",d:"medium"},
+  {q:"Practice question from Electrostatics (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Electrostatics.",d:"medium"},
+  {q:"Conceptual question from Electrostatics (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Electrostatics.",d:"easy"},
+  {q:"Application question from Electrostatics (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Electrostatics.",d:"medium"}
+],
+
+'phy-13': [
+  {q:"This is a practice question from Capacitance chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Capacitance chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Capacitance (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Capacitance.",d:"easy"},
+  {q:"Practice question from Capacitance (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Capacitance using HC Verma.",d:"medium"},
+  {q:"Practice question from Capacitance (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Capacitance.",d:"medium"},
+  {q:"Conceptual question from Capacitance (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Capacitance.",d:"easy"},
+  {q:"Application question from Capacitance (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Capacitance.",d:"medium"}
+],
+
+'phy-15': [
+  {q:"This is a practice question from Magnetism chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Magnetism chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Magnetism (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Magnetism.",d:"easy"},
+  {q:"Practice question from Magnetism (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Magnetism using HC Verma.",d:"medium"},
+  {q:"Practice question from Magnetism (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Magnetism.",d:"medium"},
+  {q:"Conceptual question from Magnetism (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Magnetism.",d:"easy"},
+  {q:"Application question from Magnetism (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Magnetism.",d:"medium"}
+],
+
+'phy-16': [
+  {q:"This is a practice question from Magnetism & Matter chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Magnetism & Matter chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Magnetism & Matter (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Magnetism & Matter.",d:"easy"},
+  {q:"Practice question from Magnetism & Matter (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Magnetism & Matter using HC Verma.",d:"medium"},
+  {q:"Practice question from Magnetism & Matter (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Magnetism & Matter.",d:"medium"},
+  {q:"Conceptual question from Magnetism & Matter (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Magnetism & Matter.",d:"easy"},
+  {q:"Application question from Magnetism & Matter (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Magnetism & Matter.",d:"medium"}
+],
+
+'phy-17': [
+  {q:"This is a practice question from EMI chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT EMI chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from EMI (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from EMI.",d:"easy"},
+  {q:"Practice question from EMI (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from EMI using HC Verma.",d:"medium"},
+  {q:"Practice question from EMI (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from EMI.",d:"medium"},
+  {q:"Conceptual question from EMI (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from EMI.",d:"easy"},
+  {q:"Application question from EMI (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from EMI.",d:"medium"}
+],
+
+'phy-18': [
+  {q:"This is a practice question from AC chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT AC chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from AC (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from AC.",d:"easy"},
+  {q:"Practice question from AC (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from AC using HC Verma.",d:"medium"},
+  {q:"Practice question from AC (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from AC.",d:"medium"},
+  {q:"Conceptual question from AC (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from AC.",d:"easy"},
+  {q:"Application question from AC (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from AC.",d:"medium"}
+],
+
+'phy-20': [
+  {q:"This is a practice question from Wave Optics chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Wave Optics chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Wave Optics (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Wave Optics.",d:"easy"},
+  {q:"Practice question from Wave Optics (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Wave Optics using HC Verma.",d:"medium"},
+  {q:"Practice question from Wave Optics (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Wave Optics.",d:"medium"},
+  {q:"Conceptual question from Wave Optics (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Wave Optics.",d:"easy"},
+  {q:"Application question from Wave Optics (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Wave Optics.",d:"medium"}
+],
+
+'phy-21': [
+  {q:"This is a practice question from Dual Nature chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Dual Nature chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Dual Nature (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Dual Nature.",d:"easy"},
+  {q:"Practice question from Dual Nature (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Dual Nature using HC Verma.",d:"medium"},
+  {q:"Practice question from Dual Nature (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Dual Nature.",d:"medium"},
+  {q:"Conceptual question from Dual Nature (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Dual Nature.",d:"easy"},
+  {q:"Application question from Dual Nature (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Dual Nature.",d:"medium"}
+],
+
+'phy-22': [
+  {q:"This is a practice question from Atoms Nuclei chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Atoms Nuclei chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Atoms Nuclei (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Atoms Nuclei.",d:"easy"},
+  {q:"Practice question from Atoms Nuclei (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Atoms Nuclei using HC Verma.",d:"medium"},
+  {q:"Practice question from Atoms Nuclei (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Atoms Nuclei.",d:"medium"},
+  {q:"Conceptual question from Atoms Nuclei (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Atoms Nuclei.",d:"easy"},
+  {q:"Application question from Atoms Nuclei (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Atoms Nuclei.",d:"medium"}
+],
+
+'phy-23': [
+  {q:"This is a practice question from Semiconductors chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT Semiconductors chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from Semiconductors (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from Semiconductors.",d:"easy"},
+  {q:"Practice question from Semiconductors (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from Semiconductors using HC Verma.",d:"medium"},
+  {q:"Practice question from Semiconductors (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from Semiconductors.",d:"medium"},
+  {q:"Conceptual question from Semiconductors (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from Semiconductors.",d:"easy"},
+  {q:"Application question from Semiconductors (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from Semiconductors.",d:"medium"}
+],
+
+'phy-24': [
+  {q:"This is a practice question from EM Waves chapter (Q1):",o:["Option A (correct)", "Option B", "Option C", "Option D"],a:0,e:"Study NCERT EM Waves chapter thoroughly for detailed understanding.",d:"easy"},
+  {q:"Practice question from EM Waves (Q2):",o:["Option A", "Option B (correct)", "Option C", "Option D"],a:1,e:"Solve NCERT back exercises and PYQs from EM Waves.",d:"easy"},
+  {q:"Practice question from EM Waves (Q3):",o:["Option A", "Option B", "Option C (correct)", "Option D"],a:2,e:"Practice numerical problems from EM Waves using HC Verma.",d:"medium"},
+  {q:"Practice question from EM Waves (Q4):",o:["Option A", "Option B", "Option C", "Option D (correct)"],a:3,e:"Review key formulas and concepts from EM Waves.",d:"medium"},
+  {q:"Conceptual question from EM Waves (Q5):",o:["Correct answer", "Wrong answer 1", "Wrong answer 2", "Wrong answer 3"],a:0,e:"Focus on understanding concepts, not just memorizing from EM Waves.",d:"easy"},
+  {q:"Application question from EM Waves (Q6):",o:["Wrong", "Correct answer", "Wrong", "Wrong"],a:1,e:"Apply formulas to solve problems from EM Waves.",d:"medium"}
+],
+
+'chem-1': [
+  {q:"NEET question from Mole Concept (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Mole Concept chapter line by line.",d:"easy"},
+  {q:"NEET question from Mole Concept (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Mole Concept.",d:"easy"},
+  {q:"NEET question from Mole Concept (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Mole Concept chapter.",d:"medium"},
+  {q:"Conceptual from Mole Concept (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Mole Concept.",d:"medium"},
+  {q:"Application from Mole Concept (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Mole Concept.",d:"easy"},
+  {q:"Important from Mole Concept (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Mole Concept.",d:"easy"}
+],
+
+'chem-3': [
+  {q:"NEET question from Periodic Table (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Periodic Table chapter line by line.",d:"easy"},
+  {q:"NEET question from Periodic Table (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Periodic Table.",d:"easy"},
+  {q:"NEET question from Periodic Table (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Periodic Table chapter.",d:"medium"},
+  {q:"Conceptual from Periodic Table (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Periodic Table.",d:"medium"},
+  {q:"Application from Periodic Table (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Periodic Table.",d:"easy"},
+  {q:"Important from Periodic Table (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Periodic Table.",d:"easy"}
+],
+
+'chem-5': [
+  {q:"NEET question from States of Matter (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT States of Matter chapter line by line.",d:"easy"},
+  {q:"NEET question from States of Matter (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from States of Matter.",d:"easy"},
+  {q:"NEET question from States of Matter (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from States of Matter chapter.",d:"medium"},
+  {q:"Conceptual from States of Matter (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in States of Matter.",d:"medium"},
+  {q:"Application from States of Matter (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from States of Matter.",d:"easy"},
+  {q:"Important from States of Matter (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from States of Matter.",d:"easy"}
+],
+
+'chem-6': [
+  {q:"NEET question from Thermodynamics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Thermodynamics chapter line by line.",d:"easy"},
+  {q:"NEET question from Thermodynamics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Thermodynamics.",d:"easy"},
+  {q:"NEET question from Thermodynamics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Thermodynamics chapter.",d:"medium"},
+  {q:"Conceptual from Thermodynamics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Thermodynamics.",d:"medium"},
+  {q:"Application from Thermodynamics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Thermodynamics.",d:"easy"},
+  {q:"Important from Thermodynamics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Thermodynamics.",d:"easy"}
+],
+
+'chem-8': [
+  {q:"NEET question from Redox (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Redox chapter line by line.",d:"easy"},
+  {q:"NEET question from Redox (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Redox.",d:"easy"},
+  {q:"NEET question from Redox (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Redox chapter.",d:"medium"},
+  {q:"Conceptual from Redox (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Redox.",d:"medium"},
+  {q:"Application from Redox (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Redox.",d:"easy"},
+  {q:"Important from Redox (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Redox.",d:"easy"}
+],
+
+'chem-9': [
+  {q:"NEET question from Hydrogen (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Hydrogen chapter line by line.",d:"easy"},
+  {q:"NEET question from Hydrogen (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Hydrogen.",d:"easy"},
+  {q:"NEET question from Hydrogen (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Hydrogen chapter.",d:"medium"},
+  {q:"Conceptual from Hydrogen (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Hydrogen.",d:"medium"},
+  {q:"Application from Hydrogen (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Hydrogen.",d:"easy"},
+  {q:"Important from Hydrogen (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Hydrogen.",d:"easy"}
+],
+
+'chem-10': [
+  {q:"NEET question from s-Block (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT s-Block chapter line by line.",d:"easy"},
+  {q:"NEET question from s-Block (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from s-Block.",d:"easy"},
+  {q:"NEET question from s-Block (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from s-Block chapter.",d:"medium"},
+  {q:"Conceptual from s-Block (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in s-Block.",d:"medium"},
+  {q:"Application from s-Block (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from s-Block.",d:"easy"},
+  {q:"Important from s-Block (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from s-Block.",d:"easy"}
+],
+
+'chem-11': [
+  {q:"NEET question from p-Block 13-14 (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT p-Block 13-14 chapter line by line.",d:"easy"},
+  {q:"NEET question from p-Block 13-14 (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from p-Block 13-14.",d:"easy"},
+  {q:"NEET question from p-Block 13-14 (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from p-Block 13-14 chapter.",d:"medium"},
+  {q:"Conceptual from p-Block 13-14 (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in p-Block 13-14.",d:"medium"},
+  {q:"Application from p-Block 13-14 (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from p-Block 13-14.",d:"easy"},
+  {q:"Important from p-Block 13-14 (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from p-Block 13-14.",d:"easy"}
+],
+
+'chem-12': [
+  {q:"NEET question from GOC (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT GOC chapter line by line.",d:"easy"},
+  {q:"NEET question from GOC (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from GOC.",d:"easy"},
+  {q:"NEET question from GOC (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from GOC chapter.",d:"medium"},
+  {q:"Conceptual from GOC (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in GOC.",d:"medium"},
+  {q:"Application from GOC (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from GOC.",d:"easy"},
+  {q:"Important from GOC (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from GOC.",d:"easy"}
+],
+
+'chem-13': [
+  {q:"NEET question from Hydrocarbons (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Hydrocarbons chapter line by line.",d:"easy"},
+  {q:"NEET question from Hydrocarbons (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Hydrocarbons.",d:"easy"},
+  {q:"NEET question from Hydrocarbons (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Hydrocarbons chapter.",d:"medium"},
+  {q:"Conceptual from Hydrocarbons (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Hydrocarbons.",d:"medium"},
+  {q:"Application from Hydrocarbons (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Hydrocarbons.",d:"easy"},
+  {q:"Important from Hydrocarbons (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Hydrocarbons.",d:"easy"}
+],
+
+'chem-14': [
+  {q:"NEET question from Environmental (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Environmental chapter line by line.",d:"easy"},
+  {q:"NEET question from Environmental (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Environmental.",d:"easy"},
+  {q:"NEET question from Environmental (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Environmental chapter.",d:"medium"},
+  {q:"Conceptual from Environmental (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Environmental.",d:"medium"},
+  {q:"Application from Environmental (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Environmental.",d:"easy"},
+  {q:"Important from Environmental (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Environmental.",d:"easy"}
+],
+
+'chem-15': [
+  {q:"NEET question from Solutions (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Solutions chapter line by line.",d:"easy"},
+  {q:"NEET question from Solutions (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Solutions.",d:"easy"},
+  {q:"NEET question from Solutions (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Solutions chapter.",d:"medium"},
+  {q:"Conceptual from Solutions (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Solutions.",d:"medium"},
+  {q:"Application from Solutions (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Solutions.",d:"easy"},
+  {q:"Important from Solutions (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Solutions.",d:"easy"}
+],
+
+'chem-17': [
+  {q:"NEET question from Kinetics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Kinetics chapter line by line.",d:"easy"},
+  {q:"NEET question from Kinetics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Kinetics.",d:"easy"},
+  {q:"NEET question from Kinetics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Kinetics chapter.",d:"medium"},
+  {q:"Conceptual from Kinetics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Kinetics.",d:"medium"},
+  {q:"Application from Kinetics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Kinetics.",d:"easy"},
+  {q:"Important from Kinetics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Kinetics.",d:"easy"}
+],
+
+'chem-18': [
+  {q:"NEET question from Surface Chemistry (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Surface Chemistry chapter line by line.",d:"easy"},
+  {q:"NEET question from Surface Chemistry (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Surface Chemistry.",d:"easy"},
+  {q:"NEET question from Surface Chemistry (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Surface Chemistry chapter.",d:"medium"},
+  {q:"Conceptual from Surface Chemistry (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Surface Chemistry.",d:"medium"},
+  {q:"Application from Surface Chemistry (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Surface Chemistry.",d:"easy"},
+  {q:"Important from Surface Chemistry (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Surface Chemistry.",d:"easy"}
+],
+
+'chem-19': [
+  {q:"NEET question from p-Block 15-18 (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT p-Block 15-18 chapter line by line.",d:"easy"},
+  {q:"NEET question from p-Block 15-18 (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from p-Block 15-18.",d:"easy"},
+  {q:"NEET question from p-Block 15-18 (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from p-Block 15-18 chapter.",d:"medium"},
+  {q:"Conceptual from p-Block 15-18 (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in p-Block 15-18.",d:"medium"},
+  {q:"Application from p-Block 15-18 (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from p-Block 15-18.",d:"easy"},
+  {q:"Important from p-Block 15-18 (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from p-Block 15-18.",d:"easy"}
+],
+
+'chem-20': [
+  {q:"NEET question from d-f Block (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT d-f Block chapter line by line.",d:"easy"},
+  {q:"NEET question from d-f Block (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from d-f Block.",d:"easy"},
+  {q:"NEET question from d-f Block (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from d-f Block chapter.",d:"medium"},
+  {q:"Conceptual from d-f Block (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in d-f Block.",d:"medium"},
+  {q:"Application from d-f Block (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from d-f Block.",d:"easy"},
+  {q:"Important from d-f Block (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from d-f Block.",d:"easy"}
+],
+
+'chem-21': [
+  {q:"NEET question from Coordination (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Coordination chapter line by line.",d:"easy"},
+  {q:"NEET question from Coordination (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Coordination.",d:"easy"},
+  {q:"NEET question from Coordination (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Coordination chapter.",d:"medium"},
+  {q:"Conceptual from Coordination (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Coordination.",d:"medium"},
+  {q:"Application from Coordination (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Coordination.",d:"easy"},
+  {q:"Important from Coordination (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Coordination.",d:"easy"}
+],
+
+'chem-23': [
+  {q:"NEET question from Alcohols Phenols (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Alcohols Phenols chapter line by line.",d:"easy"},
+  {q:"NEET question from Alcohols Phenols (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Alcohols Phenols.",d:"easy"},
+  {q:"NEET question from Alcohols Phenols (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Alcohols Phenols chapter.",d:"medium"},
+  {q:"Conceptual from Alcohols Phenols (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Alcohols Phenols.",d:"medium"},
+  {q:"Application from Alcohols Phenols (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Alcohols Phenols.",d:"easy"},
+  {q:"Important from Alcohols Phenols (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Alcohols Phenols.",d:"easy"}
+],
+
+'chem-25': [
+  {q:"NEET question from Amines (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Amines chapter line by line.",d:"easy"},
+  {q:"NEET question from Amines (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Amines.",d:"easy"},
+  {q:"NEET question from Amines (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Amines chapter.",d:"medium"},
+  {q:"Conceptual from Amines (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Amines.",d:"medium"},
+  {q:"Application from Amines (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Amines.",d:"easy"},
+  {q:"Important from Amines (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Amines.",d:"easy"}
+],
+
+'chem-26': [
+  {q:"NEET question from Biomolecules (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Biomolecules chapter line by line.",d:"easy"},
+  {q:"NEET question from Biomolecules (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Biomolecules.",d:"easy"},
+  {q:"NEET question from Biomolecules (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Biomolecules chapter.",d:"medium"},
+  {q:"Conceptual from Biomolecules (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Biomolecules.",d:"medium"},
+  {q:"Application from Biomolecules (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Biomolecules.",d:"easy"},
+  {q:"Important from Biomolecules (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Biomolecules.",d:"easy"}
+],
+
+'chem-27': [
+  {q:"NEET question from Polymers (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Polymers chapter line by line.",d:"easy"},
+  {q:"NEET question from Polymers (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Polymers.",d:"easy"},
+  {q:"NEET question from Polymers (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Polymers chapter.",d:"medium"},
+  {q:"Conceptual from Polymers (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Polymers.",d:"medium"},
+  {q:"Application from Polymers (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Polymers.",d:"easy"},
+  {q:"Important from Polymers (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Polymers.",d:"easy"}
+],
+
+'chem-28': [
+  {q:"NEET question from Chemistry Life (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Read NCERT Chemistry Life chapter line by line.",d:"easy"},
+  {q:"NEET question from Chemistry Life (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Solve previous year NEET questions from Chemistry Life.",d:"easy"},
+  {q:"NEET question from Chemistry Life (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Practice numericals from Chemistry Life chapter.",d:"medium"},
+  {q:"Conceptual from Chemistry Life (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Understand key reactions and mechanisms in Chemistry Life.",d:"medium"},
+  {q:"Application from Chemistry Life (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Apply concepts to solve problems from Chemistry Life.",d:"easy"},
+  {q:"Important from Chemistry Life (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Focus on frequently asked topics from Chemistry Life.",d:"easy"}
+],
+
+'jp-1': [
+  {q:"JEE question from Units (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Units.",d:"easy"},
+  {q:"JEE question from Units (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Units.",d:"medium"},
+  {q:"JEE question from Units (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Units.",d:"medium"},
+  {q:"Application from Units (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Units.",d:"easy"},
+  {q:"Important from Units (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Units. Practice daily.",d:"easy"},
+  {q:"Numerical from Units (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Units.",d:"medium"}
+],
+
+'jp-3': [
+  {q:"JEE question from Laws of Motion (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Laws of Motion.",d:"easy"},
+  {q:"JEE question from Laws of Motion (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Laws of Motion.",d:"medium"},
+  {q:"JEE question from Laws of Motion (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Laws of Motion.",d:"medium"},
+  {q:"Application from Laws of Motion (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Laws of Motion.",d:"easy"},
+  {q:"Important from Laws of Motion (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Laws of Motion. Practice daily.",d:"easy"},
+  {q:"Numerical from Laws of Motion (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Laws of Motion.",d:"medium"}
+],
+
+'jp-4': [
+  {q:"JEE question from Work Energy (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Work Energy.",d:"easy"},
+  {q:"JEE question from Work Energy (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Work Energy.",d:"medium"},
+  {q:"JEE question from Work Energy (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Work Energy.",d:"medium"},
+  {q:"Application from Work Energy (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Work Energy.",d:"easy"},
+  {q:"Important from Work Energy (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Work Energy. Practice daily.",d:"easy"},
+  {q:"Numerical from Work Energy (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Work Energy.",d:"medium"}
+],
+
+'jp-5': [
+  {q:"JEE question from COM (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from COM.",d:"easy"},
+  {q:"JEE question from COM (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from COM.",d:"medium"},
+  {q:"JEE question from COM (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of COM.",d:"medium"},
+  {q:"Application from COM (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from COM.",d:"easy"},
+  {q:"Important from COM (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from COM. Practice daily.",d:"easy"},
+  {q:"Numerical from COM (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for COM.",d:"medium"}
+],
+
+'jp-6': [
+  {q:"JEE question from Rotation (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Rotation.",d:"easy"},
+  {q:"JEE question from Rotation (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Rotation.",d:"medium"},
+  {q:"JEE question from Rotation (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Rotation.",d:"medium"},
+  {q:"Application from Rotation (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Rotation.",d:"easy"},
+  {q:"Important from Rotation (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Rotation. Practice daily.",d:"easy"},
+  {q:"Numerical from Rotation (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Rotation.",d:"medium"}
+],
+
+'jp-7': [
+  {q:"JEE question from Gravitation (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Gravitation.",d:"easy"},
+  {q:"JEE question from Gravitation (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Gravitation.",d:"medium"},
+  {q:"JEE question from Gravitation (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Gravitation.",d:"medium"},
+  {q:"Application from Gravitation (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Gravitation.",d:"easy"},
+  {q:"Important from Gravitation (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Gravitation. Practice daily.",d:"easy"},
+  {q:"Numerical from Gravitation (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Gravitation.",d:"medium"}
+],
+
+'jp-8': [
+  {q:"JEE question from Fluids (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Fluids.",d:"easy"},
+  {q:"JEE question from Fluids (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Fluids.",d:"medium"},
+  {q:"JEE question from Fluids (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Fluids.",d:"medium"},
+  {q:"Application from Fluids (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Fluids.",d:"easy"},
+  {q:"Important from Fluids (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Fluids. Practice daily.",d:"easy"},
+  {q:"Numerical from Fluids (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Fluids.",d:"medium"}
+],
+
+'jp-9': [
+  {q:"JEE question from Thermo (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Thermo.",d:"easy"},
+  {q:"JEE question from Thermo (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Thermo.",d:"medium"},
+  {q:"JEE question from Thermo (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Thermo.",d:"medium"},
+  {q:"Application from Thermo (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Thermo.",d:"easy"},
+  {q:"Important from Thermo (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Thermo. Practice daily.",d:"easy"},
+  {q:"Numerical from Thermo (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Thermo.",d:"medium"}
+],
+
+'jp-10': [
+  {q:"JEE question from KTG (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from KTG.",d:"easy"},
+  {q:"JEE question from KTG (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from KTG.",d:"medium"},
+  {q:"JEE question from KTG (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of KTG.",d:"medium"},
+  {q:"Application from KTG (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from KTG.",d:"easy"},
+  {q:"Important from KTG (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from KTG. Practice daily.",d:"easy"},
+  {q:"Numerical from KTG (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for KTG.",d:"medium"}
+],
+
+'jp-11': [
+  {q:"JEE question from SHM (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from SHM.",d:"easy"},
+  {q:"JEE question from SHM (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from SHM.",d:"medium"},
+  {q:"JEE question from SHM (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of SHM.",d:"medium"},
+  {q:"Application from SHM (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from SHM.",d:"easy"},
+  {q:"Important from SHM (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from SHM. Practice daily.",d:"easy"},
+  {q:"Numerical from SHM (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for SHM.",d:"medium"}
+],
+
+'jp-12': [
+  {q:"JEE question from Waves (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Waves.",d:"easy"},
+  {q:"JEE question from Waves (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Waves.",d:"medium"},
+  {q:"JEE question from Waves (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Waves.",d:"medium"},
+  {q:"Application from Waves (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Waves.",d:"easy"},
+  {q:"Important from Waves (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Waves. Practice daily.",d:"easy"},
+  {q:"Numerical from Waves (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Waves.",d:"medium"}
+],
+
+'jp-14': [
+  {q:"JEE question from Capacitance (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Capacitance.",d:"easy"},
+  {q:"JEE question from Capacitance (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Capacitance.",d:"medium"},
+  {q:"JEE question from Capacitance (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Capacitance.",d:"medium"},
+  {q:"Application from Capacitance (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Capacitance.",d:"easy"},
+  {q:"Important from Capacitance (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Capacitance. Practice daily.",d:"easy"},
+  {q:"Numerical from Capacitance (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Capacitance.",d:"medium"}
+],
+
+'jp-16': [
+  {q:"JEE question from Magnetic Effects (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Magnetic Effects.",d:"easy"},
+  {q:"JEE question from Magnetic Effects (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Magnetic Effects.",d:"medium"},
+  {q:"JEE question from Magnetic Effects (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Magnetic Effects.",d:"medium"},
+  {q:"Application from Magnetic Effects (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Magnetic Effects.",d:"easy"},
+  {q:"Important from Magnetic Effects (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Magnetic Effects. Practice daily.",d:"easy"},
+  {q:"Numerical from Magnetic Effects (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Magnetic Effects.",d:"medium"}
+],
+
+'jp-17': [
+  {q:"JEE question from Magnetism (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Magnetism.",d:"easy"},
+  {q:"JEE question from Magnetism (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Magnetism.",d:"medium"},
+  {q:"JEE question from Magnetism (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Magnetism.",d:"medium"},
+  {q:"Application from Magnetism (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Magnetism.",d:"easy"},
+  {q:"Important from Magnetism (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Magnetism. Practice daily.",d:"easy"},
+  {q:"Numerical from Magnetism (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Magnetism.",d:"medium"}
+],
+
+'jp-18': [
+  {q:"JEE question from EMI (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from EMI.",d:"easy"},
+  {q:"JEE question from EMI (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from EMI.",d:"medium"},
+  {q:"JEE question from EMI (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of EMI.",d:"medium"},
+  {q:"Application from EMI (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from EMI.",d:"easy"},
+  {q:"Important from EMI (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from EMI. Practice daily.",d:"easy"},
+  {q:"Numerical from EMI (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for EMI.",d:"medium"}
+],
+
+'jp-19': [
+  {q:"JEE question from AC (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from AC.",d:"easy"},
+  {q:"JEE question from AC (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from AC.",d:"medium"},
+  {q:"JEE question from AC (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of AC.",d:"medium"},
+  {q:"Application from AC (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from AC.",d:"easy"},
+  {q:"Important from AC (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from AC. Practice daily.",d:"easy"},
+  {q:"Numerical from AC (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for AC.",d:"medium"}
+],
+
+'jp-20': [
+  {q:"JEE question from EM Waves (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from EM Waves.",d:"easy"},
+  {q:"JEE question from EM Waves (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from EM Waves.",d:"medium"},
+  {q:"JEE question from EM Waves (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of EM Waves.",d:"medium"},
+  {q:"Application from EM Waves (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from EM Waves.",d:"easy"},
+  {q:"Important from EM Waves (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from EM Waves. Practice daily.",d:"easy"},
+  {q:"Numerical from EM Waves (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for EM Waves.",d:"medium"}
+],
+
+'jp-21': [
+  {q:"JEE question from Ray Optics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Ray Optics.",d:"easy"},
+  {q:"JEE question from Ray Optics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Ray Optics.",d:"medium"},
+  {q:"JEE question from Ray Optics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Ray Optics.",d:"medium"},
+  {q:"Application from Ray Optics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Ray Optics.",d:"easy"},
+  {q:"Important from Ray Optics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Ray Optics. Practice daily.",d:"easy"},
+  {q:"Numerical from Ray Optics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Ray Optics.",d:"medium"}
+],
+
+'jp-22': [
+  {q:"JEE question from Wave Optics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Wave Optics.",d:"easy"},
+  {q:"JEE question from Wave Optics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Wave Optics.",d:"medium"},
+  {q:"JEE question from Wave Optics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Wave Optics.",d:"medium"},
+  {q:"Application from Wave Optics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Wave Optics.",d:"easy"},
+  {q:"Important from Wave Optics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Wave Optics. Practice daily.",d:"easy"},
+  {q:"Numerical from Wave Optics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Wave Optics.",d:"medium"}
+],
+
+'jp-23': [
+  {q:"JEE question from Modern Physics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Modern Physics.",d:"easy"},
+  {q:"JEE question from Modern Physics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Modern Physics.",d:"medium"},
+  {q:"JEE question from Modern Physics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Modern Physics.",d:"medium"},
+  {q:"Application from Modern Physics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Modern Physics.",d:"easy"},
+  {q:"Important from Modern Physics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Modern Physics. Practice daily.",d:"easy"},
+  {q:"Numerical from Modern Physics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Modern Physics.",d:"medium"}
+],
+
+'jp-24': [
+  {q:"JEE question from Nuclear (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Nuclear.",d:"easy"},
+  {q:"JEE question from Nuclear (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Nuclear.",d:"medium"},
+  {q:"JEE question from Nuclear (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Nuclear.",d:"medium"},
+  {q:"Application from Nuclear (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Nuclear.",d:"easy"},
+  {q:"Important from Nuclear (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Nuclear. Practice daily.",d:"easy"},
+  {q:"Numerical from Nuclear (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Nuclear.",d:"medium"}
+],
+
+'jc-1': [
+  {q:"JEE question from Mole Concept (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Mole Concept.",d:"easy"},
+  {q:"JEE question from Mole Concept (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Mole Concept.",d:"medium"},
+  {q:"JEE question from Mole Concept (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Mole Concept.",d:"medium"},
+  {q:"Application from Mole Concept (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Mole Concept.",d:"easy"},
+  {q:"Important from Mole Concept (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Mole Concept. Practice daily.",d:"easy"},
+  {q:"Numerical from Mole Concept (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Mole Concept.",d:"medium"}
+],
+
+'jc-2': [
+  {q:"JEE question from Atomic Structure (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Atomic Structure.",d:"easy"},
+  {q:"JEE question from Atomic Structure (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Atomic Structure.",d:"medium"},
+  {q:"JEE question from Atomic Structure (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Atomic Structure.",d:"medium"},
+  {q:"Application from Atomic Structure (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Atomic Structure.",d:"easy"},
+  {q:"Important from Atomic Structure (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Atomic Structure. Practice daily.",d:"easy"},
+  {q:"Numerical from Atomic Structure (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Atomic Structure.",d:"medium"}
+],
+
+'jc-3': [
+  {q:"JEE question from Bonding (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Bonding.",d:"easy"},
+  {q:"JEE question from Bonding (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Bonding.",d:"medium"},
+  {q:"JEE question from Bonding (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Bonding.",d:"medium"},
+  {q:"Application from Bonding (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Bonding.",d:"easy"},
+  {q:"Important from Bonding (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Bonding. Practice daily.",d:"easy"},
+  {q:"Numerical from Bonding (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Bonding.",d:"medium"}
+],
+
+'jc-4': [
+  {q:"JEE question from Thermo (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Thermo.",d:"easy"},
+  {q:"JEE question from Thermo (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Thermo.",d:"medium"},
+  {q:"JEE question from Thermo (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Thermo.",d:"medium"},
+  {q:"Application from Thermo (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Thermo.",d:"easy"},
+  {q:"Important from Thermo (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Thermo. Practice daily.",d:"easy"},
+  {q:"Numerical from Thermo (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Thermo.",d:"medium"}
+],
+
+'jc-5': [
+  {q:"JEE question from Equilibrium (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Equilibrium.",d:"easy"},
+  {q:"JEE question from Equilibrium (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Equilibrium.",d:"medium"},
+  {q:"JEE question from Equilibrium (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Equilibrium.",d:"medium"},
+  {q:"Application from Equilibrium (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Equilibrium.",d:"easy"},
+  {q:"Important from Equilibrium (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Equilibrium. Practice daily.",d:"easy"},
+  {q:"Numerical from Equilibrium (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Equilibrium.",d:"medium"}
+],
+
+'jc-6': [
+  {q:"JEE question from States (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from States.",d:"easy"},
+  {q:"JEE question from States (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from States.",d:"medium"},
+  {q:"JEE question from States (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of States.",d:"medium"},
+  {q:"Application from States (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from States.",d:"easy"},
+  {q:"Important from States (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from States. Practice daily.",d:"easy"},
+  {q:"Numerical from States (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for States.",d:"medium"}
+],
+
+'jc-7': [
+  {q:"JEE question from Redox (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Redox.",d:"easy"},
+  {q:"JEE question from Redox (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Redox.",d:"medium"},
+  {q:"JEE question from Redox (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Redox.",d:"medium"},
+  {q:"Application from Redox (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Redox.",d:"easy"},
+  {q:"Important from Redox (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Redox. Practice daily.",d:"easy"},
+  {q:"Numerical from Redox (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Redox.",d:"medium"}
+],
+
+'jc-8': [
+  {q:"JEE question from Periodic (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Periodic.",d:"easy"},
+  {q:"JEE question from Periodic (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Periodic.",d:"medium"},
+  {q:"JEE question from Periodic (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Periodic.",d:"medium"},
+  {q:"Application from Periodic (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Periodic.",d:"easy"},
+  {q:"Important from Periodic (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Periodic. Practice daily.",d:"easy"},
+  {q:"Numerical from Periodic (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Periodic.",d:"medium"}
+],
+
+'jc-9': [
+  {q:"JEE question from s-Block (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from s-Block.",d:"easy"},
+  {q:"JEE question from s-Block (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from s-Block.",d:"medium"},
+  {q:"JEE question from s-Block (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of s-Block.",d:"medium"},
+  {q:"Application from s-Block (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from s-Block.",d:"easy"},
+  {q:"Important from s-Block (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from s-Block. Practice daily.",d:"easy"},
+  {q:"Numerical from s-Block (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for s-Block.",d:"medium"}
+],
+
+'jc-10': [
+  {q:"JEE question from p-Block 13-14 (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from p-Block 13-14.",d:"easy"},
+  {q:"JEE question from p-Block 13-14 (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from p-Block 13-14.",d:"medium"},
+  {q:"JEE question from p-Block 13-14 (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of p-Block 13-14.",d:"medium"},
+  {q:"Application from p-Block 13-14 (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from p-Block 13-14.",d:"easy"},
+  {q:"Important from p-Block 13-14 (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from p-Block 13-14. Practice daily.",d:"easy"},
+  {q:"Numerical from p-Block 13-14 (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for p-Block 13-14.",d:"medium"}
+],
+
+'jc-12': [
+  {q:"JEE question from Hydrocarbons (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Hydrocarbons.",d:"easy"},
+  {q:"JEE question from Hydrocarbons (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Hydrocarbons.",d:"medium"},
+  {q:"JEE question from Hydrocarbons (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Hydrocarbons.",d:"medium"},
+  {q:"Application from Hydrocarbons (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Hydrocarbons.",d:"easy"},
+  {q:"Important from Hydrocarbons (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Hydrocarbons. Practice daily.",d:"easy"},
+  {q:"Numerical from Hydrocarbons (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Hydrocarbons.",d:"medium"}
+],
+
+'jc-13': [
+  {q:"JEE question from Hydrogen Env (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Hydrogen Env.",d:"easy"},
+  {q:"JEE question from Hydrogen Env (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Hydrogen Env.",d:"medium"},
+  {q:"JEE question from Hydrogen Env (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Hydrogen Env.",d:"medium"},
+  {q:"Application from Hydrogen Env (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Hydrogen Env.",d:"easy"},
+  {q:"Important from Hydrogen Env (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Hydrogen Env. Practice daily.",d:"easy"},
+  {q:"Numerical from Hydrogen Env (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Hydrogen Env.",d:"medium"}
+],
+
+'jc-14': [
+  {q:"JEE question from Solutions (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Solutions.",d:"easy"},
+  {q:"JEE question from Solutions (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Solutions.",d:"medium"},
+  {q:"JEE question from Solutions (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Solutions.",d:"medium"},
+  {q:"Application from Solutions (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Solutions.",d:"easy"},
+  {q:"Important from Solutions (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Solutions. Practice daily.",d:"easy"},
+  {q:"Numerical from Solutions (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Solutions.",d:"medium"}
+],
+
+'jc-15': [
+  {q:"JEE question from Electrochemistry (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Electrochemistry.",d:"easy"},
+  {q:"JEE question from Electrochemistry (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Electrochemistry.",d:"medium"},
+  {q:"JEE question from Electrochemistry (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Electrochemistry.",d:"medium"},
+  {q:"Application from Electrochemistry (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Electrochemistry.",d:"easy"},
+  {q:"Important from Electrochemistry (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Electrochemistry. Practice daily.",d:"easy"},
+  {q:"Numerical from Electrochemistry (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Electrochemistry.",d:"medium"}
+],
+
+'jc-16': [
+  {q:"JEE question from Kinetics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Kinetics.",d:"easy"},
+  {q:"JEE question from Kinetics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Kinetics.",d:"medium"},
+  {q:"JEE question from Kinetics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Kinetics.",d:"medium"},
+  {q:"Application from Kinetics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Kinetics.",d:"easy"},
+  {q:"Important from Kinetics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Kinetics. Practice daily.",d:"easy"},
+  {q:"Numerical from Kinetics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Kinetics.",d:"medium"}
+],
+
+'jc-17': [
+  {q:"JEE question from Surface (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Surface.",d:"easy"},
+  {q:"JEE question from Surface (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Surface.",d:"medium"},
+  {q:"JEE question from Surface (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Surface.",d:"medium"},
+  {q:"Application from Surface (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Surface.",d:"easy"},
+  {q:"Important from Surface (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Surface. Practice daily.",d:"easy"},
+  {q:"Numerical from Surface (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Surface.",d:"medium"}
+],
+
+'jc-18': [
+  {q:"JEE question from p-Block 15-18 (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from p-Block 15-18.",d:"easy"},
+  {q:"JEE question from p-Block 15-18 (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from p-Block 15-18.",d:"medium"},
+  {q:"JEE question from p-Block 15-18 (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of p-Block 15-18.",d:"medium"},
+  {q:"Application from p-Block 15-18 (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from p-Block 15-18.",d:"easy"},
+  {q:"Important from p-Block 15-18 (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from p-Block 15-18. Practice daily.",d:"easy"},
+  {q:"Numerical from p-Block 15-18 (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for p-Block 15-18.",d:"medium"}
+],
+
+'jc-19': [
+  {q:"JEE question from d-f Block (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from d-f Block.",d:"easy"},
+  {q:"JEE question from d-f Block (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from d-f Block.",d:"medium"},
+  {q:"JEE question from d-f Block (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of d-f Block.",d:"medium"},
+  {q:"Application from d-f Block (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from d-f Block.",d:"easy"},
+  {q:"Important from d-f Block (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from d-f Block. Practice daily.",d:"easy"},
+  {q:"Numerical from d-f Block (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for d-f Block.",d:"medium"}
+],
+
+'jc-20': [
+  {q:"JEE question from Coordination (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Coordination.",d:"easy"},
+  {q:"JEE question from Coordination (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Coordination.",d:"medium"},
+  {q:"JEE question from Coordination (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Coordination.",d:"medium"},
+  {q:"Application from Coordination (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Coordination.",d:"easy"},
+  {q:"Important from Coordination (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Coordination. Practice daily.",d:"easy"},
+  {q:"Numerical from Coordination (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Coordination.",d:"medium"}
+],
+
+'jc-21': [
+  {q:"JEE question from Haloalkanes (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Haloalkanes.",d:"easy"},
+  {q:"JEE question from Haloalkanes (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Haloalkanes.",d:"medium"},
+  {q:"JEE question from Haloalkanes (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Haloalkanes.",d:"medium"},
+  {q:"Application from Haloalkanes (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Haloalkanes.",d:"easy"},
+  {q:"Important from Haloalkanes (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Haloalkanes. Practice daily.",d:"easy"},
+  {q:"Numerical from Haloalkanes (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Haloalkanes.",d:"medium"}
+],
+
+'jc-22': [
+  {q:"JEE question from Alcohols (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Alcohols.",d:"easy"},
+  {q:"JEE question from Alcohols (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Alcohols.",d:"medium"},
+  {q:"JEE question from Alcohols (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Alcohols.",d:"medium"},
+  {q:"Application from Alcohols (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Alcohols.",d:"easy"},
+  {q:"Important from Alcohols (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Alcohols. Practice daily.",d:"easy"},
+  {q:"Numerical from Alcohols (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Alcohols.",d:"medium"}
+],
+
+'jc-23': [
+  {q:"JEE question from Carbonyls (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Carbonyls.",d:"easy"},
+  {q:"JEE question from Carbonyls (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Carbonyls.",d:"medium"},
+  {q:"JEE question from Carbonyls (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Carbonyls.",d:"medium"},
+  {q:"Application from Carbonyls (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Carbonyls.",d:"easy"},
+  {q:"Important from Carbonyls (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Carbonyls. Practice daily.",d:"easy"},
+  {q:"Numerical from Carbonyls (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Carbonyls.",d:"medium"}
+],
+
+'jc-24': [
+  {q:"JEE question from Amines (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Amines.",d:"easy"},
+  {q:"JEE question from Amines (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Amines.",d:"medium"},
+  {q:"JEE question from Amines (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Amines.",d:"medium"},
+  {q:"Application from Amines (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Amines.",d:"easy"},
+  {q:"Important from Amines (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Amines. Practice daily.",d:"easy"},
+  {q:"Numerical from Amines (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Amines.",d:"medium"}
+],
+
+'jc-25': [
+  {q:"JEE question from Biomolecules (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Biomolecules.",d:"easy"},
+  {q:"JEE question from Biomolecules (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Biomolecules.",d:"medium"},
+  {q:"JEE question from Biomolecules (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Biomolecules.",d:"medium"},
+  {q:"Application from Biomolecules (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Biomolecules.",d:"easy"},
+  {q:"Important from Biomolecules (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Biomolecules. Practice daily.",d:"easy"},
+  {q:"Numerical from Biomolecules (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Biomolecules.",d:"medium"}
+],
+
+'jm-1': [
+  {q:"JEE question from Sets (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Sets.",d:"easy"},
+  {q:"JEE question from Sets (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Sets.",d:"medium"},
+  {q:"JEE question from Sets (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Sets.",d:"medium"},
+  {q:"Application from Sets (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Sets.",d:"easy"},
+  {q:"Important from Sets (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Sets. Practice daily.",d:"easy"},
+  {q:"Numerical from Sets (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Sets.",d:"medium"}
+],
+
+'jm-2': [
+  {q:"JEE question from Complex Numbers (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Complex Numbers.",d:"easy"},
+  {q:"JEE question from Complex Numbers (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Complex Numbers.",d:"medium"},
+  {q:"JEE question from Complex Numbers (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Complex Numbers.",d:"medium"},
+  {q:"Application from Complex Numbers (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Complex Numbers.",d:"easy"},
+  {q:"Important from Complex Numbers (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Complex Numbers. Practice daily.",d:"easy"},
+  {q:"Numerical from Complex Numbers (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Complex Numbers.",d:"medium"}
+],
+
+'jm-3': [
+  {q:"JEE question from Quadratic (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Quadratic.",d:"easy"},
+  {q:"JEE question from Quadratic (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Quadratic.",d:"medium"},
+  {q:"JEE question from Quadratic (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Quadratic.",d:"medium"},
+  {q:"Application from Quadratic (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Quadratic.",d:"easy"},
+  {q:"Important from Quadratic (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Quadratic. Practice daily.",d:"easy"},
+  {q:"Numerical from Quadratic (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Quadratic.",d:"medium"}
+],
+
+'jm-5': [
+  {q:"JEE question from Binomial (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Binomial.",d:"easy"},
+  {q:"JEE question from Binomial (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Binomial.",d:"medium"},
+  {q:"JEE question from Binomial (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Binomial.",d:"medium"},
+  {q:"Application from Binomial (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Binomial.",d:"easy"},
+  {q:"Important from Binomial (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Binomial. Practice daily.",d:"easy"},
+  {q:"Numerical from Binomial (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Binomial.",d:"medium"}
+],
+
+'jm-6': [
+  {q:"JEE question from PnC (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from PnC.",d:"easy"},
+  {q:"JEE question from PnC (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from PnC.",d:"medium"},
+  {q:"JEE question from PnC (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of PnC.",d:"medium"},
+  {q:"Application from PnC (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from PnC.",d:"easy"},
+  {q:"Important from PnC (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from PnC. Practice daily.",d:"easy"},
+  {q:"Numerical from PnC (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for PnC.",d:"medium"}
+],
+
+'jm-7': [
+  {q:"JEE question from Trig (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Trig.",d:"easy"},
+  {q:"JEE question from Trig (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Trig.",d:"medium"},
+  {q:"JEE question from Trig (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Trig.",d:"medium"},
+  {q:"Application from Trig (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Trig.",d:"easy"},
+  {q:"Important from Trig (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Trig. Practice daily.",d:"easy"},
+  {q:"Numerical from Trig (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Trig.",d:"medium"}
+],
+
+'jm-8': [
+  {q:"JEE question from Straight Lines (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Straight Lines.",d:"easy"},
+  {q:"JEE question from Straight Lines (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Straight Lines.",d:"medium"},
+  {q:"JEE question from Straight Lines (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Straight Lines.",d:"medium"},
+  {q:"Application from Straight Lines (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Straight Lines.",d:"easy"},
+  {q:"Important from Straight Lines (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Straight Lines. Practice daily.",d:"easy"},
+  {q:"Numerical from Straight Lines (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Straight Lines.",d:"medium"}
+],
+
+'jm-9': [
+  {q:"JEE question from Circles (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Circles.",d:"easy"},
+  {q:"JEE question from Circles (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Circles.",d:"medium"},
+  {q:"JEE question from Circles (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Circles.",d:"medium"},
+  {q:"Application from Circles (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Circles.",d:"easy"},
+  {q:"Important from Circles (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Circles. Practice daily.",d:"easy"},
+  {q:"Numerical from Circles (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Circles.",d:"medium"}
+],
+
+'jm-10': [
+  {q:"JEE question from Conics (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Conics.",d:"easy"},
+  {q:"JEE question from Conics (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Conics.",d:"medium"},
+  {q:"JEE question from Conics (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Conics.",d:"medium"},
+  {q:"Application from Conics (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Conics.",d:"easy"},
+  {q:"Important from Conics (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Conics. Practice daily.",d:"easy"},
+  {q:"Numerical from Conics (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Conics.",d:"medium"}
+],
+
+'jm-11': [
+  {q:"JEE question from Stats Prob (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Stats Prob.",d:"easy"},
+  {q:"JEE question from Stats Prob (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Stats Prob.",d:"medium"},
+  {q:"JEE question from Stats Prob (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Stats Prob.",d:"medium"},
+  {q:"Application from Stats Prob (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Stats Prob.",d:"easy"},
+  {q:"Important from Stats Prob (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Stats Prob. Practice daily.",d:"easy"},
+  {q:"Numerical from Stats Prob (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Stats Prob.",d:"medium"}
+],
+
+'jm-12': [
+  {q:"JEE question from Math Reasoning (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Math Reasoning.",d:"easy"},
+  {q:"JEE question from Math Reasoning (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Math Reasoning.",d:"medium"},
+  {q:"JEE question from Math Reasoning (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Math Reasoning.",d:"medium"},
+  {q:"Application from Math Reasoning (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Math Reasoning.",d:"easy"},
+  {q:"Important from Math Reasoning (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Math Reasoning. Practice daily.",d:"easy"},
+  {q:"Numerical from Math Reasoning (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Math Reasoning.",d:"medium"}
+],
+
+'jm-14': [
+  {q:"JEE question from Limits (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Limits.",d:"easy"},
+  {q:"JEE question from Limits (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Limits.",d:"medium"},
+  {q:"JEE question from Limits (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Limits.",d:"medium"},
+  {q:"Application from Limits (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Limits.",d:"easy"},
+  {q:"Important from Limits (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Limits. Practice daily.",d:"easy"},
+  {q:"Numerical from Limits (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Limits.",d:"medium"}
+],
+
+'jm-15': [
+  {q:"JEE question from Differentiation (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Differentiation.",d:"easy"},
+  {q:"JEE question from Differentiation (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Differentiation.",d:"medium"},
+  {q:"JEE question from Differentiation (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Differentiation.",d:"medium"},
+  {q:"Application from Differentiation (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Differentiation.",d:"easy"},
+  {q:"Important from Differentiation (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Differentiation. Practice daily.",d:"easy"},
+  {q:"Numerical from Differentiation (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Differentiation.",d:"medium"}
+],
+
+'jm-17': [
+  {q:"JEE question from Area Curves (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Area Curves.",d:"easy"},
+  {q:"JEE question from Area Curves (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Area Curves.",d:"medium"},
+  {q:"JEE question from Area Curves (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Area Curves.",d:"medium"},
+  {q:"Application from Area Curves (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Area Curves.",d:"easy"},
+  {q:"Important from Area Curves (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Area Curves. Practice daily.",d:"easy"},
+  {q:"Numerical from Area Curves (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Area Curves.",d:"medium"}
+],
+
+'jm-18': [
+  {q:"JEE question from Diff Equations (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Diff Equations.",d:"easy"},
+  {q:"JEE question from Diff Equations (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Diff Equations.",d:"medium"},
+  {q:"JEE question from Diff Equations (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Diff Equations.",d:"medium"},
+  {q:"Application from Diff Equations (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Diff Equations.",d:"easy"},
+  {q:"Important from Diff Equations (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Diff Equations. Practice daily.",d:"easy"},
+  {q:"Numerical from Diff Equations (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Diff Equations.",d:"medium"}
+],
+
+'jm-19': [
+  {q:"JEE question from Vectors (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Vectors.",d:"easy"},
+  {q:"JEE question from Vectors (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Vectors.",d:"medium"},
+  {q:"JEE question from Vectors (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Vectors.",d:"medium"},
+  {q:"Application from Vectors (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Vectors.",d:"easy"},
+  {q:"Important from Vectors (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Vectors. Practice daily.",d:"easy"},
+  {q:"Numerical from Vectors (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Vectors.",d:"medium"}
+],
+
+'jm-20': [
+  {q:"JEE question from 3D Geometry (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from 3D Geometry.",d:"easy"},
+  {q:"JEE question from 3D Geometry (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from 3D Geometry.",d:"medium"},
+  {q:"JEE question from 3D Geometry (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of 3D Geometry.",d:"medium"},
+  {q:"Application from 3D Geometry (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from 3D Geometry.",d:"easy"},
+  {q:"Important from 3D Geometry (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from 3D Geometry. Practice daily.",d:"easy"},
+  {q:"Numerical from 3D Geometry (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for 3D Geometry.",d:"medium"}
+],
+
+'jm-21': [
+  {q:"JEE question from Probability (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Probability.",d:"easy"},
+  {q:"JEE question from Probability (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Probability.",d:"medium"},
+  {q:"JEE question from Probability (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Probability.",d:"medium"},
+  {q:"Application from Probability (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Probability.",d:"easy"},
+  {q:"Important from Probability (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Probability. Practice daily.",d:"easy"},
+  {q:"Numerical from Probability (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Probability.",d:"medium"}
+],
+
+'jm-22': [
+  {q:"JEE question from Inverse Trig (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Inverse Trig.",d:"easy"},
+  {q:"JEE question from Inverse Trig (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Inverse Trig.",d:"medium"},
+  {q:"JEE question from Inverse Trig (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Inverse Trig.",d:"medium"},
+  {q:"Application from Inverse Trig (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Inverse Trig.",d:"easy"},
+  {q:"Important from Inverse Trig (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Inverse Trig. Practice daily.",d:"easy"},
+  {q:"Numerical from Inverse Trig (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Inverse Trig.",d:"medium"}
+],
+
+'jm-23': [
+  {q:"JEE question from Linear Programming (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Solve HC Verma / RD Sharma problems from Linear Programming.",d:"easy"},
+  {q:"JEE question from Linear Programming (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year JEE from Linear Programming.",d:"medium"},
+  {q:"JEE question from Linear Programming (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Focus on conceptual understanding of Linear Programming.",d:"medium"},
+  {q:"Application from Linear Programming (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply formulas and concepts from Linear Programming.",d:"easy"},
+  {q:"Important from Linear Programming (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"High-yield topic from Linear Programming. Practice daily.",d:"easy"},
+  {q:"Numerical from Linear Programming (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Numerical practice is key for Linear Programming.",d:"medium"}
+],
+
+'cl-2': [
+  {q:"CLAT question from Torts (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Torts from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Torts (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Torts.",d:"easy"},
+  {q:"CLAT question from Torts (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Torts preparation.",d:"medium"},
+  {q:"Application from Torts (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Torts problems.",d:"medium"},
+  {q:"Important from Torts (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Torts for CLAT.",d:"easy"},
+  {q:"Practice from Torts (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Torts section.",d:"easy"}
+],
+
+'cl-3': [
+  {q:"CLAT question from Contract (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Contract from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Contract (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Contract.",d:"easy"},
+  {q:"CLAT question from Contract (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Contract preparation.",d:"medium"},
+  {q:"Application from Contract (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Contract problems.",d:"medium"},
+  {q:"Important from Contract (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Contract for CLAT.",d:"easy"},
+  {q:"Practice from Contract (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Contract section.",d:"easy"}
+],
+
+'cl-4': [
+  {q:"CLAT question from Criminal Law (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Criminal Law from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Criminal Law (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Criminal Law.",d:"easy"},
+  {q:"CLAT question from Criminal Law (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Criminal Law preparation.",d:"medium"},
+  {q:"Application from Criminal Law (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Criminal Law problems.",d:"medium"},
+  {q:"Important from Criminal Law (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Criminal Law for CLAT.",d:"easy"},
+  {q:"Practice from Criminal Law (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Criminal Law section.",d:"easy"}
+],
+
+'cl-5': [
+  {q:"CLAT question from Constitutional (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Constitutional from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Constitutional (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Constitutional.",d:"easy"},
+  {q:"CLAT question from Constitutional (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Constitutional preparation.",d:"medium"},
+  {q:"Application from Constitutional (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Constitutional problems.",d:"medium"},
+  {q:"Important from Constitutional (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Constitutional for CLAT.",d:"easy"},
+  {q:"Practice from Constitutional (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Constitutional section.",d:"easy"}
+],
+
+'cl-6': [
+  {q:"CLAT question from Legal Maxims (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Legal Maxims from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Legal Maxims (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Legal Maxims.",d:"easy"},
+  {q:"CLAT question from Legal Maxims (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Legal Maxims preparation.",d:"medium"},
+  {q:"Application from Legal Maxims (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Legal Maxims problems.",d:"medium"},
+  {q:"Important from Legal Maxims (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Legal Maxims for CLAT.",d:"easy"},
+  {q:"Practice from Legal Maxims (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Legal Maxims section.",d:"easy"}
+],
+
+'clo-2': [
+  {q:"CLAT question from Assumptions (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Assumptions from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Assumptions (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Assumptions.",d:"easy"},
+  {q:"CLAT question from Assumptions (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Assumptions preparation.",d:"medium"},
+  {q:"Application from Assumptions (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Assumptions problems.",d:"medium"},
+  {q:"Important from Assumptions (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Assumptions for CLAT.",d:"easy"},
+  {q:"Practice from Assumptions (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Assumptions section.",d:"easy"}
+],
+
+'clo-3': [
+  {q:"CLAT question from Strengthen Weaken (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Strengthen Weaken from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Strengthen Weaken (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Strengthen Weaken.",d:"easy"},
+  {q:"CLAT question from Strengthen Weaken (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Strengthen Weaken preparation.",d:"medium"},
+  {q:"Application from Strengthen Weaken (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Strengthen Weaken problems.",d:"medium"},
+  {q:"Important from Strengthen Weaken (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Strengthen Weaken for CLAT.",d:"easy"},
+  {q:"Practice from Strengthen Weaken (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Strengthen Weaken section.",d:"easy"}
+],
+
+'clo-4': [
+  {q:"CLAT question from Analogies (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Analogies from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Analogies (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Analogies.",d:"easy"},
+  {q:"CLAT question from Analogies (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Analogies preparation.",d:"medium"},
+  {q:"Application from Analogies (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Analogies problems.",d:"medium"},
+  {q:"Important from Analogies (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Analogies for CLAT.",d:"easy"},
+  {q:"Practice from Analogies (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Analogies section.",d:"easy"}
+],
+
+'clo-5': [
+  {q:"CLAT question from Critical Reasoning (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Critical Reasoning from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Critical Reasoning (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Critical Reasoning.",d:"easy"},
+  {q:"CLAT question from Critical Reasoning (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Critical Reasoning preparation.",d:"medium"},
+  {q:"Application from Critical Reasoning (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Critical Reasoning problems.",d:"medium"},
+  {q:"Important from Critical Reasoning (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Critical Reasoning for CLAT.",d:"easy"},
+  {q:"Practice from Critical Reasoning (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Critical Reasoning section.",d:"easy"}
+],
+
+'ce-2': [
+  {q:"CLAT question from Vocabulary (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Vocabulary from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Vocabulary (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Vocabulary.",d:"easy"},
+  {q:"CLAT question from Vocabulary (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Vocabulary preparation.",d:"medium"},
+  {q:"Application from Vocabulary (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Vocabulary problems.",d:"medium"},
+  {q:"Important from Vocabulary (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Vocabulary for CLAT.",d:"easy"},
+  {q:"Practice from Vocabulary (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Vocabulary section.",d:"easy"}
+],
+
+'ce-3': [
+  {q:"CLAT question from Grammar (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Grammar from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Grammar (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Grammar.",d:"easy"},
+  {q:"CLAT question from Grammar (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Grammar preparation.",d:"medium"},
+  {q:"Application from Grammar (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Grammar problems.",d:"medium"},
+  {q:"Important from Grammar (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Grammar for CLAT.",d:"easy"},
+  {q:"Practice from Grammar (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Grammar section.",d:"easy"}
+],
+
+'ce-4': [
+  {q:"CLAT question from Summary (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Summary from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Summary (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Summary.",d:"easy"},
+  {q:"CLAT question from Summary (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Summary preparation.",d:"medium"},
+  {q:"Application from Summary (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Summary problems.",d:"medium"},
+  {q:"Important from Summary (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Summary for CLAT.",d:"easy"},
+  {q:"Practice from Summary (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Summary section.",d:"easy"}
+],
+
+'ce-5': [
+  {q:"CLAT question from Para Jumbles (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Para Jumbles from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Para Jumbles (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Para Jumbles.",d:"easy"},
+  {q:"CLAT question from Para Jumbles (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Para Jumbles preparation.",d:"medium"},
+  {q:"Application from Para Jumbles (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Para Jumbles problems.",d:"medium"},
+  {q:"Important from Para Jumbles (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Para Jumbles for CLAT.",d:"easy"},
+  {q:"Practice from Para Jumbles (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Para Jumbles section.",d:"easy"}
+],
+
+'cg-1': [
+  {q:"CLAT question from National News (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study National News from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from National News (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from National News.",d:"easy"},
+  {q:"CLAT question from National News (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for National News preparation.",d:"medium"},
+  {q:"Application from National News (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to National News problems.",d:"medium"},
+  {q:"Important from National News (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from National News for CLAT.",d:"easy"},
+  {q:"Practice from National News (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from National News section.",d:"easy"}
+],
+
+'cg-2': [
+  {q:"CLAT question from Govt Schemes (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Govt Schemes from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Govt Schemes (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Govt Schemes.",d:"easy"},
+  {q:"CLAT question from Govt Schemes (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Govt Schemes preparation.",d:"medium"},
+  {q:"Application from Govt Schemes (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Govt Schemes problems.",d:"medium"},
+  {q:"Important from Govt Schemes (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Govt Schemes for CLAT.",d:"easy"},
+  {q:"Practice from Govt Schemes (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Govt Schemes section.",d:"easy"}
+],
+
+'cg-3': [
+  {q:"CLAT question from Sports Awards (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Sports Awards from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Sports Awards (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Sports Awards.",d:"easy"},
+  {q:"CLAT question from Sports Awards (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Sports Awards preparation.",d:"medium"},
+  {q:"Application from Sports Awards (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Sports Awards problems.",d:"medium"},
+  {q:"Important from Sports Awards (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Sports Awards for CLAT.",d:"easy"},
+  {q:"Practice from Sports Awards (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Sports Awards section.",d:"easy"}
+],
+
+'cg-4': [
+  {q:"CLAT question from Science Tech (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Science Tech from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Science Tech (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Science Tech.",d:"easy"},
+  {q:"CLAT question from Science Tech (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Science Tech preparation.",d:"medium"},
+  {q:"Application from Science Tech (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Science Tech problems.",d:"medium"},
+  {q:"Important from Science Tech (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Science Tech for CLAT.",d:"easy"},
+  {q:"Practice from Science Tech (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Science Tech section.",d:"easy"}
+],
+
+'cg-5': [
+  {q:"CLAT question from History Geography (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study History Geography from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from History Geography (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from History Geography.",d:"easy"},
+  {q:"CLAT question from History Geography (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for History Geography preparation.",d:"medium"},
+  {q:"Application from History Geography (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to History Geography problems.",d:"medium"},
+  {q:"Important from History Geography (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from History Geography for CLAT.",d:"easy"},
+  {q:"Practice from History Geography (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from History Geography section.",d:"easy"}
+],
+
+'cg-7': [
+  {q:"CLAT question from Legal Events (Q1):",o:["Correct", "Wrong B", "Wrong C", "Wrong D"],a:0,e:"Study Legal Events from AP Bhardwaj / Pearson CLAT Guide.",d:"easy"},
+  {q:"CLAT question from Legal Events (Q2):",o:["Wrong A", "Correct", "Wrong C", "Wrong D"],a:1,e:"Practice previous year CLAT from Legal Events.",d:"easy"},
+  {q:"CLAT question from Legal Events (Q3):",o:["Wrong A", "Wrong B", "Correct", "Wrong D"],a:2,e:"Read The Hindu daily for Legal Events preparation.",d:"medium"},
+  {q:"Application from Legal Events (Q4):",o:["Wrong", "Wrong", "Wrong", "Correct"],a:3,e:"Apply logical reasoning to Legal Events problems.",d:"medium"},
+  {q:"Important from Legal Events (Q5):",o:["Correct", "Wrong", "Wrong", "Wrong"],a:0,e:"Key concepts from Legal Events for CLAT.",d:"easy"},
+  {q:"Practice from Legal Events (Q6):",o:["Wrong", "Correct", "Wrong", "Wrong"],a:1,e:"Regular practice from Legal Events section.",d:"easy"}
+],
 };
