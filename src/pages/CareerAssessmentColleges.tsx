@@ -170,6 +170,22 @@ const CareerAssessmentColleges = () => {
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
+
+          {/* Study Guide */}
+          <button onClick={() => navigate('/study-guide')}
+            className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-indigo-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
+              <FileText className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-bold text-gray-900">Study Guide</p>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">NEW</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-0.5">Topic-by-topic concepts, formulas & books</p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+          </button>
         </div>
 
         {/* ═══ TOP CAREERS FOR YOUR STREAM ═══ */}

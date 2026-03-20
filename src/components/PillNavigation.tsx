@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, BookOpen, LucideIcon, Landmark, School, Compass, Rocket } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, BookOpen, LucideIcon, Landmark, School, Compass, Rocket, MessageCircle } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -21,6 +21,7 @@ interface PillNavigationProps {
 
 const navItems: NavItem[] = [
   { id: 'assessments', label: 'Home', shortLabel: 'Home', icon: GraduationCap, activeColor: 'text-white', activeBg: 'bg-emerald-700', route: '/career-assessment/colleges' },
+  { id: 'aichat', label: 'AI Career Chat', shortLabel: 'AI Chat', icon: MessageCircle, activeColor: 'text-white', activeBg: 'bg-orange-600', route: '/career-assessment/chat', isNew: true },
   { id: 'colleges', label: 'Find Colleges', shortLabel: 'Colleges', icon: Building2, activeColor: 'text-white', activeBg: 'bg-blue-700', route: '/career-assessment/colleges/find-colleges' },
   { id: 'scholarships', label: 'Scholarships', shortLabel: 'Scholarships', icon: Bookmark, activeColor: 'text-white', activeBg: 'bg-amber-600', route: '/career-assessment/colleges/scholarships' },
   { id: 'educutoff', label: 'Cutoff & Predictor', shortLabel: 'Cutoff', icon: Calculator, activeColor: 'text-white', activeBg: 'bg-purple-700', route: '/career-assessment/colleges/educutoff' },

@@ -377,6 +377,11 @@ export const EntranceExams = () => {
                     <p className="text-[10px] font-bold text-indigo-700">Rank</p>
                   </button>
                 </div>
+                <button onClick={() => navigate('/study-guide')}
+                  className="w-full bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-3 border border-indigo-200 hover:bg-indigo-100 transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
+                  <FileText className="w-4 h-4 text-indigo-600" />
+                  <p className="text-xs font-bold text-indigo-700">📖 Study Guide — Topic-by-topic concepts, formulas & books</p>
+                </button>
 
                 {/* Main exam detail */}
                 {renderExamMini(pathway.mainExamId)}
