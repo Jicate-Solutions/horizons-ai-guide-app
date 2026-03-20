@@ -296,7 +296,7 @@ const AIEligibilityWizard = ({ open, onClose, scholarships }: {
       <div
         className="relative w-full max-w-md rounded-3xl shadow-2xl overflow-hidden"
         style={{ background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
-        style={{ animation: 'sfFadeInUp 0.3s ease-out' }}
+        
       >
         <button onClick={onClose} className="absolute top-4 right-4 z-10 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
           <X size={18} color="#666" />
@@ -402,7 +402,7 @@ const MobileFilterDrawer = ({ open, onClose, children }: {
       <div
         className="absolute left-0 top-0 bottom-0 w-80 max-w-[85vw] shadow-2xl overflow-y-auto"
         style={{ background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
-        style={{ animation: 'sfSlideIn 0.3s ease-out' }}
+        
       >
         <div className="flex items-center justify-between p-4" style={{ borderBottom: '1px solid #C8E6C9' }}>
           <h3 className="font-bold text-lg" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>

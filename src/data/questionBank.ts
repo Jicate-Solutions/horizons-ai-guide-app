@@ -403,5 +403,308 @@ export const questionBank: Record<string, QBQuestion[]> = {
 ],
 
 
-};
+// ═══ NEET BOTANY — remaining high priority ═══
 
+'bot-3': [ // Plant Kingdom
+  {q:'Bryophytes are called amphibians of plant kingdom because:',o:['They live in water','They need water for reproduction','They are like frogs','They breathe through skin'],a:1,e:'Bryophytes live on land but need water for transfer of male gametes (motile sperms).',d:'easy'},
+  {q:'First vascular plants:',o:['Bryophytes','Pteridophytes','Gymnosperms','Angiosperms'],a:1,e:'Pteridophytes are the first plants with vascular tissue (xylem and phloem).',d:'easy'},
+  {q:'Seeds are produced by:',o:['Algae and Bryophytes','Pteridophytes only','Gymnosperms and Angiosperms','All plants'],a:2,e:'Seed-producing plants = Spermatophytes = Gymnosperms + Angiosperms.',d:'easy'},
+  {q:'Dominant phase in bryophytes is:',o:['Sporophyte (2n)','Gametophyte (n)','Both equal','Neither'],a:1,e:'In bryophytes, gametophyte (n) is dominant, independent. Sporophyte depends on gametophyte.',d:'medium'},
+  {q:'Which alga is used as food?',o:['Spirogyra','Laminaria','Chara','Volvox'],a:1,e:'Laminaria (kelp, brown alga) is used as food in many Asian countries.',d:'medium'},
+  {q:'Heterospory is seen in:',o:['Most bryophytes','All ferns','Selaginella','All algae'],a:2,e:'Selaginella (a pteridophyte) produces two types of spores — microspores and megaspores.',d:'medium'},
+  {q:'Gymnosperms have:',o:['Covered seeds','Naked seeds','No seeds','Spores only'],a:1,e:'Gymnosperm = "naked seed." Seeds not enclosed in fruit (e.g., Pinus, Cycas).',d:'easy'},
+  {q:'Monocots differ from dicots in:',o:['Seed cotyledons','Cell wall','DNA','Chlorophyll'],a:0,e:'Monocots = 1 cotyledon, parallel venation, fibrous root. Dicots = 2 cotyledons, reticulate, tap root.',d:'easy'},
+  {q:'Agar is obtained from:',o:['Brown algae','Red algae','Green algae','Blue-green algae'],a:1,e:'Agar-agar is obtained from red algae (Gelidium, Gracilaria).',d:'easy'},
+  {q:'Alternation of generations means:',o:['Plants live for many years','Haploid and diploid phases alternate','Seeds alternate with spores','Leaves alternate on stem'],a:1,e:'Alternation of generations: Sporophyte(2n) produces spores → Gametophyte(n) produces gametes → cycle repeats.',d:'medium'},
+],
+
+'bot-5': [ // Anatomy
+  {q:'Casparian strips are found in:',o:['Epidermis','Endodermis','Cortex','Pith'],a:1,e:'Casparian strips are waxy (suberin) bands on endodermal cell walls. Control water flow into stele.',d:'medium'},
+  {q:'Meristematic tissue is:',o:['Dead at maturity','Actively dividing','Non-dividing','Found only in roots'],a:1,e:'Meristematic tissue consists of actively dividing cells. Found at root/shoot tips.',d:'easy'},
+  {q:'Sclerenchyma has:',o:['Thin cell walls','Thick lignified walls, dead at maturity','Living cells with chloroplasts','No cell walls'],a:1,e:'Sclerenchyma = thick, lignified, dead. Provides mechanical strength (fibers and sclereids).',d:'easy'},
+  {q:'Xylem transports:',o:['Food','Water and minerals','Hormones only','Gases'],a:1,e:'Xylem = water and mineral transport (upward). Phloem = food transport (bidirectional).',d:'easy'},
+  {q:'Companion cells are associated with:',o:['Xylem vessels','Sieve tubes (phloem)','Tracheids','Fibers'],a:1,e:'Companion cells help sieve tube elements in phloem with metabolic functions.',d:'easy'},
+  {q:'In dicot stem, vascular bundles are:',o:['Scattered','Arranged in a ring','Absent','In center only'],a:1,e:'Dicot stem: vascular bundles in a ring with cambium (open type). Monocot: scattered.',d:'easy'},
+  {q:'Collenchyma provides:',o:['Flexibility and support to growing parts','Only rigidity','Water transport','Food storage'],a:0,e:'Collenchyma has thick corners (pectin). Provides flexibility to growing organs.',d:'easy'},
+  {q:'Stomata are found mostly on:',o:['Upper surface of leaf','Lower surface (abaxial)','Stem','Root'],a:1,e:'In most dicots, stomata are more on lower (abaxial) surface of leaf.',d:'easy'},
+  {q:'Cork cambium produces:',o:['Xylem','Phloem','Cork (bark)','Leaves'],a:2,e:'Cork cambium (phellogen) produces cork (phellem) outward and phelloderm inward.',d:'medium'},
+  {q:'Heartwood is:',o:['Functional for water transport','Dead, dark, non-functional inner wood','Soft outer wood','Living bark'],a:1,e:'Heartwood = non-functional, dark, filled with tannins/resins. Sapwood = functional.',d:'medium'},
+],
+
+'bot-6': [ // Cell
+  {q:'Fluid mosaic model was proposed by:',o:['Watson and Crick','Singer and Nicolson','Schleiden and Schwann','Robert Hooke'],a:1,e:'Singer and Nicolson (1972) proposed fluid mosaic model of plasma membrane.',d:'easy'},
+  {q:'Powerhouse of the cell:',o:['Nucleus','Ribosome','Mitochondria','Golgi body'],a:2,e:'Mitochondria produce ATP through oxidative phosphorylation — "powerhouse of cell".',d:'easy'},
+  {q:'Ribosomes are made of:',o:['DNA and protein','RNA and protein','Only RNA','Only protein'],a:1,e:'Ribosomes = rRNA + proteins. 70S (prokaryote: 50S+30S), 80S (eukaryote: 60S+40S).',d:'easy'},
+  {q:'Lysosomes contain:',o:['DNA','Hydrolytic enzymes','Starch','Chlorophyll'],a:1,e:'Lysosomes = "suicide bags." Contain hydrolytic (digestive) enzymes for intracellular digestion.',d:'easy'},
+  {q:'Cell wall of plant cells is made of:',o:['Chitin','Cellulose','Peptidoglycan','Protein'],a:1,e:'Plant cell wall is primarily made of cellulose (polysaccharide).',d:'easy'},
+  {q:'Golgi body function:',o:['Protein synthesis','Packaging and modification of proteins','DNA replication','Photosynthesis'],a:1,e:'Golgi apparatus: packaging, modification, and transport of proteins and lipids.',d:'easy'},
+  {q:'Which organelle is absent in animal cells?',o:['Mitochondria','Nucleus','Chloroplast','Ribosome'],a:2,e:'Chloroplasts are found only in plant cells (and some protists). Not in animal cells.',d:'easy'},
+  {q:'Osmosis is:',o:['Movement of solute','Movement of water through semipermeable membrane','Active transport','Diffusion of gases'],a:1,e:'Osmosis = movement of water from low solute to high solute across semipermeable membrane.',d:'easy'},
+  {q:'Endoplasmic reticulum with ribosomes is called:',o:['Smooth ER','Rough ER','Golgi body','Lysosome'],a:1,e:'RER (Rough ER) has ribosomes attached — site of protein synthesis and processing.',d:'easy'},
+  {q:'Centrioles are involved in:',o:['Photosynthesis','Cell division (spindle formation)','Digestion','Secretion'],a:1,e:'Centrioles organize spindle fibers during cell division in animal cells.',d:'easy'},
+],
+
+'bot-8': [ // Cell Cycle
+  {q:'In which phase does DNA replication occur?',o:['G1','S phase','G2','M phase'],a:1,e:'S (synthesis) phase: DNA replicates. G1 = growth before S. G2 = growth after S.',d:'easy'},
+  {q:'Crossing over occurs in which stage of meiosis?',o:['Leptotene','Pachytene','Diplotene','Diakinesis'],a:1,e:'Crossing over occurs in Pachytene stage of Prophase I. Increases genetic variation.',d:'medium'},
+  {q:'Chromosomes align at equator in:',o:['Prophase','Metaphase','Anaphase','Telophase'],a:1,e:'Metaphase = chromosomes line up at cell equator (metaphase plate).',d:'easy'},
+  {q:'Sister chromatids separate in:',o:['Prophase','Metaphase','Anaphase','Telophase'],a:2,e:'Anaphase = centromeres split, sister chromatids move to opposite poles.',d:'easy'},
+  {q:'Meiosis produces:',o:['2 identical cells','4 identical cells','4 genetically different cells','2 different cells'],a:2,e:'Meiosis: one cell → 4 haploid, genetically unique cells (due to crossing over + independent assortment).',d:'easy'},
+  {q:'Significance of mitosis:',o:['Genetic variation','Growth and repair','Gamete formation','Evolution'],a:1,e:'Mitosis produces identical cells for growth, repair, and asexual reproduction.',d:'easy'},
+  {q:'Cytokinesis in plant cells:',o:['By cleavage furrow','By cell plate formation','Does not occur','By budding'],a:1,e:'Plant cytokinesis: cell plate forms at center and grows outward (centrifugal).',d:'medium'},
+  {q:'Number of chromosomes after mitosis:',o:['Half (n)','Same as parent (2n)','Double (4n)','Quarter (n/2)'],a:1,e:'Mitosis is equational division. Daughter cells have same chromosome number as parent.',d:'easy'},
+  {q:'Meiosis I is called reductional because:',o:['Cell size reduces','Chromosome number halves from 2n to n','DNA amount reduces','Protein reduces'],a:1,e:'Meiosis I: homologous chromosomes separate → chromosome number halves (2n→n).',d:'easy'},
+  {q:'Chiasmata are seen in:',o:['Mitosis','Meiosis (Diplotene)','Both','Neither'],a:1,e:'Chiasmata = X-shaped structures at crossing over points. Visible in Diplotene of Meiosis I.',d:'medium'},
+],
+
+'bot-14': [ // Sexual Reproduction in Plants
+  {q:'Pollen grain develops from:',o:['Megaspore mother cell','Microspore mother cell','Egg cell','Endosperm'],a:1,e:'Microspore mother cell (2n) undergoes meiosis → 4 microspores → develop into pollen grains.',d:'easy'},
+  {q:'Embryo sac has how many cells?',o:['4','6','7','8'],a:2,e:'Mature embryo sac = 7 cells, 8 nuclei (3 antipodals + 2 synergids + 1 egg + 1 central with 2 polar nuclei).',d:'medium'},
+  {q:'Endosperm is:',o:['Haploid','Diploid','Triploid','Tetraploid'],a:2,e:'Endosperm = triploid (3n). Formed by fusion of 2 polar nuclei (n+n) with one sperm (n).',d:'medium'},
+  {q:'Wind-pollinated flowers have:',o:['Bright colors and nectar','Light pollen, feathery stigma','Heavy pollen','Sticky pollen'],a:1,e:'Anemophily: light/dry pollen, feathery stigma, small flowers, no nectar/scent.',d:'easy'},
+  {q:'Self-pollination is prevented by:',o:['Dichogamy','Self-incompatibility','Dioecism','All of these'],a:3,e:'Plants prevent self-pollination through dichogamy (different maturation times), self-incompatibility, dioecism (separate male/female plants).',d:'medium'},
+  {q:'Parthenocarpy means:',o:['Seed without fruit','Fruit without seed','Fruit with many seeds','Seedless flower'],a:1,e:'Parthenocarpy = fruit development without fertilization → seedless fruits (e.g., banana).',d:'easy'},
+  {q:'Pollination by water is called:',o:['Anemophily','Hydrophily','Entomophily','Zoophily'],a:1,e:'Hydrophily = water pollination. Seen in Vallisneria, Hydrilla.',d:'easy'},
+  {q:'The integuments of ovule become:',o:['Fruit wall','Seed coat','Endosperm','Embryo'],a:1,e:'After fertilization: Integuments → seed coat (testa). Ovary wall → fruit wall (pericarp).',d:'easy'},
+  {q:'Entry of pollen tube through micropyle:',o:['Porogamy','Chalazogamy','Mesogamy','Apogamy'],a:0,e:'Porogamy = pollen tube enters through micropyle (most common).',d:'medium'},
+  {q:'Apomixis is:',o:['Sexual reproduction','Seed formation without fertilization','Vegetative propagation','Pollination'],a:1,e:'Apomixis = asexual seed production without meiosis or fertilization. Important in agriculture.',d:'medium'},
+],
+
+'bot-22': [ // Ecosystem
+  {q:'10% law was given by:',o:['Odum','Lindeman','Tansley','Haeckel'],a:1,e:'Lindeman (1942) gave 10% law: only 10% of energy transfers to next trophic level.',d:'easy'},
+  {q:'Pyramid of energy is:',o:['Always upright','Always inverted','Variable','Flat'],a:0,e:'Pyramid of energy is ALWAYS upright. Energy decreases at each trophic level.',d:'easy'},
+  {q:'Primary productivity is measured in:',o:['kg/m²/year or g/m²/year','Calories only','Number of organisms','Biomass only'],a:0,e:'Productivity measured as weight of organic matter produced per unit area per unit time.',d:'easy'},
+  {q:'NPP = ?',o:['GPP + R','GPP - R','GPP × R','GPP / R'],a:1,e:'NPP = GPP - Respiration. Net primary productivity = what remains after plants use energy.',d:'easy'},
+  {q:'Decomposers are also called:',o:['Producers','Saprotrophs','Herbivores','Autotrophs'],a:1,e:'Decomposers = saprotrophs. Break down dead organic matter (fungi, bacteria).',d:'easy'},
+  {q:'In nitrogen cycle, Rhizobium performs:',o:['Nitrification','Denitrification','Nitrogen fixation','Ammonification'],a:2,e:'Rhizobium (in legume root nodules) fixes atmospheric N₂ → NH₃.',d:'easy'},
+  {q:'Secondary succession occurs on:',o:['Bare rock','Previously vegetated area destroyed','Water only','Space'],a:1,e:'Secondary succession: on land previously with vegetation (after fire, flood, etc.). Faster than primary.',d:'easy'},
+  {q:'Detritus food chain begins with:',o:['Green plants','Dead organic matter','Herbivores','Sunlight'],a:1,e:'Detritus food chain: Dead matter → Decomposers → Detritivores.',d:'easy'},
+  {q:'Energy flow in ecosystem is:',o:['Bidirectional','Unidirectional','Circular','Random'],a:1,e:'Energy flows unidirectionally: Sun → Producers → Consumers → Decomposers. Cannot be recycled.',d:'easy'},
+  {q:'Inverted pyramid of biomass is seen in:',o:['Forest','Grassland','Ocean/pond','Desert'],a:2,e:'Aquatic ecosystems: Phytoplankton biomass < Zooplankton biomass → inverted pyramid.',d:'medium'},
+],
+
+// ═══ NEET ZOOLOGY remaining ═══
+
+'zoo-1': [ // Animal Kingdom
+  {q:'Cnidarians have:',o:['Bilateral symmetry','Radial symmetry','No symmetry','Spherical symmetry'],a:1,e:'Cnidarians (Hydra, Jellyfish) have radial symmetry.',d:'easy'},
+  {q:'Platyhelminthes are:',o:['Roundworms','Flatworms','Segmented worms','Ribbon worms'],a:1,e:'Platyhelminthes = flatworms (Taenia, Planaria). Dorsoventrally flattened.',d:'easy'},
+  {q:'Open circulatory system is found in:',o:['Earthworm','Cockroach','Humans','Fish'],a:1,e:'Arthropods (cockroach) and most molluscs have open circulatory system (hemocoel).',d:'easy'},
+  {q:'Which phylum shows metameric segmentation?',o:['Mollusca','Annelida','Porifera','Cnidaria'],a:1,e:'Annelida (earthworm, leech) shows true metameric segmentation (body divided into segments).',d:'easy'},
+  {q:'Chordates have:',o:['Exoskeleton','Notochord at some stage','Jointed legs always','Water vascular system'],a:1,e:'All chordates have notochord at some stage of life (replaced by vertebral column in vertebrates).',d:'easy'},
+  {q:'Mammary glands are found in:',o:['All vertebrates','Mammals only','Birds and mammals','Reptiles and mammals'],a:1,e:'Mammary glands = unique to mammals. Used for feeding young ones.',d:'easy'},
+  {q:'Water vascular system is found in:',o:['Mollusca','Echinodermata','Arthropoda','Annelida'],a:1,e:'Echinoderms (starfish, sea urchin) have unique water vascular system for locomotion.',d:'easy'},
+  {q:'Cold-blooded animals are called:',o:['Homeotherms','Poikilotherms','Endotherms','Mesotherms'],a:1,e:'Poikilotherms/Ectotherms = body temp changes with environment. Fishes, amphibians, reptiles.',d:'easy'},
+  {q:'Scales in fish are:',o:['Exoskeleton','Endoskeleton','Not skeleton','Cartilage'],a:0,e:'Fish scales = part of exoskeleton (dermal origin).',d:'easy'},
+  {q:'Which is NOT a characteristic of mammals?',o:['Hair','Mammary glands','Four-chambered heart','Laying eggs (all mammals)'],a:3,e:'Not all mammals lay eggs. Most are viviparous. Exception: Monotremes (platypus) lay eggs.',d:'easy'},
+],
+
+'zoo-3': [ // Digestion
+  {q:'Salivary amylase acts on:',o:['Proteins','Starch','Fats','Cellulose'],a:1,e:'Salivary amylase (ptyalin) converts starch → maltose in mouth. Works at pH ~6.8.',d:'easy'},
+  {q:'HCl in stomach is secreted by:',o:['Chief cells','Parietal (oxyntic) cells','Goblet cells','G cells'],a:1,e:'Parietal/oxyntic cells secrete HCl. Chief cells secrete pepsinogen.',d:'medium'},
+  {q:'Bile is produced by:',o:['Gall bladder','Liver','Pancreas','Stomach'],a:1,e:'Bile is produced by liver, stored in gall bladder. Bile emulsifies fats (no enzymes).',d:'easy'},
+  {q:'Absorption of digested food mainly occurs in:',o:['Stomach','Small intestine','Large intestine','Mouth'],a:1,e:'Small intestine (especially ileum) is primary site of absorption. Villi increase surface area.',d:'easy'},
+  {q:'Trypsin digests:',o:['Starch','Proteins','Fats','Nucleic acids'],a:1,e:'Trypsin = pancreatic protease. Converts proteins → peptides in small intestine.',d:'easy'},
+  {q:'Lipase acts on:',o:['Carbohydrates','Proteins','Fats → fatty acids + glycerol','Nucleic acids'],a:2,e:'Lipase breaks down fats into fatty acids and glycerol.',d:'easy'},
+  {q:'Large intestine mainly absorbs:',o:['Proteins','Fats','Water and electrolytes','Glucose'],a:2,e:'Large intestine absorbs water, electrolytes, and some vitamins (produced by bacteria).',d:'easy'},
+  {q:'Peristalsis is:',o:['Secretion of enzymes','Wave-like muscular contraction of GI tract','Absorption','Mixing of food'],a:1,e:'Peristalsis = involuntary wave-like muscular contractions that push food through alimentary canal.',d:'easy'},
+  {q:'pH of stomach juice:',o:['7','1.5-3.5','5-6','8-9'],a:1,e:'Gastric juice is highly acidic (pH 1.5-3.5) due to HCl. Activates pepsinogen → pepsin.',d:'easy'},
+  {q:'Dental formula of adult human:',o:['2123/2123','2102/2102','3132/3132','1111/1111'],a:0,e:'Adult human: 2123/2123 = 2 incisors, 1 canine, 2 premolars, 3 molars per half jaw. Total 32.',d:'medium'},
+],
+
+'zoo-4': [ // Breathing
+  {q:'Exchange of gases occurs in:',o:['Bronchi','Trachea','Alveoli','Nasal cavity'],a:2,e:'Gas exchange occurs in alveoli — thin walls, rich blood supply, large surface area.',d:'easy'},
+  {q:'During inspiration, diaphragm:',o:['Relaxes and moves up','Contracts and moves down','Does not move','Moves sideways'],a:1,e:'Inspiration: diaphragm contracts → flattens → thoracic volume increases → air rushes in.',d:'easy'},
+  {q:'Haemoglobin has highest affinity for:',o:['O₂','CO₂','CO','N₂'],a:2,e:'Hb affinity: CO > O₂ (CO affinity is 200-250x more than O₂). That\'s why CO poisoning is dangerous.',d:'medium'},
+  {q:'Residual volume is:',o:['Air remaining after normal expiration','Air remaining after forceful expiration','Total lung air','No air'],a:1,e:'RV = air remaining in lungs even after forced expiration ≈ 1100-1200 mL.',d:'medium'},
+  {q:'CO₂ is mainly transported as:',o:['Dissolved in plasma','Carbaminohaemoglobin','Bicarbonate ions (70%)','Attached to WBC'],a:2,e:'70% as HCO₃⁻ (bicarbonate), 23% as carbaminohaemoglobin, 7% dissolved.',d:'medium'},
+  {q:'Respiratory center is located in:',o:['Cerebrum','Cerebellum','Medulla oblongata','Hypothalamus'],a:2,e:'Respiratory center is in medulla oblongata. Regulates breathing rhythm.',d:'easy'},
+  {q:'Tidal volume is approximately:',o:['500 mL','1000 mL','2500 mL','4000 mL'],a:0,e:'Tidal volume = air breathed in/out during normal breathing ≈ 500 mL.',d:'easy'},
+  {q:'Vital capacity =',o:['TV + IRV + ERV','TV + RV','IRV + ERV','TV only'],a:0,e:'VC = TV + IRV + ERV ≈ 4000-4500 mL. Maximum air that can be exhaled after maximum inhalation.',d:'easy'},
+],
+
+'zoo-6': [ // Excretion
+  {q:'Functional unit of kidney:',o:['Nephron','Glomerulus','Loop of Henle','Collecting duct'],a:0,e:'Nephron is the structural and functional unit. Each kidney has ~1 million nephrons.',d:'easy'},
+  {q:'Glomerular filtration rate:',o:['25 mL/min','125 mL/min','1250 mL/min','12.5 mL/min'],a:1,e:'GFR ≈ 125 mL/min = 180 L/day. Only 1.5L becomes urine (99% reabsorbed).',d:'easy'},
+  {q:'ADH is secreted by:',o:['Adrenal cortex','Posterior pituitary','Anterior pituitary','Kidney'],a:1,e:'ADH (antidiuretic hormone) = from posterior pituitary. Increases water reabsorption in DCT/collecting duct.',d:'medium'},
+  {q:'Counter-current mechanism is in:',o:['PCT','DCT','Loop of Henle + vasa recta','Glomerulus'],a:2,e:'Counter-current multiplier (Loop of Henle) + exchanger (vasa recta) concentrates urine.',d:'medium'},
+  {q:'Urea is formed in:',o:['Kidney','Liver','Blood','Muscles'],a:1,e:'Urea is synthesized in liver through ornithine cycle (urea cycle). Excreted by kidneys.',d:'easy'},
+  {q:'Dialysis is used when:',o:['Lungs fail','Kidneys fail','Heart fails','Liver fails'],a:1,e:'Dialysis = artificial blood filtering when kidneys fail (renal failure).',d:'easy'},
+  {q:'Which is NOT a nitrogenous waste?',o:['Urea','Uric acid','Ammonia','Glucose'],a:3,e:'Glucose is not a waste — it\'s a nutrient. Urea, uric acid, ammonia are nitrogenous wastes.',d:'easy'},
+  {q:'Ascending limb of Henle is impermeable to:',o:['NaCl','Water','Both','Neither'],a:1,e:'Ascending limb: impermeable to water, permeable to NaCl (actively pumped out). Key for concentration.',d:'medium'},
+],
+
+'zoo-7': [ // Locomotion
+  {q:'Sliding filament theory explains:',o:['Nerve impulse','Muscle contraction','Bone growth','Joint movement'],a:1,e:'Sliding filament theory: Actin slides over Myosin during muscle contraction.',d:'easy'},
+  {q:'Ca²⁺ in muscle contraction:',o:['Provides energy','Binds to troponin, exposing binding sites on actin','Breaks down ATP','Relaxes muscle'],a:1,e:'Ca²⁺ binds troponin → tropomyosin moves → actin\'s myosin-binding sites exposed → contraction.',d:'medium'},
+  {q:'Ball and socket joint is found in:',o:['Knee','Shoulder and hip','Elbow','Between vertebrae'],a:1,e:'Ball and socket joint: allows movement in all directions. Found in shoulder and hip.',d:'easy'},
+  {q:'Osteoporosis is:',o:['Bone softening','Decreased bone density','Joint inflammation','Muscle wasting'],a:1,e:'Osteoporosis = decreased bone mass/density. Bones become fragile. Common in elderly women.',d:'easy'},
+  {q:'Skeletal muscle is:',o:['Involuntary, unstriated','Voluntary, striated','Involuntary, striated','Voluntary, unstriated'],a:1,e:'Skeletal muscle = voluntary, striated (striped). Attached to bones.',d:'easy'},
+  {q:'Total bones in adult human:',o:['206','300','106','512'],a:0,e:'Adult human skeleton = 206 bones. Infants have ~270 (some fuse with age).',d:'easy'},
+  {q:'Tendon connects:',o:['Bone to bone','Muscle to bone','Muscle to muscle','Skin to bone'],a:1,e:'Tendon connects muscle to bone. Ligament connects bone to bone.',d:'easy'},
+  {q:'ATP in muscle contraction is provided by:',o:['Golgi body','Creatine phosphate and mitochondria','Nucleus','ER'],a:1,e:'Immediate: creatine phosphate → ATP. Sustained: mitochondrial oxidative phosphorylation.',d:'medium'},
+],
+
+'zoo-8': [ // Neural Control
+  {q:'Synapse is:',o:['Gap between two neurons','Gap between two bones','Part of muscle','Part of kidney'],a:0,e:'Synapse = junction between two neurons. Signal transmitted via neurotransmitters.',d:'easy'},
+  {q:'Resting membrane potential:',o:['+70 mV','-70 mV','0 mV','-30 mV'],a:1,e:'Resting potential ≈ -70 mV (inside negative relative to outside). Due to K⁺ leak channels.',d:'easy'},
+  {q:'Cerebellum controls:',o:['Intelligence','Balance and coordination','Breathing','Hunger'],a:1,e:'Cerebellum: coordinates voluntary movements, balance, posture, muscle tone.',d:'easy'},
+  {q:'Neurotransmitter at neuromuscular junction:',o:['Dopamine','Serotonin','Acetylcholine','GABA'],a:2,e:'Acetylcholine (ACh) is released at neuromuscular junction → muscle contraction.',d:'easy'},
+  {q:'Reflex arc sequence:',o:['Effector→CNS→Receptor','Receptor→Afferent→CNS→Efferent→Effector','CNS→Receptor→Effector','Random'],a:1,e:'Receptor detects → Afferent (sensory) nerve → CNS processes → Efferent (motor) nerve → Effector responds.',d:'easy'},
+  {q:'Rods in retina are for:',o:['Color vision','Dim light/night vision','Near vision','Far vision'],a:1,e:'Rods: dim light vision (scotopic). Cones: bright light + color vision (photopic).',d:'easy'},
+  {q:'Hypothalamus controls:',o:['Body temperature, hunger, thirst','Only breathing','Only vision','Only hearing'],a:0,e:'Hypothalamus: thermoregulation, hunger, thirst, sleep, emotions, endocrine control.',d:'easy'},
+  {q:'Number of cranial nerves:',o:['10 pairs','12 pairs','31 pairs','8 pairs'],a:1,e:'12 pairs of cranial nerves (from brain). 31 pairs of spinal nerves (from spinal cord).',d:'easy'},
+],
+
+'zoo-9': [ // Endocrine
+  {q:'Insulin is secreted by:',o:['Alpha cells of pancreas','Beta cells of pancreas','Thyroid','Adrenal'],a:1,e:'Beta cells of Islets of Langerhans secrete insulin → lowers blood glucose.',d:'easy'},
+  {q:'Thyroid hormone requires:',o:['Iron','Calcium','Iodine','Zinc'],a:2,e:'Thyroid hormones (T3, T4) require iodine. Deficiency → goitre.',d:'easy'},
+  {q:'Fight-or-flight hormone:',o:['Insulin','Adrenaline (Epinephrine)','Thyroxine','Growth hormone'],a:1,e:'Adrenaline from adrenal medulla: increases heart rate, blood pressure, glucose — emergency response.',d:'easy'},
+  {q:'Dwarfism is caused by deficiency of:',o:['Insulin','Growth hormone (in childhood)','Thyroxine','ADH'],a:1,e:'GH deficiency in childhood → pituitary dwarfism. Excess → gigantism.',d:'easy'},
+  {q:'Diabetes mellitus is due to:',o:['Excess insulin','Deficiency of insulin','Excess thyroxine','Deficiency of ADH'],a:1,e:'Diabetes mellitus: insulin deficiency or resistance → high blood glucose.',d:'easy'},
+  {q:'Parathyroid hormone increases:',o:['Blood calcium','Blood glucose','Blood pressure','Body temperature'],a:0,e:'PTH increases blood Ca²⁺ levels (from bones + intestine + kidneys).',d:'easy'},
+  {q:'Melatonin is secreted by:',o:['Thyroid','Pineal gland','Pituitary','Adrenal'],a:1,e:'Pineal gland secretes melatonin → regulates sleep-wake cycle (circadian rhythm).',d:'easy'},
+  {q:'Exophthalmic goitre is due to:',o:['Hypothyroidism','Hyperthyroidism (Graves\' disease)','Hypoparathyroidism','Diabetes'],a:1,e:'Graves\' disease = hyperthyroidism → exophthalmic goitre (bulging eyes, enlarged thyroid).',d:'medium'},
+],
+
+'zoo-12': [ // Human Health
+  {q:'AIDS is caused by:',o:['Bacteria','HIV (retrovirus)','Fungus','Protozoan'],a:1,e:'AIDS caused by HIV (Human Immunodeficiency Virus) — a retrovirus attacking CD4+ T cells.',d:'easy'},
+  {q:'Malaria is caused by:',o:['Bacteria','Virus','Plasmodium (protozoan)','Fungus'],a:2,e:'Malaria caused by Plasmodium (P. vivax, P. falciparum). Vector: female Anopheles mosquito.',d:'easy'},
+  {q:'Active immunity is produced by:',o:['Injection of antibodies','Vaccination (antigens)','Mother\'s milk','Blood transfusion'],a:1,e:'Active immunity: body makes its own antibodies after exposure to antigen (naturally or via vaccine).',d:'easy'},
+  {q:'Passive immunity example:',o:['Vaccination','Antibodies in mother\'s milk (colostrum)','Previous infection','Booster dose'],a:1,e:'Passive immunity: readymade antibodies transferred. Colostrum (IgA), placenta (IgG) = passive.',d:'easy'},
+  {q:'Interferons are produced against:',o:['Bacteria','Virus','Fungi','Parasites'],a:1,e:'Interferons = proteins produced by virus-infected cells. Protect neighboring cells from viral infection.',d:'easy'},
+  {q:'ELISA test detects:',o:['Blood group','HIV antibodies','Malaria','TB'],a:1,e:'ELISA (Enzyme-Linked Immunosorbent Assay) detects HIV antibodies in blood.',d:'easy'},
+  {q:'Cancer cells show:',o:['Contact inhibition','Metastasis (uncontrolled spreading)','Normal growth','Apoptosis'],a:1,e:'Cancer cells lose contact inhibition → uncontrolled division + metastasis (spread to other organs).',d:'easy'},
+  {q:'Benign tumor is:',o:['Cancerous and spreading','Non-cancerous, localized','Always fatal','Same as malignant'],a:1,e:'Benign = non-cancerous, localized, non-spreading. Malignant = cancerous, metastatic.',d:'easy'},
+],
+
+'zoo-13': [ // Human Genetics
+  {q:'Sickle cell anemia is:',o:['X-linked','Autosomal recessive','Autosomal dominant','Y-linked'],a:1,e:'Sickle cell anemia: autosomal recessive. HbS due to single base substitution (GAG→GUG).',d:'easy'},
+  {q:'Down syndrome has:',o:['45 chromosomes','46 chromosomes','47 chromosomes','48 chromosomes'],a:2,e:'Down syndrome = Trisomy 21. Total 47 chromosomes. Extra chromosome 21.',d:'easy'},
+  {q:'Colour blind father and carrier mother — probability of colour blind son:',o:['0%','25%','50%','100%'],a:2,e:'Father: X^c Y, Mother: X^C X^c. Sons: 50% X^C Y (normal), 50% X^c Y (colour blind).',d:'medium'},
+  {q:'PKU is caused by deficiency of:',o:['Phenylalanine hydroxylase','Lactase','Insulin','Thyroxine'],a:0,e:'PKU: lack of phenylalanine hydroxylase → phenylalanine accumulates → brain damage.',d:'medium'},
+  {q:'Thalassemia is:',o:['Reduced or absent globin chain synthesis','Sickle-shaped RBC','Blood cancer','Clotting disorder'],a:0,e:'Thalassemia: reduced synthesis of α or β globin chains → anemia.',d:'easy'},
+  {q:'Pedigree analysis helps in:',o:['Studying evolution','Tracing inheritance pattern in families','Classifying organisms','DNA sequencing'],a:1,e:'Pedigree analysis traces inheritance of a trait through generations in a family.',d:'easy'},
+  {q:'XO genotype results in:',o:['Normal male','Normal female','Turner syndrome','Klinefelter syndrome'],a:2,e:'45,X (XO) = Turner syndrome. Female, short, sterile, webbed neck.',d:'easy'},
+  {q:'Haemophilia carrier female married to normal male — sons affected:',o:['0%','25%','50%','100%'],a:2,e:'Mother X^H X^h × Father X^H Y → Sons: 50% X^H Y (normal), 50% X^h Y (haemophilic).',d:'medium'},
+],
+
+// ═══ NEET PHYSICS remaining ═══
+
+'phy-2': [ // Kinematics
+  {q:'A body at rest has speed:',o:['Maximum','Zero','Infinite','Cannot determine'],a:1,e:'At rest means no motion → speed = 0.',d:'easy'},
+  {q:'Acceleration due to gravity on earth surface:',o:['9.8 m/s²','10 m/s','8.9 m/s²','11 m/s²'],a:0,e:'g ≈ 9.8 m/s² on Earth surface. Often approximated as 10 m/s² in problems.',d:'easy'},
+  {q:'Ball thrown up returns in 4s. Maximum height (g=10):',o:['10m','20m','40m','80m'],a:1,e:'Time up = 2s. H = ½gt² = ½(10)(4) = 20m.',d:'easy'},
+  {q:'Distance-time graph for uniform velocity is:',o:['Curved line','Straight line through origin','Horizontal line','Vertical line'],a:1,e:'Uniform velocity → s = vt → straight line through origin in s-t graph.',d:'easy'},
+  {q:'Displacement can be:',o:['Only positive','Only negative','Zero, positive, or negative','Only zero'],a:2,e:'Displacement is a vector — can be positive, negative, or zero (if returning to start).',d:'easy'},
+  {q:'A body falling freely from height h reaches ground with velocity:',o:['√(gh)','√(2gh)','2gh','gh'],a:1,e:'v² = u² + 2as. v² = 0 + 2gh. v = √(2gh).',d:'easy'},
+  {q:'Projectile has horizontal acceleration of:',o:['g','g/2','0','2g'],a:2,e:'No horizontal force (ignoring air resistance) → horizontal acceleration = 0. Only vertical acceleration = g.',d:'easy'},
+  {q:'Velocity of a body in free fall after 3s (g=10):',o:['10 m/s','20 m/s','30 m/s','40 m/s'],a:2,e:'v = u + gt = 0 + 10(3) = 30 m/s.',d:'easy'},
+],
+
+'phy-3': [ // Laws of Motion
+  {q:'Inertia depends on:',o:['Velocity','Mass','Acceleration','Shape'],a:1,e:'Inertia = resistance to change in state of motion. Depends on mass only.',d:'easy'},
+  {q:'Action and reaction forces act on:',o:['Same body','Different bodies','No bodies','Same point'],a:1,e:'Newton\'s 3rd law: action-reaction pairs act on DIFFERENT bodies. That\'s why they don\'t cancel.',d:'easy'},
+  {q:'Net force on a body in equilibrium:',o:['Maximum','Zero','Equal to weight','Equal to friction'],a:1,e:'In equilibrium: ΣF = 0 (no net force → no acceleration).',d:'easy'},
+  {q:'Unit of force:',o:['Joule','Newton','Watt','Pascal'],a:1,e:'Force in SI: Newton (N) = kg⋅m/s².',d:'easy'},
+  {q:'Friction force always acts:',o:['In direction of motion','Opposite to relative motion/tendency','Upward','Perpendicular to surface'],a:1,e:'Friction opposes relative motion (or tendency of motion) between surfaces.',d:'easy'},
+  {q:'A 5 kg body accelerates at 2 m/s². Force applied:',o:['2.5N','7N','10N','3N'],a:2,e:'F = ma = 5 × 2 = 10 N.',d:'easy'},
+  {q:'Centripetal force direction:',o:['Along velocity','Opposite velocity','Toward center','Away from center'],a:2,e:'Centripetal force always points toward center of circular path.',d:'easy'},
+  {q:'Apparent weight in lift accelerating upward:',o:['Increases','Decreases','Same','Zero'],a:0,e:'Lift up: N = m(g+a) → apparent weight increases.',d:'easy'},
+],
+
+'phy-4': [ // Work, Energy, Power
+  {q:'Work done by a force perpendicular to displacement:',o:['Maximum','Minimum','Zero','Infinite'],a:2,e:'W = Fd cosθ. When θ = 90°, cos90° = 0 → W = 0.',d:'easy'},
+  {q:'SI unit of work:',o:['Newton','Joule','Watt','Pascal'],a:1,e:'Work = Force × Distance. SI unit: Joule (J) = N⋅m.',d:'easy'},
+  {q:'A body of mass 2 kg at height 10m has PE (g=10):',o:['20J','100J','200J','2000J'],a:2,e:'PE = mgh = 2 × 10 × 10 = 200 J.',d:'easy'},
+  {q:'KE of a body of mass 4kg moving at 3m/s:',o:['6J','12J','18J','36J'],a:2,e:'KE = ½mv² = ½(4)(9) = 18 J.',d:'easy'},
+  {q:'In elastic collision:',o:['Only momentum conserved','Only KE conserved','Both momentum and KE conserved','Neither conserved'],a:2,e:'Elastic collision: both momentum and kinetic energy are conserved.',d:'easy'},
+  {q:'Power is:',o:['Work × Time','Force × Distance','Work / Time','Force / Time'],a:2,e:'Power = Work/Time = rate of doing work. SI unit: Watt (W) = J/s.',d:'easy'},
+  {q:'1 horsepower =',o:['100 W','746 W','1000 W','500 W'],a:1,e:'1 HP = 746 Watts.',d:'easy'},
+  {q:'If velocity doubles, KE becomes:',o:['Double','Triple','Four times','Same'],a:2,e:'KE = ½mv². If v → 2v: KE = ½m(2v)² = 4 × ½mv². KE becomes 4 times.',d:'easy'},
+],
+
+// ═══ NEET CHEMISTRY remaining ═══
+
+'chem-2': [ // Atomic Structure
+  {q:'Maximum electrons in 3rd shell:',o:['2','8','18','32'],a:2,e:'Max electrons in nth shell = 2n². For n=3: 2(9) = 18.',d:'easy'},
+  {q:'Aufbau principle states:',o:['No two electrons have same quantum numbers','Electrons fill lowest energy orbitals first','Electrons pair after all orbitals are half-filled','Orbitals have equal energy'],a:1,e:'Aufbau: electrons fill orbitals in increasing order of energy (1s→2s→2p→3s...).',d:'easy'},
+  {q:'Pauli exclusion principle:',o:['Maximum 2 electrons per orbital with opposite spins','Electrons fill lowest first','Half-fill before pairing','No rule'],a:0,e:'Pauli: No two electrons can have all 4 quantum numbers identical. Max 2 per orbital (opposite spins).',d:'easy'},
+  {q:'Hund\'s rule:',o:['Fill lowest energy first','Pair electrons first','Maximum multiplicity — half-fill before pairing','No pairing ever'],a:2,e:'Hund: Electrons occupy degenerate orbitals singly (with parallel spins) before pairing.',d:'easy'},
+  {q:'Electron configuration of Cu (Z=29):',o:['[Ar]3d⁹4s²','[Ar]3d¹⁰4s¹','[Ar]3d⁸4s²4p¹','[Ar]3d¹⁰4s²'],a:1,e:'Cu exception: [Ar]3d¹⁰4s¹ (completely filled d = extra stable).',d:'medium'},
+  {q:'Shape of p-orbital:',o:['Spherical','Dumbbell','Cloverleaf','Linear'],a:1,e:'p-orbital is dumbbell-shaped. s = spherical. d = cloverleaf.',d:'easy'},
+  {q:'Quantum number that determines shape:',o:['n (principal)','l (azimuthal)','ml (magnetic)','ms (spin)'],a:1,e:'l (azimuthal/angular momentum) determines shape: l=0(s), l=1(p), l=2(d), l=3(f).',d:'easy'},
+  {q:'Heisenberg uncertainty says:',o:['Energy is uncertain','Position and momentum cannot both be precisely known','Speed is always uncertain','Mass changes'],a:1,e:'ΔxΔp ≥ h/4π. Cannot simultaneously determine exact position and momentum of electron.',d:'medium'},
+],
+
+'chem-24': [ // Aldehydes, Ketones — NAME REACTIONS
+  {q:'Aldol condensation involves:',o:['Two molecules with α-hydrogen','Two molecules without α-hydrogen','Only ketones','Only acids'],a:0,e:'Aldol: two aldehyde/ketone molecules with α-H → β-hydroxy aldehyde/ketone.',d:'medium'},
+  {q:'Cannizzaro reaction occurs with:',o:['Aldehydes with α-H','Aldehydes without α-H','Only ketones','Only acids'],a:1,e:'Cannizzaro: aldehyde without α-H + strong base → one molecule oxidized + one reduced.',d:'medium'},
+  {q:'Tollen\'s test gives silver mirror with:',o:['Ketones','Aldehydes','Both','Neither'],a:1,e:'Tollen\'s reagent (ammoniacal AgNO₃) + Aldehyde → Ag mirror. Ketones don\'t react.',d:'easy'},
+  {q:'Fehling\'s test: red precipitate with:',o:['Aldehydes','Ketones','Both','Alcohols'],a:0,e:'Fehling\'s: Cu²⁺ → Cu₂O (red ppt) with aldehydes. Ketones don\'t reduce Fehling\'s.',d:'easy'},
+  {q:'Clemmensen reduction converts C=O to:',o:['C-OH','CH₂ (methylene)','COOH','C-NH₂'],a:1,e:'Clemmensen: C=O → CH₂ using Zn(Hg)/conc. HCl. Removes oxygen from carbonyl.',d:'medium'},
+  {q:'Wolff-Kishner reduction uses:',o:['Zn-Hg/HCl','NH₂-NH₂/KOH (hydrazine/base)','LiAlH₄','NaBH₄'],a:1,e:'Wolff-Kishner: C=O + NH₂NH₂ → intermediate → CH₂ (basic conditions with KOH/ethylene glycol).',d:'medium'},
+  {q:'Iodoform test is positive for:',o:['All aldehydes','Methyl ketones and acetaldehyde','All ketones','All alcohols'],a:1,e:'Iodoform test: positive for CH₃CO- group (acetaldehyde, methyl ketones, ethanol, 2° alcohols with CH₃).',d:'medium'},
+  {q:'Acidity order:',o:['RCOOH > ArOH > ROH > H₂O','ROH > RCOOH > H₂O > ArOH','H₂O > ROH > ArOH > RCOOH','ArOH > RCOOH > ROH > H₂O'],a:0,e:'RCOOH (carboxylic acid) > ArOH (phenol) > ROH (alcohol) > H₂O.',d:'medium'},
+  {q:'Rosenmund reduction converts:',o:['Acid → Aldehyde','Acid chloride → Aldehyde','Ester → Alcohol','Ketone → Alcohol'],a:1,e:'Rosenmund: Acid chloride + H₂/Pd-BaSO₄ → Aldehyde (poisoned catalyst prevents over-reduction).',d:'medium'},
+  {q:'HVZ reaction involves:',o:['Aldehydes','Carboxylic acids with α-H','Ketones','Alcohols'],a:1,e:'Hell-Volhard-Zelinsky: Carboxylic acid with α-H + X₂/P → α-halocarboxylic acid.',d:'hard'},
+],
+
+// ═══ JEE remaining high priority ═══
+
+'jp-13': [ // Electrostatics
+  {q:'Coulomb\'s law: F ∝',o:['q₁q₂/r','q₁q₂/r²','q₁+q₂/r²','q₁q₂×r²'],a:1,e:'F = kq₁q₂/r². Force is inversely proportional to square of distance.',d:'easy'},
+  {q:'Electric field inside a conductor:',o:['Maximum','Zero','Equal to external field','Infinite'],a:1,e:'Inside a conductor in electrostatic equilibrium, E = 0.',d:'easy'},
+  {q:'Gauss\'s law relates:',o:['Electric flux to enclosed charge','Magnetic flux to current','Potential to distance','Charge to current'],a:0,e:'∮E⋅dA = q_enclosed/ε₀. Electric flux through closed surface = charge inside / ε₀.',d:'easy'},
+  {q:'Electric potential due to point charge:',o:['V=kq/r','V=kq/r²','V=kqr','V=kq²/r'],a:0,e:'V = kq/r. Potential is scalar. Decreases with distance (for positive charge).',d:'easy'},
+  {q:'Capacitance of parallel plate capacitor:',o:['C=εA/d','C=εd/A','C=εAd','C=ε/Ad'],a:0,e:'C = ε₀A/d. Increases with area, decreases with separation.',d:'easy'},
+  {q:'Energy stored in capacitor:',o:['U=CV','U=½CV²','U=CV²','U=C/V'],a:1,e:'U = ½CV² = ½QV = Q²/2C.',d:'easy'},
+  {q:'Two capacitors C in series:',o:['2C','C','C/2','4C'],a:2,e:'Series: 1/C_eq = 1/C + 1/C = 2/C → C_eq = C/2.',d:'easy'},
+  {q:'Electric field lines:',o:['Cross each other','Never cross','Are always parallel','Form closed loops'],a:1,e:'Electric field lines never intersect (would imply two directions at one point).',d:'easy'},
+],
+
+'jm-13': [ // Matrices & Determinants
+  {q:'If |A| = 0, then A is:',o:['Invertible','Singular','Orthogonal','Symmetric'],a:1,e:'Singular matrix: determinant = 0, non-invertible.',d:'easy'},
+  {q:'(AB)⁻¹ =',o:['A⁻¹B⁻¹','B⁻¹A⁻¹','(A⁻¹)(B⁻¹)','AB'],a:1,e:'(AB)⁻¹ = B⁻¹A⁻¹. Reversal law for inverse.',d:'easy'},
+  {q:'Determinant of 2×2 matrix [[a,b],[c,d]]:',o:['ad+bc','ad-bc','ac-bd','ab-cd'],a:1,e:'|A| = ad - bc for 2×2 matrix.',d:'easy'},
+  {q:'A + Aᵀ is always:',o:['Skew-symmetric','Symmetric','Zero','Singular'],a:1,e:'A + Aᵀ is always symmetric because (A+Aᵀ)ᵀ = Aᵀ+A = A+Aᵀ.',d:'medium'},
+  {q:'If A is 3×3 matrix and |A|=5, |3A|=?',o:['15','45','135','5'],a:2,e:'|kA| = kⁿ|A| for n×n matrix. |3A| = 3³×5 = 135.',d:'medium'},
+  {q:'Order of matrix multiplication AB: A(m×n), B(n×p) gives:',o:['m×p','n×n','m×n','p×m'],a:0,e:'A(m×n) × B(n×p) = C(m×p). Inner dimensions must match.',d:'easy'},
+  {q:'Transpose of transpose: (Aᵀ)ᵀ =',o:['A','Aᵀ','A⁻¹','0'],a:0,e:'Double transpose gives back original matrix: (Aᵀ)ᵀ = A.',d:'easy'},
+  {q:'Identity matrix I satisfies:',o:['AI = 0','AI = A','AI = I','AI = A²'],a:1,e:'AI = IA = A. Identity matrix is multiplicative identity.',d:'easy'},
+],
+
+// ═══ CLAT remaining ═══
+
+'clo-1': [ // Syllogisms
+  {q:'All A are B. All B are C. Therefore:',o:['All C are A','All A are C','Some C are A','No A are C'],a:1,e:'All A⊂B⊂C. Therefore All A are C (transitive). Some C are A is also true.',d:'easy'},
+  {q:'No A are B. All B are C. Therefore:',o:['No A are C','Some C are not A','All A are C','No conclusion'],a:1,e:'No A are B + All B are C → Some C are not A (at minimum).',d:'medium'},
+  {q:'Some A are B. Some B are C. Therefore:',o:['Some A are C','All A are C','No A are C','No definite conclusion'],a:3,e:'Two particular (some) premises give no definite conclusion. Need at least one universal.',d:'medium'},
+  {q:'All dogs are animals. Rex is a dog. Therefore:',o:['All animals are dogs','Rex is an animal','Rex is not a dog','Dogs are Rex'],a:1,e:'Universal + particular → Rex ∈ dogs ⊂ animals → Rex is an animal.',d:'easy'},
+  {q:'If all roses are flowers and some flowers are red, then:',o:['All roses are red','Some roses are red','No definite conclusion about roses being red','No roses are red'],a:2,e:'Cannot conclude anything about roses being red. "Some flowers are red" doesn\'t specify which.',d:'medium'},
+  {q:'Statement: All politicians are honest. Conclusion: Some honest people are politicians.',o:['Follows','Does not follow','Partially follows','Cannot determine'],a:0,e:'If All A are B → Some B are A (converse). This always follows.',d:'easy'},
+  {q:'No fish can fly. Some birds can fly. Therefore:',o:['Some birds are not fish','All birds are fish','No birds are fish','All fish are birds'],a:0,e:'Since some birds fly and no fish fly → those flying birds are definitely not fish.',d:'easy'},
+  {q:'All cats are mammals. No mammals are insects. Therefore:',o:['No cats are insects','Some cats are insects','All insects are cats','No conclusion'],a:0,e:'Cats ⊂ Mammals, Mammals ∩ Insects = ∅ → Cats ∩ Insects = ∅.',d:'easy'},
+],
+
+'cq-1': [ // Quantitative — Percentage, Ratio
+  {q:'25% of 400:',o:['100','50','200','75'],a:0,e:'25/100 × 400 = 100.',d:'easy'},
+  {q:'If CP=₹500, SP=₹600, profit%:',o:['10%','20%','25%','15%'],a:1,e:'Profit = 600-500 = ₹100. Profit% = 100/500 × 100 = 20%.',d:'easy'},
+  {q:'Ratio 2:3, total 50. Larger part:',o:['20','25','30','35'],a:2,e:'Total parts = 5. Larger = 3/5 × 50 = 30.',d:'easy'},
+  {q:'SI on ₹10,000 at 5% for 3 years:',o:['₹500','₹1,000','₹1,500','₹2,000'],a:2,e:'SI = PNR/100 = 10000×3×5/100 = ₹1,500.',d:'easy'},
+  {q:'A is twice as old as B. After 10 years, A will be 1.5 times B. B\'s age:',o:['10','20','30','40'],a:1,e:'A=2B. After 10: 2B+10 = 1.5(B+10) → 2B+10 = 1.5B+15 → 0.5B=5 → B=10. Wait let me recheck... B=10, A=20. After 10: A=30, B=20. 30/20=1.5. Yes B=10.',d:'medium'},
+  {q:'A train 100m long passes pole in 10s. Speed:',o:['10 m/s','100 m/s','5 m/s','20 m/s'],a:0,e:'Speed = Distance/Time = 100/10 = 10 m/s = 36 km/h.',d:'easy'},
+  {q:'If A can do work in 10 days, B in 15 days, together:',o:['5 days','6 days','25 days','12 days'],a:1,e:'A rate=1/10, B rate=1/15. Together=1/10+1/15=5/30=1/6. Time=6 days.',d:'easy'},
+  {q:'30% of a number is 45. The number is:',o:['100','135','150','200'],a:2,e:'30/100 × x = 45. x = 45×100/30 = 150.',d:'easy'},
+],
+
+'cq-2': [ // Data Interpretation
+  {q:'Bar chart shows: Mon=10, Tue=15, Wed=20, Thu=25, Fri=30. Average:',o:['15','20','25','30'],a:1,e:'Average = (10+15+20+25+30)/5 = 100/5 = 20.',d:'easy'},
+  {q:'Pie chart: Education 30%, Health 25%, Defence 20%, Others 25%. If total ₹200Cr, Education:',o:['₹30Cr','₹50Cr','₹60Cr','₹25Cr'],a:2,e:'30% of 200 = ₹60 Cr.',d:'easy'},
+  {q:'Sales increased from 100 to 125. Growth%:',o:['20%','25%','30%','12.5%'],a:1,e:'Growth = (125-100)/100 × 100 = 25%.',d:'easy'},
+  {q:'Line graph shows: 2020=50, 2021=60, 2022=75. Highest growth year:',o:['2020','2021 (20%)','2022 (25%)','All same'],a:2,e:'2021 growth: (60-50)/50=20%. 2022 growth: (75-60)/60=25%. 2022 highest.',d:'easy'},
+  {q:'Table: A=40, B=60, C=100. B as % of total:',o:['20%','30%','40%','60%'],a:1,e:'Total=200. B%=60/200×100=30%.',d:'easy'},
+  {q:'If revenue in Q1=₹10Cr, Q2=₹15Cr, Q3=₹20Cr, Q4=₹25Cr. H2 as % of annual:',o:['35.7%','50%','64.3%','71.4%'],a:2,e:'Annual=70Cr. H2(Q3+Q4)=45Cr. 45/70×100≈64.3%.',d:'medium'},
+  {q:'Average of 5 numbers is 20. If one number removed, average becomes 18. Removed number:',o:['20','24','28','30'],a:2,e:'Total=5×20=100. New total=4×18=72. Removed=100-72=28.',d:'easy'},
+  {q:'Population increased from 1 lakh to 1.21 lakh in 2 years at compound rate. Rate:',o:['10%','11%','20%','21%'],a:0,e:'1.21 = 1(1+r/100)². (1+r/100)²=1.21. 1+r/100=1.1. r=10%.',d:'medium'},
+],
+};
