@@ -1565,165 +1565,19 @@ Be empathetic and respect Indian family values while helping the student communi
             <ScrollArea className="h-[calc(100vh-280px)] sm:h-[55vh]">
               <div className="p-3 sm:p-6">
                 {messages.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-full text-center py-16">
-                    {/* Animated avatar */}
+                  <div className="flex flex-col items-center justify-center h-full text-center py-20">
                     <div className="relative mb-6">
-                      <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-amber-400 via-orange-400 to-amber-500 flex items-center justify-center shadow-2xl shadow-orange-300/50 transform hover:scale-105 transition-transform duration-300">
-                        <Bot className="h-12 w-12 text-white" />
+                      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-amber-400 via-orange-400 to-amber-500 flex items-center justify-center shadow-2xl shadow-orange-300/50">
+                        <Bot className="h-10 w-10 text-white" />
                       </div>
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-4 border-white flex items-center justify-center">
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-3 border-white flex items-center justify-center">
                         <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                       </div>
                     </div>
-                    <h3 className="text-2xl font-serif font-bold text-gray-800 mb-3">
-                      {t('chat.welcomeTitle')}
-                    </h3>
-                    <p className="text-gray-600 max-w-md text-lg leading-relaxed">
-                      {t('chat.welcomeDesc')}
-                    </p>
-                    <p className="text-amber-600/80 font-tamil mt-4 text-lg">
-                      {t('chat.welcomeTamil')}
-                    </p>
-                    
-                    {/* Curated Questions for 12th Students */}
-                    <div className="mt-8 w-full max-w-2xl">
-                      <div className="flex items-center gap-2 justify-center mb-4">
-                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-                        <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1 rounded-full flex items-center gap-1.5">
-                          <Sparkles className="h-3 w-3" />
-                          {t('chat.popularQuestions')}
-                        </span>
-                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-                      </div>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {/* Career Planning Questions */}
-                        {[
-                          { questionKey: "chat.q1", icon: "🔬", color: "blue" },
-                          { questionKey: "chat.q2", icon: "💰", color: "green" },
-                          { questionKey: "chat.q3", icon: "🤔", color: "purple" },
-                          { questionKey: "chat.q4", icon: "📈", color: "orange" },
-                          { questionKey: "chat.q5", icon: "📝", color: "rose" },
-                          { questionKey: "chat.q6", icon: "🏫", color: "indigo" },
-                          { questionKey: "chat.q7", icon: "✈️", color: "sky" },
-                          { questionKey: "chat.q8", icon: "🎯", color: "amber" },
-                        ].map((item) => (
-                          <button
-                            key={item.questionKey}
-                            onClick={() => handleQuickAction(t(item.questionKey))}
-                            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
-                              item.color === "blue" ? "bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 text-blue-800 hover:border-blue-400" :
-                              item.color === "green" ? "bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 hover:border-green-400" :
-                              item.color === "purple" ? "bg-gradient-to-r from-purple-50 to-violet-50 border border-purple-200 text-purple-800 hover:border-purple-400" :
-                              item.color === "orange" ? "bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 text-orange-800 hover:border-orange-400" :
-                              item.color === "rose" ? "bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-800 hover:border-rose-400" :
-                              item.color === "indigo" ? "bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 text-indigo-800 hover:border-indigo-400" :
-                              item.color === "sky" ? "bg-gradient-to-r from-sky-50 to-cyan-50 border border-sky-200 text-sky-800 hover:border-sky-400" :
-                              "bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 text-amber-800 hover:border-amber-400"
-                            }`}
-                          >
-                            <span className="text-lg">{item.icon}</span>
-                            <span className="text-sm font-medium leading-tight">{t(item.questionKey)}</span>
-                          </button>
-                        ))}
-                      </div>
-                      
-                      {/* Stream-specific section */}
-                      <div className="mt-6">
-                        <div className="flex items-center gap-2 justify-center mb-3">
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
-                          <span className="text-xs font-semibold text-rose-600 bg-rose-50 px-3 py-1 rounded-full">
-                            🎓 {t('chat.streamSpecificQuestions')}
-                          </span>
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
-                        </div>
-                        
-                        <div className="flex flex-wrap justify-center gap-2">
-                          {[
-                            "chat.stream1",
-                            "chat.stream2",
-                            "chat.stream3",
-                            "chat.stream4"
-                          ].map((key) => (
-                            <button
-                              key={key}
-                              onClick={() => handleQuickAction(t(key))}
-                              className="px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-700 text-sm font-medium hover:border-rose-400 hover:shadow-md transition-all duration-300"
-                            >
-                              {t(key)}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Exam Preparation Tips section */}
-                      <div className="mt-6">
-                        <div className="flex items-center gap-2 justify-center mb-3">
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
-                          <span className="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">
-                            📚 {t('chat.examPrepHeader')}
-                          </span>
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
-                        </div>
-                        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                          {[
-                            { questionKey: "chat.exam1", icon: "🎯", color: "violet" },
-                            { questionKey: "chat.exam2", icon: "🏥", color: "teal" },
-                            { questionKey: "chat.exam3", icon: "🏛️", color: "cyan" },
-                            { questionKey: "chat.exam4", icon: "⚖️", color: "fuchsia" },
-                          ].map((item) => (
-                            <button
-                              key={item.questionKey}
-                              onClick={() => handleQuickAction(t(item.questionKey))}
-                              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
-                                item.color === "violet" ? "bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200 text-violet-800 hover:border-violet-400" :
-                                item.color === "teal" ? "bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200 text-teal-800 hover:border-teal-400" :
-                                item.color === "cyan" ? "bg-gradient-to-r from-cyan-50 to-sky-50 border border-cyan-200 text-cyan-800 hover:border-cyan-400" :
-                                "bg-gradient-to-r from-fuchsia-50 to-pink-50 border border-fuchsia-200 text-fuchsia-800 hover:border-fuchsia-400"
-                              }`}
-                            >
-                              <span className="text-lg">{item.icon}</span>
-                              <span className="text-sm font-medium leading-tight">{t(item.questionKey)}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Scholarship & Financial Aid section */}
-                      <div className="mt-6">
-                        <div className="flex items-center gap-2 justify-center mb-3">
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-                          <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
-                            💰 {t('chat.scholarshipHeader')}
-                          </span>
-                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-                        </div>
-                        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                          {[
-                            { questionKey: "chat.scholarship1", icon: "🎓", color: "emerald" },
-                            { questionKey: "chat.scholarship2", icon: "🏦", color: "lime" },
-                            { questionKey: "chat.scholarship3", icon: "🏆", color: "green" },
-                            { questionKey: "chat.scholarship4", icon: "🌍", color: "teal" },
-                          ].map((item) => (
-                            <button
-                              key={item.questionKey}
-                              onClick={() => handleQuickAction(t(item.questionKey))}
-                              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
-                                item.color === "emerald" ? "bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 text-emerald-800 hover:border-emerald-400" :
-                                item.color === "lime" ? "bg-gradient-to-r from-lime-50 to-green-50 border border-lime-200 text-lime-800 hover:border-lime-400" :
-                                item.color === "green" ? "bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 hover:border-green-400" :
-                                "bg-gradient-to-r from-teal-50 to-cyan-50 border border-teal-200 text-teal-800 hover:border-teal-400"
-                              }`}
-                            >
-                              <span className="text-lg">{item.icon}</span>
-                              <span className="text-sm font-medium leading-tight">{t(item.questionKey)}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">AI Career Counselor</h3>
+                    <p className="text-sm text-gray-500 max-w-xs">Ask me anything about careers, exams, colleges, or scholarships. I'm here to help!</p>
+                    <p className="text-sm text-amber-600/80 font-tamil mt-3">உங்கள் தொழில் வழிகாட்டி தயாராக உள்ளது!</p>
+                    <p className="text-xs text-gray-400 mt-4">👈 Pick a question from the side, or type below ↓</p>
                   </div>
                 ) : (
                   <div className="space-y-5">
