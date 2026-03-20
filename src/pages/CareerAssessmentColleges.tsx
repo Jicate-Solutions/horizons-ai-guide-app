@@ -7,7 +7,7 @@ import {
   Target, Brain, BookOpen, Calculator, FileText, Landmark,
   Building2, Compass, Rocket, GraduationCap, Sparkles,
   ArrowRight, ChevronRight, Clock, Star, TrendingUp,
-  Bookmark, MessageCircle, School, Zap, Users
+  Bookmark, MessageCircle, School, Zap, Users, Bell
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════
@@ -74,6 +74,7 @@ const detectStream = (raw: string): StreamKey => {
    ═══════════════════════════════════════ */
 const allFeatures = [
   { id: 'syllabus_tracker', title: 'Syllabus Tracker', desc: 'Track every chapter — know exactly where you stand', icon: BookOpen, route: '/syllabus-tracker', color: 'from-emerald-500 to-green-600', tag: 'NEW', category: 'explore' },
+  { id: 'exam_alerts', title: 'Exam Alerts 2026', desc: 'All deadlines & dates — never miss a registration', icon: Bell, route: '/exam-alerts', color: 'from-red-500 to-rose-600', tag: 'NEW', category: 'explore' },
   { id: 'ai_predictor', title: 'AI Career Predictor', desc: 'Answer 7 questions → Get AI-powered career predictions', icon: Brain, route: '/career-assessment/ai-predictor', color: 'from-violet-500 to-purple-600', tag: 'AI Powered', category: 'explore' },
   { id: 'career_chat', title: 'Career AI Chat', desc: 'Chat with AI counselor — ask any career question instantly', icon: MessageCircle, route: '/career-assessment/chat', color: 'from-orange-500 to-amber-600', tag: '24/7 AI', category: 'explore' },
   { id: 'industry_trends', title: 'Industry Trends', desc: 'Job market analytics, salary data & future career insights', icon: TrendingUp, route: '/career-assessment/industry-trends', color: 'from-emerald-500 to-teal-600', tag: 'Live Data', category: 'explore' },
