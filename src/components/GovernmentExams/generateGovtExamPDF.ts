@@ -38,7 +38,7 @@ export const generateGovtExamPDF = async (options: PDFOptions): Promise<void> =>
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(26);
   doc.setFont('helvetica', 'bold');
-  doc.text('VAZHIKAATTI', pw / 2, 17, { align: 'center' });
+  doc.text('VAZHIKATTI', pw / 2, 17, { align: 'center' });
 
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
@@ -321,7 +321,7 @@ export const generateGovtExamPDF = async (options: PDFOptions): Promise<void> =>
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(140, 140, 140);
     doc.text(`Page ${i} of ${totalPages}`, pw / 2, 289, { align: 'center' });
-    doc.text('VAZHIKAATTI', margin, 289);
+    doc.text('VAZHIKATTI', margin, 289);
     doc.text(new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }), pw - margin, 289, { align: 'right' });
   }
 

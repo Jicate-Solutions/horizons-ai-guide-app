@@ -20,7 +20,7 @@ interface PillNavigationProps {
 }
 
 const navItems: NavItem[] = [
-  { id: 'assessments', label: 'Career Assessments', shortLabel: 'Assessments', icon: GraduationCap, activeColor: 'text-white', activeBg: 'bg-emerald-700', route: '/career-assessment/colleges' },
+  { id: 'assessments', label: 'Home', shortLabel: 'Home', icon: GraduationCap, activeColor: 'text-white', activeBg: 'bg-emerald-700', route: '/career-assessment/colleges' },
   { id: 'colleges', label: 'Find Colleges', shortLabel: 'Colleges', icon: Building2, activeColor: 'text-white', activeBg: 'bg-blue-700', route: '/career-assessment/colleges/find-colleges' },
   { id: 'scholarships', label: 'Scholarships', shortLabel: 'Scholarships', icon: Bookmark, activeColor: 'text-white', activeBg: 'bg-amber-600', route: '/career-assessment/colleges/scholarships' },
   { id: 'educutoff', label: 'Cutoff & Predictor', shortLabel: 'Cutoff', icon: Calculator, activeColor: 'text-white', activeBg: 'bg-purple-700', route: '/career-assessment/colleges/educutoff' },

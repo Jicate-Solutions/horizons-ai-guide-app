@@ -155,7 +155,7 @@ function getLocalCareerReply(msg: string): string {
   const lower = msg.toLowerCase();
   
   if (lower.match(/^(hi|hello|hey|vanakkam|good morning|good evening)/)) {
-    return `👋 Hello! I'm your VAZHIKAATTI Career Guide.\n\nI can help you with:\n\n🎯 **Career options** after 10th & 12th\n🏫 **College & course** suggestions\n📝 **Exam preparation** (JEE, NEET, TNEA)\n💼 **Job search** & interview tips\n📚 **Skill development** guidance\n💰 **Scholarship** information\n\nWhat would you like to know about?`;
+    return `👋 Hello! I'm your VAZHIKATTI Career Guide.\n\nI can help you with:\n\n🎯 **Career options** after 10th & 12th\n🏫 **College & course** suggestions\n📝 **Exam preparation** (JEE, NEET, TNEA)\n💼 **Job search** & interview tips\n📚 **Skill development** guidance\n💰 **Scholarship** information\n\nWhat would you like to know about?`;
   }
   
   if ((lower.includes('12th') || lower.includes('12')) && (lower.includes('science') || lower.includes('pcm') || lower.includes('maths'))) {

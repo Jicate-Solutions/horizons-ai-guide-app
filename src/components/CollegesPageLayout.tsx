@@ -3,6 +3,8 @@ import { ArrowLeft, Home, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PillNavigation } from '@/components/PillNavigation';
 import { supabase } from '@/integrations/supabase/client';
+import FloatingChatButton from '@/components/FloatingChatButton';
+import { ChatModalProvider } from '@/hooks/useChatModal';
 
 interface CollegesPageLayoutProps {
   activeTab: string;
@@ -25,6 +27,7 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
   };
 
   return (
+    <ChatModalProvider>
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30">
       {/* ═══ COMPACT HEADER ═══ */}
       <header className="bg-gradient-to-r from-emerald-700 via-green-700 to-emerald-800 relative overflow-hidden">
@@ -40,7 +43,7 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
           </Button>
           <div className="min-w-0 flex-1">
             <h1 className="text-sm md:text-xl font-bold text-white leading-tight">
-              VAZHIKAATTI
+              VAZHIKATTI
             </h1>
             <p className="text-[10px] md:text-sm text-amber-300 leading-tight">
               AI Career Guide · வழிகாட்டி
@@ -77,6 +80,10 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
       <main className="px-3 py-3 md:px-4 md:py-6 max-w-7xl mx-auto" id="colleges-content-scroll">
         {children}
       </main>
+
+      {/* ═══ FLOATING AI CHAT ═══ */}
+      <FloatingChatButton />
     </div>
+    </ChatModalProvider>
   );
 };

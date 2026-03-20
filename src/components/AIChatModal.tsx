@@ -25,7 +25,7 @@ const CHAT_URL = '/api/career-chat';
 function getLocalChatReply(msg: string): string {
   const lower = msg.toLowerCase();
   if (lower.match(/^(hi|hello|hey|vanakkam)/)) {
-    return `👋 வணக்கம்! Welcome! I'm your **VAZHIKAATTI AI Career Guide**.\n\nI can help you with:\n\n🎯 **Career options** after 10th & 12th\n🏫 **College & course** suggestions in Tamil Nadu\n📝 **Exam prep** — NEET, JEE, TNEA, TNPSC\n💼 **Job search** & interview tips\n💰 **Scholarship** & financial aid info\n📊 **Cutoff marks** & admission guidance\n\nJust type your question! 😊`;
+    return `👋 வணக்கம்! Welcome! I'm your **VAZHIKATTI AI Career Guide**.\n\nI can help you with:\n\n🎯 **Career options** after 10th & 12th\n🏫 **College & course** suggestions in Tamil Nadu\n📝 **Exam prep** — NEET, JEE, TNEA, TNPSC\n💼 **Job search** & interview tips\n💰 **Scholarship** & financial aid info\n📊 **Cutoff marks** & admission guidance\n\nJust type your question! 😊`;
   }
   if (lower.includes('12th') && (lower.includes('science') || lower.includes('bio'))) {
     return `🎓 **Career Options After 12th Science (Bio):**\n\n**Medical Path:**\n🏥 MBBS (NEET UG) → Doctor\n🦷 BDS → Dentist\n💊 B.Pharm → Pharmacist\n🌿 BAMS / BHMS / BSMS (Siddha)\n\n**Non-Medical:**\n🔬 B.Sc. Biotechnology / Microbiology\n🌾 B.Sc. Agriculture\n🐾 B.V.Sc (Veterinary)\n\n**Top TN Colleges:** Madras Medical, JIPMER, Stanley, PSG\n\nWant NEET preparation tips or cutoff details?`;
@@ -426,7 +426,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
     return (
       <div className="fixed bottom-24 right-4 sm:right-6 z-50 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl shadow-lg p-3 flex items-center gap-3 animate-scale-in">
         <span className="text-lg">🤖</span>
-        <span className="font-bold text-sm">VAZHIKAATTI AI</span>
+        <span className="font-bold text-sm">VAZHIKATTI AI</span>
         <Button size="icon" variant="ghost" onClick={() => setIsMinimized(false)} className="text-white hover:bg-white/20 h-7 w-7">
           <Maximize2 className="w-4 h-4" />
         </Button>
@@ -444,7 +444,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-lg">🤖</div>
           <div>
-            <h3 className="font-bold text-sm">VAZHIKAATTI AI</h3>
+            <h3 className="font-bold text-sm">VAZHIKATTI AI</h3>
             <div className="flex items-center gap-1.5">
               <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-200"></span></span>
               <p className="text-[10px] text-emerald-100">Online • Career Guide</p>
@@ -490,7 +490,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
               <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
                 <span className="text-2xl">🤖</span>
               </div>
-              <h3 className="text-base font-bold text-foreground">VAZHIKAATTI AI Assistant</h3>
+              <h3 className="text-base font-bold text-foreground">VAZHIKATTI AI Assistant</h3>
               <p className="text-xs text-muted-foreground mt-1">Your personal career guide — ask me anything!</p>
             </div>
 

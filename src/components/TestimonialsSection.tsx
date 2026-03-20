@@ -27,7 +27,7 @@ const testimonials = [
   {
     name: "K. Karthick",
     school: "Pallipalayam Boys Hr Sec School",
-    quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKAATTI is a game-changer.",
+    quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKATTI is a game-changer.",
     initials: "KK",
     bg: "bg-gradient-to-br from-emerald-500 to-green-600",
     light: "bg-emerald-50",
@@ -49,7 +49,7 @@ const testimonials = [
   {
     name: "Mahalakshmi V",
     school: "Govt Hr Sec School, Anupparpalayam, Tirupur",
-    quote: "VAZHIKAATTI opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
+    quote: "VAZHIKATTI opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
     initials: "MV",
     bg: "bg-gradient-to-br from-amber-500 to-orange-600",
     light: "bg-amber-50",

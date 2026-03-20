@@ -37,13 +37,6 @@ import NotFound from "./pages/NotFound";
 import SurveyPublic from "./pages/SurveyPublic";
 
 // Career Hub Pages
-import JKKNCareerHub from "./pages/JKKNCareerHub";
-import JKKNRegister from "./pages/JKKNRegister";
-import JKKNRegisterSuccess from "./pages/JKKNRegisterSuccess";
-import JKKNJobDetail from "./pages/JKKNJobDetail";
-import JKKNProblemDetail from "./pages/JKKNProblemDetail";
-import JKKNRoadmapDetail from "./pages/JKKNRoadmapDetail";
-import JKKNLearnerProfile from "./pages/JKKNLearnerProfile";
 import CareerAssessment from "./pages/CareerAssessment";
 import AICareerPredictor from "./pages/AICareerPredictor";
 import SyllabusTracker from "./pages/SyllabusTracker";
@@ -165,13 +158,6 @@ function App() {
 <Route path="/admin/alumni-verification" element={<AlumniVerification />} />
                 
                 {/* Career Hub Routes */}
-                <Route path="/jkkn" element={<ProtectedRoute><JKKNCareerHub /></ProtectedRoute>} />
-                <Route path="/jkkn/register" element={<ProtectedRoute><JKKNRegister /></ProtectedRoute>} />
-                <Route path="/jkkn/register/success" element={<ProtectedRoute><JKKNRegisterSuccess /></ProtectedRoute>} />
-                <Route path="/jkkn/job/:id" element={<ProtectedRoute><JKKNJobDetail /></ProtectedRoute>} />
-                <Route path="/jkkn/problem/:id" element={<ProtectedRoute><JKKNProblemDetail /></ProtectedRoute>} />
-                <Route path="/jkkn/roadmap/:id" element={<ProtectedRoute><JKKNRoadmapDetail /></ProtectedRoute>} />
-                <Route path="/jkkn/learner/:id" element={<ProtectedRoute><JKKNLearnerProfile /></ProtectedRoute>} />
                 
                 {/* Catch-all */}
                 <Route path="/survey/:surveyId" element={<ProtectedRoute><SurveyPublic /></ProtectedRoute>} />
