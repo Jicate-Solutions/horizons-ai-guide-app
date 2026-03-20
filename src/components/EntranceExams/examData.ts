@@ -1317,7 +1317,7 @@ export const entranceExams: EntranceExam[] = [
       '261+ Central, State & Private Universities across India',
     ],
     officialWebsite: 'https://cuet.nta.nic.in',
-    category: 'engineering',
+    category: 'management',
   },
   {
     id: 'comedk',
