@@ -1444,121 +1444,99 @@ Be empathetic and respect Indian family values while helping the student communi
         </div>
       </header>
 
-      <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-6 max-w-4xl">
-        <div className="relative">
-          {/* ═══ LEFT PANEL — Slides over chat, toggled by button ═══ */}
-          <div className={cn(
-            "fixed left-0 top-0 h-full w-80 bg-white/95 backdrop-blur-xl border-r-2 border-gray-200 shadow-2xl z-50 transition-transform duration-300 overflow-y-auto pt-20 pb-6 px-4",
-            showQuestions ? "translate-x-0" : "-translate-x-full"
-          )}>
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm font-bold text-gray-800">💡 Ask me anything</p>
-              <button onClick={() => setShowQuestions(false)} className="text-gray-400 hover:text-gray-700 p-1">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+      <div className="mx-auto px-2 sm:px-4 py-3 sm:py-6" style={{ maxWidth: '1400px' }}>
+        <div className="flex gap-3">
+          {/* ═══ LEFT SIDEBAR — Always visible on desktop ═══ */}
+          <div className="hidden md:block w-56 flex-shrink-0">
+            <div className="sticky top-20 space-y-2 max-h-[calc(100vh-120px)] overflow-y-auto pr-1 pb-4">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-1 mb-1">💡 Tap to ask</p>
               
               {/* Career Planning */}
-              <div className="mb-3">
-                <p className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded-lg mb-1.5">🎯 Career Planning</p>
+              <div>
+                <p className="text-[9px] font-bold text-amber-600 px-2 py-0.5 rounded bg-amber-50 mb-1">🎯 Career</p>
                 {[
                   { q: t("chat.q1"), icon: "🔬" },
                   { q: t("chat.q2"), icon: "💰" },
                   { q: t("chat.q3"), icon: "🤔" },
                   { q: t("chat.q4"), icon: "📈" },
                 ].map((item, i) => (
-                  <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 transition-all border border-transparent hover:border-emerald-200 mb-1">
-                    <span>{item.icon}</span>
-                    <span className="leading-tight">{item.q}</span>
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left text-[11px] text-gray-600 hover:bg-emerald-50 hover:text-emerald-800 transition-all mb-0.5 leading-tight">
+                    <span className="flex-shrink-0">{item.icon}</span>
+                    <span className="line-clamp-2">{item.q}</span>
                   </button>
                 ))}
               </div>
 
               {/* Stream Specific */}
-              <div className="mb-3">
-                <p className="text-[10px] font-bold text-rose-700 bg-rose-50 px-2 py-1 rounded-lg mb-1.5">🎓 By Stream</p>
+              <div>
+                <p className="text-[9px] font-bold text-rose-600 px-2 py-0.5 rounded bg-rose-50 mb-1">🎓 By Stream</p>
                 {[
                   { q: t("chat.stream1"), icon: "💻" },
                   { q: t("chat.stream2"), icon: "🧬" },
                   { q: t("chat.stream3"), icon: "📊" },
                   { q: t("chat.stream4"), icon: "📖" },
                 ].map((item, i) => (
-                  <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-rose-50 hover:text-rose-800 transition-all border border-transparent hover:border-rose-200 mb-1">
-                    <span>{item.icon}</span>
-                    <span className="leading-tight">{item.q}</span>
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left text-[11px] text-gray-600 hover:bg-rose-50 hover:text-rose-800 transition-all mb-0.5 leading-tight">
+                    <span className="flex-shrink-0">{item.icon}</span>
+                    <span className="line-clamp-2">{item.q}</span>
                   </button>
                 ))}
               </div>
 
               {/* Exam Prep */}
-              <div className="mb-3">
-                <p className="text-[10px] font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg mb-1.5">📚 Exam Preparation</p>
+              <div>
+                <p className="text-[9px] font-bold text-violet-600 px-2 py-0.5 rounded bg-violet-50 mb-1">📚 Exams</p>
                 {[
                   { q: t("chat.exam1"), icon: "🎯" },
                   { q: t("chat.exam2"), icon: "🏥" },
                   { q: t("chat.exam3"), icon: "🏛️" },
                   { q: t("chat.exam4"), icon: "⚖️" },
                 ].map((item, i) => (
-                  <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-violet-50 hover:text-violet-800 transition-all border border-transparent hover:border-violet-200 mb-1">
-                    <span>{item.icon}</span>
-                    <span className="leading-tight">{item.q}</span>
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left text-[11px] text-gray-600 hover:bg-violet-50 hover:text-violet-800 transition-all mb-0.5 leading-tight">
+                    <span className="flex-shrink-0">{item.icon}</span>
+                    <span className="line-clamp-2">{item.q}</span>
                   </button>
                 ))}
               </div>
 
               {/* Scholarships */}
-              <div className="mb-3">
-                <p className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg mb-1.5">💰 Scholarships</p>
+              <div>
+                <p className="text-[9px] font-bold text-emerald-600 px-2 py-0.5 rounded bg-emerald-50 mb-1">💰 Scholarships</p>
                 {[
                   { q: t("chat.scholarship1"), icon: "🎓" },
                   { q: t("chat.scholarship2"), icon: "🏦" },
-                  { q: t("chat.scholarship3"), icon: "🏆" },
-                  { q: t("chat.scholarship4"), icon: "🌍" },
                 ].map((item, i) => (
-                  <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 transition-all border border-transparent hover:border-emerald-200 mb-1">
-                    <span>{item.icon}</span>
-                    <span className="leading-tight">{item.q}</span>
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left text-[11px] text-gray-600 hover:bg-emerald-50 hover:text-emerald-800 transition-all mb-0.5 leading-tight">
+                    <span className="flex-shrink-0">{item.icon}</span>
+                    <span className="line-clamp-2">{item.q}</span>
                   </button>
                 ))}
               </div>
 
               {/* College & Jobs */}
-              <div className="mb-3">
-                <p className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded-lg mb-1.5">🏫 College & Jobs</p>
+              <div>
+                <p className="text-[9px] font-bold text-blue-600 px-2 py-0.5 rounded bg-blue-50 mb-1">🏫 College</p>
                 {[
                   { q: t("chat.q5"), icon: "📝" },
                   { q: t("chat.q6"), icon: "🏫" },
                   { q: t("chat.q7"), icon: "✈️" },
-                  { q: t("chat.q8"), icon: "🎯" },
                 ].map((item, i) => (
-                  <button key={i} onClick={() => { handleQuickAction(item.q); setShowQuestions(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-left text-xs text-gray-700 hover:bg-blue-50 hover:text-blue-800 transition-all border border-transparent hover:border-blue-200 mb-1">
-                    <span>{item.icon}</span>
-                    <span className="leading-tight">{item.q}</span>
+                  <button key={i} onClick={() => handleQuickAction(item.q)}
+                    className="w-full flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left text-[11px] text-gray-600 hover:bg-blue-50 hover:text-blue-800 transition-all mb-0.5 leading-tight">
+                    <span className="flex-shrink-0">{item.icon}</span>
+                    <span className="line-clamp-2">{item.q}</span>
                   </button>
                 ))}
               </div>
+            </div>
           </div>
 
-          {/* Overlay backdrop */}
-          {showQuestions && (
-            <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setShowQuestions(false)} />
-          )}
-
-          {/* ═══ QUESTIONS TOGGLE BUTTON — Floating ═══ */}
-          {!showQuestions && messages.length > 0 && (
-            <button onClick={() => setShowQuestions(true)}
-              className="fixed left-3 bottom-24 z-30 bg-white border-2 border-emerald-300 text-emerald-700 rounded-full px-4 py-2.5 shadow-lg hover:shadow-xl hover:border-emerald-500 transition-all flex items-center gap-2 text-xs font-bold">
-              <Sparkles className="w-4 h-4" /> Questions
-            </button>
-          )}
-
-          {/* ═══ MAIN CHAT AREA — FULL WIDTH ═══ */}
-          <div className="w-full">
+          {/* ═══ MAIN CHAT AREA — Takes remaining width ═══ */}
+          <div className="flex-1 min-w-0">
         {/* Enhanced Chat Area */}
         <Card className="bg-white/70 backdrop-blur-xl border-2 border-white/60 shadow-2xl shadow-emerald-900/5 rounded-2xl sm:rounded-3xl mb-3 sm:mb-6 overflow-hidden">
           <CardContent className="p-0">
@@ -1702,8 +1680,8 @@ Be empathetic and respect Indian family values while helping the student communi
           </div>
         )}
       </div>
-      </div>{/* close w-full main chat */}
-      </div>{/* close relative */}
+      </div>{/* close flex-1 main chat */}
+      </div>{/* close flex gap-3 */}
     </div>
   );
 };
