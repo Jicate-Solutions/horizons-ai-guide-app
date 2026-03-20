@@ -6,6 +6,7 @@ import { EligibilityChecker } from './EligibilityChecker';
 import { ApplicationTracker } from './ApplicationTracker';
 import { generateScholarshipPDF } from './generateScholarshipPDF';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
+import { useAuth } from '@/hooks/useAuth';
 
 /* ═══════════════════════════════════════════════════════════════
    FONT LOADER
@@ -423,6 +424,20 @@ const MobileFilterDrawer = ({ open, onClose, children }: {
    ═══════════════════════════════════════════════════════════════ */
 export const ScholarshipFinder = () => {
   useFonts();
+  const { user } = useAuth();
+  const meta = user?.user_metadata || {};
+  const userGender = (meta.gender || '').toLowerCase();
+  const userCategory = (meta.category || '').toLowerCase();
+
+  // Recommended: filter by education level 'ug' + user's gender/category if available
+  const recommended = useMemo(() => {
+    return allScholarships.filter(s => {
+      if (!s.educationLevel.includes('ug') && !s.educationLevel.includes('12th')) return false;
+      if (s.gender !== 'all' && userGender && s.gender !== userGender) return false;
+      if (s.deadlineStatus === 'always-open' || s.deadlineStatus === 'open') return true;
+      return true;
+    }).slice(0, 5);
+  }, [userGender]);
 
   // ─── State ──────────────────────────────────────────────
   const [searchQuery, setSearchQuery] = useState('');
