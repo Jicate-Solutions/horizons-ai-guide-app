@@ -95,7 +95,7 @@ const CareerAssessmentColleges = () => {
           </div>
         </div>
 
-        {/* ═══ 3 PRIMARY ACTIONS ═══ */}
+        {/* ═══ 4 PRIMARY ACTIONS ═══ */}
         <div className="space-y-2.5">
           {/* Syllabus Tracker */}
           <button onClick={() => navigate('/syllabus-tracker')}
@@ -156,6 +156,19 @@ const CareerAssessmentColleges = () => {
               <p className="text-xs text-gray-500 mt-0.5">Answer 7 questions → Get your ideal career match</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-violet-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+          </button>
+
+          {/* Rank Predictor */}
+          <button onClick={() => navigate('/rank-predictor')}
+            className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-amber-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
+              <TrendingUp className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-bold text-gray-900">Rank Predictor</p>
+              <p className="text-xs text-gray-500 mt-0.5">Enter score → See rank & eligible colleges</p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
         </div>
 
