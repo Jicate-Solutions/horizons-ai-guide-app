@@ -1,332 +1,346 @@
-import { useState, useMemo } from 'react';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Search, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin, BookOpen, Target, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Search, BookOpen, Clock, Calendar, ExternalLink, ChevronDown, ChevronUp,
+  ChevronRight, Target, Bell, FileText, Star, MapPin, IndianRupee, Building2
+} from 'lucide-react';
 import { ExamCard } from './ExamCard';
-import { ExamCompare } from './ExamCompare';
-import { CategoryOverview } from './CategoryOverview';
-import { PreparationTipsSection } from './PreparationTipsSection';
-import { ExamCalendar } from './ExamCalendar';
-import { ExamRecommendationQuiz } from './ExamRecommendationQuiz';
-import { JeeTneaGuide } from './JeeTneaGuide';
-import { PreviousYearQuestions } from '@/components/PreviousYearQuestions/PreviousYearQuestions';
 import { examCategories, entranceExams, getExamsByCategory } from './examData';
+import { examPracticeQuestions } from './practiceQuestionsData';
+import { PracticeQuestions } from './PracticeQuestions';
 import { ExamCategory } from './types';
-import { useBookmarkedExams } from './useBookmarkedExams';
 import { cn } from '@/lib/utils';
 
+const MY_EXAM_KEY = 'vzk_my_target_exam';
+
+// Popular exams students are most likely targeting
+const popularExams = ['neet-ug', 'jee-main', 'tnea', 'clat', 'jee-advanced', 'viteee', 'srmjeee', 'bitsat', 'cuet', 'ca-cs-cma-foundation'];
+
 export const EntranceExams = () => {
-  const [pageView, setPageView] = useState<'exams' | 'practice'>('practice');
+  const navigate = useNavigate();
+  const [myExamId, setMyExamId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('engineering');
+  const [expandedExam, setExpandedExam] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showCompare, setShowCompare] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
-  const [showMoreInfo, setShowMoreInfo] = useState(false);
-  
-  const { isBookmarked, toggleBookmark, getBookmarkedCount } = useBookmarkedExams();
+  const [showAllExams, setShowAllExams] = useState(false);
+  const [practiceExam, setPracticeExam] = useState<string | null>(null);
+
+  // Load saved exam
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(MY_EXAM_KEY);
+      if (saved) setMyExamId(saved);
+    } catch {}
+  }, []);
+
+  const selectMyExam = (id: string) => {
+    setMyExamId(id);
+    try { localStorage.setItem(MY_EXAM_KEY, id); } catch {}
+  };
+
+  const myExam = myExamId ? entranceExams.find(e => e.id === myExamId) : null;
 
   const filteredExams = useMemo(() => {
     let exams = getExamsByCategory(activeCategory);
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      exams = exams.filter(exam => 
-        exam.name.toLowerCase().includes(query) ||
-        exam.fullForm.toLowerCase().includes(query) ||
-        exam.conductingBody.toLowerCase().includes(query) ||
-        exam.tamilName.toLowerCase().includes(query)
+      const q = searchQuery.toLowerCase();
+      exams = entranceExams.filter(e =>
+        e.name.toLowerCase().includes(q) ||
+        e.fullForm.toLowerCase().includes(q) ||
+        e.tamilName.toLowerCase().includes(q)
       );
     }
-    if (showBookmarksOnly) {
-      exams = exams.filter(exam => isBookmarked(exam.id));
-    }
     return exams;
-  }, [activeCategory, searchQuery, showBookmarksOnly, isBookmarked]);
+  }, [activeCategory, searchQuery]);
 
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    examCategories.forEach(cat => {
-      counts[cat.id] = getExamsByCategory(cat.id).length;
-    });
-    return counts;
-  }, []);
+  // Practice questions for an exam
+  const practiceQs = practiceExam ? examPracticeQuestions[practiceExam] : null;
 
-  const bookmarkedCount = getBookmarkedCount();
+  // If practicing
+  if (practiceExam && practiceQs) {
+    const examName = entranceExams.find(e => e.id === practiceExam)?.name || '';
+    return (
+      <div className="space-y-4">
+        <button onClick={() => setPracticeExam(null)} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
+          ← Back to Exams
+        </button>
+        <PracticeQuestions questions={practiceQs} examName={examName} />
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-4">
-      {/* ═══ HERO BANNER ═══ */}
-      <div className="relative rounded-2xl overflow-hidden shadow-xl" style={{ minHeight: '240px' }}>
-        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=500&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/95 via-purple-800/92 to-indigo-900/95" />
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-violet-500/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl" />
-        
-        <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-xl shadow-purple-500/25 mb-4">
-            <span className="text-3xl">📝</span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
-            Entrance Exam <span className="text-amber-300">Guide</span>
-          </h2>
-          <p className="text-sm text-purple-300 font-medium mb-1">நுழைவுத் தேர்வு வழிகாட்டி</p>
-          <p className="text-xs text-purple-200/60 max-w-md mb-5">Practice questions, exam calendar, comparison tools & AI-powered study planners — all in one place</p>
+    <div className="space-y-5">
 
-          <div className="flex items-center gap-6 md:gap-8 mb-4">
-            {[
-              { value: String(entranceExams.length), label: 'Exams', color: 'text-white' },
-              { value: '149', label: 'Practice Qs', color: 'text-amber-300' },
-              { value: '5', label: 'Categories', color: 'text-violet-300' },
-              { value: 'AI', label: 'Study Plans', color: 'text-emerald-300' },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <p className={cn("text-2xl md:text-3xl font-black leading-none", s.color)}>{s.value}</p>
-                <p className="text-[10px] text-purple-400 mt-1">{s.label}</p>
+      {/* ═══ MY TARGET EXAM ═══ */}
+      {myExam ? (
+        <div className="bg-white rounded-2xl border-2 border-emerald-200 shadow-sm overflow-hidden">
+          <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">My Target Exam</p>
+              <button onClick={() => { setMyExamId(null); localStorage.removeItem(MY_EXAM_KEY); }} className="text-[10px] text-gray-400 hover:text-gray-600">Change</button>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white text-2xl shadow-md">
+                {examCategories.find(c => c.id === myExam.category)?.icon || '📝'}
               </div>
-            ))}
-          </div>
-
-          <div className="inline-flex items-center gap-2 bg-violet-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-violet-400/30">
-            <BookOpen className="w-3.5 h-3.5 text-violet-300" />
-            <span className="text-xs font-bold text-violet-200">JEE • NEET • TNEA • CLAT • NDA & more</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ═══ PAGE VIEW TOGGLE ═══ */}
-      <div className="bg-white rounded-2xl p-2 border-2 border-gray-200 shadow-sm">
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={() => setPageView('practice')}
-            className={cn(
-              "flex flex-col items-center justify-center gap-1 py-3.5 rounded-xl font-bold transition-all",
-              pageView === 'practice'
-                ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
-            )}
-          >
-            <BookOpen className="w-5 h-5" />
-            <span className="text-sm">Practice Questions</span>
-            <span className={cn("text-xs px-2 py-0.5 rounded-full font-bold", pageView === 'practice' ? "bg-white/20" : "bg-violet-100 text-violet-700")}>149 Qs</span>
-          </button>
-          <button
-            onClick={() => setPageView('exams')}
-            className={cn(
-              "flex flex-col items-center justify-center gap-1 py-3.5 rounded-xl font-bold transition-all",
-              pageView === 'exams'
-                ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-lg"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
-            )}
-          >
-            <FileText className="w-5 h-5" />
-            <span className="text-sm">Exam Guide</span>
-            <span className={cn("text-xs px-2 py-0.5 rounded-full font-bold", pageView === 'exams' ? "bg-white/20" : "bg-green-100 text-green-700")}>39 Exams</span>
-          </button>
-        </div>
-      </div>
-
-      {/* ═══ PRACTICE VIEW ═══ */}
-      {pageView === 'practice' && (
-        <>
-          {/* Quick tip */}
-          <div className="rounded-xl p-3.5 flex items-start gap-3 bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200">
-            <span className="text-xl flex-shrink-0">💡</span>
-            <div>
-              <p className="text-sm font-bold text-violet-800">Practice Tip</p>
-              <p className="text-xs text-violet-600 mt-0.5">Solve at least 10 questions daily. Focus on NCERT first, then move to previous year papers. Consistent practice beats last-minute cramming!</p>
+              <div className="flex-1">
+                <h2 className="text-lg font-bold text-gray-900">{myExam.name}</h2>
+                <p className="text-xs text-gray-500">{myExam.fullForm}</p>
+              </div>
             </div>
           </div>
-          <PreviousYearQuestions />
-        </>
-      )}
 
-      {/* ═══ EXAM GUIDE VIEW ═══ */}
-      {pageView === 'exams' && (<>
-
-      {/* Not sure banner */}
-      <div className="rounded-xl overflow-hidden shadow-sm border border-emerald-200">
-        <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">🤔</span>
-            <div>
-              <p className="text-sm font-bold text-emerald-800">Not sure which exam to take?</p>
-              <p className="text-xs text-emerald-600 mt-0.5">Our AI quiz will recommend the best exams based on your stream & interest</p>
+          {/* Key info strip */}
+          <div className="grid grid-cols-3 divide-x divide-gray-100 border-t border-gray-100">
+            <div className="p-3 text-center">
+              <Calendar className="w-3.5 h-3.5 text-gray-400 mx-auto mb-1" />
+              <p className="text-xs font-bold text-gray-800">{myExam.importantDates.examDate}</p>
+              <p className="text-[9px] text-gray-400">Exam Date</p>
+            </div>
+            <div className="p-3 text-center">
+              <Clock className="w-3.5 h-3.5 text-gray-400 mx-auto mb-1" />
+              <p className="text-xs font-bold text-gray-800">{myExam.duration}</p>
+              <p className="text-[9px] text-gray-400">Duration</p>
+            </div>
+            <div className="p-3 text-center">
+              <FileText className="w-3.5 h-3.5 text-gray-400 mx-auto mb-1" />
+              <p className="text-xs font-bold text-gray-800">{myExam.examMode.split('(')[0].trim()}</p>
+              <p className="text-[9px] text-gray-400">Mode</p>
             </div>
           </div>
-          <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs rounded-lg gap-1.5 flex-shrink-0" onClick={() => setShowMoreInfo(!showMoreInfo)}>
-            <Target className="w-3.5 h-3.5" /> Take Quiz
-          </Button>
-        </div>
-      </div>
 
-      {/* ── CATEGORY PILLS ── */}
-      <div className="overflow-x-auto pb-1 -mx-1 px-1">
-        <div className="flex gap-2 min-w-max">
-          {examCategories.map((category) => {
-            const isActive = activeCategory === category.id;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={cn(
-                  "flex items-center gap-1.5 px-3.5 py-2.5 rounded-full border transition-all text-sm whitespace-nowrap",
-                  isActive
-                    ? "bg-[#1B5E20] text-white border-[#1B5E20] shadow-md"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-[#2E7D32] hover:bg-emerald-50"
-                )}
-              >
-                <span className="text-base">{category.icon}</span>
-                <span className="font-medium">{category.label}</span>
-                <Badge className={cn(
-                  "text-[10px] h-5 px-1.5",
-                  isActive ? "bg-white/20 text-white border-0" : "bg-gray-100 text-gray-500 border-0"
-                )}>
-                  {categoryCounts[category.id]}
-                </Badge>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ── SEARCH + ACTIONS ROW ── */}
-      <div className="flex gap-2">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <Input
-            placeholder="Search exams..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 h-10 bg-white border-gray-200 rounded-xl shadow-sm text-sm"
-          />
-          {searchQuery && (
-            <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2">
-              <X className="w-3.5 h-3.5 text-gray-400" />
+          {/* Quick actions */}
+          <div className="p-3 border-t border-gray-100 grid grid-cols-3 gap-2">
+            <button onClick={() => navigate('/syllabus-tracker')}
+              className="bg-emerald-50 rounded-xl p-2.5 text-center border border-emerald-200 hover:bg-emerald-100 transition-colors">
+              <BookOpen className="w-4 h-4 text-emerald-600 mx-auto mb-1" />
+              <p className="text-[10px] font-bold text-emerald-700">Track Syllabus</p>
             </button>
-          )}
-        </div>
-        <Button variant="outline" size="icon" onClick={() => setShowCompare(true)} className="h-10 w-10 border-gray-200 rounded-xl">
-          <Scale className="h-4 w-4 text-gray-500" />
-        </Button>
-        <Button variant="outline" size="icon" onClick={() => setShowCalendar(true)} className="h-10 w-10 border-gray-200 rounded-xl">
-          <CalendarDays className="h-4 w-4 text-gray-500" />
-        </Button>
-        <Button 
-          variant="outline" size="icon"
-          onClick={() => setShowBookmarksOnly(!showBookmarksOnly)} 
-          className={cn("h-10 w-10 rounded-xl", showBookmarksOnly ? "bg-amber-50 border-amber-300 text-amber-600" : "border-gray-200")}
-        >
-          <Bookmark className={cn("h-4 w-4", showBookmarksOnly ? "fill-amber-500 text-amber-500" : "text-gray-500")} />
-        </Button>
-      </div>
-
-      {/* ── EXAM CARDS ── */}
-      {filteredExams.length === 0 ? (
-        <div className="text-center py-10 bg-white rounded-xl border border-gray-100">
-          <p className="text-gray-500">
-            {showBookmarksOnly ? "No saved exams in this category" : "No exams found"}
-          </p>
-          <div className="flex justify-center gap-3 mt-3">
-            {searchQuery && (
-              <Button variant="link" className="text-[#2E7D32] text-sm" onClick={() => setSearchQuery('')}>Clear search</Button>
-            )}
-            {showBookmarksOnly && (
-              <Button variant="link" className="text-[#2E7D32] text-sm" onClick={() => setShowBookmarksOnly(false)}>Show all</Button>
-            )}
+            <button onClick={() => navigate('/exam-alerts')}
+              className="bg-red-50 rounded-xl p-2.5 text-center border border-red-200 hover:bg-red-100 transition-colors">
+              <Bell className="w-4 h-4 text-red-600 mx-auto mb-1" />
+              <p className="text-[10px] font-bold text-red-700">Exam Alerts</p>
+            </button>
+            <button onClick={() => myExam.officialWebsite && window.open(myExam.officialWebsite, '_blank')}
+              className="bg-blue-50 rounded-xl p-2.5 text-center border border-blue-200 hover:bg-blue-100 transition-colors">
+              <ExternalLink className="w-4 h-4 text-blue-600 mx-auto mb-1" />
+              <p className="text-[10px] font-bold text-blue-700">Official Site</p>
+            </button>
           </div>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredExams.map((exam) => (
-            <ExamCard key={exam.id} exam={exam} isBookmarked={isBookmarked(exam.id)} onToggleBookmark={toggleBookmark} />
-          ))}
-        </div>
-      )}
-
-      {/* ── JEE vs TNEA Guide (engineering only) ── */}
-      {activeCategory === 'engineering' && <JeeTneaGuide />}
-
-      {/* ── Defence Exams Explanation ── */}
-      {activeCategory === 'defence' && (
-        <div className="bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-2xl p-5 space-y-3">
-          <h3 className="font-bold text-base flex items-center gap-2">🎖️ Why Defence Exams are Entrance Exams</h3>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            Defence exams like <strong className="text-white">NDA, Indian Navy B.Tech, Army TES, Coast Guard, and Agniveer</strong> are 
-            listed here because they are <strong className="text-white">competitive entrance exams</strong> that 12th pass students 
-            take to enter defence training academies — similar to how JEE is for IITs and NEET is for medical colleges.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-            <div className="bg-white/10 rounded-xl p-3">
-              <p className="font-bold text-amber-300 text-xs mb-1">🎓 TRAINING YOU GET</p>
-              <p className="text-slate-300 text-xs">NDA → 3 years at National Defence Academy (Pune), followed by 1 year at respective service academy. You get a B.Tech/B.A./B.Sc degree.</p>
-            </div>
-            <div className="bg-white/10 rounded-xl p-3">
-              <p className="font-bold text-amber-300 text-xs mb-1">💼 CAREER AFTER</p>
-              <p className="text-slate-300 text-xs">Commissioned Officer in Army/Navy/Air Force — one of the most prestigious careers in India with ₹56,100+ salary, pension, housing, and lifetime benefits.</p>
+        /* ═══ PICK YOUR EXAM ═══ */
+        <div className="bg-white rounded-2xl p-5 border-2 border-gray-200 shadow-sm">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xl shadow-md">🎯</div>
+            <div>
+              <h2 className="text-base font-bold text-gray-900">Which exam are you preparing for?</h2>
+              <p className="text-xs text-gray-500">Select your target exam for a personalised view</p>
             </div>
           </div>
-          <p className="text-xs text-slate-400 border-t border-slate-600 pt-2">
-            💡 For government job exams (SSC, Railway, etc.) with different selection processes, check the <strong>Govt Jobs</strong> tab.
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {popularExams.map(id => {
+              const exam = entranceExams.find(e => e.id === id);
+              if (!exam) return null;
+              return (
+                <button key={id} onClick={() => selectMyExam(id)}
+                  className="px-3 py-2 rounded-xl border-2 border-gray-200 bg-gray-50 hover:border-emerald-400 hover:bg-emerald-50 transition-all text-xs font-bold text-gray-700">
+                  {exam.name.replace(' ⭐', '')}
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
 
-      {/* ── MORE INFO (collapsible) ── */}
-      <button
-        onClick={() => setShowMoreInfo(!showMoreInfo)}
-        className="w-full flex items-center justify-center gap-2 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition-all"
-      >
-        <BookOpen className="w-4 h-4" />
-        {showMoreInfo ? 'Hide' : 'More'}: Stream Guide, Eligibility & Tips
-        {showMoreInfo ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-      </button>
+      {/* ═══ PRACTICE QUESTIONS ═══ */}
+      {(() => {
+        const examsWithPractice = Object.keys(examPracticeQuestions).map(id => {
+          const exam = entranceExams.find(e => e.id === id);
+          const qs = examPracticeQuestions[id];
+          return exam && qs ? { exam, count: qs.length } : null;
+        }).filter(Boolean) as { exam: typeof entranceExams[0]; count: number }[];
 
-      {showMoreInfo && (
-        <div className="space-y-4">
-          {/* Stream-wise Quick Reference */}
-          <div className="bg-white rounded-xl p-4 border border-gray-100">
-            <h3 className="font-bold text-[#1B5E20] text-sm mb-3">📚 Your Stream → Your Exams</h3>
-            <div className="space-y-1.5 text-xs">
-              {[
-                { stream: 'PCM (Maths)', exams: 'TNEA, JEE, VITEEE, SRMJEEE, BITSAT, COMEDK, WBJEE, MHT CET, KCET, AP EAMCET', bg: 'bg-blue-50', color: 'text-blue-700' },
-                { stream: 'PCB (Biology)', exams: 'NEET, TNAU, TANUVAS, Nursing, B.Pharm, AYUSH, JIPMER', bg: 'bg-red-50', color: 'text-red-700' },
-                { stream: 'PCMB (Both)', exams: 'All engineering + All medical exams eligible! ✅', bg: 'bg-emerald-50', color: 'text-emerald-700' },
-                { stream: 'Commerce', exams: 'CA/CS/CMA, CLAT, BBA, CUET, SET, IPM (IIM)', bg: 'bg-purple-50', color: 'text-purple-700' },
-                { stream: 'Arts', exams: 'CLAT, NIFT, NID, CUET, BA/BSW Direct, UCEED', bg: 'bg-amber-50', color: 'text-amber-700' },
-                { stream: 'Any Stream', exams: 'NDA, CUET, IPM (IIM), SET (Symbiosis), Coast Guard', bg: 'bg-slate-50', color: 'text-slate-700' },
-              ].map((r) => (
-                <div key={r.stream} className={cn("flex items-center gap-2 p-2 rounded-lg", r.bg)}>
-                  <span className={cn("font-bold min-w-[85px]", r.color)}>{r.stream}</span>
-                  <span className="text-gray-600">{r.exams}</span>
-                </div>
+        if (examsWithPractice.length === 0) return null;
+
+        return (
+          <div>
+            <div className="flex items-center gap-2 mb-2.5">
+              <Target className="w-4 h-4 text-violet-600" />
+              <h2 className="text-sm font-bold text-gray-800">Practice Questions</h2>
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+              {examsWithPractice.map(({ exam, count }) => (
+                <button key={exam.id} onClick={() => setPracticeExam(exam.id)}
+                  className="flex-shrink-0 bg-white rounded-xl px-4 py-3 border-2 border-gray-100 hover:border-violet-400 hover:shadow-md transition-all text-left min-w-[140px]">
+                  <p className="text-sm font-bold text-gray-800">{exam.name.replace(' ⭐', '')}</p>
+                  <p className="text-xs text-violet-600 font-bold mt-0.5">{count} questions</p>
+                </button>
               ))}
             </div>
           </div>
+        );
+      })()}
 
-          {/* Category Overview */}
-          <CategoryOverview category={activeCategory} />
-
-          {/* Exam Recommendation Quiz */}
-          <ExamRecommendationQuiz />
-
-          {/* Preparation Tips */}
-          <PreparationTipsSection />
-
-          {/* Note */}
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
-            <p className="text-xs text-amber-700">
-              💡 Dates are tentative. Always verify from official websites before applying.
-            </p>
+      {/* ═══ BROWSE ALL EXAMS ═══ */}
+      <div>
+        <div className="flex items-center justify-between mb-2.5">
+          <div className="flex items-center gap-2">
+            <FileText className="w-4 h-4 text-gray-600" />
+            <h2 className="text-sm font-bold text-gray-800">All Exams ({entranceExams.length})</h2>
           </div>
         </div>
-      )}
 
-      </>)}
+        {/* Search */}
+        <div className="relative mb-3">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search exams..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-9 pr-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-sm focus:outline-none focus:border-emerald-400 transition-colors"
+          />
+        </div>
 
-      {/* Modals */}
-      <ExamCompare isOpen={showCompare} onClose={() => setShowCompare(false)} />
-      <ExamCalendar isOpen={showCalendar} onClose={() => setShowCalendar(false)} />
+        {/* Category tabs */}
+        {!searchQuery && (
+          <div className="flex gap-1.5 overflow-x-auto pb-2 -mx-1 px-1 mb-3">
+            {examCategories.map(cat => {
+              const count = getExamsByCategory(cat.id).length;
+              return (
+                <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
+                  className={cn("flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all border-2",
+                    activeCategory === cat.id ? 'bg-gray-900 text-white border-gray-900' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400')}>
+                  <span>{cat.icon}</span> {cat.label} <span className="text-[9px] opacity-60">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Exam list */}
+        <div className="space-y-2">
+          {filteredExams.map((exam) => {
+            const isExpanded = expandedExam === exam.id;
+            const hasPractice = !!examPracticeQuestions[exam.id];
+
+            return (
+              <div key={exam.id} className="bg-white rounded-xl border-2 border-gray-100 overflow-hidden transition-all hover:border-gray-300">
+                {/* Compact header */}
+                <button onClick={() => setExpandedExam(isExpanded ? null : exam.id)}
+                  className="w-full p-3.5 flex items-center gap-3 text-left">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <p className="text-sm font-bold text-gray-900">{exam.name}</p>
+                      {hasPractice && <span className="text-[9px] font-bold bg-violet-100 text-violet-700 px-1.5 py-0.5 rounded">Practice</span>}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-0.5 truncate">{exam.fullForm}</p>
+                  </div>
+                  <div className="text-right flex-shrink-0 mr-1">
+                    <p className="text-[10px] text-gray-400">{exam.importantDates.examDate}</p>
+                  </div>
+                  {isExpanded ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />}
+                </button>
+
+                {/* Expanded details */}
+                {isExpanded && (
+                  <div className="border-t border-gray-100 p-4 space-y-3 bg-gray-50">
+                    {/* Key info */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-white rounded-lg p-2.5 border border-gray-200">
+                        <p className="text-[9px] text-gray-400 uppercase">Conducting Body</p>
+                        <p className="text-xs font-bold text-gray-800">{exam.conductingBody}</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-2.5 border border-gray-200">
+                        <p className="text-[9px] text-gray-400 uppercase">Mode & Duration</p>
+                        <p className="text-xs font-bold text-gray-800">{exam.examMode.split('(')[0].trim()}</p>
+                        <p className="text-[10px] text-gray-500">{exam.duration}</p>
+                      </div>
+                    </div>
+
+                    {/* Syllabus */}
+                    <div>
+                      <p className="text-xs font-bold text-gray-700 mb-1.5">📋 Syllabus & Pattern</p>
+                      <div className="space-y-1">
+                        {exam.syllabus.map((s, i) => (
+                          <p key={i} className="text-xs text-gray-600 leading-relaxed bg-white rounded-lg px-3 py-2 border border-gray-100">{s}</p>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Eligibility */}
+                    <div>
+                      <p className="text-xs font-bold text-gray-700 mb-1.5">✅ Eligibility</p>
+                      <div className="space-y-1">
+                        {exam.eligibility.map((e, i) => (
+                          <p key={i} className="text-xs text-gray-600 bg-white rounded-lg px-3 py-2 border border-gray-100">{e}</p>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* TN specific */}
+                    <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-200">
+                      <p className="text-xs font-bold text-emerald-700 mb-0.5">🏛️ For Tamil Nadu Students</p>
+                      <p className="text-xs text-emerald-600">{exam.tnEligibility}</p>
+                    </div>
+
+                    {/* Dates & Fees */}
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="bg-white rounded-lg p-2.5 border border-gray-200 text-center">
+                        <p className="text-[9px] text-gray-400">Registration</p>
+                        <p className="text-[10px] font-bold text-gray-700">{exam.importantDates.registration}</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-2.5 border border-gray-200 text-center">
+                        <p className="text-[9px] text-gray-400">Exam</p>
+                        <p className="text-[10px] font-bold text-gray-700">{exam.importantDates.examDate}</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-2.5 border border-gray-200 text-center">
+                        <p className="text-[9px] text-gray-400">Fee (Gen)</p>
+                        <p className="text-[10px] font-bold text-gray-700">{exam.applicationFee.general}</p>
+                      </div>
+                    </div>
+
+                    {/* TN Colleges */}
+                    {exam.tnCollegesAccepting.length > 0 && (
+                      <div>
+                        <p className="text-xs font-bold text-gray-700 mb-1.5">🏫 Colleges Accepting</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {exam.tnCollegesAccepting.map((c, i) => (
+                            <span key={i} className="text-[10px] bg-white px-2.5 py-1 rounded-full border border-gray-200 text-gray-600">{c}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Actions */}
+                    <div className="flex gap-2">
+                      <button onClick={() => selectMyExam(exam.id)}
+                        className="flex-1 bg-emerald-600 text-white text-xs font-bold py-2.5 rounded-xl hover:bg-emerald-700 transition-colors flex items-center justify-center gap-1">
+                        <Star className="w-3.5 h-3.5" /> Set as My Exam
+                      </button>
+                      {exam.officialWebsite && (
+                        <button onClick={() => window.open(exam.officialWebsite, '_blank')}
+                          className="px-4 bg-white border-2 border-gray-200 text-gray-700 text-xs font-bold py-2.5 rounded-xl hover:border-gray-400 transition-colors flex items-center gap-1">
+                          <ExternalLink className="w-3.5 h-3.5" /> Website
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {filteredExams.length === 0 && (
+          <div className="text-center py-8">
+            <p className="text-2xl mb-2">🔍</p>
+            <p className="text-sm text-gray-500">No exams found for "{searchQuery}"</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
