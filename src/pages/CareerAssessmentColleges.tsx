@@ -27,35 +27,35 @@ const streamConfig: Record<StreamKey, {
     topCareers: ['Software Engineer', 'Data Scientist', 'Civil Engineer', 'AI/ML Engineer', 'Architect'],
     keyExams: ['TNEA', 'JEE Main', 'JEE Advanced', 'BITSAT', 'VITEEE'],
     quickTip: 'Your TNEA cutoff = Maths/200 × 100 + Physics/200 × 50 + Chemistry/200 × 50. Calculate yours now!',
-    recommendedTabs: ['ai_predictor', 'educutoff', 'entranceexams'],
+    recommendedTabs: ['syllabus_tracker', 'educutoff', 'entranceexams'],
   },
   science_bio: {
     label: 'Science (Biology)', emoji: '🧬', color: 'text-emerald-700', bgLight: 'bg-emerald-50',
     topCareers: ['Doctor (MBBS)', 'Dentist', 'Pharmacist', 'Biotechnologist', 'Nurse (International)'],
     keyExams: ['NEET UG', 'AIIMS', 'JIPMER', 'TNAU', 'BCECE'],
     quickTip: 'NEET is your gateway — 720 marks, 200 questions. Biology carries the most weightage (360 marks).',
-    recommendedTabs: ['ai_predictor', 'entranceexams', 'scholarships'],
+    recommendedTabs: ['syllabus_tracker', 'entranceexams', 'scholarships'],
   },
   commerce: {
     label: 'Commerce', emoji: '📊', color: 'text-purple-700', bgLight: 'bg-purple-50',
     topCareers: ['Chartered Accountant', 'Investment Banker', 'Digital Marketer', 'Entrepreneur', 'Bank PO'],
     keyExams: ['CA Foundation', 'CUET', 'CLAT', 'Banking (IBPS)', 'CS Foundation'],
     quickTip: 'CA + B.Com is the most powerful combo in Commerce. Start CA Foundation right after 12th.',
-    recommendedTabs: ['ai_predictor', 'courseexplorer', 'industry_trends'],
+    recommendedTabs: ['syllabus_tracker', 'courseexplorer', 'ai_predictor'],
   },
   arts: {
     label: 'Arts / Humanities', emoji: '📖', color: 'text-amber-700', bgLight: 'bg-amber-50',
     topCareers: ['Civil Services (IAS/IPS)', 'Lawyer', 'Journalist', 'Psychologist', 'Content Creator'],
     keyExams: ['CLAT', 'CUET', 'UPSC (after degree)', 'TNPSC', 'Mass Comm Entrance'],
     quickTip: 'Arts is the backbone of Civil Services — UPSC toppers often come from Humanities background.',
-    recommendedTabs: ['ai_predictor', 'govtjobs', 'career_chat'],
+    recommendedTabs: ['syllabus_tracker', 'govtjobs', 'courseexplorer'],
   },
   default: {
     label: 'Student', emoji: '🎓', color: 'text-gray-700', bgLight: 'bg-gray-50',
     topCareers: ['Software Engineer', 'Doctor', 'CA', 'Civil Services', 'Entrepreneur'],
     keyExams: ['TNEA', 'NEET', 'JEE', 'CLAT', 'CUET'],
     quickTip: 'Not sure about your path? Take the AI Career Predictor — it analyzes your interests and suggests the best careers for you.',
-    recommendedTabs: ['ai_predictor', 'career_chat', 'courseexplorer'],
+    recommendedTabs: ['syllabus_tracker', 'ai_predictor', 'courseexplorer'],
   },
 };
 
@@ -73,6 +73,7 @@ const detectStream = (raw: string): StreamKey => {
    FEATURE CARDS
    ═══════════════════════════════════════ */
 const allFeatures = [
+  { id: 'syllabus_tracker', title: 'Syllabus Tracker', desc: 'Track every chapter — know exactly where you stand', icon: BookOpen, route: '/syllabus-tracker', color: 'from-emerald-500 to-green-600', tag: 'NEW', category: 'explore' },
   { id: 'ai_predictor', title: 'AI Career Predictor', desc: 'Answer 7 questions → Get AI-powered career predictions', icon: Brain, route: '/career-assessment/ai-predictor', color: 'from-violet-500 to-purple-600', tag: 'AI Powered', category: 'explore' },
   { id: 'career_chat', title: 'Career AI Chat', desc: 'Chat with AI counselor — ask any career question instantly', icon: MessageCircle, route: '/career-assessment/chat', color: 'from-orange-500 to-amber-600', tag: '24/7 AI', category: 'explore' },
   { id: 'industry_trends', title: 'Industry Trends', desc: 'Job market analytics, salary data & future career insights', icon: TrendingUp, route: '/career-assessment/industry-trends', color: 'from-emerald-500 to-teal-600', tag: 'Live Data', category: 'explore' },
