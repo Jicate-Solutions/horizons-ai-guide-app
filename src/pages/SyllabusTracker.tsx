@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Check, BookOpen, RotateCcw, Clock, ChevronRight, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Check, BookOpen, RotateCcw, Clock, ChevronRight, AlertTriangle, Zap } from 'lucide-react';
 import { syllabusData, type ExamSyllabus } from '@/data/syllabusData';
+import { examPracticeQuestions } from '@/components/EntranceExams/practiceQuestionsData';
+import { PracticeQuestions } from '@/components/EntranceExams/PracticeQuestions';
 import { cn } from '@/lib/utils';
 
 type ChapterStatus = 'not_started' | 'in_progress' | 'completed' | 'revised';
@@ -26,6 +28,10 @@ const SyllabusTracker = () => {
   const [selectedExam, setSelectedExam] = useState<string | null>(null);
   const [openSubject, setOpenSubject] = useState<string | null>(null);
   const [progress, setProgress] = useState<Record<string, ChapterProgress>>({});
+  const [practiceSubject, setPracticeSubject] = useState<string | null>(null);
+
+  // Map syllabus exam IDs to practice question exam IDs
+  const examToPractice: Record<string, string> = { neet: 'neet-ug', jee: 'jee-main', clat: 'clat' };
 
   // Load saved state
   useEffect(() => {
@@ -287,6 +293,37 @@ const SyllabusTracker = () => {
                         );
                       })}
                     </div>
+
+                    {/* Practice Quiz Button */}
+                    {(() => {
+                      const practiceId = selectedExam ? examToPractice[selectedExam] : null;
+                      const allQs = practiceId ? examPracticeQuestions[practiceId] || [] : [];
+                      const subjectQs = allQs.filter(q => q.subject === sub.name || 
+                        (sub.name === 'Botany' && q.subject === 'Biology') ||
+                        (sub.name === 'Zoology' && q.subject === 'Biology') ||
+                        (sub.name === 'Current Affairs & GK' && q.subject === 'General Knowledge')
+                      );
+                      if (subjectQs.length === 0) return null;
+                      
+                      if (practiceSubject === sub.id) {
+                        return (
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <div className="flex items-center justify-between mb-3">
+                              <p className="text-xs font-bold text-gray-700">📝 Quick Quiz — {sub.name}</p>
+                              <button onClick={() => setPracticeSubject(null)} className="text-[10px] text-gray-400 hover:text-gray-600">Close</button>
+                            </div>
+                            <PracticeQuestions questions={subjectQs} examName={`${exam!.examName} — ${sub.name}`} />
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <button onClick={() => setPracticeSubject(sub.id)}
+                          className="w-full mt-3 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-600 text-white text-xs font-bold hover:from-indigo-600 hover:to-violet-700 transition-all active:scale-[0.98]">
+                          <Zap className="w-4 h-4" /> Practice {subjectQs.length} Questions — {sub.name}
+                        </button>
+                      );
+                    })()}
                   </div>
                 )}
               </div>
