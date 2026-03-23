@@ -168,7 +168,7 @@ export const EntranceExams = () => {
                 { icon: '📝', label: 'Question Bank', route: '/question-bank', color: 'text-violet-600' },
                 { icon: '📊', label: 'Syllabus Tracker', route: '/syllabus-tracker', color: 'text-emerald-600' },
                 { icon: '🔔', label: 'Exam Alerts', route: '/exam-alerts', color: 'text-red-600' },
-                { icon: '📜', label: 'PYQ Practice', route: '/career-assessment/colleges/pyq', color: 'text-amber-600' },
+                { icon: '📜', label: 'PYQ Papers', route: '/pyq-papers', color: 'text-amber-600' },
                 { icon: '🎯', label: 'Rank Predictor', route: '/rank-predictor', color: 'text-sky-600' },
               ].map(tool => (
                 <button key={tool.label} onClick={() => navigate(tool.route)}
