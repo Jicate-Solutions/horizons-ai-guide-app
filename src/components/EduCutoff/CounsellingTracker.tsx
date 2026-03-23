@@ -1,6 +1,12 @@
-import { useState, useEffect } from 'react';
-import { CheckCircle, Circle, AlertTriangle, ChevronDown, RotateCcw, Shield, ExternalLink, Clock, XCircle } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { CheckCircle, Circle, AlertTriangle, ChevronDown, RotateCcw, Shield, ExternalLink, Clock, XCircle, Cloud, CloudOff, Loader2, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
+
+// ═══════════════════════════════════════════════════════════
+//  TYPES
+// ═══════════════════════════════════════════════════════════
 
 interface TrackerStep {
   id: string;
@@ -23,6 +29,12 @@ interface CounsellingTrackerData {
   bg: string;
   steps: TrackerStep[];
 }
+
+type SyncStatus = 'idle' | 'syncing' | 'synced' | 'offline' | 'error';
+
+// ═══════════════════════════════════════════════════════════
+//  COUNSELLING DATA (TNEA, NEET, JoSAA, TNAU)
+// ═══════════════════════════════════════════════════════════
 
 const trackers: CounsellingTrackerData[] = [
   {
@@ -102,80 +114,262 @@ const trackers: CounsellingTrackerData[] = [
   },
 ];
 
-const STORAGE_KEY = 'vzk_counselling_tracker';
+// ═══════════════════════════════════════════════════════════
+//  STORAGE KEYS
+// ═══════════════════════════════════════════════════════════
+const LOCAL_KEY = 'vzk_counselling_tracker';
 
-// Sync tracker to Supabase so n8n can send reminders
-const syncToSupabase = async (trackerId: string, completedSteps: string[], totalSteps: number) => {
-  try {
-    const { supabase } = await import('@/integrations/supabase/client');
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user?.email) return;
+// ═══════════════════════════════════════════════════════════
+//  SUPABASE SYNC HELPERS
+// ═══════════════════════════════════════════════════════════
 
-    // Get user name from registrations
-    let fullName = user.user_metadata?.display_name || user.email.split('@')[0];
-    let phone = '';
-    try {
-      const { data: reg } = await supabase.from('registrations_12th').select('full_name, phone').eq('email', user.email).maybeSingle();
-      if (reg) { fullName = reg.full_name || fullName; phone = reg.phone || ''; }
-    } catch {}
+/** Load all tracker data from Supabase for current user */
+const loadFromSupabase = async (userId: string): Promise<Record<string, boolean>> => {
+  const { data, error } = await (supabase
+    .from('counselling_tracker') as any)
+    .select('counselling_id, completed_steps')
+    .eq('user_id', userId);
 
-    await supabase.from('counselling_tracker').upsert({
-      user_id: user.id,
-      email: user.email,
-      phone,
-      full_name: fullName,
-      counselling_id: trackerId,
-      completed_steps: completedSteps,
-      total_steps: totalSteps,
-      is_complete: completedSteps.length >= totalSteps,
-    }, { onConflict: 'user_id,counselling_id' });
-  } catch (err) {
-    // Silently fail — localStorage still works
-    console.warn('[Tracker] Supabase sync failed:', err);
+  if (error) throw error;
+  if (!data || data.length === 0) return {};
+
+  const checked: Record<string, boolean> = {};
+  for (const row of data) {
+    const steps = row.completed_steps as string[] | null;
+    if (steps) {
+      for (const stepId of steps) {
+        checked[stepId] = true;
+      }
+    }
   }
+  return checked;
 };
 
+/** Save one tracker's progress to Supabase */
+const saveToSupabase = async (
+  userId: string,
+  email: string,
+  trackerId: string,
+  completedSteps: string[],
+  totalSteps: number
+) => {
+  // Get user name & phone
+  let fullName = email.split('@')[0];
+  let phone = '';
+  try {
+    const { data: reg } = await (supabase
+      .from('registrations_12th') as any)
+      .select('full_name, phone')
+      .eq('email', email)
+      .maybeSingle();
+    if (reg) {
+      fullName = reg.full_name || fullName;
+      phone = reg.phone || '';
+    }
+  } catch {}
+
+  const { error } = await (supabase.from('counselling_tracker') as any).upsert({
+    user_id: userId,
+    email,
+    phone,
+    full_name: fullName,
+    counselling_id: trackerId,
+    completed_steps: completedSteps,
+    total_steps: totalSteps,
+    is_complete: completedSteps.length >= totalSteps,
+  }, { onConflict: 'user_id,counselling_id' });
+
+  if (error) throw error;
+};
+
+/** Merge two checked maps — union of both (if either says done, it's done) */
+const mergeChecked = (a: Record<string, boolean>, b: Record<string, boolean>): Record<string, boolean> => {
+  const merged = { ...a };
+  for (const key of Object.keys(b)) {
+    if (b[key]) merged[key] = true;
+  }
+  return merged;
+};
+
+// ═══════════════════════════════════════════════════════════
+//  SYNC STATUS BADGE
+// ═══════════════════════════════════════════════════════════
+
+const SyncBadge = ({ status, lastSynced }: { status: SyncStatus; lastSynced: Date | null }) => {
+  const config = {
+    idle: { icon: Cloud, text: 'Ready', color: 'text-gray-400', bg: 'bg-gray-50' },
+    syncing: { icon: Loader2, text: 'Saving...', color: 'text-blue-600', bg: 'bg-blue-50' },
+    synced: { icon: Cloud, text: 'Saved to cloud', color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    offline: { icon: CloudOff, text: 'Offline — saved locally', color: 'text-amber-600', bg: 'bg-amber-50' },
+    error: { icon: CloudOff, text: 'Sync failed — retry', color: 'text-red-600', bg: 'bg-red-50' },
+  };
+  const c = config[status];
+  const Icon = c.icon;
+
+  return (
+    <div className={cn('inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold', c.bg, c.color)}>
+      <Icon className={cn('w-3.5 h-3.5', status === 'syncing' && 'animate-spin')} />
+      <span>{c.text}</span>
+      {status === 'synced' && lastSynced && (
+        <span className="text-emerald-500 font-normal ml-1">
+          {lastSynced.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </span>
+      )}
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════
+//  MAIN COMPONENT
+// ═══════════════════════════════════════════════════════════
+
 export const CounsellingTracker = () => {
+  const { user } = useAuth();
   const [expanded, setExpanded] = useState<string | null>(null);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('idle');
+  const [lastSynced, setLastSynced] = useState<Date | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const syncTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // ─── Initial Load: Supabase (source of truth) + localStorage merge ───
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) setChecked(JSON.parse(saved));
-    } catch {}
-  }, []);
+    const loadData = async () => {
+      setIsLoading(true);
 
+      // 1. Always load localStorage first (instant)
+      let localData: Record<string, boolean> = {};
+      try {
+        const raw = localStorage.getItem(LOCAL_KEY);
+        if (raw) localData = JSON.parse(raw);
+      } catch {}
+
+      // 2. If logged in, load from Supabase and merge
+      if (user?.id) {
+        try {
+          const cloudData = await loadFromSupabase(user.id);
+          const merged = mergeChecked(localData, cloudData);
+
+          // Save merged back to localStorage
+          localStorage.setItem(LOCAL_KEY, JSON.stringify(merged));
+
+          // If localStorage had data that cloud didn't, push it up
+          const localOnlyKeys = Object.keys(localData).filter(k => localData[k] && !cloudData[k]);
+          if (localOnlyKeys.length > 0) {
+            for (const tracker of trackers) {
+              const completedSteps = tracker.steps.filter(s => merged[s.id]).map(s => s.id);
+              const hadLocal = tracker.steps.some(s => localOnlyKeys.includes(s.id));
+              if (hadLocal && user.email) {
+                await saveToSupabase(user.id, user.email, tracker.id, completedSteps, tracker.steps.length).catch(() => {});
+              }
+            }
+          }
+
+          setChecked(merged);
+          setSyncStatus('synced');
+          setLastSynced(new Date());
+        } catch (err) {
+          console.warn('[Tracker] Supabase load failed, using localStorage:', err);
+          setChecked(localData);
+          setSyncStatus('offline');
+        }
+      } else {
+        // Not logged in — localStorage only
+        setChecked(localData);
+        setSyncStatus('offline');
+      }
+
+      setIsLoading(false);
+    };
+
+    loadData();
+  }, [user?.id, user?.email]);
+
+  // ─── Debounced Supabase sync ───
+  const syncToCloud = useCallback((nextChecked: Record<string, boolean>, trackerId: string) => {
+    if (!user?.id || !user?.email) {
+      setSyncStatus('offline');
+      return;
+    }
+
+    setSyncStatus('syncing');
+
+    // Clear any pending sync
+    if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
+
+    // Debounce: wait 500ms after last toggle before syncing
+    syncTimeoutRef.current = setTimeout(async () => {
+      try {
+        const tracker = trackers.find(t => t.id === trackerId);
+        if (!tracker) return;
+
+        const completedSteps = tracker.steps.filter(s => nextChecked[s.id]).map(s => s.id);
+        await saveToSupabase(user.id, user.email!, tracker.id, completedSteps, tracker.steps.length);
+
+        setSyncStatus('synced');
+        setLastSynced(new Date());
+      } catch (err) {
+        console.warn('[Tracker] Sync failed:', err);
+        setSyncStatus('error');
+      }
+    }, 500);
+  }, [user?.id, user?.email]);
+
+  // ─── Toggle Step ───
   const toggleStep = (stepId: string) => {
     setChecked(prev => {
       const next = { ...prev, [stepId]: !prev[stepId] };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
 
-      // Sync to Supabase for n8n reminders
-      const trackerId = stepId.split('-').slice(0, -1).join('-'); // 'tnea-1' → 'tnea'
-      // Handle IDs like 'neet-1' → 'neet-tn', 'josaa-1' → 'josaa', 'tnau-1' → 'tnau'
+      // Always save to localStorage (instant)
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(next));
+
+      // Find which tracker this step belongs to
       const tracker = trackers.find(t => t.steps.some(s => s.id === stepId));
       if (tracker) {
-        const completedSteps = tracker.steps.filter(s => next[s.id]).map(s => s.id);
-        syncToSupabase(tracker.id, completedSteps, tracker.steps.length);
+        syncToCloud(next, tracker.id);
       }
 
       return next;
     });
   };
 
+  // ─── Reset Tracker ───
   const resetTracker = (trackerId: string) => {
     const tracker = trackers.find(t => t.id === trackerId);
     if (!tracker) return;
+
+    if (!confirm(`Reset all progress for ${tracker.name}? This cannot be undone.`)) return;
+
     setChecked(prev => {
       const next = { ...prev };
       tracker.steps.forEach(s => delete next[s.id]);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      syncToSupabase(trackerId, [], tracker.steps.length);
+
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(next));
+      syncToCloud(next, trackerId);
+
       return next;
     });
   };
 
+  // ─── Manual re-sync ───
+  const forceSync = async () => {
+    if (!user?.id || !user?.email) return;
+    setSyncStatus('syncing');
+    try {
+      for (const tracker of trackers) {
+        const completedSteps = tracker.steps.filter(s => checked[s.id]).map(s => s.id);
+        if (completedSteps.length > 0) {
+          await saveToSupabase(user.id, user.email, tracker.id, completedSteps, tracker.steps.length);
+        }
+      }
+      setSyncStatus('synced');
+      setLastSynced(new Date());
+    } catch {
+      setSyncStatus('error');
+    }
+  };
+
+  // ─── Progress helpers ───
   const getProgress = (tracker: CounsellingTrackerData) => {
     const done = tracker.steps.filter(s => checked[s.id]).length;
     return { done, total: tracker.steps.length, percent: Math.round((done / tracker.steps.length) * 100) };
@@ -188,6 +382,34 @@ export const CounsellingTracker = () => {
     return { label: `${total - done} steps remaining`, color: 'text-red-700', bg: 'bg-red-100' };
   };
 
+  // ─── Loading State ───
+  if (isLoading) {
+    return (
+      <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden">
+        <div className="bg-gradient-to-r from-red-600 to-rose-600 p-5">
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center">
+              <Shield className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white">Counselling Application Tracker</h3>
+              <p className="text-xs text-red-200">கலந்தாய்வு விண்ணப்ப நிலை கண்காணிப்பான்</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center py-16 gap-3">
+          <Loader2 className="w-8 h-8 text-violet-500 animate-spin" />
+          <p className="text-sm font-semibold text-gray-600">Loading your progress...</p>
+          <p className="text-xs text-gray-400">உங்கள் நிலையை ஏற்றுகிறது...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  RENDER
+  // ═══════════════════════════════════════════════════════════
+
   return (
     <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden">
       {/* Header */}
@@ -196,11 +418,32 @@ export const CounsellingTracker = () => {
           <div className="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center">
             <Shield className="w-6 h-6 text-white" />
           </div>
-          <div>
+          <div className="flex-1">
             <h3 className="text-lg font-bold text-white">Counselling Application Tracker</h3>
             <p className="text-xs text-red-200">கலந்தாய்வு விண்ணப்ப நிலை கண்காணிப்பான்</p>
           </div>
         </div>
+
+        {/* Sync status bar */}
+        <div className="flex items-center justify-between mt-2 bg-white/10 backdrop-blur-sm rounded-xl px-3 py-2">
+          <div className="flex items-center gap-2">
+            <SyncBadge status={syncStatus} lastSynced={lastSynced} />
+            {!user && (
+              <span className="text-xs text-red-200">
+                ⚠️ Login to save across devices
+              </span>
+            )}
+          </div>
+          {user && (syncStatus === 'error' || syncStatus === 'offline') && (
+            <button
+              onClick={forceSync}
+              className="flex items-center gap-1 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-lg transition-all"
+            >
+              <RefreshCw className="w-3 h-3" /> Retry
+            </button>
+          )}
+        </div>
+
         <div className="bg-white/15 rounded-xl p-3 mt-2">
           <p className="text-sm text-white leading-relaxed">
             ⚠️ <strong>Don't lose your seat!</strong> Tap each step after you complete it. Each step shows the <strong>deadline</strong> and <strong>what happens if you miss it</strong>.
@@ -342,9 +585,11 @@ export const CounsellingTracker = () => {
         })}
       </div>
 
-      <div className="px-4 py-3 bg-red-50 border-t border-red-200">
+      {/* Footer */}
+      <div className="px-4 py-3 bg-gradient-to-r from-red-50 to-rose-50 border-t border-red-200">
         <p className="text-xs text-red-600 text-center font-medium">
-          ⚠️ Dates are tentative. Always verify from official websites. This tracker saves on your device only.
+          ⚠️ Dates are tentative. Always verify from official websites.
+          {user ? ' Your progress is synced to cloud ☁️' : ' Login to save your progress across all devices.'}
         </p>
       </div>
     </div>
