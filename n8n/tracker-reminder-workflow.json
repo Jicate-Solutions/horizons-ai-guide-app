@@ -1,0 +1,167 @@
+{
+  "name": "VAZHIKATTI — Daily Tracker Reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Daily 9 AM IST",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://jahtuebykoledutqhzfx.supabase.co/functions/v1/send-tracker-reminders",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_SUPABASE_ANON_KEY_HERE"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{ \"force\": false }",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "send-reminders",
+      "name": "Call Reminder Function",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-sent",
+              "leftValue": "={{ $json.sent }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-if-sent",
+      "name": "Any Reminders Sent?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/YOUR_SLACK_WEBHOOK_HERE",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"📬 *VAZHIKATTI Tracker Reminders Sent*\\n• Total incomplete: {{ $json.total_incomplete }}\\n• Reminded today: {{ $json.sent }}\\n• Processed: {{ $json.total_processed }}\"\n}",
+        "options": {}
+      },
+      "id": "notify-slack-sent",
+      "name": "Slack: Reminders Sent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [940, 200],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "=No new reminders. {{ $json.message || 'All users already notified within 24h.' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "log-no-reminders",
+      "name": "Log: No Reminders Needed",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [940, 400]
+    }
+  ],
+  "connections": {
+    "Daily 9 AM IST": {
+      "main": [
+        [
+          {
+            "node": "Call Reminder Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Reminder Function": {
+      "main": [
+        [
+          {
+            "node": "Any Reminders Sent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any Reminders Sent?": {
+      "main": [
+        [
+          {
+            "node": "Slack: Reminders Sent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log: No Reminders Needed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata"
+  },
+  "tags": [
+    {
+      "name": "VAZHIKATTI",
+      "id": "vazhikatti"
+    }
+  ]
+}
