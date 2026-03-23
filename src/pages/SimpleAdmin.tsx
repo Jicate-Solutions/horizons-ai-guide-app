@@ -92,11 +92,11 @@ const SimpleAdmin = () => {
           usedServerAPI = true;
           console.log('[ADMIN] Server API returned', all.length, 'users');
           if (apiData.diagnostic) {
-            console.log('[ADMIN] Key type:', apiData.diagnostic.keyType);
-            console.log('[ADMIN] Sources:', JSON.stringify(apiData.diagnostic.sources));
-            console.log('[ADMIN] Errors:', apiData.diagnostic.errors);
-            if (apiData.diagnostic.errors && apiData.diagnostic.errors.length > 0) {
-              console.warn('[ADMIN] Partial errors:', apiData.diagnostic.errors);
+            const d = apiData.diagnostic;
+            const diagMsg = `🔍 API Diagnostic:\n• Key type: ${d.keyType || 'unknown'}\n• Service key: ${d.hasServiceKey ? '✅ Found' : '❌ NOT FOUND — add SUPABASE_SERVICE_ROLE_KEY in Vercel'}\n• Env vars with "supabase": ${(d.envKeysFound || []).join(', ') || 'NONE'}\n• Sources found: Auth=${d.sources?.auth || 0}, Registration=${d.sources?.registration || 0}, Profile=${d.sources?.profile || 0}\n• Errors: ${(d.errors || []).join(' | ') || 'none'}`;
+            console.log(diagMsg);
+            if (all.length === 0) {
+              setError(diagMsg + '\n\n⚠️ 0 users found. Most likely cause: SUPABASE_SERVICE_ROLE_KEY is not set in Vercel env vars.\n\nWithout the service_role key, the admin panel cannot read from Supabase Auth or from tables with Row Level Security.\n\n📋 Steps to fix:\n1. Go to supabase.com → Your Project → Settings → API\n2. Copy the service_role key (long one starting with eyJ...)\n3. Go to vercel.com → horizons-ai-guide-app → Settings → Environment Variables\n4. Add variable: SUPABASE_SERVICE_ROLE_KEY = [paste key]\n5. Also add: SUPABASE_URL = https://jahtuebykoledutqhzfx.supabase.co\n6. Click Redeploy in Deployments tab\n\n💡 Or use the green "Add User" button above to manually enter users right now.');
             }
           }
         } else if (apiData.setupNeeded) {
