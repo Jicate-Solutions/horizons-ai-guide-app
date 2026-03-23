@@ -8,9 +8,7 @@ import {
 import { examCategories, entranceExams } from './examData';
 import { examPracticeQuestions } from './practiceQuestionsData';
 import { questionBank } from '@/data/questionBank';
-import { syllabusData } from '@/data/syllabusData';
 import { PracticeQuestions } from './PracticeQuestions';
-import ChapterLearningPage from '@/components/ChapterLearningPage';
 import { EntranceExam } from './types';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
@@ -35,15 +33,10 @@ const detectStream = (raw: string): string => {
 };
 
 // Progress
-const getProgress = (): Record<string, any> => { try { return JSON.parse(localStorage.getItem('vzk_chapter_progress') || '{}'); } catch { return {}; } };
-
 export const EntranceExams = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<'study' | 'exams' | 'all'>('study');
-  const [selectedExam, setSelectedExam] = useState<string | null>(null);
-  const [openSubject, setOpenSubject] = useState<string | null>(null);
-  const [activeChapter, setActiveChapter] = useState<any>(null);
   const [openExam, setOpenExam] = useState<string | null>(null);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [searchQ, setSearchQ] = useState('');
@@ -53,21 +46,6 @@ export const EntranceExams = () => {
   const stream = detectStream(meta.stream || '');
   const config = streamMap[stream] || streamMap.default;
   const topExams = config.ids.map(id => entranceExams.find(e => e.id === id)).filter(Boolean) as EntranceExam[];
-  const progress = getProgress();
-
-  // Auto-select exam for study tab based on stream
-  const defaultExamKey = selectedExam || config.examKey;
-  const examData = syllabusData[defaultExamKey];
-
-  // ═══ CHAPTER LEARNING MODE ═══
-  if (activeChapter) {
-    return (
-      <ChapterLearningPage
-        chapter={activeChapter}
-        onBack={() => setActiveChapter(null)}
-      />
-    );
-  }
 
   // Filtered exams for All tab
   const allFiltered = useMemo(() => {
@@ -153,83 +131,54 @@ export const EntranceExams = () => {
 
       {/* ═══ STUDY MATERIAL TAB — Topic-wise learning ═══ */}
       {activeTab === 'study' && (
-        <div className="space-y-3">
-          {/* Exam selector */}
-          <div className="flex gap-1.5 overflow-x-auto pb-1">
-            {Object.entries(syllabusData).map(([key, ex]) => (
-              <button key={key} onClick={() => setSelectedExam(key)}
-                className={cn("flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold border-2 transition-all",
-                  defaultExamKey === key ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-600 border-gray-200')}>
-                {ex.emoji} {ex.examName.split(' ')[0]}
-              </button>
-            ))}
+        <div className="space-y-4">
+          {/* Hero */}
+          <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-5 text-white">
+            <div className="flex items-center gap-2 mb-1"><Layers className="w-5 h-5 text-indigo-200" /><p className="text-lg font-bold">Study Material</p></div>
+            <p className="text-xs text-indigo-100 mt-1">Study + Practice + PYQ — everything topic-wise in one place</p>
           </div>
 
-          {/* Header */}
-          <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-4 text-white">
-            <p className="text-base font-bold">{examData?.examName}</p>
-            <p className="text-[11px] text-indigo-100 mt-0.5">{examData?.totalChapters} chapters · Tap any chapter → Study + Practice + PYQ</p>
-            {/* Overall progress */}
-            {(() => {
-              const total = examData?.subjects.reduce((s, sub) => s + sub.chapters.length, 0) || 0;
-              const done = examData?.subjects.reduce((s, sub) => s + sub.chapters.filter(ch => progress[ch.id]?.completed).length, 0) || 0;
-              const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-              return (
-                <div className="mt-2">
-                  <div className="flex items-center justify-between text-[10px] text-indigo-200 mb-1">
-                    <span>{done}/{total} chapters done</span><span>{pct}%</span>
-                  </div>
-                  <div className="h-2 bg-white/20 rounded-full"><div className="h-full bg-white rounded-full transition-all" style={{ width: `${pct}%` }} /></div>
+          {/* PRIMARY: Topic Hub */}
+          <button onClick={() => navigate('/topic-hub')}
+            className="w-full bg-white rounded-2xl p-5 border-2 border-indigo-200 hover:border-indigo-400 hover:shadow-xl transition-all text-left active:scale-[0.98] group">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform">📚</div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <p className="text-base font-bold text-gray-900">Topic Hub</p>
+                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">START HERE</span>
                 </div>
-              );
-            })()}
-          </div>
-
-          {/* Subjects */}
-          {examData?.subjects.map(sub => {
-            const isOpen = openSubject === sub.id;
-            const subDone = sub.chapters.filter(ch => progress[ch.id]?.completed).length;
-            return (
-              <div key={sub.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-                <button onClick={() => setOpenSubject(isOpen ? null : sub.id)}
-                  className="w-full p-4 text-left flex items-center gap-3 hover:bg-gray-50">
-                  <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg", sub.color)}>{sub.emoji}</div>
-                  <div className="flex-1">
-                    <p className="text-sm font-bold text-gray-900">{sub.name}</p>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-[10px] text-gray-500">{sub.chapters.length} chapters</span>
-                      <span className="text-[10px] text-emerald-600 font-bold">{subDone}/{sub.chapters.length} done</span>
-                    </div>
-                  </div>
-                  {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
-                </button>
-                {isOpen && (
-                  <div className="border-t border-gray-100 px-3 pb-3 pt-2 space-y-1">
-                    {sub.chapters.map(ch => {
-                      const chProgress = progress[ch.id];
-                      const qCount = (questionBank[ch.id] || []).length;
-                      return (
-                        <button key={ch.id} onClick={() => setActiveChapter({ ...ch, subjectName: sub.name, examId: defaultExamKey })}
-                          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left border border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/50 transition-all active:scale-[0.98]">
-                          {chProgress?.completed ? <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" /> : <div className="w-5 h-5 rounded-full border-2 border-gray-300 flex-shrink-0" />}
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-800 leading-tight">{ch.name}</p>
-                            <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                              <span className="text-[9px] text-gray-400">Class {ch.class}</span>
-                              {ch.priority === 'high' && <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-red-100 text-red-600">HIGH</span>}
-                              {qCount > 0 && <span className="text-[8px] font-bold text-violet-600">{qCount}Q</span>}
-                              {chProgress?.score > 0 && <span className="text-[8px] font-bold text-emerald-600">{chProgress.score}%</span>}
-                            </div>
-                          </div>
-                          <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
+                <p className="text-xs text-gray-500 mt-1 leading-relaxed">Pick chapter → Study concepts → Practice questions → Solve PYQ → Track progress</p>
+                <div className="flex items-center gap-3 mt-2 text-[10px]">
+                  <span className="text-indigo-600 font-bold">📖 187 chapters</span>
+                  <span className="text-violet-600 font-bold">📝 {totalQB}+ questions</span>
+                  <span className="text-amber-600 font-bold">📜 PYQ</span>
+                </div>
               </div>
-            );
-          })}
+              <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all" />
+            </div>
+          </button>
+
+          {/* Individual tools */}
+          <div>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Individual Tools</p>
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { icon: '📖', label: 'Study Guide', route: '/study-guide', color: 'text-indigo-600' },
+                { icon: '📝', label: 'Question Bank', route: '/question-bank', color: 'text-violet-600' },
+                { icon: '📊', label: 'Syllabus Tracker', route: '/syllabus-tracker', color: 'text-emerald-600' },
+                { icon: '🔔', label: 'Exam Alerts', route: '/exam-alerts', color: 'text-red-600' },
+                { icon: '📜', label: 'PYQ Practice', route: '/career-assessment/colleges/pyq', color: 'text-amber-600' },
+                { icon: '🎯', label: 'Rank Predictor', route: '/rank-predictor', color: 'text-sky-600' },
+              ].map(tool => (
+                <button key={tool.label} onClick={() => navigate(tool.route)}
+                  className="bg-white rounded-xl p-3 border border-gray-200 hover:border-gray-400 transition-all text-center active:scale-[0.97]">
+                  <span className="text-lg">{tool.icon}</span>
+                  <p className={cn("text-[10px] font-bold mt-1", tool.color)}>{tool.label}</p>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 

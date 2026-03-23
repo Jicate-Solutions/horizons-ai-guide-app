@@ -171,36 +171,20 @@ const CareerAssessmentColleges = () => {
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
 
-          {/* Study Guide */}
-          <button onClick={() => navigate('/study-guide')}
-            className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-indigo-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
-              <FileText className="w-6 h-6" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Study Guide</p>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">NEW</span>
-              </div>
-              <p className="text-xs text-gray-500 mt-0.5">Topic-by-topic concepts, formulas & books</p>
-            </div>
-            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
-          </button>
-
-          {/* Question Bank */}
-          <button onClick={() => navigate('/question-bank')}
-            className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-violet-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
+          {/* Topic Hub — Study + Practice + PYQ all in one */}
+          <button onClick={() => navigate('/topic-hub')}
+            className="w-full bg-gradient-to-r from-indigo-50 to-violet-50 rounded-2xl p-4 border-2 border-indigo-200 hover:border-indigo-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
               <BookOpen className="w-6 h-6" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Question Bank</p>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 text-violet-700">NEW</span>
+                <p className="text-sm font-bold text-gray-900">Topic Hub</p>
+                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-600 text-white">START HERE</span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Chapter-wise practice — pick topic, set count, start</p>
+              <p className="text-xs text-gray-500 mt-0.5">Study Guide + Practice Test + PYQ — chapter by chapter</p>
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-violet-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
         </div>
 
