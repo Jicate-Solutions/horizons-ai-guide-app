@@ -69,12 +69,7 @@ export const EntranceExams = () => {
     return list;
   }, [filterCat, searchQ]);
 
-  // ═══ TAB NAVIGATION ═══
-  const tabs = [
-    { id: 'hub' as const, label: 'Preparation', icon: Layers },
-    { id: 'exams' as const, label: 'Your Exams', icon: Star },
-    { id: 'all' as const, label: `All ${entranceExams.length}`, icon: Globe },
-  ];
+  // Tab navigation managed by activeTab state
 
   // ═══ EXAM CARD COMPONENT ═══
   const ExamCard = ({ exam }: { exam: EntranceExam }) => {
@@ -165,24 +160,38 @@ export const EntranceExams = () => {
 
   return (
     <div className="space-y-4">
-      {/* ═══ TAB BAR ═══ */}
-      <div className="flex bg-gray-100 rounded-xl p-1 gap-1">
-        {tabs.map(tab => (
-          <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            className={cn("flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold transition-all",
-              activeTab === tab.id ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700')}>
-            <tab.icon className="w-3.5 h-3.5" /> {tab.label}
-          </button>
-        ))}
+      {/* ═══ TAB BAR — Each tab has distinct color ═══ */}
+      <div className="flex gap-2">
+        <button onClick={() => setActiveTab('hub')}
+          className={cn("flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all border-2",
+            activeTab === 'hub' 
+              ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-200' 
+              : 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:border-indigo-400')}>
+          <Layers className="w-4 h-4" /> Preparation
+        </button>
+        <button onClick={() => setActiveTab('exams')}
+          className={cn("flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all border-2",
+            activeTab === 'exams' 
+              ? 'bg-amber-500 text-white border-amber-500 shadow-lg shadow-amber-200' 
+              : 'bg-amber-50 text-amber-700 border-amber-200 hover:border-amber-400')}>
+          <Star className="w-4 h-4" /> Your Exams
+        </button>
+        <button onClick={() => setActiveTab('all')}
+          className={cn("flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all border-2",
+            activeTab === 'all' 
+              ? 'bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-200' 
+              : 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:border-emerald-400')}>
+          <Globe className="w-4 h-4" /> All {entranceExams.length}
+        </button>
       </div>
 
       {/* ═══ TAB 1: PREPARATION HUB ═══ */}
       {activeTab === 'hub' && (
         <div className="space-y-4">
           {/* Hero */}
-          <div className="bg-gradient-to-br from-emerald-600 to-green-700 rounded-2xl p-5 text-white">
-            <p className="text-lg font-bold">Exam Preparation Hub</p>
-            <p className="text-xs text-emerald-100 mt-1">Everything you need to prepare — organized in one place</p>
+          <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-5 text-white">
+            <div className="flex items-center gap-2 mb-1"><Layers className="w-5 h-5 text-indigo-200" /><p className="text-lg font-bold">Preparation Hub</p></div>
+            <p className="text-xs text-indigo-100 mt-1">Study Guide · Question Bank · Tracker · Alerts · PYQ · Predictor</p>
           </div>
 
           {/* 6 Preparation Tools */}
@@ -228,11 +237,13 @@ export const EntranceExams = () => {
       {/* ═══ TAB 2: YOUR EXAMS ═══ */}
       {activeTab === 'exams' && (
         <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center text-base">{config.emoji}</div>
-            <div>
-              <p className="text-sm font-bold text-gray-800">Exams for {config.label}</p>
-              <p className="text-[10px] text-gray-500">{topExams.length} recommended exams · Tap to expand</p>
+          <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl p-4 text-white">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl">{config.emoji}</div>
+              <div>
+                <p className="text-base font-bold">Exams for {config.label}</p>
+                <p className="text-[11px] text-amber-100">{topExams.length} recommended exams · Tap to expand</p>
+              </div>
             </div>
           </div>
 
@@ -251,6 +262,11 @@ export const EntranceExams = () => {
       {/* ═══ TAB 3: ALL EXAMS ═══ */}
       {activeTab === 'all' && (
         <div className="space-y-3">
+          <div className="bg-gradient-to-br from-emerald-600 to-green-700 rounded-2xl p-4 text-white">
+            <div className="flex items-center gap-2 mb-1"><Globe className="w-5 h-5 text-emerald-200" /><p className="text-base font-bold">All {entranceExams.length} Entrance Exams</p></div>
+            <p className="text-[11px] text-emerald-100">Medical · Engineering · Law · Commerce · Defence · Agriculture</p>
+          </div>
+
           {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
