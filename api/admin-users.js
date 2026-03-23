@@ -11,18 +11,34 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Invalid admin password' });
   }
 
-  const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-  const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
+
+  // Diagnostic info
+  const diag = {
+    hasUrl: !!SUPABASE_URL,
+    urlPrefix: SUPABASE_URL ? SUPABASE_URL.substring(0, 30) + '...' : 'NOT SET',
+    hasKey: !!SUPABASE_SERVICE_KEY,
+    keyPrefix: SUPABASE_SERVICE_KEY ? SUPABASE_SERVICE_KEY.substring(0, 15) + '...' : 'NOT SET',
+    envVarsChecked: ['SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SERVICE_KEY', 'VITE_SUPABASE_SERVICE_ROLE_KEY', 'VITE_SUPABASE_URL', 'SUPABASE_URL'],
+    availableEnvKeys: Object.keys(process.env).filter(k => k.includes('SUPABASE') || k.includes('supabase')),
+  };
 
   if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
-    return res.status(200).json({ users: [], setupNeeded: true, message: 'Add SUPABASE_SERVICE_ROLE_KEY in Vercel Environment Variables' });
+    return res.status(200).json({ 
+      users: [], 
+      setupNeeded: true, 
+      diagnostic: diag,
+      message: `Missing: ${!SUPABASE_URL ? 'SUPABASE_URL' : ''} ${!SUPABASE_SERVICE_KEY ? 'SUPABASE_SERVICE_ROLE_KEY' : ''}. Found env vars with "SUPABASE": ${diag.availableEnvKeys.join(', ') || 'NONE'}` 
+    });
   }
 
   try {
     const allUsers = [];
     const seen = new Set();
+    const errors = [];
 
-    // Source 1: Auth users (guaranteed to have ALL signups with metadata)
+    // Source 1: Auth users
     try {
       let page = 1;
       let hasMore = true;
@@ -44,11 +60,11 @@ export default async function handler(req, res) {
                 full_name: meta.display_name || meta.full_name || '',
                 phone: phone,
                 email: meta.user_email || (u.email && !u.email.includes('@vazhikatti.app') ? u.email : '') || '',
-                school_name: meta.school_name || '',
+                school_name: meta.school_name || meta.schoolName || '',
                 stream: meta.stream || '',
-                pass_out_year: meta.pass_out_year || '',
+                pass_out_year: meta.pass_out_year || meta.passOutYear || '',
                 district: meta.district || '',
-                career_interest: meta.career_interest || '',
+                career_interest: meta.career_interest || meta.careerInterest || '',
                 created_at: u.created_at,
                 last_sign_in: u.last_sign_in_at || u.created_at,
                 provider: 'Auth User',
@@ -58,9 +74,13 @@ export default async function handler(req, res) {
           });
           hasMore = users.length === 100;
           page++;
-        } else { hasMore = false; }
+        } else { 
+          const errText = await authRes.text();
+          errors.push(`Auth API ${authRes.status}: ${errText.substring(0, 200)}`);
+          hasMore = false; 
+        }
       }
-    } catch (e) { console.warn('Auth users fetch failed:', e); }
+    } catch (e) { errors.push('Auth fetch exception: ' + e.message); }
 
     // Source 2: registrations_12th_learners table
     try {
@@ -74,38 +94,29 @@ export default async function handler(req, res) {
           if (!seen.has(key)) {
             seen.add(key);
             allUsers.push({
-              id: r.id,
-              full_name: r.full_name || '',
-              phone: r.phone || '',
-              email: r.email || '',
-              school_name: r.school_name || '',
-              stream: r.stream || '',
-              pass_out_year: r.preferred_course || '',
-              district: r.preferred_institution || '',
+              id: r.id, full_name: r.full_name || '', phone: r.phone || '', email: r.email || '',
+              school_name: r.school_name || '', stream: r.stream || '',
+              pass_out_year: r.preferred_course || '', district: r.preferred_institution || '',
               career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''),
-              created_at: r.created_at,
-              last_sign_in: r.created_at,
-              provider: '12th Learner',
-              source: 'registration',
+              created_at: r.created_at, last_sign_in: r.created_at,
+              provider: '12th Learner', source: 'registration',
             });
           } else {
-            // Merge details into existing user if they have more data
             const existing = allUsers.find(u => (u.phone && u.phone === r.phone) || (u.email && u.email === r.email));
             if (existing) {
               if (!existing.school_name && r.school_name) existing.school_name = r.school_name;
               if (!existing.stream && r.stream) existing.stream = r.stream;
               if (!existing.district && r.preferred_institution) existing.district = r.preferred_institution;
-              if (!existing.pass_out_year && r.preferred_course) existing.pass_out_year = r.preferred_course;
-              if (!existing.career_interest && r.career_interests) {
-                existing.career_interest = Array.isArray(r.career_interests) ? r.career_interests.join(', ') : r.career_interests;
-              }
               if (!existing.full_name && r.full_name) existing.full_name = r.full_name;
               existing.provider = '12th Learner';
             }
           }
         });
+      } else {
+        const errText = await regRes.text();
+        errors.push(`Registrations ${regRes.status}: ${errText.substring(0, 200)}`);
       }
-    } catch (e) { console.warn('Registrations fetch failed:', e); }
+    } catch (e) { errors.push('Registrations exception: ' + e.message); }
 
     // Source 3: profiles table
     try {
@@ -122,32 +133,31 @@ export default async function handler(req, res) {
           if (!seen.has(key)) {
             seen.add(key);
             allUsers.push({
-              id: p.id,
-              full_name: p.display_name || '',
-              phone: phone,
-              email: parts[1] || '',
-              school_name: parts[2] || '',
-              stream: parts[3] || '',
-              pass_out_year: parts[4] || '',
-              district: parts[5] || '',
+              id: p.id, full_name: p.display_name || '', phone, email: parts[1] || '',
+              school_name: parts[2] || '', stream: parts[3] || '',
+              pass_out_year: parts[4] || '', district: parts[5] || '',
               career_interest: parts[6] || '',
-              created_at: p.created_at,
-              last_sign_in: p.updated_at || p.created_at,
-              provider: 'App User',
-              source: 'profile',
+              created_at: p.created_at, last_sign_in: p.updated_at || p.created_at,
+              provider: 'App User', source: 'profile',
             });
           }
         });
+      } else {
+        const errText = await profRes.text();
+        errors.push(`Profiles ${profRes.status}: ${errText.substring(0, 200)}`);
       }
-    } catch (e) { console.warn('Profiles fetch failed:', e); }
+    } catch (e) { errors.push('Profiles exception: ' + e.message); }
 
-    // Sort newest first
     allUsers.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-    return res.status(200).json({ users: allUsers, total: allUsers.length, setupNeeded: false });
+    return res.status(200).json({ 
+      users: allUsers, 
+      total: allUsers.length, 
+      setupNeeded: false,
+      diagnostic: { ...diag, errors, sources: { auth: allUsers.filter(u => u.source === 'auth').length, registration: allUsers.filter(u => u.source === 'registration').length, profile: allUsers.filter(u => u.source === 'profile').length } },
+    });
 
   } catch (err) {
-    console.error('Admin users error:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal error: ' + err.message, diagnostic: diag });
   }
 }
