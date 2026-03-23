@@ -36,6 +36,7 @@ const SimpleAdmin = () => {
   const [newUser, setNewUser] = useState({ full_name: '', phone: '', email: '', school_name: '', stream: '', district: '' });
   const [isDeleting, setIsDeleting] = useState(false);
   const [activeTab, setActiveTab] = useState<TabView>('analytics');
+  const [serviceKey, setServiceKey] = useState(() => localStorage.getItem('vzk_admin_sk') || '');
 
   const getTimeRange = (filter: TimeFilter): { start: Date; end: Date } | null => {
     const now = new Date(); const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -64,7 +65,7 @@ const SimpleAdmin = () => {
         const apiRes = await fetch('/api/admin-users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password: ADMIN_PASS }),
+          body: JSON.stringify({ password: ADMIN_PASS, serviceKey: serviceKey || undefined }),
         });
         const apiData = await apiRes.json();
         
@@ -415,6 +416,26 @@ const SimpleAdmin = () => {
 
         {isLoading && (
           <div className="text-center py-20 bg-white rounded-xl border"><Loader2 className="w-8 h-8 text-gray-300 mx-auto animate-spin" /><p className="text-sm text-gray-400 mt-3">Loading...</p></div>
+        )}
+
+        {/* Service Key Input — needed to read Supabase Auth users */}
+        {users.length === 0 && !isLoading && (
+          <div className="bg-gray-800 rounded-xl p-4 border border-gray-700 space-y-3">
+            <p className="text-sm font-bold text-white">🔑 Connect to Supabase</p>
+            <p className="text-[10px] text-gray-400 leading-relaxed">Paste your Supabase <b>service_role</b> key below to see all registered users. Get it from: supabase.com → Your Project → Settings → API → service_role (secret)</p>
+            <input type="password" placeholder="Paste service_role key here (starts with eyJ...)"
+              value={serviceKey}
+              onChange={e => setServiceKey(e.target.value)}
+              className="w-full px-3 py-2.5 rounded-lg bg-gray-700 text-white text-xs border border-gray-600 placeholder:text-gray-400 font-mono" />
+            <div className="flex gap-2">
+              <button onClick={() => { localStorage.setItem('vzk_admin_sk', serviceKey); fetchUsers(); }}
+                className="px-4 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700">Save & Load Users</button>
+              {serviceKey && (
+                <button onClick={() => { setServiceKey(''); localStorage.removeItem('vzk_admin_sk'); }}
+                  className="px-4 py-2 rounded-lg bg-gray-600 text-white text-xs font-bold hover:bg-gray-700">Clear Key</button>
+              )}
+            </div>
+          </div>
         )}
 
         {/* Manual Add User Form */}
