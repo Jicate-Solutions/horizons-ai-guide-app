@@ -1328,8 +1328,8 @@ Be empathetic and respect Indian family values while helping the student communi
                   <Bot className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-base sm:text-2xl font-serif font-bold text-white tracking-tight">AI Career Counselor</h1>
-                  <p className="text-xs sm:text-sm text-emerald-100 font-tamil">AI தொழில் ஆலோசகர்</p>
+                  <h1 className="text-base sm:text-2xl font-serif font-bold text-white tracking-tight">AI Career Guide</h1>
+                  <p className="text-xs sm:text-sm text-emerald-100 font-tamil">AI தொழில் வழிகாட்டி</p>
                 </div>
               </div>
             </div>
@@ -1627,7 +1627,7 @@ Be empathetic and respect Indian family values while helping the student communi
                         <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">AI Career Counselor</h3>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">AI Career Guide</h3>
                     <p className="text-sm text-gray-500 max-w-xs">Ask me anything about careers, exams, colleges, or scholarships. I'm here to help!</p>
                     <p className="text-sm text-amber-600/80 font-tamil mt-3">உங்கள் தொழில் வழிகாட்டி தயாராக உள்ளது!</p>
                     <p className="text-xs text-gray-400 mt-4">👈 Pick a question from the side, or type below ↓</p>

@@ -167,21 +167,21 @@ export const EntranceExams = () => {
             activeTab === 'hub' 
               ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-200' 
               : 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:border-indigo-400')}>
-          <Layers className="w-4 h-4" /> Preparation
+          <Layers className="w-4 h-4" /> Study Material
         </button>
         <button onClick={() => setActiveTab('exams')}
           className={cn("flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all border-2",
             activeTab === 'exams' 
               ? 'bg-amber-500 text-white border-amber-500 shadow-lg shadow-amber-200' 
               : 'bg-amber-50 text-amber-700 border-amber-200 hover:border-amber-400')}>
-          <Star className="w-4 h-4" /> Your Exams
+          <Star className="w-4 h-4" /> My Exams
         </button>
         <button onClick={() => setActiveTab('all')}
           className={cn("flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all border-2",
             activeTab === 'all' 
               ? 'bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-200' 
               : 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:border-emerald-400')}>
-          <Globe className="w-4 h-4" /> All {entranceExams.length}
+          <Globe className="w-4 h-4" /> All Exams
         </button>
       </div>
 
@@ -190,8 +190,8 @@ export const EntranceExams = () => {
         <div className="space-y-4">
           {/* Hero */}
           <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-5 text-white">
-            <div className="flex items-center gap-2 mb-1"><Layers className="w-5 h-5 text-indigo-200" /><p className="text-lg font-bold">Preparation Hub</p></div>
-            <p className="text-xs text-indigo-100 mt-1">Study Guide · Question Bank · Tracker · Alerts · PYQ · Predictor</p>
+            <div className="flex items-center gap-2 mb-1"><Layers className="w-5 h-5 text-indigo-200" /><p className="text-lg font-bold">Study Material</p></div>
+            <p className="text-xs text-indigo-100 mt-1">Study Guide · Question Bank · Syllabus Tracker · Exam Alerts · PYQ · Rank Predictor</p>
           </div>
 
           {/* 6 Preparation Tools */}
@@ -263,7 +263,7 @@ export const EntranceExams = () => {
       {activeTab === 'all' && (
         <div className="space-y-3">
           <div className="bg-gradient-to-br from-emerald-600 to-green-700 rounded-2xl p-4 text-white">
-            <div className="flex items-center gap-2 mb-1"><Globe className="w-5 h-5 text-emerald-200" /><p className="text-base font-bold">All {entranceExams.length} Entrance Exams</p></div>
+            <div className="flex items-center gap-2 mb-1"><Globe className="w-5 h-5 text-emerald-200" /><p className="text-base font-bold">All {entranceExams.length} Exams</p></div>
             <p className="text-[11px] text-emerald-100">Medical · Engineering · Law · Commerce · Defence · Agriculture</p>
           </div>
 

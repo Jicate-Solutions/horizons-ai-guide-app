@@ -46,7 +46,7 @@ const streamConfig: Record<StreamKey, {
     label: 'Student', emoji: '🎓', color: 'text-gray-700', bgLight: 'bg-gray-50',
     topCareers: ['Software Engineer', 'Doctor', 'CA', 'Civil Services', 'Entrepreneur'],
     keyExams: [{ name: 'TNEA' }, { name: 'NEET' }, { name: 'JEE' }, { name: 'CLAT' }, { name: 'CUET' }],
-    quickTip: 'Not sure about your career? Use the AI Career Chat below — ask any question and get instant guidance.',
+    quickTip: 'Not sure about your career? Use the AI Career Guide below — ask any question and get instant guidance.',
   },
 };
 
@@ -121,7 +121,7 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Exam Alerts 2026</p>
+                <p className="text-sm font-bold text-gray-900">Exam Alerts</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700">NEW</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">All deadlines — never miss a registration</p>
@@ -129,20 +129,20 @@ const CareerAssessmentColleges = () => {
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-red-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
 
-          {/* AI Career Chat */}
+          {/* AI Career Guide */}
           <button onClick={() => navigate('/career-assessment/chat')}
             className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-orange-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
               <MessageCircle className="w-6 h-6" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-bold text-gray-900">Career AI Chat</p>
+              <p className="text-sm font-bold text-gray-900">AI Career Guide</p>
               <p className="text-xs text-gray-500 mt-0.5">Ask any career question — get instant AI guidance</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
 
-          {/* AI Career Predictor */}
+          {/* Career Predictor */}
           <button onClick={() => navigate('/career-assessment/ai-predictor')}
             className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-violet-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
@@ -150,7 +150,7 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">AI Career Predictor</p>
+                <p className="text-sm font-bold text-gray-900">Career Predictor</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 text-violet-700">AI</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">Answer 7 questions → Get your ideal career match</p>

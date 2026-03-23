@@ -21,12 +21,12 @@ interface PillNavigationProps {
 
 const navItems: NavItem[] = [
   { id: 'assessments', label: 'Home', shortLabel: 'Home', icon: GraduationCap, activeColor: 'text-white', activeBg: 'bg-emerald-700', route: '/career-assessment/colleges' },
-  { id: 'aichat', label: 'AI Career Chat', shortLabel: 'AI Chat', icon: MessageCircle, activeColor: 'text-white', activeBg: 'bg-orange-600', route: '/career-assessment/chat', isNew: true },
-  { id: 'colleges', label: 'Find Colleges', shortLabel: 'Colleges', icon: Building2, activeColor: 'text-white', activeBg: 'bg-blue-700', route: '/career-assessment/colleges/find-colleges' },
+  { id: 'aichat', label: 'AI Career Guide', shortLabel: 'AI Guide', icon: MessageCircle, activeColor: 'text-white', activeBg: 'bg-orange-600', route: '/career-assessment/chat', isNew: true },
+  { id: 'colleges', label: 'College Finder', shortLabel: 'Colleges', icon: Building2, activeColor: 'text-white', activeBg: 'bg-blue-700', route: '/career-assessment/colleges/find-colleges' },
   { id: 'scholarships', label: 'Scholarships', shortLabel: 'Scholarships', icon: Bookmark, activeColor: 'text-white', activeBg: 'bg-amber-600', route: '/career-assessment/colleges/scholarships' },
-  { id: 'educutoff', label: 'Cutoff & Predictor', shortLabel: 'Cutoff', icon: Calculator, activeColor: 'text-white', activeBg: 'bg-purple-700', route: '/career-assessment/colleges/educutoff' },
-  { id: 'entranceexams', label: 'Entrance Exams', shortLabel: 'Exams', icon: FileText, activeColor: 'text-white', activeBg: 'bg-orange-700', route: '/career-assessment/colleges/entrance-exams' },
-  { id: 'govtjobs', label: 'Govt Jobs', shortLabel: 'Govt Jobs', icon: Landmark, activeColor: 'text-white', activeBg: 'bg-stone-700', route: '/career-assessment/colleges/govt-jobs', isNew: true },
+  { id: 'educutoff', label: 'Cutoff Calculator', shortLabel: 'Cutoff', icon: Calculator, activeColor: 'text-white', activeBg: 'bg-purple-700', route: '/career-assessment/colleges/educutoff' },
+  { id: 'entranceexams', label: 'Exam Prep', shortLabel: 'Exam Prep', icon: FileText, activeColor: 'text-white', activeBg: 'bg-orange-700', route: '/career-assessment/colleges/entrance-exams' },
+  { id: 'govtjobs', label: 'Govt Exams', shortLabel: 'Govt Exams', icon: Landmark, activeColor: 'text-white', activeBg: 'bg-stone-700', route: '/career-assessment/colleges/govt-jobs', isNew: true },
   { id: 'tnuniversity', label: 'University Hub', shortLabel: 'Uni Hub', icon: School, activeColor: 'text-white', activeBg: 'bg-violet-700', route: '/career-assessment/colleges/tn-university', isNew: true },
   { id: 'courseexplorer', label: 'Course Explorer', shortLabel: 'Courses', icon: Compass, activeColor: 'text-white', activeBg: 'bg-cyan-700', route: '/career-assessment/colleges/course-explorer', isNew: true },
   { id: 'startup', label: 'Startup Guide', shortLabel: 'Startup', icon: Rocket, activeColor: 'text-white', activeBg: 'bg-pink-700', route: '/career-assessment/colleges/startup', isNew: true },
