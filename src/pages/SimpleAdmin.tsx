@@ -32,6 +32,8 @@ const SimpleAdmin = () => {
   const [filterDistrict, setFilterDistrict] = useState('');
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [showAddUser, setShowAddUser] = useState(false);
+  const [newUser, setNewUser] = useState({ full_name: '', phone: '', email: '', school_name: '', stream: '', district: '' });
   const [isDeleting, setIsDeleting] = useState(false);
   const [activeTab, setActiveTab] = useState<TabView>('analytics');
 
@@ -71,8 +73,8 @@ const SimpleAdmin = () => {
           console.log('[ADMIN] Diagnostic:', JSON.stringify(apiData.diagnostic));
         }
 
-        if (apiData.users && apiData.users.length > 0 && !apiData.setupNeeded) {
-          all = apiData.users.map((u: any) => ({
+        if (apiData.users && !apiData.setupNeeded) {
+          all = (apiData.users || []).map((u: any) => ({
             id: u.id || '',
             email: u.email || '',
             phone: u.phone || '',
@@ -89,6 +91,14 @@ const SimpleAdmin = () => {
           }));
           usedServerAPI = true;
           console.log('[ADMIN] Server API returned', all.length, 'users');
+          if (apiData.diagnostic) {
+            console.log('[ADMIN] Key type:', apiData.diagnostic.keyType);
+            console.log('[ADMIN] Sources:', JSON.stringify(apiData.diagnostic.sources));
+            console.log('[ADMIN] Errors:', apiData.diagnostic.errors);
+            if (apiData.diagnostic.errors && apiData.diagnostic.errors.length > 0) {
+              console.warn('[ADMIN] Partial errors:', apiData.diagnostic.errors);
+            }
+          }
         } else if (apiData.setupNeeded) {
           const d = apiData.diagnostic || {};
           setError(`🔧 Setup issue detected!\n\nURL found: ${d.hasUrl ? '✅' : '❌'} ${d.urlPrefix || 'NOT SET'}\nService Key found: ${d.hasKey ? '✅' : '❌'} ${d.keyPrefix || 'NOT SET'}\n\nSupabase env vars in Vercel: ${(d.availableEnvKeys || []).join(', ') || 'NONE FOUND'}\n\n${apiData.message || ''}\n\nMake sure these EXACT names are in Vercel Environment Variables:\n• SUPABASE_SERVICE_ROLE_KEY = (your service_role key from Supabase)\n• SUPABASE_URL = https://jahtuebykoledutqhzfx.supabase.co`);
@@ -139,7 +149,7 @@ const SimpleAdmin = () => {
       all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       setUsers(all);
       if (all.length === 0) {
-        setError('⚠️ No users found. This usually means SUPABASE_SERVICE_ROLE_KEY is not set in Vercel → Settings → Environment Variables. Steps to fix:\n\n1. Go to https://supabase.com/dashboard → Your Project → Settings → API\n2. Copy the "service_role" key (starts with "eyJ...")\n3. Go to https://vercel.com → horizons-ai-guide-app → Settings → Environment Variables\n4. Add: SUPABASE_SERVICE_ROLE_KEY = (paste the key)\n5. Also add: SUPABASE_URL = https://jahtuebykoledutqhzfx.supabase.co\n6. Redeploy the app\n\nAfter this, ALL registered users (including the 2 from yesterday) will appear here automatically.');
+        setError('No registered users found in the database.\n\nIf students registered but are not showing:\n1. They may have registered via Supabase Auth only (not saved to database table)\n2. Add SUPABASE_SERVICE_ROLE_KEY to Vercel env vars to read from Supabase Auth\n3. Go to Supabase Dashboard → Authentication → Users to verify they exist');
       }
     } catch (err: any) { setError('Failed to load: ' + (err?.message || '')); }
     finally { setIsLoading(false); }
@@ -150,6 +160,42 @@ const SimpleAdmin = () => {
     try { await supabase.from(user.source_table as any).delete().eq('id', user.id); setUsers(p => p.filter(u => u.id !== user.id)); if (selectedUser?.id === user.id) setSelectedUser(null); setDeleteConfirm(null); }
     catch (err: any) { alert('Failed: ' + err?.message); }
     finally { setIsDeleting(false); }
+  };
+
+  const handleAddUser = async () => {
+    if (!newUser.full_name || !newUser.phone) { alert('Name and Phone are required'); return; }
+    try {
+      const { error } = await supabase.from('registrations_12th_learners').insert({
+        full_name: newUser.full_name,
+        phone: newUser.phone,
+        email: newUser.email || null,
+        school_name: newUser.school_name || null,
+        stream: newUser.stream || null,
+        preferred_institution: newUser.district || null,
+      });
+      if (error) {
+        // Try server API as fallback
+        await fetch('/api/save-registration', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: newUser.full_name, phone: newUser.phone, email: newUser.email,
+            school_name: newUser.school_name, stream: newUser.stream, district: newUser.district,
+          }),
+        });
+      }
+      // Add to local state immediately
+      setUsers(prev => [{
+        id: Date.now().toString(), email: newUser.email, phone: newUser.phone,
+        created_at: new Date().toISOString(), last_sign_in: new Date().toISOString(),
+        provider: 'Manual Add', full_name: newUser.full_name,
+        school_name: newUser.school_name, stream: newUser.stream,
+        district: newUser.district, pass_out_year: '', career_interest: '',
+        source_table: 'registrations_12th_learners',
+      }, ...prev]);
+      setNewUser({ full_name: '', phone: '', email: '', school_name: '', stream: '', district: '' });
+      setShowAddUser(false);
+    } catch (err: any) { alert('Error: ' + err?.message); }
   };
 
   const handleLogin = async () => {
@@ -330,6 +376,9 @@ const SimpleAdmin = () => {
             <button onClick={fetchUsers} disabled={isLoading} className="p-2 rounded-lg bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10 transition-all">
               <RefreshCw className={cn("w-4 h-4", isLoading && "animate-spin")} />
             </button>
+            <button onClick={() => setShowAddUser(!showAddUser)} className="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-1.5">
+              <UserCheck className="w-3.5 h-3.5" /> Add User
+            </button>
             <button onClick={exportCSV} className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-500/10 text-emerald-300 text-xs font-semibold border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">
               <Download className="w-3.5 h-3.5" /> Export
             </button>
@@ -366,6 +415,31 @@ const SimpleAdmin = () => {
 
         {isLoading && (
           <div className="text-center py-20 bg-white rounded-xl border"><Loader2 className="w-8 h-8 text-gray-300 mx-auto animate-spin" /><p className="text-sm text-gray-400 mt-3">Loading...</p></div>
+        )}
+
+        {/* Manual Add User Form */}
+        {showAddUser && (
+          <div className="bg-gray-800 rounded-xl p-4 border border-gray-700 space-y-3">
+            <p className="text-sm font-bold text-white">➕ Manually Add Learner</p>
+            <div className="grid grid-cols-2 gap-2">
+              <input placeholder="Full Name *" value={newUser.full_name} onChange={e => setNewUser(p => ({...p, full_name: e.target.value}))} className="px-3 py-2 rounded-lg bg-gray-700 text-white text-xs border border-gray-600 placeholder:text-gray-400" />
+              <input placeholder="Phone * (10 digits)" value={newUser.phone} onChange={e => setNewUser(p => ({...p, phone: e.target.value}))} className="px-3 py-2 rounded-lg bg-gray-700 text-white text-xs border border-gray-600 placeholder:text-gray-400" />
+              <input placeholder="Email (optional)" value={newUser.email} onChange={e => setNewUser(p => ({...p, email: e.target.value}))} className="px-3 py-2 rounded-lg bg-gray-700 text-white text-xs border border-gray-600 placeholder:text-gray-400" />
+              <input placeholder="School Name" value={newUser.school_name} onChange={e => setNewUser(p => ({...p, school_name: e.target.value}))} className="px-3 py-2 rounded-lg bg-gray-700 text-white text-xs border border-gray-600 placeholder:text-gray-400" />
+              <select value={newUser.stream} onChange={e => setNewUser(p => ({...p, stream: e.target.value}))} className="px-3 py-2 rounded-lg bg-gray-700 text-white text-xs border border-gray-600">
+                <option value="">Select Stream</option>
+                <option value="Science (Maths)">Science (Maths)</option>
+                <option value="Science (Bio)">Science (Bio)</option>
+                <option value="Commerce">Commerce</option>
+                <option value="Arts">Arts</option>
+              </select>
+              <input placeholder="District" value={newUser.district} onChange={e => setNewUser(p => ({...p, district: e.target.value}))} className="px-3 py-2 rounded-lg bg-gray-700 text-white text-xs border border-gray-600 placeholder:text-gray-400" />
+            </div>
+            <div className="flex gap-2">
+              <button onClick={handleAddUser} className="px-4 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700">Save User</button>
+              <button onClick={() => setShowAddUser(false)} className="px-4 py-2 rounded-lg bg-gray-600 text-white text-xs font-bold hover:bg-gray-700">Cancel</button>
+            </div>
+          </div>
         )}
 
         {error && !isLoading && (
