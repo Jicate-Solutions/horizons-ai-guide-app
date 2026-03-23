@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Search, BookOpen, Clock, Calendar, ExternalLink, ChevronDown, ChevronUp,
+  Search, BookOpen, Clock, Calendar, ExternalLink, ChevronDown, ChevronUp, ChevronRight,
   Target, Bell, FileText, Star, Zap, ArrowLeft, GraduationCap, BarChart3,
   ClipboardList, Layers, Globe, CheckCircle2
 } from 'lucide-react';
@@ -46,6 +46,7 @@ export const EntranceExams = () => {
   const stream = detectStream(meta.stream || '');
   const config = streamMap[stream] || streamMap.default;
   const topExams = config.ids.map(id => entranceExams.find(e => e.id === id)).filter(Boolean) as EntranceExam[];
+  const totalQB = Object.values(questionBank).reduce((sum, qs) => sum + qs.length, 0);
 
   // Filtered exams for All tab
   const allFiltered = useMemo(() => {
