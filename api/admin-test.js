@@ -64,10 +64,16 @@ export default async function handler(req, res) {
         count: users.length,
         users: users.map(u => ({
           id: u.id,
-          email: u.email,
+          email: u.user_metadata?.user_email || (u.email && !u.email.includes('@vazhikatti.app') ? u.email : '') || '',
           name: u.user_metadata?.display_name || u.user_metadata?.full_name || '',
-          phone: u.user_metadata?.phone || '',
+          phone: u.user_metadata?.phone || (u.email && u.email.includes('@vazhikatti.app') ? u.email.split('@')[0] : '') || '',
+          school_name: u.user_metadata?.school_name || u.user_metadata?.schoolName || '',
+          stream: u.user_metadata?.stream || '',
+          district: u.user_metadata?.district || '',
+          pass_out_year: u.user_metadata?.pass_out_year || u.user_metadata?.passOutYear || '',
+          career_interest: u.user_metadata?.career_interest || u.user_metadata?.careerInterest || '',
           created: u.created_at,
+          last_sign_in: u.last_sign_in_at || u.created_at,
         })),
       };
     } catch (e) {
