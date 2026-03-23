@@ -149,35 +149,47 @@ const SimpleAdmin = () => {
 
       all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       
-      // LAST RESORT: If still 0 users, try admin-test endpoint which tests everything
+      // LAST RESORT: If still 0 users, run admin-setup to sync Auth → registrations table
       if (all.length === 0) {
         try {
-          console.log('[ADMIN] 0 users from primary sources. Trying admin-test...');
-          const testRes = await fetch('/api/admin-test', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ sk: serviceKey || undefined }) });
-          const testData = await testRes.json();
-          console.log('[ADMIN] admin-test result:', testData);
+          console.log('[ADMIN] 0 users. Running auto-setup to sync Auth users to database...');
+          const setupRes = await fetch('/api/admin-setup', { 
+            method: 'POST', 
+            headers: {'Content-Type':'application/json'}, 
+            body: JSON.stringify({ password: ADMIN_PASS }) 
+          });
+          const setupData = await setupRes.json();
+          console.log('[ADMIN] Setup result:', setupData);
           
-          // If admin-test found auth users, use them
-          if (testData.tests?.auth_users?.users?.length > 0) {
-            all = testData.tests.auth_users.users.map((u: any) => ({
-              id: u.id || '', email: u.email || '', phone: u.phone || '',
-              created_at: u.created || '', last_sign_in: u.last_sign_in || u.created || '',
-              provider: 'Auth User', full_name: u.name || '',
-              school_name: u.school_name || '', stream: u.stream || '',
-              district: u.district || '', pass_out_year: u.pass_out_year || '',
-              career_interest: u.career_interest || '',
-              source_table: 'auth',
-            }));
+          if (setupData.success && setupData.totalAuthUsers > 0) {
+            // Re-fetch — now registrations table has data
+            console.log('[ADMIN] Setup synced users. Re-fetching...');
+            const retryRes = await fetch('/api/admin-users', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ password: ADMIN_PASS }),
+            });
+            const retryData = await retryRes.json();
+            if (retryData.users && retryData.users.length > 0) {
+              all = retryData.users.map((u: any) => ({
+                id: u.id || '', email: u.email || '', phone: u.phone || '',
+                created_at: u.created_at || '', last_sign_in: u.last_sign_in || u.created_at || '',
+                provider: u.provider || 'User', full_name: u.full_name || '',
+                school_name: u.school_name || '', stream: u.stream || '',
+                district: u.district || '', pass_out_year: u.pass_out_year || '',
+                career_interest: u.career_interest || '', source_table: u.source || 'api',
+              }));
+            }
           }
           
-          // Show diagnostic
           if (all.length === 0) {
-            const d = testData;
-            setError(`No users found.\n\nDiagnostic:\n• Service key in Vercel: ${d.service_key_found ? '✅ Found (' + d.service_key_source + ')' : '❌ NOT FOUND'}\n• Env vars: ${(d.env_vars_with_supabase||[]).join(', ') || 'NONE with "supabase"'}\n• Supabase reachable: ${d.tests?.supabase_reachable?.ok ? '✅' : '❌'}\n• Auth users: ${d.tests?.auth_users?.count ?? 'cannot read (no service key)'}\n• Registrations table: ${d.tests?.registrations_anon?.count ?? 'blocked by RLS'}\n• Profiles table: ${d.tests?.profiles_anon?.count ?? 'blocked'}\n\nTo fix: Add SUPABASE_SERVICE_ROLE_KEY in Vercel → Settings → Environment Variables → Redeploy`);
+            setError(setupData.success 
+              ? 'Setup ran but found 0 users. ' + (setupData.log || []).join('\n')
+              : 'Setup failed: ' + (setupData.log || []).join('\n') + '\n\nFix: Add SUPABASE_SERVICE_ROLE_KEY to Vercel → Settings → Environment Variables → Redeploy');
           }
-        } catch (testErr) {
-          console.warn('[ADMIN] admin-test failed:', testErr);
-          setError('No users found. Could not run diagnostic.');
+        } catch (setupErr) {
+          console.error('[ADMIN] Setup failed:', setupErr);
+          setError('Failed to load users. Please check Vercel environment variables.');
         }
       }
       
@@ -448,35 +460,7 @@ const SimpleAdmin = () => {
           <div className="text-center py-20 bg-white rounded-xl border"><Loader2 className="w-8 h-8 text-gray-300 mx-auto animate-spin" /><p className="text-sm text-gray-400 mt-3">Loading...</p></div>
         )}
 
-        {/* Service key auto-detection — hidden settings */}
-        {users.length === 0 && !isLoading && !error && (
-          <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
-            <p className="text-xs text-gray-300 mb-2">No users found. Checking connection...</p>
-            <button onClick={async () => {
-              setIsLoading(true);
-              try {
-                const r = await fetch('/api/admin-test', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({}) });
-                const d = await r.json();
-                const msg = `Service key in Vercel: ${d.service_key_found ? '✅ YES' : '❌ NO'} (${d.service_key_source})\nEnv vars found: ${(d.env_vars_with_supabase||[]).join(', ') || 'NONE'}\nSupabase reachable: ${d.tests?.supabase_reachable?.ok ? '✅' : '❌'}\nAuth users: ${d.tests?.auth_users?.count ?? 'N/A'}\nRegistrations (anon): ${d.tests?.registrations_anon?.count ?? 'blocked by RLS'}\nRegistrations (service): ${d.tests?.registrations_service?.count ?? 'N/A'}\nProfiles (anon): ${d.tests?.profiles_anon?.count ?? 'blocked'}`;
-                setError(msg);
-                // If auth users found via test, show them
-                if (d.tests?.auth_users?.users?.length > 0) {
-                  setUsers(d.tests.auth_users.users.map((u: any) => ({
-                    id: u.id, email: u.email || '', phone: u.phone || '',
-                    created_at: u.created || '', last_sign_in: u.last_sign_in || u.created || '',
-                    provider: 'Auth User', full_name: u.name || '',
-                    school_name: u.school_name || '', stream: u.stream || '',
-                    district: u.district || '', pass_out_year: u.pass_out_year || '',
-                    career_interest: u.career_interest || '',
-                    source_table: 'auth',
-                  })));
-                  setError('');
-                }
-              } catch(e: any) { setError('API unreachable: ' + e.message); }
-              setIsLoading(false);
-            }} className="px-4 py-2 rounded-lg bg-blue-600 text-white text-xs font-bold hover:bg-blue-700">Run Diagnostic</button>
-          </div>
-        )}
+        {/* Auto-setup runs automatically — no manual action needed */}
 
         {/* Manual Add User Form */}
         {showAddUser && (
