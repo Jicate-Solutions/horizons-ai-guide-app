@@ -142,58 +142,49 @@ const Auth = () => {
             description: "Welcome! Your account has been created successfully.",
           });
 
-          // === BULLETPROOF DATA SAVING — 3 LAYERS ===
-          // Layer 1: Auth metadata already saved via signUp (guaranteed)
-          console.log('[VAZHIKATTI] Layer 1: User metadata saved in auth ✅');
-
-          // Get userId from signUp response directly (not getUser - avoids race condition)
+          // === BULLETPROOF DATA SAVING — 4 LAYERS ===
           const userId = signUpData?.user?.id || null;
-          console.log('[VAZHIKATTI] User ID:', userId);
+          console.log('[VAZHIKATTI] Layer 1: Auth metadata saved ✅ User ID:', userId);
 
-          // Small delay to let auth session establish fully
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          const regData = {
+            user_id: userId,
+            full_name: displayName,
+            phone: mobileNumber,
+            email: email || null,
+            school_name: schoolName,
+            stream: stream,
+            pass_out_year: passOutYear,
+            district: district,
+            career_interest: careerInterest,
+          };
 
-          // Layer 2: Server-side API (uses service key, bypasses RLS)
-          try {
-            const apiRes = await fetch('/api/save-registration', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                user_id: userId,
-                full_name: displayName,
-                phone: mobileNumber,
-                email: email || null,
-                school_name: schoolName,
-                stream: stream,
-                pass_out_year: passOutYear,
-                district: district,
-                career_interest: careerInterest,
-              }),
-            });
-            const apiData = await apiRes.json();
-            console.log('[VAZHIKATTI] Layer 2: Server API result:', apiData);
-          } catch (apiErr) {
-            console.warn('[VAZHIKATTI] Layer 2: Server API failed:', apiErr);
+          let savedToDb = false;
+
+          // Small delay to let auth session establish
+          await new Promise(resolve => setTimeout(resolve, 800));
+
+          // Layer 2: Server API (now works with anon key fallback too)
+          for (let attempt = 1; attempt <= 2; attempt++) {
+            try {
+              const apiRes = await fetch('/api/save-registration', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(regData),
+              });
+              const apiData = await apiRes.json();
+              console.log(`[VAZHIKATTI] Layer 2 (attempt ${attempt}):`, apiData);
+              if (apiData.success) { savedToDb = true; break; }
+            } catch (apiErr) {
+              console.warn(`[VAZHIKATTI] Layer 2 (attempt ${attempt}) failed:`, apiErr);
+              if (attempt === 1) await new Promise(r => setTimeout(r, 2000)); // wait before retry
+            }
           }
 
-          // Layer 3: Direct database insert (session should be ready after delay)
-          try {
-            const { error: insertErr } = await supabase.from('registrations_12th_learners').insert({
-              user_id: userId,
-              full_name: displayName,
-              phone: mobileNumber,
-              email: email || null,
-              school_name: schoolName,
-              stream: stream,
-              preferred_course: passOutYear,
-              preferred_institution: district,
-              career_interests: careerInterest ? [careerInterest] : [],
-            });
-            if (insertErr) {
-              console.warn('[VAZHIKATTI] Layer 3: Insert error:', insertErr.message);
-              // Retry without user_id
-              const { error: retryErr } = await supabase.from('registrations_12th_learners').insert({
-                user_id: null,
+          // Layer 3: Direct database insert (if server API didn't save)
+          if (!savedToDb) {
+            try {
+              const { error: insertErr } = await supabase.from('registrations_12th_learners').insert({
+                user_id: userId,
                 full_name: displayName,
                 phone: mobileNumber,
                 email: email || null,
@@ -203,16 +194,25 @@ const Auth = () => {
                 preferred_institution: district,
                 career_interests: careerInterest ? [careerInterest] : [],
               });
-              if (retryErr) console.warn('[VAZHIKATTI] Layer 3: Retry also failed:', retryErr.message);
-              else console.log('[VAZHIKATTI] Layer 3: Retry without user_id succeeded ✅');
-            } else {
-              console.log('[VAZHIKATTI] Layer 3: Direct insert succeeded ✅');
+              if (!insertErr) { savedToDb = true; console.log('[VAZHIKATTI] Layer 3: Direct insert ✅'); }
+              else {
+                console.warn('[VAZHIKATTI] Layer 3:', insertErr.message);
+                // Retry without user_id
+                const { error: retryErr } = await supabase.from('registrations_12th_learners').insert({
+                  full_name: displayName, phone: mobileNumber, email: email || null,
+                  school_name: schoolName, stream: stream,
+                  preferred_course: passOutYear, preferred_institution: district,
+                  career_interests: careerInterest ? [careerInterest] : [],
+                });
+                if (!retryErr) { savedToDb = true; console.log('[VAZHIKATTI] Layer 3 retry ✅'); }
+                else console.warn('[VAZHIKATTI] Layer 3 retry:', retryErr.message);
+              }
+            } catch (dbErr) {
+              console.warn('[VAZHIKATTI] Layer 3 exception:', dbErr);
             }
-          } catch (dbErr) {
-            console.warn('[VAZHIKATTI] Layer 3: Exception:', dbErr);
           }
 
-          // Also save to profiles as backup
+          // Layer 4: Profiles backup (always try)
           try {
             if (userId) {
               const bioData = [mobileNumber, email || '', schoolName || '', stream || '', passOutYear || '', district || '', careerInterest || ''].join(' | ');
@@ -225,6 +225,7 @@ const Auth = () => {
             }
           } catch (e) { /* silent */ }
 
+          console.log('[VAZHIKATTI] === SAVE SUMMARY === DB saved:', savedToDb, '| Auth metadata: always saved | User:', displayName, mobileNumber);
           setRegistrationSuccess(true);
 
           // Send welcome email if provided
