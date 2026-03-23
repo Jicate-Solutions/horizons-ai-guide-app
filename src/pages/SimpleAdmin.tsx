@@ -84,6 +84,9 @@ const SimpleAdmin = () => {
           }));
           usedServerAPI = true;
           console.log('[ADMIN] Server API returned', all.length, 'users');
+        } else if (apiData.setupNeeded) {
+          console.warn('[ADMIN] Service key not configured:', apiData.message);
+          setError('🔧 Setup needed: ' + (apiData.message || 'Add SUPABASE_SERVICE_ROLE_KEY in Vercel Environment Variables. Go to Supabase Dashboard → Settings → API → Copy service_role key → Add to Vercel → Settings → Environment Variables → Redeploy.'));
         }
       } catch (apiErr) {
         console.warn('[ADMIN] Server API failed, using fallback:', apiErr);
@@ -119,7 +122,9 @@ const SimpleAdmin = () => {
 
       all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       setUsers(all);
-      if (all.length === 0) setError('No registered users yet. Users will appear here after they register.');
+      if (all.length === 0) {
+        setError('⚠️ No users found. This usually means SUPABASE_SERVICE_ROLE_KEY is not set in Vercel → Settings → Environment Variables. Steps to fix:\n\n1. Go to https://supabase.com/dashboard → Your Project → Settings → API\n2. Copy the "service_role" key (starts with "eyJ...")\n3. Go to https://vercel.com → horizons-ai-guide-app → Settings → Environment Variables\n4. Add: SUPABASE_SERVICE_ROLE_KEY = (paste the key)\n5. Also add: SUPABASE_URL = https://jahtuebykoledutqhzfx.supabase.co\n6. Redeploy the app\n\nAfter this, ALL registered users (including the 2 from yesterday) will appear here automatically.');
+      }
     } catch (err: any) { setError('Failed to load: ' + (err?.message || '')); }
     finally { setIsLoading(false); }
   };
@@ -348,7 +353,9 @@ const SimpleAdmin = () => {
         )}
 
         {error && !isLoading && (
-          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-700 flex items-center gap-2"><AlertTriangle className="w-4 h-4" /> {error}</div>
+          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-700">
+            <div className="flex items-start gap-2"><AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" /> <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed">{error}</pre></div>
+          </div>
         )}
 
         {/* ANALYTICS TAB */}
