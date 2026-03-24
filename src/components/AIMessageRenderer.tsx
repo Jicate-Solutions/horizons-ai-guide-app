@@ -117,28 +117,28 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
             <hr className="my-4 border-t border-border" />
           ),
           
-          // Tables for structured data
+          // Tables for structured data — VISIBLE borders
           table: ({ children }) => (
-            <div className="my-3 overflow-x-auto rounded-lg border border-border">
-              <table className="min-w-full divide-y divide-border">{children}</table>
+            <div className="my-3 overflow-x-auto rounded-lg border-2 border-gray-300 shadow-sm">
+              <table className="min-w-full border-collapse">{children}</table>
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="bg-muted">{children}</thead>
+            <thead className="bg-emerald-50">{children}</thead>
           ),
           tbody: ({ children }) => (
-            <tbody className="divide-y divide-border bg-background">{children}</tbody>
+            <tbody className="bg-white">{children}</tbody>
           ),
           tr: ({ children }) => (
-            <tr>{children}</tr>
+            <tr className="border-b border-gray-300 last:border-b-0">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="px-3 py-2 text-left text-xs font-semibold text-foreground uppercase tracking-wider">
+            <th className="px-3 py-2.5 text-left text-xs font-bold text-emerald-800 uppercase tracking-wider border-r border-gray-300 last:border-r-0 border-b-2 border-emerald-300">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-3 py-2 text-sm text-black font-semibold">{children}</td>
+            <td className="px-3 py-2 text-sm text-gray-800 font-medium border-r border-gray-200 last:border-r-0">{children}</td>
           ),
         }}
       >
