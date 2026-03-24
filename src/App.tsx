@@ -6,67 +6,107 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import { lazy, Suspense } from "react";
 import ProtectedRoute from "@/components/ProtectedRoute";
+
+// ─── Landing + Auth: eager load (first pages users see) ───
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
-import StudentDashboard from "./pages/StudentDashboard";
-import CareerChat from "./pages/CareerChat";
-import Register12thLearner from "./pages/Register12thLearner";
-import RegisterLearner from "./pages/RegisterLearner";
-import RegisterEmployer from "./pages/RegisterEmployer";
-import EmployerRegistrationSuccess from "./pages/EmployerRegistrationSuccess";
-import EmployerDashboard from "./pages/EmployerDashboard";
-import EmployerProfile from "./pages/EmployerProfile";
-import EmployerJobs from "./pages/EmployerJobs";
-import EmployerPostJob from "./pages/EmployerPostJob";
-import AdminLogin from "./pages/AdminLogin";
-import AdminSetup from "./pages/AdminSetup";
-import AdminDashboard from "./pages/AdminDashboard";
-import SimpleAdmin from "./pages/SimpleAdmin";
-import CareerAssessmentColleges from "./pages/CareerAssessmentColleges";
-import TakeAssessment from "./pages/TakeAssessment";
-import AssessmentResults from "./pages/AssessmentResults";
-import CareerAssessment12thLearners from "./pages/CareerAssessment12thLearners";
-import TakeStudentAssessment from "./pages/TakeStudentAssessment";
-import StudentAssessmentResults from "./pages/StudentAssessmentResults";
-import IndustryTrends from "./pages/IndustryTrends";
-import SavedJobs from "./pages/SavedJobs";
-import JobPortal from "./pages/JobPortal";
-import PYQPractice from "./pages/PYQPractice";
 import NotFound from "./pages/NotFound";
-import SurveyPublic from "./pages/SurveyPublic";
 
-import AdminSetupGuide from "./pages/AdminSetupGuide";
+// ─── Loading spinner for lazy pages ───
+const PageLoader = () => (
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ width: 40, height: 40, border: '3px solid #e5e7eb', borderTopColor: '#059669', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px' }} />
+      <p style={{ fontSize: 14, color: '#6b7280' }}>Loading...</p>
+    </div>
+    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+  </div>
+);
+
+// ─── All other pages: lazy loaded (split into separate chunks) ───
+const StudentDashboard = lazy(() => import("./pages/StudentDashboard"));
+const CareerChat = lazy(() => import("./pages/CareerChat"));
+const Register12thLearner = lazy(() => import("./pages/Register12thLearner"));
+const RegisterLearner = lazy(() => import("./pages/RegisterLearner"));
+const RegisterEmployer = lazy(() => import("./pages/RegisterEmployer"));
+const EmployerRegistrationSuccess = lazy(() => import("./pages/EmployerRegistrationSuccess"));
+const EmployerDashboard = lazy(() => import("./pages/EmployerDashboard"));
+const EmployerProfile = lazy(() => import("./pages/EmployerProfile"));
+const EmployerJobs = lazy(() => import("./pages/EmployerJobs"));
+const EmployerPostJob = lazy(() => import("./pages/EmployerPostJob"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminSetup = lazy(() => import("./pages/AdminSetup"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const SimpleAdmin = lazy(() => import("./pages/SimpleAdmin"));
+const AdminSetupGuide = lazy(() => import("./pages/AdminSetupGuide"));
+const CareerAssessmentColleges = lazy(() => import("./pages/CareerAssessmentColleges"));
+const TakeAssessment = lazy(() => import("./pages/TakeAssessment"));
+const AssessmentResults = lazy(() => import("./pages/AssessmentResults"));
+const CareerAssessment12thLearners = lazy(() => import("./pages/CareerAssessment12thLearners"));
+const TakeStudentAssessment = lazy(() => import("./pages/TakeStudentAssessment"));
+const StudentAssessmentResults = lazy(() => import("./pages/StudentAssessmentResults"));
+const IndustryTrends = lazy(() => import("./pages/IndustryTrends"));
+const SavedJobs = lazy(() => import("./pages/SavedJobs"));
+const JobPortal = lazy(() => import("./pages/JobPortal"));
+const PYQPractice = lazy(() => import("./pages/PYQPractice"));
+const SurveyPublic = lazy(() => import("./pages/SurveyPublic"));
 
 // Career Hub Pages
-import CareerAssessment from "./pages/CareerAssessment";
-import AICareerPredictor from "./pages/AICareerPredictor";
-import SyllabusTracker from "./pages/SyllabusTracker";
-import ExamAlerts from "./pages/ExamAlerts";
-import RankPredictor from "./pages/RankPredictor";
-import StudyGuide from "./pages/StudyGuide";
-import QuestionBank from "./pages/QuestionBank";
-import TopicHub from "./pages/TopicHub";
-import PYQPapers from "./pages/PYQPapers";
-import SavedCourses from "./pages/SavedCourses";
-import { FindCollegesPage, ScholarshipsPage, EduCutoffPage, EntranceExamsPage, PYQPage, GovtJobsPage, TNUniversityPage, CourseExplorerPage, StartupGuidePage } from "./pages/CollegesTabPages";
+const CareerAssessment = lazy(() => import("./pages/CareerAssessment"));
+const AICareerPredictor = lazy(() => import("./pages/AICareerPredictor"));
+const SyllabusTracker = lazy(() => import("./pages/SyllabusTracker"));
+const ExamAlerts = lazy(() => import("./pages/ExamAlerts"));
+const RankPredictor = lazy(() => import("./pages/RankPredictor"));
+const StudyGuide = lazy(() => import("./pages/StudyGuide"));
+const QuestionBank = lazy(() => import("./pages/QuestionBank"));
+const TopicHub = lazy(() => import("./pages/TopicHub"));
+const PYQPapers = lazy(() => import("./pages/PYQPapers"));
+const SavedCourses = lazy(() => import("./pages/SavedCourses"));
 
-
+// College Tab Pages (named exports → need wrapper)
+const FindCollegesPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.FindCollegesPage })));
+const ScholarshipsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.ScholarshipsPage })));
+const EduCutoffPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.EduCutoffPage })));
+const EntranceExamsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.EntranceExamsPage })));
+const GovtJobsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.GovtJobsPage })));
+const TNUniversityPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.TNUniversityPage })));
+const CourseExplorerPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.CourseExplorerPage })));
+const StartupGuidePage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.StartupGuidePage })));
 
 // Government Exams Pages
-import GovernmentExams from "./pages/GovernmentExams";
-import GovernmentExamCategory from "./pages/GovernmentExamCategory";
-import GovernmentExamDetail from "./pages/GovernmentExamDetail";
+const GovernmentExams = lazy(() => import("./pages/GovernmentExams"));
+const GovernmentExamCategory = lazy(() => import("./pages/GovernmentExamCategory"));
+const GovernmentExamDetail = lazy(() => import("./pages/GovernmentExamDetail"));
 
 // Study Abroad Pages
-import AlumniVerification from "./pages/AlumniVerification";
+const AlumniVerification = lazy(() => import("./pages/AlumniVerification"));
 
-// TN University Entrance Pages
-import { UniversityEntranceExams, UniversityDetail, CourseDetail, ExamCalendar, MyReminders, UniversityCompare, SavedQuestions as TNSavedQuestions, PreparationTips as TNPreparationTips, TNStudyPlanner, TNMockTest, ChapterWeightage, PerformanceAnalytics, StudyStreaks, AIQuestionGenerator, DailyChallenge, TNForum, WeakTopicIdentifier, TNLeaderboard } from "./components/UniversityEntrance";
-import TNUniversityBrowse from "./pages/TNUniversityBrowse";
- 
- // EduCutoff Page
- import EduCutoff from "./pages/EduCutoff";
+// TN University Entrance Pages (named exports → need wrappers)
+const UniversityEntranceExams = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.UniversityEntranceExams })));
+const UniversityDetail = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.UniversityDetail })));
+const CourseDetail = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.CourseDetail })));
+const ExamCalendar = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.ExamCalendar })));
+const MyReminders = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.MyReminders })));
+const UniversityCompare = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.UniversityCompare })));
+const TNSavedQuestions = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.SavedQuestions })));
+const TNPreparationTips = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.PreparationTips })));
+const TNStudyPlanner = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.TNStudyPlanner })));
+const TNMockTest = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.TNMockTest })));
+const ChapterWeightage = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.ChapterWeightage })));
+const PerformanceAnalytics = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.PerformanceAnalytics })));
+const StudyStreaks = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.StudyStreaks })));
+const AIQuestionGenerator = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.AIQuestionGenerator })));
+const DailyChallenge = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.DailyChallenge })));
+const TNForum = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.TNForum })));
+const WeakTopicIdentifier = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.WeakTopicIdentifier })));
+const TNLeaderboard = lazy(() => import("./components/UniversityEntrance").then(m => ({ default: m.TNLeaderboard })));
+
+const TNUniversityBrowse = lazy(() => import("./pages/TNUniversityBrowse"));
+
+// EduCutoff Page
+const EduCutoff = lazy(() => import("./pages/EduCutoff"));
 
 const queryClient = new QueryClient();
 
@@ -80,6 +120,7 @@ function App() {
               <Toaster />
               <Sonner />
               <BrowserRouter>
+              <Suspense fallback={<PageLoader />}>
               <Routes>
                 {/* Main Routes */}
                 <Route path="/" element={<Index />} />
@@ -176,6 +217,7 @@ function App() {
                 <Route path="/survey/:surveyId" element={<ProtectedRoute><SurveyPublic /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              </Suspense>
             </BrowserRouter>
           </TooltipProvider>
         </AdminAuthProvider>

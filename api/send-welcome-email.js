@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ';
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
     if (!RESEND_API_KEY) return res.status(200).json({ success: true, message: 'Email not configured' });
 
     const { email, displayName } = req.body;

@@ -21,7 +21,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const resendApiKey = Deno.env.get("RESEND_API_KEY") || "re_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ";
+    const resendApiKey = Deno.env.get("RESEND_API_KEY") || "";
     if (!resendApiKey) {
       return new Response(
         JSON.stringify({ success: true, message: "Email not configured" }),

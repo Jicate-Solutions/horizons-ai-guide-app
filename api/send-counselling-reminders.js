@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   try {
     const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'https://jahtuebykoledutqhzfx.supabase.co';
     const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphaHR1ZWJ5a29sZWR1dHFoemZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYxODYzMjIsImV4cCI6MjA4MTc2MjMyMn0.ImYkXha0Ys1OB6r97IcOVoMwHLj6-VXHZu-MfUrPnv4';
-    const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ';
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 

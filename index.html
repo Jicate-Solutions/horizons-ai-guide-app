@@ -9,6 +9,31 @@
     <meta name="keywords" content="TNEA cutoff, 12th career guidance, Tamil Nadu colleges, sports quota, govt exams, counselling tracker, NEET, JEE, TNPSC, career guidance tamil" />
     <link rel="canonical" href="https://horizons-ai-guide-app.vercel.app" />
     <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="VAZHIKATTI" />
+
+    <!-- Google Analytics 4 — set VITE_GA_MEASUREMENT_ID in Vercel env vars -->
+    <script>
+      window.GA_ID = '';
+      // GA loads after page is interactive (non-blocking)
+      window.addEventListener('load', function() {
+        var id = window.GA_ID;
+        if (!id) return;
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+        s.async = true;
+        document.head.appendChild(s);
+        s.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', id, { send_page_view: true });
+        };
+      });
+    </script>
     <meta name="theme-color" content="#059669" />
 
     <meta property="og:title" content="VAZHIKATTI — AI Career Guide for 12th Students" />

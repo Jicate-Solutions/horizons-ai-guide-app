@@ -2,7 +2,7 @@
 // Call this ONCE with the service_role key to set up everything
 //
 // Usage: POST /api/setup-data-protection
-// Body: { "password": "vzk-admin-2026", "serviceKey": "eyJ..." }
+// Body: { "password": "YOUR_ADMIN_PASSWORD", "serviceKey": "eyJ..." }
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     return res.status(400).json({
       error: 'Service role key is required.',
       fix: 'Get it from: Supabase Dashboard → Settings → API → service_role key',
-      usage: 'POST /api/setup-data-protection with body: {"password":"vzk-admin-2026","serviceKey":"eyJ..."}'
+      usage: 'POST /api/setup-data-protection with body: {"password":"YOUR_ADMIN_PASSWORD","serviceKey":"eyJ..."}'
     });
   }
 

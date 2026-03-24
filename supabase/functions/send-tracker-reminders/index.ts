@@ -288,7 +288,7 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-    const resendApiKey = Deno.env.get("RESEND_API_KEY") || "re_P5gxzs8w_7KobNkHAQFbUSX9771wk78iQ";
+    const resendApiKey = Deno.env.get("RESEND_API_KEY") || "";
     const msg91AuthKey = Deno.env.get("MSG91_AUTH_KEY") || "";
 
     if (!supabaseUrl || !supabaseServiceKey) {

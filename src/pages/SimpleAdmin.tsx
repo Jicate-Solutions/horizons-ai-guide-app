@@ -11,9 +11,9 @@ interface AppUser {
   district: string; pass_out_year: string; career_interest: string; source_table: string;
 }
 
-const ADMIN_PASS = 'vzk-admin-2026';
-const ADMIN_EMAIL = 'admin@vazhikatti.app';
-const ADMIN_SUPABASE_PASS = 'VzkAdmin@2026Secure';
+const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASSWORD || 'vzk-admin-2026';
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'admin@vazhikatti.app';
+const ADMIN_SUPABASE_PASS = import.meta.env.VITE_ADMIN_SUPABASE_PASS || 'VzkAdmin@2026Secure';
 type TimeFilter = 'all' | 'today' | 'yesterday' | 'this_week' | 'last_week' | 'this_month' | 'last_month' | 'last_3_months' | 'this_year';
 type TabView = 'analytics' | 'data';
 
