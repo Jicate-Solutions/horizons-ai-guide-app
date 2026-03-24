@@ -125,6 +125,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [ttsEnabled, setTtsEnabled] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatScrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const speechSynthRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -150,8 +151,23 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
     }
   }, [user]);
 
+  // Scroll to bottom only if user is already near the bottom
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = chatScrollRef.current;
+    if (!container) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    const scrollEl = container.querySelector('[data-radix-scroll-area-viewport]') as HTMLElement;
+    if (!scrollEl) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+    const isNearBottom = scrollHeight - scrollTop - clientHeight < 150;
+    if (isNearBottom) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -474,7 +490,8 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
       </div>
 
       {/* Messages */}
-      <ScrollArea className="flex-1 p-4">
+      <div ref={chatScrollRef} className="flex-1 min-h-0">
+      <ScrollArea className="h-full p-4">
         {isLoadingHistory ? (
           <div className="flex items-center justify-center py-8">
             <div className="flex gap-1">
@@ -586,6 +603,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
           </div>
         )}
       </ScrollArea>
+      </div>
 
       {/* Voice Status */}
       {voiceStatus && (

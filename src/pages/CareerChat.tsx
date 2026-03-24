@@ -208,6 +208,7 @@ const CareerChat = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatScrollRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
 
@@ -372,9 +373,23 @@ const CareerChat = () => {
     setChatHistoryOpen(false);
   };
 
-  // Scroll to bottom on new messages
+  // Scroll to bottom only if user is already near the bottom (not reading above)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const container = chatScrollRef.current;
+    if (!container) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    const scrollEl = container.querySelector('[data-radix-scroll-area-viewport]') as HTMLElement;
+    if (!scrollEl) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+    const isNearBottom = scrollHeight - scrollTop - clientHeight < 150;
+    if (isNearBottom) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
 
   // Chat starts fresh each session - no history loading
@@ -1615,6 +1630,7 @@ Be empathetic and respect Indian family values while helping the student communi
         {/* Enhanced Chat Area */}
         <Card className="bg-white/70 backdrop-blur-xl border-2 border-white/60 shadow-2xl shadow-emerald-900/5 rounded-2xl sm:rounded-3xl mb-3 sm:mb-6 overflow-hidden">
           <CardContent className="p-0">
+            <div ref={chatScrollRef}>
             <ScrollArea className="h-[calc(100vh-280px)] sm:h-[55vh]">
               <div className="p-3 sm:p-6">
                 {messages.length === 0 ? (
@@ -1714,6 +1730,7 @@ Be empathetic and respect Indian family values while helping the student communi
                 )}
               </div>
             </ScrollArea>
+            </div>
           </CardContent>
         </Card>
 
