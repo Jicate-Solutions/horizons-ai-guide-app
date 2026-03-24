@@ -67,6 +67,13 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
   };
 
   const getInitials = (name: string) => {
+    // Show institution type abbreviation for cleaner look
+    if (name.includes('Indian Institute of Technology')) return 'IIT';
+    if (name.includes('National Institute of Technology')) return 'NIT';
+    if (name.includes('Indian Institute of Management')) return 'IIM';
+    if (name.includes('All India Institute of Medical')) return 'AIIMS';
+    if (name.includes('IISER') || name.includes('Science Education and Research')) return 'IISER';
+    if (name.includes('IIITDM') || name.includes('IIIT')) return 'IIIT';
     return name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
   };
 
@@ -110,14 +117,14 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
                   alt={`${university.name} logo`}
                   className="w-full h-full object-contain p-1.5"
                   onError={(e) => {
-                    // If logo fails to load, replace with initials
+                    // If logo fails to load, show institutional badge
                     const target = e.currentTarget;
                     const parent = target.parentElement;
                     if (parent) {
-                      parent.className = "w-[48px] h-[48px] md:w-[60px] md:h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border";
-                      parent.style.backgroundColor = university.logoColor || '#059669';
+                      parent.className = "w-[48px] h-[48px] md:w-[60px] md:h-[60px] rounded-xl flex items-center justify-center font-extrabold text-sm md:text-base shadow-sm group-hover:shadow-md transition-shadow";
+                      parent.style.background = `linear-gradient(135deg, ${university.logoColor || '#059669'}, ${university.logoColor || '#059669'}dd)`;
                       parent.style.color = '#fff';
-                      parent.style.borderColor = university.logoColor || '#059669';
+                      parent.style.letterSpacing = '0.5px';
                       parent.innerHTML = getInitials(university.name);
                     }
                   }}
