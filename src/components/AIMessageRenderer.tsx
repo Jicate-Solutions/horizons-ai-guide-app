@@ -120,7 +120,7 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
           // Tables for structured data — Mobile-optimized with visible borders
           table: ({ children }) => (
             <div className="my-3 -mx-2 sm:mx-0">
-              <div className="overflow-x-auto rounded-lg border-2 border-gray-300 shadow-sm" style={{ WebkitOverflowScrolling: 'touch' }}>
+              <div className="overflow-x-auto rounded-lg border-2 border-black shadow-sm" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <table className="min-w-full border-collapse" style={{ minWidth: '320px' }}>{children}</table>
               </div>
               <p className="text-[10px] text-gray-400 mt-1 text-right sm:hidden">← Swipe to see more →</p>
@@ -133,15 +133,15 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
             <tbody className="bg-white">{children}</tbody>
           ),
           tr: ({ children }) => (
-            <tr className="border-b border-gray-300 last:border-b-0 even:bg-gray-50">{children}</tr>
+            <tr className="border-b border-black last:border-b-0 even:bg-gray-50">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="px-2.5 py-2.5 sm:px-3 text-left text-[11px] sm:text-xs font-bold text-emerald-900 uppercase tracking-wider border-r border-gray-300 last:border-r-0 border-b-2 border-emerald-400 whitespace-nowrap">
+            <th className="px-2.5 py-2.5 sm:px-3 text-left text-[11px] sm:text-xs font-bold text-emerald-900 uppercase tracking-wider border-r border-black last:border-r-0 border-b-2 border-black whitespace-nowrap">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-2.5 py-2 sm:px-3 text-[13px] sm:text-sm text-gray-800 font-medium border-r border-gray-200 last:border-r-0">{children}</td>
+            <td className="px-2.5 py-2 sm:px-3 text-[13px] sm:text-sm text-gray-800 font-medium border-r border-black last:border-r-0">{children}</td>
           ),
         }}
       >
