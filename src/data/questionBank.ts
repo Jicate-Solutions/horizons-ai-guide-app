@@ -187,6 +187,7 @@ export const questionBank: Record<string, QBQuestion[]> = {
   {q:'Projectile at 30° and 60° with same speed have:',o:['Same range','Same height','Same time','Different everything'],a:0,e:'Complementary angles (30°+60°=90°) give same range: R = u²sin2θ/g.',d:'medium'},
   {q:'Average velocity for first half distance at v₁ and second at v₂:',o:['(v₁+v₂)/2','2v₁v₂/(v₁+v₂)','√(v₁v₂)','v₁v₂/(v₁+v₂)'],a:1,e:'For equal distances: v_avg = 2v₁v₂/(v₁+v₂) (harmonic mean).',d:'hard'},
   {q:'Slope of displacement-time graph gives:',o:['Acceleration','Velocity','Force','Momentum'],a:1,e:'Slope of s-t graph = ds/dt = velocity.',d:'easy'},
+  {q:'What is the dimension of Planck\'s Constant (h)?',o:['[ML²T⁻¹]','[MLT⁻²]','[ML²T⁻²]','[MLT⁻¹]'],a:0,e:'E = hν ⟹ h = E/ν = [ML²T⁻²] / [T⁻¹] = [ML²T⁻¹]. JEE Main 2025.',d:'medium'},
 ],
 
 // ═══ JEE CHEMISTRY ═══
