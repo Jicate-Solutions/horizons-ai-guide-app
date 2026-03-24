@@ -10,7 +10,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const ADMIN_PASS = "vzk-admin-2026";
+const ADMIN_PASS = Deno.env.get("ADMIN_PASSWORD") || "vzk-admin-2026";
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
