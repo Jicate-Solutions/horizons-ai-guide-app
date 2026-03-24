@@ -8,6 +8,7 @@ import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { lazy, Suspense } from "react";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 // ─── Landing + Auth: eager load (first pages users see) ───
 import Index from "./pages/Index";
@@ -120,6 +121,7 @@ function App() {
               <Toaster />
               <Sonner />
               <BrowserRouter>
+              <ErrorBoundary>
               <Suspense fallback={<PageLoader />}>
               <Routes>
                 {/* Main Routes */}
@@ -218,6 +220,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
               </Suspense>
+              </ErrorBoundary>
             </BrowserRouter>
           </TooltipProvider>
         </AdminAuthProvider>
