@@ -1661,7 +1661,7 @@ Be empathetic and respect Indian family values while helping the student communi
                           </div>
                         )}
                         <div
-                          className={`max-w-[80%] rounded-2xl shadow-lg ${
+                          className={`max-w-[92%] sm:max-w-[80%] rounded-2xl shadow-lg ${
                             message.role === 'user'
                               ? 'bg-gradient-to-br from-emerald-600 to-green-700 text-white shadow-emerald-200/50 px-5 py-4'
                               : 'bg-white border border-gray-100 text-gray-800 shadow-gray-100/50 px-5 py-4'
