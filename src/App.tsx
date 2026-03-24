@@ -17,14 +17,19 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
-// ─── Loading spinner for lazy pages ───
+// ─── Loading skeleton for lazy pages ───
 const PageLoader = () => (
-  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
-    <div style={{ textAlign: 'center' }}>
-      <div style={{ width: 40, height: 40, border: '3px solid #e5e7eb', borderTopColor: '#059669', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px' }} />
-      <p style={{ fontSize: 14, color: '#6b7280' }}>Loading...</p>
+  <div style={{ minHeight: '100vh', background: 'var(--color-background-primary, #fff)' }}>
+    <div style={{ height: 56, background: '#f1f5f9', animation: 'pulse 1.5s ease-in-out infinite' }} />
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 16px' }}>
+      <div style={{ height: 180, borderRadius: 16, background: '#f1f5f9', marginBottom: 24, animation: 'pulse 1.5s ease-in-out infinite' }} />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+        {[1,2,3].map(i => (
+          <div key={i} style={{ height: 120, borderRadius: 12, background: '#f1f5f9', animation: 'pulse 1.5s ease-in-out infinite', animationDelay: `${i * 0.15}s` }} />
+        ))}
+      </div>
     </div>
-    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }`}</style>
   </div>
 );
 

@@ -959,7 +959,7 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
        {/* Disclaimer */}
        <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200">
          <p className="text-xs text-green-800 dark:text-green-300 text-center font-semibold mb-1">
-           📊 Data Source: TNEA 2024 Mark Cutoff (DOTE Official PDF)
+           📊 Data Source: TNEA 2024 Mark Cutoff (DOTE Official PDF) — 2025 data coming soon
          </p>
          <p className="text-xs text-green-700 dark:text-green-400 text-center">
            Cutoffs shown are from the official Directorate of Technical Education (DOTE) 2024 counselling data.
