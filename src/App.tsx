@@ -36,6 +36,8 @@ import PYQPractice from "./pages/PYQPractice";
 import NotFound from "./pages/NotFound";
 import SurveyPublic from "./pages/SurveyPublic";
 
+import AdminSetupGuide from "./pages/AdminSetupGuide";
+
 // Career Hub Pages
 import CareerAssessment from "./pages/CareerAssessment";
 import AICareerPredictor from "./pages/AICareerPredictor";
@@ -164,6 +166,7 @@ function App() {
 <Route path="/admin/login" element={<AdminLogin />} />
 <Route path="/admin/monitor" element={<SimpleAdmin />} />
 <Route path="/admin/setup" element={<AdminSetup />} />
+<Route path="/admin/setup-guide" element={<AdminSetupGuide />} />
 <Route path="/admin/dashboard" element={<AdminDashboard />} />
 <Route path="/admin/alumni-verification" element={<AlumniVerification />} />
                 
