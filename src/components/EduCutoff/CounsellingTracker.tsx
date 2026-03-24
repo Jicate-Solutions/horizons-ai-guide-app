@@ -158,7 +158,7 @@ const saveToSupabase = async (
   let phone = '';
   try {
     const { data: reg } = await (supabase
-      .from('registrations_12th') as any)
+      .from('registrations_12th_learners') as any)
       .select('full_name, phone')
       .eq('email', email)
       .maybeSingle();

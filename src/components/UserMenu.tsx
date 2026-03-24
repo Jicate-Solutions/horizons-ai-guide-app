@@ -34,15 +34,15 @@ const UserMenu = () => {
       if (user.user_metadata?.full_name) { setDisplayName(user.user_metadata.full_name); return; }
 
       // 3. Check registration tables
-      const { data: reg12 } = await supabase
-        .from('registrations_12th')
+      const { data: reg12 } = await (supabase
+        .from('registrations_12th_learners') as any)
         .select('full_name')
         .eq('email', user.email)
         .maybeSingle();
       if (reg12?.full_name) { setDisplayName(reg12.full_name); return; }
 
-      const { data: regLearner } = await supabase
-        .from('learner_registrations')
+      const { data: regLearner } = await (supabase
+        .from('registrations_learners') as any)
         .select('full_name')
         .eq('email', user.email)
         .maybeSingle();

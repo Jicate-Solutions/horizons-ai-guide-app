@@ -199,10 +199,8 @@ const SimpleAdmin = () => {
   };
 
   const handleDelete = async (user: AppUser) => {
-    setIsDeleting(true);
-    try { await supabase.from(user.source_table as any).delete().eq('id', user.id); setUsers(p => p.filter(u => u.id !== user.id)); if (selectedUser?.id === user.id) setSelectedUser(null); setDeleteConfirm(null); }
-    catch (err: any) { alert('Failed: ' + err?.message); }
-    finally { setIsDeleting(false); }
+    // DELETE DISABLED: Records are permanently protected and cannot be deleted
+    alert('⚠️ Records are permanently protected.\nLearner data cannot be deleted from the admin panel.');
   };
 
   const handleAddUser = async () => {
@@ -687,9 +685,7 @@ const SimpleAdmin = () => {
                         {selectedUser?.id === user.id && (
                           <div className="mt-3 ml-[52px] space-y-2">
                             <MR icon={School} l="School" v={user.school_name} /><MR icon={GraduationCap} l="Stream" v={user.stream} /><MR icon={Calendar} l="Pass-Out" v={user.pass_out_year} /><MR icon={MapPin} l="District" v={user.district} /><MR icon={Briefcase} l="Career" v={user.career_interest} /><MR icon={Mail} l="Email" v={user.email} /><MR icon={Clock} l="Registered" v={formatDateTime(user.created_at)} />
-                            <div className="pt-2">{deleteConfirm === user.id ? (
-                              <div className="flex gap-2"><button onClick={e => { e.stopPropagation(); handleDelete(user); }} className="px-3 py-1.5 rounded-md bg-red-500 text-white text-[11px] font-bold">{isDeleting ? 'Deleting...' : 'Confirm'}</button><button onClick={e => { e.stopPropagation(); setDeleteConfirm(null); }} className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-600 text-[11px] font-bold">Cancel</button></div>
-                            ) : (<button onClick={e => { e.stopPropagation(); setDeleteConfirm(user.id); }} className="flex items-center gap-1 text-red-400 text-[11px] hover:bg-red-50 px-2 py-1 rounded"><Trash2 className="w-3 h-3" />Delete</button>)}</div>
+                            <div className="pt-2"><div className="flex items-center gap-1.5 text-emerald-600 text-[11px] bg-emerald-50 px-2 py-1.5 rounded-lg border border-emerald-200"><Shield className="w-3 h-3" /> Record permanently protected</div></div>
                           </div>
                         )}
                       </div>
@@ -723,16 +719,10 @@ const SimpleAdmin = () => {
                     <DS t="Location & Career"><DF i={MapPin} l="District" v={selectedUser.district} /><DF i={Briefcase} l="Career Interest" v={selectedUser.career_interest} /></DS>
                     <DS t="Registration"><DF i={Clock} l="Registered On" v={formatDateTime(selectedUser.created_at)} /></DS>
                     <div className="pt-2 border-t border-gray-100">
-                      {deleteConfirm === selectedUser.id ? (
-                        <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-                          <p className="text-sm font-bold text-red-700 mb-1 flex items-center gap-1"><AlertTriangle className="w-4 h-4" />Delete this record?</p>
-                          <p className="text-xs text-red-600 mb-3">This cannot be undone.</p>
-                          <div className="flex gap-2">
-                            <button onClick={() => handleDelete(selectedUser)} disabled={isDeleting} className="px-4 py-2 rounded-lg bg-red-500 text-white text-xs font-bold hover:bg-red-600">{isDeleting ? 'Deleting...' : 'Delete'}</button>
-                            <button onClick={() => setDeleteConfirm(null)} className="px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-xs font-bold">Cancel</button>
-                          </div>
-                        </div>
-                      ) : (<button onClick={() => setDeleteConfirm(selectedUser.id)} className="flex items-center gap-1.5 text-gray-400 text-xs hover:text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg transition-all"><Trash2 className="w-3.5 h-3.5" />Delete record</button>)}
+                      <div className="flex items-center gap-2 text-emerald-600 text-xs bg-emerald-50 px-3 py-2.5 rounded-lg border border-emerald-200">
+                        <Shield className="w-4 h-4 flex-shrink-0" />
+                        <span className="font-semibold">Record permanently protected — cannot be deleted</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -745,7 +735,7 @@ const SimpleAdmin = () => {
           </>
         )}
 
-        <p className="text-center text-[10px] text-gray-300 pb-4">Data is stored securely and permanently. Only admin can delete records.</p>
+        <p className="text-center text-[10px] text-gray-300 pb-4">🔒 All learner records are permanently protected. Data cannot be deleted from this panel.</p>
       </div>
     </div>
   );

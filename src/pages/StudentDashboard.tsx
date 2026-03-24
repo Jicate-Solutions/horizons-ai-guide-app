@@ -36,7 +36,7 @@ const StudentDashboard = () => {
       if (user.user_metadata?.full_name) { setDisplayName(user.user_metadata.full_name); return; }
       const { data: p } = await supabase.from('profiles').select('display_name').eq('user_id', user.id).maybeSingle();
       if (p?.display_name) { setDisplayName(p.display_name); return; }
-      const { data: r } = await supabase.from('registrations_12th').select('full_name').eq('email', user.email).maybeSingle();
+      const { data: r } = await (supabase.from('registrations_12th_learners') as any).select('full_name').eq('email', user.email).maybeSingle();
       if (r?.full_name) { setDisplayName(r.full_name); return; }
       if (user.email) setDisplayName(user.email.split('@')[0].charAt(0).toUpperCase() + user.email.split('@')[0].slice(1));
     };
