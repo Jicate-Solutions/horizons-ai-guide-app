@@ -58,76 +58,78 @@ const SimpleAdmin = () => {
     setIsLoading(true); setError('');
     try {
       let all: AppUser[] = [];
-      let usedServerAPI = false;
+      let dataLoaded = false;
 
-      // PRIMARY: Server API (uses service key, gets auth metadata + all tables)
+      // ═══ PRIMARY: Supabase Edge Function (uses built-in service key — no config needed) ═══
       try {
-        const apiRes = await fetch('/api/admin-users', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password: ADMIN_PASS, serviceKey: serviceKey || undefined }),
+        console.log('[ADMIN] Trying Supabase Edge Function...');
+        const { data: edgeData, error: edgeErr } = await supabase.functions.invoke('admin-read-registrations', {
+          body: { password: ADMIN_PASS },
         });
-        const apiData = await apiRes.json();
-        
-        // Show diagnostic info
-        if (apiData.diagnostic) {
-          console.log('[ADMIN] Diagnostic:', JSON.stringify(apiData.diagnostic));
-        }
 
-        if (apiData.users && !apiData.setupNeeded) {
-          all = (apiData.users || []).map((u: any) => ({
-            id: u.id || '',
-            email: u.email || '',
-            phone: u.phone || '',
-            created_at: u.created_at || '',
-            last_sign_in: u.last_sign_in || u.created_at || '',
-            provider: u.provider || 'User',
-            full_name: u.full_name || '',
-            school_name: u.school_name || '',
-            stream: u.stream || '',
-            district: u.district || '',
-            pass_out_year: u.pass_out_year || '',
-            career_interest: u.career_interest || '',
-            source_table: u.source || 'api',
+        if (!edgeErr && edgeData?.users && edgeData.users.length > 0) {
+          all = (edgeData.users || []).map((u: any) => ({
+            id: u.id || '', email: u.email || '', phone: u.phone || '',
+            created_at: u.created_at || '', last_sign_in: u.last_sign_in || u.created_at || '',
+            provider: u.provider || 'User', full_name: u.full_name || '',
+            school_name: u.school_name || '', stream: u.stream || '',
+            district: u.district || '', pass_out_year: u.pass_out_year || '',
+            career_interest: u.career_interest || '', source_table: u.source || 'edge',
           }));
-          usedServerAPI = true;
-          console.log('[ADMIN] Server API returned', all.length, 'users');
-          if (apiData.diagnostic) {
-            const d = apiData.diagnostic;
-            const diagMsg = `🔍 API Diagnostic:\n• Key type: ${d.keyType || 'unknown'}\n• Service key: ${d.hasServiceKey ? '✅ Found' : '❌ NOT FOUND — add SUPABASE_SERVICE_ROLE_KEY in Vercel'}\n• Env vars with "supabase": ${(d.envKeysFound || []).join(', ') || 'NONE'}\n• Sources found: Auth=${d.sources?.auth || 0}, Registration=${d.sources?.registration || 0}, Profile=${d.sources?.profile || 0}\n• Errors: ${(d.errors || []).join(' | ') || 'none'}`;
-            console.log(diagMsg);
-            if (all.length === 0) {
-              setError(diagMsg + '\n\n⚠️ 0 users found. Most likely cause: SUPABASE_SERVICE_ROLE_KEY is not set in Vercel env vars.\n\nWithout the service_role key, the admin panel cannot read from Supabase Auth or from tables with Row Level Security.\n\n📋 Steps to fix:\n1. Go to supabase.com → Your Project → Settings → API\n2. Copy the service_role key (long one starting with eyJ...)\n3. Go to vercel.com → horizons-ai-guide-app → Settings → Environment Variables\n4. Add variable: SUPABASE_SERVICE_ROLE_KEY = [paste key]\n5. Also add: SUPABASE_URL = https://jahtuebykoledutqhzfx.supabase.co\n6. Click Redeploy in Deployments tab\n\n💡 Or use the green "Add User" button above to manually enter users right now.');
-            }
-          }
-        } else if (apiData.setupNeeded) {
-          const d = apiData.diagnostic || {};
-          setError(`🔧 Setup issue detected!\n\nURL found: ${d.hasUrl ? '✅' : '❌'} ${d.urlPrefix || 'NOT SET'}\nService Key found: ${d.hasKey ? '✅' : '❌'} ${d.keyPrefix || 'NOT SET'}\n\nSupabase env vars in Vercel: ${(d.availableEnvKeys || []).join(', ') || 'NONE FOUND'}\n\n${apiData.message || ''}\n\nMake sure these EXACT names are in Vercel Environment Variables:\n• SUPABASE_SERVICE_ROLE_KEY = (your service_role key from Supabase)\n• SUPABASE_URL = https://jahtuebykoledutqhzfx.supabase.co`);
-        } else if (apiData.diagnostic?.errors?.length > 0) {
-          console.warn('[ADMIN] API errors:', apiData.diagnostic.errors);
+          dataLoaded = true;
+          console.log('[ADMIN] ✅ Edge Function returned', all.length, 'users. Sources:', edgeData.sources);
+          if (edgeData.errors?.length) console.warn('[ADMIN] Edge warnings:', edgeData.errors);
+        } else {
+          console.warn('[ADMIN] Edge Function returned 0 users or error:', edgeErr?.message || 'empty');
         }
-      } catch (apiErr) {
-        console.warn('[ADMIN] Server API failed, using fallback:', apiErr);
+      } catch (edgeException) {
+        console.warn('[ADMIN] Edge Function not deployed yet, trying Vercel API...', edgeException);
       }
 
-      // FALLBACK: Direct Supabase queries (if server API failed or returned empty)
-      if (!usedServerAPI) {
+      // ═══ FALLBACK 1: Vercel Server API (needs SUPABASE_SERVICE_ROLE_KEY in Vercel env) ═══
+      if (!dataLoaded) {
+        try {
+          const apiRes = await fetch('/api/admin-users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: ADMIN_PASS, serviceKey: serviceKey || undefined }),
+          });
+          const apiData = await apiRes.json();
+
+          if (apiData.users && apiData.users.length > 0) {
+            all = (apiData.users || []).map((u: any) => ({
+              id: u.id || '', email: u.email || '', phone: u.phone || '',
+              created_at: u.created_at || '', last_sign_in: u.last_sign_in || u.created_at || '',
+              provider: u.provider || 'User', full_name: u.full_name || '',
+              school_name: u.school_name || '', stream: u.stream || '',
+              district: u.district || '', pass_out_year: u.pass_out_year || '',
+              career_interest: u.career_interest || '', source_table: u.source || 'api',
+            }));
+            dataLoaded = true;
+            console.log('[ADMIN] ✅ Vercel API returned', all.length, 'users');
+          } else {
+            console.warn('[ADMIN] Vercel API returned 0 users');
+            if (apiData.diagnostic) console.log('[ADMIN] Diagnostic:', apiData.diagnostic);
+          }
+        } catch (apiErr) {
+          console.warn('[ADMIN] Vercel API failed:', apiErr);
+        }
+      }
+
+      // ═══ FALLBACK 2: Direct Supabase queries (limited by RLS — may show partial data) ═══
+      if (!dataLoaded) {
         console.log('[ADMIN] Using direct Supabase fallback');
         const seen = new Set<string>();
-        let fallbackErrors: string[] = [];
 
         try {
-          const { data: r1, error: e1 } = await supabase.from('registrations_12th_learners')
+          const { data: r1 } = await (supabase.from('registrations_12th_learners') as any)
             .select('id,full_name,email,phone,school_name,stream,preferred_course,preferred_institution,career_interests,created_at').order('created_at', { ascending: false });
-          if (e1) fallbackErrors.push('registrations: ' + e1.message);
-          const { data: r2, error: e2 } = await supabase.from('registrations_learners')
+          const { data: r2 } = await (supabase.from('registrations_learners') as any)
             .select('id,full_name,email,phone,institution,degree,created_at').order('created_at', { ascending: false });
-          if (e2) fallbackErrors.push('learners: ' + e2.message);
-          const { data: r4, error: e4 } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
-          if (e4) fallbackErrors.push('profiles: ' + e4.message);
+          const { data: r4 } = await (supabase.from('profiles') as any).select('*').order('created_at', { ascending: false });
 
-          (r1 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: '12th Learner', full_name: r.full_name || '', school_name: r.school_name || '', stream: r.stream || '', district: r.preferred_institution || '', pass_out_year: r.preferred_course || '', career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''), source_table: 'registrations_12th_learners' }); } });
-          (r2 || []).forEach(r => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Learner', full_name: r.full_name || '', school_name: r.institution || '', stream: r.degree || '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_learners' }); } });
+          (r1 || []).forEach((r: any) => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: '12th Learner', full_name: r.full_name || '', school_name: r.school_name || '', stream: r.stream || '', district: r.preferred_institution || '', pass_out_year: r.preferred_course || '', career_interest: Array.isArray(r.career_interests) ? r.career_interests.join(', ') : (r.career_interests || ''), source_table: 'registrations_12th_learners' }); } });
+          (r2 || []).forEach((r: any) => { const k = r.phone || r.email || r.id; if (!seen.has(k)) { seen.add(k); all.push({ id: r.id, email: r.email || '', phone: r.phone || '', created_at: r.created_at, last_sign_in: r.created_at, provider: 'Learner', full_name: r.full_name || '', school_name: r.institution || '', stream: r.degree || '', district: '', pass_out_year: '', career_interest: '', source_table: 'registrations_learners' }); } });
           (r4 || []).forEach((p: any) => {
             const bio = p.bio || '';
             const parts = bio.split('|').map((s: string) => s.trim());
@@ -138,59 +140,15 @@ const SimpleAdmin = () => {
               all.push({ id: p.id, email: parts[1] || '', phone, created_at: p.created_at || '', last_sign_in: p.updated_at || '', provider: 'App User', full_name: p.display_name || '', school_name: parts[2] || '', stream: parts[3] || '', district: parts[5] || '', pass_out_year: parts[4] || '', career_interest: parts[6] || '', source_table: 'profiles' });
             }
           });
-
-          if (fallbackErrors.length > 0) {
-            console.warn('[ADMIN] Fallback errors:', fallbackErrors);
-          }
         } catch (fbErr: any) {
           console.error('[ADMIN] Fallback exception:', fbErr);
         }
       }
 
       all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-      
-      // LAST RESORT: If still 0 users, run admin-setup to sync Auth → registrations table
+
       if (all.length === 0) {
-        try {
-          console.log('[ADMIN] 0 users. Running auto-setup to sync Auth users to database...');
-          const setupRes = await fetch('/api/admin-setup', { 
-            method: 'POST', 
-            headers: {'Content-Type':'application/json'}, 
-            body: JSON.stringify({ password: ADMIN_PASS }) 
-          });
-          const setupData = await setupRes.json();
-          console.log('[ADMIN] Setup result:', setupData);
-          
-          if (setupData.success && setupData.totalAuthUsers > 0) {
-            // Re-fetch — now registrations table has data
-            console.log('[ADMIN] Setup synced users. Re-fetching...');
-            const retryRes = await fetch('/api/admin-users', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ password: ADMIN_PASS }),
-            });
-            const retryData = await retryRes.json();
-            if (retryData.users && retryData.users.length > 0) {
-              all = retryData.users.map((u: any) => ({
-                id: u.id || '', email: u.email || '', phone: u.phone || '',
-                created_at: u.created_at || '', last_sign_in: u.last_sign_in || u.created_at || '',
-                provider: u.provider || 'User', full_name: u.full_name || '',
-                school_name: u.school_name || '', stream: u.stream || '',
-                district: u.district || '', pass_out_year: u.pass_out_year || '',
-                career_interest: u.career_interest || '', source_table: u.source || 'api',
-              }));
-            }
-          }
-          
-          if (all.length === 0) {
-            setError(setupData.success 
-              ? 'Setup ran but found 0 users. ' + (setupData.log || []).join('\n')
-              : 'Setup failed: ' + (setupData.log || []).join('\n') + '\n\nFix: Add SUPABASE_SERVICE_ROLE_KEY to Vercel → Settings → Environment Variables → Redeploy');
-          }
-        } catch (setupErr) {
-          console.error('[ADMIN] Setup failed:', setupErr);
-          setError('Failed to load users. Please check Vercel environment variables.');
-        }
+        setError('⚠️ No learner data loaded.\n\nThe Edge Function needs to be deployed first.\n\n📋 To deploy, run this in terminal:\nnpx supabase functions deploy admin-read-registrations --project-ref jahtuebykoledutqhzfx\n\nOr go to Supabase Dashboard → Edge Functions → Deploy.\n\n💡 You can also use the "Add User" button to manually add learners.');
       }
       
       setUsers(all);
