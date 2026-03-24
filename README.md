@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+# VAZHIKATTI — வழிகாட்டி
 
-## Project info
+**AI-Powered Career Guidance for 12th Students | Tamil Nadu**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+🌐 **Live:** [horizons-ai-guide-app.vercel.app](https://horizons-ai-guide-app.vercel.app)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## What is VAZHIKATTI?
 
-**Use Lovable**
+VAZHIKATTI is a free AI-powered platform that helps 12th-standard students in Tamil Nadu make informed decisions about their career, college, and future. It combines AI career prediction, cutoff calculators, counselling trackers, and comprehensive exam data — all in one bilingual (Tamil + English) application.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Key Features
 
-Changes made via Lovable will be committed automatically to this repo.
+| Feature | Description |
+|---------|-------------|
+| 🤖 AI Career Predictor | Claude AI-powered career recommendations based on interests and aptitude |
+| 📊 EduCutoff Calculator | TNEA engineering cutoff + NEET medical eligibility with college prediction |
+| 📋 Counselling Tracker | Step-by-step tracker for TNEA, NEET, JoSAA, TNAU with cloud sync + email reminders |
+| 🏛️ 109 Universities | IITs, NITs, IIMs, AIIMS, IISERs + TN state universities with courses, fees, eligibility |
+| 📝 25 Govt Exams | TNPSC, UPSC, Banking, Railways — complete syllabus, pattern, and PYQ practice |
+| 💬 AI Career Chat | Conversational AI that answers career questions in Tamil or English |
+| 💼 Job Portal | Employers post jobs, students apply — built-in placement pipeline |
+| 🔔 Exam Reminders | Push notifications + email alerts before registration deadlines |
+| 📱 PWA Installable | Works on any phone — install like an app, works offline |
+| 🌐 Bilingual | Full Tamil + English support (461 translation keys) |
 
-**Use your preferred IDE**
+## Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React + TypeScript + Vite |
+| UI | Tailwind CSS + shadcn/ui |
+| Backend | Supabase (Auth, Database, Edge Functions) |
+| AI | Claude AI (Anthropic) — 12 Edge Functions |
+| Hosting | Vercel (auto-deploy on push) |
+| Automation | n8n (email/SMS reminders) |
+| Email | Resend API |
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Quick Start
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone https://github.com/JKKN-Institutions/horizons-ai-guide-app.git
+cd horizons-ai-guide-app
+npm install
+cp .env.example .env   # fill in values
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+See [VERCEL-ENV-VARS.md](VERCEL-ENV-VARS.md) for complete setup guide.
 
-**Use GitHub Codespaces**
+## Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── pages/          # 46 page components
+├── components/     # 270+ reusable components
+├── hooks/          # Auth, language, student profile
+├── data/           # Static data (universities, exams, courses)
+├── lib/            # Utilities (notifications, validation)
+├── integrations/   # Supabase client
+└── App.tsx         # Routes with lazy loading
 
-## What technologies are used for this project?
+supabase/
+├── functions/      # 17 Edge Functions (AI, email, admin)
+└── migrations/     # Database schema + RLS policies
 
-This project is built with:
+api/                # 12 Vercel serverless functions
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Performance
 
-## How can I deploy this project?
+- Initial load: ~1MB (code-split from 6.6MB — 85% reduction)
+- 130 lazy-loaded chunks
+- Service worker for offline caching
+- Hashed assets cached 1 year (immutable)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## License
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Proprietary — JKKN Institutions
