@@ -3,6 +3,7 @@ import { X, Send, Trash2, Minimize2, Maximize2, Mic, MicOff, Download, Volume2, 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { AIMessageRenderer } from "@/components/AIMessageRenderer";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -563,7 +564,11 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
                       : "bg-muted text-foreground rounded-bl-md border border-border/50"
                   }`}
                 >
-                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                  {msg.role === 'assistant' ? (
+                    <AIMessageRenderer content={msg.content} className="text-sm" />
+                  ) : (
+                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                  )}
                   {msg.imageUrl && (
                     <div className="mt-2 relative group">
                       <img 
