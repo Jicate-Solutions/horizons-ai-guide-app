@@ -106,7 +106,7 @@ const PYQPapersPage = () => {
           <div className="bg-gradient-to-br from-slate-800 to-gray-900 rounded-2xl p-5 text-white">
             <p className="text-lg font-bold">{activePaper.exam} {activePaper.year}</p>
             <p className="text-xs text-gray-300 mt-1">{activePaper.date} · {activePaper.shift}</p>
-            <div className="grid grid-cols-4 gap-2 mt-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3">
               {[
                 { l: 'Questions', v: String(activePaper.totalQuestions) },
                 { l: 'Marks', v: String(activePaper.totalMarks) },

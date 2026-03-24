@@ -154,7 +154,7 @@ const StudentDashboard = () => {
         )}
 
         {/* ── QUICK STATS ── */}
-        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-3 gap-2.5">
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
           <div className="bg-white rounded-xl border border-gray-200 p-3.5 text-center">
             <BookOpen className="w-5 h-5 text-indigo-500 mx-auto mb-1" />
             <p className="text-lg font-extrabold text-gray-900">{totalTopics}</p>
@@ -210,7 +210,7 @@ const StudentDashboard = () => {
                   </div>
 
                   {/* Action buttons */}
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {detail && detail.topics > 0 && (
                       <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-1.5 h-10 rounded-xl bg-indigo-50 border border-indigo-200 text-xs font-bold text-indigo-700 hover:bg-indigo-100 transition-all active:scale-95">
                         <BookOpen className="w-3.5 h-3.5" /> Syllabus

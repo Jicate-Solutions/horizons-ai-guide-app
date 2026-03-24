@@ -10,6 +10,8 @@ import { lazy, Suspense } from "react";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
+const NotificationBanner = lazy(() => import("@/components/NotificationBanner"));
+
 // ─── Landing + Auth: eager load (first pages users see) ───
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
@@ -226,6 +228,7 @@ function App() {
               </Routes>
               </Suspense>
               </ErrorBoundary>
+              <Suspense fallback={null}><NotificationBanner /></Suspense>
             </BrowserRouter>
           </TooltipProvider>
         </AdminAuthProvider>

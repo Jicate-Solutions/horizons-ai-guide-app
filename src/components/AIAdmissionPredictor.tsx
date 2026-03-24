@@ -330,7 +330,7 @@ const AIAdmissionPredictor: React.FC = () => {
               className="space-y-6 py-4"
             >
               {/* Summary Cards */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
                   <CardContent className="p-3 text-center">
                     <div className="text-2xl font-bold text-green-600">{result.summary.safeCount}</div>

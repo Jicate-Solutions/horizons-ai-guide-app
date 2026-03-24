@@ -451,7 +451,7 @@ const GovernmentExamDetail = () => {
                   <Card key={idx}>
                     <CardContent className="p-4">
                       <h4 className="text-xs font-bold text-gray-800 dark:text-gray-100 mb-3">{ta ? p.paperTamil : p.paper}</h4>
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {[
                           { label: ta ? 'மதிப்பெண்கள்' : 'Marks', value: p.marks, color: 'text-indigo-600' },
                           { label: ta ? 'நேரம்' : 'Duration', value: p.duration, color: 'text-amber-600' },

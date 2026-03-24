@@ -194,7 +194,7 @@ const SyllabusTracker = () => {
           </div>
 
           {/* Status counts */}
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {([
               { label: 'Not Started', val: stats?.notStarted || 0, color: 'text-gray-500', bg: 'bg-gray-50' },
               { label: 'In Progress', val: stats?.inProgress || 0, color: 'text-blue-600', bg: 'bg-blue-50' },

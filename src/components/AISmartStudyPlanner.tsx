@@ -814,7 +814,7 @@ export const AISmartStudyPlanner = () => {
 
                   {/* Tabs */}
                   <Tabs value={activeTab} onValueChange={setActiveTab}>
-                    <TabsList className="grid w-full grid-cols-3">
+                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3">
                       <TabsTrigger value="today" className="flex items-center gap-1">
                         <Timer className="h-4 w-4" />
                         {language === 'ta' ? 'இன்று' : 'Today'}

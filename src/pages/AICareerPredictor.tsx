@@ -355,7 +355,7 @@ const AICareerPredictor = () => {
                 </div>
 
                 {/* How it works - visual steps */}
-                <div className="grid grid-cols-3 gap-3 mb-8 max-w-sm mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 max-w-sm mx-auto">
                   {[
                     { num: '1', label: 'Answer Questions', emoji: '📝' },
                     { num: '2', label: 'AI Analyzes', emoji: '🤖' },
