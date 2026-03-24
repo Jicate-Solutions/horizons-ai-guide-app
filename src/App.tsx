@@ -124,18 +124,18 @@ function App() {
               <ErrorBoundary>
               <Suspense fallback={<PageLoader />}>
               <Routes>
-                {/* Main Routes */}
+                {/* Main Routes — Open */}
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
                 
-                {/* Job Seeker Routes */}
-                <Route path="/jobs" element={<ProtectedRoute><JobPortal /></ProtectedRoute>} />
-                <Route path="/jobs/*" element={<ProtectedRoute><JobPortal /></ProtectedRoute>} />
+                {/* Job Portal — Open to browse, login to save */}
+                <Route path="/jobs" element={<JobPortal />} />
+                <Route path="/jobs/*" element={<JobPortal />} />
                 <Route path="/saved-jobs" element={<ProtectedRoute><SavedJobs /></ProtectedRoute>} />
                 <Route path="/register/learner" element={<ProtectedRoute><RegisterLearner /></ProtectedRoute>} />
                 <Route path="/register/12th-learner" element={<ProtectedRoute><Register12thLearner /></ProtectedRoute>} />
                 
-                {/* Employer Routes */}
+                {/* Employer Routes — Login required */}
                 <Route path="/register/employer" element={<ProtectedRoute><RegisterEmployer /></ProtectedRoute>} />
                 <Route path="/employer/register/success" element={<ProtectedRoute><EmployerRegistrationSuccess /></ProtectedRoute>} />
                 <Route path="/employer/dashboard" element={<ProtectedRoute><EmployerDashboard /></ProtectedRoute>} />
@@ -144,66 +144,71 @@ function App() {
                 <Route path="/employer/jobs/new" element={<ProtectedRoute><EmployerPostJob /></ProtectedRoute>} />
                 <Route path="/employer/jobs/:id/edit" element={<ProtectedRoute><EmployerPostJob /></ProtectedRoute>} />
                 
-                {/* Student Routes — ALL require login */}
+                {/* Student Dashboard — Login required */}
                 <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
-                <Route path="/career-assessment" element={<ProtectedRoute><AICareerPredictor /></ProtectedRoute>} />
-                 <Route path="/career-assessment/chat" element={<ProtectedRoute><CareerChat /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges" element={<ProtectedRoute><CareerAssessmentColleges /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/find-colleges" element={<ProtectedRoute><FindCollegesPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/scholarships" element={<ProtectedRoute><ScholarshipsPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/educutoff" element={<ProtectedRoute><EduCutoffPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/entrance-exams" element={<ProtectedRoute><EntranceExamsPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/pyq" element={<ProtectedRoute><EntranceExamsPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/govt-jobs" element={<ProtectedRoute><GovtJobsPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/tn-university" element={<ProtectedRoute><TNUniversityPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/course-explorer" element={<ProtectedRoute><CourseExplorerPage /></ProtectedRoute>} />
-                <Route path="/career-assessment/colleges/startup" element={<ProtectedRoute><StartupGuidePage /></ProtectedRoute>} />
+
+                {/* Career Assessment — Open to browse, login to take/save */}
+                <Route path="/career-assessment" element={<AICareerPredictor />} />
+                <Route path="/career-assessment/chat" element={<ProtectedRoute><CareerChat /></ProtectedRoute>} />
+                <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
+                <Route path="/career-assessment/colleges/find-colleges" element={<FindCollegesPage />} />
+                <Route path="/career-assessment/colleges/scholarships" element={<ScholarshipsPage />} />
+                <Route path="/career-assessment/colleges/educutoff" element={<EduCutoffPage />} />
+                <Route path="/career-assessment/colleges/entrance-exams" element={<EntranceExamsPage />} />
+                <Route path="/career-assessment/colleges/pyq" element={<EntranceExamsPage />} />
+                <Route path="/career-assessment/colleges/govt-jobs" element={<GovtJobsPage />} />
+                <Route path="/career-assessment/colleges/tn-university" element={<TNUniversityPage />} />
+                <Route path="/career-assessment/colleges/course-explorer" element={<CourseExplorerPage />} />
+                <Route path="/career-assessment/colleges/startup" element={<StartupGuidePage />} />
                 <Route path="/career-assessment/take/:type" element={<ProtectedRoute><TakeAssessment /></ProtectedRoute>} />
                 <Route path="/career-assessment/results/:attemptId" element={<ProtectedRoute><AssessmentResults /></ProtectedRoute>} />
-                <Route path="/career-assessment/12th-learners" element={<ProtectedRoute><CareerAssessment12thLearners /></ProtectedRoute>} />
+                <Route path="/career-assessment/12th-learners" element={<CareerAssessment12thLearners />} />
                 <Route path="/career-assessment/12th-learners/take" element={<ProtectedRoute><TakeStudentAssessment /></ProtectedRoute>} />
                 <Route path="/career-assessment/12th-learners/results/:attemptId" element={<ProtectedRoute><StudentAssessmentResults /></ProtectedRoute>} />
-                <Route path="/career-assessment/industry-trends" element={<ProtectedRoute><IndustryTrends /></ProtectedRoute>} />
-                <Route path="/career-assessment/pyq-practice" element={<ProtectedRoute><PYQPractice /></ProtectedRoute>} />
-                <Route path="/career-assessment/boosting" element={<ProtectedRoute><CareerAssessment /></ProtectedRoute>} />
-                <Route path="/career-assessment/ai-predictor" element={<ProtectedRoute><AICareerPredictor /></ProtectedRoute>} />
-                <Route path="/syllabus-tracker" element={<ProtectedRoute><SyllabusTracker /></ProtectedRoute>} />
-                <Route path="/exam-alerts" element={<ProtectedRoute><ExamAlerts /></ProtectedRoute>} />
-                <Route path="/rank-predictor" element={<ProtectedRoute><RankPredictor /></ProtectedRoute>} />
-                <Route path="/study-guide" element={<ProtectedRoute><StudyGuide /></ProtectedRoute>} />
-                <Route path="/question-bank" element={<ProtectedRoute><QuestionBank /></ProtectedRoute>} />
-                <Route path="/topic-hub" element={<ProtectedRoute><TopicHub /></ProtectedRoute>} />
-                <Route path="/pyq-papers" element={<ProtectedRoute><PYQPapers /></ProtectedRoute>} />
+                <Route path="/career-assessment/industry-trends" element={<IndustryTrends />} />
+                <Route path="/career-assessment/pyq-practice" element={<PYQPractice />} />
+                <Route path="/career-assessment/boosting" element={<CareerAssessment />} />
+                <Route path="/career-assessment/ai-predictor" element={<AICareerPredictor />} />
                 <Route path="/career-assessment/saved-courses" element={<ProtectedRoute><SavedCourses /></ProtectedRoute>} />
+
+                {/* Study Tools — Open to browse */}
+                <Route path="/syllabus-tracker" element={<SyllabusTracker />} />
+                <Route path="/exam-alerts" element={<ExamAlerts />} />
+                <Route path="/rank-predictor" element={<RankPredictor />} />
+                <Route path="/study-guide" element={<StudyGuide />} />
+                <Route path="/question-bank" element={<QuestionBank />} />
+                <Route path="/topic-hub" element={<TopicHub />} />
+                <Route path="/pyq-papers" element={<PYQPapers />} />
                  
-                 {/* EduCutoff - Admission Predictor */}
-                 <Route path="/edu-cutoff" element={<ProtectedRoute><EduCutoff /></ProtectedRoute>} />
+                {/* EduCutoff — Open (calculator is the main draw) */}
+                <Route path="/edu-cutoff" element={<EduCutoff />} />
                 
-                {/* Government Exams Routes */}
-                <Route path="/government-exams" element={<ProtectedRoute><GovernmentExams /></ProtectedRoute>} />
-                <Route path="/government-exams/:categoryId" element={<ProtectedRoute><GovernmentExamCategory /></ProtectedRoute>} />
-                <Route path="/government-exams/:categoryId/:examId" element={<ProtectedRoute><GovernmentExamDetail /></ProtectedRoute>} />
+                {/* Government Exams — Open to browse */}
+                <Route path="/government-exams" element={<GovernmentExams />} />
+                <Route path="/government-exams/:categoryId" element={<GovernmentExamCategory />} />
+                <Route path="/government-exams/:categoryId/:examId" element={<GovernmentExamDetail />} />
                 
-{/* TN University Entrance Exams Routes */}
-                <Route path="/tn-university-entrance" element={<ProtectedRoute><UniversityEntranceExams /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/browse" element={<ProtectedRoute><TNUniversityBrowse /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/exam-calendar" element={<ProtectedRoute><ExamCalendar /></ProtectedRoute>} />
+                {/* TN University Entrance — Open to browse, login for personal features */}
+                <Route path="/tn-university-entrance" element={<UniversityEntranceExams />} />
+                <Route path="/tn-university-entrance/browse" element={<TNUniversityBrowse />} />
+                <Route path="/tn-university-entrance/exam-calendar" element={<ExamCalendar />} />
+                <Route path="/tn-university-entrance/preparation-tips" element={<TNPreparationTips />} />
+                <Route path="/tn-university-entrance/chapter-weightage" element={<ChapterWeightage />} />
+                <Route path="/tn-university-entrance/mock-test" element={<TNMockTest />} />
+                <Route path="/tn-university-entrance/daily-challenge" element={<DailyChallenge />} />
+                <Route path="/tn-university-entrance/forum" element={<TNForum />} />
+                <Route path="/tn-university-entrance/compare" element={<UniversityCompare />} />
+                <Route path="/tn-university-entrance/:universityId" element={<UniversityDetail />} />
+                <Route path="/tn-university-entrance/:universityId/:courseId" element={<CourseDetail />} />
+                {/* TN University — Login required for personal features */}
                 <Route path="/tn-university-entrance/my-reminders" element={<ProtectedRoute><MyReminders /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/compare" element={<ProtectedRoute><UniversityCompare /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/saved-questions" element={<ProtectedRoute><TNSavedQuestions /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/preparation-tips" element={<ProtectedRoute><TNPreparationTips /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/study-planner" element={<ProtectedRoute><TNStudyPlanner /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/mock-test" element={<ProtectedRoute><TNMockTest /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/chapter-weightage" element={<ProtectedRoute><ChapterWeightage /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/analytics" element={<ProtectedRoute><PerformanceAnalytics /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/streaks" element={<ProtectedRoute><StudyStreaks /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/ai-questions" element={<ProtectedRoute><AIQuestionGenerator /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/daily-challenge" element={<ProtectedRoute><DailyChallenge /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/forum" element={<ProtectedRoute><TNForum /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/weak-topics" element={<ProtectedRoute><WeakTopicIdentifier /></ProtectedRoute>} />
                 <Route path="/tn-university-entrance/leaderboard" element={<ProtectedRoute><TNLeaderboard /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/:universityId" element={<ProtectedRoute><UniversityDetail /></ProtectedRoute>} />
-                <Route path="/tn-university-entrance/:universityId/:courseId" element={<ProtectedRoute><CourseDetail /></ProtectedRoute>} />
                 
 {/* Admin Routes */}
 <Route path="/admin/login" element={<AdminLogin />} />

@@ -624,6 +624,10 @@ const translations: Record<Language, Record<string, string>> = {
     'common.learnMore': 'மேலும் அறிக',
     'common.change': 'மாற்று',
     'common.startAssessment': 'மதிப்பீட்டை தொடங்கு',
+    'common.refresh': 'புதுப்பி',
+    'common.loadMore': 'மேலும் ஏற்று',
+    'common.clearFilters': 'அனைத்து வடிகட்டிகளையும் நீக்கு',
+    'common.noResults': 'முடிவுகள் எதுவும் இல்லை',
     
     // AI Career Predictor
     'predictor.title': 'AI தொழில் கணிப்பான்',
