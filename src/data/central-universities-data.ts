@@ -803,7 +803,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitb.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#003366',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitb.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -847,7 +847,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitd.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#00205B',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitd.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -887,7 +887,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitk.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#C41E3A',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitk.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -928,7 +928,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitkgp.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#800000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitkgp.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -981,7 +981,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitr.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#0033A0',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1021,7 +1021,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitg.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitg.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1059,7 +1059,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iith.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iith.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1093,7 +1093,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iittp.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#4B0082',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iittp.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1127,7 +1127,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitpkd.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitpkd.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1161,7 +1161,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitdh.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#DC143C',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitdh.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1195,7 +1195,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iiti.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#0066CC',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iiti.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1229,7 +1229,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitbhu.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitbhu.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1263,7 +1263,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitp.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitp.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1297,7 +1297,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitgn.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#FF6600',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitgn.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1331,7 +1331,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitj.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#DAA520',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitj.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1365,7 +1365,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitrpr.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#4682B4',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitrpr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1399,7 +1399,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitbbs.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#2E8B57',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitbbs.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1433,7 +1433,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitmandi.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#20B2AA',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitmandi.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1467,7 +1467,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitjammu.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#4169E1',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitjammu.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1501,7 +1501,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitbhilai.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#FF6347',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitbhilai.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1535,7 +1535,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitgoa.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitgoa.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1569,7 +1569,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@iitism.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG)',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iitism.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
@@ -1603,7 +1603,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitk.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#003366',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitk.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1639,7 +1639,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitw.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitw.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1675,7 +1675,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitc.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitc.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1711,7 +1711,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitrkl.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#4B0082',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitrkl.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1747,7 +1747,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitdgp.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#1E90FF',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitdgp.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1783,7 +1783,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@mnnit.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#800020',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=mnnit.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1819,7 +1819,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitkkr.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#FF8C00',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1855,7 +1855,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitjsr.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#2F4F4F',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitjsr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1891,7 +1891,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nits.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nits.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1927,7 +1927,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nith.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#4169E1',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nith.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1963,7 +1963,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitsri.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitsri.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -1999,7 +1999,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitj.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#DC143C',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitj.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2035,7 +2035,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitp.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#B22222',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitp.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2071,7 +2071,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitrr.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#2E8B57',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitrr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2107,7 +2107,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nita.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#556B2F',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nita.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2143,7 +2143,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@vnit.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#FF6347',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=vnit.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2179,7 +2179,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitgoa.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#20B2AA',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitgoa.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2215,7 +2215,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitdelhi.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#4682B4',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitdelhi.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2251,7 +2251,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nituk.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#3CB371',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nituk.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2287,7 +2287,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitm.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#6B8E23',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitm.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2323,7 +2323,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitmanipur.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#8B4513',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitmanipur.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2359,7 +2359,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitmz.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitmz.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2395,7 +2395,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitnagaland.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#2F4F4F',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitnagaland.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2431,7 +2431,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitap.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitap.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2467,7 +2467,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitsikkim.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#4682B4',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitsikkim.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2503,7 +2503,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitandhra.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#DC143C',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitandhra.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2539,7 +2539,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@nitpy.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#0000CD',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitpy.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2575,7 +2575,7 @@ export const centralUniversities: University[] = [
     email: 'registrar@mnit.ac.in',
     examName: 'JEE Main (UG) / GATE (PG)',
     logoColor: '#C71585',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=mnit.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
@@ -2611,7 +2611,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiims.ac.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#1E3A8A',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiims.edu&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2640,7 +2640,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsmadurai.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG',
     logoColor: '#800000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsmadurai.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2667,7 +2667,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsbhopal.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsbhopal.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2695,7 +2695,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsjodhpur.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#B8860B',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsjodhpur.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2723,7 +2723,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimspatna.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimspatna.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2751,7 +2751,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsraipur.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#2E8B57',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsraipur.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2779,7 +2779,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsrishikesh.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#4682B4',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsrishikesh.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2807,7 +2807,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsbhubaneswar.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
     logoColor: '#DC143C',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsbhubaneswar.nic.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2835,7 +2835,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsmangalagiri.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsmangalagiri.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2862,7 +2862,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsnagpur.edu.in',
     examName: 'NEET UG (MBBS) / NEET PG',
     logoColor: '#FF6347',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsnagpur.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2889,7 +2889,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsgorakhpur.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#8B4513',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsgorakhpur.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2915,7 +2915,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsbathinda.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#DC143C',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsbathinda.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2941,7 +2941,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsraebareli.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#4682B4',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsraebareli.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2967,7 +2967,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimskalyani.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimskalyani.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -2993,7 +2993,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsdeoghar.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsdeoghar.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3019,7 +3019,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsbilaspur.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#4169E1',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsbilaspur.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3045,7 +3045,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsguwahati.ac.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsguwahati.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3071,7 +3071,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsrajkot.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#FF8C00',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsrajkot.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3097,7 +3097,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsbibinagar.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#DC143C',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsbibinagar.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3123,7 +3123,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsjammu.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsjammu.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3149,7 +3149,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsdarbhanga.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#B22222',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsdarbhanga.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3175,7 +3175,7 @@ export const centralUniversities: University[] = [
     email: 'director@aiimsrewari.edu.in',
     examName: 'NEET UG (MBBS)',
     logoColor: '#2F4F4F',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=aiimsrewari.edu.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
@@ -3207,7 +3207,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iima.ac.in',
     examName: 'CAT (MBA) / GMAT (Executive Programs)',
     logoColor: '#1E3A8A',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iima.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Registration', eventTamil: 'CAT 2026 பதிவு', date: 'August 2026', status: 'upcoming' },
@@ -3234,7 +3234,7 @@ export const centralUniversities: University[] = [
     email: 'admission@iimb.ac.in',
     examName: 'CAT (MBA) / GMAT (Executive Programs)',
     logoColor: '#003366',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimb.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
@@ -3260,7 +3260,7 @@ export const centralUniversities: University[] = [
     email: 'pgpadmission@iimcal.ac.in',
     examName: 'CAT (MBA) / GMAT (Executive Programs)',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
@@ -3286,7 +3286,7 @@ export const centralUniversities: University[] = [
     email: 'pgpadmissions@iiml.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#003366',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iiml.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
@@ -3312,7 +3312,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimk.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimk.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
@@ -3338,7 +3338,7 @@ export const centralUniversities: University[] = [
     email: 'pgpadmissions@iimidr.ac.in',
     examName: 'CAT (MBA) / IPMAT (IPM)',
     logoColor: '#8B4513',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimidr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IPMAT 2026 Registration', eventTamil: 'IPMAT 2026 பதிவு', date: 'March 2026', status: 'upcoming' },
@@ -3364,7 +3364,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimshillong.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#2E8B57',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimshillong.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3388,7 +3388,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimranchi.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#4B0082',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimranchi.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3412,7 +3412,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimraipur.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#FF6600',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimraipur.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3436,7 +3436,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimrohtak.ac.in',
     examName: 'CAT (MBA) / IPMAT (IPM)',
     logoColor: '#800000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimrohtak.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
@@ -3462,7 +3462,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimkashipur.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimkashipur.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3486,7 +3486,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimu.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#4169E1',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimu.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3510,7 +3510,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimnagpur.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#FF4500',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimnagpur.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3533,7 +3533,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimv.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#0066CC',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimv.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3556,7 +3556,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimbg.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#DAA520',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimbg.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3579,7 +3579,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimamritsar.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#FF6347',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimamritsar.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3603,7 +3603,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimsambalpur.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#228B22',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimsambalpur.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3626,7 +3626,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimsirmaur.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#4682B4',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimsirmaur.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3649,7 +3649,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimj.ac.in',
     examName: 'CAT (MBA) / IPMAT (IPM)',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimj.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
@@ -3674,7 +3674,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iimmumbai.ac.in',
     examName: 'CAT (MBA)',
     logoColor: '#000080',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iimmumbai.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
@@ -3701,7 +3701,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iiserpune.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#0066CC',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iiserpune.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' },
@@ -3725,7 +3725,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iiserkol.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#8B0000',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iiserkol.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
@@ -3748,7 +3748,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iisermohali.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#006633',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iisermohali.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
@@ -3771,7 +3771,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iiserb.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#4B0082',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iiserb.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
@@ -3794,7 +3794,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iisertvm.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iisertvm.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
@@ -3817,7 +3817,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iisertirupati.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#FF6600',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iisertirupati.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
@@ -3840,7 +3840,7 @@ export const centralUniversities: University[] = [
     email: 'admissions@iiserbpr.ac.in',
     examName: 'IAT / JEE Advanced / KVPY',
     logoColor: '#4169E1',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=iiserbpr.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
@@ -3867,7 +3867,7 @@ export const centralUniversities: University[] = [
     email: 'cict@cict.in',
     examName: 'Direct Application',
     logoColor: '#8B4513',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=cict.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'Ph.D. Admission 2026', eventTamil: 'Ph.D. சேர்க்கை 2026', date: 'March 2026', status: 'upcoming' },
@@ -3894,7 +3894,7 @@ export const centralUniversities: University[] = [
     email: 'nitttrcinfo@gmail.com',
     examName: 'GATE (M.Tech) / Direct Application',
     logoColor: '#006400',
-    logo: '',
+    logo: 'https://www.google.com/s2/favicons?domain=nitttrc.ac.in&sz=128',
     type: 'Central Government',
     importantDates: [
       { event: 'M.Tech Admission 2026', eventTamil: 'M.Tech சேர்க்கை 2026', date: 'May 2026', status: 'upcoming' },
