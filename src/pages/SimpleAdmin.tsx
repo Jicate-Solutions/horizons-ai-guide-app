@@ -243,6 +243,12 @@ const SimpleAdmin = () => {
     if (password !== ADMIN_PASS) { setError('Wrong password'); return; }
     setIsLoading(true);
     setError('');
+
+    // Save service key to localStorage if provided
+    if (serviceKey && serviceKey.startsWith('eyJ')) {
+      localStorage.setItem('vzk_admin_sk', serviceKey);
+    }
+
     try {
       // Authenticate with Supabase so we can read data past RLS
       const { error: signInErr } = await supabase.auth.signInWithPassword({
@@ -266,6 +272,18 @@ const SimpleAdmin = () => {
     setIsLoggedIn(true);
     setIsLoading(false);
     fetchUsers();
+
+    // Auto-run data protection setup if service key is available
+    if (serviceKey && serviceKey.startsWith('eyJ')) {
+      fetch('/api/setup-data-protection', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASS, serviceKey }),
+      }).then(r => r.json()).then(data => {
+        console.log('[ADMIN] Data protection setup:', data);
+        if (data.success) console.log('[ADMIN] ✅ Data protection configured');
+      }).catch(err => console.warn('[ADMIN] Data protection setup failed:', err));
+    }
   };
 
   const filtered = useMemo(() => {
@@ -378,6 +396,18 @@ const SimpleAdmin = () => {
                 value={password} onChange={e => setPassword(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLogin()}
                 className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/10 outline-none transition-all" />
+            </div>
+            <div>
+              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em] mb-2 block">
+                Supabase Service Key {serviceKey ? <span className="text-emerald-400">✅ Saved</span> : <span className="text-amber-400">(required for data)</span>}
+              </label>
+              <input type="password" placeholder="eyJhbGci... (from Supabase → Settings → API)"
+                value={serviceKey} onChange={e => setServiceKey(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleLogin()}
+                className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/10 outline-none transition-all" />
+              <p className="text-[10px] text-gray-500 mt-1.5 leading-relaxed">
+                Get from: <span className="text-gray-300">supabase.com → Your Project → Settings → API → service_role key</span>
+              </p>
             </div>
             {error && <p className="text-xs text-red-400 font-medium bg-red-500/10 px-3 py-2 rounded-lg border border-red-500/20">{error}</p>}
             <button onClick={handleLogin} className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-sm font-bold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg shadow-emerald-500/25">
