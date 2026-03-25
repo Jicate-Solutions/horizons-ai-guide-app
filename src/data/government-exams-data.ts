@@ -95,11 +95,12 @@ const defenceExams: Exam[] = [
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (கடற்படை/விமானப்படைக்கு PCM)',
     age: '16.5 - 19.5 years',
     salary: '₹56,100/month',
-    selectionProcess: 'Written Exam → SSB Interview → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → SSB நேர்காணல் → மருத்துவப் பரிசோதனை',
+    selectionProcess: 'Written Exam (Maths 300 + GAT 600 = 900 Marks | Negative Marking: Maths -0.83, GAT -1.33 per wrong answer) → SSB Interview (900 Marks) → Medical. Total: 1800 Marks',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு (கணிதம் 300 + GAT 600 = 900 மதிப்பெண் | தவறான விடைக்கு: கணிதம் -0.83, GAT -1.33 கழிக்கப்படும்) → SSB நேர்காணல் (900 மதிப்பெண்) → மருத்துவம். மொத்தம்: 1800',
     examPattern: [
       { paper: 'Mathematics', paperTamil: 'கணிதம்', marks: 300, duration: '2.5 hours', questions: 120 },
-      { paper: 'General Ability Test', paperTamil: 'பொது திறன் தேர்வு', marks: 600, duration: '2.5 hours', questions: 150 }
+      { paper: 'General Ability Test', paperTamil: 'பொது திறன் தேர்வு', marks: 600, duration: '2.5 hours', questions: 150 },
+      { paper: 'SSB Test/Interview', paperTamil: 'SSB நேர்காணல்', marks: 900, duration: '5 days', questions: 0 }
     ],
     syllabus: {
       mathematics: [
