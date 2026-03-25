@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/career-assessment/colleges/govt-jobs", "destination": "/government-exams", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
