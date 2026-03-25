@@ -89,17 +89,17 @@ export interface Category {
 const defenceExams: Exam[] = [
   {
     id: 'nda',
-    name: 'NDA (National Defence Academy)',
-    nameTamil: 'NDA (தேசிய பாதுகாப்பு அகாடமி)',
+    name: 'NDA & NA Examination (I) 2026',
+    nameTamil: 'NDA & NA தேர்வு (I) 2026',
     qualification: '12th Pass (PCM for Navy/Air Force)',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (கடற்படை/விமானப்படைக்கு PCM)',
     age: '16.5 - 19.5 years',
     salary: '₹56,100/month',
-    selectionProcess: 'Written Exam (Maths 300 + GAT 600 = 900 Marks | Negative Marking: Maths -0.83, GAT -1.33 per wrong answer) → SSB Interview (900 Marks) → Medical. Total: 1800 Marks',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு (கணிதம் 300 + GAT 600 = 900 மதிப்பெண் | தவறான விடைக்கு: கணிதம் -0.83, GAT -1.33 கழிக்கப்படும்) → SSB நேர்காணல் (900 மதிப்பெண்) → மருத்துவம். மொத்தம்: 1800',
+    selectionProcess: 'Written Exam on 12 April 2026 (Sunday) | Paper I: Mathematics 10:00 AM - 12:30 PM (300 Marks, +2.5/-0.83) | Paper II: GAT 2:00 PM - 4:30 PM (600 Marks, +4/-1.33) | Total Written: 900 Marks → SSB Interview: 900 Marks → Medical | Grand Total: 1800 Marks',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு: 12 ஏப்ரல் 2026 (ஞாயிறு) | தாள் I: கணிதம் 10:00 AM - 12:30 PM (300 மதிப்பெண், +2.5/-0.83) | தாள் II: GAT 2:00 PM - 4:30 PM (600 மதிப்பெண், +4/-1.33) | மொத்த எழுத்துத் தேர்வு: 900 → SSB நேர்காணல்: 900 → மருத்துவம் | மொத்தம்: 1800',
     examPattern: [
-      { paper: 'Mathematics', paperTamil: 'கணிதம்', marks: 300, duration: '2.5 hours', questions: 120 },
-      { paper: 'General Ability Test', paperTamil: 'பொது திறன் தேர்வு', marks: 600, duration: '2.5 hours', questions: 150 },
+      { paper: 'Mathematics (Code: 01)', paperTamil: 'கணிதம் (குறியீடு: 01)', marks: 300, duration: '10:00 AM - 12:30 PM (2.5 hours)', questions: 120 },
+      { paper: 'General Ability Test (Code: 02)', paperTamil: 'பொது திறன் தேர்வு (குறியீடு: 02)', marks: 600, duration: '2:00 PM - 4:30 PM (2.5 hours)', questions: 150 },
       { paper: 'SSB Test/Interview', paperTamil: 'SSB நேர்காணல்', marks: 900, duration: '5 days', questions: 0 }
     ],
     syllabus: {
