@@ -14,9 +14,14 @@ if (isNotificationSupported() && Notification.permission === 'granted') {
   startNotificationChecker();
 }
 
-// Register service worker for PWA + offline caching
+// Unregister service worker and clear all caches to fix stale content issues
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((reg) => reg.unregister());
+    });
+    if ('caches' in window) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+    }
   });
 }
