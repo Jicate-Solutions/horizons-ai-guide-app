@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft, BookOpen, FileText, Play, ChevronDown,
-  Check, X, Eye, EyeOff, Download, Award, Clock,
+  Check, X, Eye, EyeOff, Download, Award, Clock, Calendar,
   Banknote, GraduationCap, Users, Target, Sparkles,
   RotateCcw, ChevronRight, CircleCheck, AlertCircle
 } from 'lucide-react';
@@ -29,29 +29,59 @@ const GovernmentExamDetail = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [revealedAnswers, setRevealedAnswers] = useState<Set<string>>(new Set());
   const [showMockTest, setShowMockTest] = useState(false);
+  const [yearFilter, setYearFilter] = useState<string>('all');
+  const [subjectFilter, setSubjectFilter] = useState<string>('all');
 
   const category = getCategoryById(categoryId || '');
   const exam = getExamById(categoryId || '', examId || '');
 
-  // PYQ grouped by subject
-  const pyqBySubject = useMemo(() => {
-    if (!exam) return {};
-    const g: Record<string, Question[]> = {};
-    exam.pyq.forEach(q => { if (!g[q.subject]) g[q.subject] = []; g[q.subject].push(q); });
-    return g;
+  // Extract year from question ID (tnpsc-2024-xxx → 2024, tnpsc-gs-xxx → 'General')
+  const getQuestionYear = (id: string): string => {
+    const m = id.match(/(\d{4})/);
+    return m ? m[1] : 'General';
+  };
+
+  // Available years and subjects for filtering
+  const availableYears = useMemo(() => {
+    if (!exam) return [];
+    const years = new Set(exam.pyq.map(q => getQuestionYear(q.id)));
+    return ['all', ...Array.from(years).sort((a, b) => b.localeCompare(a))];
   }, [exam]);
 
-  // PYQ stats
+  const availableSubjects = useMemo(() => {
+    if (!exam) return [];
+    const subjects = new Set(exam.pyq.map(q => q.subject));
+    return ['all', ...Array.from(subjects).sort()];
+  }, [exam]);
+
+  // Filtered questions based on year and subject
+  const filteredPYQ = useMemo(() => {
+    if (!exam) return [];
+    return exam.pyq.filter(q => {
+      const matchYear = yearFilter === 'all' || getQuestionYear(q.id) === yearFilter;
+      const matchSubject = subjectFilter === 'all' || q.subject === subjectFilter;
+      return matchYear && matchSubject;
+    });
+  }, [exam, yearFilter, subjectFilter]);
+
+  // PYQ grouped by subject (using filtered questions)
+  const pyqBySubject = useMemo(() => {
+    const g: Record<string, Question[]> = {};
+    filteredPYQ.forEach(q => { if (!g[q.subject]) g[q.subject] = []; g[q.subject].push(q); });
+    return g;
+  }, [filteredPYQ]);
+
+  // PYQ stats (filtered)
   const pyqStats = useMemo(() => {
-    const total = exam?.pyq.length || 0;
-    const attempted = Object.keys(selectedAnswers).length;
-    const revealed = revealedAnswers.size;
+    const total = filteredPYQ.length;
+    const attempted = Object.keys(selectedAnswers).filter(k => filteredPYQ.some(q => q.id === k)).length;
+    const revealed = Array.from(revealedAnswers).filter(k => filteredPYQ.some(q => q.id === k)).length;
     const correct = Object.entries(selectedAnswers).filter(([qid, ans]) => {
-      const q = exam?.pyq.find(p => p.id === qid);
+      const q = filteredPYQ.find(p => p.id === qid);
       return q && q.answer === ans;
     }).length;
     return { total, attempted, revealed, correct };
-  }, [exam, selectedAnswers, revealedAnswers]);
+  }, [filteredPYQ, selectedAnswers, revealedAnswers]);
 
   // Syllabus stats
   const syllabusStats = useMemo(() => {
@@ -312,6 +342,77 @@ const GovernmentExamDetail = () => {
                   )}
                 </div>
 
+                {/* ── Year-wise filter tabs ── */}
+                {availableYears.length > 2 && (
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-3 border border-gray-100 dark:border-slate-700 mb-3">
+                    <p className="text-xs font-bold text-gray-700 dark:text-gray-200 mb-2 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-blue-500" />
+                      {ta ? 'ஆண்டு வாரியாக' : 'Filter by Year'}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {availableYears.map(year => (
+                        <button
+                          key={year}
+                          onClick={() => setYearFilter(year)}
+                          className={cn(
+                            "px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
+                            yearFilter === year
+                              ? "bg-blue-600 text-white shadow-sm"
+                              : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200"
+                          )}
+                        >
+                          {year === 'all' ? (ta ? 'அனைத்தும்' : 'All Years') : year}
+                          {year !== 'all' && (
+                            <span className="ml-1 opacity-70">
+                              ({exam.pyq.filter(q => getQuestionYear(q.id) === year).length})
+                            </span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Subject-wise filter pills ── */}
+                {availableSubjects.length > 3 && (
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-3 border border-gray-100 dark:border-slate-700 mb-3">
+                    <p className="text-xs font-bold text-gray-700 dark:text-gray-200 mb-2 flex items-center gap-1.5">
+                      <BookOpen className="w-3.5 h-3.5 text-purple-500" />
+                      {ta ? 'பாடம் வாரியாக' : 'Filter by Subject'}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {availableSubjects.map(subject => (
+                        <button
+                          key={subject}
+                          onClick={() => setSubjectFilter(subject)}
+                          className={cn(
+                            "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
+                            subjectFilter === subject
+                              ? "bg-purple-600 text-white shadow-sm"
+                              : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200"
+                          )}
+                        >
+                          {subject === 'all' ? (ta ? 'அனைத்தும்' : 'All Subjects') : subject}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Filtered count display ── */}
+                {(yearFilter !== 'all' || subjectFilter !== 'all') && (
+                  <div className="flex items-center justify-between bg-blue-50 dark:bg-blue-950/30 rounded-xl px-3 py-2 mb-3">
+                    <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">
+                      {ta ? `${filteredPYQ.length} கேள்விகள் காட்டப்படுகின்றன` : `Showing ${filteredPYQ.length} of ${exam.pyq.length} questions`}
+                      {yearFilter !== 'all' && <span className="ml-1">({yearFilter})</span>}
+                      {subjectFilter !== 'all' && <span className="ml-1">• {subjectFilter}</span>}
+                    </p>
+                    <button onClick={() => { setYearFilter('all'); setSubjectFilter('all'); }} className="text-xs font-bold text-blue-600 hover:text-blue-800">
+                      {ta ? 'அழி' : 'Clear'}
+                    </button>
+                  </div>
+                )}
+
                 {/* ── Subject-wise question groups ── */}
                 {Object.entries(pyqBySubject).map(([subject, questions]) => (
                   <div key={subject} className="mb-5">
@@ -343,9 +444,26 @@ const GovernmentExamDetail = () => {
                                 <span className="text-xs font-bold text-gray-400 bg-gray-100 dark:bg-slate-700 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0">
                                   {qIdx + 1}
                                 </span>
-                                <p className="text-[12px] font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
-                                  {ta && q.questionTamil ? q.questionTamil : q.question}
-                                </p>
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-1.5 mb-1">
+                                    {getQuestionYear(q.id) !== 'General' && (
+                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300">
+                                        {getQuestionYear(q.id)}
+                                      </span>
+                                    )}
+                                    <span className={cn(
+                                      "text-[10px] font-bold px-1.5 py-0.5 rounded",
+                                      q.difficulty === 'hard' ? "bg-red-100 dark:bg-red-950/30 text-red-600" :
+                                      q.difficulty === 'medium' ? "bg-amber-100 dark:bg-amber-950/30 text-amber-700" :
+                                      "bg-green-100 dark:bg-green-950/30 text-green-700"
+                                    )}>
+                                      {q.difficulty === 'hard' ? (ta ? 'கடினம்' : 'Hard') : q.difficulty === 'medium' ? (ta ? 'நடுத்தரம்' : 'Medium') : (ta ? 'எளிது' : 'Easy')}
+                                    </span>
+                                  </div>
+                                  <p className="text-[12px] font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
+                                    {ta && q.questionTamil ? q.questionTamil : q.question}
+                                  </p>
+                                </div>
                               </div>
 
                               {/* Options */}
