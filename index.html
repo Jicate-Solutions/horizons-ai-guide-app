@@ -5,6 +5,23 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <script>
+      // Force redirect old govt-jobs URL — works for both page load AND SPA navigation
+      function checkRedirect(){
+        if(window.location.pathname==='/career-assessment/colleges/govt-jobs'){
+          window.location.replace('/government-exams');
+        }
+      }
+      checkRedirect();
+      // Override pushState/replaceState to catch SPA navigation
+      var origPush=history.pushState;
+      history.pushState=function(){origPush.apply(this,arguments);checkRedirect();};
+      var origReplace=history.replaceState;
+      history.replaceState=function(){origReplace.apply(this,arguments);checkRedirect();};
+      window.addEventListener('popstate',checkRedirect);
+      // Also check every 500ms as safety net
+      setInterval(checkRedirect,500);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <title>VAZHIKATTI — Free AI Career Guide for 12th Students | Tamil Nadu</title>
     <meta name="description" content="Free career guidance for Tamil Nadu 12th students. TNEA cutoff calculator, 25 govt exams with PYQ, 436 sports quota colleges, counselling tracker, college search — all in one app." />
