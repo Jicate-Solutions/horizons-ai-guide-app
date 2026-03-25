@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import { LanguageProvider } from "@/hooks/useLanguage";
@@ -78,7 +78,7 @@ const FindCollegesPage = lazy(() => import("./pages/CollegesTabPages").then(m =>
 const ScholarshipsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.ScholarshipsPage })));
 const EduCutoffPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.EduCutoffPage })));
 const EntranceExamsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.EntranceExamsPage })));
-const GovtJobsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.GovtJobsPage })));
+const GovtJobsPage = lazy(() => import("./pages/GovernmentExams"));
 const TNUniversityPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.TNUniversityPage })));
 const CourseExplorerPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.CourseExplorerPage })));
 const StartupGuidePage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.StartupGuidePage })));
@@ -163,7 +163,7 @@ function App() {
                 <Route path="/career-assessment/colleges/educutoff" element={<EduCutoffPage />} />
                 <Route path="/career-assessment/colleges/entrance-exams" element={<EntranceExamsPage />} />
                 <Route path="/career-assessment/colleges/pyq" element={<EntranceExamsPage />} />
-                <Route path="/career-assessment/colleges/govt-jobs" element={<Navigate to="/government-exams" replace />} />
+                <Route path="/career-assessment/colleges/govt-jobs" element={<GovtJobsPage />} />
                 <Route path="/career-assessment/colleges/tn-university" element={<TNUniversityPage />} />
                 <Route path="/career-assessment/colleges/course-explorer" element={<CourseExplorerPage />} />
                 <Route path="/career-assessment/colleges/startup" element={<StartupGuidePage />} />
