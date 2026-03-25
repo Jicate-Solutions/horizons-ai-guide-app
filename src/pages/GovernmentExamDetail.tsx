@@ -31,6 +31,7 @@ const GovernmentExamDetail = () => {
   const [showMockTest, setShowMockTest] = useState(false);
   const [yearFilter, setYearFilter] = useState<string>('all');
   const [subjectFilter, setSubjectFilter] = useState<string>('all');
+  const [pyqMode, setPyqMode] = useState<'year' | 'subject' | 'practice'>('year');
 
   const category = getCategoryById(categoryId || '');
   const exam = getExamById(categoryId || '', examId || '');
@@ -331,257 +332,397 @@ const GovernmentExamDetail = () => {
                 <Target className="w-10 h-10 text-gray-200 mx-auto mb-3" />
                 <p className="text-sm font-semibold text-gray-500 mb-1">{ta ? 'PYQ கேள்விகள் விரைவில்' : 'Previous Year Questions Coming Soon'}</p>
                 <p className="text-xs text-gray-400 max-w-xs mx-auto">{ta ? 'இந்த தேர்வுக்கான முந்தைய ஆண்டு கேள்விகளை விரைவில் சேர்ப்போம்.' : 'We are preparing previous year questions for this exam. Check back soon.'}</p>
-                <Button variant="outline" size="sm" className="mt-4 text-xs rounded-lg" onClick={() => setShowMockTest(true)}>
-                  <Play className="w-3.5 h-3.5 mr-1.5" /> {ta ? 'மாக் டெஸ்ட் முயற்சிக்க' : 'Try Mock Test Instead'}
-                </Button>
               </CardContent></Card>
             ) : (
               <>
-                {/* ── PYQ Progress Bar ── */}
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-3.5 border border-gray-100 dark:border-slate-700 mb-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <div>
-                      <p className="text-xs font-bold text-gray-800 dark:text-white">{ta ? 'உங்கள் முன்னேற்றம்' : 'Your Progress'}</p>
-                      <p className="text-xs text-gray-400">{pyqStats.attempted}/{pyqStats.total} {ta ? 'பதில் அளித்தது' : 'answered'} • {pyqStats.correct} {ta ? 'சரி' : 'correct'}</p>
-                    </div>
-                    <div className="flex gap-2">
-                      {pyqStats.attempted > 0 && (
-                        <button onClick={resetPYQ} className="text-xs font-semibold text-gray-400 hover:text-gray-600 flex items-center gap-1 transition-colors">
-                          <RotateCcw className="w-3.5 h-3.5" /> {ta ? 'மீட்டமை' : 'Reset'}
-                        </button>
+                {/* ══════ PRACTICE MODE SELECTOR ══════ */}
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-3 border border-gray-100 dark:border-slate-700 mb-3">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => { setYearFilter('all'); setSubjectFilter('all'); setPyqMode('year'); }}
+                      className={cn("flex-1 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5",
+                        pyqMode === 'year' ? "bg-blue-600 text-white shadow-sm" : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300"
                       )}
-                      <Button variant="outline" size="sm" className="h-7 text-xs gap-1 rounded-lg" onClick={() => handleDownloadPDF('pyq')}>
-                        <Download className="w-3.5 h-3.5" /> PDF
-                      </Button>
-                    </div>
+                    >
+                      <Calendar className="w-3.5 h-3.5" />
+                      {ta ? 'ஆண்டு வாரியாக' : 'Year-wise Papers'}
+                    </button>
+                    <button
+                      onClick={() => { setYearFilter('all'); setSubjectFilter('all'); setPyqMode('subject'); }}
+                      className={cn("flex-1 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5",
+                        pyqMode === 'subject' ? "bg-purple-600 text-white shadow-sm" : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300"
+                      )}
+                    >
+                      <BookOpen className="w-3.5 h-3.5" />
+                      {ta ? 'பாடம் வாரியாக' : 'Subject-wise Practice'}
+                    </button>
                   </div>
-                  {/* Progress bar */}
-                  <div className="h-2 bg-gray-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-emerald-500 to-green-600"
-                      style={{ width: `${pyqStats.total > 0 ? (pyqStats.revealed / pyqStats.total) * 100 : 0}%` }}
-                    />
-                  </div>
-                  {/* Score display */}
-                  {pyqStats.revealed > 0 && (
-                    <div className="flex gap-3 mt-2">
-                      <span className="text-xs text-emerald-600 font-bold flex items-center gap-1"><CircleCheck className="w-3.5 h-3.5" /> {pyqStats.correct} {ta ? 'சரி' : 'correct'}</span>
-                      <span className="text-xs text-red-500 font-bold flex items-center gap-1"><AlertCircle className="w-3.5 h-3.5" /> {pyqStats.revealed - pyqStats.correct} {ta ? 'தவறு' : 'wrong'}</span>
-                      <span className="text-xs text-gray-400">{pyqStats.total - pyqStats.revealed} {ta ? 'மீதம்' : 'remaining'}</span>
-                    </div>
-                  )}
                 </div>
 
-                {/* ── Year-wise filter tabs ── */}
-                {availableYears.length > 2 && (
-                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-3 border border-gray-100 dark:border-slate-700 mb-3">
-                    <p className="text-xs font-bold text-gray-700 dark:text-gray-200 mb-2 flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-blue-500" />
-                      {ta ? 'ஆண்டு வாரியாக' : 'Filter by Year'}
+                {/* ══════ MODE: YEAR-WISE PAPERS (like Testbook) ══════ */}
+                {pyqMode === 'year' && yearFilter === 'all' && (
+                  <div className="space-y-2.5 mb-3">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 px-1 flex items-center gap-1.5">
+                      <Target className="w-3.5 h-3.5" />
+                      {ta ? 'முந்தைய ஆண்டு வினாத்தாள்கள்' : 'Previous Year Question Papers'}
+                      <span className="ml-auto text-gray-400">{availableYears.length - 1} {ta ? 'ஆண்டுகள்' : 'years'}</span>
                     </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {availableYears.map(year => (
-                        <button
-                          key={year}
-                          onClick={() => setYearFilter(year)}
-                          className={cn(
-                            "px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
-                            yearFilter === year
-                              ? "bg-blue-600 text-white shadow-sm"
-                              : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200"
-                          )}
-                        >
-                          {year === 'all' ? (ta ? 'அனைத்தும்' : 'All Years') : year}
-                          {year !== 'all' && (
-                            <span className="ml-1 opacity-70">
-                              ({exam.pyq.filter(q => getQuestionYear(q.id) === year).length})
-                            </span>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                    {(exam as any).previousYearPapers && (exam as any).previousYearPapers.length > 0 ? (
+                      (exam as any).previousYearPapers.map((paper: any) => {
+                        const yearQuestions = exam.pyq.filter(q => {
+                          const y = q.year || parseInt((q.id.match(/(\d{4})/) || ['0','0'])[1]);
+                          return y === paper.year;
+                        });
+                        return (
+                          <div key={paper.year} className="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 overflow-hidden">
+                            <div className="p-4">
+                              <div className="flex items-center justify-between mb-2">
+                                <div>
+                                  <h4 className="text-sm font-bold text-gray-800 dark:text-white">
+                                    {exam.name.split('(')[0].trim()} — {paper.year}
+                                  </h4>
+                                  <p className="text-xs text-gray-400 mt-0.5">
+                                    {ta ? 'தாள் குறியீடு' : 'Paper Code'}: {paper.paperCode} • {paper.examDate}
+                                  </p>
+                                </div>
+                                <div className="bg-blue-50 dark:bg-blue-950/30 px-2.5 py-1 rounded-lg">
+                                  <p className="text-xs font-bold text-blue-700 dark:text-blue-300">{yearQuestions.length}</p>
+                                  <p className="text-[10px] text-blue-500">{ta ? 'கேள்விகள்' : 'Qs added'}</p>
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-3 gap-2 mb-3">
+                                <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2 text-center">
+                                  <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{paper.totalQuestions}</p>
+                                  <p className="text-[10px] text-gray-400">{ta ? 'கேள்விகள்' : 'Questions'}</p>
+                                </div>
+                                <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2 text-center">
+                                  <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{paper.totalMarks}</p>
+                                  <p className="text-[10px] text-gray-400">{ta ? 'மதிப்பெண்' : 'Marks'}</p>
+                                </div>
+                                <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2 text-center">
+                                  <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{paper.duration}</p>
+                                  <p className="text-[10px] text-gray-400">{ta ? 'நேரம்' : 'Duration'}</p>
+                                </div>
+                              </div>
+                              {paper.parts && (
+                                <div className="space-y-1 mb-3">
+                                  {paper.parts.map((part: any, i: number) => (
+                                    <div key={i} className="flex items-center justify-between text-xs bg-gray-50 dark:bg-slate-700/30 rounded-lg px-3 py-1.5">
+                                      <span className="text-gray-600 dark:text-gray-300">{ta ? part.nameTamil : part.name}</span>
+                                      <span className="font-bold text-gray-500">{part.questionRange} • {part.marks} {ta ? 'மதிப்பெண்' : 'marks'}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                              <div className="flex gap-2">
+                                <Button size="sm" className="flex-1 text-xs font-bold rounded-xl bg-blue-600 hover:bg-blue-700 text-white h-9"
+                                  onClick={() => { setYearFilter(String(paper.year)); }}
+                                  disabled={yearQuestions.length === 0}
+                                >
+                                  <Play className="w-3.5 h-3.5 mr-1" />
+                                  {yearQuestions.length > 0
+                                    ? (ta ? `${yearQuestions.length} கேள்விகள் பயிற்சி` : `Practice ${yearQuestions.length} Questions`)
+                                    : (ta ? 'விரைவில்' : 'Coming Soon')
+                                  }
+                                </Button>
+                                {yearQuestions.length > 0 && (
+                                  <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl h-9" onClick={() => handleDownloadPDF('pyq')}>
+                                    <Download className="w-3.5 h-3.5" />
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      /* Fallback: show year buttons if no paper metadata */
+                      availableYears.filter(y => y !== 'all').map(year => {
+                        const count = exam.pyq.filter(q => getQuestionYear(q.id) === year).length;
+                        return (
+                          <button key={year} onClick={() => setYearFilter(year)}
+                            className="w-full bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 p-4 text-left hover:border-blue-300 transition-all"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h4 className="text-sm font-bold text-gray-800 dark:text-white">{exam.name.split('(')[0].trim()} — {year}</h4>
+                                <p className="text-xs text-gray-400 mt-0.5">{count} {ta ? 'கேள்விகள்' : 'questions available'}</p>
+                              </div>
+                              <ChevronRight className="w-4 h-4 text-gray-400" />
+                            </div>
+                          </button>
+                        );
+                      })
+                    )}
 
-                {/* ── Subject-wise filter pills ── */}
-                {availableSubjects.length > 3 && (
-                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-3 border border-gray-100 dark:border-slate-700 mb-3">
-                    <p className="text-xs font-bold text-gray-700 dark:text-gray-200 mb-2 flex items-center gap-1.5">
-                      <BookOpen className="w-3.5 h-3.5 text-purple-500" />
-                      {ta ? 'பாடம் வாரியாக' : 'Filter by Subject'}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {availableSubjects.map(subject => (
-                        <button
-                          key={subject}
-                          onClick={() => setSubjectFilter(subject)}
-                          className={cn(
-                            "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all",
-                            subjectFilter === subject
-                              ? "bg-purple-600 text-white shadow-sm"
-                              : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200"
-                          )}
-                        >
-                          {subject === 'all' ? (ta ? 'அனைத்தும்' : 'All Subjects') : subject}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* ── Filtered count display ── */}
-                {(yearFilter !== 'all' || subjectFilter !== 'all') && (
-                  <div className="flex items-center justify-between bg-blue-50 dark:bg-blue-950/30 rounded-xl px-3 py-2 mb-3">
-                    <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">
-                      {ta ? `${filteredPYQ.length} கேள்விகள் காட்டப்படுகின்றன` : `Showing ${filteredPYQ.length} of ${exam.pyq.length} questions`}
-                      {yearFilter !== 'all' && <span className="ml-1">({yearFilter})</span>}
-                      {subjectFilter !== 'all' && <span className="ml-1">• {subjectFilter}</span>}
-                    </p>
-                    <button onClick={() => { setYearFilter('all'); setSubjectFilter('all'); }} className="text-xs font-bold text-blue-600 hover:text-blue-800">
-                      {ta ? 'அழி' : 'Clear'}
+                    {/* All Questions button */}
+                    <button onClick={() => { setYearFilter('all'); setPyqMode('practice'); }}
+                      className="w-full bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-center"
+                    >
+                      <p className="text-xs font-bold text-white mb-0.5">{ta ? 'அனைத்து ஆண்டு கேள்விகளும்' : 'All Years Combined'}</p>
+                      <p className="text-xs text-white/50">{exam.pyq.length} {ta ? 'கேள்விகள்' : 'questions'} — {ta ? 'அனைத்தையும் பயிற்சி செய்யுங்கள்' : 'Practice all questions together'}</p>
                     </button>
                   </div>
                 )}
 
-                {/* ── Subject-wise question groups ── */}
-                {Object.entries(pyqBySubject).map(([subject, questions]) => (
-                  <div key={subject} className="mb-5">
-                    <div className="flex items-center gap-2 mb-2.5 px-1">
-                      <FileText className="w-3.5 h-3.5 text-indigo-500" />
-                      <h3 className="text-xs font-bold text-gray-700 dark:text-gray-200">{subject}</h3>
-                      <span className="text-xs text-gray-400 ml-auto">{questions.length} {ta ? 'கேள்விகள்' : 'questions'}</span>
+                {/* ══════ MODE: SUBJECT-WISE (like TNPSCMaster) ══════ */}
+                {pyqMode === 'subject' && subjectFilter === 'all' && (
+                  <div className="space-y-2 mb-3">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 px-1 flex items-center gap-1.5">
+                      <BookOpen className="w-3.5 h-3.5" />
+                      {ta ? 'பாடம் வாரியாக பயிற்சி' : 'Practice by Subject'}
+                      <span className="ml-auto text-gray-400">{availableSubjects.length - 1} {ta ? 'பாடங்கள்' : 'subjects'}</span>
+                    </p>
+                    {availableSubjects.filter(s => s !== 'all').map(subject => {
+                      const count = exam.pyq.filter(q => q.subject === subject).length;
+                      const years = new Set(exam.pyq.filter(q => q.subject === subject).map(q => q.year || getQuestionYear(q.id)));
+                      const subjectColors: Record<string, string> = {
+                        'Indian Polity': 'from-blue-500 to-blue-600',
+                        'History': 'from-amber-500 to-amber-600',
+                        'Tamil Nadu History': 'from-orange-500 to-orange-600',
+                        'Geography': 'from-green-500 to-green-600',
+                        'General Science': 'from-teal-500 to-teal-600',
+                        'General Knowledge': 'from-purple-500 to-purple-600',
+                        'Aptitude': 'from-indigo-500 to-indigo-600',
+                        'Indian Economy': 'from-emerald-500 to-emerald-600',
+                        'Tamil Literature': 'from-rose-500 to-rose-600',
+                        'Tamil Grammar': 'from-pink-500 to-pink-600',
+                        'General English': 'from-cyan-500 to-cyan-600',
+                      };
+                      const gradient = subjectColors[subject] || 'from-gray-500 to-gray-600';
+
+                      return (
+                        <button key={subject} onClick={() => setSubjectFilter(subject)}
+                          className="w-full bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 p-3.5 text-left hover:border-purple-300 transition-all"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className={cn("w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center text-white text-xs font-bold flex-shrink-0", gradient)}>
+                              {count}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-xs font-bold text-gray-800 dark:text-white truncate">{subject}</h4>
+                              <p className="text-[10px] text-gray-400 mt-0.5">
+                                {count} {ta ? 'கேள்விகள்' : 'questions'} • {ta ? 'ஆண்டுகள்' : 'from'} {Array.from(years).sort().join(', ')}
+                              </p>
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* ══════ ACTIVE PRACTICE VIEW (when year or subject is selected) ══════ */}
+                {(yearFilter !== 'all' || subjectFilter !== 'all' || pyqMode === 'practice') && (
+                  <>
+                    {/* Back + Header */}
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-3.5 border border-gray-100 dark:border-slate-700 mb-3">
+                      <div className="flex items-center justify-between mb-2.5">
+                        <button onClick={() => { setYearFilter('all'); setSubjectFilter('all'); setPyqMode('year'); resetPYQ(); }}
+                          className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800"
+                        >
+                          <ArrowLeft className="w-3.5 h-3.5" /> {ta ? 'பின் செல்' : 'Back'}
+                        </button>
+                        <div className="flex gap-2">
+                          {pyqStats.attempted > 0 && (
+                            <button onClick={resetPYQ} className="text-xs font-semibold text-gray-400 hover:text-gray-600 flex items-center gap-1">
+                              <RotateCcw className="w-3 h-3" /> {ta ? 'மீட்டமை' : 'Reset'}
+                            </button>
+                          )}
+                          <Button variant="outline" size="sm" className="h-7 text-xs gap-1 rounded-lg" onClick={() => handleDownloadPDF('pyq')}>
+                            <Download className="w-3.5 h-3.5" /> PDF
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-sm font-bold text-gray-800 dark:text-white mb-1">
+                        {yearFilter !== 'all' ? `${exam.name.split('(')[0].trim()} — ${yearFilter} Paper` :
+                         subjectFilter !== 'all' ? subjectFilter :
+                         (ta ? 'அனைத்து கேள்விகள்' : 'All Questions')}
+                      </h3>
+                      <p className="text-xs text-gray-400 mb-2">
+                        {filteredPYQ.length} {ta ? 'கேள்விகள்' : 'questions'}
+                        {yearFilter !== 'all' && subjectFilter === 'all' && (
+                          <> • {Object.keys(pyqBySubject).length} {ta ? 'பாடங்கள்' : 'subjects'}</>
+                        )}
+                      </p>
+
+                      {/* Progress bar */}
+                      <div className="h-2 bg-gray-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-emerald-500 to-green-600"
+                          style={{ width: `${pyqStats.total > 0 ? (pyqStats.revealed / pyqStats.total) * 100 : 0}%` }}
+                        />
+                      </div>
+                      {pyqStats.revealed > 0 && (
+                        <div className="flex gap-3 mt-2">
+                          <span className="text-xs text-emerald-600 font-bold flex items-center gap-1"><CircleCheck className="w-3.5 h-3.5" /> {pyqStats.correct}</span>
+                          <span className="text-xs text-red-500 font-bold flex items-center gap-1"><AlertCircle className="w-3.5 h-3.5" /> {pyqStats.revealed - pyqStats.correct}</span>
+                          <span className="text-xs text-gray-400">{pyqStats.total - pyqStats.revealed} {ta ? 'மீதம்' : 'left'}</span>
+                          <span className="text-xs font-bold text-gray-600 ml-auto">
+                            {pyqStats.revealed > 0 ? Math.round((pyqStats.correct / pyqStats.revealed) * 100) : 0}%
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="space-y-2.5">
-                      {questions.map((q, qIdx) => {
-                        const isRevealed = revealedAnswers.has(q.id);
-                        const selected = selectedAnswers[q.id];
-                        const isCorrect = selected === q.answer;
-                        const hasAnswered = selected !== undefined;
+                    {/* Secondary filter (subject when year selected, year when subject selected) */}
+                    {yearFilter !== 'all' && availableSubjects.length > 3 && pyqMode !== 'practice' && (
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {['all', ...new Set(exam.pyq.filter(q => {
+                          const y = q.year || parseInt((q.id.match(/(\d{4})/) || ['0','0'])[1]);
+                          return String(y) === yearFilter;
+                        }).map(q => q.subject))].map(s => (
+                          <button key={String(s)} onClick={() => setSubjectFilter(String(s))}
+                            className={cn("px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all",
+                              subjectFilter === String(s) ? "bg-purple-600 text-white" : "bg-gray-100 dark:bg-slate-700 text-gray-500"
+                            )}
+                          >{String(s) === 'all' ? (ta ? 'அனைத்தும்' : 'All') : String(s)}</button>
+                        ))}
+                      </div>
+                    )}
 
-                        return (
-                          <motion.div key={q.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: Math.min(qIdx * 0.03, 0.2) }}>
-                            <div className={cn(
-                              "rounded-2xl border p-4 transition-all",
-                              isRevealed
-                                ? isCorrect
-                                  ? "border-emerald-200 bg-emerald-50/50 dark:bg-emerald-950/20 dark:border-emerald-900"
-                                  : "border-red-200 bg-red-50/50 dark:bg-red-950/20 dark:border-red-900"
-                                : "border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-800/50"
-                            )}>
-                              {/* Question */}
-                              <div className="flex items-start gap-2.5 mb-3">
-                                <span className="text-xs font-bold text-gray-400 bg-gray-100 dark:bg-slate-700 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0">
-                                  {qIdx + 1}
-                                </span>
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-1.5 mb-1">
-                                    {getQuestionYear(q.id) !== 'General' && (
-                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300">
-                                        {getQuestionYear(q.id)}
-                                      </span>
-                                    )}
-                                    <span className={cn(
-                                      "text-[10px] font-bold px-1.5 py-0.5 rounded",
-                                      q.difficulty === 'hard' ? "bg-red-100 dark:bg-red-950/30 text-red-600" :
-                                      q.difficulty === 'medium' ? "bg-amber-100 dark:bg-amber-950/30 text-amber-700" :
-                                      "bg-green-100 dark:bg-green-950/30 text-green-700"
-                                    )}>
-                                      {q.difficulty === 'hard' ? (ta ? 'கடினம்' : 'Hard') : q.difficulty === 'medium' ? (ta ? 'நடுத்தரம்' : 'Medium') : (ta ? 'எளிது' : 'Easy')}
+                    {/* ── Questions rendered by subject groups ── */}
+                    {Object.entries(pyqBySubject).map(([subject, questions]) => (
+                      <div key={subject} className="mb-5">
+                        <div className="flex items-center gap-2 mb-2.5 px-1">
+                          <FileText className="w-3.5 h-3.5 text-indigo-500" />
+                          <h3 className="text-xs font-bold text-gray-700 dark:text-gray-200">{subject}</h3>
+                          <span className="text-xs text-gray-400 ml-auto">{questions.length} {ta ? 'கேள்விகள்' : 'Qs'}</span>
+                        </div>
+
+                        <div className="space-y-2.5">
+                          {questions.map((q, qIdx) => {
+                            const isRevealed = revealedAnswers.has(q.id);
+                            const selected = selectedAnswers[q.id];
+                            const isCorrect = selected === q.answer;
+                            const hasAnswered = selected !== undefined;
+                            const qYear = q.year || getQuestionYear(q.id);
+
+                            return (
+                              <motion.div key={q.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: Math.min(qIdx * 0.02, 0.15) }}>
+                                <div className={cn(
+                                  "rounded-2xl border p-4 transition-all",
+                                  isRevealed ? isCorrect
+                                    ? "border-emerald-200 bg-emerald-50/50 dark:bg-emerald-950/20 dark:border-emerald-900"
+                                    : "border-red-200 bg-red-50/50 dark:bg-red-950/20 dark:border-red-900"
+                                  : "border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-800/50"
+                                )}>
+                                  {/* Question header */}
+                                  <div className="flex items-start gap-2.5 mb-3">
+                                    <span className="text-xs font-bold text-gray-400 bg-gray-100 dark:bg-slate-700 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0">
+                                      {qIdx + 1}
                                     </span>
-                                  </div>
-                                  <p className="text-[12px] font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
-                                    {ta && q.questionTamil ? q.questionTamil : q.question}
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* Options */}
-                              <div className="space-y-1.5 ml-8">
-                                {q.options.map((opt, oIdx) => {
-                                  const isSelected = selected === oIdx;
-                                  const isAnswer = q.answer === oIdx;
-
-                                  let style = "border-gray-100 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-500";
-                                  if (isRevealed) {
-                                    if (isAnswer) style = "border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30";
-                                    else if (isSelected) style = "border-red-400 bg-red-50 dark:bg-red-900/30";
-                                    else style = "border-gray-100 dark:border-slate-700 opacity-50";
-                                  } else if (isSelected) {
-                                    style = "border-blue-400 bg-blue-50 dark:bg-blue-900/20";
-                                  }
-
-                                  return (
-                                    <button
-                                      key={oIdx}
-                                      onClick={() => handleAnswer(q.id, oIdx)}
-                                      disabled={isRevealed}
-                                      className={cn("w-full text-left px-3 py-2.5 rounded-xl border text-xs transition-all flex items-center gap-2.5", style)}
-                                    >
-                                      <span className={cn(
-                                        "w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0",
-                                        isRevealed && isAnswer ? "border-emerald-500 bg-emerald-500 text-white" :
-                                        isRevealed && isSelected ? "border-red-500 bg-red-500 text-white" :
-                                        isSelected ? "border-blue-500 bg-blue-500 text-white" :
-                                        "border-gray-300 dark:border-gray-600 text-gray-400"
-                                      )}>
-                                        {isRevealed && isAnswer ? <Check className="w-3.5 h-3.5" /> :
-                                         isRevealed && isSelected ? <X className="w-3.5 h-3.5" /> :
-                                         String.fromCharCode(65 + oIdx)}
-                                      </span>
-                                      <span className="flex-1 text-gray-700 dark:text-gray-200">{opt}</span>
-                                    </button>
-                                  );
-                                })}
-                              </div>
-
-                              {/* Footer: difficulty + show answer */}
-                              <div className="flex items-center justify-between mt-3 ml-8">
-                                <div className="flex items-center gap-2">
-                                  <span className={cn("text-xs font-bold px-2 py-0.5 rounded-md",
-                                    q.difficulty === 'Easy' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20" :
-                                    q.difficulty === 'Medium' ? "bg-amber-50 text-amber-600 dark:bg-amber-900/20" :
-                                    "bg-red-50 text-red-600 dark:bg-red-900/20"
-                                  )}>{q.difficulty}</span>
-                                  {q.year && <span className="text-xs text-gray-400">{q.year}</span>}
-                                </div>
-                                <button onClick={() => toggleReveal(q.id)} disabled={!hasAnswered && !isRevealed}
-                                  className={cn("text-xs font-semibold flex items-center gap-1 transition-colors",
-                                    !hasAnswered && !isRevealed ? "text-gray-300 cursor-not-allowed" :
-                                    isRevealed ? "text-gray-400 hover:text-gray-600" : "text-blue-500 hover:text-blue-700"
-                                  )}>
-                                  {isRevealed ? <><EyeOff className="w-3.5 h-3.5" /> {ta ? 'மறை' : 'Hide'}</> : <><Eye className="w-3.5 h-3.5" /> {ta ? 'விடை காண்' : 'Check Answer'}</>}
-                                </button>
-                              </div>
-
-                              {/* Explanation */}
-                              <AnimatePresence>
-                                {isRevealed && q.explanation && (
-                                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                                    <div className="mt-3 ml-8 p-3 rounded-xl bg-blue-50/80 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900">
-                                      <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
-                                        <span className="font-bold">{ta ? 'விளக்கம்: ' : 'Explanation: '}</span>
-                                        {q.explanation}
+                                    <div className="flex-1">
+                                      <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                                        {String(qYear) !== 'General' && String(qYear) !== '0' && (
+                                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300">{qYear}</span>
+                                        )}
+                                        <span className={cn("text-[10px] font-bold px-1.5 py-0.5 rounded",
+                                          q.difficulty === 'hard' ? "bg-red-100 text-red-600" : q.difficulty === 'medium' ? "bg-amber-100 text-amber-700" : "bg-green-100 text-green-700"
+                                        )}>{q.difficulty === 'hard' ? (ta ? 'கடினம்' : 'Hard') : q.difficulty === 'medium' ? (ta ? 'நடுத்தரம்' : 'Medium') : (ta ? 'எளிது' : 'Easy')}</span>
+                                      </div>
+                                      <p className="text-[12px] font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
+                                        {ta && q.questionTamil ? q.questionTamil : q.question}
                                       </p>
                                     </div>
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
-                          </motion.div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
+                                  </div>
 
-                {/* Bottom: Mock Test CTA */}
-                <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-center">
-                  <p className="text-xs font-bold text-white mb-1">{ta ? 'முழு பயிற்சி தேர்வு எழுத விரும்புகிறீர்களா?' : 'Ready for a full practice test?'}</p>
-                  <p className="text-xs text-white/40 mb-3">{ta ? 'நேர அடிப்படையிலான மாக் டெஸ்ட் முயற்சிக்கவும்' : 'Take a timed mock test with all available questions'}</p>
-                  <Button size="sm" className="bg-white text-gray-900 hover:bg-gray-100 text-xs font-bold rounded-xl" onClick={() => setShowMockTest(true)}>
-                    <Play className="w-3.5 h-3.5 mr-1.5" /> {ta ? 'மாக் டெஸ்ட் தொடங்கு' : 'Start Mock Test'}
-                  </Button>
-                </div>
+                                  {/* Options */}
+                                  <div className="space-y-1.5 ml-8">
+                                    {(ta && q.optionsTamil ? q.optionsTamil : q.options).map((opt, oIdx) => {
+                                      const isSelected = selected === oIdx;
+                                      const isAnswer = q.answer === oIdx;
+                                      let style = "border-gray-100 dark:border-slate-700 hover:border-gray-300";
+                                      if (isRevealed) {
+                                        if (isAnswer) style = "border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30";
+                                        else if (isSelected) style = "border-red-400 bg-red-50 dark:bg-red-900/30";
+                                        else style = "border-gray-100 dark:border-slate-700 opacity-50";
+                                      } else if (isSelected) {
+                                        style = "border-blue-400 bg-blue-50 dark:bg-blue-900/20";
+                                      }
+                                      return (
+                                        <button key={oIdx} onClick={() => handleAnswer(q.id, oIdx)} disabled={isRevealed}
+                                          className={cn("w-full text-left px-3 py-2.5 rounded-xl border text-xs transition-all flex items-center gap-2.5", style)}
+                                        >
+                                          <span className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0",
+                                            isRevealed && isAnswer ? "border-emerald-500 bg-emerald-500 text-white" :
+                                            isRevealed && isSelected ? "border-red-500 bg-red-500 text-white" :
+                                            isSelected ? "border-blue-500 bg-blue-500 text-white" :
+                                            "border-gray-300 dark:border-gray-600 text-gray-400"
+                                          )}>
+                                            {isRevealed && isAnswer ? <Check className="w-3.5 h-3.5" /> :
+                                             isRevealed && isSelected ? <X className="w-3.5 h-3.5" /> :
+                                             String.fromCharCode(65 + oIdx)}
+                                          </span>
+                                          <span className="flex-1 text-gray-700 dark:text-gray-200">{opt}</span>
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+
+                                  {/* Check answer button */}
+                                  <div className="flex items-center justify-end mt-3 ml-8">
+                                    <button onClick={() => toggleReveal(q.id)} disabled={!hasAnswered && !isRevealed}
+                                      className={cn("text-xs font-semibold flex items-center gap-1 transition-colors",
+                                        !hasAnswered && !isRevealed ? "text-gray-300 cursor-not-allowed" :
+                                        isRevealed ? "text-gray-400 hover:text-gray-600" : "text-blue-500 hover:text-blue-700"
+                                      )}>
+                                      {isRevealed ? <><EyeOff className="w-3.5 h-3.5" /> {ta ? 'மறை' : 'Hide'}</> : <><Eye className="w-3.5 h-3.5" /> {ta ? 'விடை காண்' : 'Check Answer'}</>}
+                                    </button>
+                                  </div>
+
+                                  {/* Explanation */}
+                                  <AnimatePresence>
+                                    {isRevealed && (q.explanation || q.explanationTamil) && (
+                                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                                        <div className="mt-3 ml-8 p-3 rounded-xl bg-blue-50/80 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900">
+                                          <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
+                                            <span className="font-bold">{ta ? 'விளக்கம்: ' : 'Explanation: '}</span>
+                                            {ta && q.explanationTamil ? q.explanationTamil : q.explanation}
+                                          </p>
+                                        </div>
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+
+                    {/* Score card when all revealed */}
+                    {pyqStats.revealed === pyqStats.total && pyqStats.total > 0 && (
+                      <div className="bg-gradient-to-br from-emerald-600 to-green-700 rounded-2xl p-5 text-center text-white mb-3">
+                        <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-80" />
+                        <p className="text-lg font-bold">{pyqStats.correct}/{pyqStats.total}</p>
+                        <p className="text-sm opacity-80 mb-1">{Math.round((pyqStats.correct / pyqStats.total) * 100)}% {ta ? 'மதிப்பெண்' : 'Score'}</p>
+                        <p className="text-xs opacity-60 mb-3">
+                          {pyqStats.correct === pyqStats.total ? (ta ? 'அருமை! சரியான மதிப்பெண்!' : 'Perfect Score! Excellent!') :
+                           pyqStats.correct >= pyqStats.total * 0.7 ? (ta ? 'நல்ல முயற்சி!' : 'Great job!') :
+                           (ta ? 'மேலும் பயிற்சி செய்யுங்கள்' : 'Keep practicing!')}
+                        </p>
+                        <Button size="sm" className="bg-white text-emerald-700 hover:bg-gray-100 text-xs font-bold rounded-xl" onClick={resetPYQ}>
+                          <RotateCcw className="w-3.5 h-3.5 mr-1.5" /> {ta ? 'மீண்டும் முயற்சிக்க' : 'Try Again'}
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* Mock Test CTA */}
+                    {pyqStats.revealed < pyqStats.total && (
+                      <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-center">
+                        <p className="text-xs font-bold text-white mb-1">{ta ? 'முழு பயிற்சி தேர்வு எழுத விரும்புகிறீர்களா?' : 'Want a timed mock test?'}</p>
+                        <p className="text-xs text-white/40 mb-3">{ta ? 'நேர அடிப்படையிலான தேர்வு' : 'Take a timed test with scoring'}</p>
+                        <Button size="sm" className="bg-white text-gray-900 hover:bg-gray-100 text-xs font-bold rounded-xl" onClick={() => setShowMockTest(true)}>
+                          <Play className="w-3.5 h-3.5 mr-1.5" /> {ta ? 'மாக் டெஸ்ட்' : 'Start Mock Test'}
+                        </Button>
+                      </div>
+                    )}
+                  </>
+                )}
               </>
             )}
           </div>
