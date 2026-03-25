@@ -103,35 +103,54 @@ const defenceExams: Exam[] = [
       { paper: 'SSB Test/Interview', paperTamil: 'SSB நேர்காணல்', marks: 900, duration: '5 days', questions: 0 }
     ],
     syllabus: {
-      mathematics: [
+      'Paper I — Mathematics (120 Qs, 300 Marks, 2.5 hrs | +2.5 correct, -0.83 wrong)': [
         {
-          name: 'Paper 1: Mathematics (300 Marks)',
-          nameTamil: 'தாள் 1: கணிதம் (300 மதிப்பெண்கள்)',
+          name: 'Paper I: Mathematics (300 Marks)',
+          nameTamil: 'தாள் I: கணிதம் (300 மதிப்பெண்கள்)',
           topics: [
-            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', subtopics: ['Sets, Relations, Functions', 'Complex Numbers', 'Quadratic Equations', 'Permutation & Combination', 'Binomial Theorem', 'Logarithms', 'Sequences & Series'] },
-            { name: 'Matrices & Determinants', nameTamil: 'அணிகள் & அணிக்கோவைகள்', subtopics: ['Types of Matrices', 'Matrix Operations', 'Determinants', 'Cramers Rule', 'Inverse of Matrix'] },
-            { name: 'Trigonometry', nameTamil: 'முக்கோணவியல்', subtopics: ['Angles & Measurements', 'Trigonometric Ratios', 'Identities', 'Inverse Functions', 'Heights & Distances', 'Properties of Triangles'] },
-            { name: 'Analytical Geometry 2D', nameTamil: '2D பகுப்பாய்வு வடிவியல்', subtopics: ['Straight Lines', 'Circle', 'Parabola', 'Ellipse', 'Hyperbola', 'Coordinate Geometry'] },
-            { name: 'Analytical Geometry 3D', nameTamil: '3D பகுப்பாய்வு வடிவியல்', subtopics: ['Distance Formula', 'Direction Cosines', 'Equation of Plane', 'Straight Line in Space'] },
-            { name: 'Differential Calculus', nameTamil: 'வகையீட்டுக் கணிதம்', subtopics: ['Limits', 'Continuity', 'Differentiation', 'Application of Derivatives', 'Maxima & Minima'] },
-            { name: 'Integral Calculus', nameTamil: 'தொகையீட்டுக் கணிதம்', subtopics: ['Integration Methods', 'Definite Integrals', 'Area under Curves', 'Differential Equations'] },
-            { name: 'Vector Algebra', nameTamil: 'வெக்டர் இயற்கணிதம்', subtopics: ['Vector Operations', 'Scalar Product', 'Vector Product', 'Applications'] },
-            { name: 'Statistics & Probability', nameTamil: 'புள்ளியியல் & நிகழ்தகவு', subtopics: ['Mean, Median, Mode', 'Variance, Standard Deviation', 'Probability Basics', 'Conditional Probability'] }
+            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', subtopics: ['Sets, Venn diagrams, De Morgan laws, Cartesian product', 'Relations, Equivalence relation', 'Representation of real numbers on a line', 'Complex numbers — modulus, argument, cube roots of unity', 'Binary system — Decimal to Binary conversion and vice-versa', 'Arithmetic, Geometric and Harmonic progressions', 'Quadratic equations with real coefficients', 'Linear inequations of two variables by graphs', 'Permutation and Combination', 'Binomial theorem and applications', 'Logarithms and applications'] },
+            { name: 'Matrices & Determinants', nameTamil: 'அணிகள் & அணிக்கோவைகள்', subtopics: ['Types of matrices, Operations on matrices', 'Determinant of a matrix, Basic properties', 'Adjoint and Inverse of a square matrix', 'Solution of linear equations — Cramers rule and Matrix Method'] },
+            { name: 'Trigonometry', nameTamil: 'முக்கோணவியல்', subtopics: ['Angles — degrees and radians', 'Trigonometric ratios and identities', 'Sum and difference formulae', 'Multiple and Sub-multiple angles', 'Inverse trigonometric functions', 'Heights and Distances, Properties of triangles'] },
+            { name: 'Analytical Geometry 2D & 3D', nameTamil: '2D & 3D வடிவியல்', subtopics: ['Rectangular Cartesian Coordinate system, Distance formula', 'Equation of line in various forms, Angle between two lines', 'Circle in standard and general form', 'Parabola, Ellipse, Hyperbola — Eccentricity and axis of conic', '3D: Distance between two points, Direction Cosines and ratios', 'Equation of plane and line in various forms', 'Angle between two lines/planes, Equation of a sphere'] },
+            { name: 'Differential Calculus', nameTamil: 'வகையீட்டுக் கணிதம்', subtopics: ['Real-valued function — domain, range, graph', 'Composite, one-to-one, onto, inverse functions', 'Limits — standard limits, examples', 'Continuity of functions, algebraic operations', 'Derivative — geometrical and physical interpretation', 'Derivatives of sum, product, quotient, composite functions', 'Second order derivatives', 'Increasing/decreasing functions, Maxima and Minima'] },
+            { name: 'Integral Calculus & Differential Equations', nameTamil: 'தொகையீட்டுக் கணிதம் & வகையீட்டு சமன்பாடுகள்', subtopics: ['Integration by substitution and by parts', 'Standard integrals — algebraic, trigonometric, exponential, hyperbolic', 'Definite integrals — Area of plane regions bounded by curves', 'Order and degree of differential equation', 'General and particular solution, First order first degree types'] },
+            { name: 'Vector Algebra', nameTamil: 'வெக்டர் இயற்கணிதம்', subtopics: ['Vectors in 2D and 3D — magnitude and direction', 'Unit and null vectors, Addition, Scalar multiplication', 'Scalar (dot) product, Vector (cross) product', 'Applications — work done by force, moment of force'] },
+            { name: 'Statistics & Probability', nameTamil: 'புள்ளியியல் & நிகழ்தகவு', subtopics: ['Classification of data, Frequency distribution', 'Histogram, Pie Chart, Frequency polygon', 'Mean, Median, Mode, Variance, Standard deviation', 'Correlation and Regression', 'Random experiment, Sample space, Events', 'Probability — classical and statistical, Elementary theorems', 'Conditional probability, Bayes theorem', 'Binomial distribution'] }
           ]
         }
       ],
-      generalAbility: [
+      'Paper II — General Ability Test (150 Qs, 600 Marks, 2.5 hrs | +4 correct, -1.33 wrong)': [
         {
-          name: 'Paper 2: General Ability Test (600 Marks)',
-          nameTamil: 'தாள் 2: பொது திறன் தேர்வு (600 மதிப்பெண்கள்)',
+          name: 'Part A: English (200 Marks)',
+          nameTamil: 'பகுதி A: ஆங்கிலம் (200 மதிப்பெண்கள்)',
           topics: [
-            { name: 'English (200 Marks)', nameTamil: 'ஆங்கிலம் (200 மதிப்பெண்கள்)', subtopics: ['Grammar & Usage', 'Vocabulary', 'Comprehension', 'Sentence Correction', 'Synonyms & Antonyms', 'Idioms & Phrases', 'Spotting Errors'] },
-            { name: 'General Knowledge (400 Marks)', nameTamil: 'பொது அறிவு (400 மதிப்பெண்கள்)', subtopics: ['Physics: Mechanics, Heat, Optics, Electricity, Modern Physics', 'Chemistry: Physical, Organic, Inorganic Chemistry', 'Biology: Botany, Zoology, Human Physiology', 'History: Ancient, Medieval, Modern India, World History', 'Geography: Physical, Indian, World Geography', 'Current Affairs: National & International Events'] }
+            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: ['Spotting Errors', 'Comprehension passages', 'Selecting Words', 'Synonyms and Antonyms', 'Sentence Improvements', 'Ordering of Words in a Sentence', 'Grammar and Usage'] }
+          ]
+        },
+        {
+          name: 'Part B: General Knowledge (400 Marks)',
+          nameTamil: 'பகுதி B: பொது அறிவு (400 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: ['Physical Properties — Mass, Weight, Volume, Density, Specific Gravity', 'Archimedes Principle, Pressure Barometer', 'Motion — Velocity, Acceleration, Newtons Laws, Force, Momentum', 'Parallelogram of Forces, Stability, Equilibrium, Gravitation', 'Work, Power, Energy', 'Heat — Measurement, Change of State, Latent Heat, Modes of transfer', 'Sound waves, Simple musical instruments', 'Light — Reflection, Refraction, Spherical Mirrors, Lenses, Human Eye', 'Magnets — Natural, Artificial, Earths magnetism', 'Electricity — Static, Current, Ohms Law, Circuits, X-Rays', 'Simple Pendulum, Pulleys, Siphon, Levers, Balloon, Pumps', 'Telescope, Microscope, Mariners Compass, Safety Fuses'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: ['Physical and Chemical changes', 'Elements, Mixtures, Compounds — Symbols, Formulae, Equations', 'Law of Chemical Combination', 'Properties of Air and Water', 'Hydrogen, Oxygen, Nitrogen, Carbon dioxide — preparation and properties', 'Oxidation and Reduction, Acids, Bases, Salts', 'Carbon — different forms', 'Fertilizers — Natural and Artificial', 'Soap, Glass, Ink, Paper, Cement, Paints, Safety Matches, Gun-Powder', 'Atomic structure, Atomic/Molecular Weights, Valency'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', subtopics: ['Living vs Non-living things', 'Cells, Protoplasm, Tissues', 'Growth and Reproduction in Plants and Animals', 'Human Body and vital organs', 'Common Epidemics — causes and prevention', 'Food — source of energy, constituents, balanced diet', 'Solar System — Meteors, Comets, Eclipses', 'Eminent Scientists and achievements'] },
+            { name: 'History & Freedom Movement', nameTamil: 'வரலாறு & விடுதலை இயக்கம்', subtopics: ['Indian History — emphasis on Culture and Civilisation', 'Freedom Movement in India', 'Indian Constitution and Administration (elementary)', 'Five Year Plans, Panchayati Raj, Co-operatives', 'Bhoodan, Sarvodaya, National Integration, Welfare State', 'Basic Teachings of Mahatma Gandhi', 'Renaissance, Exploration and Discovery', 'American Independence, French Revolution, Industrial Revolution, Russian Revolution', 'Impact of Science and Technology on Society', 'United Nations, Panchsheel, Democracy, Socialism, Communism', 'Role of India in the present world'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', subtopics: ['Earth — shape, size, Latitudes, Longitudes, Time zones', 'International Date Line, Movements of Earth', 'Origin of Earth, Rocks — classification', 'Weathering, Earthquakes, Volcanoes', 'Ocean Currents, Tides', 'Atmosphere — Temperature, Pressure, Planetary Winds', 'Cyclones, Anti-cyclones, Humidity, Precipitation', 'Types of Climate, Major Natural Regions', 'India — Climate, Natural vegetation, Minerals, Power resources', 'Agricultural and Industrial activities in India', 'Sea ports, main sea/land/air routes', 'Imports and Exports of India'] },
+            { name: 'Current Events', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['Important events in India in recent years', 'Current important world events', 'Prominent personalities — Indian and International', 'Cultural activities and Sports personalities'] }
+          ]
+        }
+      ],
+      'SSB Interview (900 Marks, 5 Days)': [
+        {
+          name: 'SSB Test/Interview (900 Marks)',
+          nameTamil: 'SSB நேர்காணல் (900 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'SSB Process', nameTamil: 'SSB செயல்முறை', subtopics: ['Day 1: Screening Test — OIR (Officers Intelligence Rating) + PPDT (Picture Perception Description Test)', 'Day 2: Psychology Tests — TAT (Thematic Apperception Test), WAT (Word Association Test), SRT (Situation Reaction Test), SDT (Self Description Test)', 'Day 3-4: Group Testing — GD (Group Discussion), GPE (Group Planning Exercise), PGT (Progressive Group Task), HGT (Half Group Task), Individual Obstacles, Command Task, FGT (Final Group Task)', 'Day 5: Personal Interview + Conference'] }
           ]
         }
       ]
     },
-    pyq: [
+        pyq: [
       { id: 'nda-math-1', question: 'If sin θ + cos θ = √2, then tan θ + cot θ = ?', questionTamil: 'sin θ + cos θ = √2 எனில், tan θ + cot θ = ?', options: ['1', '2', '√2', '2√2'], answer: 1, explanation: 'sin θ + cos θ = √2 means θ = 45°. tan 45° + cot 45° = 1 + 1 = 2', subject: 'Mathematics', difficulty: 'medium' },
       { id: 'nda-math-2', question: 'The number of ways to arrange the letters of the word "MATHEMATICS" is:', questionTamil: '"MATHEMATICS" என்ற வார்த்தையின் எழுத்துக்களை வரிசைப்படுத்தும் வழிகளின் எண்ணிக்கை:', options: ['11!/2!2!2!', '11!/2!2!', '11!/2!', '11!'], answer: 0, explanation: 'MATHEMATICS has 11 letters with M(2), A(2), T(2) repeating. So 11!/(2!×2!×2!)', subject: 'Mathematics', difficulty: 'hard' },
       { id: 'nda-math-3', question: 'If A = [1 2; 3 4], then A² - 5A + 4I = ?', options: ['0', 'I', 'A', '2A'], answer: 0, explanation: 'Using Cayley-Hamilton theorem, the characteristic equation gives A² - 5A + 4I = 0', subject: 'Mathematics', difficulty: 'hard' },
