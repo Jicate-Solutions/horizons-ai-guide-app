@@ -255,7 +255,7 @@ const StudentDashboard = () => {
               { label: 'Course Explorer', icon: '📚', path: '/career-assessment/colleges/course-explorer', desc: '144 courses' },
               { label: 'University Hub', icon: '🎓', path: '/career-assessment/colleges/tn-university', desc: 'TN universities' },
               ...(profile.goal === 'govt_job' || profile.goal === 'both' ? [
-                { label: 'Govt Jobs (Tab)', icon: '💼', path: '/career-assessment/colleges/govt-jobs', desc: 'Apply for jobs' },
+                { label: 'Govt Jobs (Tab)', icon: '💼', path: '/government-exams', desc: 'Apply for jobs' },
               ] : []),
               ...(profile.goal === 'higher_studies' || profile.goal === 'both' ? [
                 { label: 'Scholarships', icon: '🎯', path: '/career-assessment/colleges/scholarships', desc: 'Find scholarships' },

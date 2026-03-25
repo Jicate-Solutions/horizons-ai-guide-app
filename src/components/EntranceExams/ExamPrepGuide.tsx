@@ -28,7 +28,7 @@ const prepGuides: Record<string, ExamPrepGuide> = {
       { icon: '🏛️', title: 'Find Colleges', action: 'Search NIT, IIT, Govt Engineering colleges', route: '/career-assessment/colleges/find-colleges', priority: 'must' },
       { icon: '📋', title: 'Counselling Tracker', action: 'Track JoSAA counselling steps — don\'t miss deadlines', route: '/career-assessment/colleges/educutoff', priority: 'must' },
       { icon: '📊', title: 'Previous Cutoffs', action: 'Check last year NIT/IIT cutoff marks', route: '/career-assessment/colleges/educutoff', priority: 'should' },
-      { icon: '📝', title: 'Govt Exam Backup', action: 'Prepare SSC/Railway as backup option', route: '/career-assessment/colleges/govt-jobs', priority: 'nice' },
+      { icon: '📝', title: 'Govt Exam Backup', action: 'Prepare SSC/Railway as backup option', route: '/government-exams', priority: 'nice' },
     ],
   },
   'neet-ug': {
@@ -64,7 +64,7 @@ const prepGuides: Record<string, ExamPrepGuide> = {
       { icon: '📖', title: 'Practice Questions', action: 'Solve 10 CLAT questions in this app', priority: 'must' },
       { icon: '🔍', title: 'Course Explorer', action: 'Explore LLB, BA LLB courses', route: '/career-assessment/colleges/course-explorer', priority: 'must' },
       { icon: '🏛️', title: 'Find Law Colleges', action: 'Search Law colleges in Tamil Nadu', route: '/career-assessment/colleges/find-colleges', priority: 'should' },
-      { icon: '📝', title: 'Govt Exam Option', action: 'Judicial services exam after LLB', route: '/career-assessment/colleges/govt-jobs', priority: 'nice' },
+      { icon: '📝', title: 'Govt Exam Option', action: 'Judicial services exam after LLB', route: '/government-exams', priority: 'nice' },
     ],
   },
   'nda': {
@@ -73,7 +73,7 @@ const prepGuides: Record<string, ExamPrepGuide> = {
     duration: '2.5 hours per paper',
     steps: [
       { icon: '📖', title: 'Practice Questions', action: 'Solve 10 NDA questions in this app', priority: 'must' },
-      { icon: '📝', title: 'Govt Exam Section', action: 'Full NDA syllabus + study plan', route: '/career-assessment/colleges/govt-jobs', priority: 'must' },
+      { icon: '📝', title: 'Govt Exam Section', action: 'Full NDA syllabus + study plan', route: '/government-exams', priority: 'must' },
       { icon: '🔍', title: 'Course Explorer', action: 'Explore defence academy courses', route: '/career-assessment/colleges/course-explorer', priority: 'should' },
       { icon: '🏋️', title: 'Physical Fitness', action: 'SSB interview has physical tests — prepare early', priority: 'should' },
     ],
@@ -126,7 +126,7 @@ const prepGuides: Record<string, ExamPrepGuide> = {
     steps: [
       { icon: '📖', title: 'Practice Questions', action: 'Solve 15 CA Foundation questions in this app', priority: 'must' },
       { icon: '🔍', title: 'Course Explorer', action: 'Explore CA, CS, CMA career paths', route: '/career-assessment/colleges/course-explorer', priority: 'must' },
-      { icon: '📝', title: 'Govt Exam Backup', action: 'Bank PO, SSC CGL as alternate careers', route: '/career-assessment/colleges/govt-jobs', priority: 'nice' },
+      { icon: '📝', title: 'Govt Exam Backup', action: 'Bank PO, SSC CGL as alternate careers', route: '/government-exams', priority: 'nice' },
     ],
   },
 };

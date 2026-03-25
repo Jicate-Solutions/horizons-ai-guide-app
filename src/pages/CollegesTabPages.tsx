@@ -8,6 +8,14 @@ import { GovernmentJobs } from '@/components/GovernmentJobs';
 import { UniversityEntranceExams } from '@/components/UniversityEntrance';
 import { CourseExplorer } from '@/components/CourseExplorer';
 import { StartupGuide } from '@/components/StartupGuide';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const GovtJobsRedirect = () => {
+  const navigate = useNavigate();
+  useEffect(() => { navigate('/government-exams', { replace: true }); }, [navigate]);
+  return null;
+};
 
 export const FindCollegesPage = () => (
   <CollegesPageLayout activeTab="colleges">
@@ -39,11 +47,10 @@ export const PYQPage = () => (
   </CollegesPageLayout>
 );
 
-export const GovtJobsPage = () => (
-  <CollegesPageLayout activeTab="govtjobs">
-    <GovernmentJobs />
-  </CollegesPageLayout>
-);
+export const GovtJobsPage = () => {
+  // Redirect to the full Government Exams page with PYQ, syllabus, etc.
+  return <GovtJobsRedirect />;
+};
 
 export const TNUniversityPage = () => (
   <CollegesPageLayout activeTab="tnuniversity">
