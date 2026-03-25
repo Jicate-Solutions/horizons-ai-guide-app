@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <title>VAZHIKATTI — Free AI Career Guide for 12th Students | Tamil Nadu</title>
     <meta name="description" content="Free career guidance for Tamil Nadu 12th students. TNEA cutoff calculator, 25 govt exams with PYQ, 436 sports quota colleges, counselling tracker, college search — all in one app." />
@@ -58,6 +61,21 @@
   </head>
 
   <body>
+    <!-- CRITICAL: Kill all service workers and caches on every load -->
+    <script>
+      (function(){
+        if('serviceWorker' in navigator){
+          navigator.serviceWorker.getRegistrations().then(function(regs){
+            regs.forEach(function(r){r.unregister();});
+          });
+        }
+        if('caches' in window){
+          caches.keys().then(function(keys){
+            keys.forEach(function(k){caches.delete(k);});
+          });
+        }
+      })();
+    </script>
     <div id="google_translate_element" style="display:none;position:absolute;"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
