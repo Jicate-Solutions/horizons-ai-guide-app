@@ -1,5 +1,6 @@
 // VAZHIKATTI Service Worker — Offline caching for faster repeat visits
-const CACHE_NAME = 'vzk-cache-v1';
+// v2: Force refresh for all users after major PYQ + syllabus update (March 2026)
+const CACHE_NAME = 'vzk-cache-v2';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
