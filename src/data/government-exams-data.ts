@@ -184,52 +184,49 @@ const defenceExams: Exam[] = [
     selectionProcess: 'Online CEE → Physical Fitness → Medical',
     selectionProcessTamil: 'ஆன்லைன் CEE → உடற்தகுதி → மருத்துவம்',
     examPattern: [
-      { paper: 'Common Entrance Exam — Soldier GD (10th Level)', paperTamil: 'பொது நுழைவுத் தேர்வு — சோல்ஜர் GD (10ஆம் நிலை)', marks: 100, duration: '1 hour', questions: 50 },
+      { paper: 'CEE — Soldier GD: GK(15Q/30M) + Science(20Q/40M) + Maths(15Q/30M) | Pass: 32 Marks | NCC C Cert exempted', paperTamil: 'CEE — சோல்ஜர் GD: பொது அறிவு(15/30) + அறிவியல்(20/40) + கணிதம்(15/30) | தேர்ச்சி: 32 | NCC C விலக்கு', marks: 100, duration: '1 hour', questions: 50 },
       { paper: 'Common Entrance Exam — Technical (12th PCM)', paperTamil: 'பொது நுழைவுத் தேர்வு — தொழில்நுட்பம் (12ஆம் PCM)', marks: 200, duration: '1 hour', questions: 50 }
     ],
     syllabus: {
-      'General Duty (GD) — 10th Level': [
+      'Soldier General Duty — 50 Qs, 100 Marks, Pass: 32 (NCC C Cert holders exempted)': [
         {
-          name: 'Soldier General Duty (GD) — 50 Questions, 100 Marks',
-          nameTamil: 'சோல்ஜர் பொது கடமை (GD) — 50 கேள்விகள், 100 மதிப்பெண்கள்',
+          name: 'Soldier GD — 50 Questions, 100 Marks (Pass: 32 Marks)',
+          nameTamil: 'சோல்ஜர் GD — 50 கேள்விகள், 100 மதிப்பெண்கள் (தேர்ச்சி: 32)',
           topics: [
             { name: 'General Knowledge — 15 Questions, 30 Marks', nameTamil: 'பொது அறிவு — 15 கேள்விகள், 30 மதிப்பெண்கள்', subtopics: [
-              'Indian History — Ancient, Medieval, Freedom Movement',
-              'Indian Geography — Rivers, Mountains, Climate, States & Capitals',
-              'Indian Constitution — Fundamental Rights, Duties, Parliament, President',
-              'Sports — National & International Awards, Olympic, Commonwealth',
-              'Awards & Honours — Bharat Ratna, Padma Awards, Gallantry Awards',
-              'Abbreviations — National & International Organizations',
-              'Current Affairs — National & International Events',
-              'Important Days & Dates',
-              'Books & Authors',
-              'United Nations & International Bodies'
+              'Abbreviations — National and International',
+              'Sports — National and International',
+              'Awards & Prizes — National awards, Gallantry awards, Nobel Prizes',
+              'History — Important dates & battles in Indian and World History, Landmarks of Indian History, National Movement',
+              'Geography — Solar System, Space exploration, The Earth, Principal peaks, Deserts, Rivers, Lakes, Famous waterfalls, Geographical Tallest/Biggest/Longest',
+              'Terminology — Geographical terms, Economic terms, Astronomical terms, Legal terms, Misc terms',
+              'UNO, Indian Armed Forces',
+              'Indian Towns, States and UTs, Institutions and Research Stations, International Space Stations',
+              'Festivals of India and World',
+              'Indian News Agencies and Dailies, Continents and Sub Continents',
+              'Inventions and Discoveries, Environment',
+              'The Constitution of India, Religious communities and Principal Languages',
+              'National and International Days, International Organizations',
+              'Books and Authors, The world of Plants and Animals',
+              'Current Affairs and Who is Who'
             ] },
-            { name: 'General Science — 20 Questions, 40 Marks (10th Level)', nameTamil: 'பொது அறிவியல் — 20 கேள்விகள், 40 மதிப்பெண்கள்', subtopics: [
-              'Physics — Motion, Force, Energy, Work, Light, Sound, Electricity, Magnetism',
-              'Chemistry — Elements, Compounds, Mixtures, Acids & Bases, Metals & Non-Metals, Chemical Reactions',
-              'Biology — Human Body Systems, Nutrition & Digestion, Cell Structure, Diseases & Prevention',
-              'Biology — Blood Groups, Vitamins & Deficiency Diseases, Environment & Ecology',
-              'Daily Life Science — Inventions, Scientific Instruments, Units & Measurements'
+            { name: 'General Science — 20 Questions, 40 Marks', nameTamil: 'பொது அறிவியல் — 20 கேள்விகள், 40 மதிப்பெண்கள்', subtopics: [
+              'Human Body — Food and nutrition, Diseases and prevention, Vitamins and their uses',
+              'Physics — fundamentals and day-to-day activities (CBSE level)',
+              'Chemistry — fundamentals and day-to-day activities (CBSE level)',
+              'Biology — fundamentals and day-to-day activities (CBSE level)',
+              'Medical Terms, Scientific Terms',
+              'Scientific and Research Institutes in India',
+              'IQ / Numeral Ability (age group 16-20 years level)'
             ] },
-            { name: 'Mathematics — 15 Questions, 30 Marks (10th Level)', nameTamil: 'கணிதம் — 15 கேள்விகள், 30 மதிப்பெண்கள்', subtopics: [
-              'Number System — Natural, Whole, Integers, Rational, Real Numbers',
-              'Arithmetic — Percentage, Ratio & Proportion, Average',
-              'Arithmetic — Simple & Compound Interest, Profit & Loss, Discount',
-              'Arithmetic — Time & Work, Time & Distance, Speed',
-              'Algebra — HCF & LCM, Factors, Linear Equations, Quadratic Equations',
-              'Geometry — Lines, Angles, Triangles, Circles, Area & Perimeter',
-              'Mensuration — Area & Volume of Cube, Cylinder, Sphere, Cone',
-              'Statistics — Mean, Median, Mode'
-            ] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க ஆற்றல்', subtopics: [
-              'Coding-Decoding — Letter & Number Coding',
-              'Series Completion — Number, Alphabet, Mixed Series',
-              'Analogy — Word & Number Relationships',
-              'Blood Relations — Family Tree Problems',
-              'Direction Sense — North, South, East, West Based Problems',
-              'Classification — Odd One Out',
-              'Alphabet Test — Position & Arrangement'
+            { name: 'Mathematics — 15 Questions, 30 Marks', nameTamil: 'கணிதம் — 15 கேள்விகள், 30 மதிப்பெண்கள்', subtopics: [
+              'Arithmetic — Numbers, HCF, LCM, Decimal Fraction, Square Roots',
+              'Arithmetic — Percentage, Average, Ratio and Proportion, Partnership',
+              'Arithmetic — Profit & Loss, Unitary Method, Time Work and Distance, Simple Interest',
+              'Algebra — Basic operations, Factorization, HCF and LCM, Quadratic Equations',
+              'Geometry — Lines and Angles, Triangles, Quadrilaterals, Parallelograms, Circles',
+              'Mensuration — Area and Perimeters of Squares, Rectangles, Parallelograms, Circles',
+              'Mensuration — Volume and Surface Area of Cube, Cuboids, Cone, Cylinders, Sphere'
             ] }
           ]
         }
