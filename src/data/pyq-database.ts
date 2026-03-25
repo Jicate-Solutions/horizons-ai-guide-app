@@ -2294,6 +2294,531 @@ export const pyqQuestions: PYQQuestion[] = [
   },
 
   // ============================================
+  // TNPSC GROUP 4 - 2024 ACTUAL PAPER (Part-B General Studies)
+  // Source: CCSE4GT/2024 Official Question Paper
+  // ============================================
+  {
+    id: "TNPSC_G4_2024_REAL_001",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Local Government",
+    subtopic: "Municipal Corporation",
+    questionNumber: 101,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Who is the Chief Executive Authority of a Municipal Corporation?",
+      ta: "மாநகராட்சியின் தலைமை நிர்வாக அதிகாரி யார்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "City Manager" },
+        { id: "B", text: "Municipal Commissioner" },
+        { id: "C", text: "Mayor" },
+        { id: "D", text: "Assistant Commissioner of Police" }
+      ],
+      ta: [
+        { id: "A", text: "நகர மேலாளர்" },
+        { id: "B", text: "மாநகராட்சி ஆணையர்" },
+        { id: "C", text: "மேயர்" },
+        { id: "D", text: "உதவி காவல் ஆணையர்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "The Municipal Commissioner is the Chief Executive Authority of a Municipal Corporation, responsible for day-to-day administration.",
+      ta: "மாநகராட்சி ஆணையர் மாநகராட்சியின் தலைமை நிர்வாக அதிகாரி, அன்றாட நிர்வாகத்திற்கு பொறுப்பானவர்"
+    },
+    hints: [],
+    conceptsTested: ["Local Government"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "indian-polity"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_002",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "History",
+    topic: "World History",
+    subtopic: "Civil Rights",
+    questionNumber: 105,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "\"I have a dream\" — one of history's great orations — was given by:",
+      ta: "\"I have a dream\" என்ற புகழ்பெற்ற உரையை நிகழ்த்தியவர்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Winston Churchill" },
+        { id: "B", text: "Paul Kennedy" },
+        { id: "C", text: "Martin Luther King Jr." },
+        { id: "D", text: "Abraham Lincoln" }
+      ],
+      ta: [
+        { id: "A", text: "வின்ஸ்டன் சர்ச்சில்" },
+        { id: "B", text: "பால் கென்னடி" },
+        { id: "C", text: "மார்ட்டின் லூதர் கிங் Jr." },
+        { id: "D", text: "ஆபிரகாம் லிங்கன்" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "Martin Luther King Jr. delivered the 'I Have a Dream' speech on August 28, 1963 during the March on Washington for civil rights.",
+      ta: "மார்ட்டின் லூதர் கிங் Jr. 1963 ஆகஸ்ட் 28 அன்று வாஷிங்டன் பேரணியில் இந்த உரையை நிகழ்த்தினார்"
+    },
+    hints: [],
+    conceptsTested: ["World History"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "history"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_003",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Judiciary",
+    subtopic: "High Courts",
+    questionNumber: 113,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Which states have a Common High Court?",
+      ta: "எந்த மாநிலங்களுக்கு பொது உயர் நீதிமன்றம் உள்ளது?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Delhi and Calcutta" },
+        { id: "B", text: "Kerala and Telangana" },
+        { id: "C", text: "Punjab and Haryana" },
+        { id: "D", text: "Maharashtra and Gujarat" }
+      ],
+      ta: [
+        { id: "A", text: "டெல்லி மற்றும் கல்கத்தா" },
+        { id: "B", text: "கேரளா மற்றும் தெலங்கானா" },
+        { id: "C", text: "பஞ்சாப் மற்றும் ஹரியானா" },
+        { id: "D", text: "மகாராஷ்டிரா மற்றும் குஜராத்" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "Punjab and Haryana share a common High Court located in Chandigarh.",
+      ta: "பஞ்சாப் மற்றும் ஹரியானா சண்டிகரில் உள்ள பொது உயர் நீதிமன்றத்தைப் பகிர்ந்து கொள்கின்றன"
+    },
+    hints: [],
+    conceptsTested: ["Judiciary"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "indian-polity"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_004",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Constitutional Amendments",
+    subtopic: "Anti-defection",
+    questionNumber: 114,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Anti-defection law was provided by which Amendment?",
+      ta: "கட்சித் தாவல் தடைச் சட்டம் எந்த திருத்தத்தால் வழங்கப்பட்டது?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "42nd Amendment" },
+        { id: "B", text: "52nd Amendment Act of 1985" },
+        { id: "C", text: "44th Amendment" },
+        { id: "D", text: "73rd Amendment" }
+      ],
+      ta: [
+        { id: "A", text: "42வது திருத்தம்" },
+        { id: "B", text: "52வது திருத்தம், 1985" },
+        { id: "C", text: "44வது திருத்தம்" },
+        { id: "D", text: "73வது திருத்தம்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "The 52nd Amendment Act of 1985 added the 10th Schedule (Anti-defection law). Modified by 91st Amendment Act of 2003.",
+      ta: "52வது திருத்தச் சட்டம் (1985) 10வது அட்டவணையை சேர்த்தது. 91வது திருத்தம் (2003) மூலம் மாற்றப்பட்டது"
+    },
+    hints: [],
+    conceptsTested: ["Constitutional Amendments"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "indian-polity"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_005",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Indian Economy",
+    topic: "Industrial Policy",
+    subtopic: "MRTP Act",
+    questionNumber: 115,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "The Industrial Policy that abolished the MRTP Act (1969) was:",
+      ta: "MRTP சட்டத்தை (1969) ரத்து செய்த தொழில் கொள்கை:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "1991 Industrial Policy" },
+        { id: "B", text: "1977 Industrial Policy" },
+        { id: "C", text: "1980 Industrial Policy" },
+        { id: "D", text: "1990 Industrial Policy" }
+      ],
+      ta: [
+        { id: "A", text: "1991 தொழில் கொள்கை" },
+        { id: "B", text: "1977 தொழில் கொள்கை" },
+        { id: "C", text: "1980 தொழில் கொள்கை" },
+        { id: "D", text: "1990 தொழில் கொள்கை" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "The 1991 New Industrial Policy (LPG reforms) abolished the MRTP Act and opened the Indian economy.",
+      ta: "1991 புதிய தொழில் கொள்கை MRTP சட்டத்தை ரத்து செய்து இந்தியப் பொருளாதாரத்தைத் திறந்தது"
+    },
+    hints: [],
+    conceptsTested: ["Industrial Policy"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "indian-economy"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_006",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Indian Economy",
+    topic: "Banking & Finance",
+    subtopic: "KCC",
+    questionNumber: 116,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Kisan Credit Card (KCC) was launched in 1998 by:",
+      ta: "கிசான் கிரெடிட் கார்டு (KCC) 1998 இல் யாரால் தொடங்கப்பட்டது?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Reserve Bank of India" },
+        { id: "B", text: "NABARD" },
+        { id: "C", text: "Govt. of India" },
+        { id: "D", text: "RBI and NABARD" }
+      ],
+      ta: [
+        { id: "A", text: "ரிசர்வ் வங்கி" },
+        { id: "B", text: "நபார்ட்" },
+        { id: "C", text: "இந்திய அரசு" },
+        { id: "D", text: "RBI மற்றும் நபார்ட்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "NABARD launched KCC in 1998 to provide timely credit to farmers for their agricultural needs.",
+      ta: "நபார்ட் 1998 இல் விவசாயிகளுக்கு சரியான நேரத்தில் கடன் வழங்க KCC-யை தொடங்கியது"
+    },
+    hints: [],
+    conceptsTested: ["Banking & Finance"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "indian-economy"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_007",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "History",
+    topic: "Freedom Movement",
+    subtopic: "Kakori Case",
+    questionNumber: 117,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Ram Prasad Bismil and Ashfaqulla Khan were arrested in which case?",
+      ta: "ராம் பிரசாத் பிஸ்மில் மற்றும் அஷ்ஃபாகுல்லா கான் எந்த வழக்கில் கைது செய்யப்பட்டனர்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Chittagong Armoury raid" },
+        { id: "B", text: "Kakori conspiracy case" },
+        { id: "C", text: "Lahore conspiracy case" },
+        { id: "D", text: "Central Assembly bomb throwing" }
+      ],
+      ta: [
+        { id: "A", text: "சிட்டகாங் ஆயுதக் கிடங்கு" },
+        { id: "B", text: "ககோரி சதி வழக்கு" },
+        { id: "C", text: "லாகூர் சதி வழக்கு" },
+        { id: "D", text: "மத்திய சட்டமன்ற குண்டு வீச்சு" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "The Kakori Train Robbery (1925) — Bismil, Ashfaqulla Khan, Rajendra Lahiri and Roshan Singh were sentenced to death.",
+      ta: "ககோரி ரயில் கொள்ளை (1925) — பிஸ்மில், அஷ்ஃபாகுல்லா கான் ஆகியோருக்கு மரண தண்டனை விதிக்கப்பட்டது"
+    },
+    hints: [],
+    conceptsTested: ["Freedom Movement"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "history"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_008",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "History",
+    topic: "Freedom Movement",
+    subtopic: "Revolutionary Movement",
+    questionNumber: 118,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Who appeared in defence of revolutionaries in the Alipur blast case?",
+      ta: "அலிப்பூர் குண்டு வழக்கில் புரட்சியாளர்களை யார் வாதாடி காப்பாற்றினார்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Chittaranjan Dass" },
+        { id: "B", text: "Bala Gangadhar Tilak" },
+        { id: "C", text: "V.O. Chidambaram" },
+        { id: "D", text: "G. Subramaniyam" }
+      ],
+      ta: [
+        { id: "A", text: "சித்தரஞ்சன் தாஸ்" },
+        { id: "B", text: "பால கங்காதர திலகர்" },
+        { id: "C", text: "வ.உ. சிதம்பரம்" },
+        { id: "D", text: "ஜி. சுப்ரமணியம்" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "Chittaranjan Das (Deshbandhu) defended Aurobindo Ghosh and others in the Alipur Bomb Case (1908).",
+      ta: "சித்தரஞ்சன் தாஸ் (தேசபந்து) அலிப்பூர் குண்டு வழக்கில் (1908) அரவிந்த கோஷை வாதாடி காப்பாற்றினார்"
+    },
+    hints: [],
+    conceptsTested: ["Freedom Movement"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "history"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_009",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Tamil Nadu History",
+    topic: "Social Reformers",
+    subtopic: "Dalit Movement",
+    questionNumber: 119,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Rettaimalai Srinivasan received which titles for social services?",
+      ta: "ரெட்டைமலை சீனிவாசன் சமூக சேவைக்காக எந்த பட்டங்களைப் பெற்றார்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Rao Sahib, Rao Bahadur, Divan Bahadur" },
+        { id: "B", text: "Padma Shri, Padma Bhushan" },
+        { id: "C", text: "Bharata Ratna" },
+        { id: "D", text: "Tamizh Thenral" }
+      ],
+      ta: [
+        { id: "A", text: "ராவ் சாகிப், ராவ் பகதூர், திவான் பகதூர்" },
+        { id: "B", text: "பத்ம ஸ்ரீ, பத்ம பூஷன்" },
+        { id: "C", text: "பாரத ரத்னா" },
+        { id: "D", text: "தமிழ் தென்றல்" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "Rettaimalai Srinivasan received Rao Sahib (1926), Rao Bahadur (1930), and Divan Bahadur (1936).",
+      ta: "ரெட்டைமலை சீனிவாசன் ராவ் சாகிப் (1926), ராவ் பகதூர் (1930), திவான் பகதூர் (1936) பட்டங்களைப் பெற்றார்"
+    },
+    hints: [],
+    conceptsTested: ["Social Reformers"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "tamil-nadu-history"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2024_REAL_010",
+    examId: "TNPSC_GROUP_4",
+    year: 2024,
+    date: "2024-06-09",
+    category: "Civil Services",
+    subject: "Current Affairs",
+    topic: "Technology",
+    subtopic: "Indian Railways AI",
+    questionNumber: 134,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "AI-based technology to prevent elephant accidents on railway tracks:",
+      ta: "ரயில் தடங்களில் யானை விபத்துகளைத் தடுக்க AI தொழில்நுட்பம்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Radio Galaxy" },
+        { id: "B", text: "Track Guard" },
+        { id: "C", text: "Gajraj Suraksha" },
+        { id: "D", text: "Geoglyph Saver" }
+      ],
+      ta: [
+        { id: "A", text: "ரேடியோ கேலக்சி" },
+        { id: "B", text: "ட்ராக் கார்ட்" },
+        { id: "C", text: "கஜராஜ் சுரக்ஷா" },
+        { id: "D", text: "ஜியோகிளிஃப் சேவர்" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "Indian Railways introduced 'Gajraj Suraksha' — an AI-based intrusion detection system to alert trains about elephants.",
+      ta: "இந்திய ரயில்வே 'கஜராஜ் சுரக்ஷா' AI அடிப்படையிலான ஊடுருவல் கண்டறிதல் அமைப்பை அறிமுகப்படுத்தியது"
+    },
+    hints: [],
+    conceptsTested: ["Technology"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2024-actual", "current-affairs"],
+    statistics: {
+      totalAttempts: 0,
+      correctPercentage: 0,
+      averageTime: 0
+    },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+
+  // ============================================
   // IBPS PO 2024
   // ============================================
   {
