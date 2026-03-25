@@ -220,6 +220,35 @@ const GovernmentExamDetail = () => {
               </CardContent></Card>
             )}
 
+            {/* PYQ Year Distribution */}
+            {exam.pyq.length > 10 && (
+              <Card><CardContent className="p-4">
+                <p className="text-xs font-bold text-gray-700 dark:text-gray-200 mb-2 flex items-center gap-1.5">
+                  <Target className="w-3.5 h-3.5 text-emerald-500" />
+                  {ta ? 'முந்தைய ஆண்டு வினாக்கள்' : 'Previous Year Questions'}
+                  <span className="ml-auto text-emerald-600 font-extrabold text-sm">{exam.pyq.length}</span>
+                </p>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {availableYears.filter(y => y !== 'all').map(year => {
+                    const count = exam.pyq.filter(q => getQuestionYear(q.id) === year).length;
+                    return (
+                      <button key={year} onClick={() => { setActiveTab('pyq'); setYearFilter(year); }}
+                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/30 hover:bg-blue-100 transition-colors">
+                        <span className="text-xs font-bold text-blue-700 dark:text-blue-300">{year}</span>
+                        <span className="text-xs text-blue-500">({count})</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {availableSubjects.filter(s => s !== 'all').slice(0, 6).map(sub => (
+                    <span key={sub} className="text-[10px] font-medium px-2 py-0.5 rounded bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400">{sub}</span>
+                  ))}
+                  {availableSubjects.length > 7 && <span className="text-[10px] text-gray-400">+{availableSubjects.length - 7} more</span>}
+                </div>
+              </CardContent></Card>
+            )}
+
             {/* Actions */}
             <div className="grid grid-cols-2 gap-2">
               <Button className="h-11 rounded-xl text-xs font-bold" onClick={() => setShowMockTest(true)}>
