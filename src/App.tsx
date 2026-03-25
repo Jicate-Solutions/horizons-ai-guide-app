@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import { LanguageProvider } from "@/hooks/useLanguage";
@@ -163,7 +163,7 @@ function App() {
                 <Route path="/career-assessment/colleges/educutoff" element={<EduCutoffPage />} />
                 <Route path="/career-assessment/colleges/entrance-exams" element={<EntranceExamsPage />} />
                 <Route path="/career-assessment/colleges/pyq" element={<EntranceExamsPage />} />
-                <Route path="/career-assessment/colleges/govt-jobs" element={<GovtJobsPage />} />
+                <Route path="/career-assessment/colleges/govt-jobs" element={<Navigate to="/government-exams" replace />} />
                 <Route path="/career-assessment/colleges/tn-university" element={<TNUniversityPage />} />
                 <Route path="/career-assessment/colleges/course-explorer" element={<CourseExplorerPage />} />
                 <Route path="/career-assessment/colleges/startup" element={<StartupGuidePage />} />
