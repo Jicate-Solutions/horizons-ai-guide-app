@@ -349,69 +349,82 @@ const defenceExams: Exam[] = [
       { paper: 'Online CBT (MR — 10th Level)', paperTamil: 'ஆன்லைன் CBT (MR — 10ஆம் வகுப்பு நிலை)', marks: 100, duration: '1 hour', questions: 100 }
     ],
     syllabus: {
-      'SSR Syllabus (10+2 Level — 100 Questions, 60 Minutes)': [
+      'Section I — CBSE Grade 10 Standard': [
         {
-          name: 'Science (25 Questions)',
-          nameTamil: 'அறிவியல் (25 கேள்விகள்)',
+          name: 'Science (Grade 10 Level)',
+          nameTamil: 'அறிவியல் (10ஆம் வகுப்பு நிலை)',
           topics: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: ['Laws of Motion', 'Work, Energy & Power', 'Heat & Thermodynamics', 'Light & Optics', 'Electricity & Magnetism', 'Atomic Structure', 'Wave Motion', 'Units & Measurements'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: ['Metals & Non-metals', 'Organic Chemistry', 'Environmental Chemistry', 'Acids, Bases & Salts', 'Periodic Classification', 'Chemical Bonding', 'Electrochemistry'] },
-            { name: 'Biology (Basic)', nameTamil: 'உயிரியல் (அடிப்படை)', subtopics: ['Basic Human Anatomy', 'Nutrition & Digestion', 'Respiratory System', 'Circulatory System'] }
+            { name: 'Unit 1', nameTamil: 'அலகு 1', subtopics: ['Nature of Matter', 'Universe — Planets, Earth, Satellites, Sun', 'Electricity and its applications'] },
+            { name: 'Unit 2', nameTamil: 'அலகு 2', subtopics: ['Force and Gravitation', 'Newtons Laws of Motion', 'Work, Energy and Power'] },
+            { name: 'Unit 3', nameTamil: 'அலகு 3', subtopics: ['Heat and Temperature', 'Metals and Non-Metals', 'Carbon and its Compounds', 'Measurements in Science', 'Sound and Wave Motion', 'Atomic Structure'] }
           ]
         },
         {
-          name: 'Mathematics (25 Questions)',
-          nameTamil: 'கணிதம் (25 கேள்விகள்)',
+          name: 'Mathematics (Grade 10 Level)',
+          nameTamil: 'கணிதம் (10ஆம் வகுப்பு நிலை)',
           topics: [
-            { name: 'Algebra & Functions', nameTamil: 'இயற்கணிதம் & சார்புகள்', subtopics: ['Relations & Functions', 'Logarithms', 'Complex Numbers', 'Quadratic Equations', 'Sequences & Series', 'Binomial Theorem'] },
-            { name: 'Trigonometry & Geometry', nameTamil: 'முக்கோணமிதி & வடிவியல்', subtopics: ['Trigonometric Functions', 'Inverse Trigonometry', 'Cartesian System of Coordinates', 'Straight Lines', 'Circles & Conic Sections'] },
-            { name: 'Permutations & Probability', nameTamil: 'வரிசைமாற்றம் & நிகழ்தகவு', subtopics: ['Permutations & Combinations', 'Probability', 'Statistics & Mean/Median/Mode'] }
+            { name: 'Unit 1', nameTamil: 'அலகு 1', subtopics: ['Mathematical Simplification', 'Ratio and Proportion', 'Algebraic Identities', 'Linear Equations and Polynomials', 'Simultaneous Equations', 'Basic Trigonometry'] },
+            { name: 'Unit 2', nameTamil: 'அலகு 2', subtopics: ['Simple Mensuration', 'Geometry', 'Measures of Central Tendency — Average, Median and Mode'] },
+            { name: 'Unit 3', nameTamil: 'அலகு 3', subtopics: ['Interest — Simple and Compound', 'Profit, Loss and Percentage', 'Work, Time, Speed and Distance'] }
           ]
         },
         {
-          name: 'English (25 Questions)',
-          nameTamil: 'ஆங்கிலம் (25 கேள்விகள்)',
+          name: 'English (Grade 10 Level)',
+          nameTamil: 'ஆங்கிலம் (10ஆம் வகுப்பு நிலை)',
           topics: [
-            { name: 'Grammar', nameTamil: 'இலக்கணம்', subtopics: ['Tenses (Past, Present, Future)', 'Active & Passive Voice', 'Direct & Indirect Speech', 'Parts of Speech', 'Subject-Verb Agreement', 'Articles & Prepositions'] },
-            { name: 'Vocabulary', nameTamil: 'சொல்வளம்', subtopics: ['Synonyms & Antonyms', 'Idioms & Phrases', 'One Word Substitution', 'Spelling Errors', 'Fill in the Blanks'] },
-            { name: 'Comprehension', nameTamil: 'புரிதல்', subtopics: ['Reading Comprehension Passages', 'Sentence Rearrangement', 'Error Spotting'] }
+            { name: 'Unit 1', nameTamil: 'அலகு 1', subtopics: ['Passage (Reading Comprehension)', 'Preposition', 'Correction of sentences', 'Change Active to Passive / Passive to Active voice'] },
+            { name: 'Unit 2', nameTamil: 'அலகு 2', subtopics: ['Change Direct to Indirect / Indirect to Direct speech', 'Verbs, Tense, Non-Finites', 'Punctuation'] },
+            { name: 'Unit 3', nameTamil: 'அலகு 3', subtopics: ['Substituting Phrasal Verbs for expressions', 'Synonyms and Antonyms', 'Meanings of difficult words'] },
+            { name: 'Unit 4', nameTamil: 'அலகு 4', subtopics: ['Use of Adjectives', 'Compound Preposition'] },
+            { name: 'Unit 5', nameTamil: 'அலகு 5', subtopics: ['Use of Pronouns'] }
           ]
         },
         {
-          name: 'General Awareness (25 Questions)',
-          nameTamil: 'பொது அறிவு (25 கேள்விகள்)',
+          name: 'General Awareness',
+          nameTamil: 'பொது அறிவு',
           topics: [
-            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['National & International News', 'Sports & Awards', 'Defence News & Updates', 'Science & Technology Developments', 'Government Schemes'] },
-            { name: 'History & Civics', nameTamil: 'வரலாறு & குடிமையியல்', subtopics: ['Indian History — Ancient, Medieval, Modern', 'Indian Freedom Movement', 'Indian Constitution', 'Indian Polity & Governance'] },
-            { name: 'Geography & Reasoning', nameTamil: 'புவியியல் & தர்க்கம்', subtopics: ['Indian Geography — Soil, Rivers, Mountains, Climate', 'World Geography', 'Basic Reasoning — Verbal & Non-verbal', 'Analogies, Coding-Decoding, Patterns'] }
+            { name: 'Geography', nameTamil: 'புவியியல்', subtopics: ['Soil, Rivers, Mountains', 'Ports, Inland Harbours'] },
+            { name: 'Culture & History', nameTamil: 'பண்பாடு & வரலாறு', subtopics: ['Culture and Religion', 'Freedom Movement', 'Important National Facts about India', 'Heritage, Arts and Dance'] },
+            { name: 'Defence & Awards', nameTamil: 'பாதுகாப்பு & விருதுகள்', subtopics: ['History, Defence, Wars and Neighbours', 'Awards and Authors', 'Discoveries, Diseases and Nutrition'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['Current Affairs', 'Languages, Capitals and Currencies', 'Common Names, Full Forms and Abbreviations'] },
+            { name: 'National Symbols', nameTamil: 'தேசிய அடையாளங்கள்', subtopics: ['Eminent Personalities', 'National Bird, Animal, Sport, Flower, Anthem, Song, Flag, Mountains'] },
+            { name: 'Sports', nameTamil: 'விளையாட்டு', subtopics: ['Championships, Winners, Terms, Number of Players'] }
+          ]
+        },
+        {
+          name: 'Reasoning',
+          nameTamil: 'காரணவியல்',
+          topics: [
+            { name: 'Reasoning Skills', nameTamil: 'காரணவியல் திறன்', subtopics: ['Spatial, Numerical Reasoning & Associative Ability', 'Sequences', 'Spellings Unscrambling', 'Coding and Decoding'] }
           ]
         }
       ],
-      'MR Syllabus (10th Level — 100 Questions, 60 Minutes)': [
+      'Section II — CBSE Grade 11 & 12 Standard': [
         {
-          name: 'Science (MR Level)',
-          nameTamil: 'அறிவியல் (MR நிலை)',
+          name: 'Physics (Grade 11 & 12 Level)',
+          nameTamil: 'இயற்பியல் (11 & 12ஆம் வகுப்பு நிலை)',
           topics: [
-            { name: 'Physics & Chemistry (10th)', nameTamil: 'இயற்பியல் & வேதியியல் (10ஆம்)', subtopics: ['Nature of Matter — States of Matter', 'Force and Motion — Newton\'s Laws', 'Work and Energy — Kinetic & Potential', 'Heat — Conduction, Convection, Radiation', 'Light — Reflection, Refraction', 'Electricity — Ohm\'s Law, Circuits', 'Atomic Structure — Atoms, Molecules', 'Chemical Reactions — Types & Equations', 'Life Processes — Respiration, Excretion'] }
+            { name: 'Unit 1: Mechanics', nameTamil: 'அலகு 1: இயக்கவியல்', subtopics: ['Physical World and Measurement', 'Kinematics', 'Laws of Motion', 'Work, Energy and Power', 'Newtons Laws and Applications', 'Circular Motion'] },
+            { name: 'Unit 2: Properties & Waves', nameTamil: 'அலகு 2: பண்புகள் & அலைகள்', subtopics: ['Motion of System of Particles and Rigid Body', 'Gravitation', 'Properties of Bulk Matter', 'Thermodynamics', 'Behaviour of Perfect Gas and Kinetic Theory', 'Oscillation and Waves'] },
+            { name: 'Unit 3: Electricity & Magnetism', nameTamil: 'அலகு 3: மின்சாரம் & காந்தவியல்', subtopics: ['Electrostatics', 'Current Electricity', 'Magnetic Effects of Current and Magnetism', 'Electromagnetic Induction and Alternating Currents', 'Electromagnetic Waves'] },
+            { name: 'Unit 4: Optics & Modern Physics', nameTamil: 'அலகு 4: ஒளியியல் & நவீன இயற்பியல்', subtopics: ['Optics', 'Dual Nature of Matter and Radiation', 'Atoms and Nuclei'] },
+            { name: 'Unit 5: Electronics', nameTamil: 'அலகு 5: மின்னணுவியல்', subtopics: ['Electronic Devices', 'Communication Systems'] }
           ]
         },
         {
-          name: 'Mathematics (MR Level)',
-          nameTamil: 'கணிதம் (MR நிலை)',
+          name: 'Mathematics (Grade 11 & 12 Level)',
+          nameTamil: 'கணிதம் (11 & 12ஆம் வகுப்பு நிலை)',
           topics: [
-            { name: 'Arithmetic & Algebra (10th)', nameTamil: 'எண்கணிதம் & இயற்கணிதம் (10ஆம்)', subtopics: ['Number Systems & Rational Numbers', 'Arithmetic — Percentage, Ratio, Profit/Loss', 'Linear Equations', 'Quadratic Equations', 'Basic Algebra', 'Geometry — Triangles, Circles, Angles', 'Mensuration — Area, Volume, Surface Area', 'Basic Trigonometry — Sin, Cos, Tan'] }
-          ]
-        },
-        {
-          name: 'General Awareness (MR Level)',
-          nameTamil: 'பொது அறிவு (MR நிலை)',
-          topics: [
-            { name: 'GK & Current Affairs (10th)', nameTamil: 'பொது அறிவு & நடப்பு (10ஆம்)', subtopics: ['Geography — Rivers, Mountains, Ports, Capitals', 'History — Indian Freedom Movement, Culture & Heritage', 'Civics — Indian Constitution, Democracy, Parliament', 'Current Affairs — National & International Events', 'Sports — Commonwealth, Olympics, Cricket', 'Awards & Honours — Padma, Nobel, Bharat Ratna', 'Abbreviations — UN, NATO, WHO, ISRO, DRDO'] }
+            { name: 'Unit 1: Sets, Functions & Algebra', nameTamil: 'அலகு 1: கணங்கள், சார்புகள் & இயற்கணிதம்', subtopics: ['Sets, Relations and Functions', 'Trigonometric Functions', 'Principle of Mathematical Induction', 'Complex Numbers and Quadratic Equations', 'Linear Inequalities', 'Permutation and Combinations', 'Binomial Theory', 'Sequence and Series', 'Matrices and Determinants'] },
+            { name: 'Unit 2: Coordinate Geometry & Calculus', nameTamil: 'அலகு 2: ஆய அமைப்பு வடிவியல் & நுண்கணிதம்', subtopics: ['Straight Lines, Conic Section', 'Introduction to Three-Dimensional Geometry', 'Limits and Derivatives', 'Continuity and Differentiability', 'Applications of Derivatives', 'Integrals and Applications of Integrals', 'Differential Equations'] },
+            { name: 'Unit 3: Vectors, Probability & Reasoning', nameTamil: 'அலகு 3: வெக்டர், நிகழ்தகவு & காரணவியல்', subtopics: ['Vectors and Three-Dimensional Geometry', 'Linear Programming', 'Mathematical Reasoning', 'Statistics and Probability'] },
+            { name: 'Unit 4: Arithmetic (Revision)', nameTamil: 'அலகு 4: எண்கணிதம் (மறுபார்வை)', subtopics: ['Mathematical Simplification, Ratio and Proportion', 'Algebraic Identities, Linear Equations, Polynomials', 'Simultaneous Equations, Basic Trigonometry', 'Simple Mensuration, Geometry', 'Measures of Central Tendency — Average, Median, Mode'] },
+            { name: 'Unit 5: Relations & Functions (Advanced)', nameTamil: 'அலகு 5: தொடர்புகள் & சார்புகள் (மேம்பட்ட)', subtopics: ['Relations and Functions (Advanced)', 'Inverse Trigonometric Functions'] }
           ]
         }
       ]
     },
-    pyq: [
+        pyq: [
       { id: 'navy-phy-1', question: 'The SI unit of electric current is:', questionTamil: 'மின்னோட்டத்தின் SI அலகு:', options: ['Ampere', 'Volt', 'Ohm', 'Watt'], optionsTamil: ['ஆம்பியர்', 'வோல்ட்', 'ஓம்', 'வாட்'], answer: 0, explanation: 'Ampere (A) is the SI unit of electric current', explanationTamil: 'ஆம்பியர் (A) மின்னோட்டத்தின் SI அலகு', subject: 'Physics', difficulty: 'easy' },
       { id: 'navy-phy-2', question: 'Newton\'s First Law of Motion is also called:', questionTamil: 'நியூட்டனின் முதல் இயக்க விதி எவ்வாறு அழைக்கப்படுகிறது:', options: ['Law of Inertia', 'Law of Acceleration', 'Law of Action-Reaction', 'Law of Gravitation'], optionsTamil: ['நிலைமத் தன்மை விதி', 'முடுக்கம் விதி', 'செயல்-எதிர்செயல் விதி', 'ஈர்ப்பு விதி'], answer: 0, explanation: 'Newton\'s First Law states that a body at rest stays at rest unless acted upon by an external force — this is the Law of Inertia', explanationTamil: 'நியூட்டனின் முதல் விதி: ஒரு பொருள் வெளிப்புற விசை செயல்படாத வரை ஓய்வு நிலையில் இருக்கும் — இது நிலைமத் தன்மை விதி', subject: 'Physics', difficulty: 'easy' },
       { id: 'navy-chem-1', question: 'The chemical formula of water is:', questionTamil: 'நீரின் வேதிச் சூத்திரம்:', options: ['H₂O', 'CO₂', 'NaCl', 'H₂SO₄'], optionsTamil: ['H₂O', 'CO₂', 'NaCl', 'H₂SO₄'], answer: 0, explanation: 'Water is composed of 2 hydrogen and 1 oxygen atom: H₂O', explanationTamil: 'நீர் 2 ஹைட்ரஜன் மற்றும் 1 ஆக்சிஜன் அணுவால் ஆனது: H₂O', subject: 'Chemistry', difficulty: 'easy' },
@@ -571,7 +584,7 @@ const defenceExams: Exam[] = [
     syllabus: {
       'Section I — 10th Standard (60 Marks)': [
         {
-          name: 'Section I — 10th Standard Level (60 Marks, 60 Questions)',
+          name: 'Section I — CBSE 10th Standard (60 Marks, 60 Questions)',
           nameTamil: 'பிரிவு I — 10ஆம் வகுப்பு நிலை (60 மதிப்பெண்கள்)',
           topics: [
             { name: 'Mathematics (20 Questions)', nameTamil: 'கணிதம் (20 கேள்விகள்)', subtopics: [
@@ -587,45 +600,62 @@ const defenceExams: Exam[] = [
               'Carbon and its Compounds', 'Measurements in Science', 'Sound and Wave Motion', 'Atomic Structure'
             ] },
             { name: 'English (15 Questions)', nameTamil: 'ஆங்கிலம் (15 கேள்விகள்)', subtopics: [
-              'Passage Comprehension', 'Prepositions', 'Correction of Sentences',
-              'Active to Passive / Passive to Active Voice', 'Direct to Indirect / Indirect to Direct Speech',
-              'Verbs, Tense, Non-Finites', 'Punctuation', 'Phrasal Verbs and Expressions',
-              'Synonyms and Antonyms', 'Use of Adjectives and Pronouns'
+              'Passage Comprehension',
+              'Prepositions, Correction of Sentences',
+              'Active to Passive / Passive to Active Voice',
+              'Direct to Indirect / Indirect to Direct Speech',
+              'Verbs, Tense, Non-Finites, Punctuation',
+              'Substituting Phrasal Verbs for Expressions',
+              'Synonyms and Antonyms, Meanings of Difficult Words',
+              'Use of Adjectives, Compound Preposition',
+              'Use of Pronouns'
             ] },
             { name: 'Reasoning (10 Questions)', nameTamil: 'பகுத்தறிவு (10 கேள்விகள்)', subtopics: [
               'Spatial Reasoning', 'Numerical Reasoning', 'Associative Ability',
               'Sequences and Series', 'Spelling Unscrambling', 'Coding and Decoding'
             ] },
-            { name: 'General Knowledge (5 Questions)', nameTamil: 'பொது அறிவு (5 கேள்விகள்)', subtopics: [
-              'Geography (Soil, Rivers, Mountains, Ports, Inland Harbours)',
-              'Culture and Religion', 'Freedom Movement',
-              'Important National Facts about India', 'Heritage, Arts and Dance'
+            { name: 'General Awareness (5 Questions)', nameTamil: 'பொது அறிவு (5 கேள்விகள்)', subtopics: [
+              'Geography: Soil, Rivers, Mountains, Ports, Inland Harbours',
+              'Culture and Religion, Freedom Movement, Important National Facts about India, Heritage, Arts and Dance',
+              'History, Defence, Wars and Neighbours, Awards and Authors, Discoveries, Diseases and Nutrition',
+              'Current Affairs, Languages, Capitals and Currencies, Common Names, Full Forms and Abbreviations',
+              'Eminent Personalities, National Bird / Animal / Sport / Flower / Anthem / Song / Flag / Mountains',
+              'Sports: Championships / Winners / Terms / Number of Players'
             ] }
           ]
         }
       ],
       'Section II — 12th Standard (50 Marks)': [
         {
-          name: 'Section II — 12th Standard Level (50 Marks, 50 Questions)',
+          name: 'Section II — CBSE 11th & 12th Standard (50 Marks, 50 Questions)',
           nameTamil: 'பிரிவு II — 12ஆம் வகுப்பு நிலை (50 மதிப்பெண்கள்)',
           topics: [
-            { name: 'Mathematics (25 Questions)', nameTamil: 'கணிதம் (25 கேள்விகள்)', subtopics: [
-              'Sets, Relations and Functions', 'Complex Numbers', 'Quadratic Equations',
-              'Matrices and Determinants', 'Trigonometric Functions', 'Limits and Derivatives',
-              'Applications of Derivatives', 'Integrals', 'Differential Equations',
-              'Vector Algebra', '3D Geometry', 'Linear Programming',
-              'Probability', 'Conic Sections'
+            { name: 'Mathematics (25 Questions) — 11th & 12th CBSE', nameTamil: 'கணிதம் (25 கேள்விகள்) — 11 & 12 CBSE', subtopics: [
+              'Sets, Relations and Functions, Trigonometric Functions',
+              'Algebra: Mathematical Induction, Complex Numbers, Quadratic Equations, Linear Inequalities',
+              'Permutation & Combination, Binomial Theory, Sequence & Series',
+              'Matrices, Determinants',
+              'Coordinate Geometry: Straight Lines, Conic Section, 3D Geometry',
+              'Calculus: Limits & Derivatives, Continuity & Differentiability',
+              'Applications of Derivatives, Integrals, Applications of Integrals, Differential Equations',
+              'Vector and Three Dimensional Geometry',
+              'Linear Programming',
+              'Mathematical Reasoning',
+              'Statistics, Probability'
             ] },
-            { name: 'Physics (25 Questions)', nameTamil: 'இயற்பியல் (25 கேள்விகள்)', subtopics: [
-              'Physical World and Measurement', 'Kinematics', 'Laws of Motion',
-              'Work, Energy and Power', 'Motion of Systems of Particles and Rigid Body',
-              'Gravitation', 'Mechanics of Solids and Fluids', 'Heat and Thermodynamics',
-              'Oscillations', 'Waves', 'Electrostatics', 'Current Electricity',
+            { name: 'Physics (25 Questions) — 11th & 12th CBSE', nameTamil: 'இயற்பியல் (25 கேள்விகள்) — 11 & 12 CBSE', subtopics: [
+              'Physical World and Measurement, Kinematics, Laws of Motion (Newtons laws, Circular motion)',
+              'Work, Energy and Power',
+              'Motion of System of Particles and Rigid Body, Gravitation',
+              'Properties of Bulk Matter, Thermodynamics',
+              'Behaviour of Perfect Gas and Kinetic Theory',
+              'Oscillations and Waves',
+              'Electrostatics, Current Electricity',
               'Magnetic Effects of Current and Magnetism',
-              'Electromagnetic Induction and Alternating Currents',
-              'Electromagnetic Waves', 'Optics',
-              'Dual Nature of Matter and Radiation', 'Atoms and Nuclei',
-              'Electronic Devices', 'Communication Systems'
+              'Electromagnetic Induction and Alternating Currents, Electromagnetic Waves',
+              'Optics, Dual Nature of Matter and Radiation',
+              'Atoms and Nuclei',
+              'Electronic Devices, Communication Systems'
             ] }
           ]
         }
