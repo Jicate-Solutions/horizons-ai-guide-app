@@ -2294,6 +2294,395 @@ export const pyqQuestions: PYQQuestion[] = [
   },
 
   // ============================================
+  // TNPSC GROUP 4 - 2022 ACTUAL PAPER (Part-B General Studies)
+  // Source: CCS4T/2022 Official Question Paper
+  // ============================================
+  {
+    id: "TNPSC_G4_2022_REAL_001",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Constitutional Amendments",
+    subtopic: "86th Amendment",
+    questionNumber: 134,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "The 86th Constitutional Amendment Act, 2002 has introduced the fundamental duty under 51A(K) is:",
+      ta: "86வது அரசியலமைப்பு திருத்தச் சட்டம், 2002 சரத்து 51A(K) இல் அறிமுகப்படுத்திய அடிப்படைக் கடமை:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "To provide free and compulsory education to all children until age fourteen" },
+        { id: "B", text: "To value the rich heritage of our composite culture" },
+        { id: "C", text: "To defend the country and render national service" },
+        { id: "D", text: "To protect the natural environment" }
+      ],
+      ta: [
+        { id: "A", text: "14 வயது வரை அனைத்து குழந்தைகளுக்கும் இலவச கட்டாயக் கல்வி" },
+        { id: "B", text: "கலாச்சார பாரம்பரியத்தை மதிப்பது" },
+        { id: "C", text: "நாட்டைப் பாதுகாப்பது" },
+        { id: "D", text: "இயற்கை சூழலைப் பாதுகாப்பது" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "The 86th Amendment (2002) added Article 21A (Right to Education) and duty 51A(K) — parents to provide education to children aged 6-14.",
+      ta: "86வது திருத்தம் (2002) சரத்து 21A (கல்வி உரிமை) மற்றும் 51A(K) கடமையை சேர்த்தது — 6-14 வயது குழந்தைகளுக்கு கல்வி வழங்குதல்"
+    },
+    hints: [],
+    conceptsTested: ["Constitutional Amendments"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "indian-polity"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_002",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Political Parties",
+    subtopic: "Party Symbols",
+    questionNumber: 135,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "How many pairs are correctly matched? AITC-Two Flowers & Grass, NCP-Clock, TRS-Car, AGP-Lock & Key",
+      ta: "எத்தனை ஜோடிகள் சரியாகப் பொருத்தப்பட்டுள்ளன? AITC-இரு பூக்கள், NCP-கடிகாரம், TRS-கார், AGP-பூட்டு சாவி"
+    },
+    options: {
+      en: [
+        { id: "A", text: "1 pair" },
+        { id: "B", text: "2 pairs" },
+        { id: "C", text: "3 pairs" },
+        { id: "D", text: "4 pairs" }
+      ],
+      ta: [
+        { id: "A", text: "1 ஜோடி" },
+        { id: "B", text: "2 ஜோடிகள்" },
+        { id: "C", text: "3 ஜோடிகள்" },
+        { id: "D", text: "4 ஜோடிகள்" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "AITC-Two Flowers & Grass (correct), NCP-Clock (correct), TRS-Car (correct), AGP-Lock & Key (incorrect, AGP symbol is elephant).",
+      ta: "AITC, NCP, TRS சரி. AGP தவறு — AGP சின்னம் யானை, பூட்டு சாவி அல்ல"
+    },
+    hints: [],
+    conceptsTested: ["Political Parties"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "indian-polity"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_003",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Judiciary",
+    subtopic: "Judicial Review",
+    questionNumber: 136,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Which statements are correct about Judiciary in India? (i) Judicial Review borrowed from USA (ii) Federal & State laws subject to Judicial Review",
+      ta: "இந்தியா நீதித்துறை பற்றிய சரியான கூற்றுகள்? (i) நீதித்துறை மறுஆய்வு USA-வில் இருந்து (ii) மத்திய மாநில சட்டங்கள் நீதித்துறை மறுஆய்வுக்கு உட்பட்டவை"
+    },
+    options: {
+      en: [
+        { id: "A", text: "(i) and (ii) only" },
+        { id: "B", text: "(i) and (iii) only" },
+        { id: "C", text: "(ii) and (iii) only" },
+        { id: "D", text: "(i), (ii) and (iii)" }
+      ],
+      ta: [
+        { id: "A", text: "(i) மற்றும் (ii) மட்டும்" },
+        { id: "B", text: "(i) மற்றும் (iii) மட்டும்" },
+        { id: "C", text: "(ii) மற்றும் (iii) மட்டும்" },
+        { id: "D", text: "(i), (ii) மற்றும் (iii)" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "India borrowed Judicial Review from USA. Both federal and state laws can be reviewed. Article 13B saves acts from judicial review (statement iii is wrong).",
+      ta: "இந்தியா நீதித்துறை மறுஆய்வை USA-விலிருந்து கடன் வாங்கியது. சரத்து 13B சட்டங்களை நீதித்துறை மறுஆய்வில் இருந்து பாதுகாக்கிறது"
+    },
+    hints: [],
+    conceptsTested: ["Judiciary"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "indian-polity"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_004",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "Indian Polity",
+    topic: "Writs",
+    subtopic: "Articles 32 & 226",
+    questionNumber: 137,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Which Articles empower the Supreme Court and High Courts to issue writs?",
+      ta: "உச்ச நீதிமன்றம் மற்றும் உயர் நீதிமன்றங்களுக்கு ஆணைகள் பிறப்பிக்க அதிகாரம் அளிக்கும் சரத்துகள்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Article 23 and Article 226" },
+        { id: "B", text: "Article 32 and Article 228" },
+        { id: "C", text: "Article 226 and Article 36" },
+        { id: "D", text: "Article 32 and Article 226" }
+      ],
+      ta: [
+        { id: "A", text: "சரத்து 23 மற்றும் 226" },
+        { id: "B", text: "சரத்து 32 மற்றும் 228" },
+        { id: "C", text: "சரத்து 226 மற்றும் 36" },
+        { id: "D", text: "சரத்து 32 மற்றும் 226" }
+      ]
+    },
+    correctAnswer: "D",
+    solution: {
+      en: "Article 32 empowers Supreme Court and Article 226 empowers High Courts to issue writs for enforcement of Fundamental Rights.",
+      ta: "சரத்து 32 உச்ச நீதிமன்றத்திற்கும், சரத்து 226 உயர் நீதிமன்றங்களுக்கும் ஆணைகள் பிறப்பிக்கும் அதிகாரம் வழங்குகிறது"
+    },
+    hints: [],
+    conceptsTested: ["Writs"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "indian-polity"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_005",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "History",
+    topic: "National Leaders",
+    subtopic: "Famous Quotes",
+    questionNumber: 142,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "\"India will be a land of many faiths equally honoured and respected, but of one national outlook\" — Who said this?",
+      ta: "\"இந்தியா பல்வேறு நம்பிக்கைகளுக்கு சமமாக மதிக்கப்படும் ஒரு தேசிய நோக்கமுடைய நாடாக இருக்கும்\" — இதைக் கூறியவர்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Mahatma Gandhi" },
+        { id: "B", text: "Jawaharlal Nehru" },
+        { id: "C", text: "Dr. B.R. Ambedkar" },
+        { id: "D", text: "Sir Syed Ahmed Khan" }
+      ],
+      ta: [
+        { id: "A", text: "மகாத்மா காந்தி" },
+        { id: "B", text: "ஜவஹர்லால் நேரு" },
+        { id: "C", text: "டாக்டர் அம்பேத்கர்" },
+        { id: "D", text: "சர் சையத் அகமது கான்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "Jawaharlal Nehru spoke about India as a land of many faiths with one national outlook, reflecting his vision of secular India.",
+      ta: "ஜவஹர்லால் நேரு இந்தியாவை பல நம்பிக்கைகள் கொண்ட ஒரு தேசிய நோக்கமுடைய நாடாக வர்ணித்தார்"
+    },
+    hints: [],
+    conceptsTested: ["National Leaders"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "history"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_006",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "Geography",
+    topic: "Indian Plains",
+    subtopic: "Northern Plains",
+    questionNumber: 143,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Which statements are correct? (i) Rajasthan plains west of Aravalli (ii) Punjab-Haryana plains NE of Great Indian Desert",
+      ta: "எவை சரியான கூற்றுகள்? (i) ராஜஸ்தான் சமவெளி ஆரவல்லிக்கு மேற்கே (ii) பஞ்சாப்-ஹரியானா சமவெளி பாலைவனத்திற்கு வடகிழக்கே"
+    },
+    options: {
+      en: [
+        { id: "A", text: "(i), (iii) and (iv) only" },
+        { id: "B", text: "(i) and (ii) only" },
+        { id: "C", text: "(ii) and (iii) only" },
+        { id: "D", text: "(ii) and (iv) only" }
+      ],
+      ta: [
+        { id: "A", text: "(i), (iii) மற்றும் (iv) மட்டும்" },
+        { id: "B", text: "(i) மற்றும் (ii) மட்டும்" },
+        { id: "C", text: "(ii) மற்றும் (iii) மட்டும்" },
+        { id: "D", text: "(ii) மற்றும் (iv) மட்டும்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "Rajasthan plains lie to the west of Aravalli range. Punjab-Haryana plains are to the North-East of the Great Indian Desert (Thar).",
+      ta: "ராஜஸ்தான் சமவெளி ஆரவல்லி மலைத்தொடருக்கு மேற்கே உள்ளது. பஞ்சாப்-ஹரியானா சமவெளி தார் பாலைவனத்திற்கு வடகிழக்கே உள்ளது"
+    },
+    hints: [],
+    conceptsTested: ["Indian Plains"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "geography"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_007",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "History",
+    topic: "Maratha Empire",
+    subtopic: "Shivaji",
+    questionNumber: 164,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Identify the wrong statement about Shivaji: (A) Guardian was Dadaji Kondadev (B) Coronation at Rajgosh (C) Soldiers plundered Surat in 1665 (D) Crowned Chatrapati in 1674",
+      ta: "சிவாஜி பற்றிய தவறான கூற்றை கண்டறிக"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Dadaji Kondadev was guardian" },
+        { id: "B", text: "Coronation celebrated at Rajgosh" },
+        { id: "C", text: "Soldiers plundered Surat in 1665" },
+        { id: "D", text: "Crowned Chatrapati in 1674" }
+      ],
+      ta: [
+        { id: "A", text: "தாதாஜி கொண்டதேவ் பாதுகாவலர்" },
+        { id: "B", text: "ராஜ்கோஷில் முடிசூட்டு" },
+        { id: "C", text: "1665 இல் சூரத் கொள்ளை" },
+        { id: "D", text: "1674 இல் சத்ரபதி பட்டம்" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "Shivaji's soldiers plundered Surat in 1664 (not 1665). His guardian was Dadaji Kondadev, coronation at Raigad in 1674 as Chatrapati.",
+      ta: "சிவாஜியின் படைகள் சூரத்தை 1664 இல் கொள்ளையடித்தன (1665 அல்ல). 1674 இல் ராய்கடில் சத்ரபதி பட்டம் சூட்டப்பட்டார்"
+    },
+    hints: [],
+    conceptsTested: ["Maratha Empire"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "history"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "TNPSC_G4_2022_REAL_008",
+    examId: "TNPSC_GROUP_4",
+    year: 2022,
+    date: "2022-07-24",
+    category: "Civil Services",
+    subject: "Tamil Nadu History",
+    topic: "Freedom Movement",
+    subtopic: "Bharathi",
+    questionNumber: 165,
+    questionType: "MCQ",
+    difficulty: "Medium",
+    marks: 1.5,
+    negativeMarks: 0.5,
+    timeRecommended: 60,
+    question: {
+      en: "Choose correct statements about Bharathi: 1. Edited Tamil weekly 'India' 2. Participated in Surat Congress 1907 3. Edited Chakravartini, Swadesamitran",
+      ta: "பாரதி பற்றிய சரியான கூற்றுகளைத் தேர்ந்தெடுக்கவும்"
+    },
+    options: {
+      en: [
+        { id: "A", text: "1 and 2 only correct" },
+        { id: "B", text: "1, 2 and 3 only correct" },
+        { id: "C", text: "2 and 3 only correct" },
+        { id: "D", text: "2, 3 and 4 only correct" }
+      ],
+      ta: [
+        { id: "A", text: "1 மற்றும் 2 மட்டும் சரி" },
+        { id: "B", text: "1, 2 மற்றும் 3 மட்டும் சரி" },
+        { id: "C", text: "2 மற்றும் 3 மட்டும் சரி" },
+        { id: "D", text: "2, 3 மற்றும் 4 மட்டும் சரி" }
+      ]
+    },
+    correctAnswer: "D",
+    solution: {
+      en: "Bharathi edited Tamil weekly 'India', participated in Surat Congress (1907), edited Chakravartini and Swadesamitran newspapers. G. Subramaniya Iyer (not Bharathi) published The Hindu.",
+      ta: "பாரதி 'இந்தியா' வார இதழ், சக்ரவர்த்தினி, சுதேசமித்திரன் ஆகியவற்றை ஆசிரியராக இருந்தார். 1907 சூரத் காங்கிரசில் பங்கேற்றார்"
+    },
+    hints: [],
+    conceptsTested: ["Freedom Movement"],
+    commonMistakes: [],
+    relatedQuestions: [],
+    tags: ["tnpsc-2022-actual", "tamil-nadu-history"],
+    statistics: { totalAttempts: 0, correctPercentage: 0, averageTime: 0 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+
+  // ============================================
   // TNPSC GROUP 4 - 2024 ACTUAL PAPER (Part-B General Studies)
   // Source: CCSE4GT/2024 Official Question Paper
   // ============================================
