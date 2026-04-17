@@ -71,7 +71,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="text-white space-y-5">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500/20 to-orange-600/20 backdrop-blur-sm text-orange-300 px-4 py-2 rounded-full text-sm font-semibold border border-orange-400/30 animate-fade-up">
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500/20 to-orange-600/20 backdrop-blur-sm text-orange-400 px-4 py-2 rounded-full text-sm font-semibold border border-orange-400/30 animate-fade-up">
               <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
               {t('hero.badge')}
             </span>
@@ -82,7 +82,7 @@ const HeroSection = () => {
               </h1>
 
               <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
                   {t('hero.subtitle')}
                 </span>
               </h2>
