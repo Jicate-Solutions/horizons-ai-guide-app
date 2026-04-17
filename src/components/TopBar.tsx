@@ -116,7 +116,7 @@ const TopBar = () => {
           
           <Button 
             size="sm" 
-            className="relative bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-7 sm:h-8 px-2.5 sm:px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
+            className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium text-xs h-7 sm:h-8 px-2.5 sm:px-4 rounded-full shadow-md shadow-orange-500/20 transition-all duration-300 hover:shadow-lg"
             onClick={openChat}
           >
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
