@@ -82,7 +82,7 @@ const HeroSection = () => {
               </h1>
 
               <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                <span style={{color: '#ea580c'}}>
                   {t('hero.subtitle')}
                 </span>
               </h2>

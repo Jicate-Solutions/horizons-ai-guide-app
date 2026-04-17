@@ -49,7 +49,7 @@ const TopBar = () => {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link to="/admin/monitor">
-            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center font-serif font-bold text-white text-sm">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center font-serif font-bold text-white text-sm" style={{backgroundColor: '#ea580c'}}>
               வ
             </div>
           </Link>
