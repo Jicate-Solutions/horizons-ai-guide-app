@@ -6,8 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import { PaymentProvider } from "@/hooks/usePayment";
 import { lazy, Suspense } from "react";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import PaymentRoute from "@/components/PaymentRoute";
+import PaywallPage from "./pages/PaywallPage";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
 const NotificationBanner = lazy(() => import("@/components/NotificationBanner"));
@@ -123,6 +126,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <AuthProvider>
+          <PaymentProvider>
           <AdminAuthProvider>
             <TooltipProvider>
               <Toaster />
@@ -134,11 +138,12 @@ function App() {
                 {/* Main Routes — Open */}
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/unlock" element={<PaywallPage />} />
                 
                 {/* Job Portal — Open to browse, login to save */}
-                <Route path="/jobs" element={<JobPortal />} />
-                <Route path="/jobs/*" element={<JobPortal />} />
-                <Route path="/saved-jobs" element={<ProtectedRoute><SavedJobs /></ProtectedRoute>} />
+                <Route path="/jobs" element={<PaymentRoute><JobPortal /></PaymentRoute>} />
+                <Route path="/jobs/*" element={<PaymentRoute><JobPortal /></PaymentRoute>} />
+                <Route path="/saved-jobs" element={<PaymentRoute><SavedJobs /></PaymentRoute>} />
                 <Route path="/register/learner" element={<ProtectedRoute><RegisterLearner /></ProtectedRoute>} />
                 <Route path="/register/12th-learner" element={<ProtectedRoute><Register12thLearner /></ProtectedRoute>} />
                 
@@ -152,11 +157,11 @@ function App() {
                 <Route path="/employer/jobs/:id/edit" element={<ProtectedRoute><EmployerPostJob /></ProtectedRoute>} />
                 
                 {/* Student Dashboard — Login required */}
-                <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
+                <Route path="/student-dashboard" element={<PaymentRoute><StudentDashboard /></PaymentRoute>} />
 
                 {/* Career Assessment — Open to browse, login to take/save */}
-                <Route path="/career-assessment" element={<AICareerPredictor />} />
-                <Route path="/career-assessment/chat" element={<ProtectedRoute><CareerChat /></ProtectedRoute>} />
+                <Route path="/career-assessment" element={<PaymentRoute><AICareerPredictor /></PaymentRoute>} />
+                <Route path="/career-assessment/chat" element={<PaymentRoute><CareerChat /></PaymentRoute>} />
                 <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
                 <Route path="/career-assessment/colleges/find-colleges" element={<FindCollegesPage />} />
                 <Route path="/career-assessment/colleges/scholarships" element={<ScholarshipsPage />} />
@@ -191,7 +196,7 @@ function App() {
                 <Route path="/edu-cutoff" element={<EduCutoff />} />
                 
                 {/* Government Exams — Open to browse */}
-                <Route path="/government-exams" element={<GovernmentExams />} />
+                <Route path="/government-exams" element={<PaymentRoute><GovernmentExams /></PaymentRoute>} />
                 <Route path="/government-exams/:categoryId" element={<GovernmentExamCategory />} />
                 <Route path="/government-exams/:categoryId/:examId" element={<GovernmentExamDetail />} />
                 
@@ -237,6 +242,7 @@ function App() {
             </BrowserRouter>
           </TooltipProvider>
         </AdminAuthProvider>
+          </PaymentProvider>
       </AuthProvider>
     </LanguageProvider>
   </QueryClientProvider>
