@@ -65,7 +65,7 @@ const ServicesSection = () => {
             <Compass className="w-4 h-4" />
             {t('services.badge')}
           </span>
-          <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-5">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-4">
             {t('services.title')}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -73,7 +73,7 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => (
             <div
               key={service.title}

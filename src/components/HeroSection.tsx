@@ -98,7 +98,7 @@ const HeroSection = () => {
 
             <div className="flex flex-wrap justify-center gap-3 animate-fade-up" style={{ animationDelay: '0.5s' }}>
               <Button 
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-5 py-3 text-sm rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-8 py-4 text-base rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/auth?redirect=/career-assessment/colleges")}
               >
                 <GraduationCap className="w-4 h-4 mr-2" />

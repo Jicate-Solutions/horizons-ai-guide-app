@@ -116,15 +116,15 @@ const TopBar = () => {
           
           <Button 
             size="sm" 
-            className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium text-xs h-7 sm:h-8 px-2.5 sm:px-4 rounded-full shadow-md shadow-orange-500/20 transition-all duration-300 hover:shadow-lg"
+            className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium text-xs h-8 sm:h-9 px-3 sm:px-4 rounded-full shadow-md shadow-orange-500/20 transition-all duration-300 hover:shadow-lg"
             onClick={openChat}
           >
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
             </span>
-            <MessageSquareText className="w-3.5 h-3.5 mr-1.5" />
-            {t('topbar.aiChat')}
+            <MessageSquareText className="w-3.5 h-3.5 sm:mr-1.5" />
+            <span className="hidden sm:inline">{t('topbar.aiChat')}</span>
           </Button>
           <button className="relative p-2 hover:bg-primary-foreground/10 rounded-full transition-colors hidden sm:block">
             <Bell className="w-4 h-4" />
@@ -141,7 +141,7 @@ const TopBar = () => {
               <Link to="/auth">
                 <Button 
                   size="sm" 
-                  className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
+                  className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-9 px-4 font-semibold"
                 >
                   {t('topbar.register')}
                 </Button>

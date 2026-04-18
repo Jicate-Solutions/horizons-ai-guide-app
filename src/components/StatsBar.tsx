@@ -1,9 +1,9 @@
 import { Users, Building2, TrendingUp } from "lucide-react";
 
 const stats = [
-  { value: "5000+", label: "Learners Registered", icon: Users },
-  { value: "500+", label: "Partner Companies", icon: Building2 },
-  { value: "95%", label: "Placement Rate", icon: TrendingUp },
+  { value: "5000+", label: "Students", icon: Users },
+  { value: "500+", label: "Companies", icon: Building2 },
+  { value: "95%", label: "Got Jobs", icon: TrendingUp },
 ];
 
 const StatsBar = () => {
@@ -17,9 +17,9 @@ const StatsBar = () => {
               className="text-center text-primary-foreground animate-fade-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent" />
-              <div className="text-3xl md:text-4xl font-bold mb-1">{stat.value}</div>
-              <div className="text-sm text-primary-foreground/80">{stat.label}</div>
+              <stat.icon className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-accent" />
+              <div className="text-2xl md:text-4xl font-bold mb-1">{stat.value}</div>
+              <div className="text-xs md:text-sm text-primary-foreground/80 font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
