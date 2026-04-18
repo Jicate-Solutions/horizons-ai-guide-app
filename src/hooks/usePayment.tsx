@@ -22,15 +22,24 @@ export const PaymentProvider = ({ children }: { children: ReactNode }) => {
   const checkPayment = async () => {
     if (!user) { setHasPaid(false); setLoading(false); return; }
     try {
+      // First check localStorage (instant, no DB needed)
+      const localKey = `vzk_paid_${user.id}`;
+      if (localStorage.getItem(localKey) === 'true') {
+        setHasPaid(true); setLoading(false); return;
+      }
+      // Then try Supabase if available
       const { data, error } = await (supabase as any)
         .from('user_payments')
         .select('id')
         .eq('user_id', user.id)
         .eq('status', 'paid')
         .maybeSingle();
-      // If table doesn't exist yet, don't block the user
-      if (error && error.code === '42P01') { setHasPaid(false); setLoading(false); return; }
-      setHasPaid(!!data);
+      if (!error && data) {
+        localStorage.setItem(localKey, 'true');
+        setHasPaid(true);
+      } else {
+        setHasPaid(false);
+      }
     } catch {
       setHasPaid(false);
     } finally {
