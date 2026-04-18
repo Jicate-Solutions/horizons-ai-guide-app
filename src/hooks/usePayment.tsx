@@ -22,12 +22,14 @@ export const PaymentProvider = ({ children }: { children: ReactNode }) => {
   const checkPayment = async () => {
     if (!user) { setHasPaid(false); setLoading(false); return; }
     try {
-      const { data } = await (supabase as any)
+      const { data, error } = await (supabase as any)
         .from('user_payments')
         .select('id')
         .eq('user_id', user.id)
         .eq('status', 'paid')
         .maybeSingle();
+      // If table doesn't exist yet, don't block the user
+      if (error && error.code === '42P01') { setHasPaid(false); setLoading(false); return; }
       setHasPaid(!!data);
     } catch {
       setHasPaid(false);
