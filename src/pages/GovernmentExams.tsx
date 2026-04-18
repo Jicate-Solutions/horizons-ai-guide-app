@@ -26,7 +26,7 @@ const CAT: Record<string, { icon: string; label: string; ta: string; bg: string 
 const getDetail = (id: string) => {
   for (const c of governmentExamCategories) {
     const f = c.exams.find(e => e.id === id);
-    if (f) return { cat: c.id, id: f.id, pyq: f.pyq.length, topics: Object.values(f.syllabus).reduce((t, s) => t + s.reduce((a, x) => a + x.topics.length, 0), 0) };
+    if (f) return { cat: c.id, id: f.id, pyq: (f.pyq || []).length, topics: Object.values(f.syllabus || {}).reduce((t, s) => t + (Array.isArray(s) ? s.reduce((a, x) => a + (x?.topics?.length || 0), 0) : 0), 0) };
   }
   return null;
 };
@@ -73,7 +73,7 @@ const GovernmentExams = () => {
 
   const totalExams = governmentExams.length;
   const openCount = useMemo(() => governmentExams.filter(e => e.applicationStatus === 'open').length, []);
-  const totalPYQ = useMemo(() => governmentExamCategories.reduce((s, c) => s + c.exams.reduce((a, e) => a + e.pyq.length, 0), 0), []);
+  const totalPYQ = useMemo(() => governmentExamCategories.reduce((s, c) => s + c.exams.reduce((a, e) => a + (e.pyq?.length || 0), 0), 0), []);
 
   const filtered = useMemo(() => {
     let list = [...governmentExams];
@@ -415,8 +415,8 @@ const GovernmentExams = () => {
           </div>
           <div className="grid grid-cols-2 gap-3">
             {governmentExamCategories.map(category => {
-              const pyq = category.exams.reduce((a, e) => a + e.pyq.length, 0);
-              const topics = category.exams.reduce((a, e) => a + Object.values(e.syllabus).reduce((t, s) => t + s.reduce((x, y) => x + y.topics.length, 0), 0), 0);
+              const pyq = category.exams.reduce((a, e) => a + (e.pyq?.length || 0), 0);
+              const topics = category.exams.reduce((a, e) => a + Object.values(e.syllabus || {}).reduce((t, s) => t + (Array.isArray(s) ? s.reduce((x, y) => x + (y?.topics?.length || 0), 0) : 0), 0), 0);
               return (
                 <button key={category.id} onClick={() => navigate(`/government-exams/${category.id}`)} className="text-left rounded-2xl border-2 border-gray-200 bg-white p-4 hover:border-gray-400 hover:shadow-lg transition-all group">
                   <div className="flex items-center gap-2.5 mb-3">
