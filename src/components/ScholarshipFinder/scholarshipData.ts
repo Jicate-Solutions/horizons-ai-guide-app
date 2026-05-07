@@ -54,7 +54,7 @@ export const scholarships: Scholarship[] = [
     provider: 'BC/MBC Welfare Department, TN (TNSSP)',
     type: 'government',
     amount: 'Tuition Fee + Exam Fee Coverage',
-    eligibility: ['BC/MBC/DNC Category', 'Family Income < ₹2.5 Lakhs', 'Post-Matric Studies'],
+    eligibility: ['BC/MBC/DNC Category', 'BC students: Family Income < ₹2.5 Lakhs', 'MBC/DNC: No income limit', 'Post-Matric Studies'],
     deadline: 'Dec 31, 2026',
     deadlineStatus: 'closing-soon',
     educationLevel: ['12th-passed', 'ug', 'pg', 'diploma', 'professional'],
@@ -62,12 +62,12 @@ export const scholarships: Scholarship[] = [
     incomeLimit: '2.5',
     gender: 'all',
     state: 'Tamil Nadu',
-    description: 'Full tuition and exam fee coverage for BC/MBC/DNC students with family income below ₹2.5 Lakhs.',
+    description: 'Tuition fee assistance and full exam fee coverage for BC/MBC/DNC students. MBC/DNC students have no income limit. BC students must have family income below ₹2.5 Lakhs.',
     applicationUrl: 'https://bcmbcmw.tn.gov.in',
     helpline: '044-25670065',
-    documents: ['BC/MBC Certificate', 'Income Certificate (< ₹2.5L)', 'Aadhaar Card', 'Marksheets', 'Bank Details'],
+    documents: ['BC/MBC Certificate', 'Income Certificate (BC students only)', 'Aadhaar Card', 'Marksheets', 'Bank Details'],
     howToApply: ['Register on TNSSP portal', 'Fill application form', 'Upload documents', 'College verification', 'Fee reimbursement'],
-    benefits: [{ label: 'Tuition Fee', value: 'Full Coverage' }, { label: 'Exam Fee', value: 'Covered' }, { label: 'Income Limit', value: '< ₹2.5 Lakhs' }]
+    benefits: [{ label: 'Tuition Fee', value: '₹500 (₹50/month)' }, { label: 'Exam Fee', value: 'Full Coverage' }, { label: 'Income Limit', value: 'BC: <₹2.5L | MBC/DNC: None' }]
   },
   {
     id: 'tn-sc-st-post-matric',
