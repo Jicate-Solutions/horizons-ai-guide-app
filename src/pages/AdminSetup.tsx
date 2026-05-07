@@ -153,7 +153,7 @@ const AdminSetup = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="admin@jkkn.edu.in"
+                placeholder="admin@vazhikatti.app"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 required

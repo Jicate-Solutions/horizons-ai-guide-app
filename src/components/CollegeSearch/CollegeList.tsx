@@ -65,12 +65,6 @@ export const CollegeList = ({
 
     // Apply sorting
     result.sort((a, b) => {
-      // JKKN colleges always first for Namakkal
-      if (selectedDistrict === 'Namakkal') {
-        // priority sorting removed
-        
-      }
-
       switch (sortBy) {
         case 'name':
           return a.name.localeCompare(b.name);

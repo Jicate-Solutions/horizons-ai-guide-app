@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, GraduationCap } from "lucide-react";
 
 const benefits = [
-  "Career aptitude assessments tailored for 12th Learners",
-  "Explore 100+ career options across Science, Commerce, and Arts",
-  "Course and college suggestions based on your interests",
-  "Scholarship and financial support information",
-  "Guidance on admission processes",
+  "Find the right career based on your interests and marks",
+  "Explore 100+ career options in Science, Commerce, and Arts",
+  "Get college and course suggestions that match your goals",
+  "Find scholarships you qualify for — free of cost",
+  "Know exactly how to apply for admissions step by step",
 ];
 
 const TwelfthLearnersSection = () => {
@@ -32,10 +32,10 @@ const TwelfthLearnersSection = () => {
             </span>
             
             <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold italic text-white mb-6">
-              Confused About Your Future After 12th?
+              Not Sure What To Do After 12th?
             </h2>
             <p className="text-emerald-100/80 text-base sm:text-lg md:text-xl mb-10 leading-relaxed">
-              VAZHIKATTI is designed especially for 12th Learners who want clarity about their career path. Our AI-powered platform helps you discover your strengths and find the perfect course.
+              VAZHIKATTI is built for 12th students like you. Answer a few simple questions and our AI will show you the best career path, colleges, and scholarships.
             </p>
 
             <ul className="space-y-4 mb-10 text-left max-w-xl">
@@ -55,7 +55,7 @@ const TwelfthLearnersSection = () => {
 
             <Button 
               className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-8 py-6 text-lg rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all duration-300 hover:scale-105"
-              onClick={() => navigate("/auth?redirect=/career-assessment/colleges")}
+              onClick={() => navigate("/career-assessment/colleges")}
             >
               Start Your Career Journey
             </Button>

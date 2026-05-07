@@ -79,12 +79,7 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             <Badge className={cn("text-xs font-medium", categoryInfo?.bgColor, categoryInfo?.color)}>
               {categoryInfo?.icon} {categoryInfo?.label}
             </Badge>
-            {false && (
-              <Badge className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0">
-                <Star className="h-3 w-3 mr-1 fill-white" />
-                JKKN
-              </Badge>
-            )}
+            
           </div>
           <div className="flex items-center gap-1">
             <Button
