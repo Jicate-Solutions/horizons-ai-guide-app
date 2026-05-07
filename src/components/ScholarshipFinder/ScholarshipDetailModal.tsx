@@ -22,10 +22,10 @@ const typeConfig = {
 
 const deadlineConfig = {
   'closing-soon': { label: 'Closing Soon', color: 'text-destructive bg-destructive/10', days: '< 7 days left' },
-  'one-month': { label: '1 Month Left', color: 'text-jkkn-gold bg-jkkn-gold/10', days: '< 30 days left' },
-  'open': { label: 'Open', color: 'text-jkkn-green bg-jkkn-green/10', days: '> 30 days left' },
+  'one-month': { label: '1 Month Left', color: 'text-orange-600 bg-orange-50', days: '< 30 days left' },
+  'open': { label: 'Open', color: 'text-emerald-600 bg-emerald-50', days: '> 30 days left' },
   'coming-soon': { label: 'Coming Soon', color: 'text-muted-foreground bg-muted', days: 'Opening soon' },
-  'always-open': { label: 'Always Open', color: 'text-jkkn-green bg-jkkn-green/10', days: 'No deadline' }
+  'always-open': { label: 'Always Open', color: 'text-emerald-600 bg-emerald-50', days: 'No deadline' }
 };
 
 export const ScholarshipDetailModal = ({ scholarship, open, onOpenChange }: ScholarshipDetailModalProps) => {

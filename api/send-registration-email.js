@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'AI Vazhikatti <onboarding@resend.dev>',
+        from: 'VAZHIKATTI <onboarding@resend.dev>',
         to: [email],
         subject: `✅ You Have Successfully Registered In AI Vazhikatti, ${fullName}!`,
         html: `

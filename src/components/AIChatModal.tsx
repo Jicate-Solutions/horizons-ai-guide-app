@@ -430,7 +430,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   const downloadImage = (imageUrl: string) => {
     const link = document.createElement("a");
     link.href = imageUrl;
-    link.download = `jkkn-ai-image-${Date.now()}.png`;
+    link.download = `vazhikatti-ai-image-${Date.now()}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

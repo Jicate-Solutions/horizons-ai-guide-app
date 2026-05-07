@@ -189,7 +189,7 @@ export const generatePYQPDF = (data: ExamPDFData): void => {
     month: 'long', 
     year: 'numeric' 
   })}`, pageWidth / 2, yPos, { align: 'center' });
-  doc.text('www.jkkn-aihorizons.com | Career Dictionary', pageWidth / 2, yPos + 10, { align: 'center' });
+  doc.text('vazhikatti.app | Career Guidance Platform', pageWidth / 2, yPos + 10, { align: 'center' });
   
   addFooter();
 

@@ -42,7 +42,7 @@ const TAG_STYLES: Record<string, { bg: string; text: string }> = {
 
 const getScholarshipTag = (s: Scholarship): { label: string; key: string } | null => {
   const name = s.name.toLowerCase();
-  if (s.id === 'jkkn-sports') return { label: '⭐ Institutional', key: 'institutional' };
+  if (s.id === 'institutional-sports') return { label: '⭐ Institutional', key: 'institutional' };
   if (name.includes('girl') || name.includes('women') || name.includes('single girl') || s.gender === 'female' || name.includes('pragati') || name.includes('kanya') || name.includes('moovalur') || name.includes('glow') || name.includes('kotak kanya') || name.includes('pudhumai'))
     return { label: '👩 Women', key: 'women' };
   // Parse amount for high-value detection
