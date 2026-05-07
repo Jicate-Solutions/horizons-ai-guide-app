@@ -5,13 +5,13 @@ import {
   ArrowLeft, BookOpen, FileText, Play, ChevronDown,
   Check, X, Eye, EyeOff, Download, Award, Clock, Calendar,
   Banknote, GraduationCap, Users, Target, Sparkles,
-  RotateCcw, ChevronRight, CircleCheck, AlertCircle
+  RotateCcw, ChevronRight, CircleCheck, AlertCircle, ExternalLink
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/hooks/useLanguage';
-import { getCategoryById, getExamById, Question } from '@/data/government-exams-data';
+import { getCategoryById, getExamById, Question, officialSyllabusUrls } from '@/data/government-exams-data';
 import { GovtMockTest, generateGovtExamPDF } from '@/components/GovernmentExams';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
@@ -273,6 +273,26 @@ const GovernmentExamDetail = () => {
            ════════════════════════════ */}
         {activeTab === 'syllabus' && (
           <div className="space-y-3">
+            {/* Official Syllabus Button */}
+            {officialSyllabusUrls[exam.id] && (
+              <a
+                href={officialSyllabusUrls[exam.id]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl px-4 py-3.5 transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center">
+                    <FileText className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-bold">{ta ? 'அதிகாரப்பூர்வ பாடத்திட்டம்' : 'Official Syllabus'}</p>
+                    <p className="text-xs text-blue-200">{ta ? 'அரசு இணையதளத்தில் காண்க' : 'View on Government Website'}</p>
+                  </div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-white/80" />
+              </a>
+            )}
             <div className="flex items-center justify-between mb-1">
               <p className="text-xs text-gray-400">{syllabusStats.sections} {ta ? 'பிரிவுகள்' : 'sections'} • {syllabusStats.topics} {ta ? 'தலைப்புகள்' : 'topics'}</p>
               <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5 rounded-lg" onClick={() => handleDownloadPDF('syllabus')}>

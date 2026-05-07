@@ -2874,3 +2874,29 @@ export const getExamById = (categoryId: string, examId: string): Exam | undefine
   const category = getCategoryById(categoryId);
   return category?.exams.find(exam => exam.id === examId);
 };
+
+// Official Syllabus URLs for all exams
+export const officialSyllabusUrls: Record<string, string> = {
+  'nda': 'https://upsc.gov.in/sites/default/files/NDA-NA(II)2025Notif_Engl.pdf',
+  'agniveer-army': 'https://joinindianarmy.nic.in/writereaddata/Portal/Images/AGNIVEER_SYLLABUS.pdf',
+  'agniveer-navy': 'https://www.joinindiannavy.gov.in/files/Agniveer_SSR_Syllabus.pdf',
+  'agniveer-airforce': 'https://agnipathvayu.cdac.in/AV/downloadSyllabus',
+  'coastguard': 'https://joinindiancoastguard.gov.in/syllabus',
+  'bsf-constable': 'https://www.bsf.gov.in/exam-notification',
+  'crpf-constable': 'https://crpf.gov.in/recruitment.htm',
+  'cisf-constable': 'https://cisfrectt.in',
+  'rrb-ntpc': 'https://www.rrbapply.gov.in/syllabus',
+  'rrb-group-d': 'https://www.rrbapply.gov.in/syllabus',
+  'rpf-constable': 'https://www.rrbapply.gov.in/syllabus',
+  'ssc-chsl': 'https://ssc.gov.in/portal/pdf/CHSL_2024_Notification.pdf',
+  'ssc-mts': 'https://ssc.gov.in/portal/pdf/MTS_2024_Notification.pdf',
+  'ssc-gd': 'https://ssc.gov.in/portal/pdf/GD_Constable_2025_Notification.pdf',
+  'ssc-steno': 'https://ssc.gov.in/portal/pdf/Stenographer_2024_Notification.pdf',
+  'tnpsc-group4': 'https://www.tnpsc.gov.in/notifications/2025_Group_IV_Notification.pdf',
+  'tn-police-constable': 'https://www.tnusrb.tn.gov.in',
+  'tn-forest-guard': 'https://www.tnfusrc.gov.in',
+  'india-post-gds': 'https://indiapostgdsonline.gov.in',
+  'army-clerk': 'https://joinindianarmy.nic.in/writereaddata/Portal/Images/SYLLABUS_Clerk.pdf',
+  'nvs-lab-attendant': 'https://navodaya.gov.in/nvs/en/Recruitment',
+  'kvs-non-teaching': 'https://kvsangathan.nic.in/RecruitmentNotices',
+};
