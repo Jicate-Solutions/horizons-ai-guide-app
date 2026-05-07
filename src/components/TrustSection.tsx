@@ -1,12 +1,12 @@
 import { Shield, Brain, Globe, Clock, Lock, Zap, Languages } from 'lucide-react';
 
 const features = [
-  { icon: Brain, title: 'AI-Powered', desc: 'Smart career predictions using advanced AI', color: '#3b82f6' },
-  { icon: Globe, title: 'Tamil Nadu Focused', desc: 'All TN districts, universities & colleges covered', color: '#10b981' },
-  { icon: Languages, title: 'Multi-Language', desc: 'Available in Tamil, English & more languages', color: '#8b5cf6' },
-  { icon: Clock, title: '24/7 Available', desc: 'Access career guidance anytime, anywhere', color: '#f59e0b' },
-  { icon: Lock, title: '100% Secure', desc: 'Your data is encrypted and protected', color: '#ef4444' },
-  { icon: Zap, title: 'Instant Results', desc: 'Get career recommendations in seconds', color: '#ec4899' },
+  { icon: Brain, title: 'AI-Powered', desc: 'Smart career recommendations using advanced AI technology', color: '#3b82f6' },
+  { icon: Globe, title: 'Tamil Nadu Focused', desc: 'All 38 TN districts, universities and colleges covered', color: '#10b981' },
+  { icon: Languages, title: 'Tamil & English', desc: 'Use the app in Tamil or English — your choice', color: '#8b5cf6' },
+  { icon: Clock, title: 'Available 24/7', desc: 'Get career guidance anytime, from any device', color: '#f59e0b' },
+  { icon: Lock, title: 'Safe & Secure', desc: 'Your personal information is always protected', color: '#ef4444' },
+  { icon: Zap, title: 'Instant Results', desc: 'Get career recommendations in just a few seconds', color: '#ec4899' },
 ];
 
 const TrustSection = () => {
@@ -83,8 +83,8 @@ const TrustSection = () => {
             {[
               { label: 'Powered by', bold: 'AI Technology' },
               { label: 'Covers', bold: '38 TN Districts' },
-              { label: 'Supports', bold: '100+ Careers' },
-              { label: 'Guided by', bold: 'Education Experts' },
+              { label: 'Supports', bold: '100+ Career Paths' },
+              { label: 'Trusted by', bold: 'Students & Parents' },
             ].map((b, i) => (
               <div key={i} className="text-center">
                 <p className="text-[10px] text-gray-400 uppercase tracking-wider">{b.label}</p>

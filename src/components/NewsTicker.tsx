@@ -2,21 +2,22 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 const newsItemsByLang: Record<string, string[]> = {
   en: [
-    "🔴 TNEA 2026 Counselling Registration Opens Soon — Stay Updated!",
-    "📢 NEET UG 2026 — Exam Date Announced | Prepare Now!",
-    "💰 NSP Scholarship 2026 — Apply Before Deadline!",
-    "🎯 Free AI Career Guidance — Available 24/7 on Vazhikatti!",
-    "📚 TN +2 Results 2026 — Check Your Score & Plan Ahead!",
-    "🆕 AI Career Predictor — Discover Your Ideal Career Path Instantly!",
+    "🔴 TNEA 2026 Counselling — Registration dates to be announced soon!",
+    "📢 NEET UG 2026 — Exam on May 4, 2026 | Results expected in June!",
+    "💰 BC/MBC Post-Matric Scholarship 2026 — Apply before Dec 31, 2026!",
+    "🎯 Free AI Career Guidance — Available 24/7 on VAZHIKATTI!",
+    "📚 TN Class 12 Board Exams — March 2026 | Start preparing now!",
+    "🏛️ TNPSC Group 4 2026 — Notification expected soon | Start preparing!",
     "🏫 Explore 500+ Colleges Across Tamil Nadu — Find Your Best Fit!",
+    "🚂 Railway RRB NTPC 2026 — Apply now on rrbapply.gov.in!",
   ],
   ta: [
-    "🔴 TNEA 2026 கலந்தாய்வு பதிவு விரைவில் — புதுப்பித்த நிலையில் இருங்கள்!",
-    "📢 NEET UG 2026 — தேர்வு தேதி அறிவிக்கப்பட்டது | இப்போதே தயாராகுங்கள்!",
-    "💰 NSP உதவித்தொகை 2026 — காலக்கெடுவுக்குள் விண்ணப்பிக்கவும்!",
+    "🔴 TNEA 2026 கலந்தாய்வு — பதிவு தேதிகள் விரைவில் அறிவிக்கப்படும்!",
+    "📢 NEET UG 2026 — மே 4, 2026 தேர்வு | முடிவுகள் ஜூனில் எதிர்பார்க்கப்படுகிறது!",
+    "💰 BC/MBC உதவித்தொகை 2026 — டிசம்பர் 31 முன் விண்ணப்பிக்கவும்!",
     "🎯 இலவச AI தொழில் வழிகாட்டுதல் — வழிகாட்டியில் 24/7 கிடைக்கும்!",
-    "📚 TN +2 முடிவுகள் 2026 — உங்கள் மதிப்பெண்ணைச் சரிபார்த்து திட்டமிடுங்கள்!",
-    "🆕 AI தொழில் கணிப்பான் — உங்கள் சிறந்த தொழில் பாதையை உடனடியாக கண்டறியுங்கள்!",
+    "📚 TN +2 பொதுத் தேர்வு — மார்ச் 2026 | இப்போதே தயாராகுங்கள்!",
+    "🏛️ TNPSC குரூப் 4 2026 — அறிவிப்பு விரைவில் | தயாரிப்பை தொடங்குங்கள்!",
     "🏫 தமிழ்நாடு முழுவதும் 500+ கல்லூரிகளை ஆராயுங்கள்!",
   ],
   hi: [
