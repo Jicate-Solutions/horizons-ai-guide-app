@@ -75,7 +75,8 @@ export const EntranceExams = () => {
   // Exam card
   const ExamCard = ({ exam }: { exam: EntranceExam }) => {
     const isOpen = openExam === exam.id;
-    const [activeTab, setActiveTab] = useState<'overview'|'pattern'|'eligibility'|'colleges'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview'|'pattern'|'eligibility'|'syllabus'|'colleges'>('overview');
+    const [openSylSubject, setOpenSylSubject] = useState<string|null>(null);
     const catObj = examCategories.find(c => c.id === exam.category);
     const syllabusLink = syllabusLinks[exam.id];
     const pattern = examPatterns[exam.id];
@@ -84,6 +85,7 @@ export const EntranceExams = () => {
       { id: 'overview' as const, label: 'Overview', icon: '📋' },
       ...(pattern ? [{ id: 'pattern' as const, label: 'Exam Pattern', icon: '📊' }] : []),
       { id: 'eligibility' as const, label: 'Eligibility', icon: '✅' },
+      ...(exam.syllabus.length > 0 ? [{ id: 'syllabus' as const, label: 'Syllabus', icon: '📚' }] : []),
       ...(exam.tnCollegesAccepting.length > 0 ? [{ id: 'colleges' as const, label: `Colleges`, icon: '🏫' }] : []),
     ];
 
@@ -120,18 +122,7 @@ export const EntranceExams = () => {
                   <span>{tab.icon}</span>{tab.label}
                 </button>
               ))}
-              {/* Syllabus tab — opens PDF directly */}
-              {syllabusLink ? (
-                <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 border-transparent text-emerald-600 hover:text-emerald-800 flex-shrink-0">
-                  <span>📄</span>Syllabus
-                </a>
-              ) : exam.syllabus.length > 0 ? (
-                <button onClick={() => setActiveTab('overview')}
-                  className={cn("flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 flex-shrink-0 text-gray-500 border-transparent")}>
-                  <span>📚</span>Syllabus
-                </button>
-              ) : null}
+
             </div>
 
             {/* Tab Content */}
@@ -244,6 +235,112 @@ export const EntranceExams = () => {
                   ))}
                 </div>
               )}
+
+              {/* ── SYLLABUS TAB ── */}
+              {activeTab === 'syllabus' && (() => {
+                // Parse structured syllabus into subjects
+                const sylSubjects: {name: string; emoji: string; color: string; bg: string; border: string; chapters: {name: string; topics: string}[]}[] = [];
+                const colorMap: Record<string, {emoji: string; color: string; bg: string; border: string}> = {
+                  'Physics':    {emoji:'⚛️', color:'text-violet-800', bg:'bg-violet-50',  border:'border-violet-200'},
+                  'Chemistry':  {emoji:'🧪', color:'text-blue-800',   bg:'bg-blue-50',    border:'border-blue-200'},
+                  'Mathematics':{emoji:'📐', color:'text-orange-800', bg:'bg-orange-50',  border:'border-orange-200'},
+                  'Maths':      {emoji:'📐', color:'text-orange-800', bg:'bg-orange-50',  border:'border-orange-200'},
+                  'Biology':    {emoji:'🧬', color:'text-emerald-800',bg:'bg-emerald-50', border:'border-emerald-200'},
+                  'Botany':     {emoji:'🌿', color:'text-green-800',  bg:'bg-green-50',   border:'border-green-200'},
+                  'Zoology':    {emoji:'🦋', color:'text-teal-800',   bg:'bg-teal-50',    border:'border-teal-200'},
+                  'English':    {emoji:'📝', color:'text-rose-800',   bg:'bg-rose-50',    border:'border-rose-200'},
+                  'Aptitude':   {emoji:'🧠', color:'text-indigo-800', bg:'bg-indigo-50',  border:'border-indigo-200'},
+                  'General':    {emoji:'📖', color:'text-amber-800',  bg:'bg-amber-50',   border:'border-amber-200'},
+                };
+                let cur: typeof sylSubjects[0] | null = null;
+                exam.syllabus.forEach(line => {
+                  if (line.startsWith('SUBJECT:')) {
+                    if (cur) sylSubjects.push(cur);
+                    const parts = line.replace('SUBJECT:', '').split('|');
+                    const key = Object.keys(colorMap).find(k => parts[0].includes(k)) || 'General';
+                    const c = colorMap[key];
+                    cur = {name: parts[0], ...c, chapters: []};
+                  } else if (line.startsWith('CHAPTER:') && cur) {
+                    const parts = line.replace('CHAPTER:', '').split('|');
+                    cur.chapters.push({name: parts[0], topics: parts[1] || ''});
+                  } else if (line.startsWith('TIP:') && cur) {
+                    // skip tips in subject view
+                  }
+                });
+                if (cur) sylSubjects.push(cur);
+
+                if (sylSubjects.length === 0) {
+                  // Fallback: plain list
+                  return (
+                    <div className="space-y-1.5">
+                      {exam.syllabus.map((item, i) => (
+                        <p key={i} className="text-xs text-gray-700 bg-gray-50 rounded-lg px-3 py-2 leading-relaxed">{item}</p>
+                      ))}
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="space-y-3">
+                    {/* PDF download button if available */}
+                    {syllabusLink && (
+                      <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center justify-between w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-4 py-3 transition-all">
+                        <div className="flex items-center gap-2.5">
+                          <span className="text-lg">📄</span>
+                          <div>
+                            <p className="text-xs font-bold">Download Official Syllabus PDF</p>
+                            <p className="text-[10px] text-blue-200">{syllabusLink.label}</p>
+                          </div>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-blue-200"/>
+                      </a>
+                    )}
+                    {/* Subject cards grid */}
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {sylSubjects.map((sub, si) => (
+                        <button key={si} onClick={() => setOpenSylSubject(openSylSubject === sub.name ? null : sub.name)}
+                          className={cn("rounded-2xl p-4 border-2 text-left transition-all active:scale-[0.97]",
+                            openSylSubject === sub.name ? `${sub.bg} ${sub.border} shadow-sm` : 'bg-white border-gray-100 hover:border-gray-300'
+                          )}>
+                          <div className="flex items-center gap-2.5 mb-1">
+                            <span className="text-2xl">{sub.emoji}</span>
+                            <div>
+                              <p className={cn("text-xs font-black uppercase tracking-wide", sub.color)}>{sub.name}</p>
+                              <p className="text-[10px] text-gray-400">{sub.chapters.length} chapters</p>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                    {/* Expanded subject chapters */}
+                    {openSylSubject && (() => {
+                      const sub = sylSubjects.find(s => s.name === openSylSubject);
+                      if (!sub) return null;
+                      return (
+                        <div className={cn("rounded-2xl border-2 overflow-hidden", sub.border)}>
+                          <div className={cn("px-4 py-3 flex items-center gap-2", sub.bg)}>
+                            <span className="text-lg">{sub.emoji}</span>
+                            <p className={cn("text-sm font-black", sub.color)}>{sub.name}</p>
+                            <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/70", sub.color)}>{sub.chapters.length} chapters</span>
+                          </div>
+                          <div className="divide-y divide-gray-100 bg-white">
+                            {sub.chapters.map((ch, ci) => (
+                              <div key={ci} className="px-4 py-2.5 flex items-start gap-3">
+                                <span className={cn("text-xs font-bold mt-0.5 shrink-0", sub.color)}>{ci + 1}.</span>
+                                <div>
+                                  <p className="text-xs font-semibold text-gray-900">{ch.name}</p>
+                                  {ch.topics && <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">{ch.topics}</p>}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                );
+              })()}
 
               {/* ── COLLEGES TAB ── */}
               {activeTab === 'colleges' && (
