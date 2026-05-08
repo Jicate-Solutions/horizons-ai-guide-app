@@ -148,8 +148,9 @@ export const EntranceExams = () => {
 
               return (
                 <div className="border-2 border-gray-200 rounded-2xl overflow-hidden">
-                  {/* Header Row */}
-                  <button onClick={() => setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
+                  {/* Header Row — opens PDF directly if available, else expands */}
+                  <button
+                    onClick={() => syllabusLink ? window.open(syllabusLink.pdf, '_blank') : setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
                     className="w-full px-4 py-3.5 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors">
                     <div className="flex items-center gap-2.5">
                       <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
@@ -163,15 +164,10 @@ export const EntranceExams = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      {syllabusLink && (
-                        <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                          className="flex items-center gap-1 text-[10px] font-bold bg-blue-600 text-white px-2.5 py-1.5 rounded-lg hover:bg-blue-700 transition-colors">
-                          <span>PDF</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      )}
-                      {isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
+                      {syllabusLink
+                        ? <ExternalLink className="w-4 h-4 text-blue-500"/>
+                        : isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>
+                      }
                     </div>
                   </button>
 
