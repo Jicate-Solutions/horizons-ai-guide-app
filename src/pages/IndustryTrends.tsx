@@ -110,8 +110,16 @@ const IndustryTrends = () => {
   const [expandedCareer, setExpandedCareer] = useState<string | null>(null);
 
   const meta = user?.user_metadata || {};
-  const streamKey = detectStream(meta.stream || '');
-  const data = trends[streamKey] || defaultTrends;
+  const detectedStream = detectStream(meta.stream || '');
+  const [selectedStream, setSelectedStream] = useState<string>(detectedStream);
+  const data = trends[selectedStream] || defaultTrends;
+
+  const streamOptions = [
+    { key: 'science_maths', label: 'Science (Maths)', emoji: '💻' },
+    { key: 'science_bio', label: 'Science (Bio)', emoji: '🧬' },
+    { key: 'commerce', label: 'Commerce', emoji: '📊' },
+    { key: 'arts', label: 'Arts', emoji: '📖' },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-4 pb-24">
@@ -121,55 +129,90 @@ const IndustryTrends = () => {
           <ArrowLeft className="w-4 h-4" /> Back
         </button>
 
-        <div className={cn("rounded-2xl p-5 border-2", data.bgLight)}>
+        {/* Title */}
+        <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-5 text-white">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-2xl shadow-lg">📈</div>
+            <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-2xl">📈</div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">Industry Trends 2026</h1>
-              <p className="text-xs text-gray-500">Top careers for {data.label} students</p>
+              <h1 className="text-lg font-bold">Industry Trends 2026</h1>
+              <p className="text-xs text-white/80">High-demand jobs, salaries & skills</p>
             </div>
           </div>
-          <div className="bg-white rounded-xl p-3 border border-gray-200 mt-3">
-            <p className="text-xs text-gray-600 leading-relaxed">💡 {data.tip}</p>
+        </div>
+
+        {/* Stream Selector */}
+        <div>
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Select Your Stream</p>
+          <div className="grid grid-cols-2 gap-2">
+            {streamOptions.map(s => (
+              <button
+                key={s.key}
+                onClick={() => { setSelectedStream(s.key); setExpandedCareer(null); }}
+                className={cn(
+                  'flex items-center gap-2 px-3 py-3 rounded-xl border-2 text-left transition-all',
+                  selectedStream === s.key
+                    ? 'border-indigo-600 bg-indigo-50'
+                    : 'border-gray-200 bg-white'
+                )}
+              >
+                <span className="text-xl">{s.emoji}</span>
+                <span className={cn('text-xs font-bold', selectedStream === s.key ? 'text-indigo-700' : 'text-gray-700')}>
+                  {s.label}
+                </span>
+              </button>
+            ))}
           </div>
+        </div>
+
+        {/* Tip Box */}
+        <div className={cn('rounded-xl p-4 border-2', data.bgLight)}>
+          <p className="text-xs font-bold text-gray-700 mb-1">💡 Expert Tip for {data.label} Students</p>
+          <p className="text-xs text-gray-600 leading-relaxed">{data.tip}</p>
         </div>
 
         {/* Rising Careers */}
         <div>
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp className="w-4 h-4 text-emerald-600" />
-            <h2 className="text-sm font-bold text-gray-800">Rising Careers for {data.label}</h2>
+            <h2 className="text-sm font-bold text-gray-800">🔥 High-Demand Careers for {data.label}</h2>
           </div>
           <div className="space-y-2">
             {data.rising.map((career) => {
               const isExpanded = expandedCareer === career.career;
               return (
-                <div key={career.career} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div key={career.career} className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
                   <button onClick={() => setExpandedCareer(isExpanded ? null : career.career)}
                     className="w-full p-4 text-left flex items-center gap-3">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <p className="text-sm font-bold text-gray-900">{career.career}</p>
                         <DemandBar level={career.demand} />
                       </div>
-                      <p className="text-xs text-gray-500">{career.salary}</p>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                          💰 {career.salary}
+                        </span>
+                      </div>
                     </div>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+                    {isExpanded ? <ChevronUp className="w-4 h-4 text-gray-400 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-400 shrink-0" />}
                   </button>
                   {isExpanded && (
                     <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3">
                       <div className="bg-emerald-50 rounded-lg p-3">
-                        <p className="text-[10px] font-bold text-emerald-700 mb-0.5">Why it's rising</p>
-                        <p className="text-xs text-emerald-600">{career.why}</p>
+                        <p className="text-[10px] font-bold text-emerald-700 mb-0.5">📈 Why it's rising</p>
+                        <p className="text-xs text-emerald-700">{career.why}</p>
                       </div>
                       <div className="bg-blue-50 rounded-lg p-3">
-                        <p className="text-[10px] font-bold text-blue-700 mb-0.5">Career Path</p>
-                        <p className="text-xs text-blue-600">{career.path}</p>
+                        <p className="text-[10px] font-bold text-blue-700 mb-0.5">🗺️ Career Path</p>
+                        <p className="text-xs text-blue-700">{career.path}</p>
                       </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {career.skills.map(s => (
-                          <span key={s} className="text-[10px] font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-600">{s}</span>
-                        ))}
+                      <div>
+                        <p className="text-[10px] font-bold text-gray-600 mb-1.5">🛠️ Key Skills Needed</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {career.skills.map(s => (
+                            <span key={s} className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200">{s}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -179,9 +222,9 @@ const IndustryTrends = () => {
           </div>
         </div>
 
-        {/* Declining / Be Careful */}
+        {/* Declining */}
         <div className="bg-red-50 rounded-xl p-4 border border-red-200">
-          <p className="text-xs font-bold text-red-700 mb-2">⚠️ Declining / Saturated — Be Careful</p>
+          <p className="text-xs font-bold text-red-700 mb-2">⚠️ Declining / Saturated Jobs — Be Careful</p>
           {data.declining.map((d, i) => (
             <p key={i} className="text-xs text-red-600 mb-1">• {d}</p>
           ))}
@@ -191,15 +234,16 @@ const IndustryTrends = () => {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Globe className="w-4 h-4 text-indigo-600" />
-            <h2 className="text-sm font-bold text-gray-800">Global Job Market 2026</h2>
+            <h2 className="text-sm font-bold text-gray-800">🌍 Global Job Market 2026</h2>
           </div>
           <div className="space-y-2">
             {globalTrends.map(t => (
-              <div key={t.factor} className="bg-white rounded-xl p-3 border border-gray-200 flex items-center gap-3">
-                <span className="text-xl">{t.icon}</span>
+              <div key={t.factor} className="bg-white rounded-xl p-3 border border-gray-200 flex items-center gap-3 shadow-sm">
+                <span className="text-2xl">{t.icon}</span>
                 <div className="flex-1">
                   <p className="text-xs font-bold text-gray-800">{t.factor}</p>
-                  <p className="text-[10px] text-gray-500">Now: {t.now} → {t.future}</p>
+                  <p className="text-[11px] text-gray-500 mt-0.5">Now: {t.now}</p>
+                  <p className="text-[11px] text-emerald-600 font-medium">→ {t.future}</p>
                 </div>
               </div>
             ))}
