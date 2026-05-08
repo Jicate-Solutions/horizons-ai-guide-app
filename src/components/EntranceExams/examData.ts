@@ -1459,3 +1459,121 @@ export const getExamById = (id: string): EntranceExam | undefined => {
 export const getCategoryInfo = (categoryId: string): CategoryInfo | undefined => {
   return examCategories.find((cat) => cat.id === categoryId);
 };
+
+// ─── Exam Pattern Data (subject-wise question table) ───
+export interface ExamSubjectPattern {
+  subject: string;
+  questions: number;
+  marks: number;
+  negative?: string;
+}
+export interface ExamPattern {
+  totalQuestions: number;
+  totalMarks: number;
+  duration: string;
+  marking: string;
+  note?: string;
+  sections: { name: string; subjects: ExamSubjectPattern[] }[];
+}
+
+export const examPatterns: Record<string, ExamPattern> = {
+  'neet-ug': {
+    totalQuestions: 200, totalMarks: 720, duration: '3 hrs 20 min',
+    marking: '+4 correct / -1 wrong',
+    note: 'Attempt any 180 out of 200 questions. 2 sections per subject (A: 35Q compulsory, B: 15Q attempt 10)',
+    sections: [{
+      name: 'NEET UG 2026',
+      subjects: [
+        { subject: 'Physics', questions: 50, marks: 180 },
+        { subject: 'Chemistry', questions: 50, marks: 180 },
+        { subject: 'Botany', questions: 50, marks: 180 },
+        { subject: 'Zoology', questions: 50, marks: 180 },
+      ]
+    }]
+  },
+  'jee-main': {
+    totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+    marking: '+4 correct / -1 wrong (MCQ) | +4 correct / 0 wrong (Numerical)',
+    note: 'Paper 1 (B.E/B.Tech): 20 MCQ + 10 Numerical per subject (attempt 5 numericals)',
+    sections: [{
+      name: 'Paper 1 — B.E./B.Tech',
+      subjects: [
+        { subject: 'Mathematics', questions: 30, marks: 100 },
+        { subject: 'Physics', questions: 30, marks: 100 },
+        { subject: 'Chemistry', questions: 30, marks: 100 },
+      ]
+    }]
+  },
+  'jee-advanced': {
+    totalQuestions: 54, totalMarks: 180, duration: '3 hours per paper',
+    marking: 'Varies by question type (full/partial/zero marks)',
+    note: '2 Papers × 3 hours. Multiple question types: MCQ, Numerical, Match the column',
+    sections: [
+      { name: 'Paper 1', subjects: [
+        { subject: 'Physics', questions: 18, marks: 60 },
+        { subject: 'Chemistry', questions: 18, marks: 60 },
+        { subject: 'Mathematics', questions: 18, marks: 60 },
+      ]},
+      { name: 'Paper 2', subjects: [
+        { subject: 'Physics', questions: 18, marks: 60 },
+        { subject: 'Chemistry', questions: 18, marks: 60 },
+        { subject: 'Mathematics', questions: 18, marks: 60 },
+      ]}
+    ]
+  },
+  'viteee': {
+    totalQuestions: 125, totalMarks: 125, duration: '2 hrs 30 min',
+    marking: '+1 correct / 0 wrong (no negative marking)',
+    sections: [{
+      name: 'VITEEE PCM (Engineering)',
+      subjects: [
+        { subject: 'Mathematics', questions: 40, marks: 40 },
+        { subject: 'Physics', questions: 35, marks: 35 },
+        { subject: 'Chemistry', questions: 35, marks: 35 },
+        { subject: 'English', questions: 5, marks: 5 },
+        { subject: 'Aptitude', questions: 10, marks: 10 },
+      ]
+    }, {
+      name: 'VITEEE PCB (Bio-Tech)',
+      subjects: [
+        { subject: 'Biology', questions: 40, marks: 40 },
+        { subject: 'Physics', questions: 35, marks: 35 },
+        { subject: 'Chemistry', questions: 35, marks: 35 },
+        { subject: 'English', questions: 5, marks: 5 },
+        { subject: 'Aptitude', questions: 10, marks: 10 },
+      ]
+    }]
+  },
+  'srmjeee': {
+    totalQuestions: 125, totalMarks: 125, duration: '2 hrs 30 min',
+    marking: '+1 correct / 0 wrong',
+    sections: [{ name: 'SRMJEEE', subjects: [
+      { subject: 'Physics', questions: 35, marks: 35 },
+      { subject: 'Chemistry', questions: 35, marks: 35 },
+      { subject: 'Mathematics / Biology', questions: 40, marks: 40 },
+      { subject: 'English & Aptitude', questions: 15, marks: 15 },
+    ]}]
+  },
+  'bitsat': {
+    totalQuestions: 130, totalMarks: 390, duration: '3 hours',
+    marking: '+3 correct / -1 wrong',
+    sections: [{ name: 'BITSAT', subjects: [
+      { subject: 'Physics', questions: 30, marks: 90 },
+      { subject: 'Chemistry', questions: 30, marks: 90 },
+      { subject: 'Mathematics / Biology', questions: 40, marks: 120 },
+      { subject: 'English Proficiency', questions: 15, marks: 45 },
+      { subject: 'Logical Reasoning', questions: 15, marks: 45 },
+    ]}]
+  },
+  'clat': {
+    totalQuestions: 120, totalMarks: 120, duration: '2 hours',
+    marking: '+1 correct / -0.25 wrong',
+    sections: [{ name: 'CLAT UG', subjects: [
+      { subject: 'English Language', questions: 22, marks: 22 },
+      { subject: 'Current Affairs & GK', questions: 28, marks: 28 },
+      { subject: 'Legal Reasoning', questions: 35, marks: 35 },
+      { subject: 'Logical Reasoning', questions: 22, marks: 22 },
+      { subject: 'Quantitative Techniques', questions: 13, marks: 13 },
+    ]}]
+  },
+};

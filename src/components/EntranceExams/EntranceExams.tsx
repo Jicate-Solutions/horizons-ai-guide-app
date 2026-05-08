@@ -75,204 +75,196 @@ export const EntranceExams = () => {
   // Exam card
   const ExamCard = ({ exam }: { exam: EntranceExam }) => {
     const isOpen = openExam === exam.id;
+    const [activeTab, setActiveTab] = useState<'overview'|'pattern'|'eligibility'|'colleges'>('overview');
     const catObj = examCategories.find(c => c.id === exam.category);
+    const syllabusLink = syllabusLinks[exam.id];
+    const pattern = examPatterns[exam.id];
+
+    const tabs = [
+      { id: 'overview' as const, label: 'Overview', icon: '📋' },
+      ...(pattern ? [{ id: 'pattern' as const, label: 'Exam Pattern', icon: '📊' }] : []),
+      { id: 'eligibility' as const, label: 'Eligibility', icon: '✅' },
+      ...(exam.tnCollegesAccepting.length > 0 ? [{ id: 'colleges' as const, label: `Colleges`, icon: '🏫' }] : []),
+    ];
+
     return (
-      <div className={cn("bg-white rounded-2xl border overflow-hidden transition-all", isOpen ? 'border-emerald-300 shadow-md' : 'border-gray-200')}>
-        <button onClick={() => { setOpenExam(isOpen ? null : exam.id); setOpenSection(null); }}
+      <div className={cn("bg-white rounded-2xl border-2 overflow-hidden transition-all", isOpen ? 'border-blue-300 shadow-lg' : 'border-gray-200')}>
+        {/* Exam Header */}
+        <button onClick={() => { setOpenExam(isOpen ? null : exam.id); setActiveTab('overview'); }}
           className="w-full p-4 text-left flex items-center gap-3 hover:bg-gray-50">
-          <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-lg flex-shrink-0">{catObj?.icon || '📝'}</div>
+          <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-xl flex-shrink-0 border border-blue-100">
+            {catObj?.icon || '📝'}
+          </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[13px] font-bold text-gray-900 leading-tight">{exam.name.replace(' ⭐', '')}</p>
-            <p className="text-[11px] text-gray-500 mt-0.5 truncate">{exam.fullForm}</p>
+            <p className="text-sm font-bold text-gray-900 leading-tight">{exam.name.replace(' ⭐', '')}</p>
+            <p className="text-xs text-gray-500 mt-0.5 truncate">{exam.fullForm}</p>
           </div>
           <div className="flex flex-col items-end gap-1 flex-shrink-0">
-            <span className="text-[10px] text-gray-400">{exam.importantDates.examDate}</span>
-            {isOpen ? <ChevronUp className="w-4 h-4 text-gray-300" /> : <ChevronDown className="w-4 h-4 text-gray-300" />}
+            <span className="text-xs font-bold text-blue-600">{exam.importantDates.examDate}</span>
+            {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
           </div>
         </button>
+
         {isOpen && (
-          <div className="border-t border-gray-100 px-4 pb-4 pt-3 space-y-3">
-            <div className="grid grid-cols-4 gap-1.5">
-              {[{ l: 'Mode', v: exam.examMode.split('(')[0].trim() }, { l: 'Duration', v: exam.duration }, { l: 'Fee', v: exam.applicationFee.general }, { l: 'Result', v: exam.importantDates.resultDate }].map(i => (
-                <div key={i.l} className="bg-gray-50 rounded-lg p-2 text-center"><p className="text-[9px] text-gray-400">{i.l}</p><p className="text-[11px] font-bold text-gray-800 mt-0.5">{i.v}</p></div>
-              ))}
-            </div>
-            <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-200">
-              <p className="text-[10px] font-bold text-emerald-700 mb-0.5">🏛️ Tamil Nadu</p>
-              <p className="text-[11px] text-emerald-600 leading-relaxed">{exam.tnEligibility}</p>
-            </div>
-            {/* Syllabus — structured chapter layout */}
-            {exam.syllabus && exam.syllabus.length > 0 && (() => {
-              const isSylOpen = openSection === `${exam.id}-syl`;
-              const syllabusLink = syllabusLinks[exam.id];
-
-              // Check if new structured format (has SUBJECT: / CHAPTER: / TIP: prefixes)
-              const isStructured = exam.syllabus.some(s => s.startsWith('SUBJECT:') || s.startsWith('CHAPTER:'));
-
-              // Color map for subjects
-              const subjectColors: Record<string, {bg: string; header: string; chip: string; text: string; dot: string}> = {
-                emerald: { bg:'bg-emerald-50', header:'bg-emerald-600', chip:'bg-emerald-100 text-emerald-800 border-emerald-200', text:'text-emerald-800', dot:'bg-emerald-500' },
-                blue:    { bg:'bg-blue-50',    header:'bg-blue-600',    chip:'bg-blue-100 text-blue-800 border-blue-200',       text:'text-blue-800',    dot:'bg-blue-500' },
-                violet:  { bg:'bg-violet-50',  header:'bg-violet-600',  chip:'bg-violet-100 text-violet-800 border-violet-200', text:'text-violet-800',  dot:'bg-violet-500' },
-                orange:  { bg:'bg-orange-50',  header:'bg-orange-600',  chip:'bg-orange-100 text-orange-800 border-orange-200', text:'text-orange-800',  dot:'bg-orange-500' },
-                amber:   { bg:'bg-amber-50',   header:'bg-amber-600',   chip:'bg-amber-100 text-amber-800 border-amber-200',   text:'text-amber-800',   dot:'bg-amber-500' },
-                gray:    { bg:'bg-gray-50',    header:'bg-gray-600',    chip:'bg-gray-100 text-gray-700 border-gray-200',      text:'text-gray-700',    dot:'bg-gray-400' },
-              };
-
-              // Parse structured format
-              type Subject = { name: string; marks: string; color: typeof subjectColors.emerald; chapters: {name: string; topics: string}[] };
-              type Tip = { label: string; value: string };
-              const subjects: Subject[] = [];
-              const tips: Tip[] = [];
-              let curSubject: Subject | null = null;
-
-              if (isStructured) {
-                exam.syllabus.forEach(line => {
-                  if (line.startsWith('SUBJECT:')) {
-                    if (curSubject) subjects.push(curSubject);
-                    const parts = line.replace('SUBJECT:', '').split('|');
-                    const colorKey = (parts[2] || 'gray').trim();
-                    curSubject = { name: parts[0], marks: parts[1] || '', color: subjectColors[colorKey] || subjectColors.gray, chapters: [] };
-                  } else if (line.startsWith('CHAPTER:') && curSubject) {
-                    const parts = line.replace('CHAPTER:', '').split('|');
-                    curSubject.chapters.push({ name: parts[0], topics: parts[1] || '' });
-                  } else if (line.startsWith('TIP:')) {
-                    const parts = line.replace('TIP:', '').split('|');
-                    tips.push({ label: parts[0], value: parts[1] || '' });
-                  }
-                });
-                if (curSubject) subjects.push(curSubject);
-              }
-
-              const subjectCount = isStructured ? subjects.length : 0;
-
-              return (
-                <div className="border-2 border-gray-200 rounded-2xl overflow-hidden">
-                  {/* Header Row — opens PDF directly if available */}
-                  {syllabusLink ? (
-                    <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
-                      className="w-full px-4 py-3.5 flex items-center justify-between bg-white hover:bg-blue-50 transition-colors">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <span className="text-sm">📄</span>
-                        </div>
-                        <div>
-                          <p className="text-sm font-bold text-blue-700 text-left">Syllabus</p>
-                          {subjectCount > 0 && (
-                            <p className="text-[10px] text-blue-500">{subjectCount} subjects · {subjects.reduce((a,s) => a + s.chapters.length, 0)} chapters · Tap to open PDF</p>
-                          )}
-                        </div>
-                      </div>
-                      <ExternalLink className="w-4 h-4 text-blue-500 shrink-0"/>
-                    </a>
-                  ) : (
-                    <button onClick={() => setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
-                      className="w-full px-4 py-3.5 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
-                          <span className="text-sm">📚</span>
-                        </div>
-                        <div>
-                          <p className="text-sm font-bold text-gray-900 text-left">Syllabus</p>
-                          {subjectCount > 0 && (
-                            <p className="text-[10px] text-gray-500">{subjectCount} subjects · {subjects.reduce((a,s) => a + s.chapters.length, 0)} chapters</p>
-                          )}
-                        </div>
-                      </div>
-                      {isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
-                    </button>
-                  )}
-
-                  {isSylOpen && (
-                    <div className="border-t-2 border-gray-100">
-                      {isStructured ? (
-                        <div className="divide-y divide-gray-100 max-h-[520px] overflow-y-auto">
-                          {subjects.map((sub, si) => (
-                            <div key={si}>
-                              {/* Subject Header */}
-                              <div className={cn("px-4 py-3 flex items-center justify-between", sub.color.header)}>
-                                <p className="text-sm font-black text-white">{sub.name}</p>
-                                {sub.marks && (
-                                  <span className="text-[10px] font-bold bg-white/20 text-white px-2.5 py-1 rounded-full">
-                                    {sub.marks}
-                                  </span>
-                                )}
-                              </div>
-                              {/* Chapters */}
-                              <div className={cn("divide-y", sub.color.bg.replace('50', '100/30'))}>
-                                {sub.chapters.map((ch, ci) => (
-                                  <div key={ci} className="px-4 py-2.5 flex items-start gap-3">
-                                    <div className={cn("w-1.5 h-1.5 rounded-full mt-1.5 shrink-0", sub.color.dot)} />
-                                    <div className="flex-1 min-w-0">
-                                      <p className="text-xs font-semibold text-gray-900">{ch.name}</p>
-                                      {ch.topics && (
-                                        <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">{ch.topics}</p>
-                                      )}
-                                    </div>
-                          </div>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                          {/* Tips section */}
-                          {tips.length > 0 && (
-                            <div className="bg-amber-50 px-4 py-3 space-y-2">
-                              {tips.map((tip, ti) => (
-                                <div key={ti} className="flex items-start gap-2">
-                                  <p className="text-[11px] font-bold text-amber-800 shrink-0">{tip.label}:</p>
-                                  <p className="text-[11px] text-amber-700">{tip.value}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        /* Fallback for unstructured data */
-                        <div className="p-4 space-y-2 max-h-96 overflow-y-auto">
-                          {exam.syllabus.map((item, i) => (
-                            <div key={i} className="flex items-start gap-2">
-                              <span className="text-emerald-500 mt-0.5 shrink-0">›</span>
-                              <p className="text-xs text-gray-700 leading-relaxed">{item}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-
-                        {/* Eligibility & Colleges */}
-            {[{ key: 'elig', label: '✅ Eligibility', items: exam.eligibility }, { key: 'col', label: `🏫 Colleges (${exam.tnCollegesAccepting.length})`, items: exam.tnCollegesAccepting }].filter(s => s.items.length > 0).map(section => (
-              <div key={section.key} className="border border-gray-200 rounded-xl overflow-hidden">
-                <button onClick={() => setOpenSection(openSection === `${exam.id}-${section.key}` ? null : `${exam.id}-${section.key}`)}
-                  className="w-full px-4 py-3 flex items-center justify-between bg-gray-50 hover:bg-gray-100">
-                  <p className="text-xs font-bold text-gray-800">{section.label}</p>
-                  {openSection === `${exam.id}-${section.key}` ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
+          <div className="border-t-2 border-gray-100">
+            {/* Tab Bar */}
+            <div className="flex overflow-x-auto border-b border-gray-100 bg-gray-50 px-3 gap-1 pt-2">
+              {tabs.map(tab => (
+                <button key={tab.id} onClick={() => setActiveTab(tab.id as any)}
+                  className={cn(
+                    "flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 transition-colors flex-shrink-0",
+                    activeTab === tab.id
+                      ? 'bg-white text-blue-700 border-blue-600'
+                      : 'text-gray-500 border-transparent hover:text-gray-700'
+                  )}>
+                  <span>{tab.icon}</span>{tab.label}
                 </button>
-                {openSection === `${exam.id}-${section.key}` && (
-                  <div className="px-4 pb-3 pt-3 border-t border-gray-100 space-y-1.5">
-                    {section.items.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <span className="text-xs mt-0.5 shrink-0">{section.key === 'col' ? '🎓' : '✓'}</span>
-                        <p className="text-xs text-gray-700 leading-relaxed">{item}</p>
+              ))}
+              {/* Syllabus tab — opens PDF directly */}
+              {syllabusLink ? (
+                <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 border-transparent text-emerald-600 hover:text-emerald-800 flex-shrink-0">
+                  <span>📄</span>Syllabus
+                </a>
+              ) : exam.syllabus.length > 0 ? (
+                <button onClick={() => setActiveTab('overview')}
+                  className={cn("flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 flex-shrink-0 text-gray-500 border-transparent")}>
+                  <span>📚</span>Syllabus
+                </button>
+              ) : null}
+            </div>
+
+            {/* Tab Content */}
+            <div className="p-4 space-y-3">
+
+              {/* ── OVERVIEW TAB ── */}
+              {activeTab === 'overview' && (
+                <div className="space-y-3">
+                  {/* Stats grid */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { label: 'Mode', value: exam.examMode.split('(')[0].trim(), icon: '🖥️' },
+                      { label: 'Duration', value: exam.duration, icon: '⏱️' },
+                      { label: 'Fee (General)', value: exam.applicationFee.general, icon: '💳' },
+                      { label: 'Result', value: exam.importantDates.resultDate, icon: '📅' },
+                    ].map(s => (
+                      <div key={s.label} className="bg-gray-50 rounded-xl p-3 border border-gray-100">
+                        <p className="text-[10px] text-gray-400 font-medium">{s.icon} {s.label}</p>
+                        <p className="text-sm font-bold text-gray-800 mt-0.5 leading-tight">{s.value}</p>
                       </div>
                     ))}
                   </div>
-                )}
-              </div>
-            ))}
-            <button onClick={() => exam.officialWebsite && window.open(exam.officialWebsite, '_blank')}
-              className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl border-2 border-gray-200 text-gray-700 text-[11px] font-bold hover:border-gray-400">
-              <ExternalLink className="w-3.5 h-3.5" /> Official Website
-            </button>
+                  {/* TN note */}
+                  <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-200">
+                    <p className="text-xs font-bold text-emerald-700 mb-1">🏛️ Tamil Nadu</p>
+                    <p className="text-xs text-emerald-700 leading-relaxed">{exam.tnEligibility}</p>
+                  </div>
+                  {/* Official website */}
+                  <a href={exam.officialWebsite} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-gray-200 text-gray-700 text-sm font-bold hover:border-blue-400 hover:text-blue-600 transition-all">
+                    <ExternalLink className="w-4 h-4" /> Official Website
+                  </a>
+                </div>
+              )}
+
+              {/* ── EXAM PATTERN TAB ── */}
+              {activeTab === 'pattern' && pattern && (
+                <div className="space-y-4">
+                  {/* Summary row */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: 'Total Questions', value: pattern.totalQuestions },
+                      { label: 'Total Marks', value: pattern.totalMarks },
+                      { label: 'Duration', value: pattern.duration },
+                    ].map(s => (
+                      <div key={s.label} className="bg-blue-50 rounded-xl p-2.5 text-center border border-blue-100">
+                        <p className="text-base font-black text-blue-700">{s.value}</p>
+                        <p className="text-[10px] text-blue-500 mt-0.5 leading-tight">{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Marking scheme */}
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5 flex items-center gap-2">
+                    <span className="text-sm">📝</span>
+                    <p className="text-xs font-semibold text-amber-800">{pattern.marking}</p>
+                  </div>
+                  {/* Subject tables */}
+                  {pattern.sections.map((sec, si) => (
+                    <div key={si}>
+                      {pattern.sections.length > 1 && (
+                        <p className="text-xs font-bold text-gray-600 mb-2">{sec.name}</p>
+                      )}
+                      <div className="rounded-xl overflow-hidden border border-gray-200">
+                        <table className="w-full text-sm">
+                          <thead>
+                            <tr className="bg-blue-700 text-white">
+                              <th className="text-left px-3 py-2.5 text-xs font-bold">Subject</th>
+                              <th className="text-center px-3 py-2.5 text-xs font-bold">Questions</th>
+                              <th className="text-center px-3 py-2.5 text-xs font-bold">Marks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {sec.subjects.map((sub, i) => (
+                              <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                <td className="px-3 py-2.5 text-xs font-semibold text-gray-800">{sub.subject}</td>
+                                <td className="px-3 py-2.5 text-xs text-center font-bold text-blue-700">{sub.questions}</td>
+                                <td className="px-3 py-2.5 text-xs text-center font-bold text-emerald-700">{sub.marks}</td>
+                              </tr>
+                            ))}
+                            <tr className="bg-blue-50 border-t-2 border-blue-200">
+                              <td className="px-3 py-2.5 text-xs font-black text-blue-800">Total</td>
+                              <td className="px-3 py-2.5 text-xs text-center font-black text-blue-800">
+                                {sec.subjects.reduce((a,s) => a + s.questions, 0)}
+                              </td>
+                              <td className="px-3 py-2.5 text-xs text-center font-black text-blue-800">
+                                {sec.subjects.reduce((a,s) => a + s.marks, 0)}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  ))}
+                  {pattern.note && (
+                    <div className="bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5">
+                      <p className="text-xs text-gray-600 leading-relaxed">ℹ️ {pattern.note}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* ── ELIGIBILITY TAB ── */}
+              {activeTab === 'eligibility' && (
+                <div className="space-y-2">
+                  {exam.eligibility.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                      <span className="text-emerald-500 font-bold text-sm shrink-0 mt-0.5">✓</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* ── COLLEGES TAB ── */}
+              {activeTab === 'colleges' && (
+                <div className="space-y-1.5">
+                  {exam.tnCollegesAccepting.map((college, i) => (
+                    <div key={i} className="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                      <span className="text-sm shrink-0">🎓</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{college}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+            </div>
           </div>
         )}
       </div>
     );
   };
 
+  return (
   return (
     <div className="space-y-4">
       {/* ═══ TAB BAR ═══ */}
