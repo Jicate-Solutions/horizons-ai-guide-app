@@ -396,7 +396,6 @@ export const EntranceExams = () => {
   };
 
   return (
-  return (
     <div className="space-y-4">
       {/* ═══ TAB BAR ═══ */}
       <div className="flex gap-2">

@@ -50,23 +50,6 @@ export const examCategories: CategoryInfo[] = [
 
 export const entranceExams: EntranceExam[] = [
   // ============ ENGINEERING EXAMS ============
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'Anna University CEG, Chennai',
-      'Anna University MIT, Chennai',
-      'GCT Coimbatore',
-      'PSG Tech, Coimbatore',
-      'TCE Madurai',
-      '455+ TN Engineering Colleges, 1.34 Lakh+ Seats',
-    ],
-    officialWebsite: 'https://www.tneaonline.org',
-    category: 'engineering',
-    hasJKKN: true,
-    jkknColleges: [],
-  },
   {
     id: 'jee-main',
     name: 'JEE Main',
@@ -137,7 +120,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📄 Paper 2A|B.Arch — Math + Aptitude + Drawing Test',
       'TIP:📄 Paper 2B|B.Planning — Math + Aptitude + Planning',
     ],
-,
     eligibility: [
       '12th pass with PCM',
       '75% in 12th or top 20 percentile (65% for SC/ST)',
@@ -149,16 +131,8 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'January & April 2026',
       resultDate: 'February & May 2026',
     },
-    applicationFee: {
-      general: '₹1,000',
-      scst: '₹500',
-    },
-    tnCollegesAccepting: [
-      'NIT Trichy (Top NIT)',
-      'IIIT Tiruchirappalli',
-      'IIT Madras (via JEE Advanced)',
-      'Other NITs across India',
-    ],
+    applicationFee: { general: '₹1,000', scst: '₹500' },
+    tnCollegesAccepting: [],
     officialWebsite: 'https://jeemain.nta.nic.in',
     category: 'engineering',
   },
@@ -222,7 +196,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Note|JEE Advanced 2026 syllabus is same as JEE Advanced 2025 (IIT official confirmation)',
       'TIP:📌 Pattern|2 papers × 3 hours each · Physics, Chemistry, Maths · Multiple question types',
     ],
-,
     eligibility: [
       'Top 2,50,000 in JEE Main',
       'Age: Born after Oct 1, 2001 (approx)',
@@ -234,15 +207,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'May 2026',
       resultDate: 'June 2026',
     },
-    applicationFee: {
-      general: '₹2,800',
-      scst: '₹1,400',
-    },
-    tnCollegesAccepting: [
-      'IIT Madras, Chennai (#1 in India)',
-      '23 IITs across India',
-    ],
-    officialWebsite: 'https://jeeadv.ac.in',
+    applicationFee: { general: '₹1,350', scst: '₹1,350' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://viteee.vit.ac.in',
     category: 'engineering',
   },
   {
@@ -307,7 +274,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Exam Pattern|PCM: Math 40 + Physics 35 + Chemistry 35 + English 5 + Aptitude 10 = 125 Qs',
       'TIP:📌 PCB Stream|Biology 40 + Physics 35 + Chemistry 35 + English 5 + Aptitude 10 = 125 Qs',
     ],
-,
     eligibility: [
       '12th with PCM/PCB',
       'Minimum 60% in PCM/PCB',
@@ -319,16 +285,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'April-May 2026',
       resultDate: 'May 2026',
     },
-    applicationFee: {
-      general: '₹1,350',
-      scst: '₹1,350',
-    },
-    tnCollegesAccepting: [
-      'VIT Vellore (Main Campus, TN)',
-      'VIT Chennai Campus',
-      'VIT AP, VIT Bhopal',
-    ],
-    officialWebsite: 'https://viteee.vit.ac.in',
+    applicationFee: { general: '₹1,200', scst: '₹1,200' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://srmist.edu.in',
     category: 'engineering',
   },
   {
@@ -399,7 +358,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Marking|+1 correct / 0 wrong — No negative marking',
       'TIP:📌 Phases|Phase 1: Apr 24–29 · Phase 2: Jun 10–15 · Phase 3: Jul 4–5, 2026',
     ],
-,
     eligibility: [
       '12th with PCM or PCB — minimum 50% aggregate',
       'No age limit for SRMJEEE',
@@ -411,16 +369,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'Phase 1: Apr 24–29 | Phase 2: Jun 10–15 | Phase 3: Jul 4–5, 2026',
       resultDate: 'After each phase',
     },
-    applicationFee: {
-      general: '₹1,200',
-      scst: '₹1,200',
-    },
-    tnCollegesAccepting: [
-      'SRM Kattankulathur (Main, TN)',
-      'SRM Ramapuram, Chennai',
-      'SRM Vadapalani, Chennai',
-    ],
-    officialWebsite: 'https://srmist.edu.in',
+    applicationFee: { general: '₹3,600', scst: '₹3,600' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://www.bitsadmission.com',
     category: 'engineering',
   },
   {
@@ -490,7 +441,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Eligibility|75% aggregate in PCM/PCB; ≥60% in each of Physics, Chemistry, Maths/Biology individually',
       'TIP:📌 Year|Class 12 appearing in 2026 OR passed in 2025. 2024 passouts NOT eligible.',
     ],
-,
     eligibility: [
       '12th with PCM',
       '75% aggregate, 60% each in PCM',
@@ -502,16 +452,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'May-June 2026',
       resultDate: 'July 2026',
     },
-    applicationFee: {
-      general: '₹4,500',
-      scst: '₹4,500',
-    },
-    tnCollegesAccepting: [
-      'BITS Pilani',
-      'BITS Goa',
-      'BITS Hyderabad',
-    ],
-    officialWebsite: 'https://www.bitsadmission.com',
+    applicationFee: { general: '₹1,300', scst: '₹1,300' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://www.amrita.edu',
     category: 'engineering',
   },
   {
@@ -562,7 +505,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Eligibility|Born on/after Jul 1, 2005 · 60% aggregate PCM · 50% individually in each subject',
       'TIP:📌 JEE Route|Apply via JEE Main percentile — no extra fee if already registered for AEEE',
     ],
-,
     eligibility: [
       '12th with PCM — 55% aggregate',
       '55% individually in Maths, Physics, Chemistry',
@@ -574,20 +516,11 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'April 2026',
       resultDate: 'May 2026',
     },
-    applicationFee: {
-      general: '₹1,200',
-      scst: '₹1,200',
-    },
-    tnCollegesAccepting: [
-      'Amrita Vishwa Vidyapeetham, Coimbatore (Main TN Campus)',
-      'Amrita Chennai Campus',
-      'Amrita Bangalore, Amritapuri (Kerala)',
-    ],
-    officialWebsite: 'https://www.amrita.edu/admissions/btech',
-    category: 'engineering',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
-
-  // ============ MEDICAL & HEALTH EXAMS ============
   {
     id: 'neet-ug',
     name: 'NEET-UG ⭐',
@@ -692,23 +625,6 @@ export const entranceExams: EntranceExam[] = [
       resultDate: 'June 2026',
     },
     applicationFee: {
-      general: '₹1,700',
-      scst: '₹1,000',
-    },
-    tnCollegesAccepting: [
-      '36 Govt Medical Colleges in TN (₹14,000/yr fee!)',
-      'AIIMS Madurai (All India Quota via NEET)',
-      'JIPMER Puducherry (via NEET)',
-      'Madras Medical College, Chennai',
-      'Stanley Medical College',
-      'Coimbatore Medical College',
-      'Madurai Medical College',
-      'Private Medical Colleges (SRM, Saveetha, etc.)',
-    ],
-    officialWebsite: 'https://neet.nta.nic.in',
-    category: 'medical',
-  },
-    applicationFee: {
       general: '₹500',
       scst: '₹250',
     },
@@ -719,91 +635,6 @@ export const entranceExams: EntranceExam[] = [
       'Fee: ~₹14,000/year (Govt)',
     ],
     officialWebsite: 'https://tnmedicalselection.net',
-    category: 'medical',
-  },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'Govt Dental College, Chennai',
-      'Govt Dental College, Madurai',
-      'Meenakshi Dental College',
-      'SRM Dental College',
-      'Private Dental Colleges',
-    ],
-    officialWebsite: 'https://tnmedicalselection.net',
-    category: 'medical',
-  },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'Govt Siddha Medical College, Palayamkottai',
-      'Govt Siddha Medical College, Chennai',
-      'Govt Homeopathy College, Tirumangalam',
-      'Sri Sairam Siddha Medical College',
-    ],
-    officialWebsite: 'https://tnmedicalselection.net',
-    category: 'medical',
-  },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'Govt College of Nursing, Chennai',
-      'MMC College of Nursing',
-      'CMC Vellore Nursing',
-      'Private Nursing Colleges',
-    ],
-    officialWebsite: 'https://tnmgrmu.ac.in',
-    category: 'medical',
-    hasJKKN: true,
-    jkknColleges: [],
-  },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'Madras Medical College (Pharmacy)',
-      'JSS College of Pharmacy, Ooty',
-      'PSG College of Pharmacy',
-      'SRM College of Pharmacy',
-    ],
-    officialWebsite: 'https://tnmgrmu.ac.in',
-    category: 'medical',
-    hasJKKN: true,
-    jkknColleges: [],
-  },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'MMC Allied Health Sciences',
-      'Stanley Medical College',
-      'PSG IMS, Coimbatore',
-      'SRM Allied Health',
-    ],
-    officialWebsite: 'https://tnmgrmu.ac.in',
-    category: 'medical',
-    hasJKKN: true,
-    jkknColleges: [],
-  },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'JIPMER Puducherry (Main)',
-      'JIPMER Karaikal',
-      'Government Institute',
-      'Low fees, High quality',
-    ],
-    officialWebsite: 'https://jipmer.edu.in',
     category: 'medical',
   },
   {
@@ -833,18 +664,10 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'July 4, 2026',
       resultDate: 'August 2026',
     },
-    applicationFee: {
-      general: '₹1,500',
-      scst: '₹1,200',
-    },
-    tnCollegesAccepting: [
-      'AIIMS Madurai (TN)',
-      'AIIMS New Delhi',
-      'AIIMS Jodhpur, Bhopal, Rishikesh',
-      'All AIIMS across India',
-    ],
-    officialWebsite: 'https://aiimsexams.ac.in',
-    category: 'medical',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
   {
     id: 'aiims-bsc-nursing',
@@ -873,21 +696,6 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'June 2026',
       resultDate: 'July 2026',
     },
-    applicationFee: {
-      general: '₹1,500',
-      scst: '₹1,200',
-    },
-    tnCollegesAccepting: [
-      'AIIMS New Delhi (Nursing)',
-      'AIIMS Madurai (if nursing available)',
-      'AIIMS Jodhpur, Bhopal',
-      'All AIIMS Nursing Colleges',
-    ],
-    officialWebsite: 'https://aiimsexams.ac.in',
-    category: 'medical',
-  },
-
-  // ============ MANAGEMENT & LAW ============
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -943,7 +751,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Application|Register at consortiumofnlus.ac.in · Fee: ₹4,000 (Gen) / ₹3,500 (SC/ST/PwD)',
       'TIP:📌 Strategy|Read quality newspapers daily · Practise 450-word passages · Revise 10th Maths',
     ],
-,
     eligibility: [
       '12th pass any stream',
       'Minimum 45% (40% for SC/ST)',
@@ -955,18 +762,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'December 6, 2026 (CLAT 2027)',
       resultDate: 'Jan 2027',
     },
-    applicationFee: {
-      general: '₹4,000',
-      scst: '₹3,500',
-    },
-    tnCollegesAccepting: [
-      'TNNLU Tiruchirappalli (TN)',
-      'NLSIU Bangalore',
-      'NALSAR Hyderabad',
-      'NLU Jodhpur',
-      '26 NLUs + many private colleges accept CLAT scores',
-    ],
-    officialWebsite: 'https://consortiumofnlus.ac.in',
+    applicationFee: { general: '₹3,300', scst: '₹3,300' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://nationallawuniversitydelhi.in',
     category: 'management',
   },
   {
@@ -988,21 +786,15 @@ export const entranceExams: EntranceExam[] = [
       'Minimum 50% marks in 12th',
       'No age limit',
     ],
-    tnEligibility: 'For NLU Delhi — India\'s 2nd best law college. Exam held in 35+ cities including Chennai.',
+    tnEligibility: 'For NLU Delhi — India\'s top law university. Separate from CLAT.',
     importantDates: {
       registration: 'Sep-Nov 2026',
       examDate: 'December 2026',
       resultDate: 'Jan 2027',
     },
-    applicationFee: {
-      general: '₹3,500',
-      scst: '₹1,500',
-    },
-    tnCollegesAccepting: [
-      'National Law University, Delhi (exclusively)',
-      'BA LLB (Hons.) — 5 year integrated programme',
-    ],
-    officialWebsite: 'https://nludelhi.ac.in',
+    applicationFee: { general: '₹4,500', scst: '₹4,500' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://www.lsatindia.in',
     category: 'management',
   },
   {
@@ -1031,18 +823,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'Jan & June 2026',
       resultDate: '3-4 weeks after exam',
     },
-    applicationFee: {
-      general: '₹3,999',
-      scst: '₹3,999',
-    },
-    tnCollegesAccepting: [
-      'Jindal Global Law School',
-      'UPES Dehradun',
-      'Christ University',
-      'Alliance University',
-      'Many premium private law colleges',
-    ],
-    officialWebsite: 'https://www.lsatindia.in',
+    applicationFee: { general: '₹2,000', scst: '₹2,000' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://www.set-test.org',
     category: 'management',
   },
   {
@@ -1073,20 +856,6 @@ export const entranceExams: EntranceExam[] = [
       resultDate: 'May-June 2026',
     },
     applicationFee: {
-      general: '₹1,750',
-      scst: '₹1,750',
-    },
-    tnCollegesAccepting: [
-      'Symbiosis Law School, Pune',
-      'Symbiosis Law School, Hyderabad',
-      'Symbiosis Law School, Noida',
-      'Symbiosis Law School, Nagpur',
-      'BA LLB & BBA LLB programmes',
-    ],
-    officialWebsite: 'https://set-test.org',
-    category: 'management',
-  },
-    applicationFee: {
       general: '₹500',
       scst: '₹250',
     },
@@ -1098,8 +867,6 @@ export const entranceExams: EntranceExam[] = [
     ],
     officialWebsite: 'https://unom.ac.in',
     category: 'management',
-    hasJKKN: true,
-    jkknColleges: [],
   },
   {
     id: 'ca-cs-cma-foundation',
@@ -1128,21 +895,11 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'May & Nov (CA/CMA), June & Dec (CS)',
       resultDate: '2 months after exam',
     },
-    applicationFee: {
-      general: '₹11,000-15,000',
-      scst: 'Varies',
-    },
-    tnCollegesAccepting: [
-      'Self-study / Coaching',
-      'CA: icai.org',
-      'CS: icsi.edu',
-      'CMA: icmai.in',
-    ],
-    officialWebsite: 'https://icai.org',
-    category: 'management',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
-
-  // ============ AGRICULTURE ============
   {
     id: 'tnau',
     name: 'TNAU ⭐',
@@ -1181,8 +938,6 @@ export const entranceExams: EntranceExam[] = [
     ],
     officialWebsite: 'https://tnau.ac.in',
     category: 'agriculture',
-    hasJKKN: true,
-    jkknColleges: [],
   },
   {
     id: 'tanuvas',
@@ -1208,17 +963,9 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'Via NEET',
       resultDate: 'Aug 2026',
     },
-    applicationFee: {
-      general: '₹500',
-      scst: '₹250',
-    },
-    tnCollegesAccepting: [
-      'Madras Veterinary College, Chennai',
-      'VC&RI Namakkal',
-      'VC&RI Tirunelveli',
-      'Fisheries College, Thoothukudi',
-    ],
-    officialWebsite: 'https://tanuvas.ac.in',
+    applicationFee: { general: '₹1,000', scst: '₹500' },
+    tnCollegesAccepting: [],
+    officialWebsite: 'https://icar.org.in',
     category: 'agriculture',
   },
   {
@@ -1247,21 +994,11 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'June 2026',
       resultDate: 'July 2026',
     },
-    applicationFee: {
-      general: '₹1,000',
-      scst: '₹500',
-    },
-    tnCollegesAccepting: [
-      'TNAU (ICAR Quota)',
-      'IARI New Delhi',
-      'NDRI Karnal',
-      '75+ ICAR Institutes',
-    ],
-    officialWebsite: 'https://icar.nta.nic.in',
-    category: 'agriculture',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
-
-  // ============ DESIGN & ARTS ============
   {
     id: 'nift-chennai',
     name: 'NIFT Chennai ⭐',
@@ -1327,7 +1064,6 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Interview|Wear smart casuals · Be honest · Maintain eye contact · Never argue — put points politely · Say sorry if you don\'t know an answer',
       'TIP:📌 Stage 2|Situation Test + Interview — only shortlisted Stage 1 candidates attend. CAT carries maximum weightage overall.',
     ],
-,
     eligibility: [
       '12th pass any stream',
       'No minimum marks',
@@ -1339,17 +1075,10 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'Jan 2026',
       resultDate: 'March 2026',
     },
-    applicationFee: {
-      general: '₹3,000',
-      scst: '₹1,500',
-    },
-    tnCollegesAccepting: [
-      'NID Ahmedabad',
-      'NID Bangalore',
-      'NID Andhra Pradesh',
-    ],
-    officialWebsite: 'https://nid.edu',
-    category: 'design',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
   {
     id: 'jee-paper2-barch',
@@ -1377,21 +1106,11 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'April 2026',
       resultDate: 'May 2026',
     },
-    applicationFee: {
-      general: '₹1,000',
-      scst: '₹500',
-    },
-    tnCollegesAccepting: [
-      'Anna University SAP',
-      'NIT Trichy (B.Arch)',
-      'SRM Architecture',
-      'VIT School of Architecture',
-    ],
-    officialWebsite: 'https://jeemain.nta.nic.in',
-    category: 'design',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
-
-  // ============ DEFENCE & OTHERS ============
   {
     id: 'nchmct-jee',
     name: 'NCHMCT JEE ⭐',
@@ -1419,24 +1138,11 @@ export const entranceExams: EntranceExam[] = [
       examDate: 'May 2026',
       resultDate: 'June 2026',
     },
-    applicationFee: {
-      general: '₹1,000',
-      scst: '₹500',
-    },
-    tnCollegesAccepting: [
-      'IHM Chennai (TN Campus)',
-      'IHM Mumbai',
-      'IHM Delhi',
-      '21 Central IHMs',
-    ],
-    officialWebsite: 'https://nchmct.org',
-    category: 'management',
+    applicationFee: { general: '', scst: '' },
+    tnCollegesAccepting: [],
+    officialWebsite: '',
+    category: '',
   },
-  // ═══ MISSING EXAMS ADDED — COMPLETE LIST FOR 12TH PASS ═══
-  
-  // ENGINEERING — State Level
-
-  // MANAGEMENT — Additional
   {
     id: 'ipm-iim',
     name: 'IPM Aptitude Test (IIM)',
@@ -1488,8 +1194,6 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://set-test.org',
     category: 'management',
   },
-
-  // DESIGN — Additional
   {
     id: 'uceed',
     name: 'UCEED (IIT Design)',
@@ -1513,15 +1217,9 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://uceed.iitb.ac.in',
     category: 'design',
   },
-
-  // DEFENCE — Additional
 ];
 
 
-// Utility functions
-export const getExamsByCategory = (category: string): EntranceExam[] => {
-  return entranceExams.filter((exam) => exam.category === category);
-};
 
 export const getExamById = (id: string): EntranceExam | undefined => {
   return entranceExams.find((exam) => exam.id === id);
