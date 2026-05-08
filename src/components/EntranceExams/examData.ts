@@ -50,30 +50,6 @@ export const examCategories: CategoryInfo[] = [
 
 export const entranceExams: EntranceExam[] = [
   // ============ ENGINEERING EXAMS ============
-  {
-    id: 'tnea',
-    name: 'TNEA',
-    tamilName: 'தமிழ்நாடு பொறியியல் சேர்க்கை',
-    fullForm: 'Tamil Nadu Engineering Admissions',
-    conductingBody: 'Anna University, Chennai',
-    examMode: 'Merit Based (No Exam)',
-    duration: 'N/A - Based on 12th marks',
-    syllabus: [
-      'No entrance exam — Merit based on 12th HSC marks',
-      'TNEA Score = Physics×2 + Chemistry×1 + Maths×1 = out of 400',
-      'Admissions via online counselling based on rank list',
-    ],
-    eligibility: [
-      '12th HSC passed with PCM/PCB',
-      'Min 50% (General), 45% (OBC), 40% (SC/ST)',
-      'TN domicile or studied in TN',
-    ],
-    tnEligibility: 'Must be Tamil Nadu domicile or have studied in TN for 7+ years',
-    importantDates: {
-      registration: 'May 2026',
-      examDate: 'No Exam — Merit Based',
-      resultDate: 'July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -445,32 +421,6 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://neet.nta.nic.in',
     category: 'medical',
   },
-  {
-    id: 'tn-neet-counselling',
-    name: 'TN NEET Counselling ⭐',
-    tamilName: 'தமிழ்நாடு மருத்துவ கலந்தாய்வு',
-    fullForm: 'Tamil Nadu Medical Admission Counselling (85% Seats for TN!)',
-    conductingBody: 'TN Medical Selection Committee',
-    examMode: 'Online Counselling',
-    duration: 'Based on NEET Rank',
-    syllabus: [
-      'No separate exam',
-      'Based on NEET-UG Score',
-      'Choice filling online',
-      'Document verification',
-    ],
-    eligibility: [
-      'Valid NEET-UG Score',
-      'TN Domicile / TN Nativity',
-      'Studied in TN for 7+ years',
-      '7.5% for TN Govt School Students',
-    ],
-    tnEligibility: '85% seats reserved for TN students! Govt college fee only ~₹14,000/year!',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'No Exam — Counselling Only',
-      resultDate: 'July-Aug 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -484,30 +434,6 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnmedicalselection.net',
     category: 'medical',
   },
-  {
-    id: 'bds-dental',
-    name: 'BDS - Dental',
-    tamilName: 'பல் மருத்துவம்',
-    fullForm: 'Bachelor of Dental Surgery',
-    conductingBody: 'Through NEET Score',
-    examMode: 'Via NEET Score',
-    duration: '5 years course',
-    syllabus: [
-      'Admission through NEET',
-      'Same NEET exam as MBBS',
-      'Separate counselling for BDS',
-    ],
-    eligibility: [
-      'Valid NEET Score',
-      '12th with PCB - 50%',
-      'Age: 17+ years',
-    ],
-    tnEligibility: 'TN state quota available - Govt Dental Colleges in Chennai & Madurai',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'Via NEET (May 3, 2026)',
-      resultDate: 'July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -522,31 +448,6 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnmedicalselection.net',
     category: 'medical',
   },
-  {
-    id: 'ayush-bams-bhms-bsms',
-    name: 'AYUSH - BAMS/BHMS/BSMS',
-    tamilName: 'ஆயுஷ் - சித்தா/ஆயுர்வேதா',
-    fullForm: 'BAMS (Ayurveda) / BHMS (Homeopathy) / BSMS (Siddha)',
-    conductingBody: 'Through NEET Score',
-    examMode: 'Via NEET Score',
-    duration: '5.5 years course',
-    syllabus: [
-      'Admission through NEET',
-      'BSMS - Siddha Medicine (TN Special!)',
-      'BAMS - Ayurvedic Medicine',
-      'BHMS - Homeopathy',
-    ],
-    eligibility: [
-      'Valid NEET Score',
-      '12th with PCB - 50%',
-      'Lower cutoff than MBBS',
-    ],
-    tnEligibility: 'BSMS (Siddha) is Tamil Nadu specialty! Govt Siddha Colleges available',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'Via NEET (May 3, 2026)',
-      resultDate: 'Aug 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -560,31 +461,6 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://tnmedicalselection.net',
     category: 'medical',
   },
-  {
-    id: 'bsc-nursing',
-    name: 'B.Sc Nursing ⭐',
-    tamilName: 'செவிலியர் படிப்பு',
-    fullForm: 'Bachelor of Science in Nursing',
-    conductingBody: 'TN Dr. MGR Medical University',
-    examMode: 'Merit Based (12th Marks)',
-    duration: '4 years course',
-    syllabus: [
-      'Govt colleges: NEET score required',
-      'Private colleges: Merit based (12th marks)',
-      'AIIMS Nursing: Separate entrance exam',
-      'JIPMER Nursing: Via NEET score',
-    ],
-    eligibility: [
-      '12th with PCB - 45%',
-      'Age: 17-35 years',
-      'Female & Male both eligible',
-    ],
-    tnEligibility: 'Govt nursing colleges through TN counselling - Many private options available',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'No Exam — Merit Based',
-      resultDate: 'July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -600,30 +476,6 @@ export const entranceExams: EntranceExam[] = [
     hasJKKN: true,
     jkknColleges: [],
   },
-  {
-    id: 'bpharm',
-    name: 'B.Pharm ⭐',
-    tamilName: 'மருந்தியல் படிப்பு',
-    fullForm: 'Bachelor of Pharmacy',
-    conductingBody: 'TN Dr. MGR Medical University',
-    examMode: 'Merit Based (12th Marks)',
-    duration: '4 years course',
-    syllabus: [
-      'Based on 12th PCM/PCB Marks',
-      'No entrance exam for most',
-      'Direct merit admission',
-    ],
-    eligibility: [
-      '12th with PCM or PCB - 50%',
-      'Age: 17+ years',
-      'Maths OR Biology accepted',
-    ],
-    tnEligibility: 'State quota for TN students in govt pharmacy colleges',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'No Exam — Merit Based',
-      resultDate: 'July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -639,32 +491,6 @@ export const entranceExams: EntranceExam[] = [
     hasJKKN: true,
     jkknColleges: [],
   },
-  {
-    id: 'allied-health',
-    name: 'Allied Health Sciences ⭐',
-    tamilName: 'துணை சுகாதாரம்',
-    fullForm: 'BPT / BOT / BMLT / B.Sc Radiology & more',
-    conductingBody: 'TN Dr. MGR Medical University',
-    examMode: 'Merit Based (12th Marks)',
-    duration: '3-4 years course',
-    syllabus: [
-      'BPT - Physiotherapy',
-      'BOT - Occupational Therapy',
-      'BMLT - Medical Lab Technology',
-      'B.Sc Radiology, Cardiac Tech',
-      'Based on 12th PCB marks',
-    ],
-    eligibility: [
-      '12th with PCB - 50%',
-      'Age: 17-25 years',
-      'TN domicile preferred',
-    ],
-    tnEligibility: 'Growing demand! Excellent job opportunities in hospitals across TN',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'No Exam — Merit Based',
-      resultDate: 'July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -680,33 +506,6 @@ export const entranceExams: EntranceExam[] = [
     hasJKKN: true,
     jkknColleges: [],
   },
-  {
-    id: 'jipmer-puducherry',
-    name: 'JIPMER Puducherry',
-    tamilName: 'ஜிப்மர் புதுச்சேரி',
-    fullForm: 'Jawaharlal Institute of Postgraduate Medical Education',
-    conductingBody: 'Through NEET Score',
-    examMode: 'Via NEET Score',
-    duration: '5.5 years MBBS',
-    syllabus: [
-      'Admission through NEET — no separate exam',
-      'All India + Puducherry Quota',
-      'MBBS, B.Sc Nursing, B.Sc Allied Health',
-      'Same NEET syllabus: Master NEET = Get into JIPMER',
-      'AIIMS Madurai also admits via NEET only',
-      'Premier Medical Institute near TN — low fees, high quality',
-    ],
-    eligibility: [
-      'Valid NEET Score',
-      '12th with PCB - 50%',
-      'High NEET rank required',
-    ],
-    tnEligibility: 'Near Tamil Nadu - Very popular among TN students! Puducherry quota available',
-    importantDates: {
-      registration: 'June 2026',
-      examDate: 'Via NEET (May 3, 2026)',
-      resultDate: 'July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -802,32 +601,6 @@ export const entranceExams: EntranceExam[] = [
   },
 
   // ============ MANAGEMENT & LAW ============
-  {
-    id: 'tndalu',
-    name: 'TNDALU Merit Admission ⭐',
-    tamilName: 'தமிழ்நாடு அம்பேத்கர் சட்டப் பல்கலை',
-    fullForm: 'Tamil Nadu Dr. Ambedkar Law University — No Entrance Exam!',
-    conductingBody: 'TNDALU, Chennai',
-    examMode: 'Merit Based (12th Marks) — NO EXAM',
-    duration: 'N/A — Based on 12th marks & counselling',
-    syllabus: [
-      '⭐ NO ENTRANCE EXAM REQUIRED',
-      'Selection based on Class 12 marks only',
-      'Rank list released → Online counselling',
-      'Courses: BA LLB, BCom LLB, BBA LLB, BCA LLB, BSc LLB (5-year integrated)',
-      'Also: 3-year LLB for graduates',
-    ],
-    eligibility: [
-      '12th pass from any recognized board',
-      'Minimum 70% marks in 12th',
-      'TN domicile preferred for govt colleges',
-    ],
-    tnEligibility: 'Easiest route for TN students! No exam needed — just score 70%+ in 12th. Govt college fee is very low.',
-    importantDates: {
-      registration: 'April-May 2026',
-      examDate: 'No Exam — Merit Based',
-      resultDate: 'June-July 2026 (Counselling)',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
@@ -1001,30 +774,6 @@ export const entranceExams: EntranceExam[] = [
     officialWebsite: 'https://set-test.org',
     category: 'management',
   },
-  {
-    id: 'bba-bca-bcom-direct',
-    name: 'BBA/BCA/B.Com (Direct) ⭐',
-    tamilName: 'BBA/BCA/B.Com நேரடி சேர்க்கை',
-    fullForm: 'Direct Admission - No Entrance Exam',
-    conductingBody: 'All TN Universities',
-    examMode: 'Merit Based (12th Marks)',
-    duration: '3 years course',
-    syllabus: [
-      'No entrance exam',
-      'Based on 12th marks only',
-      'Any stream accepted',
-    ],
-    eligibility: [
-      '12th pass any stream',
-      'Minimum 50% (varies)',
-      'No age limit',
-    ],
-    tnEligibility: 'All TN universities accept 12th marks - Easy admission for TN students!',
-    importantDates: {
-      registration: 'May-June 2026',
-      examDate: 'No Exam — Merit Based',
-      resultDate: 'June-July 2026',
-    },
     applicationFee: {
       general: '₹500',
       scst: '₹250',
