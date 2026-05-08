@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, BookOpen, LucideIcon, Landmark, School, Compass, Rocket, MessageCircle } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, BookOpen, LucideIcon, Landmark, School, Compass, Rocket, MessageCircle, TrendingUp } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -27,6 +27,7 @@ const navItems: NavItem[] = [
   { id: 'educutoff', label: 'Cutoff Calculator', shortLabel: 'Cutoff', icon: Calculator, activeColor: 'text-white', activeBg: 'bg-purple-700', route: '/career-assessment/colleges/educutoff' },
   { id: 'entranceexams', label: 'Exam Prep', shortLabel: 'Exam Prep', icon: FileText, activeColor: 'text-white', activeBg: 'bg-orange-700', route: '/career-assessment/colleges/entrance-exams' },
   { id: 'govtjobs', label: 'Govt Exams', shortLabel: 'Govt Exams', icon: Landmark, activeColor: 'text-white', activeBg: 'bg-stone-700', route: '/government-exams', isNew: true },
+  { id: 'industrytrends', label: 'Industry Trends', shortLabel: 'Trends', icon: TrendingUp, activeColor: 'text-white', activeBg: 'bg-rose-700', route: '/career-assessment/industry-trends', isNew: true },
   { id: 'tnuniversity', label: 'University Hub', shortLabel: 'Uni Hub', icon: School, activeColor: 'text-white', activeBg: 'bg-violet-700', route: '/career-assessment/colleges/tn-university', isNew: true },
   { id: 'courseexplorer', label: 'Course Explorer', shortLabel: 'Courses', icon: Compass, activeColor: 'text-white', activeBg: 'bg-cyan-700', route: '/career-assessment/colleges/course-explorer', isNew: true },
   { id: 'startup', label: 'Startup Guide', shortLabel: 'Startup', icon: Rocket, activeColor: 'text-white', activeBg: 'bg-pink-700', route: '/career-assessment/colleges/startup', isNew: true },
