@@ -318,6 +318,54 @@ export const CounsellingTracker = () => {
       const tracker = trackers.find(t => t.steps.some(s => s.id === stepId));
       if (tracker) {
         syncToCloud(next, tracker.id);
+
+        // Check if this tracker is now 100% complete
+        const completedCount = tracker.steps.filter(s => next[s.id]).length;
+        const isNowComplete = completedCount === tracker.steps.length;
+
+        if (isNowComplete && user?.email) {
+          // Define what to do next per tracker
+          const nextStepsMap: Record<string, string[]> = {
+            'tnea': [
+              'Wait for seat allotment results on tneaonline.org',
+              'Pay seat confirmation fee immediately after allotment',
+              'Report to your allotted college on the joining date',
+              'Carry all original documents + photocopies',
+            ],
+            'neet-tn': [
+              'Wait for TN Medical Counselling results at tnmedicalselection.net',
+              'Pay admission fee within deadline after seat allotment',
+              'Report to allotted medical college on joining date',
+              'Bring original NEET scorecard + certificates',
+            ],
+            'josaa': [
+              'Accept your seat on josaa.nic.in before deadline',
+              'Pay seat acceptance fee (partial fee)',
+              'Report to your IIT/NIT on the reporting date',
+              'Complete document verification at the institute',
+            ],
+            'tnau': [
+              'Check TNAU seat allotment at tnau.ac.in',
+              'Pay admission fee and confirm your seat',
+              'Report to your allotted TNAU college',
+              'Bring 12th marksheet, community certificate, and NEET score',
+            ],
+          };
+
+          // Send completion email (fire and forget)
+          fetch('/api/send-completion-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: user.email,
+              name: user.user_metadata?.full_name || user.email.split('@')[0],
+              trackerName: tracker.name,
+              trackerNameTamil: tracker.nameTamil,
+              totalSteps: tracker.steps.length,
+              nextSteps: nextStepsMap[tracker.id] || [],
+            }),
+          }).catch(() => {}); // Silent fail — don't block UI
+        }
       }
 
       return next;
