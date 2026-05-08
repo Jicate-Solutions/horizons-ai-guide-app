@@ -113,9 +113,13 @@ const FilterSection = ({ title, icon, children, defaultOpen = true }: {
 const GoldCheckbox = ({ checked, onChange, label, count }: {
   checked: boolean; onChange: () => void; label: string; count?: number;
 }) => (
-  <label className="flex items-center gap-2.5 py-1 cursor-pointer group" style={{ fontFamily: 'Outfit, sans-serif' }}>
+  <label
+    className="flex items-center gap-2.5 py-1 cursor-pointer group"
+    style={{ fontFamily: 'Outfit, sans-serif' }}
+    onClick={(e) => { e.preventDefault(); onChange(); }}
+  >
     <div
-      className="flex items-center justify-center transition-all"
+      className="flex items-center justify-center transition-all shrink-0"
       style={{
         width: 18, height: 18, borderRadius: 5,
         border: `2px solid ${checked ? '#DAA520' : '#D1C7B7'}`,
@@ -141,9 +145,13 @@ const GoldCheckbox = ({ checked, onChange, label, count }: {
 const GoldRadio = ({ checked, onChange, label }: {
   checked: boolean; onChange: () => void; label: string;
 }) => (
-  <label className="flex items-center gap-2.5 py-1 cursor-pointer" style={{ fontFamily: 'Outfit, sans-serif' }}>
+  <label
+    className="flex items-center gap-2.5 py-1 cursor-pointer"
+    style={{ fontFamily: 'Outfit, sans-serif' }}
+    onClick={(e) => { e.preventDefault(); onChange(); }}
+  >
     <div
-      className="flex items-center justify-center transition-all"
+      className="flex items-center justify-center transition-all shrink-0"
       style={{
         width: 18, height: 18, borderRadius: '50%',
         border: `2px solid ${checked ? '#DAA520' : '#D1C7B7'}`,
