@@ -15,23 +15,19 @@ import { cn } from '@/lib/utils';
 
 // Official syllabus PDF links per exam
 const syllabusLinks: Record<string, {pdf: string; label: string}> = {
-  'neet-ug': { pdf: '/neet-ug-2026-syllabus.pdf', label: 'Official NEET UG 2026 Syllabus — NMC' },
-  'tn-neet-counselling': { pdf: '/neet-ug-2026-syllabus.pdf', label: 'Official NEET UG 2026 Syllabus — NMC' },
-  'jee-main': { pdf: '/jee-main-2026-syllabus.pdf', label: 'Official JEE Main 2026 Syllabus — NTA' },
-  'jee-advanced': { pdf: '/jee-advanced-2026-syllabus.pdf', label: 'Official JEE Advanced 2026 Syllabus — IIT' },
-  'tnea': { pdf: 'https://www.tneaonline.org', label: 'TNEA Official Website' },
-  'keam': { pdf: 'https://cee.kerala.gov.in', label: 'CEE Kerala Official Syllabus' },
-  'comedk': { pdf: 'https://www.comedk.org/syllabus', label: 'COMEDK Official Syllabus' },
-  'bitsat': { pdf: 'https://www.bitsadmission.com/syllabus', label: 'BITS Official Syllabus' },
-  'viteee': { pdf: '/Physics_VITEEE2026.pdf', label: 'VITEEE 2026 Syllabus — VIT Official' },
-  'srmjeee': { pdf: '/srmjeee-2026-syllabus.pdf', label: 'SRMJEEE 2026 Official Syllabus' },
-  'bitsat': { pdf: '/bitsat-2026-syllabus.pdf', label: 'BITSAT 2026 Official Syllabus — BITS Pilani' },
-  'aeee': { pdf: '/aeee-2026-syllabus.pdf', label: 'AEEE 2026 Official Syllabus — Amrita Vishwa Vidyapeetham' },
-  'clat': { pdf: '/clat-2026-syllabus.pdf', label: 'CLAT 2026 Official Syllabus — Consortium of NLUs' },
-  'viteee': { pdf: 'https://viteee.vit.ac.in/syllabus', label: 'VITEEE Official Syllabus' },
-  'neet-tn': { pdf: 'https://tnmedicalselection.net', label: 'TN Medical Selection Official Site' },
-  'amueee': { pdf: 'https://www.amu.ac.in/syllabus', label: 'AMU Official Syllabus' },
+  // Official PDFs — open directly
+  'neet-ug':       { pdf: '/neet-ug-2026-syllabus.pdf',      label: 'Official NEET UG 2026 Syllabus — NMC' },
+  'jee-main':      { pdf: '/jee-main-2026-syllabus.pdf',     label: 'Official JEE Main 2026 Syllabus — NTA' },
+  'jee-advanced':  { pdf: '/jee-advanced-2026-syllabus.pdf', label: 'Official JEE Advanced 2026 Syllabus — IIT' },
+  'viteee':        { pdf: '/Physics_VITEEE2026.pdf',         label: 'VITEEE 2026 Syllabus — VIT Official' },
+  'srmjeee':       { pdf: '/srmjeee-2026-syllabus.pdf',      label: 'SRMJEEE 2026 Official Syllabus' },
+  'bitsat':        { pdf: '/bitsat-2026-syllabus.pdf',       label: 'BITSAT 2026 Official Syllabus — BITS Pilani' },
+  'aeee':          { pdf: '/aeee-2026-syllabus.pdf',         label: 'AEEE 2026 Official Syllabus — Amrita Vishwa Vidyapeetham' },
+  'clat':          { pdf: '/clat-2026-syllabus.pdf',         label: 'CLAT 2026 Official Syllabus — Consortium of NLUs' },
+  'nift-chennai':  { pdf: '/nift-2026-syllabus.pdf',         label: 'NIFT 2026 Official Syllabus — Ministry of Textiles' },
+  'jee-arch':      { pdf: '/jee-main-2026-syllabus.pdf',     label: 'JEE Main 2026 Paper 2A Syllabus — NTA' },
 };
+
 
 
 // Stream detection
