@@ -13,6 +13,21 @@ import { EntranceExam } from './types';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 
+// Official syllabus PDF links per exam
+const syllabusLinks: Record<string, {pdf: string; label: string}> = {
+  'neet': { pdf: 'https://neet.nta.nic.in/sites/default/files/2024-09/NEET-UG-2025-Syllabus.pdf', label: 'NTA Official NEET Syllabus PDF' },
+  'jee-main': { pdf: 'https://jeemain.nta.nic.in/sites/default/files/uploads/public/2024/syllabus/JEE_Main_Syllabus_2025.pdf', label: 'NTA Official JEE Main Syllabus PDF' },
+  'jee-adv': { pdf: 'https://jeeadv.ac.in/past_qps/2024/syllabus.pdf', label: 'JEE Advanced Official Syllabus PDF' },
+  'tnea': { pdf: 'https://www.tneaonline.org', label: 'TNEA Official Website' },
+  'keam': { pdf: 'https://cee.kerala.gov.in', label: 'CEE Kerala Official Syllabus' },
+  'comedk': { pdf: 'https://www.comedk.org/syllabus', label: 'COMEDK Official Syllabus' },
+  'bitsat': { pdf: 'https://www.bitsadmission.com/syllabus', label: 'BITS Official Syllabus' },
+  'viteee': { pdf: 'https://viteee.vit.ac.in/syllabus', label: 'VITEEE Official Syllabus' },
+  'neet-tn': { pdf: 'https://tnmedicalselection.net', label: 'TN Medical Selection Official Site' },
+  'amueee': { pdf: 'https://www.amu.ac.in/syllabus', label: 'AMU Official Syllabus' },
+};
+
+
 // Stream detection
 const streamMap: Record<string, { ids: string[]; label: string; emoji: string; examKey: string }> = {
   science_maths: { ids: ['tnea','jee-main','jee-advanced','bitsat','viteee','srmjeee','comedk','cuet'], label: 'Science (Maths)', emoji: '⚙️', examKey: 'jee' },
@@ -85,76 +100,135 @@ export const EntranceExams = () => {
               <p className="text-[10px] font-bold text-emerald-700 mb-0.5">🏛️ Tamil Nadu</p>
               <p className="text-[11px] text-emerald-600 leading-relaxed">{exam.tnEligibility}</p>
             </div>
-            {/* Syllabus — subject card layout */}
+            {/* Syllabus — structured PDF-style layout */}
             {exam.syllabus && exam.syllabus.length > 0 && (() => {
               const isSylOpen = openSection === `${exam.id}-syl`;
-              const colorMap: Record<string, {color: string; bg: string; border: string}> = {
-                'Biology': {color:'text-emerald-800', bg:'bg-emerald-50', border:'border-emerald-200'},
-                'Botany': {color:'text-emerald-800', bg:'bg-emerald-50', border:'border-emerald-200'},
-                'Zoology': {color:'text-teal-800', bg:'bg-teal-50', border:'border-teal-200'},
-                'Chemistry': {color:'text-blue-800', bg:'bg-blue-50', border:'border-blue-200'},
-                'Physics': {color:'text-violet-800', bg:'bg-violet-50', border:'border-violet-200'},
-                'Maths': {color:'text-orange-800', bg:'bg-orange-50', border:'border-orange-200'},
-                'Mathematics': {color:'text-orange-800', bg:'bg-orange-50', border:'border-orange-200'},
-                'English': {color:'text-rose-800', bg:'bg-rose-50', border:'border-rose-200'},
-                'Tamil': {color:'text-red-800', bg:'bg-red-50', border:'border-red-200'},
-                'General': {color:'text-amber-800', bg:'bg-amber-50', border:'border-amber-200'},
-                'Aptitude': {color:'text-indigo-800', bg:'bg-indigo-50', border:'border-indigo-200'},
-                'Reasoning': {color:'text-indigo-800', bg:'bg-indigo-50', border:'border-indigo-200'},
-                'Computer': {color:'text-cyan-800', bg:'bg-cyan-50', border:'border-cyan-200'},
-                'Science': {color:'text-green-800', bg:'bg-green-50', border:'border-green-200'},
+              const syllabusLink = syllabusLinks[exam.id];
+              const colorMap: Record<string, {color: string; bg: string; border: string; dot: string}> = {
+                'Biology':    {color:'text-emerald-800', bg:'bg-emerald-50',  border:'border-emerald-300', dot:'bg-emerald-500'},
+                'Botany':     {color:'text-emerald-800', bg:'bg-emerald-50',  border:'border-emerald-300', dot:'bg-emerald-500'},
+                'Zoology':    {color:'text-teal-800',    bg:'bg-teal-50',     border:'border-teal-300',    dot:'bg-teal-500'},
+                'Chemistry':  {color:'text-blue-800',    bg:'bg-blue-50',     border:'border-blue-300',    dot:'bg-blue-500'},
+                'Physics':    {color:'text-violet-800',  bg:'bg-violet-50',   border:'border-violet-300',  dot:'bg-violet-500'},
+                'Maths':      {color:'text-orange-800',  bg:'bg-orange-50',   border:'border-orange-300',  dot:'bg-orange-500'},
+                'Mathematics':{color:'text-orange-800',  bg:'bg-orange-50',   border:'border-orange-300',  dot:'bg-orange-500'},
+                'English':    {color:'text-rose-800',    bg:'bg-rose-50',     border:'border-rose-300',    dot:'bg-rose-500'},
+                'Tamil':      {color:'text-red-800',     bg:'bg-red-50',      border:'border-red-300',     dot:'bg-red-500'},
+                'Aptitude':   {color:'text-indigo-800',  bg:'bg-indigo-50',   border:'border-indigo-300',  dot:'bg-indigo-500'},
+                'Reasoning':  {color:'text-indigo-800',  bg:'bg-indigo-50',   border:'border-indigo-300',  dot:'bg-indigo-500'},
+                'General':    {color:'text-amber-800',   bg:'bg-amber-50',    border:'border-amber-300',   dot:'bg-amber-500'},
+                'Science':    {color:'text-green-800',   bg:'bg-green-50',    border:'border-green-300',   dot:'bg-green-500'},
+                'Computer':   {color:'text-cyan-800',    bg:'bg-cyan-50',     border:'border-cyan-300',    dot:'bg-cyan-500'},
               };
-              // Group items: header lines (contain marks/%) become subject cards
-              const subjects: {title: string; color: string; bg: string; border: string; topics: string[]}[] = [];
-              let cur: {title: string; color: string; bg: string; border: string; topics: string[]} | null = null;
+              // Parse into subject groups
+              const subjects: {title: string; marks: string; color: string; bg: string; border: string; dot: string; topics: string[]}[] = [];
+              let cur: {title: string; marks: string; color: string; bg: string; border: string; dot: string; topics: string[]} | null = null;
               exam.syllabus.forEach(item => {
-                const isHeader = (item.includes('marks') || item.includes('Q)') || item.includes('Qs)') || item.includes('%')) && item.length < 120;
+                const isHeader = (item.includes('marks') || item.includes('Q)') || item.includes('Qs)') || item.includes('%')) && item.length < 130;
                 if (isHeader) {
                   if (cur) subjects.push(cur);
                   const key = Object.keys(colorMap).find(k => item.toLowerCase().includes(k.toLowerCase())) || 'General';
-                  const c = colorMap[key] || {color:'text-gray-700', bg:'bg-gray-50', border:'border-gray-200'};
-                  cur = {title: item.replace(/^•\s*/, ''), ...c, topics: []};
+                  const c = colorMap[key] || {color:'text-gray-700', bg:'bg-gray-50', border:'border-gray-200', dot:'bg-gray-400'};
+                  // Extract marks info
+                  const marksMatch = item.match(/\(([^)]+)\)/);
+                  const marks = marksMatch ? marksMatch[1] : '';
+                  const title = item.replace(/^•\s*/, '').replace(/\s*\([^)]+\)\s*:?\s*$/, '').replace(/:$/, '').trim();
+                  cur = {title, marks, ...c, topics: []};
                 } else if (cur) {
                   const t = item.replace(/^•\s*/, '').replace(/^-\s*/, '').trim();
                   if (t) cur.topics.push(t);
-                } else {
+                } else if (item.trim()) {
                   const key = Object.keys(colorMap).find(k => item.toLowerCase().includes(k.toLowerCase())) || 'General';
-                  const c = colorMap[key] || {color:'text-gray-700', bg:'bg-gray-50', border:'border-gray-200'};
-                  cur = {title: item.replace(/^•\s*/, ''), ...c, topics: []};
+                  const c = colorMap[key] || {color:'text-gray-700', bg:'bg-gray-50', border:'border-gray-200', dot:'bg-gray-400'};
+                  cur = {title: item.replace(/^•\s*/, '').trim(), marks: '', ...c, topics: []};
                 }
               });
               if (cur) subjects.push(cur);
+
               return (
                 <div className="border border-gray-200 rounded-xl overflow-hidden">
+                  {/* Header */}
                   <button onClick={() => setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
-                    className="w-full px-4 py-3 flex items-center justify-between bg-gray-50 hover:bg-gray-100">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm">📚</span>
-                      <span className="text-xs font-bold text-gray-800">Syllabus</span>
-                      <span className="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-semibold">{subjects.length > 0 ? `${subjects.length} subjects` : `${exam.syllabus.length} topics`}</span>
+                    className="w-full px-4 py-3 flex items-center justify-between bg-gradient-to-r from-gray-50 to-white hover:from-gray-100">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <span className="text-base">📚</span>
+                      <span className="text-sm font-bold text-gray-800">Syllabus</span>
+                      <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">
+                        {subjects.length > 0 ? `${subjects.length} subjects` : `${exam.syllabus.length} topics`}
+                      </span>
                     </div>
-                    {isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
+                    {isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400 shrink-0"/> : <ChevronDown className="w-4 h-4 text-gray-400 shrink-0"/>}
                   </button>
+
                   {isSylOpen && (
-                    <div className="p-3 space-y-2.5 border-t border-gray-100 max-h-96 overflow-y-auto">
-                      {subjects.length > 0 ? subjects.map((sub, si) => (
-                        <div key={si} className={cn("rounded-xl p-3 border", sub.bg, sub.border)}>
-                          <p className={cn("text-xs font-black mb-2 leading-snug", sub.color)}>{sub.title}</p>
-                          {sub.topics.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5">
-                              {sub.topics.flatMap((t,ti) =>
-                                t.split(/,\s*/).filter(c => c.trim().length > 1 && c.trim().length < 55).map((chip, ci) => (
-                                  <span key={`${ti}-${ci}`} className="text-[10px] px-2 py-0.5 rounded-full bg-white/90 border border-white/60 text-gray-700 font-medium leading-relaxed">
-                                    {chip.trim()}
-                                  </span>
-                                ))
+                    <div className="border-t border-gray-100">
+                      {/* Official PDF Download Button */}
+                      {syllabusLink && (
+                        <div className="px-4 py-3 bg-blue-50 border-b border-blue-100">
+                          <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center gap-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-4 py-3 transition-all">
+                            <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
+                              <span className="text-base">📄</span>
+                            </div>
+                            <div className="text-left flex-1">
+                              <p className="text-xs font-bold leading-tight">Download Official Syllabus PDF</p>
+                              <p className="text-[10px] text-blue-200 mt-0.5">{syllabusLink.label}</p>
+                            </div>
+                            <ExternalLink className="w-4 h-4 text-blue-200 shrink-0" />
+                          </a>
+                        </div>
+                      )}
+
+                      {/* Subject Cards */}
+                      <div className="p-3 space-y-2.5 max-h-[480px] overflow-y-auto">
+                        {subjects.length > 0 ? subjects.map((sub, si) => (
+                          <div key={si} className={cn("rounded-xl border overflow-hidden", sub.border)}>
+                            {/* Subject Header */}
+                            <div className={cn("px-3 py-2.5 flex items-center gap-2.5", sub.bg)}>
+                              <div className={cn("w-2.5 h-2.5 rounded-full shrink-0", sub.dot)} />
+                              <div className="flex-1 min-w-0">
+                                <p className={cn("text-xs font-black leading-tight", sub.color)}>{sub.title}</p>
+                              </div>
+                              {sub.marks && (
+                                <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/70 shrink-0", sub.color)}>
+                                  {sub.marks}
+                                </span>
                               )}
                             </div>
-                          )}
-                        </div>
-                      )) : exam.syllabus.map((item, i) => (
-                        <p key={i} className="text-xs text-gray-600 leading-relaxed">{item}</p>
-                      ))}
+                            {/* Topics */}
+                            {sub.topics.length > 0 && (
+                              <div className="px-3 py-2.5 bg-white border-t border-gray-100 space-y-1.5">
+                                {sub.topics.map((topic, ti) => {
+                                  const chips = topic.split(/,\s*/).filter(c => c.trim().length > 1);
+                                  return chips.length > 2 ? (
+                                    <div key={ti} className="flex flex-wrap gap-1">
+                                      {chips.map((chip, ci) => (
+                                        <span key={ci} className={cn("text-[10px] px-2 py-0.5 rounded-full border font-medium", sub.bg, sub.border, sub.color)}>
+                                          {chip.trim()}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  ) : (
+                                    <div key={ti} className="flex items-start gap-1.5">
+                                      <span className={cn("text-[10px] mt-0.5 shrink-0 font-bold", sub.color)}>›</span>
+                                      <p className="text-[11px] text-gray-700 leading-relaxed">{topic}</p>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        )) : (
+                          <div className="space-y-1.5">
+                            {exam.syllabus.map((item, i) => (
+                              <div key={i} className="flex items-start gap-2">
+                                <span className="text-emerald-500 mt-0.5 shrink-0 text-xs">›</span>
+                                <p className="text-xs text-gray-700 leading-relaxed">{item}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
