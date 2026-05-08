@@ -1424,40 +1424,6 @@ export const entranceExams: EntranceExam[] = [
   // ═══ MISSING EXAMS ADDED — COMPLETE LIST FOR 12TH PASS ═══
   
   // ENGINEERING — State Level
-  {
-    id: 'cuet',
-    name: 'CUET-UG',
-    tamilName: 'மத்திய பல்கலை நுழைவுத் தேர்வு',
-    fullForm: 'Common University Entrance Test — Undergraduate',
-    conductingBody: 'National Testing Agency (NTA)',
-    examMode: 'Computer Based Test (CBT)',
-    duration: '45 min per section (Slot-wise)',
-    syllabus: [
-      'Section IA: 13 Languages (choose any)',
-      'Section IB: 20 Languages (choose any)',
-      'Section II: 27 Domain Subjects (choose up to 6) — Physics, Chemistry, Math, Biology, Economics, History, Political Science, etc.',
-      'Section III: General Test — GK, Quantitative Reasoning, Logical Reasoning, Current Affairs, General Awareness',
-      'Standard: Based on Class 12 NCERT syllabus',
-      'Also for Allied Health & Biomedical Sciences at Central Universities',
-    ],
-    eligibility: [
-      '12th Pass from any recognized board',
-      'No minimum percentage for application',
-      'University-specific cutoffs may apply',
-    ],
-    tnEligibility: 'TN HSC students eligible. Many central universities accept CUET for UG admissions.',
-    importantDates: { registration: 'February 2026', examDate: 'May 2026', resultDate: 'June 2026' },
-    applicationFee: { general: '₹650', scst: '₹550' },
-    tnCollegesAccepting: [
-      'Central University of Tamil Nadu (CUTN)',
-      'Pondicherry University',
-      'University of Delhi (DU)',
-      'JNU, BHU, AMU, Jamia Millia',
-      '261+ Central, State & Private Universities across India',
-    ],
-    officialWebsite: 'https://cuet.nta.nic.in',
-    category: 'management',
-  },
 
   // MANAGEMENT — Additional
   {
