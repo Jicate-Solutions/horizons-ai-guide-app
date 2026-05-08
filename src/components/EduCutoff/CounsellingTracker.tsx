@@ -123,26 +123,17 @@ const LOCAL_KEY = (userId?: string) => userId ? `vzk_counselling_tracker_${userI
 //  SUPABASE SYNC HELPERS
 // ═══════════════════════════════════════════════════════════
 
-/** Load all tracker data from Supabase for current user */
-const loadFromSupabase = async (userId: string): Promise<Record<string, boolean>> => {
-  const { data, error } = await (supabase
-    .from('counselling_tracker') as any)
-    .select('counselling_id, completed_steps')
-    .eq('user_id', userId);
+/** Load tracker data from API (uses Supabase user metadata) */
+const loadFromSupabase = async (_userId: string): Promise<Record<string, boolean>> => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session?.access_token) return {};
 
-  if (error) throw error;
-  if (!data || data.length === 0) return {};
-
-  const checked: Record<string, boolean> = {};
-  for (const row of data) {
-    const steps = row.completed_steps as string[] | null;
-    if (steps) {
-      for (const stepId of steps) {
-        checked[stepId] = true;
-      }
-    }
-  }
-  return checked;
+  const res = await fetch('/api/tracker-progress', {
+    headers: { 'Authorization': `Bearer ${session.access_token}` }
+  });
+  if (!res.ok) throw new Error('Failed to load');
+  const json = await res.json();
+  return json.trackerData || {};
 };
 
 /** Save one tracker's progress to Supabase */
