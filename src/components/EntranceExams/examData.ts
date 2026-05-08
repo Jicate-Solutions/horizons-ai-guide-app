@@ -1305,6 +1305,12 @@ export const entranceExams: EntranceExam[] = [
       'TIP:📌 Marking — GAT|+1 correct / −0.25 wrong / 0 unanswered (all programmes)',
       'TIP:📌 Marking — CAT|No negative marking — attempt freely',
       'TIP:📌 Language|CBT available in English or Hindi',
+      'TIP:📌 Exam Date|NIFT 2026 written exams conducted on February 08, 2026',
+      'TIP:📌 GAT Prep|Study exam pattern · Solve previous year papers · Take timed mock tests · Make concise notes for quick revision',
+      'TIP:📌 CAT Prep|Sketch daily · Learn line drawing clearly (no jittery lines) · Practice human figures, geometric shapes, perspective drawing · Learn to conceptualise before drawing',
+      'TIP:📌 Situation Test|Observe everyday objects for inspiration · Sketch concept first, then create with materials · Practice cutting and combining different materials (paper, clay, fabric)',
+      'TIP:📌 Interview|Wear smart casuals · Be honest · Maintain eye contact · Never argue — put points politely · Say sorry if you don\'t know an answer',
+      'TIP:📌 Stage 2|Situation Test + Interview — only shortlisted Stage 1 candidates attend. CAT carries maximum weightage overall.',
     ],
 ,
     eligibility: [
