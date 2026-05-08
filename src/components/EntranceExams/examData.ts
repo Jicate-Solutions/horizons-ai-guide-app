@@ -1617,11 +1617,17 @@ export const examPatterns: Record<string, ExamPattern> = {
   },
   'srmjeee': {
     totalQuestions: 125, totalMarks: 125, duration: '2 hrs 30 min',
-    marking: '+1 correct / 0 wrong',
-    sections: [{ name: 'SRMJEEE', subjects: [
+    marking: '+1 correct / 0 wrong (No negative marking)',
+    note: 'Remote Proctored Online — taken from home on Desktop/Laptop. Phase 1: Apr 24–29 (Apply by Apr 16) · Phase 2: Jun 10–15 (Apply by Jun 4) · Phase 3: Jul 4–5 (Apply by Jun 30). Dates are tentative.',
+    sections: [{ name: 'SRMJEEE 2026 — PCM (Engineering)', subjects: [
       { subject: 'Physics', questions: 35, marks: 35 },
       { subject: 'Chemistry', questions: 35, marks: 35 },
-      { subject: 'Mathematics / Biology', questions: 40, marks: 40 },
+      { subject: 'Mathematics', questions: 40, marks: 40 },
+      { subject: 'English & Aptitude', questions: 15, marks: 15 },
+    ]}, { name: 'SRMJEEE 2026 — PCB (Bio-Technology)', subjects: [
+      { subject: 'Physics', questions: 35, marks: 35 },
+      { subject: 'Chemistry', questions: 35, marks: 35 },
+      { subject: 'Biology', questions: 40, marks: 40 },
       { subject: 'English & Aptitude', questions: 15, marks: 15 },
     ]}]
   },
