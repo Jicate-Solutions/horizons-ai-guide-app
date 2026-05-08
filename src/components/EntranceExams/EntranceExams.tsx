@@ -148,28 +148,40 @@ export const EntranceExams = () => {
 
               return (
                 <div className="border-2 border-gray-200 rounded-2xl overflow-hidden">
-                  {/* Header Row — opens PDF directly if available, else expands */}
-                  <button
-                    onClick={() => syllabusLink ? window.open(syllabusLink.pdf, '_blank') : setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
-                    className="w-full px-4 py-3.5 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
-                        <span className="text-sm">📚</span>
+                  {/* Header Row — opens PDF directly if available */}
+                  {syllabusLink ? (
+                    <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
+                      className="w-full px-4 py-3.5 flex items-center justify-between bg-white hover:bg-blue-50 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <span className="text-sm">📄</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-blue-700 text-left">Syllabus</p>
+                          {subjectCount > 0 && (
+                            <p className="text-[10px] text-blue-500">{subjectCount} subjects · {subjects.reduce((a,s) => a + s.chapters.length, 0)} chapters · Tap to open PDF</p>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm font-bold text-gray-900 text-left">Syllabus</p>
-                        {subjectCount > 0 && (
-                          <p className="text-[10px] text-gray-500">{subjectCount} subjects · {subjects.reduce((a,s) => a + s.chapters.length, 0)} chapters</p>
-                        )}
+                      <ExternalLink className="w-4 h-4 text-blue-500 shrink-0"/>
+                    </a>
+                  ) : (
+                    <button onClick={() => setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
+                      className="w-full px-4 py-3.5 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                          <span className="text-sm">📚</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-gray-900 text-left">Syllabus</p>
+                          {subjectCount > 0 && (
+                            <p className="text-[10px] text-gray-500">{subjectCount} subjects · {subjects.reduce((a,s) => a + s.chapters.length, 0)} chapters</p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {syllabusLink
-                        ? <ExternalLink className="w-4 h-4 text-blue-500"/>
-                        : isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>
-                      }
-                    </div>
-                  </button>
+                      {isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
+                    </button>
+                  )}
 
                   {isSylOpen && (
                     <div className="border-t-2 border-gray-100">
