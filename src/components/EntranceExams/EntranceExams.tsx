@@ -85,16 +85,97 @@ export const EntranceExams = () => {
               <p className="text-[10px] font-bold text-emerald-700 mb-0.5">🏛️ Tamil Nadu</p>
               <p className="text-[11px] text-emerald-600 leading-relaxed">{exam.tnEligibility}</p>
             </div>
-            {[{ key: 'syl', label: '📚 Syllabus', items: exam.syllabus }, { key: 'elig', label: '✅ Eligibility', items: exam.eligibility }, { key: 'col', label: `🏫 Colleges (${exam.tnCollegesAccepting.length})`, items: exam.tnCollegesAccepting }].filter(s => s.items.length > 0).map(section => (
-              <div key={section.key} className="border border-gray-200 rounded-lg overflow-hidden">
+            {/* Syllabus — subject card layout */}
+            {exam.syllabus && exam.syllabus.length > 0 && (() => {
+              const isSylOpen = openSection === `${exam.id}-syl`;
+              const colorMap: Record<string, {color: string; bg: string; border: string}> = {
+                'Biology': {color:'text-emerald-800', bg:'bg-emerald-50', border:'border-emerald-200'},
+                'Botany': {color:'text-emerald-800', bg:'bg-emerald-50', border:'border-emerald-200'},
+                'Zoology': {color:'text-teal-800', bg:'bg-teal-50', border:'border-teal-200'},
+                'Chemistry': {color:'text-blue-800', bg:'bg-blue-50', border:'border-blue-200'},
+                'Physics': {color:'text-violet-800', bg:'bg-violet-50', border:'border-violet-200'},
+                'Maths': {color:'text-orange-800', bg:'bg-orange-50', border:'border-orange-200'},
+                'Mathematics': {color:'text-orange-800', bg:'bg-orange-50', border:'border-orange-200'},
+                'English': {color:'text-rose-800', bg:'bg-rose-50', border:'border-rose-200'},
+                'Tamil': {color:'text-red-800', bg:'bg-red-50', border:'border-red-200'},
+                'General': {color:'text-amber-800', bg:'bg-amber-50', border:'border-amber-200'},
+                'Aptitude': {color:'text-indigo-800', bg:'bg-indigo-50', border:'border-indigo-200'},
+                'Reasoning': {color:'text-indigo-800', bg:'bg-indigo-50', border:'border-indigo-200'},
+                'Computer': {color:'text-cyan-800', bg:'bg-cyan-50', border:'border-cyan-200'},
+                'Science': {color:'text-green-800', bg:'bg-green-50', border:'border-green-200'},
+              };
+              // Group items: header lines (contain marks/%) become subject cards
+              const subjects: {title: string; color: string; bg: string; border: string; topics: string[]}[] = [];
+              let cur: {title: string; color: string; bg: string; border: string; topics: string[]} | null = null;
+              exam.syllabus.forEach(item => {
+                const isHeader = (item.includes('marks') || item.includes('Q)') || item.includes('Qs)') || item.includes('%')) && item.length < 120;
+                if (isHeader) {
+                  if (cur) subjects.push(cur);
+                  const key = Object.keys(colorMap).find(k => item.toLowerCase().includes(k.toLowerCase())) || 'General';
+                  const c = colorMap[key] || {color:'text-gray-700', bg:'bg-gray-50', border:'border-gray-200'};
+                  cur = {title: item.replace(/^•\s*/, ''), ...c, topics: []};
+                } else if (cur) {
+                  const t = item.replace(/^•\s*/, '').replace(/^-\s*/, '').trim();
+                  if (t) cur.topics.push(t);
+                } else {
+                  const key = Object.keys(colorMap).find(k => item.toLowerCase().includes(k.toLowerCase())) || 'General';
+                  const c = colorMap[key] || {color:'text-gray-700', bg:'bg-gray-50', border:'border-gray-200'};
+                  cur = {title: item.replace(/^•\s*/, ''), ...c, topics: []};
+                }
+              });
+              if (cur) subjects.push(cur);
+              return (
+                <div className="border border-gray-200 rounded-xl overflow-hidden">
+                  <button onClick={() => setOpenSection(isSylOpen ? null : `${exam.id}-syl`)}
+                    className="w-full px-4 py-3 flex items-center justify-between bg-gray-50 hover:bg-gray-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">📚</span>
+                      <span className="text-xs font-bold text-gray-800">Syllabus</span>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-semibold">{subjects.length > 0 ? `${subjects.length} subjects` : `${exam.syllabus.length} topics`}</span>
+                    </div>
+                    {isSylOpen ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
+                  </button>
+                  {isSylOpen && (
+                    <div className="p-3 space-y-2.5 border-t border-gray-100 max-h-96 overflow-y-auto">
+                      {subjects.length > 0 ? subjects.map((sub, si) => (
+                        <div key={si} className={cn("rounded-xl p-3 border", sub.bg, sub.border)}>
+                          <p className={cn("text-xs font-black mb-2 leading-snug", sub.color)}>{sub.title}</p>
+                          {sub.topics.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5">
+                              {sub.topics.flatMap((t,ti) =>
+                                t.split(/,\s*/).filter(c => c.trim().length > 1 && c.trim().length < 55).map((chip, ci) => (
+                                  <span key={`${ti}-${ci}`} className="text-[10px] px-2 py-0.5 rounded-full bg-white/90 border border-white/60 text-gray-700 font-medium leading-relaxed">
+                                    {chip.trim()}
+                                  </span>
+                                ))
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )) : exam.syllabus.map((item, i) => (
+                        <p key={i} className="text-xs text-gray-600 leading-relaxed">{item}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+            {/* Eligibility & Colleges */}
+            {[{ key: 'elig', label: '✅ Eligibility', items: exam.eligibility }, { key: 'col', label: `🏫 Colleges (${exam.tnCollegesAccepting.length})`, items: exam.tnCollegesAccepting }].filter(s => s.items.length > 0).map(section => (
+              <div key={section.key} className="border border-gray-200 rounded-xl overflow-hidden">
                 <button onClick={() => setOpenSection(openSection === `${exam.id}-${section.key}` ? null : `${exam.id}-${section.key}`)}
-                  className="w-full px-3 py-2 text-left flex items-center justify-between hover:bg-gray-50">
-                  <p className="text-[11px] font-bold text-gray-700">{section.label}</p>
-                  {openSection === `${exam.id}-${section.key}` ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+                  className="w-full px-4 py-3 flex items-center justify-between bg-gray-50 hover:bg-gray-100">
+                  <p className="text-xs font-bold text-gray-800">{section.label}</p>
+                  {openSection === `${exam.id}-${section.key}` ? <ChevronUp className="w-4 h-4 text-gray-400"/> : <ChevronDown className="w-4 h-4 text-gray-400"/>}
                 </button>
                 {openSection === `${exam.id}-${section.key}` && (
-                  <div className="px-3 pb-2.5 border-t border-gray-100 pt-2 space-y-1">
-                    {section.items.map((item, i) => <p key={i} className="text-[11px] text-gray-600">{section.key === 'col' ? `🎓 ${item}` : `• ${item}`}</p>)}
+                  <div className="px-4 pb-3 pt-3 border-t border-gray-100 space-y-1.5">
+                    {section.items.map((item, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <span className="text-xs mt-0.5 shrink-0">{section.key === 'col' ? '🎓' : '✓'}</span>
+                        <p className="text-xs text-gray-700 leading-relaxed">{item}</p>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
