@@ -15,7 +15,8 @@ import { cn } from '@/lib/utils';
 
 // Official syllabus PDF links per exam
 const syllabusLinks: Record<string, {pdf: string; label: string}> = {
-  'neet': { pdf: 'https://neet.nta.nic.in/sites/default/files/2024-09/NEET-UG-2025-Syllabus.pdf', label: 'NTA Official NEET Syllabus PDF' },
+  'neet-ug': { pdf: '/neet-ug-2026-syllabus.pdf', label: 'Official NEET UG 2026 Syllabus — NMC' },
+  'tn-neet-counselling': { pdf: '/neet-ug-2026-syllabus.pdf', label: 'Official NEET UG 2026 Syllabus — NMC' },
   'jee-main': { pdf: 'https://jeemain.nta.nic.in/sites/default/files/uploads/public/2024/syllabus/JEE_Main_Syllabus_2025.pdf', label: 'NTA Official JEE Main Syllabus PDF' },
   'jee-adv': { pdf: 'https://jeeadv.ac.in/past_qps/2024/syllabus.pdf', label: 'JEE Advanced Official Syllabus PDF' },
   'tnea': { pdf: 'https://www.tneaonline.org', label: 'TNEA Official Website' },
