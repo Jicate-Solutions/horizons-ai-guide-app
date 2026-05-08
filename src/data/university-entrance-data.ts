@@ -608,7 +608,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Direct entry after 12th', 'Covers molecular biology & genetic engineering'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 }]
+        cutoffs: [{ year: '2024-25', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 }]
       },
       {
         id: 'bdu-int-msc-botany',
@@ -623,7 +623,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Plant sciences focus', 'Research opportunities in taxonomy'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-int-msc-microbiology',
@@ -638,7 +638,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Medical & industrial microbiology', 'Lab skills essential'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-int-msc-animal-science',
@@ -653,7 +653,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Zoology & animal behavior', 'Wildlife research opportunities'],
         seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-int-msc-bioinformatics',
@@ -668,7 +668,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Biology + Computer Science fusion', 'High demand in pharma industry'],
         seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-int-msc-biomedical',
@@ -683,7 +683,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Medical research career path', 'Alternative to MBBS'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-int-msc-geography',
@@ -698,7 +698,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['GIS & Remote Sensing skills', 'UPSC Geography optional prep'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
+        cutoffs: [{ year: '2024-25', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
       },
       {
         id: 'bdu-int-msc-geology',
@@ -713,7 +713,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Mining & petroleum industry careers', 'Field work training'],
         seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       {
         id: 'bdu-int-msc-media',
@@ -728,7 +728,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Journalism & digital media', 'Practical training included'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-int-ma-history',
@@ -743,7 +743,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC History optional foundation', 'Archaeological training'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 64.0, obc: 58.0, bcMbc: 54.0, sc: 40.0, st: 30.0, ews: 56.0 }]
+        cutoffs: [{ year: '2024-25', general: 64.0, obc: 58.0, bcMbc: 54.0, sc: 40.0, st: 30.0, ews: 56.0 }]
       },
       {
         id: 'bdu-int-ma-sociology',
@@ -758,7 +758,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Social research methodology', 'Civil services preparation'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       // ========== ON-CAMPUS: 6-YEAR INTEGRATED M.TECH (Unique to BDU) ==========
       {
@@ -775,7 +775,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Unique 6-year program', 'Direct M.Tech after 12th', 'High placement potential'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 82.0, obc: 76.0, bcMbc: 72.0, sc: 58.0, st: 48.0, ews: 74.0 }]
+        cutoffs: [{ year: '2024-25', general: 82.0, obc: 76.0, bcMbc: 72.0, sc: 58.0, st: 48.0, ews: 74.0 }]
       },
       {
         id: 'bdu-int-mtech-geo',
@@ -791,7 +791,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Mining & exploration industry', 'ISRO/GSI career paths'],
         seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       // ========== ON-CAMPUS: POSTGRADUATE (PG) PROGRAMS ==========
       {
@@ -807,7 +807,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Strong programming skills needed', 'Focus on algorithms'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 75.0, obc: 69.0, bcMbc: 65.0, sc: 51.0, st: 41.0, ews: 67.0 }]
+        cutoffs: [{ year: '2024-25', general: 75.0, obc: 69.0, bcMbc: 65.0, sc: 51.0, st: 41.0, ews: 67.0 }]
       },
       {
         id: 'bdu-msc-it',
@@ -822,7 +822,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Network & database focus', 'Industry certifications helpful'],
         seatMatrix: { general: 28, obc: 46, bcMbc: 58, sc: 25, st: 5, ews: 10, total: 172 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-msc-data-science',
@@ -837,7 +837,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Python & R programming essential', 'Machine learning focus'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
+        cutoffs: [{ year: '2024-25', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
       },
       {
         id: 'bdu-msc-cyber-security',
@@ -852,7 +852,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Ethical hacking skills', 'High demand in banking sector'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-msc-biotechnology',
@@ -867,7 +867,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Genetic engineering focus', 'Pharma industry opportunities'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-msc-marine-science',
@@ -883,7 +883,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Field work at coastal areas', 'NIOT/CMFRI career paths'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-msc-microbiology',
@@ -898,7 +898,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Clinical & industrial microbiology', 'Lab techniques essential'],
         seatMatrix: { general: 22, obc: 36, bcMbc: 45, sc: 20, st: 4, ews: 8, total: 135 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-msc-biochemistry',
@@ -913,7 +913,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Enzyme & protein studies', 'Research career path'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-msc-botany',
@@ -928,7 +928,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Plant taxonomy & ecology', 'NET/SET preparation'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
+        cutoffs: [{ year: '2024-25', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
       },
       {
         id: 'bdu-msc-zoology',
@@ -943,7 +943,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Wildlife & animal behavior', 'Forest department jobs'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
+        cutoffs: [{ year: '2024-25', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
       },
       {
         id: 'bdu-msc-env-science',
@@ -958,7 +958,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Pollution control board jobs', 'EIA consultancy careers'],
         seatMatrix: { general: 22, obc: 36, bcMbc: 45, sc: 20, st: 4, ews: 8, total: 135 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-msc-maths',
@@ -973,7 +973,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Strong calculus foundation', 'Teaching & research careers'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-msc-physics',
@@ -988,7 +988,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Quantum mechanics focus', 'ISRO/DRDO opportunities'],
         seatMatrix: { general: 28, obc: 46, bcMbc: 58, sc: 25, st: 5, ews: 10, total: 172 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-msc-chemistry',
@@ -1003,7 +1003,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Organic synthesis focus', 'Pharma industry placements'],
         seatMatrix: { general: 28, obc: 46, bcMbc: 58, sc: 25, st: 5, ews: 10, total: 172 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-msc-medical-physics',
@@ -1019,7 +1019,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Hospital physics career', 'AERB certification needed'],
         seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-ma-tamil',
@@ -1034,7 +1034,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Sangam literature focus', 'Teaching & translation careers'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
+        cutoffs: [{ year: '2024-25', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
       },
       {
         id: 'bdu-ma-english',
@@ -1049,7 +1049,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['British & American literature', 'NET preparation essential'],
         seatMatrix: { general: 28, obc: 46, bcMbc: 58, sc: 25, st: 5, ews: 10, total: 172 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-ma-history',
@@ -1064,7 +1064,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC History optional', 'Archaeological Survey jobs'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       {
         id: 'bdu-ma-economics',
@@ -1079,7 +1079,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Econometrics & statistics', 'RBI/NABARD career paths'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
+        cutoffs: [{ year: '2024-25', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
       },
       {
         id: 'bdu-ma-sociology',
@@ -1094,7 +1094,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Social research methods', 'NGO & civil services'],
         seatMatrix: { general: 22, obc: 36, bcMbc: 45, sc: 20, st: 4, ews: 8, total: 135 },
-        cutoffs: [{ year: '2024', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
+        cutoffs: [{ year: '2024-25', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
       },
       {
         id: 'bdu-ma-women-studies',
@@ -1109,7 +1109,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Gender studies focus', 'Women empowerment NGOs'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 55.0, obc: 49.0, bcMbc: 45.0, sc: 31.0, st: 21.0, ews: 47.0 }]
+        cutoffs: [{ year: '2024-25', general: 55.0, obc: 49.0, bcMbc: 45.0, sc: 31.0, st: 21.0, ews: 47.0 }]
       },
       {
         id: 'bdu-ma-hrm',
@@ -1124,7 +1124,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['HR & recruitment focus', 'Corporate HR careers'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-ma-development-studies',
@@ -1139,7 +1139,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Rural development focus', 'UN/World Bank opportunities'],
         seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
-        cutoffs: [{ year: '2024', general: 58.0, obc: 52.0, bcMbc: 48.0, sc: 34.0, st: 24.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 58.0, obc: 52.0, bcMbc: 48.0, sc: 34.0, st: 24.0, ews: 50.0 }]
       },
       {
         id: 'bdu-mba',
@@ -1154,7 +1154,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['TANCET score required', 'Industry internship included'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-mca',
@@ -1169,7 +1169,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Software development focus', 'IT industry placements'],
         seatMatrix: { general: 35, obc: 58, bcMbc: 72, sc: 31, st: 6, ews: 13, total: 215 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-msw',
@@ -1184,7 +1184,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['NGO & community development', 'Field work essential'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
+        cutoffs: [{ year: '2024-25', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
       },
       {
         id: 'bdu-med',
@@ -1199,7 +1199,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Teacher training focus', 'Education research'],
         seatMatrix: { general: 28, obc: 46, bcMbc: 58, sc: 25, st: 5, ews: 10, total: 172 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       {
         id: 'bdu-mped',
@@ -1214,7 +1214,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Sports coaching & training', 'Physical fitness assessment'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 58.0, obc: 52.0, bcMbc: 48.0, sc: 34.0, st: 24.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 58.0, obc: 52.0, bcMbc: 48.0, sc: 34.0, st: 24.0, ews: 50.0 }]
       },
       {
         id: 'bdu-mlisc',
@@ -1229,7 +1229,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['University librarian career', 'Digital library skills'],
         seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
-        cutoffs: [{ year: '2024', general: 55.0, obc: 49.0, bcMbc: 45.0, sc: 31.0, st: 21.0, ews: 47.0 }]
+        cutoffs: [{ year: '2024-25', general: 55.0, obc: 49.0, bcMbc: 45.0, sc: 31.0, st: 21.0, ews: 47.0 }]
       },
       // ========== AFFILIATED COLLEGES: UG PROGRAMS ==========
       {
@@ -1245,7 +1245,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Programming fundamentals', 'IT industry placements'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 85.0, obc: 79.0, bcMbc: 75.0, sc: 61.0, st: 51.0, ews: 77.0 }]
+        cutoffs: [{ year: '2024-25', general: 85.0, obc: 79.0, bcMbc: 75.0, sc: 61.0, st: 51.0, ews: 77.0 }]
       },
       {
         id: 'bdu-aff-bca',
@@ -1260,7 +1260,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Software development track', 'MCA pathway'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 82.0, obc: 76.0, bcMbc: 72.0, sc: 58.0, st: 48.0, ews: 74.0 }]
+        cutoffs: [{ year: '2024-25', general: 82.0, obc: 76.0, bcMbc: 72.0, sc: 58.0, st: 48.0, ews: 74.0 }]
       },
       {
         id: 'bdu-aff-bsc-it',
@@ -1275,7 +1275,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Network & database focus', 'Industry certifications'],
         seatMatrix: { general: 75, obc: 124, bcMbc: 155, sc: 67, st: 13, ews: 27, total: 461 },
-        cutoffs: [{ year: '2024', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
+        cutoffs: [{ year: '2024-25', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
       },
       {
         id: 'bdu-aff-bsc-ai',
@@ -1291,7 +1291,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Machine learning basics', 'Python programming essential'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 88.0, obc: 82.0, bcMbc: 78.0, sc: 64.0, st: 54.0, ews: 80.0 }]
+        cutoffs: [{ year: '2024-25', general: 88.0, obc: 82.0, bcMbc: 78.0, sc: 64.0, st: 54.0, ews: 80.0 }]
       },
       {
         id: 'bdu-aff-bsc-microbiology',
@@ -1306,7 +1306,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Lab skills essential', 'Pharma industry careers'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
+        cutoffs: [{ year: '2024-25', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
       },
       {
         id: 'bdu-aff-bsc-biochemistry',
@@ -1321,7 +1321,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Enzyme & protein studies', 'Research career path'],
         seatMatrix: { general: 45, obc: 74, bcMbc: 93, sc: 40, st: 8, ews: 16, total: 276 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-aff-bsc-biotechnology',
@@ -1336,7 +1336,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Genetic engineering basics', 'M.Sc pathway recommended'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
+        cutoffs: [{ year: '2024-25', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
       },
       {
         id: 'bdu-aff-bsc-botany',
@@ -1351,7 +1351,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Plant sciences focus', 'Teaching & research'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-bsc-zoology',
@@ -1366,7 +1366,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Wildlife & animal behavior', 'Forest department prep'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-bsc-maths',
@@ -1381,7 +1381,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Strong algebra & calculus', 'Teaching & banking'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 75.0, obc: 69.0, bcMbc: 65.0, sc: 51.0, st: 41.0, ews: 67.0 }]
+        cutoffs: [{ year: '2024-25', general: 75.0, obc: 69.0, bcMbc: 65.0, sc: 51.0, st: 41.0, ews: 67.0 }]
       },
       {
         id: 'bdu-aff-bsc-physics',
@@ -1396,7 +1396,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Mechanics & quantum basics', 'M.Sc for research'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-aff-bsc-chemistry',
@@ -1411,7 +1411,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Lab work focus', 'Pharma & research careers'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-bsc-geology',
@@ -1426,7 +1426,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Field work training', 'Mining industry jobs'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-aff-bsc-fashion',
@@ -1441,7 +1441,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Fashion design & textiles', 'Garment industry'],
         seatMatrix: { general: 35, obc: 58, bcMbc: 72, sc: 31, st: 6, ews: 13, total: 215 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-bsc-nutrition',
@@ -1456,7 +1456,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Clinical nutrition', 'Hospital dietitian career'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 75.0, obc: 69.0, bcMbc: 65.0, sc: 51.0, st: 41.0, ews: 67.0 }]
+        cutoffs: [{ year: '2024-25', general: 75.0, obc: 69.0, bcMbc: 65.0, sc: 51.0, st: 41.0, ews: 67.0 }]
       },
       {
         id: 'bdu-aff-bsc-hotel-mgmt',
@@ -1471,7 +1471,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Hospitality skills', 'Hotel chain placements'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-bsc-viscom',
@@ -1486,7 +1486,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Media & journalism', 'Photography & videography'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-aff-bsc-hospital-admin',
@@ -1501,7 +1501,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Healthcare management', 'Hospital operations'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-bsc-forensic',
@@ -1516,7 +1516,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Crime investigation', 'Police & lab careers'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
+        cutoffs: [{ year: '2024-25', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
       },
       {
         id: 'bdu-aff-bcom-general',
@@ -1531,7 +1531,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Accounting & finance basics', 'CA/CMA pathway'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
+        cutoffs: [{ year: '2024-25', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
       },
       {
         id: 'bdu-aff-bcom-ca',
@@ -1546,7 +1546,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Accounting software skills', 'Tally & SAP'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
+        cutoffs: [{ year: '2024-25', general: 80.0, obc: 74.0, bcMbc: 70.0, sc: 56.0, st: 46.0, ews: 72.0 }]
       },
       {
         id: 'bdu-aff-bcom-bank-mgmt',
@@ -1561,7 +1561,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Banking operations', 'IBPS preparation'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-aff-bcom-pa',
@@ -1576,7 +1576,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['CA Foundation integrated', 'Audit & taxation'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 82.0, obc: 76.0, bcMbc: 72.0, sc: 58.0, st: 48.0, ews: 74.0 }]
+        cutoffs: [{ year: '2024-25', general: 82.0, obc: 76.0, bcMbc: 72.0, sc: 58.0, st: 48.0, ews: 74.0 }]
       },
       {
         id: 'bdu-aff-bcom-applied',
@@ -1591,7 +1591,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Practical commerce skills', 'Business operations'],
         seatMatrix: { general: 45, obc: 74, bcMbc: 93, sc: 40, st: 8, ews: 16, total: 276 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-aff-bba-general',
@@ -1606,7 +1606,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Management fundamentals', 'MBA pathway'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
+        cutoffs: [{ year: '2024-25', general: 76.0, obc: 70.0, bcMbc: 66.0, sc: 52.0, st: 42.0, ews: 68.0 }]
       },
       {
         id: 'bdu-aff-bba-aviation',
@@ -1622,7 +1622,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Airport management', 'Airline industry jobs'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
+        cutoffs: [{ year: '2024-25', general: 78.0, obc: 72.0, bcMbc: 68.0, sc: 54.0, st: 44.0, ews: 70.0 }]
       },
       {
         id: 'bdu-aff-ba-tamil',
@@ -1637,7 +1637,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Tamil literature', 'Teaching & translation'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
+        cutoffs: [{ year: '2024-25', general: 60.0, obc: 54.0, bcMbc: 50.0, sc: 36.0, st: 26.0, ews: 52.0 }]
       },
       {
         id: 'bdu-aff-ba-english',
@@ -1652,7 +1652,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['English literature', 'Communication skills'],
         seatMatrix: { general: 90, obc: 149, bcMbc: 185, sc: 80, st: 16, ews: 33, total: 553 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-ba-history',
@@ -1667,7 +1667,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC preparation base', 'Archaeological studies'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       {
         id: 'bdu-aff-ba-economics',
@@ -1682,7 +1682,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Economic analysis', 'Banking & policy careers'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-aff-ba-political-science',
@@ -1697,7 +1697,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Civil services preparation', 'Political analysis'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 64.0, obc: 58.0, bcMbc: 54.0, sc: 40.0, st: 30.0, ews: 56.0 }]
+        cutoffs: [{ year: '2024-25', general: 64.0, obc: 58.0, bcMbc: 54.0, sc: 40.0, st: 30.0, ews: 56.0 }]
       },
       {
         id: 'bdu-aff-ba-public-admin',
@@ -1712,7 +1712,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Government administration', 'UPSC optional'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       {
         id: 'bdu-aff-blit',
@@ -1727,7 +1727,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Classical Tamil literature', 'Research & teaching'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 58.0, obc: 52.0, bcMbc: 48.0, sc: 34.0, st: 24.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 58.0, obc: 52.0, bcMbc: 48.0, sc: 34.0, st: 24.0, ews: 50.0 }]
       },
       {
         id: 'bdu-aff-bvoc-it',
@@ -1742,7 +1742,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Skill-based IT program', 'Industry internships'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
+        cutoffs: [{ year: '2024-25', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
       },
       {
         id: 'bdu-aff-bvoc-banking',
@@ -1757,7 +1757,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Banking operations', 'Financial services'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-aff-bvoc-logistics',
@@ -1772,7 +1772,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Warehousing & transport', 'E-commerce logistics'],
         seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 22, st: 4, ews: 9, total: 150 },
-        cutoffs: [{ year: '2024', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
+        cutoffs: [{ year: '2024-25', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
       },
       // ========== AFFILIATED COLLEGES: PG PROGRAMS ==========
       {
@@ -1788,7 +1788,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Teaching & research', 'NET preparation'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-aff-msc-physics',
@@ -1803,7 +1803,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Quantum mechanics', 'Research careers'],
         seatMatrix: { general: 45, obc: 74, bcMbc: 93, sc: 40, st: 8, ews: 16, total: 276 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-msc-chemistry',
@@ -1818,7 +1818,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Organic synthesis', 'Pharma industry'],
         seatMatrix: { general: 45, obc: 74, bcMbc: 93, sc: 40, st: 8, ews: 16, total: 276 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-aff-msc-cs',
@@ -1833,7 +1833,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Programming advanced', 'IT placements'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-aff-msc-it',
@@ -1848,7 +1848,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Network & database', 'Industry certifications'],
         seatMatrix: { general: 55, obc: 91, bcMbc: 113, sc: 49, st: 10, ews: 20, total: 338 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-msc-microbiology',
@@ -1863,7 +1863,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Clinical microbiology', 'Pharma careers'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-msc-biotech',
@@ -1878,7 +1878,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Genetic engineering', 'Research & pharma'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-msc-botany',
@@ -1893,7 +1893,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Plant sciences', 'Teaching & research'],
         seatMatrix: { general: 35, obc: 58, bcMbc: 72, sc: 31, st: 6, ews: 13, total: 215 },
-        cutoffs: [{ year: '2024', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
+        cutoffs: [{ year: '2024-25', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
       },
       {
         id: 'bdu-aff-msc-zoology',
@@ -1908,7 +1908,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Wildlife studies', 'Forest department'],
         seatMatrix: { general: 35, obc: 58, bcMbc: 72, sc: 31, st: 6, ews: 13, total: 215 },
-        cutoffs: [{ year: '2024', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
+        cutoffs: [{ year: '2024-25', general: 65.0, obc: 59.0, bcMbc: 55.0, sc: 41.0, st: 31.0, ews: 57.0 }]
       },
       {
         id: 'bdu-aff-msc-viscom',
@@ -1923,7 +1923,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Media production', 'Film & television'],
         seatMatrix: { general: 30, obc: 50, bcMbc: 62, sc: 27, st: 5, ews: 11, total: 185 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-mcom-general',
@@ -1938,7 +1938,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Advanced accounting', 'NET preparation'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-mcom-ca',
@@ -1953,7 +1953,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Computerized accounting', 'ERP systems'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
+        cutoffs: [{ year: '2024-25', general: 72.0, obc: 66.0, bcMbc: 62.0, sc: 48.0, st: 38.0, ews: 64.0 }]
       },
       {
         id: 'bdu-aff-mcom-fm',
@@ -1968,7 +1968,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Financial analysis', 'Investment management'],
         seatMatrix: { general: 45, obc: 74, bcMbc: 93, sc: 40, st: 8, ews: 16, total: 276 },
-        cutoffs: [{ year: '2024', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
+        cutoffs: [{ year: '2024-25', general: 74.0, obc: 68.0, bcMbc: 64.0, sc: 50.0, st: 40.0, ews: 66.0 }]
       },
       {
         id: 'bdu-aff-mcom-bank-mgmt',
@@ -1983,7 +1983,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Banking operations', 'IBPS preparation'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
+        cutoffs: [{ year: '2024-25', general: 70.0, obc: 64.0, bcMbc: 60.0, sc: 46.0, st: 36.0, ews: 62.0 }]
       },
       {
         id: 'bdu-aff-ma-english',
@@ -1998,7 +1998,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Literature analysis', 'Teaching careers'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
+        cutoffs: [{ year: '2024-25', general: 68.0, obc: 62.0, bcMbc: 58.0, sc: 44.0, st: 34.0, ews: 60.0 }]
       },
       {
         id: 'bdu-aff-ma-tamil',
@@ -2013,7 +2013,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Tamil literature', 'Teaching & research'],
         seatMatrix: { general: 55, obc: 91, bcMbc: 113, sc: 49, st: 10, ews: 20, total: 338 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       {
         id: 'bdu-aff-ma-history',
@@ -2028,7 +2028,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC preparation', 'Archaeological studies'],
         seatMatrix: { general: 45, obc: 74, bcMbc: 93, sc: 40, st: 8, ews: 16, total: 276 },
-        cutoffs: [{ year: '2024', general: 64.0, obc: 58.0, bcMbc: 54.0, sc: 40.0, st: 30.0, ews: 56.0 }]
+        cutoffs: [{ year: '2024-25', general: 64.0, obc: 58.0, bcMbc: 54.0, sc: 40.0, st: 30.0, ews: 56.0 }]
       },
       {
         id: 'bdu-aff-ma-economics',
@@ -2043,7 +2043,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Econometrics', 'RBI/NABARD careers'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
+        cutoffs: [{ year: '2024-25', general: 66.0, obc: 60.0, bcMbc: 56.0, sc: 42.0, st: 32.0, ews: 58.0 }]
       },
       {
         id: 'bdu-aff-msw',
@@ -2058,7 +2058,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Social work practice', 'NGO careers'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
+        cutoffs: [{ year: '2024-25', general: 62.0, obc: 56.0, bcMbc: 52.0, sc: 38.0, st: 28.0, ews: 54.0 }]
       },
       // ========== CENTRE FOR DISTANCE EDUCATION (CDE): UG PROGRAMS ==========
       {
@@ -2074,7 +2074,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Working professionals', 'Flexible learning'],
         seatMatrix: { general: 200, obc: 330, bcMbc: 412, sc: 178, st: 35, ews: 72, total: 1227 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ba-tamil',
@@ -2089,7 +2089,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Tamil language proficiency', 'Teaching career'],
         seatMatrix: { general: 180, obc: 297, bcMbc: 371, sc: 160, st: 32, ews: 65, total: 1105 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ba-history',
@@ -2104,7 +2104,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC optional foundation', 'Self-paced learning'],
         seatMatrix: { general: 150, obc: 248, bcMbc: 309, sc: 134, st: 26, ews: 54, total: 921 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ba-economics',
@@ -2119,7 +2119,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Economic fundamentals', 'Banking sector prep'],
         seatMatrix: { general: 140, obc: 231, bcMbc: 289, sc: 125, st: 24, ews: 50, total: 859 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ba-political-science',
@@ -2134,7 +2134,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Civil services foundation', 'Political analysis'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ba-public-admin',
@@ -2149,7 +2149,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Government administration', 'UPSC preparation'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-maths',
@@ -2164,7 +2164,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Self-study mathematics', 'Teaching career'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-physics',
@@ -2179,7 +2179,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Theoretical physics focus', 'Working professionals'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-chemistry',
@@ -2194,7 +2194,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Theoretical chemistry', 'Upgrade qualification'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-botany',
@@ -2209,7 +2209,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Plant sciences', 'Self-paced learning'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-zoology',
@@ -2224,7 +2224,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Animal sciences', 'Flexible schedule'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-cs',
@@ -2239,7 +2239,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Self-study programming', 'Career changers'],
         seatMatrix: { general: 150, obc: 248, bcMbc: 309, sc: 134, st: 26, ews: 54, total: 921 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-it',
@@ -2254,7 +2254,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['IT fundamentals', 'Working professionals'],
         seatMatrix: { general: 140, obc: 231, bcMbc: 289, sc: 125, st: 24, ews: 50, total: 859 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-geography',
@@ -2269,7 +2269,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC Geography optional', 'Self-paced learning'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-yoga',
@@ -2284,7 +2284,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Yoga teaching certification', 'Wellness industry'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-viscom',
@@ -2299,7 +2299,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Media studies', 'Journalism foundation'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bsc-hospital-admin',
@@ -2314,7 +2314,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Healthcare management', 'Working in hospitals'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bcom-general',
@@ -2329,7 +2329,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Commerce fundamentals', 'Accounting basics'],
         seatMatrix: { general: 200, obc: 330, bcMbc: 412, sc: 178, st: 35, ews: 72, total: 1227 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bcom-bank-mgmt',
@@ -2344,7 +2344,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Banking operations', 'IBPS preparation'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bcom-ca',
@@ -2359,7 +2359,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Accounting software', 'Tally certification'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bba',
@@ -2374,7 +2374,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Management basics', 'MBA foundation'],
         seatMatrix: { general: 150, obc: 248, bcMbc: 309, sc: 134, st: 26, ews: 54, total: 921 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-bca',
@@ -2389,7 +2389,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Programming fundamentals', 'MCA pathway'],
         seatMatrix: { general: 140, obc: 231, bcMbc: 289, sc: 125, st: 24, ews: 50, total: 859 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-blisc',
@@ -2404,7 +2404,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Library science basics', 'Librarian career'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       // ========== CENTRE FOR DISTANCE EDUCATION (CDE): PG PROGRAMS ==========
       {
@@ -2420,7 +2420,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Literature analysis', 'NET preparation'],
         seatMatrix: { general: 150, obc: 248, bcMbc: 309, sc: 134, st: 26, ews: 54, total: 921 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-tamil',
@@ -2435,7 +2435,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Tamil literature', 'Teaching career'],
         seatMatrix: { general: 140, obc: 231, bcMbc: 289, sc: 125, st: 24, ews: 50, total: 859 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-history',
@@ -2450,7 +2450,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC History optional', 'Self-paced learning'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-economics',
@@ -2465,7 +2465,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Economic analysis', 'Banking career'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-political-science',
@@ -2480,7 +2480,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Civil services prep', 'Political analysis'],
         seatMatrix: { general: 90, obc: 149, bcMbc: 185, sc: 80, st: 16, ews: 33, total: 553 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-public-admin',
@@ -2495,7 +2495,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Government administration', 'UPSC preparation'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-journalism',
@@ -2510,7 +2510,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Media & journalism', 'Digital media skills'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-ma-hrm',
@@ -2525,7 +2525,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['HR management', 'Corporate careers'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-maths',
@@ -2540,7 +2540,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Advanced mathematics', 'Teaching career'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-physics',
@@ -2555,7 +2555,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Theoretical physics', 'Self-study'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-chemistry',
@@ -2570,7 +2570,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Chemical sciences', 'Upgrade qualification'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-botany',
@@ -2585,7 +2585,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Plant sciences advanced', 'Teaching career'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-zoology',
@@ -2600,7 +2600,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Animal sciences', 'Self-paced learning'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-cs',
@@ -2615,7 +2615,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Programming advanced', 'Career upgrade'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-it',
@@ -2630,7 +2630,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['IT advanced', 'Working professionals'],
         seatMatrix: { general: 110, obc: 182, bcMbc: 227, sc: 98, st: 19, ews: 40, total: 676 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-geography',
@@ -2645,7 +2645,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['UPSC Geography optional', 'GIS skills'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msc-yoga',
@@ -2660,7 +2660,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Advanced yoga studies', 'Yoga therapy'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mcom-general',
@@ -2675,7 +2675,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Advanced commerce', 'NET preparation'],
         seatMatrix: { general: 140, obc: 231, bcMbc: 289, sc: 125, st: 24, ews: 50, total: 859 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mcom-fm',
@@ -2690,7 +2690,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Financial analysis', 'Investment management'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mcom-bank-mgmt',
@@ -2705,7 +2705,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Banking operations', 'IBPS preparation'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mcom-ca',
@@ -2720,7 +2720,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Computerized accounting', 'ERP systems'],
         seatMatrix: { general: 90, obc: 149, bcMbc: 185, sc: 80, st: 16, ews: 33, total: 553 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mba-general',
@@ -2735,7 +2735,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Management skills', 'Career advancement'],
         seatMatrix: { general: 200, obc: 330, bcMbc: 412, sc: 178, st: 35, ews: 72, total: 1227 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mba-operations',
@@ -2750,7 +2750,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Operations & supply chain', 'Manufacturing sector'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mba-systems',
@@ -2765,7 +2765,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['IT systems management', 'Technology focus'],
         seatMatrix: { general: 70, obc: 116, bcMbc: 144, sc: 62, st: 12, ews: 25, total: 429 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mba-finance',
@@ -2780,7 +2780,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Financial management', 'Banking & investment'],
         seatMatrix: { general: 120, obc: 198, bcMbc: 247, sc: 107, st: 21, ews: 43, total: 736 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mba-hr',
@@ -2795,7 +2795,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['HR management', 'Corporate HR careers'],
         seatMatrix: { general: 100, obc: 165, bcMbc: 206, sc: 89, st: 17, ews: 36, total: 613 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mba-logistics',
@@ -2810,7 +2810,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Supply chain management', 'E-commerce logistics'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mca',
@@ -2825,7 +2825,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Software development', 'Career upgrade'],
         seatMatrix: { general: 140, obc: 231, bcMbc: 289, sc: 125, st: 24, ews: 50, total: 859 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-msw',
@@ -2840,7 +2840,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Social work practice', 'NGO careers'],
         seatMatrix: { general: 80, obc: 132, bcMbc: 165, sc: 71, st: 14, ews: 29, total: 491 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-mlisc',
@@ -2855,7 +2855,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['University librarian career', 'Digital library skills'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       // ========== CDE: DIPLOMA & CERTIFICATE PROGRAMS ==========
       {
@@ -2871,7 +2871,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Thirukkural studies', 'Tamil heritage'],
         seatMatrix: { general: 50, obc: 82, bcMbc: 103, sc: 45, st: 9, ews: 18, total: 307 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-dip-sanskrit',
@@ -2886,7 +2886,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Sanskrit language', 'Classical studies'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-dip-yoga',
@@ -2901,7 +2901,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Yoga teaching basics', 'Wellness industry'],
         seatMatrix: { general: 60, obc: 99, bcMbc: 124, sc: 53, st: 10, ews: 22, total: 368 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       },
       {
         id: 'bdu-cde-cert-tamil-pandit',
@@ -2916,7 +2916,7 @@ export const universities: University[] = [
         syllabus: [], previousQuestions: [],
         tips: ['Tamil teaching certification', 'School teaching'],
         seatMatrix: { general: 40, obc: 66, bcMbc: 82, sc: 36, st: 7, ews: 15, total: 246 },
-        cutoffs: [{ year: '2024', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
+        cutoffs: [{ year: '2024-25', general: 50.0, obc: 50.0, bcMbc: 50.0, sc: 50.0, st: 50.0, ews: 50.0 }]
       }
     ]
   },
@@ -2983,7 +2983,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-md-q3',
-            year: '2023',
+            year: '2024-25',
             question: 'Reed-Sternberg cells are pathognomonic of:',
             options: ['Non-Hodgkin lymphoma', 'Hodgkin lymphoma', 'Multiple myeloma', 'Chronic lymphocytic leukemia'],
             correctAnswer: 1,
@@ -2993,7 +2993,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-md-q4',
-            year: '2023',
+            year: '2024-25',
             question: 'The most common cardiac arrhythmia is:',
             options: ['Ventricular tachycardia', 'Atrial fibrillation', 'Complete heart block', 'Ventricular fibrillation'],
             correctAnswer: 1,
@@ -3056,7 +3056,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-ms-q3',
-            year: '2023',
+            year: '2024-25',
             question: 'Virchow\'s triad includes all EXCEPT:',
             options: ['Stasis', 'Endothelial injury', 'Hypercoagulability', 'Atherosclerosis'],
             correctAnswer: 3,
@@ -3066,7 +3066,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-ms-q4',
-            year: '2023',
+            year: '2024-25',
             question: 'The nerve most commonly injured in posterior dislocation of hip is:',
             options: ['Femoral nerve', 'Obturator nerve', 'Sciatic nerve', 'Tibial nerve'],
             correctAnswer: 2,
@@ -3130,7 +3130,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-bpt-q3',
-            year: '2023',
+            year: '2024-25',
             question: 'pH of blood is:',
             options: ['6.8-7.0', '7.0-7.2', '7.35-7.45', '7.6-7.8'],
             correctAnswer: 2,
@@ -3140,7 +3140,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-bpt-q4',
-            year: '2023',
+            year: '2024-25',
             question: 'Ohm\'s law states that:',
             options: ['V = IR', 'V = I/R', 'V = R/I', 'V = I + R'],
             correctAnswer: 0,
@@ -3203,7 +3203,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-mpharm-q3',
-            year: '2023',
+            year: '2024-25',
             question: 'Enteric coating is used to:',
             options: ['Improve taste', 'Protect drug from gastric acid', 'Increase absorption', 'Reduce cost'],
             correctAnswer: 1,
@@ -3213,7 +3213,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-mpharm-q4',
-            year: '2023',
+            year: '2024-25',
             question: 'SAR stands for:',
             options: ['Structure Activity Relationship', 'Synthesis Analysis Report', 'Stable Active Radicals', 'Standard Assay Range'],
             correctAnswer: 0,
@@ -3277,7 +3277,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-mbbs-q3',
-            year: '2023',
+            year: '2024-25',
             question: 'DNA replication is:',
             options: ['Conservative', 'Semi-conservative', 'Dispersive', 'Non-conservative'],
             correctAnswer: 1,
@@ -3321,7 +3321,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-bds-q2',
-            year: '2023',
+            year: '2024-25',
             question: 'The total number of permanent teeth in an adult is:',
             options: ['20', '28', '32', '36'],
             correctAnswer: 2,
@@ -3363,7 +3363,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-mds-q2',
-            year: '2023',
+            year: '2024-25',
             question: 'Most common site of oral cancer in India is:',
             options: ['Tongue', 'Buccal mucosa', 'Lip', 'Palate'],
             correctAnswer: 1,
@@ -3509,7 +3509,7 @@ export const universities: University[] = [
           },
           {
             id: 'mgr-nursing-q2',
-            year: '2023',
+            year: '2024-25',
             question: 'The largest organ in the human body is:',
             options: ['Liver', 'Skin', 'Brain', 'Heart'],
             correctAnswer: 1,
@@ -8702,7 +8702,7 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'au-mba-q1', year: '2024', question: 'A sum of ₹5000 amounts to ₹5800 in 2 years at simple interest. What is the rate of interest?', options: ['6%', '7%', '8%', '9%'], correctAnswer: 2, explanation: 'SI = 5800 - 5000 = 800. Rate = (SI × 100)/(P × T) = (800 × 100)/(5000 × 2) = 8%.', topic: 'Simple Interest', difficulty: 'Easy' },
           { id: 'au-mba-q2', year: '2024', question: 'If A:B = 3:4 and B:C = 5:6, find A:C.', options: ['5:8', '3:6', '5:6', '15:24'], correctAnswer: 0, explanation: 'A:B = 3:4, B:C = 5:6. Making B common: A:B = 15:20, B:C = 20:24. So A:C = 15:24 = 5:8.', topic: 'Ratio & Proportion', difficulty: 'Medium' },
-          { id: 'au-mba-q3', year: '2023', question: 'Choose the correct antonym for "BENEVOLENT":', options: ['Kind', 'Malevolent', 'Generous', 'Charitable'], correctAnswer: 1, explanation: 'Benevolent means kind and generous. Malevolent means having ill will, making it the antonym.', topic: 'Vocabulary', difficulty: 'Easy' }
+          { id: 'au-mba-q3', year: '2024-25', question: 'Choose the correct antonym for "BENEVOLENT":', options: ['Kind', 'Malevolent', 'Generous', 'Charitable'], correctAnswer: 1, explanation: 'Benevolent means kind and generous. Malevolent means having ill will, making it the antonym.', topic: 'Vocabulary', difficulty: 'Easy' }
         ],
         tips: ['Focus on quantitative section', 'Read business news daily', 'Practice mock tests regularly']
       },
@@ -15803,8 +15803,8 @@ export const universities: University[] = [
         eligibility: 'HSC with PCB/PCM (CUET-UG)',
         seatMatrix: { general: 20, obc: 16, bcMbc: 12, sc: 8, st: 4, total: 60 },
         cutoffs: [
-          { year: '2024', general: 480, obc: 420, bcMbc: 380, sc: 320, st: 280 },
-          { year: '2023', general: 460, obc: 400, bcMbc: 360, sc: 300, st: 260 },
+          { year: '2024-25', general: 480, obc: 420, bcMbc: 380, sc: 320, st: 280 },
+          { year: '2024-25', general: 460, obc: 400, bcMbc: 360, sc: 300, st: 260 },
         ],
         examPattern: {
           totalQuestions: 150,
@@ -16114,8 +16114,8 @@ export const universities: University[] = [
         eligibility: 'HSC Commerce (CUET-UG)',
         seatMatrix: { general: 18, obc: 14, bcMbc: 10, sc: 6, st: 2, total: 50 },
         cutoffs: [
-          { year: '2024', general: 420, obc: 380, bcMbc: 340, sc: 280, st: 240 },
-          { year: '2023', general: 400, obc: 360, bcMbc: 320, sc: 260, st: 220 },
+          { year: '2024-25', general: 420, obc: 380, bcMbc: 340, sc: 280, st: 240 },
+          { year: '2024-25', general: 400, obc: 360, bcMbc: 320, sc: 260, st: 220 },
         ],
         previousQuestions: [],
         tips: ['Unique cooperative societies focus', 'Career: Cooperative Bank Manager, NABARD Officer']

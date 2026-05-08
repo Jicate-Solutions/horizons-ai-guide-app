@@ -6,9 +6,9 @@ import { tneaColleges, neetColleges, jeeColleges } from '@/data/college-cutoff-d
 type ExamType = 'tnea' | 'neet' | 'jee';
 
 const examConfig = {
-  tnea: { label: 'TNEA', fullLabel: 'TNEA Engineering', emoji: '🏛️', maxScore: 200, unit: '/200', placeholder: 'e.g. 185', color: 'emerald', desc: 'Enter your 12th mark cutoff (Maths×1 + Physics×0.5 + Chemistry×0.5)', sourceYear: '2024-25' },
-  neet: { label: 'NEET UG', fullLabel: 'NEET UG Medical', emoji: '🏥', maxScore: 720, unit: '/720', placeholder: 'e.g. 580', color: 'blue', desc: 'Enter your expected NEET score out of 720', sourceYear: '2024' },
-  jee: { label: 'JEE Main', fullLabel: 'JEE Main Engineering', emoji: '⚙️', maxScore: 300, unit: '/300', placeholder: 'e.g. 200', color: 'violet', desc: 'Enter your JEE Main score — we\'ll predict your rank', sourceYear: '2024' },
+  tnea: { label: 'TNEA', fullLabel: 'TNEA Engineering', emoji: '🏛️', maxScore: 200, unit: '/200', placeholder: 'e.g. 185', color: 'emerald', desc: 'Enter your 12th mark cutoff (Maths×1 + Physics×0.5 + Chemistry×0.5)', sourceYear: '2025' },
+  neet: { label: 'NEET UG', fullLabel: 'NEET UG Medical', emoji: '🏥', maxScore: 720, unit: '/720', placeholder: 'e.g. 580', color: 'blue', desc: 'Enter your expected NEET score out of 720', sourceYear: '2025' },
+  jee: { label: 'JEE Main', fullLabel: 'JEE Main Engineering', emoji: '⚙️', maxScore: 300, unit: '/300', placeholder: 'e.g. 200', color: 'violet', desc: 'Enter your JEE Main score — we\'ll predict your rank', sourceYear: '2025' },
 };
 
 // JEE score → rank predictor

@@ -113,7 +113,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'TN students can apply for NITs (15% All India + 85% State quota at NIT Trichy)',
     importantDates: {
-      registration: 'November 2024',
+      registration: 'November 2025',
       examDate: 'January & April 2026',
       resultDate: 'February & May 2026',
     },
@@ -191,7 +191,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'VIT Vellore is located in TN - Home state advantage for TN students',
     importantDates: {
-      registration: 'November 2024',
+      registration: 'November 2025',
       examDate: 'April-May 2026',
       resultDate: 'May 2026',
     },
@@ -229,7 +229,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'SRM Kattankulathur is TN based - Priority for TN students in counselling',
     importantDates: {
-      registration: 'October 2024',
+      registration: 'October 2025',
       examDate: 'April-May 2026',
       resultDate: 'May 2026',
     },
@@ -1155,7 +1155,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'NIFT Chennai Campus in TN! Premier fashion design institute',
     importantDates: {
-      registration: 'Oct-Dec 2024',
+      registration: 'Oct-Dec 2025',
       examDate: 'Feb 2026',
       resultDate: 'April 2026',
     },
@@ -1194,7 +1194,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Premier design institute - Product, Graphic, Textile design courses',
     importantDates: {
-      registration: 'Oct 2024',
+      registration: 'Oct 2025',
       examDate: 'Jan 2026',
       resultDate: 'March 2026',
     },
@@ -1232,7 +1232,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'For B.Arch at NIT Trichy & Anna University School of Architecture',
     importantDates: {
-      registration: 'Nov 2024',
+      registration: 'Nov 2025',
       examDate: 'April 2026',
       resultDate: 'May 2026',
     },
