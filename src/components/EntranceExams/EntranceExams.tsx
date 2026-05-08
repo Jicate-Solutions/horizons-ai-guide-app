@@ -18,7 +18,7 @@ const syllabusLinks: Record<string, {pdf: string; label: string}> = {
   'neet-ug': { pdf: '/neet-ug-2026-syllabus.pdf', label: 'Official NEET UG 2026 Syllabus — NMC' },
   'tn-neet-counselling': { pdf: '/neet-ug-2026-syllabus.pdf', label: 'Official NEET UG 2026 Syllabus — NMC' },
   'jee-main': { pdf: '/jee-main-2026-syllabus.pdf', label: 'Official JEE Main 2026 Syllabus — NTA' },
-  'jee-adv': { pdf: 'https://jeeadv.ac.in/past_qps/2024/syllabus.pdf', label: 'JEE Advanced Official Syllabus PDF' },
+  'jee-advanced': { pdf: '/jee-advanced-2026-syllabus.pdf', label: 'Official JEE Advanced 2026 Syllabus — IIT' },
   'tnea': { pdf: 'https://www.tneaonline.org', label: 'TNEA Official Website' },
   'keam': { pdf: 'https://cee.kerala.gov.in', label: 'CEE Kerala Official Syllabus' },
   'comedk': { pdf: 'https://www.comedk.org/syllabus', label: 'COMEDK Official Syllabus' },
