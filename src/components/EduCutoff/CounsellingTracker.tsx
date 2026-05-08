@@ -117,7 +117,7 @@ const trackers: CounsellingTrackerData[] = [
 // ═══════════════════════════════════════════════════════════
 //  STORAGE KEYS
 // ═══════════════════════════════════════════════════════════
-const LOCAL_KEY = 'vzk_counselling_tracker';
+const LOCAL_KEY = (userId?: string) => userId ? `vzk_counselling_tracker_${userId}` : 'vzk_counselling_tracker';
 
 // ═══════════════════════════════════════════════════════════
 //  SUPABASE SYNC HELPERS
@@ -197,11 +197,11 @@ const mergeChecked = (a: Record<string, boolean>, b: Record<string, boolean>): R
 
 const SyncBadge = ({ status, lastSynced }: { status: SyncStatus; lastSynced: Date | null }) => {
   const config = {
-    idle: { icon: Cloud, text: 'Ready', color: 'text-gray-400', bg: 'bg-gray-50' },
+    idle: { icon: CheckCircle, text: 'Ready', color: 'text-gray-400', bg: 'bg-gray-50' },
     syncing: { icon: Loader2, text: 'Saving...', color: 'text-blue-600', bg: 'bg-blue-50' },
-    synced: { icon: Cloud, text: 'Saved to cloud', color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    offline: { icon: CloudOff, text: 'Offline — saved locally', color: 'text-amber-600', bg: 'bg-amber-50' },
-    error: { icon: CloudOff, text: 'Sync failed — retry', color: 'text-red-600', bg: 'bg-red-50' },
+    synced: { icon: CheckCircle, text: 'Progress saved ✓', color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    offline: { icon: CheckCircle, text: 'Saved on this device ✓', color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    error: { icon: CheckCircle, text: 'Saved on this device ✓', color: 'text-emerald-600', bg: 'bg-emerald-50' },
   };
   const c = config[status];
   const Icon = c.icon;
@@ -240,7 +240,7 @@ export const CounsellingTracker = () => {
       // 1. Always load localStorage first (instant)
       let localData: Record<string, boolean> = {};
       try {
-        const raw = localStorage.getItem(LOCAL_KEY);
+        const raw = localStorage.getItem(LOCAL_KEY(user?.id));
         if (raw) localData = JSON.parse(raw);
       } catch {}
 
@@ -251,7 +251,7 @@ export const CounsellingTracker = () => {
           const merged = mergeChecked(localData, cloudData);
 
           // Save merged back to localStorage
-          localStorage.setItem(LOCAL_KEY, JSON.stringify(merged));
+          localStorage.setItem(LOCAL_KEY(user?.id), JSON.stringify(merged));
 
           // If localStorage had data that cloud didn't, push it up
           const localOnlyKeys = Object.keys(localData).filter(k => localData[k] && !cloudData[k]);
@@ -321,7 +321,7 @@ export const CounsellingTracker = () => {
       const next = { ...prev, [stepId]: !prev[stepId] };
 
       // Always save to localStorage (instant)
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(next));
+      localStorage.setItem(LOCAL_KEY(user?.id), JSON.stringify(next));
 
       // Find which tracker this step belongs to
       const tracker = trackers.find(t => t.steps.some(s => s.id === stepId));
@@ -344,7 +344,7 @@ export const CounsellingTracker = () => {
       const next = { ...prev };
       tracker.steps.forEach(s => delete next[s.id]);
 
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(next));
+      localStorage.setItem(LOCAL_KEY(user?.id), JSON.stringify(next));
       syncToCloud(next, trackerId);
 
       return next;
@@ -376,10 +376,12 @@ export const CounsellingTracker = () => {
   };
 
   const getStatus = (tracker: CounsellingTrackerData) => {
-    const { done, total } = getProgress(tracker);
+    const { done, total, percent } = getProgress(tracker);
     if (done === 0) return { label: 'Not Started', color: 'text-gray-500', bg: 'bg-gray-100' };
     if (done === total) return { label: 'Completed ✅', color: 'text-emerald-700', bg: 'bg-emerald-100' };
-    return { label: `${total - done} steps remaining`, color: 'text-red-700', bg: 'bg-red-100' };
+    if (percent >= 75) return { label: `Almost done! ${total - done} left`, color: 'text-emerald-700', bg: 'bg-emerald-100' };
+    if (percent >= 50) return { label: `Halfway — ${total - done} steps left`, color: 'text-blue-700', bg: 'bg-blue-100' };
+    return { label: `In Progress — ${total - done} steps left`, color: 'text-amber-700', bg: 'bg-amber-100' };
   };
 
   // ─── Loading State ───
@@ -429,19 +431,11 @@ export const CounsellingTracker = () => {
           <div className="flex items-center gap-2">
             <SyncBadge status={syncStatus} lastSynced={lastSynced} />
             {!user && (
-              <span className="text-xs text-red-200">
-                ⚠️ Login to save across devices
+              <span className="text-xs text-white/70">
+                Sign in to save across devices
               </span>
             )}
           </div>
-          {user && (syncStatus === 'error' || syncStatus === 'offline') && (
-            <button
-              onClick={forceSync}
-              className="flex items-center gap-1 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-lg transition-all"
-            >
-              <RefreshCw className="w-3 h-3" /> Retry
-            </button>
-          )}
         </div>
 
         <div className="bg-white/15 rounded-xl p-3 mt-2">
@@ -479,6 +473,11 @@ export const CounsellingTracker = () => {
                       />
                     </div>
                     <span className="text-xs font-bold text-gray-600">{progress.done}/{progress.total}</span>
+                    {progress.percent > 0 && (
+                      <span className={cn("text-xs font-bold px-1.5 py-0.5 rounded-full", progress.percent === 100 ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700")}>
+                        {progress.percent}%
+                      </span>
+                    )}
                   </div>
                 </div>
                 <ChevronDown className={cn("w-5 h-5 text-gray-400 transition-transform flex-shrink-0", isOpen && "rotate-180")} />
