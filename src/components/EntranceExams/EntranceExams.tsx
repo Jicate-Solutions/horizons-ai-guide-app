@@ -122,12 +122,15 @@ export const EntranceExams = () => {
                   <span>{tab.icon}</span>{tab.label}
                 </button>
               ))}
-              {/* Syllabus tab — opens PDF directly if available */}
+              {/* Syllabus tab — opens directly on tap */}
               {exam.syllabus.length > 0 && (
                 syllabusLink ? (
                   <a href={syllabusLink.pdf} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 border-transparent text-blue-600 hover:text-blue-800 hover:bg-blue-50 flex-shrink-0 transition-colors">
-                    <span>📄</span>Syllabus ↗
+                    className={cn(
+                      "flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-lg whitespace-nowrap border-b-2 transition-colors flex-shrink-0",
+                      "text-gray-500 border-transparent hover:text-gray-700"
+                    )}>
+                    <span>📚</span>Syllabus
                   </a>
                 ) : (
                   <button onClick={() => setActiveTab('syllabus' as any)}
