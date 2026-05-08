@@ -26,6 +26,7 @@ const syllabusLinks: Record<string, {pdf: string; label: string}> = {
   'viteee': { pdf: '/Physics_VITEEE2026.pdf', label: 'VITEEE 2026 Syllabus — VIT Official' },
   'srmjeee': { pdf: '/srmjeee-2026-syllabus.pdf', label: 'SRMJEEE 2026 Official Syllabus' },
   'bitsat': { pdf: '/bitsat-2026-syllabus.pdf', label: 'BITSAT 2026 Official Syllabus — BITS Pilani' },
+  'aeee': { pdf: '/aeee-2026-syllabus.pdf', label: 'AEEE 2026 Official Syllabus — Amrita Vishwa Vidyapeetham' },
   'viteee': { pdf: 'https://viteee.vit.ac.in/syllabus', label: 'VITEEE Official Syllabus' },
   'neet-tn': { pdf: 'https://tnmedicalselection.net', label: 'TN Medical Selection Official Site' },
   'amueee': { pdf: 'https://www.amu.ac.in/syllabus', label: 'AMU Official Syllabus' },
