@@ -23,6 +23,7 @@ const syllabusLinks: Record<string, {pdf: string; label: string}> = {
   'keam': { pdf: 'https://cee.kerala.gov.in', label: 'CEE Kerala Official Syllabus' },
   'comedk': { pdf: 'https://www.comedk.org/syllabus', label: 'COMEDK Official Syllabus' },
   'bitsat': { pdf: 'https://www.bitsadmission.com/syllabus', label: 'BITS Official Syllabus' },
+  'viteee': { pdf: '/Physics_VITEEE2026.pdf', label: 'VITEEE 2026 Syllabus — VIT Official' },
   'viteee': { pdf: 'https://viteee.vit.ac.in/syllabus', label: 'VITEEE Official Syllabus' },
   'neet-tn': { pdf: 'https://tnmedicalselection.net', label: 'TN Medical Selection Official Site' },
   'amueee': { pdf: 'https://www.amu.ac.in/syllabus', label: 'AMU Official Syllabus' },
@@ -239,7 +240,7 @@ export const EntranceExams = () => {
               {/* ── SYLLABUS TAB ── */}
               {activeTab === 'syllabus' && (() => {
                 // Parse structured syllabus into subjects
-                const sylSubjects: {name: string; emoji: string; color: string; bg: string; border: string; chapters: {name: string; topics: string}[]}[] = [];
+                const sylSubjects: {name: string; emoji: string; color: string; bg: string; border: string; chapters: {name: string; topics: string}[]; pdfUrl: string; pdfLabel: string}[] = [];
                 const colorMap: Record<string, {emoji: string; color: string; bg: string; border: string}> = {
                   'Physics':    {emoji:'⚛️', color:'text-violet-800', bg:'bg-violet-50',  border:'border-violet-200'},
                   'Chemistry':  {emoji:'🧪', color:'text-blue-800',   bg:'bg-blue-50',    border:'border-blue-200'},
@@ -259,12 +260,16 @@ export const EntranceExams = () => {
                     const parts = line.replace('SUBJECT:', '').split('|');
                     const key = Object.keys(colorMap).find(k => parts[0].includes(k)) || 'General';
                     const c = colorMap[key];
-                    cur = {name: parts[0], ...c, chapters: []};
+                    cur = {name: parts[0], ...c, chapters: [], pdfUrl: '', pdfLabel: ''};
                   } else if (line.startsWith('CHAPTER:') && cur) {
                     const parts = line.replace('CHAPTER:', '').split('|');
                     cur.chapters.push({name: parts[0], topics: parts[1] || ''});
-                  } else if (line.startsWith('TIP:') && cur) {
-                    // skip tips in subject view
+                  } else if (line.startsWith('PDF:') && cur) {
+                    const parts = line.replace('PDF:', '').split('|');
+                    cur.pdfUrl = parts[0];
+                    cur.pdfLabel = parts[1] || 'Official Syllabus PDF';
+                  } else if (line.startsWith('TIP:')) {
+                    // skip tips
                   }
                 });
                 if (cur) sylSubjects.push(cur);
@@ -319,10 +324,18 @@ export const EntranceExams = () => {
                       if (!sub) return null;
                       return (
                         <div className={cn("rounded-2xl border-2 overflow-hidden", sub.border)}>
-                          <div className={cn("px-4 py-3 flex items-center gap-2", sub.bg)}>
-                            <span className="text-lg">{sub.emoji}</span>
-                            <p className={cn("text-sm font-black", sub.color)}>{sub.name}</p>
-                            <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/70", sub.color)}>{sub.chapters.length} chapters</span>
+                          <div className={cn("px-4 py-3 flex items-center justify-between gap-2", sub.bg)}>
+                            <div className="flex items-center gap-2">
+                              <span className="text-lg">{sub.emoji}</span>
+                              <p className={cn("text-sm font-black", sub.color)}>{sub.name}</p>
+                              <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/70", sub.color)}>{sub.chapters.length} chapters</span>
+                            </div>
+                            {sub.pdfUrl && (
+                              <a href={sub.pdfUrl} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center gap-1 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg hover:bg-blue-700 shrink-0">
+                                <span>📄</span> PDF
+                              </a>
+                            )}
                           </div>
                           <div className="divide-y divide-gray-100 bg-white">
                             {sub.chapters.map((ch, ci) => (
