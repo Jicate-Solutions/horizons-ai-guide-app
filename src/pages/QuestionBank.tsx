@@ -140,7 +140,7 @@ const QuestionBankPage = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-bold text-gray-900">{sub.name}</p>
-                    <p className="text-[10px] text-gray-500">{sub.chapters.length} chapters · {subTotal}Q ready</p>
+                    <p className="text-xs text-gray-500">{sub.chapters.length} chapters · {subTotal}Q ready</p>
                   </div>
                   {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                 </button>
@@ -160,8 +160,8 @@ const QuestionBankPage = () => {
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-800 leading-tight">{ch.name}</p>
                             <div className="flex items-center gap-2 mt-0.5">
-                              <span className="text-[10px] text-gray-400">Class {ch.class}</span>
-                              {ch.priority === 'high' && <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">HIGH</span>}
+                              <span className="text-xs text-gray-400">Class {ch.class}</span>
+                              {ch.priority === 'high' && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">HIGH</span>}
                             </div>
                           </div>
                           {qCount > 0 ? (
@@ -170,7 +170,7 @@ const QuestionBankPage = () => {
                               <Zap className="w-3.5 h-3.5 text-violet-500" />
                             </div>
                           ) : (
-                            <span className="text-[10px] text-gray-400 flex-shrink-0">Coming soon</span>
+                            <span className="text-xs text-gray-400 flex-shrink-0">Coming soon</span>
                           )}
                         </button>
                       );

@@ -305,7 +305,7 @@ export const EntranceExams = () => {
                   <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">START HERE</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1 leading-relaxed">Pick chapter → Study concepts → Practice questions → Solve PYQ → Track progress</p>
-                <div className="flex items-center gap-3 mt-2 text-[10px]">
+                <div className="flex items-center gap-3 mt-2 text-xs">
                   <span className="text-indigo-600 font-bold">📖 187 chapters</span>
                   <span className="text-violet-600 font-bold">📝 {totalQB}+ questions</span>
                   <span className="text-amber-600 font-bold">📜 PYQ</span>
@@ -317,20 +317,23 @@ export const EntranceExams = () => {
 
           {/* Individual tools */}
           <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Individual Tools</p>
-            <div className="grid grid-cols-3 gap-2">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Individual Tools</p>
+            <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: '📖', label: 'Study Guide', route: '/study-guide', color: 'text-indigo-600' },
-                { icon: '📝', label: 'Question Bank', route: '/question-bank', color: 'text-violet-600' },
-                { icon: '📊', label: 'Syllabus Tracker', route: '/syllabus-tracker', color: 'text-emerald-600' },
-                { icon: '🔔', label: 'Exam Alerts', route: '/exam-alerts', color: 'text-red-600' },
-                { icon: '📜', label: 'PYQ Papers', route: '/pyq-papers', color: 'text-amber-600' },
-                { icon: '🎯', label: 'Rank Predictor', route: '/rank-predictor', color: 'text-sky-600' },
+                { icon: '📖', label: 'Study Guide', sub: 'Concepts, formulas & books', route: '/study-guide', color: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-100' },
+                { icon: '📝', label: 'Question Bank', sub: 'Chapter-wise MCQ practice', route: '/question-bank', color: 'text-violet-600', bg: 'bg-violet-50', border: 'border-violet-100' },
+                { icon: '📊', label: 'Syllabus Tracker', sub: 'Track every chapter', route: '/syllabus-tracker', color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' },
+                { icon: '🔔', label: 'Exam Alerts', sub: 'Dates & deadlines 2026', route: '/exam-alerts', color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-100' },
+                { icon: '📜', label: 'PYQ Papers', sub: 'Previous year papers', route: '/pyq-papers', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-100' },
+                { icon: '🎯', label: 'Rank Predictor', sub: 'TNEA, NEET, JEE ranks', route: '/rank-predictor', color: 'text-sky-600', bg: 'bg-sky-50', border: 'border-sky-100' },
               ].map(tool => (
                 <button key={tool.label} onClick={() => navigate(tool.route)}
-                  className="bg-white rounded-xl p-3 border border-gray-200 hover:border-gray-400 transition-all text-center active:scale-[0.97]">
-                  <span className="text-lg">{tool.icon}</span>
-                  <p className={cn("text-[10px] font-bold mt-1", tool.color)}>{tool.label}</p>
+                  className={cn("bg-white rounded-2xl p-4 border-2 hover:shadow-md transition-all text-left active:scale-[0.97]", tool.border)}>
+                  <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-3", tool.bg)}>
+                    {tool.icon}
+                  </div>
+                  <p className={cn("text-sm font-bold", tool.color)}>{tool.label}</p>
+                  <p className="text-xs text-gray-500 mt-0.5 leading-snug">{tool.sub}</p>
                 </button>
               ))}
             </div>

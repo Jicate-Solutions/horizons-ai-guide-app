@@ -219,17 +219,17 @@ const ExamAlerts = () => {
                           <div className="flex items-center gap-2 flex-wrap mb-1">
                             <span className="text-sm">{event.emoji}</span>
                             <p className="text-sm font-bold text-gray-900">{event.examName}</p>
-                            <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full", cfg.bgLight, cfg.textColor)}>
+                            <span className={cn("text-xs font-bold px-2 py-0.5 rounded-full", cfg.bgLight, cfg.textColor)}>
                               {cfg.icon} {cfg.label}
                             </span>
                             {urgency && (
-                              <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full", urgency.color)}>
+                              <span className={cn("text-xs font-bold px-2 py-0.5 rounded-full", urgency.color)}>
                                 {urgency.label}
                               </span>
                             )}
                           </div>
                           <p className="text-xs text-gray-600">{event.description}</p>
-                          <p className="text-[10px] text-gray-400 mt-1">{event.displayDate}</p>
+                          <p className="text-xs text-gray-400 mt-1">{event.displayDate}</p>
                         </div>
                       </div>
                     </div>

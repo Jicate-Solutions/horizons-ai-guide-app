@@ -188,7 +188,7 @@ const SyllabusTracker = () => {
               <span className="text-xs font-bold text-gray-600">Overall Progress</span>
               <span className="text-lg font-black text-emerald-600">{stats?.pct}%</span>
             </div>
-            <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+            <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
               <div className="h-full bg-gradient-to-r from-emerald-500 to-green-400 rounded-full transition-all duration-500" style={{ width: `${stats?.pct || 0}%` }} />
             </div>
           </div>
@@ -203,7 +203,7 @@ const SyllabusTracker = () => {
             ] as const).map((s) => (
               <div key={s.label} className={cn("rounded-xl p-2 text-center", s.bg)}>
                 <p className={cn("text-lg font-bold", s.color)}>{s.val}</p>
-                <p className="text-[9px] text-gray-500">{s.label}</p>
+                <p className="text-[10px] text-gray-500">{s.label}</p>
               </div>
             ))}
           </div>
@@ -247,7 +247,7 @@ const SyllabusTracker = () => {
                 {isOpen && (
                   <div className="border-t border-gray-100 px-3 pb-3">
                     {/* Status legend */}
-                    <div className="flex items-center justify-center gap-4 py-2 text-[10px] text-gray-400">
+                    <div className="flex items-center justify-center gap-4 py-2 text-xs text-gray-400">
                       <span>Tap to change status:</span>
                       <span>📖 In Progress</span>
                       <span>✅ Done</span>
@@ -280,15 +280,15 @@ const SyllabusTracker = () => {
                                 {ch.name}
                               </p>
                               <div className="flex items-center gap-2 mt-0.5">
-                                {ch.class && <span className="text-[10px] text-gray-400">Class {ch.class}</span>}
-                                {ch.priority === 'high' && <span className="text-[10px] font-bold text-red-500">🔴 High Priority</span>}
-                                {ch.expectedQuestions && <span className="text-[10px] text-gray-400">~{ch.expectedQuestions}Q</span>}
-                                {revFlag && <span className="text-[10px] font-bold text-red-500 flex items-center gap-0.5"><AlertTriangle className="w-3 h-3" /> Revise!</span>}
+                                {ch.class && <span className="text-xs text-gray-400">Class {ch.class}</span>}
+                                {ch.priority === 'high' && <span className="text-xs font-bold text-red-500">🔴 High Priority</span>}
+                                {ch.expectedQuestions && <span className="text-xs text-gray-400">~{ch.expectedQuestions}Q</span>}
+                                {revFlag && <span className="text-xs font-bold text-red-500 flex items-center gap-0.5"><AlertTriangle className="w-3 h-3" /> Revise!</span>}
                               </div>
                             </div>
 
                             {/* Tap hint */}
-                            <span className="text-[9px] text-gray-300 flex-shrink-0">tap</span>
+                            <span className="text-[10px] text-gray-300 flex-shrink-0">tap</span>
                           </button>
                         );
                       })}
@@ -310,7 +310,7 @@ const SyllabusTracker = () => {
                           <div className="mt-3 pt-3 border-t border-gray-200">
                             <div className="flex items-center justify-between mb-3">
                               <p className="text-xs font-bold text-gray-700">📝 Quick Quiz — {sub.name}</p>
-                              <button onClick={() => setPracticeSubject(null)} className="text-[10px] text-gray-400 hover:text-gray-600">Close</button>
+                              <button onClick={() => setPracticeSubject(null)} className="text-xs text-gray-400 hover:text-gray-600">Close</button>
                             </div>
                             <PracticeQuestions questions={subjectQs} examName={`${exam!.examName} — ${sub.name}`} />
                           </div>

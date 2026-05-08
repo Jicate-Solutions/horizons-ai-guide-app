@@ -62,17 +62,17 @@ const TopicHub = () => {
 
           <div className="bg-white rounded-2xl p-4 border border-gray-200">
             <p className="text-base font-bold text-gray-900">{activeCh.name}</p>
-            {activeCh.class && <p className="text-[10px] text-gray-400 mt-0.5">Class {activeCh.class}</p>}
+            {activeCh.class && <p className="text-xs text-gray-400 mt-0.5">Class {activeCh.class}</p>}
             <div className="flex items-center gap-2 mt-3">
               <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div className="h-full bg-emerald-500 rounded-full transition-all" style={{width:`${(done/3)*100}%`}}/>
               </div>
-              <span className="text-[10px] font-bold text-gray-500">{done}/3</span>
+              <span className="text-xs font-bold text-gray-500">{done}/3</span>
             </div>
             <div className="flex gap-2 mt-2">
-              <span className={cn("text-[9px] px-2 py-0.5 rounded-full font-bold",p.studied?'bg-emerald-100 text-emerald-700':'bg-gray-100 text-gray-400')}>📖 {p.studied?'Studied':'Not studied'}</span>
-              <span className={cn("text-[9px] px-2 py-0.5 rounded-full font-bold",p.quizBest>0?'bg-emerald-100 text-emerald-700':'bg-gray-100 text-gray-400')}>📝 {p.quizBest>0?`Best ${p.quizBest}%`:'Not tested'}</span>
-              <span className={cn("text-[9px] px-2 py-0.5 rounded-full font-bold",p.pyqDone?'bg-emerald-100 text-emerald-700':'bg-gray-100 text-gray-400')}>📜 {p.pyqDone?'PYQ done':'PYQ pending'}</span>
+              <span className={cn("text-[11px] px-2 py-0.5 rounded-full font-bold",p.studied?'bg-emerald-100 text-emerald-700':'bg-gray-100 text-gray-400')}>📖 {p.studied?'Studied':'Not studied'}</span>
+              <span className={cn("text-[11px] px-2 py-0.5 rounded-full font-bold",p.quizBest>0?'bg-emerald-100 text-emerald-700':'bg-gray-100 text-gray-400')}>📝 {p.quizBest>0?`Best ${p.quizBest}%`:'Not tested'}</span>
+              <span className={cn("text-[11px] px-2 py-0.5 rounded-full font-bold",p.pyqDone?'bg-emerald-100 text-emerald-700':'bg-gray-100 text-gray-400')}>📜 {p.pyqDone?'PYQ done':'PYQ pending'}</span>
             </div>
           </div>
 
@@ -92,18 +92,18 @@ const TopicHub = () => {
           {/* Study tab */}
           {tab==='study' && chStudy && (
             <div className="space-y-3">
-              <div><p className="text-[10px] font-bold text-indigo-700 mb-1.5">🎯 Key Concepts</p>
-                <div className="space-y-1">{chStudy.keyConcepts.map((c,i)=>(<p key={i} className="text-[11px] text-gray-700 bg-indigo-50 rounded-lg px-3 py-2 leading-relaxed">• {c}</p>))}</div>
+              <div><p className="text-xs font-bold text-indigo-700 mb-1.5">🎯 Key Concepts</p>
+                <div className="space-y-1">{chStudy.keyConcepts.map((c,i)=>(<p key={i} className="text-xs text-gray-700 bg-indigo-50 rounded-lg px-3 py-2 leading-relaxed">• {c}</p>))}</div>
               </div>
               {chStudy.formulas && chStudy.formulas.length>0 && (
-                <div><p className="text-[10px] font-bold text-purple-700 mb-1">📝 Formulas</p>
-                  <div className="bg-purple-50 rounded-lg p-3 space-y-0.5">{chStudy.formulas.map((f,i)=>(<p key={i} className="text-[11px] font-mono text-purple-800">{f}</p>))}</div>
+                <div><p className="text-xs font-bold text-purple-700 mb-1">📝 Formulas</p>
+                  <div className="bg-purple-50 rounded-lg p-3 space-y-0.5">{chStudy.formulas.map((f,i)=>(<p key={i} className="text-xs font-mono text-purple-800">{f}</p>))}</div>
                 </div>
               )}
-              <div><p className="text-[10px] font-bold text-emerald-700 mb-1">📚 Books</p>
-                {chStudy.books.map((b,i)=>(<p key={i} className="text-[11px] text-gray-600">• {b}</p>))}
+              <div><p className="text-xs font-bold text-emerald-700 mb-1">📚 Books</p>
+                {chStudy.books.map((b,i)=>(<p key={i} className="text-xs text-gray-600">• {b}</p>))}
               </div>
-              <div className="bg-amber-50 rounded-lg p-3 border border-amber-200"><p className="text-[11px] text-amber-700">💡 {chStudy.tip}</p></div>
+              <div className="bg-amber-50 rounded-lg p-3 border border-amber-200"><p className="text-xs text-amber-700">💡 {chStudy.tip}</p></div>
               {!p.studied ? (
                 <button onClick={()=>{setP(activeCh.id,{studied:true});forceUpdate(n=>n+1);}}
                   className="w-full py-3 rounded-xl bg-indigo-600 text-white text-xs font-bold flex items-center justify-center gap-2 active:scale-[0.98]">
@@ -127,7 +127,7 @@ const TopicHub = () => {
                     className="w-full py-3.5 rounded-xl bg-violet-600 text-white text-sm font-bold flex items-center justify-center gap-2 active:scale-[0.98]">
                     <Zap className="w-4 h-4"/> Start Practice Test
                   </button>
-                  <p className="text-[10px] text-gray-400 text-center">Pick 5 / 10 / 20 / All questions on next screen</p>
+                  <p className="text-xs text-gray-400 text-center">Pick 5 / 10 / 20 / All questions on next screen</p>
                 </>
               ) : <p className="text-xs text-gray-400 text-center py-8">Practice questions coming soon.</p>}
             </div>
@@ -138,17 +138,17 @@ const TopicHub = () => {
             <div className="space-y-3">
               {chPYQ.length>0 ? (
                 <>
-                  <p className="text-[10px] font-bold text-gray-500">{chPYQ.length} Previous Year Questions</p>
+                  <p className="text-xs font-bold text-gray-500">{chPYQ.length} Previous Year Questions</p>
                   {chPYQ.map((q:any,i:number)=>{
                     const [show,setShow]=useState(false);
                     return (
                       <div key={i} className="bg-white rounded-xl p-4 border border-gray-200 space-y-2">
-                        <div className="flex items-center gap-2"><span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">{q.exam}</span><span className="text-[9px] text-gray-400">{q.year}</span></div>
+                        <div className="flex items-center gap-2"><span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">{q.exam}</span><span className="text-[11px] text-gray-400">{q.year}</span></div>
                         <p className="text-xs font-medium text-gray-800 leading-relaxed">{q.question}</p>
                         <div className="space-y-1">
-                          {q.options.map((o:string,j:number)=>(<p key={j} className={cn("text-[11px] px-3 py-1.5 rounded-lg",show&&j===q.answer?'bg-emerald-100 text-emerald-800 font-bold':'bg-gray-50 text-gray-600')}>{String.fromCharCode(65+j)}. {o}</p>))}
+                          {q.options.map((o:string,j:number)=>(<p key={j} className={cn("text-xs px-3 py-1.5 rounded-lg",show&&j===q.answer?'bg-emerald-100 text-emerald-800 font-bold':'bg-gray-50 text-gray-600')}>{String.fromCharCode(65+j)}. {o}</p>))}
                         </div>
-                        <button onClick={()=>setShow(!show)} className="text-[10px] font-bold text-violet-600">{show?'Hide Answer':'Show Answer'}</button>
+                        <button onClick={()=>setShow(!show)} className="text-xs font-bold text-violet-600">{show?'Hide Answer':'Show Answer'}</button>
                       </div>
                     );
                   })}
@@ -190,7 +190,7 @@ const TopicHub = () => {
                   <p className="text-xs text-gray-500">{total} chapters</p>
                   <div className="flex items-center gap-2 mt-1.5">
                     <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden"><div className="h-full bg-emerald-500 rounded-full" style={{width:`${total>0?(done/total)*100:0}%`}}/></div>
-                    <span className="text-[10px] font-bold text-gray-400">{done}/{total}</span>
+                    <span className="text-xs font-bold text-gray-400">{done}/{total}</span>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-gray-300"/>
@@ -235,8 +235,8 @@ const TopicHub = () => {
                   <div className="flex-1">
                     <p className="text-sm font-bold text-gray-900">{sub.name}</p>
                     <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-[10px] text-gray-500">{sub.chapters.length} ch</span>
-                      <span className="text-[10px] font-bold text-emerald-600">{subDone} done</span>
+                      <span className="text-xs text-gray-500">{sub.chapters.length} ch</span>
+                      <span className="text-xs font-bold text-emerald-600">{subDone} done</span>
                     </div>
                   </div>
                   {isOpen?<ChevronUp className="w-4 h-4 text-gray-400"/>:<ChevronDown className="w-4 h-4 text-gray-400"/>}
@@ -258,10 +258,10 @@ const TopicHub = () => {
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-800 leading-tight">{ch.name}</p>
                             <div className="flex items-center gap-2 mt-1 flex-wrap">
-                              <span className="text-[9px] text-gray-400">Class {ch.class}</span>
-                              {ch.priority==='high' && <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">HIGH</span>}
-                              {qbn>0 && <span className="text-[8px] font-bold text-violet-600">{qbn}Q</span>}
-                              {pyqn>0 && <span className="text-[8px] font-bold text-amber-600">{pyqn} PYQ</span>}
+                              <span className="text-[11px] text-gray-400">Class {ch.class}</span>
+                              {ch.priority==='high' && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">HIGH</span>}
+                              {qbn>0 && <span className="text-[10px] font-bold text-violet-600">{qbn}Q</span>}
+                              {pyqn>0 && <span className="text-[10px] font-bold text-amber-600">{pyqn} PYQ</span>}
                             </div>
                           </div>
                           <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0"/>

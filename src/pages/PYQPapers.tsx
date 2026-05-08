@@ -45,12 +45,12 @@ const PYQPapersPage = () => {
               <div key={i} className={cn("bg-white rounded-xl p-4 border", testAnswers[i] === q.a ? 'border-emerald-300' : 'border-red-300')}>
                 <p className="text-xs font-medium text-gray-800 mb-2">Q{i + 1}. {q.q}</p>
                 {q.o.map((opt, j) => (
-                  <p key={j} className={cn("text-[11px] px-3 py-1.5 rounded-lg mb-1",
+                  <p key={j} className={cn("text-xs px-3 py-1.5 rounded-lg mb-1",
                     j === q.a ? 'bg-emerald-100 text-emerald-800 font-bold' : j === testAnswers[i] && j !== q.a ? 'bg-red-100 text-red-700' : 'bg-gray-50 text-gray-600')}>
                     {String.fromCharCode(65 + j)}. {opt} {j === q.a ? '✓' : j === testAnswers[i] && j !== q.a ? '✗' : ''}
                   </p>
                 ))}
-                <p className="text-[10px] text-gray-500 mt-2 bg-gray-50 rounded-lg p-2">💡 {q.e}</p>
+                <p className="text-xs text-gray-500 mt-2 bg-gray-50 rounded-lg p-2">💡 {q.e}</p>
               </div>
             ))}
           </div>
@@ -68,16 +68,16 @@ const PYQPapersPage = () => {
           </div>
           <div className="bg-gradient-to-r from-violet-600 to-purple-700 rounded-2xl p-4 text-white">
             <p className="text-sm font-bold">{activePaper.exam} {activePaper.year} — {activeSubject}</p>
-            <p className="text-[10px] text-violet-200">{activePaper.date} | {activePaper.shift}</p>
+            <p className="text-xs text-violet-200">{activePaper.date} | {activePaper.shift}</p>
           </div>
           {sub.questions.map((q, i) => (
             <div key={i} className="bg-white rounded-xl p-4 border border-gray-200">
-              <p className="text-[10px] text-gray-400 mb-1">Question {i + 1} · {q.topic}</p>
+              <p className="text-xs text-gray-400 mb-1">Question {i + 1} · {q.topic}</p>
               <p className="text-xs font-medium text-gray-800 mb-3 leading-relaxed">{q.q}</p>
               <div className="space-y-1.5">
                 {q.o.map((opt, j) => (
                   <button key={j} onClick={() => setTestAnswers(p => ({ ...p, [i]: j }))}
-                    className={cn("w-full text-left text-[11px] px-3 py-2 rounded-lg border-2 transition-all",
+                    className={cn("w-full text-left text-xs px-3 py-2 rounded-lg border-2 transition-all",
                       testAnswers[i] === j ? 'border-violet-500 bg-violet-50 text-violet-800 font-bold' : 'border-gray-200 text-gray-600 hover:border-gray-400')}>
                     {String.fromCharCode(65 + j)}. {opt}
                   </button>
@@ -114,8 +114,8 @@ const PYQPapersPage = () => {
                 { l: 'Level', v: activePaper.difficulty },
               ].map(item => (
                 <div key={item.l} className="bg-white/10 rounded-lg p-2 text-center">
-                  <p className="text-[9px] text-gray-400">{item.l}</p>
-                  <p className="text-[11px] font-bold">{item.v}</p>
+                  <p className="text-[11px] text-gray-400">{item.l}</p>
+                  <p className="text-xs font-bold">{item.v}</p>
                 </div>
               ))}
             </div>
@@ -147,21 +147,21 @@ const PYQPapersPage = () => {
           {activeSubject && activePaper.subjects.find(s => s.name === activeSubject)?.questions.map((q, i) => (
             <div key={i} className="bg-white rounded-xl p-4 border border-gray-200 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Q{i + 1}</span>
-                <span className="text-[9px] text-gray-400">{q.topic}</span>
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Q{i + 1}</span>
+                <span className="text-[11px] text-gray-400">{q.topic}</span>
               </div>
               <p className="text-xs font-medium text-gray-800 leading-relaxed">{q.q}</p>
               <div className="space-y-1">
                 {q.o.map((opt, j) => (
-                  <p key={j} className={cn("text-[11px] px-3 py-1.5 rounded-lg",
+                  <p key={j} className={cn("text-xs px-3 py-1.5 rounded-lg",
                     showAnswers[i] && j === q.a ? 'bg-emerald-100 text-emerald-800 font-bold' : 'bg-gray-50 text-gray-600')}>
                     {String.fromCharCode(65 + j)}. {opt}
                   </p>
                 ))}
               </div>
               <button onClick={() => setShowAnswers(p => ({ ...p, [i]: !p[i] }))}
-                className="text-[10px] font-bold text-violet-600">{showAnswers[i] ? 'Hide' : 'Show Answer & Explanation'}</button>
-              {showAnswers[i] && <p className="text-[10px] text-gray-500 bg-gray-50 rounded-lg p-2.5">💡 {q.e}</p>}
+                className="text-xs font-bold text-violet-600">{showAnswers[i] ? 'Hide' : 'Show Answer & Explanation'}</button>
+              {showAnswers[i] && <p className="text-xs text-gray-500 bg-gray-50 rounded-lg p-2.5">💡 {q.e}</p>}
             </div>
           ))}
 
@@ -197,7 +197,7 @@ const PYQPapersPage = () => {
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white font-black text-sm">{year}</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold text-gray-900">{selExam} {year} Question Paper</p>
-                    <p className="text-[10px] text-gray-500">{yearPapers.length} paper{yearPapers.length > 1 ? 's' : ''} · With answer key & solutions</p>
+                    <p className="text-xs text-gray-500">{yearPapers.length} paper{yearPapers.length > 1 ? 's' : ''} · With answer key & solutions</p>
                   </div>
                   {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                 </button>
@@ -209,7 +209,7 @@ const PYQPapersPage = () => {
                         <FileText className="w-5 h-5 text-indigo-500 flex-shrink-0" />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
-                          <div className="flex items-center gap-2 mt-0.5 text-[9px] text-gray-500">
+                          <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500">
                             <span>{paper.session} Session</span>
                             <span>·</span>
                             <span>{paper.totalQuestions}Q</span>
@@ -249,7 +249,7 @@ const PYQPapersPage = () => {
             <div className="flex-1">
               <p className="text-base font-bold text-gray-900">{examName}</p>
               <p className="text-xs text-gray-500">{data.years.join(', ')}</p>
-              <p className="text-[10px] text-indigo-600 font-bold mt-1">{data.totalPapers} papers · With solutions</p>
+              <p className="text-xs text-indigo-600 font-bold mt-1">{data.totalPapers} papers · With solutions</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300" />
           </button>
