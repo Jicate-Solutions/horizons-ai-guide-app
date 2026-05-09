@@ -33,7 +33,7 @@ export const pyqPapers: PYQPaper[] = [
 {
   id: 'neet-2025', exam: 'NEET UG', year: 2025, session: 'May', date: 'May 4, 2025', shift: 'Single Shift',
   difficulty: 'Moderate to Difficult', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
-
+  pdfUrl: '/pyq-pdfs/neet-2025.pdf',
   subjects: [
     { name: 'Physics', questions: [
       {q:'A microscope has objective f=2 cm, eyepiece f=4 cm, tube length 40 cm, distance of distinct vision 25 cm. Magnification is:',o:['100','125','150','250'],a:1,e:'M = (L/f_o)(D/f_e) = (40/2)(25/4) = 20 × 6.25 = 125.',topic:'Ray Optics'},
