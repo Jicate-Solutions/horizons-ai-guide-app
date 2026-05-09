@@ -29,11 +29,19 @@ export interface PYQPaper {
 
 export const pyqPapers: PYQPaper[] = [
 
-// ═══ NEET 2026 ═══
+// ═══ NEET 2026 — Code 11 ═══
 {
-  id: 'neet-2026', exam: 'NEET UG', year: 2026, session: 'May', date: 'May 3, 2026', shift: 'Single Shift',
+  id: 'neet-2026-code-11', exam: 'NEET UG', year: 2026, session: 'May', date: 'May 3, 2026', shift: 'Code 11',
   difficulty: 'Moderate', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
-  pdfUrl: '/pyq-pdfs/neet-2026.pdf',
+  pdfUrl: '/pyq-pdfs/neet-2026-code-11.pdf',
+  subjects: [],
+},
+
+// ═══ NEET 2026 — Code 12 ═══
+{
+  id: 'neet-2026-code-12', exam: 'NEET UG', year: 2026, session: 'May', date: 'May 3, 2026', shift: 'Code 12',
+  difficulty: 'Moderate', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/neet-2026-code-12.pdf',
   subjects: [],
 },
 
