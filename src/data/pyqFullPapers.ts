@@ -29,6 +29,14 @@ export interface PYQPaper {
 
 export const pyqPapers: PYQPaper[] = [
 
+// ═══ NEET 2026 ═══
+{
+  id: 'neet-2026', exam: 'NEET UG', year: 2026, session: 'May', date: 'May 3, 2026', shift: 'Single Shift',
+  difficulty: 'Moderate', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/neet-2026.pdf',
+  subjects: [],
+},
+
 // ═══ NEET 2025 ═══
 {
   id: 'neet-2025', exam: 'NEET UG', year: 2025, session: 'May', date: 'May 4, 2025', shift: 'Single Shift',
