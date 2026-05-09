@@ -49,7 +49,7 @@ const TopBar = () => {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link to="/admin/monitor">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center font-serif font-bold text-white text-sm" style={{backgroundColor: '#ea580c'}}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center font-serif font-bold text-white text-sm" style={{backgroundColor: '#d4a017'}}>
               வ
             </div>
           </Link>
@@ -116,7 +116,7 @@ const TopBar = () => {
           
           <Button 
             size="sm" 
-            className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium text-xs h-8 sm:h-9 px-3 sm:px-4 rounded-full shadow-md shadow-orange-500/20 transition-all duration-300 hover:shadow-lg"
+            className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium text-xs h-8 sm:h-9 px-3 sm:px-4 rounded-full shadow-md shadow-yellow-500/20 transition-all duration-300 hover:shadow-lg"
             onClick={openChat}
           >
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
