@@ -8,6 +8,8 @@ const PYQPapersPage = () => {
   const navigate = useNavigate();
   const [selExam, setSelExam] = useState<string | null>(null);
   const [selYear, setSelYear] = useState<number | null>(null);
+  // Active session tab per year, e.g. { 2024: 'January' }. Defaults to the first session for that year.
+  const [sessionByYear, setSessionByYear] = useState<Record<number, string>>({});
   const [activePaper, setActivePaper] = useState<PYQPaper | null>(null);
   const [activeSubject, setActiveSubject] = useState<string | null>(null);
   const [showAnswers, setShowAnswers] = useState<Record<number, boolean>>({});
@@ -198,6 +200,23 @@ const PYQPapersPage = () => {
           {years.map(year => {
             const yearPapers = papers.filter(p => p.year === year);
             const isOpen = selYear === year;
+
+            // Sessions for this year, ordered by calendar month then alphabetical
+            const monthOrder: Record<string, number> = {
+              January: 1, February: 2, March: 3, April: 4, May: 5, June: 6,
+              July: 7, August: 8, September: 9, October: 10, November: 11, December: 12,
+            };
+            const sessions = [...new Set(yearPapers.map(p => p.session))].sort((a, b) => {
+              const oa = monthOrder[a] ?? 99;
+              const ob = monthOrder[b] ?? 99;
+              return oa - ob || a.localeCompare(b);
+            });
+            const hasTabs = sessions.length > 1;
+            const activeSession = sessionByYear[year] ?? sessions[0];
+            const visiblePapers = hasTabs
+              ? yearPapers.filter(p => p.session === activeSession)
+              : yearPapers;
+
             return (
               <div key={year} className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
                 <button onClick={() => setSelYear(isOpen ? null : year)}
@@ -205,49 +224,81 @@ const PYQPapersPage = () => {
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white font-black text-sm">{year}</div>
                   <div className="flex-1">
                     <p className="text-sm font-bold text-gray-900">{selExam} {year} Question Paper</p>
-                    <p className="text-xs text-gray-500">{yearPapers.length} paper{yearPapers.length > 1 ? 's' : ''} · With answer key & solutions</p>
+                    <p className="text-xs text-gray-500">
+                      {yearPapers.length} paper{yearPapers.length > 1 ? 's' : ''}
+                      {hasTabs ? ` · ${sessions.join(' / ')} sessions` : ''} · With answer key & solutions
+                    </p>
                   </div>
                   {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                 </button>
                 {isOpen && (
-                  <div className="border-t border-gray-100 px-3 pb-3 pt-2 space-y-2">
-                    {yearPapers.map(paper => (
-                      paper.pdfUrl ? (
-                        <a key={paper.id} href={paper.pdfUrl} target="_blank" rel="noopener noreferrer"
-                          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border-2 border-emerald-300 bg-emerald-50/60 hover:bg-emerald-50 hover:border-emerald-500 text-left transition-all active:scale-[0.98]">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
-                            <FileDown className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
-                            <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500 flex-wrap">
-                              <span>{paper.session} Session</span>
-                              <span>·</span>
-                              <span>{paper.totalQuestions}Q · {paper.totalMarks} marks</span>
-                              <span>·</span>
-                              <span className="font-bold text-emerald-700">📄 Full PDF + Answer Key</span>
+                  <div className="border-t border-gray-100 px-3 pb-3 pt-3 space-y-3">
+                    {hasTabs && (
+                      <>
+                        <div className="flex gap-2 overflow-x-auto -mx-1 px-1 pb-1">
+                          {sessions.map(s => {
+                            const active = s === activeSession;
+                            return (
+                              <button
+                                key={s}
+                                onClick={() => setSessionByYear(prev => ({ ...prev, [year]: s }))}
+                                className={cn(
+                                  "px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all",
+                                  active
+                                    ? "bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow"
+                                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                )}
+                              >
+                                {s}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        <p className="text-xs font-bold text-gray-700 px-1">
+                          Download {selExam} {year} ({activeSession}) Previous Year Question Papers as PDF
+                        </p>
+                      </>
+                    )}
+
+                    <div className="space-y-2">
+                      {visiblePapers.map(paper => (
+                        paper.pdfUrl ? (
+                          <a key={paper.id} href={paper.pdfUrl} target="_blank" rel="noopener noreferrer"
+                            className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border-2 border-emerald-300 bg-emerald-50/60 hover:bg-emerald-50 hover:border-emerald-500 text-left transition-all active:scale-[0.98]">
+                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
+                              <FileDown className="w-5 h-5 text-white" />
                             </div>
-                          </div>
-                          <ExternalLink className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                        </a>
-                      ) : (
-                        <button key={paper.id} onClick={() => setActivePaper(paper)}
-                          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-gray-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-left transition-all active:scale-[0.98]">
-                          <FileText className="w-5 h-5 text-indigo-500 flex-shrink-0" />
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
-                            <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500">
-                              <span>{paper.session} Session</span>
-                              <span>·</span>
-                              <span>{paper.totalQuestions}Q</span>
-                              <span>·</span>
-                              <span className={cn("font-bold", paper.difficulty.includes('Easy') ? 'text-emerald-600' : paper.difficulty.includes('Difficult') ? 'text-red-600' : 'text-amber-600')}>{paper.difficulty}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
+                              <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500 flex-wrap">
+                                <span>{paper.session} Session</span>
+                                <span>·</span>
+                                <span>{paper.totalQuestions}Q · {paper.totalMarks} marks</span>
+                                <span>·</span>
+                                <span className="font-bold text-emerald-700">📄 Full PDF + Answer Key</span>
+                              </div>
                             </div>
-                          </div>
-                          <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                        </button>
-                      )
-                    ))}
+                            <ExternalLink className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          </a>
+                        ) : (
+                          <button key={paper.id} onClick={() => setActivePaper(paper)}
+                            className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-gray-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-left transition-all active:scale-[0.98]">
+                            <FileText className="w-5 h-5 text-indigo-500 flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
+                              <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500">
+                                <span>{paper.session} Session</span>
+                                <span>·</span>
+                                <span>{paper.totalQuestions}Q</span>
+                                <span>·</span>
+                                <span className={cn("font-bold", paper.difficulty.includes('Easy') ? 'text-emerald-600' : paper.difficulty.includes('Difficult') ? 'text-red-600' : 'text-amber-600')}>{paper.difficulty}</span>
+                              </div>
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                          </button>
+                        )
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
