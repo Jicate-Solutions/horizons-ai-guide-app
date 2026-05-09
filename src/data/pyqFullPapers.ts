@@ -72,7 +72,7 @@ export const pyqPapers: PYQPaper[] = [
 {
   id: 'neet-2024', exam: 'NEET UG', year: 2024, session: 'May', date: 'May 5, 2024', shift: 'Single Shift',
   difficulty: 'Moderate', totalQuestions: 200, totalMarks: 720, duration: '3 hours 20 min',
-
+  pdfUrl: '/pyq-pdfs/neet-2024.pdf',
   subjects: [
     { name: 'Physics', questions: [
       {q:'A tightly wound 100-turn coil of radius 10 cm carries a current of 7 A. The magnitude of the magnetic field at the centre is (μ₀ = 4π × 10⁻⁷):',o:['4.4 mT','44 T','44 mT','4.4 T'],a:3,e:'B = μ₀NI/2R = (4π×10⁻⁷)(100)(7)/(2×0.10) ≈ 4.4 × 10⁻³ T = 4.4 mT.',topic:'Magnetic Effects of Current'},
