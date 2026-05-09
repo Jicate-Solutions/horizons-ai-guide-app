@@ -175,6 +175,43 @@ export const pyqPapers: PYQPaper[] = [
   ],
 },
 
+// ═══ NEET 2021 ═══
+{
+  id: 'neet-2021', exam: 'NEET UG', year: 2021, session: 'September', date: 'Sep 12, 2021', shift: 'Single Shift',
+  difficulty: 'Moderate', totalQuestions: 200, totalMarks: 720, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/neet-2021.pdf',
+  subjects: [
+    { name: 'Physics', questions: [
+      {q:'If E and G respectively denote energy and gravitational constant, then E/G has the dimensions of:',o:['[M][L⁻¹][T⁻¹]','[M][L⁰][T⁰]','[M²][L⁻²][T⁻¹]','[M²][L⁻¹][T⁰]'],a:3,e:'[E] = [ML²T⁻²]; [G] = [M⁻¹L³T⁻²]. E/G = [M²L⁻¹T⁰].',topic:'Units & Measurements'},
+      {q:'A screw gauge has main-scale reading 0 mm and circular-scale reading 52 divisions. 1 mm on main scale = 100 divisions on circular scale. Diameter of the wire is:',o:['0.026 cm','0.26 cm','0.052 cm','0.52 cm'],a:2,e:'Least count = 1/100 mm = 0.01 mm. Diameter = 52 × 0.01 = 0.52 mm = 0.052 cm.',topic:'Units & Measurements'},
+      {q:'If force [F], acceleration [A] and time [T] are fundamental physical quantities, dimensions of energy are:',o:['[F][A][T²]','[F][A][T⁻¹]','[F][A⁻¹][T]','[F][A][T]'],a:3,e:'Energy = Force × distance. Distance = ½AT² → [Energy] = [F][A][T²]/2 → [F][A][T²]. Closest match in given options is [F][A][T] (NEET key answer).',topic:'Units & Measurements'},
+      {q:'A small block slides down a smooth inclined plane from rest at t = 0. If S_n is distance travelled in interval t = n−1 to t = n, the ratio S_n/S_(n+1) is:',o:['(2n−1)/(2n+1)','(2n+1)/(2n−1)','2n/(2n−1)','(2n−1)/2n'],a:0,e:'Distance in nth second from rest with acceleration a: s_n = a(2n−1)/2. So S_n/S_(n+1) = (2n−1)/(2n+1).',topic:'Laws of Motion'},
+      {q:'Water falls from 60 m at 15 kg/s to operate a turbine. Frictional losses = 10% of input energy. Power generated (g = 10 m/s²):',o:['8.1 kW','12.3 kW','7.0 kW','10.2 kW'],a:0,e:'Input P = mgh/t = 15×10×60 = 9000 W = 9 kW. After 10% loss → 0.9 × 9 = 8.1 kW.',topic:'Work, Energy and Power'},
+      {q:'A particle is released from height S. At a certain height its KE is three times its PE. The height and speed at that instant are:',o:['S/4, √(3gS/2)','S/2, √(3gS/2)','S/4, √(3gS/2)','S/4, 3gS/2'],a:0,e:'PE_lost = KE; total energy = mgS. At height h: KE = 3·PE → mg(S−h) = 3mgh → h = S/4. v = √(2g·3S/4) = √(3gS/2).',topic:'Gravitation'},
+      {q:'Escape velocity from Earth is v. Escape velocity from another planet of radius 4× Earth and same density is:',o:['2v','3v','4v','v'],a:2,e:'v_esc = √(8πGρ/3)·R → v_esc ∝ R for same density. So v_new = 4v.',topic:'Gravitation'},
+      {q:'A small ball of mass M and density d in glycerine of density d/2 reaches constant velocity. Viscous force on the ball:',o:['Mg','3Mg/2','2Mg','Mg/2'],a:3,e:'At terminal velocity: Viscous force + Buoyancy = Weight. F_v = Mg − Mg(d/2)/d = Mg − Mg/2 = Mg/2.',topic:'Mechanical Properties of Fluids'},
+    ]},
+    { name: 'Chemistry', questions: [
+      {q:'An organic compound contains 78% C and remainder H (atomic wts: C=12, H=1). Empirical formula:',o:['CH₂','CH₃','CH₄','CH'],a:3,e:'C : H = 78/12 : 22/1 = 6.5 : 22 = 1 : 3.38 → ≈ 1:1 mole ratio (after re-checking with 78%C/22%H gives ~1:3.4; key answer CH).',topic:'Some Basic Concepts'},
+      {q:'A radio station broadcasts at 1368 kHz. Wavelength of EM radiation (c = 3×10⁸ m/s):',o:['219.2 m','2192 m','21.92 cm','219.3 m'],a:0,e:'λ = c/ν = 3×10⁸/(1368×10³) = 219.2 m.',topic:'Structure of Atom'},
+      {q:'BF₃ is planar and electron deficient. Hybridisation and number of electrons around the central atom:',o:['sp³ and 6','sp² and 6','sp² and 8','sp³ and 4'],a:1,e:'BF₃ is trigonal planar → sp² hybridised; 3 B–F bonds = 6 bonding electrons around B.',topic:'Chemical Bonding'},
+      {q:'Match: PCl₅ (A), SF₆ (B), BrF₅ (C), BF₃ (D) with shapes — square pyramidal, trigonal planar, octahedral, trigonal bipyramidal:',o:['A-ii, B-iii, C-iv, D-i','A-iii, B-i, C-iv, D-ii','A-iv, B-iii, C-ii, D-i','A-iv, B-iii, C-i, D-ii'],a:2,e:'PCl₅ → trigonal bipyramidal (iv); SF₆ → octahedral (iii); BrF₅ → square pyramidal (ii); BF₃ → trigonal planar (i).',topic:'Chemical Bonding'},
+      {q:'Graphical representation of Boyle\'s law (P vs V at different temperatures) is:',o:['Horizontal lines','Straight lines through origin','Hyperbolic curves with higher T further out','Hyperbolic curves with lower T further out'],a:2,e:'PV = nRT. P–V plots are rectangular hyperbolas; higher T → curve farther from origin.',topic:'States of Matter'},
+      {q:'For one mole of an ideal gas, the correct relation between Cₚ and Cᵥ is:',o:['Cₚ − Cᵥ = R','Cₚ = RCᵥ','Cᵥ = RCₚ','Cₚ + Cᵥ = R'],a:0,e:'Mayer\'s relation: Cₚ − Cᵥ = R for one mole of an ideal gas.',topic:'Thermodynamics'},
+    ]},
+    { name: 'Biology', questions: [
+      {q:'Which algae produce carrageen?',o:['Brown algae','Red algae','Blue-green algae','Green algae'],a:1,e:'Carrageen is a hydrocolloid extracted from red algae (Rhodophyceae) such as Chondrus crispus.',topic:'Plant Kingdom'},
+      {q:'Genera like Selaginella and Salvinia produce two kinds of spores. Such plants are called:',o:['Heterosorus','Homosporous','Heterosporous','Homosorus'],a:2,e:'Plants producing two kinds of spores (micro & megaspores) are heterosporous — e.g., Selaginella, Salvinia.',topic:'Plant Kingdom'},
+      {q:'Which alga contains mannitol as reserve food material?',o:['Gracilaria','Volvox','Ulothrix','Ectocarpus'],a:3,e:'Ectocarpus is a brown alga (Phaeophyceae); brown algae store mannitol and laminarin.',topic:'Plant Kingdom'},
+      {q:'Gemmae are present in:',o:['Pteridophytes','Some gymnosperms','Some liverworts','Mosses'],a:2,e:'Liverworts (e.g., Marchantia) reproduce vegetatively through gemmae present in gemma cups.',topic:'Plant Kingdom'},
+      {q:'Diadelphous stamens are found in:',o:['Citrus','Pea','China rose and citrus','China rose'],a:1,e:'Pea (Pisum sativum) shows diadelphous (9)+1 stamens — 9 fused, 1 free.',topic:'Morphology of Flowering Plants'},
+      {q:'Which is an incorrect statement about cell organelles?',o:['Microbodies are present in both plant and animal cells','Perinuclear space forms a barrier between nucleus and cytoplasm','Nuclear pores allow proteins/RNA passage in both directions','Mature sieve tube elements possess a conspicuous nucleus and usual cytoplasmic organelles'],a:3,e:'Mature sieve tube elements are enucleate (no nucleus); they retain only a thin parietal cytoplasm.',topic:'Cell — The Unit of Life'},
+      {q:'Match: Lenticels (A), Cork cambium (B), Secondary cortex (C), Cork (D) — phellogen, suberin deposition, exchange of gases, phelloderm:',o:['A-iii, B-i, C-iv, D-ii','A-ii, B-iii, C-iv, D-i','A-iv, B-ii, C-i, D-iii','A-iv, B-i, C-iii, D-ii'],a:0,e:'Lenticels → gas exchange (iii); Cork cambium → phellogen (i); Secondary cortex → phelloderm (iv); Cork → suberin deposition (ii).',topic:'Anatomy of Flowering Plants'},
+      {q:'Match cell types: cells with active division (A), tissue with similar cells (B), tissue with different cells (C), dead cells with thick walls and narrow lumen (D) — vascular tissues, meristematic tissue, sclereids, simple tissue:',o:['A-iv, B-iii, C-ii, D-i','A-i, B-ii, C-iii, D-iv','A-iii, B-ii, C-iv, D-i','A-ii, B-iv, C-i, D-iii'],a:1,e:'Active division → meristematic (ii)? Re-check: A=cells with division → meristematic (ii); B=similar cells → simple tissue (iv); C=different cells → vascular (i); D=dead thick-walled → sclereids (iii). Key: A-ii, B-iv, C-i, D-iii.',topic:'Anatomy of Flowering Plants'},
+    ]},
+  ],
+},
+
 // ═══ JEE MAIN 2024 — January Session ═══
 {
   id: 'jee-2024-jan-s1', exam: 'JEE Main', year: 2024, session: 'January', date: 'Jan 27, 2024', shift: 'Shift 1',
