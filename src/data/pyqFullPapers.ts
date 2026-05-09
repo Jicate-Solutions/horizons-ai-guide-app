@@ -433,6 +433,30 @@ export const pyqPapers: PYQPaper[] = [
   subjects: [],
 },
 
+// ═══ JEE MAIN 2024 — 04 Apr Shift 1 (Full PDF) ═══
+{
+  id: 'jee-2024-apr-04-s1', exam: 'JEE Main', year: 2024, session: 'April', date: 'Apr 4, 2024', shift: 'Shift 1',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2024-apr-04-shift-1.pdf',
+  subjects: [],
+},
+
+// ═══ JEE MAIN 2024 — 04 Apr Shift 2 (Full PDF) ═══
+{
+  id: 'jee-2024-apr-04-s2', exam: 'JEE Main', year: 2024, session: 'April', date: 'Apr 4, 2024', shift: 'Shift 2',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2024-apr-04-shift-2.pdf',
+  subjects: [],
+},
+
+// ═══ JEE MAIN 2024 — 05 Apr Shift 1 (Full PDF) ═══
+{
+  id: 'jee-2024-apr-05-s1', exam: 'JEE Main', year: 2024, session: 'April', date: 'Apr 5, 2024', shift: 'Shift 1',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2024-apr-05-shift-1.pdf',
+  subjects: [],
+},
+
 // ═══ JEE MAIN 2023 — January ═══
 {
   id: 'jee-2023-jan-s1', exam: 'JEE Main', year: 2023, session: 'January', date: 'Jan 24, 2023', shift: 'Shift 1',
