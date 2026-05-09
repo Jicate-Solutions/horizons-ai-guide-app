@@ -342,7 +342,8 @@ export const pyqPapers: PYQPaper[] = [
 // ═══ JEE MAIN 2024 — January Shift 2 ═══
 {
   id: 'jee-2024-jan-s2', exam: 'JEE Main', year: 2024, session: 'January', date: 'Jan 27, 2024', shift: 'Shift 2',
-  difficulty: 'Easy to Moderate', totalQuestions: 75, totalMarks: 300, duration: '3 hours',
+  difficulty: 'Easy to Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2024-jan-27-shift-2.pdf',
   subjects: [
     { name: 'Physics', questions: [
       {q:'Work done by centripetal force:',o:['Positive','Negative','Zero','Depends on speed'],a:2,e:'Centripetal force ⊥ displacement → W = Fd cos90° = 0.',topic:'Circular Motion'},
