@@ -212,6 +212,22 @@ export const pyqPapers: PYQPaper[] = [
   ],
 },
 
+// ═══ NEET 2020 ═══
+{
+  id: 'neet-2020', exam: 'NEET UG', year: 2020, session: 'September', date: 'Sep 13, 2020', shift: 'Single Shift',
+  difficulty: 'Moderate', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/neet-2020.pdf',
+  subjects: [],
+},
+
+// ═══ NEET 2019 ═══
+{
+  id: 'neet-2019', exam: 'NEET UG', year: 2019, session: 'May', date: 'May 5, 2019', shift: 'Single Shift',
+  difficulty: 'Moderate', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/neet-2019.pdf',
+  subjects: [],
+},
+
 // ═══ JEE MAIN 2024 — January Session ═══
 {
   id: 'jee-2024-jan-s1', exam: 'JEE Main', year: 2024, session: 'January', date: 'Jan 27, 2024', shift: 'Shift 1',
