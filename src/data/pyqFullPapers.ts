@@ -310,6 +310,7 @@ export const pyqPapers: PYQPaper[] = [
 {
   id: 'jee-2024-jan-s1', exam: 'JEE Main', year: 2024, session: 'January', date: 'Jan 27, 2024', shift: 'Shift 1',
   difficulty: 'Moderate', totalQuestions: 75, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2024-jan-27-shift-1.pdf',
   subjects: [
     { name: 'Physics', questions: [
       {q:'A ball dropped from height h bounces to h/2. Coefficient of restitution:',o:['1','1/√2','1/2','√2'],a:1,e:'e = √(h₂/h₁) = √(h/2h) = 1/√2.',topic:'COM'},
