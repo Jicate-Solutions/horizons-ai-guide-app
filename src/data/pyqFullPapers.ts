@@ -140,6 +140,41 @@ export const pyqPapers: PYQPaper[] = [
   ],
 },
 
+// ═══ NEET 2022 ═══
+{
+  id: 'neet-2022', exam: 'NEET UG', year: 2022, session: 'July', date: 'July 17, 2022', shift: 'Single Shift',
+  difficulty: 'Moderate', totalQuestions: 200, totalMarks: 720, duration: '3 hours 20 min',
+  pdfUrl: '/pyq-pdfs/neet-2022.pdf',
+  subjects: [
+    { name: 'Physics', questions: [
+      {q:'Plane angle and solid angle have:',o:['Both units and dimensions','Units but no dimensions','Dimensions but no units','No units and no dimensions'],a:1,e:'Plane angle (rad) and solid angle (sr) have units but no dimensions.',topic:'Units & Measurements'},
+      {q:'The dimension [MLT⁻²A⁻²] belongs to:',o:['Electric permittivity','Magnetic flux','Self inductance','Magnetic permeability'],a:3,e:'Magnetic permeability μ₀ has dimensions [MLT⁻²A⁻²].',topic:'Units & Measurements'},
+      {q:'Ratio of distance traveled by a freely falling body in 1st, 2nd, 3rd and 4th seconds:',o:['1:1:1:1','1:2:3:4','1:4:9:16','1:3:5:7'],a:3,e:'Distance in nth second = u + a(2n−1)/2. For free fall: ratio is 1:3:5:7 (odd numbers).',topic:'Motion in a Straight Line'},
+      {q:'A 100 kW transmitter ideally radiates energy in 1 hour:',o:['1×10⁵ J','36×10⁷ J','36×10⁴ J','36×10⁵ J'],a:1,e:'E = P × t = 100×10³ × 3600 = 3.6×10⁸ = 36×10⁷ J.',topic:'Work, Energy & Power'},
+      {q:'Angular speed of a flywheel changes from 1200 rpm to 3120 rpm in 16 s. Angular acceleration in rad/s²:',o:['104π','2π','4π','12π'],a:1,e:'α = (ω₂−ω₁)/t = 2π(3120−1200)/(60×16) = 2π rad/s².',topic:'Rotational Motion'},
+      {q:'Two objects 10 kg and 20 kg at the ends of a 10 m rod (negligible mass). Distance of COM from the 10 kg mass:',o:['5 m','10/3 m','20/3 m','10 m'],a:2,e:'x_cm = (10×0 + 20×10)/(10+20) = 200/30 = 20/3 m.',topic:'System of Particles'},
+    ]},
+    { name: 'Chemistry', questions: [
+      {q:'Mass of 95% pure CaCO₃ required to neutralise 50 mL of 0.5 M HCl:',o:['9.50 g','1.25 g','1.32 g','3.66 g'],a:2,e:'Moles HCl = 0.025; CaCO₃ needed = 0.0125 mol = 1.25 g pure → 1.25/0.95 ≈ 1.32 g of 95% pure sample.',topic:'Some Basic Concepts'},
+      {q:'IUPAC name of the element with atomic number 119:',o:['Ununcotium','Ununennium','Unnilennium','Unununnium'],a:1,e:'Z=119 → un-un-enn-ium = Ununennium (digits 1-1-9).',topic:'Periodic Classification'},
+      {q:'Among XeF₂, ClF₃, IF₅, SF₄ — which has maximum lone pair–lone pair repulsion?',o:['XeF₂','ClF₃','IF₅','SF₄'],a:0,e:'XeF₂ is linear with 3 lone pairs in the equatorial plane — maximum lp–lp repulsion.',topic:'Chemical Bonding'},
+      {q:'pH of a buffer containing 50 mL each of 0.10 M sodium acetate and 0.01 M acetic acid (pKa = 4.57):',o:['2.57','5.57','3.57','4.57'],a:1,e:'Henderson–Hasselbalch: pH = pKa + log([salt]/[acid]) = 4.57 + log(10) = 5.57.',topic:'Equilibrium'},
+      {q:'Lithium is the strongest reducing agent among alkali metals because of:',o:['Low ionisation energy','Highest hydration enthalpy','Smallest size','Highest electron affinity'],a:1,e:'Despite high IE, Li⁺ has very high hydration enthalpy → most negative E° → strongest reducing agent in aqueous solution.',topic:'s-Block Elements'},
+      {q:'Which is incorrect? (a) O₂⁺ diamagnetic (b) Bond orders of O₂⁺, O₂, O₂⁻, O₂²⁻ are 2.5, 2, 1.5, 1 (c) C₂ has 4 e⁻ in 2 degenerate π MOs (d) H₂⁺ has one electron:',o:['a','b','c','d'],a:0,e:'O₂⁺ has one unpaired electron → paramagnetic, not diamagnetic.',topic:'Chemical Bonding'},
+    ]},
+    { name: 'Biology', questions: [
+      {q:'Which of the following is incorrectly matched?',o:['Volvox – Starch','Ectocarpus – Fucoxanthin','Ulothrix – Mannitol','Porphyra – Floridean starch'],a:2,e:'Ulothrix (green alga) stores starch, not mannitol. Mannitol is the storage product of Phaeophyceae.',topic:'Plant Kingdom'},
+      {q:'Hydrocolloid carrageen is obtained from:',o:['Phaeophyceae only','Chlorophyceae and Phaeophyceae','Phaeophyceae and Rhodophyceae','Rhodophyceae only'],a:3,e:'Carrageen is obtained from red algae (Rhodophyceae) such as Chondrus.',topic:'Plant Kingdom'},
+      {q:'Plant showing vexillary aestivation and diadelphous stamens:',o:['Solanum nigrum','Colchicum autumnale','Pisum sativum','Allium cepa'],a:2,e:'Pea (Pisum sativum, family Fabaceae) shows vexillary aestivation and (9)+1 diadelphous stamens.',topic:'Morphology of Flowering Plants'},
+      {q:'Which is NOT a method of ex situ conservation?',o:['Cryopreservation','In vitro fertilization','National Parks','Micropropagation'],a:2,e:'National Parks are in-situ (within natural habitat). Cryopreservation, IVF, micropropagation are ex-situ.',topic:'Biodiversity'},
+      {q:'Device that removes particulate matter from thermal power plant exhaust:',o:['Catalytic converter','STP','Incinerator','Electrostatic precipitator'],a:3,e:'Electrostatic precipitator removes >99% of particulates from flue gas using charged plates.',topic:'Environmental Issues'},
+      {q:'Taxonomic categories in correct ascending order:',o:['Kingdom, Order, Phylum, Class, Family, Genus, Species','Kingdom, Phylum, Class, Order, Family, Genus, Species','Kingdom, Class, Phylum, Family, Order, Genus, Species','Kingdom, Order, Class, Phylum, Family, Genus, Species'],a:1,e:'Standard hierarchy (descending): Kingdom > Phylum > Class > Order > Family > Genus > Species.',topic:'The Living World'},
+      {q:'In which animals does the digestive tract have additional chambers crop and gizzard?',o:['Pavo, Psittacula, Corvus','Corvus, Columba, Chameleon','Bufo, Balaenoptera, Bangarus','Catla, Columba, Crocodilus'],a:0,e:'All three are birds (peacock, parrot, crow). Crop and gizzard are characteristic bird digestive structures.',topic:'Animal Kingdom'},
+      {q:'Which of the following is NOT a connective tissue?',o:['Neuroglia','Blood','Adipose tissue','Cartilage'],a:0,e:'Neuroglia is part of nervous tissue (supports neurons), not connective tissue.',topic:'Structural Organisation in Animals'},
+    ]},
+  ],
+},
+
 // ═══ JEE MAIN 2024 — January Session ═══
 {
   id: 'jee-2024-jan-s1', exam: 'JEE Main', year: 2024, session: 'January', date: 'Jan 27, 2024', shift: 'Shift 1',
@@ -226,32 +261,6 @@ export const pyqPapers: PYQPaper[] = [
       {q:'If nC2 = 10, then n =',o:['4','5','10','20'],a:1,e:'nC2 = n(n-1)/2 = 10. n²-n-20=0. n=5.',topic:'PnC'},
       {q:'d/dx(ln x) =',o:['1/x','x','eˣ','1'],a:0,e:'Derivative of natural log: d/dx(ln x) = 1/x.',topic:'Differentiation'},
       {q:'Equation of line with slope 2 passing through (1,3):',o:['y = 2x+1','y = 2x-1','y-3 = 2(x-1)','Both A and C'],a:3,e:'y-3 = 2(x-1) → y = 2x+1. Both are same.',topic:'Straight Lines'},
-    ]},
-  ],
-},
-
-// ═══ NEET 2022 ═══
-{
-  id: 'neet-2022', exam: 'NEET UG', year: 2022, session: 'July', date: 'July 17, 2022', shift: 'Single Shift',
-  difficulty: 'Moderate', totalQuestions: 200, totalMarks: 720, duration: '3 hours 20 min',
-  subjects: [
-    { name: 'Physics', questions: [
-      {q:'1 kWh = ?',o:['3.6 × 10⁶ J','3.6 × 10³ J','1000 J','360 J'],a:0,e:'1 kWh = 1000W × 3600s = 3.6 × 10⁶ J.',topic:'Work Energy'},
-      {q:'Young\'s modulus has dimensions of:',o:['Force','Pressure','Energy','Dimensionless'],a:1,e:'Y = Stress/Strain = (F/A)/dimensionless = [ML⁻¹T⁻²] = same as pressure.',topic:'Properties of Matter'},
-      {q:'Total internal reflection occurs when light goes from:',o:['Rarer to denser','Denser to rarer (angle > critical)','Any medium','Vacuum to glass'],a:1,e:'TIR: denser → rarer medium, angle of incidence > critical angle.',topic:'Ray Optics'},
-      {q:'Frequency of simple pendulum on moon (g_moon = g/6):',o:['Same','√6 times','1/√6 times','6 times'],a:2,e:'T = 2π√(l/g). g↓ → T↑ → f↓. f_moon = f/√6.',topic:'SHM'},
-    ]},
-    { name: 'Chemistry', questions: [
-      {q:'Enthalpy of formation of an element in standard state:',o:['Positive','Negative','Zero','Variable'],a:2,e:'ΔHf° of element in standard state = 0 (by convention).',topic:'Thermodynamics'},
-      {q:'Geometry of BF₃:',o:['Tetrahedral','Trigonal planar','Linear','Bent'],a:1,e:'BF₃: sp² hybridization. 3 BP, 0 LP → Trigonal planar.',topic:'Bonding'},
-      {q:'Cannizzaro reaction is given by:',o:['Aldehydes with α-H','Aldehydes without α-H','Ketones','Alcohols'],a:1,e:'HCHO, PhCHO (no α-H) undergo Cannizzaro with strong base.',topic:'Aldehydes'},
-      {q:'Primary amine is detected by:',o:['Fehling test','Carbylamine test','Lucas test','Tollen test'],a:1,e:'Carbylamine: 1° amine + CHCl₃ + KOH → isocyanide (foul smell).',topic:'Amines'},
-    ]},
-    { name: 'Biology', questions: [
-      {q:'Semiconservative replication was proved by:',o:['Watson-Crick','Meselson-Stahl','Hershey-Chase','Griffith'],a:1,e:'Meselson-Stahl (1958) used ¹⁵N/¹⁴N and density gradient centrifugation.',topic:'Molecular Biology'},
-      {q:'Biodiversity hotspot in Western Ghats is due to:',o:['High endemism + habitat loss','Only large area','Only many species','Cold climate'],a:0,e:'Hotspot: high endemism (>1500 endemic plants) + >70% habitat loss.',topic:'Biodiversity'},
-      {q:'Trophic level of herbivore:',o:['T1','T2','T3','T4'],a:1,e:'T1=Producers, T2=Primary consumers (herbivores), T3=Secondary consumers.',topic:'Ecosystem'},
-      {q:'ABO blood group is example of:',o:['Incomplete dominance','Codominance + Multiple alleles','Epistasis','Pleiotropy'],a:1,e:'ABO: IA and IB are codominant. Three alleles (IA, IB, i) = multiple allelic.',topic:'Genetics'},
     ]},
   ],
 },
