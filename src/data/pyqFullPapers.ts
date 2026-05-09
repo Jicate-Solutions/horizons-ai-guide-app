@@ -111,6 +111,7 @@ export const pyqPapers: PYQPaper[] = [
 {
   id: 'neet-2023', exam: 'NEET UG', year: 2023, session: 'May', date: 'May 7, 2023', shift: 'Single Shift',
   difficulty: 'Moderate to Difficult', totalQuestions: 200, totalMarks: 720, duration: '3 hours 20 min',
+  pdfUrl: '/pyq-pdfs/neet-2023.pdf',
   subjects: [
     { name: 'Physics', questions: [
       {q:'If velocity is doubled, kinetic energy becomes:',o:['Double','Triple','Four times','Same'],a:2,e:'KE = ½mv². If v→2v: KE = 4 × ½mv².',topic:'Work Energy'},
