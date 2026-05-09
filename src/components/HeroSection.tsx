@@ -36,7 +36,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/95 via-green-800/90 to-emerald-900/85"></div>
         {/* Decorative elements with subtle floating animation */}
         <div 
-          className="absolute top-0 right-0 w-[80vw] max-w-[600px] h-[600px] bg-gradient-to-br from-yellow-500/15 to-yellow-600/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4"
+          className="absolute top-0 right-0 w-[80vw] max-w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 to-amber-500/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4"
           style={{ 
             animation: 'float-slow 20s ease-in-out infinite',
           }} 
@@ -71,8 +71,8 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="text-white space-y-5">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm text-yellow-500 px-4 py-2 rounded-full text-sm font-semibold border border-yellow-500/30 animate-fade-up">
-              <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400/20 to-amber-500/20 backdrop-blur-sm text-amber-400 px-4 py-2 rounded-full text-sm font-semibold border border-amber-400/30 animate-fade-up">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               {t('hero.badge')}
             </span>
 
@@ -82,13 +82,13 @@ const HeroSection = () => {
               </h1>
 
               <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                <span style={{color: '#d4a017'}}>
+                <span style={{color: '#F59E0B'}}>
                   {t('hero.subtitle')}
                 </span>
               </h2>
 
               <p className="font-tamil text-base sm:text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-                <span className="underline decoration-yellow-500/60 decoration-2 underline-offset-4">{t('hero.tamilSubtitle')}</span>
+                <span className="underline decoration-amber-400/60 decoration-2 underline-offset-4">{t('hero.tamilSubtitle')}</span>
               </p>
             </div>
 
@@ -98,7 +98,7 @@ const HeroSection = () => {
 
             <div className="flex flex-wrap justify-center gap-3 animate-fade-up" style={{ animationDelay: '0.5s' }}>
               <Button 
-                className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold px-8 py-4 text-base rounded-xl shadow-lg shadow-yellow-500/30 hover:shadow-xl hover:shadow-yellow-500/40 transition-all duration-300 hover:scale-105"
+                className="text-white font-semibold px-8 py-4 text-base rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/career-assessment/colleges")}
               >
                 <GraduationCap className="w-4 h-4 mr-2" />
