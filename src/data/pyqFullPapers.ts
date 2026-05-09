@@ -12,6 +12,9 @@ export interface PYQPaper {
   totalQuestions: number;
   totalMarks: number;
   duration: string;
+  /** Optional path to the full official paper PDF (placed in /public). When present,
+   *  the UI shows a "View Full Paper PDF" button that opens this file directly. */
+  pdfUrl?: string;
   subjects: {
     name: string;
     questions: {
@@ -25,6 +28,45 @@ export interface PYQPaper {
 }
 
 export const pyqPapers: PYQPaper[] = [
+
+// ═══ NEET 2025 ═══
+{
+  id: 'neet-2025', exam: 'NEET UG', year: 2025, session: 'May', date: 'May 4, 2025', shift: 'Single Shift',
+  difficulty: 'Moderate to Difficult', totalQuestions: 180, totalMarks: 720, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/neet-2025.pdf',
+  subjects: [
+    { name: 'Physics', questions: [
+      {q:'A microscope has objective f=2 cm, eyepiece f=4 cm, tube length 40 cm, distance of distinct vision 25 cm. Magnification is:',o:['100','125','150','250'],a:1,e:'M = (L/f_o)(D/f_e) = (40/2)(25/4) = 20 × 6.25 = 125.',topic:'Ray Optics'},
+      {q:'Two cars A and B with KE 100 J and 225 J stop after 1000 m and 1500 m respectively. F_A/F_B is:',o:['3/2','2/3','1/3','1/2'],a:1,e:'F = KE/s. F_A = 0.10 N, F_B = 0.15 N → F_A/F_B = 2/3.',topic:'Work–Energy'},
+      {q:'A 0.5 kg ball dropped from 40 m rebounds to 10 m. Impulse during collision (g=9.8):',o:['21 Ns','7 Ns','0','84 Ns'],a:0,e:'v_i = √(2gh) = 28 m/s, v_f = 14 m/s. J = m(v_f + v_i) = 0.5(42) = 21 Ns.',topic:'Impulse'},
+      {q:'Sun rotates once in 27 days. If it expands to twice its present radius (uniform density), new period is:',o:['100 days','105 days','115 days','108 days'],a:3,e:'I₁ω₁ = I₂ω₂; I ∝ R². R doubles → I × 4 → T × 4 = 108 days.',topic:'Gravitation / Rotation'},
+      {q:'Mars orbit ≈ 4× Mercury orbit. Mars year = 687 Earth days. Mercury year is:',o:['88 earth days','225 earth days','172 earth days','124 earth days'],a:0,e:"By Kepler's 3rd law T² ∝ r³ → T_Mars/T_Merc = 8 → T_Merc = 687/8 ≈ 86 ≈ 88 days.",topic:'Gravitation'},
+      {q:'A body weighs 48 N on Earth. At height h = R/3 the gravitational force is:',o:['16 N','27 N','32 N','36 N'],a:1,e:'F ∝ 1/r²; r = 4R/3 → F = 48 × (3/4)² = 27 N.',topic:'Gravitation'},
+      {q:'Wire of resistance R cut into 8 equal pieces. 4 in parallel, two such sets in series. Net resistance:',o:['R/64','R/32','R/16','R/8'],a:2,e:'Each piece R/8. Parallel of 4 → R/32. Two such in series → R/16.',topic:'Current Electricity'},
+      {q:'A pipe open at both ends has fundamental frequency f. Dipped vertically in water to half its length, new fundamental is:',o:['f/2','f','3f/2','2f'],a:1,e:'Open–open: f = v/2L. Half-submerged becomes open–closed of length L/2: f′ = v/(4·L/2) = v/2L = f.',topic:'Waves'},
+    ]},
+    { name: 'Chemistry', questions: [
+      {q:'For first-order reaction t₁/₂ = 1 min. Time for 99.9% completion:',o:['2 minutes','4 minutes','5 minutes','10 minutes'],a:3,e:'k = 0.693. t = (2.303/k) log(1000) ≈ 10 min.',topic:'Chemical Kinetics'},
+      {q:'Oxidation states of K (in KO₂), O (in H₂O₂), S (in H₂SO₄) are:',o:['+1, −1, +6','+2, −2, +6','+1, −2, +4','+4, −4, +6'],a:0,e:'Superoxide O₂⁻ → K is +1; peroxide O–O → each O is −1; in H₂SO₄, S = +6.',topic:'Redox'},
+      {q:'Which compound exhibits cis–trans isomerism?',o:['Pent-1-ene','2-Methylhex-2-ene','1,1-Dimethylcyclopropane','1,2-Dimethylcyclohexane'],a:3,e:'Two different substituents on adjacent ring carbons → cis/trans possible.',topic:'Stereochemistry'},
+      {q:'Decreasing acidity:',o:['t-BuCOOH > i-PrCOOH > AcOH > HCOOH','AcOH > i-PrCOOH > t-BuCOOH > HCOOH','HCOOH > AcOH > i-PrCOOH > t-BuCOOH','HCOOH > t-BuCOOH > i-PrCOOH > AcOH'],a:2,e:'+I effect of alkyl groups destabilizes the carboxylate → reduces acidity. HCOOH (no alkyl) is strongest.',topic:'Carboxylic Acids'},
+      {q:'Aqueous solution with highest boiling point:',o:['0.01 M Urea','0.01 M KNO₃','0.01 M Na₂SO₄','0.015 M C₆H₁₂O₆'],a:2,e:'ΔT_b ∝ i·m. Na₂SO₄ has i ≈ 3 (highest among options), so highest BP elevation.',topic:'Solutions'},
+      {q:'Phosphorus acid ionizes in 3 steps with K_a1, K_a2, K_a3. Which are true? A. log K = log K_a1 + log K_a2 + log K_a3  B. H₃PO₄ stronger than H₂PO₄⁻ and HPO₄²⁻  C. K_a1 > K_a2 > K_a3  D. K_a1 = (K_a2 + K_a3)/2',o:['A and B only','A and C only','B, C and D only','A, B and C only'],a:3,e:'K = K_a1·K_a2·K_a3 → A; acidity decreases as protons leave from increasingly negative species → B and C true; D false.',topic:'Ionic Equilibrium'},
+      {q:'Which is paramagnetic? A. [NiCl₄]²⁻  B. Ni(CO)₄  C. [Ni(CN)₄]²⁻  D. [Ni(H₂O)₆]²⁺  E. Ni(PPh₃)₄',o:['A and C only','B and E only','A and D only','A, D and E only'],a:2,e:'Cl⁻ and H₂O are weak-field; tetrahedral [NiCl₄]²⁻ and octahedral [Ni(H₂O)₆]²⁺ keep 2 unpaired e⁻. CO/PPh₃ → Ni(0) d¹⁰ diamagnetic; CN⁻ → low-spin square planar diamagnetic.',topic:'Coordination Chemistry'},
+      {q:'Which microbe is NOT used in household products? A. Aspergillus niger  B. Lactobacillus  C. Trichoderma polysporum  D. S. cerevisiae  E. Propionibacterium sharmanii',o:['A and B only','A and C only','C and D only','C and E only'],a:1,e:'A. niger → industrial citric acid; T. polysporum → cyclosporin A. Both NOT household.',topic:'Biotechnology / Industrial'},
+    ]},
+    { name: 'Biology', questions: [
+      {q:'Complex II of mitochondrial ETC is also known as:',o:['Cytochrome bc₁','Succinate dehydrogenase','Cytochrome c oxidase','NADH dehydrogenase'],a:1,e:'Complex II = succinate dehydrogenase; oxidizes succinate to fumarate and feeds e⁻ to ubiquinone.',topic:'Respiration'},
+      {q:'PCR amplifies DNA following the equation:',o:['N²','2ⁿ','2n + 1','2N²'],a:1,e:'Each cycle doubles the DNA → after n cycles, 2ⁿ copies.',topic:'Biotechnology'},
+      {q:'Blood vessel that carries deoxygenated blood from body to heart in frog:',o:['Aorta','Pulmonary artery','Pulmonary vein','Vena cava'],a:3,e:'Vena cava collects deoxygenated blood from body and returns it to the heart.',topic:'Animal Physiology'},
+      {q:'Example of ex-situ conservation:',o:['National Park','Wildlife Sanctuary','Zoos and botanical gardens','Protected areas'],a:2,e:'Ex-situ = away from natural habitat. Zoos and botanical gardens are textbook ex-situ examples.',topic:'Biodiversity'},
+      {q:'Streptokinase from Streptococcus is used for:',o:['Curd production','Ethanol production','Liver disease','Removing clots from blood vessels'],a:3,e:"Streptokinase is a clot-buster used in myocardial infarction.",topic:'Microbes in Human Welfare'},
+      {q:'First menstruation is called:',o:['Menopause','Menarche','Diapause','Ovulation'],a:1,e:'The first menstrual flow at puberty is called menarche.',topic:'Human Reproduction'},
+      {q:'Histones are enriched with:',o:['Lysine & Arginine','Leucine & Lysine','Phenylalanine & Leucine','Phenylalanine & Arginine'],a:0,e:'Histones are basic proteins rich in positively charged Lys and Arg residues that bind acidic DNA.',topic:'Molecular Biology'},
+      {q:"Verhulst–Pearl Logistic Growth equation:",o:['dN/dt = r((K−N)/K)','dN/dt = rN((K−N)/K)','dN/dt = rN((N−K)/N)','dN/dt = N((r−K)/K)'],a:1,e:'Logistic growth: dN/dt = rN(K−N)/K, where K is carrying capacity.',topic:'Ecology'},
+    ]},
+  ],
+},
 
 // ═══ NEET 2024 ═══
 {

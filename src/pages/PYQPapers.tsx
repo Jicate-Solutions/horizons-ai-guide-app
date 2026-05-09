@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronRight, ChevronDown, ChevronUp, Clock, FileText, CheckCircle2, BookOpen, BarChart3, Target } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ChevronDown, ChevronUp, Clock, FileText, CheckCircle2, BookOpen, BarChart3, Target, FileDown, ExternalLink } from 'lucide-react';
 import { pyqPapers, getAvailableExams, PYQPaper } from '@/data/pyqFullPapers';
 import { cn } from '@/lib/utils';
 
@@ -135,6 +135,14 @@ const PYQPapersPage = () => {
             ))}
           </div>
 
+          {/* View Full Paper PDF button (if available) */}
+          {activePaper.pdfUrl && (
+            <a href={activePaper.pdfUrl} target="_blank" rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-bold flex items-center justify-center gap-2 active:scale-[0.98] shadow-lg">
+              <FileDown className="w-4 h-4" /> View Full Paper PDF (with Answer Key)
+            </a>
+          )}
+
           {/* Take Test button */}
           {activeSubject && (
             <button onClick={() => { setTestMode(true); setTestAnswers({}); setTestSubmitted(false); }}
@@ -204,21 +212,41 @@ const PYQPapersPage = () => {
                 {isOpen && (
                   <div className="border-t border-gray-100 px-3 pb-3 pt-2 space-y-2">
                     {yearPapers.map(paper => (
-                      <button key={paper.id} onClick={() => setActivePaper(paper)}
-                        className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-gray-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-left transition-all active:scale-[0.98]">
-                        <FileText className="w-5 h-5 text-indigo-500 flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
-                          <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500">
-                            <span>{paper.session} Session</span>
-                            <span>·</span>
-                            <span>{paper.totalQuestions}Q</span>
-                            <span>·</span>
-                            <span className={cn("font-bold", paper.difficulty.includes('Easy') ? 'text-emerald-600' : paper.difficulty.includes('Difficult') ? 'text-red-600' : 'text-amber-600')}>{paper.difficulty}</span>
+                      paper.pdfUrl ? (
+                        <a key={paper.id} href={paper.pdfUrl} target="_blank" rel="noopener noreferrer"
+                          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border-2 border-emerald-300 bg-emerald-50/60 hover:bg-emerald-50 hover:border-emerald-500 text-left transition-all active:scale-[0.98]">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
+                            <FileDown className="w-5 h-5 text-white" />
                           </div>
-                        </div>
-                        <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                      </button>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
+                            <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500 flex-wrap">
+                              <span>{paper.session} Session</span>
+                              <span>·</span>
+                              <span>{paper.totalQuestions}Q · {paper.totalMarks} marks</span>
+                              <span>·</span>
+                              <span className="font-bold text-emerald-700">📄 Full PDF + Answer Key</span>
+                            </div>
+                          </div>
+                          <ExternalLink className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                        </a>
+                      ) : (
+                        <button key={paper.id} onClick={() => setActivePaper(paper)}
+                          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-gray-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-left transition-all active:scale-[0.98]">
+                          <FileText className="w-5 h-5 text-indigo-500 flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-gray-800">{paper.date} — {paper.shift}</p>
+                            <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500">
+                              <span>{paper.session} Session</span>
+                              <span>·</span>
+                              <span>{paper.totalQuestions}Q</span>
+                              <span>·</span>
+                              <span className={cn("font-bold", paper.difficulty.includes('Easy') ? 'text-emerald-600' : paper.difficulty.includes('Difficult') ? 'text-red-600' : 'text-amber-600')}>{paper.difficulty}</span>
+                            </div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                        </button>
+                      )
                     ))}
                   </div>
                 )}
