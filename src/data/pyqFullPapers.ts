@@ -281,6 +281,12 @@ export const pyqPapers: PYQPaper[] = [
   pdfUrl: '/pyq-pdfs/jee-main-2025-jan-24-shift-2.pdf',
   subjects: [],
 },
+{
+  id: 'jee-2025-jan-28-s1', exam: 'JEE Main', year: 2025, session: 'January', date: 'Jan 28, 2025', shift: 'Shift 1',
+  difficulty: 'Moderate', totalQuestions: 75, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2025-jan-28-shift-1.pdf',
+  subjects: [],
+},
 
 // ═══ JEE MAIN 2024 — January Session ═══
 {
