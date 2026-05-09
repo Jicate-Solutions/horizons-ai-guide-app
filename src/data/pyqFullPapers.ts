@@ -513,33 +513,12 @@ export const pyqPapers: PYQPaper[] = [
   subjects: [],
 },
 
-// ═══ JEE MAIN 2023 — January ═══
+// ═══ JEE MAIN 2023 — 24 Jan Shift 1 (Full PDF) ═══
 {
-  id: 'jee-2023-jan-s1', exam: 'JEE Main', year: 2023, session: 'January', date: 'Jan 24, 2023', shift: 'Shift 1',
-  difficulty: 'Moderate', totalQuestions: 75, totalMarks: 300, duration: '3 hours',
-  subjects: [
-    { name: 'Physics', questions: [
-      {q:'Angular momentum is conserved when:',o:['Net force = 0','Net torque = 0','Net energy = 0','Net power = 0'],a:1,e:'L = Iω is conserved when net external torque = 0.',topic:'Rotation'},
-      {q:'Carnot efficiency between 300K and 500K:',o:['40%','60%','80%','20%'],a:0,e:'η = 1 - T₂/T₁ = 1 - 300/500 = 0.4 = 40%.',topic:'Thermodynamics'},
-      {q:'Gauss law: ∮E·dA for closed surface with +q inside:',o:['0','q/ε₀','-q/ε₀','qε₀'],a:1,e:'Gauss law: total flux = q_enclosed/ε₀.',topic:'Electrostatics'},
-      {q:'Radius of nth orbit ∝',o:['n','n²','1/n','1/n²'],a:1,e:'rₙ = 0.529 × n²/Z Å. Radius ∝ n².',topic:'Atoms'},
-      {q:'In nuclear reaction, mass defect is converted to:',o:['Charge','Energy (E=mc²)','Momentum','New mass'],a:1,e:'E = Δmc². Mass defect → binding energy.',topic:'Nuclear'},
-    ]},
-    { name: 'Chemistry', questions: [
-      {q:'Coordination number of Na⁺ in NaCl:',o:['4','6','8','12'],a:1,e:'NaCl: rock salt structure. Na⁺ has 6 Cl⁻ neighbors (octahedral).',topic:'Solid State'},
-      {q:'Benzene reacts with Br₂/FeBr₃ to give:',o:['Addition product','Substitution product (bromobenzene)','No reaction','Polymerization'],a:1,e:'Benzene undergoes electrophilic aromatic substitution with Br₂/FeBr₃.',topic:'Aromatic'},
-      {q:'Molality is temperature independent because:',o:['It uses volume','It uses mass of solvent','It uses moles only','It uses density'],a:1,e:'Molality = moles/kg solvent. Mass doesn\'t change with temperature.',topic:'Solutions'},
-      {q:'Catalyst increases rate by:',o:['Increasing temperature','Lowering activation energy','Increasing concentration','Changing equilibrium'],a:1,e:'Catalyst provides alternative pathway with lower Ea.',topic:'Kinetics'},
-      {q:'Which is a biodegradable polymer?',o:['PVC','Teflon','PHBV','Polystyrene'],a:2,e:'PHBV (polyhydroxybutyrate-co-valerate) is biodegradable.',topic:'Polymers'},
-    ]},
-    { name: 'Mathematics', questions: [
-      {q:'If z = 3+4i, |z| =',o:['5','7','25','1'],a:0,e:'|z| = √(3²+4²) = √25 = 5.',topic:'Complex Numbers'},
-      {q:'Sum of roots of x² - 5x + 6 = 0:',o:['5','6','-5','-6'],a:0,e:'Sum = -b/a = 5. Product = c/a = 6.',topic:'Quadratic'},
-      {q:'If nC2 = 10, then n =',o:['4','5','10','20'],a:1,e:'nC2 = n(n-1)/2 = 10. n²-n-20=0. n=5.',topic:'PnC'},
-      {q:'d/dx(ln x) =',o:['1/x','x','eˣ','1'],a:0,e:'Derivative of natural log: d/dx(ln x) = 1/x.',topic:'Differentiation'},
-      {q:'Equation of line with slope 2 passing through (1,3):',o:['y = 2x+1','y = 2x-1','y-3 = 2(x-1)','Both A and C'],a:3,e:'y-3 = 2(x-1) → y = 2x+1. Both are same.',topic:'Straight Lines'},
-    ]},
-  ],
+  id: 'jee-2023-jan-24-s1', exam: 'JEE Main', year: 2023, session: 'January', date: 'Jan 24, 2023', shift: 'Shift 1',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2023-jan-24-shift-1.pdf',
+  subjects: [],
 },
 
 ];
