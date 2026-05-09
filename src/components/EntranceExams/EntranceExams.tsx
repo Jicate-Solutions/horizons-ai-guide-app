@@ -5,7 +5,7 @@ import {
   Target, Bell, FileText, Star, Zap, ArrowLeft, GraduationCap, BarChart3,
   ClipboardList, Layers, Globe, CheckCircle2
 } from 'lucide-react';
-import { examCategories, entranceExams } from './examData';
+import { examCategories, entranceExams, examPatterns } from './examData';
 import { examPracticeQuestions } from './practiceQuestionsData';
 import { questionBank } from '@/data/questionBank';
 import { PracticeQuestions } from './PracticeQuestions';
