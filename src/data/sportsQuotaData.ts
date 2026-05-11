@@ -334,10 +334,16 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
         // Yoga and Powerlifting included but not in our standard list — they map to 'other'
       ],
       sportsForWomen: [
-        'athletics', 'badminton', 'basketball', 'boxing', 'chess',
-        'handball', 'kho-kho',
-        'martial-arts', // covers Karate and Taekwondo
-        'swimming', 'table-tennis', 'tennis', 'volleyball', 'weightlifting',
+        // From official PSGCAS Women's Sports Quota Selection Trials 2026-27 PDF:
+        // Basketball, Chess, Boxing, Badminton, Swimming, Tennis, Table Tennis,
+        // Yoga, Karate, Handball, Powerlifting, Kho-Kho, Taekwondo, Weightlifting.
+        // Note: NO athletics, volleyball, cricket, football, hockey for women.
+        'basketball', 'chess', 'boxing', 'badminton', 'swimming',
+        'tennis', 'table-tennis',
+        'martial-arts', // covers Karate AND Taekwondo
+        'handball', 'kho-kho', 'weightlifting',
+        // Yoga and Powerlifting are not in our standard sport list, so a woman
+        // playing these can pick "Other sport" in the eligibility flow.
       ],
       extraDocuments: [
         {
@@ -355,6 +361,44 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
       ],
       sportsScholarship: 'FREE EDUCATION for deserving players. SAI – Khelo India Scheme (Basketball Men & Women). NIS-certified coaches, indoor stadium, players gym, medical insurance.',
       selectionProcess: 'Online application → Physical trials at PSG CAS campus (April 2026) → Selection',
+      trialsMen: [
+        { sport: 'swimming',      date: '2026-04-07', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'basketball',    date: '2026-04-08', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'ball-badminton', date: '2026-04-08', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'karate',        date: '2026-04-09', time: '10:00 AM', venue: 'PSG CAS' },
+        { sport: 'yoga',          date: '2026-04-09', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'kho-kho',       date: '2026-04-09', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'powerlifting',  date: '2026-04-10', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'taekwondo',     date: '2026-04-11', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'weightlifting', date: '2026-04-11', time: '11:00 AM', venue: 'PSG CAS' },
+        { sport: 'volleyball',    date: '2026-04-13', time: '8:00 AM',  venue: 'PSG CAS' },
+        { sport: 'table-tennis',  date: '2026-04-13', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'badminton',     date: '2026-04-15', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'chess',         date: '2026-04-15', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'tennis',        date: '2026-04-15', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'cricket',       date: '2026-04-16', time: '9:00 AM',  venue: 'PSG Medical College' },
+        { sport: 'athletics',     date: '2026-04-17', time: '9:00 AM',  venue: 'PSG Medical College' },
+        { sport: 'boxing',        date: '2026-04-17', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'football',      date: '2026-04-20', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'hockey',        date: '2026-04-25', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'handball',      date: '2026-04-25', time: '3:00 PM',  venue: 'PSG CAS' },
+      ],
+      trialsWomen: [
+        { sport: 'basketball',    date: '2026-04-06', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'chess',         date: '2026-04-06', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'boxing',        date: '2026-04-06', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'badminton',     date: '2026-04-07', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'swimming',      date: '2026-04-07', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'tennis',        date: '2026-04-07', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'table-tennis',  date: '2026-04-08', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'yoga',          date: '2026-04-09', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'karate',        date: '2026-04-09', time: '10:00 AM', venue: 'PSG CAS' },
+        { sport: 'handball',      date: '2026-04-09', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'powerlifting',  date: '2026-04-10', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'kho-kho',       date: '2026-04-10', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'taekwondo',     date: '2026-04-11', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'weightlifting', date: '2026-04-11', time: '11:00 AM', venue: 'PSG CAS' },
+      ],
     },
     contact: {
       sportsOfficer: 'Dr B. Navaneethan',
@@ -403,14 +447,6 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
-
-  // ─── VERIFIED: PSG College of Arts & Science ────────────────────────────
-  // Source: Official PSG CAS Sports Quota Admission Selection Trials 2026-27 poster
-  // PSG CAS does direct admission for UG & PG (NOT through TNEA — arts college)
-  // FREE EDUCATION for deserving players. NIS-certified coaches.
-  // SAI-Khelo India Scheme accredited for Basketball (Men & Women).
-  {
-    id: 'psg_cas_coimbatore',
     collegeName: 'PSG College of Arts & Science',
     collegeNameTa: 'PSG கலை மற்றும் அறிவியல் கல்லூரி',
     district: 'Coimbatore',
