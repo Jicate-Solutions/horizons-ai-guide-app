@@ -1151,6 +1151,30 @@ export const pyqPapers: PYQPaper[] = [
   ],
 },
 
+// ═══ JEE MAIN 2023 — 30 Jan Shift 2 (Full PDF) ═══
+{
+  id: 'jee-2023-jan-30-s2', exam: 'JEE Main', year: 2023, session: 'January', date: 'Jan 30, 2023', shift: 'Shift 2',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2023-jan-30-shift-2.pdf',
+  subjects: [],
+},
+
+// ═══ JEE MAIN 2023 — 31 Jan Shift 1 (Full PDF) ═══
+{
+  id: 'jee-2023-jan-31-s1', exam: 'JEE Main', year: 2023, session: 'January', date: 'Jan 31, 2023', shift: 'Shift 1',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2023-jan-31-shift-1.pdf',
+  subjects: [],
+},
+
+// ═══ JEE MAIN 2023 — 31 Jan Shift 2 (Full PDF) ═══
+{
+  id: 'jee-2023-jan-31-s2', exam: 'JEE Main', year: 2023, session: 'January', date: 'Jan 31, 2023', shift: 'Shift 2',
+  difficulty: 'Moderate', totalQuestions: 90, totalMarks: 300, duration: '3 hours',
+  pdfUrl: '/pyq-pdfs/jee-main-2023-jan-31-shift-2.pdf',
+  subjects: [],
+},
+
 ];
 
 // Get all available exams
