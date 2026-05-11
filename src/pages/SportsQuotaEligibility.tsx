@@ -10,6 +10,7 @@ import {
   ChevronLeft, ChevronRight, Trophy, CheckCircle2, AlertCircle,
   XCircle, Phone, Globe, MapPin, Calendar, Download, Share2,
   HelpCircle, ShieldCheck, ShieldAlert, FileText, Sparkles,
+  GraduationCap, Dumbbell, Award, Clock,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -112,6 +113,19 @@ type Step = 'sport' | 'level' | 'year' | 'marks' | 'gender' | 'category' | 'dist
 
 const STEP_ORDER: Step[] = ['sport', 'level', 'year', 'marks', 'gender', 'category', 'district', 'results'];
 
+// Translate field name for display
+const translateField = (field: string, lang: 'en' | 'ta'): string => {
+  const map: Record<string, { en: string; ta: string }> = {
+    engineering: { en: 'Engineering', ta: 'பொறியியல்' },
+    medical:     { en: 'Medical',     ta: 'மருத்துவம்' },
+    arts:        { en: 'Arts & Science', ta: 'கலை & அறிவியல்' },
+    law:         { en: 'Law',         ta: 'சட்டம்' },
+    agriculture: { en: 'Agriculture', ta: 'வேளாண்மை' },
+    other:       { en: 'Other',       ta: 'பிற' },
+  };
+  return map[field]?.[lang] ?? field;
+};
+
 const TN_DISTRICTS = [
   'Ariyalur','Chengalpattu','Chennai','Coimbatore','Cuddalore','Dharmapuri',
   'Dindigul','Erode','Kallakurichi','Kanchipuram','Kanyakumari','Karur',
@@ -182,6 +196,29 @@ const SportsQuotaEligibility = () => {
   const qualified = matches.filter(m => m.verdict === 'qualified');
   const borderline = matches.filter(m => m.verdict === 'borderline');
   const aimHigher = matches.filter(m => m.verdict === 'aim-higher');
+
+  // The overall verdict shown at the top is the BEST outcome available.
+  // If ANY college will take this student, show 'qualified' even if TNEA itself says no.
+  const overallEligibility = useMemo<EligibilityResult | null>(() => {
+    if (!eligibility) return null;
+    if (qualified.length > 0) {
+      return {
+        verdict: 'qualified',
+        reasonEn: `Great news — ${qualified.length} college${qualified.length === 1 ? '' : 's'} will accept you under sports quota.`,
+        reasonTa: `நல்ல செய்தி — ${qualified.length} கல்லூரி${qualified.length === 1 ? '' : 'கள்'} உங்களை விளையாட்டு கோட்டாவில் ஏற்கும்.`,
+      };
+    }
+    if (borderline.length > 0) {
+      return {
+        verdict: 'borderline',
+        reasonEn: `${borderline.length} college${borderline.length === 1 ? '' : 's'} run open trials — you can attend and try to qualify on the spot. ${eligibility.reasonEn}`,
+        reasonTa: `${borderline.length} கல்லூரி${borderline.length === 1 ? '' : 'கள்'} திறந்த தேர்வுகளை நடத்துகின்றன — நீங்கள் கலந்துகொண்டு அங்கேயே தகுதி பெற முயற்சி செய்யலாம். ${eligibility.reasonTa}`,
+        growthPathEn: eligibility.growthPathEn,
+        growthPathTa: eligibility.growthPathTa,
+      };
+    }
+    return eligibility;
+  }, [eligibility, qualified.length, borderline.length]);
 
   // ─── RENDER ───────────────────────────────────────────────────────────────
 
@@ -481,11 +518,11 @@ const SportsQuotaEligibility = () => {
         )}
 
         {/* ─── RESULTS ─── */}
-        {step === 'results' && eligibility && candidateProfile && (
+        {step === 'results' && overallEligibility && candidateProfile && (
           <ResultsView
             lang={lang}
             L={L}
-            eligibility={eligibility}
+            eligibility={overallEligibility}
             qualified={qualified}
             borderline={borderline}
             aimHigher={aimHigher}
@@ -787,7 +824,7 @@ const CollegeCard = ({ match, lang, L }: { match: CollegeMatch; lang: 'en' | 'ta
               <span>•</span>
               <span>{college.type}</span>
               <span>•</span>
-              <span>{lang === 'ta' ? 'பொறியியல்' : 'Engineering'}</span>
+              <span className="capitalize">{lang === 'ta' ? translateField(college.field, 'ta') : translateField(college.field, 'en')}</span>
             </div>
           </div>
           {isVerified ? (
@@ -810,8 +847,57 @@ const CollegeCard = ({ match, lang, L }: { match: CollegeMatch; lang: 'en' | 'ta
           <span>{lang === 'ta' ? match.matchReasonTa : match.matchReasonEn}</span>
         </div>
 
+        {/* FREE EDUCATION HIGHLIGHT — verified colleges only */}
+        {isVerified && college.overrides?.freeEducation && (
+          <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-black rounded-lg p-3 flex items-start gap-2">
+            <GraduationCap className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <div>
+              <div className="font-black text-sm leading-tight">
+                {lang === 'ta' ? 'தகுதியான வீரர்களுக்கு இலவசக் கல்வி!' : 'FREE EDUCATION for deserving players!'}
+              </div>
+              {college.overrides.freeEducationNote && (
+                <div className="text-xs mt-0.5 leading-snug">
+                  {college.overrides.freeEducationNote}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* TRIAL DATE for this candidate's sport (if available) */}
+        {isVerified && college.overrides?.trialsMen && (
+          <TrialDateInline
+            college={college}
+            lang={lang}
+          />
+        )}
+
+        {/* Infrastructure highlights */}
+        {isVerified && college.overrides?.infrastructure && college.overrides.infrastructure.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {college.overrides.infrastructure.map((inf, i) => (
+              <span key={i} className="inline-flex items-center gap-1 text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-2 py-0.5">
+                <Dumbbell className="w-2.5 h-2.5" />
+                {lang === 'ta' ? inf.ta : inf.en}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Schemes (Khelo India etc.) */}
+        {isVerified && college.overrides?.schemes && college.overrides.schemes.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {college.overrides.schemes.map((s, i) => (
+              <span key={i} className="inline-flex items-center gap-1 text-[10px] font-medium bg-purple-50 text-purple-700 border border-purple-200 rounded-full px-2 py-0.5">
+                <Award className="w-2.5 h-2.5" />
+                {s}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* College-specific details if verified */}
-        {isVerified && college.overrides && (
+        {isVerified && college.overrides && (college.overrides.achievementsRequired || college.overrides.selectionProcess || college.overrides.sportsScholarship) && (
           <div className="text-xs space-y-1.5 bg-emerald-50/50 rounded-lg p-2.5">
             {college.overrides.achievementsRequired && (
               <div>
@@ -826,6 +912,17 @@ const CollegeCard = ({ match, lang, L }: { match: CollegeMatch; lang: 'en' | 'ta
               <div>
                 <span className="font-medium">{L.selectionProcess}: </span>
                 {college.overrides.selectionProcess}
+              </div>
+            )}
+            {college.overrides.sportsScholarship && (
+              <div className="flex items-start gap-1.5 pt-1.5 mt-1 border-t border-emerald-200/50">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-amber-700">
+                    {lang === 'ta' ? 'கூடுதல் சலுகைகள்: ' : 'Bonus benefits: '}
+                  </span>
+                  <span>{college.overrides.sportsScholarship}</span>
+                </div>
               </div>
             )}
           </div>
@@ -868,14 +965,89 @@ const CollegeCard = ({ match, lang, L }: { match: CollegeMatch; lang: 'en' | 'ta
 
         {/* Sports officer detail */}
         {isVerified && college.contact.sportsOfficer && (
-          <div className="text-[11px] text-muted-foreground border-t pt-2">
-            <span className="font-medium">{L.contactSports}: </span>
-            {college.contact.sportsOfficer}
-            {college.contact.designation && <> · {college.contact.designation}</>}
+          <div className="text-[11px] text-muted-foreground border-t pt-2 space-y-1">
+            <div>
+              <span className="font-medium">{L.contactSports}: </span>
+              {college.contact.sportsOfficer}
+              {college.contact.designation && <> · {college.contact.designation}</>}
+              {college.contact.phone && (
+                <a href={`tel:${college.contact.phone}`} className="text-emerald-700 ml-1 hover:underline">
+                  · {college.contact.phone}
+                </a>
+              )}
+            </div>
+            {college.contact.sportsOfficer2 && (
+              <div>
+                <span className="font-medium">{lang === 'ta' ? '2-வது தொடர்பு: ' : '2nd contact: '}</span>
+                {college.contact.sportsOfficer2}
+                {college.contact.designation2 && <> · {college.contact.designation2}</>}
+                {college.contact.phone2 && (
+                  <a href={`tel:${college.contact.phone2}`} className="text-emerald-700 ml-1 hover:underline">
+                    · {college.contact.phone2}
+                  </a>
+                )}
+              </div>
+            )}
+            {college.contact.email && (
+              <div className="break-all">
+                📧 <a href={`mailto:${college.contact.email}`} className="text-emerald-700 hover:underline">
+                  {college.contact.email}
+                </a>
+              </div>
+            )}
           </div>
         )}
       </CardContent>
     </Card>
+  );
+};
+
+// =============================================================================
+// TrialDateInline — Shows the trial date for the candidate's sport (if any)
+// =============================================================================
+
+const TrialDateInline = ({
+  college, lang,
+}: {
+  college: CollegeMatch['college'];
+  lang: 'en' | 'ta';
+}) => {
+  const trials = college.overrides?.trialsMen || [];
+  if (trials.length === 0) return null;
+
+  // For now, show all trials in a small compact list (since we don't know candidate sport here without prop)
+  // To keep it tight, we'll just show the first 3 dates
+  const upcoming = trials.slice(0, 4);
+  const totalCount = trials.length;
+
+  return (
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-2.5">
+      <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-900 mb-1.5">
+        <Calendar className="w-3.5 h-3.5" />
+        {lang === 'ta' ? `தேர்வு தேதிகள் (${totalCount})` : `Trial dates (${totalCount})`}
+      </div>
+      <div className="space-y-1">
+        {upcoming.map((t, i) => {
+          const d = new Date(t.date);
+          const dateStr = d.toLocaleDateString(lang === 'ta' ? 'ta-IN' : 'en-IN', {
+            day: 'numeric', month: 'short',
+          });
+          return (
+            <div key={i} className="flex items-center gap-2 text-[11px] text-blue-900">
+              <span className="font-medium w-20 flex-shrink-0">{dateStr}</span>
+              <span className="capitalize flex-1">{t.sport.replace('-', ' ')}</span>
+              <Clock className="w-2.5 h-2.5 text-blue-500" />
+              <span className="font-mono text-[10px]">{t.time}</span>
+            </div>
+          );
+        })}
+        {totalCount > 4 && (
+          <div className="text-[10px] text-blue-600 italic pt-1">
+            +{totalCount - 4} {lang === 'ta' ? 'மேலும்' : 'more — see college website'}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

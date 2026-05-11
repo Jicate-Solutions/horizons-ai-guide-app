@@ -20,6 +20,7 @@ export type Sport =
   | 'athletics' | 'basketball' | 'badminton' | 'ball-badminton'
   | 'boxing' | 'chess' | 'cricket' | 'football' | 'gymnastics'
   | 'handball' | 'hockey' | 'kabaddi' | 'kho-kho' | 'martial-arts'
+  | 'karate' | 'taekwondo' | 'yoga' | 'powerlifting'
   | 'swimming' | 'table-tennis' | 'tennis' | 'volleyball'
   | 'weightlifting' | 'wrestling' | 'archery' | 'shooting' | 'other';
 
@@ -46,6 +47,10 @@ export const ALL_SPORTS: SportInfoBilingual[] = [
   { id: 'kabaddi',        en: 'Kabaddi',         ta: 'கபடி' },
   { id: 'kho-kho',        en: 'Kho-Kho',         ta: 'கோ-கோ' },
   { id: 'martial-arts',   en: 'Martial Arts',    ta: 'தற்காப்புக் கலை' },
+  { id: 'karate',         en: 'Karate',          ta: 'கராத்தே' },
+  { id: 'taekwondo',      en: 'Taekwondo',       ta: 'டேக்வாண்டோ' },
+  { id: 'yoga',           en: 'Yoga',            ta: 'யோகா' },
+  { id: 'powerlifting',   en: 'Powerlifting',    ta: 'பவர்லிஃப்டிங்' },
   { id: 'swimming',       en: 'Swimming',        ta: 'நீச்சல்' },
   { id: 'table-tennis',   en: 'Table Tennis',    ta: 'மேசைப் பந்தாட்டம்' },
   { id: 'tennis',         en: 'Tennis',          ta: 'டென்னிஸ்' },
@@ -200,6 +205,13 @@ export const TNEA_RULES = {
 // Each college may have additional rules on top of TNEA's universal rules.
 // ─────────────────────────────────────────────────────────────────────────────
 
+export interface SportTrialDate {
+  sport: Sport;
+  date: string;       // ISO 'YYYY-MM-DD'
+  time: string;       // 'HH:MM' or human-readable '9:00 AM'
+  venue: string;
+}
+
 export interface CollegeSportsQuota {
   id: string;
   collegeName: string;
@@ -220,14 +232,26 @@ export interface CollegeSportsQuota {
     sportsForWomen?: Sport[];
     extraDocuments?: { titleEn: string; titleTa: string; detailEn: string; detailTa: string }[];
     sportsScholarship?: string; // e.g. "50% fee waiver for nationals"
+    freeEducation?: boolean;    // e.g. PSG CAS — true if 100% free for deserving players
+    freeEducationNote?: string; // explanation
     selectionProcess?: string;
+    // Trial dates (one per sport, for direct-admission colleges)
+    trialsMen?: SportTrialDate[];
+    trialsWomen?: SportTrialDate[];
+    // Infrastructure highlights
+    infrastructure?: { en: string; ta: string }[];
+    // Recognition/scheme affiliations (e.g. Khelo India, SAI)
+    schemes?: string[];
   };
 
-  // Contact
+  // Contact (multiple sports officers possible)
   contact: {
     sportsOfficer?: string;
-    designation?: string; // DPE, Director of Physical Education, etc.
+    designation?: string;
     phone?: string;
+    sportsOfficer2?: string;
+    designation2?: string;
+    phone2?: string;
     email?: string;
     website?: string;
     applicationLink?: string;
@@ -290,9 +314,191 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-11',
   },
 
+  // ─── VERIFIED: PSG College of Arts & Science (PSGCAS) ────────────────────
+  {
+    id: 'psgcas_coimbatore',
+    collegeName: 'PSG College of Arts & Science',
+    collegeNameTa: 'பி.எஸ்.ஜி கலை அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district', // Lower bar than TNEA — arts colleges typically accept district level
+      achievementWindowYears: 4,
+      sportsForMen: [
+        'athletics', 'badminton', 'ball-badminton', 'basketball', 'boxing',
+        'chess', 'cricket', 'football', 'handball', 'hockey', 'kho-kho',
+        'martial-arts', // covers Karate and Taekwondo
+        'swimming', 'table-tennis', 'tennis', 'volleyball', 'weightlifting',
+        // Yoga and Powerlifting included but not in our standard list — they map to 'other'
+      ],
+      sportsForWomen: [
+        'athletics', 'badminton', 'basketball', 'boxing', 'chess',
+        'handball', 'kho-kho',
+        'martial-arts', // covers Karate and Taekwondo
+        'swimming', 'table-tennis', 'tennis', 'volleyball', 'weightlifting',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Online application via PSGCAS Google Form',
+          titleTa: 'PSGCAS Google Form மூலம் ஆன்லைன் விண்ணப்பம்',
+          detailEn: 'Apply through the Google Form linked from www.psgcas.ac.in admissions page.',
+          detailTa: 'www.psgcas.ac.in சேர்க்கை பக்கத்தில் இணைக்கப்பட்டுள்ள Google Form மூலம் விண்ணப்பிக்கவும்.',
+        },
+        {
+          titleEn: 'Attend physical sports trial at PSG CAS campus',
+          titleTa: 'PSG CAS வளாகத்தில் நேரடி விளையாட்டு தேர்வு கலந்து கொள்ளவும்',
+          detailEn: 'Trials are sport-specific. Check the date and time for YOUR sport on the official notification. Bring all certificates in original.',
+          detailTa: 'தேர்வுகள் விளையாட்டு வாரியாக நடைபெறும். உங்கள் விளையாட்டுக்கான தேதி மற்றும் நேரத்தை அதிகாரப்பூர்வ அறிவிப்பில் சரிபார்க்கவும். அனைத்து சான்றிதழ்களின் அசலையும் கொண்டு வாரவும்.',
+        },
+      ],
+      sportsScholarship: 'FREE EDUCATION for deserving players. SAI – Khelo India Scheme (Basketball Men & Women). NIS-certified coaches, indoor stadium, players gym, medical insurance.',
+      selectionProcess: 'Online application → Physical trials at PSG CAS campus (April 2026) → Selection',
+    },
+    contact: {
+      sportsOfficer: 'Dr B. Navaneethan',
+      designation: 'Director of Physical Education',
+      phone: '9894188251',
+      email: 'hodphysicaleducation@psgcas.ac.in',
+      website: 'https://www.psgcas.ac.in',
+      applicationLink: 'https://www.psgcas.ac.in/admissions/',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.psgcas.ac.in/admissions/',
+    sourceNote: 'Official PSGCAS Sports Quota Admission Selection Trials 2026-27 brochure (Men & Women)',
+    lastVerified: '2026-05-11',
+  },
+
+  // ─── VERIFIED CONTACT, DEFAULTS APPLY: PSG College of Technology ─────────
+  {
+    id: 'psgtech_coimbatore',
+    collegeName: 'PSG College of Technology',
+    collegeNameTa: 'பி.எஸ்.ஜி தொழில்நுட்பக் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'engineering',
+    counsellingBody: 'TNEA',
+    // No college-specific overrides — admissions are via TNEA, so TNEA rules apply:
+    // - Min State level
+    // - 45% / 40% marks
+    // - All TNEA-listed sports
+    // PSG Tech has a Department of Physical Education and conducts sport trials
+    // (e.g. football trials are announced annually).
+    overrides: {
+      selectionProcess: 'TNEA online application → TNEA sports quota counselling (July 2026) → Sport-specific trial at PSG Tech campus',
+    },
+    contact: {
+      designation: 'Department of Physical Education, PSG Tech',
+      website: 'https://www.psgtech.edu/',
+      // No direct phone listed publicly for the PE Department — students should
+      // use the main college contact form on the website to reach the DPE.
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.psgtech.edu/',
+    sourceNote: 'PSG Tech B.E./B.Tech admissions are exclusively through TNEA. Sports quota seats are filled via TNEA sports quota counselling. The college has a Department of Physical Education that conducts trials for selected candidates.',
+    lastVerified: '2026-05-11',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
+
+  // ─── VERIFIED: PSG College of Arts & Science ────────────────────────────
+  // Source: Official PSG CAS Sports Quota Admission Selection Trials 2026-27 poster
+  // PSG CAS does direct admission for UG & PG (NOT through TNEA — arts college)
+  // FREE EDUCATION for deserving players. NIS-certified coaches.
+  // SAI-Khelo India Scheme accredited for Basketball (Men & Women).
+  {
+    id: 'psg_cas_coimbatore',
+    collegeName: 'PSG College of Arts & Science',
+    collegeNameTa: 'PSG கலை மற்றும் அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct', // Autonomous — handles own admissions
+    overrides: {
+      minLevel: 'district', // Selection trials open, so even district players can audition
+      sportsScholarship: 'FREE EDUCATION for deserving players (full fee waiver)',
+      freeEducation: true,
+      freeEducationNote: 'PSG CAS offers complete fee waiver for selected sports quota students.',
+      schemes: ['SAI – Khelo India Scheme (Basketball, Men & Women)'],
+      selectionProcess: 'Google Form application → Sport-specific trials at PSG CAS or PSG Medical College → Selection based on trial performance',
+      infrastructure: [
+        { en: 'NIS-certified coaches', ta: 'NIS சான்றளிக்கப்பட்ட பயிற்சியாளர்கள்' },
+        { en: 'Indoor stadium', ta: 'உட்புற விளையாட்டரங்கம்' },
+        { en: 'Players\' gym', ta: 'வீரர்கள் ஜிம்' },
+        { en: 'Medical insurance for players', ta: 'வீரர்களுக்கான மருத்துவ காப்பீடு' },
+      ],
+      sportsForMen: [
+        'swimming', 'basketball', 'ball-badminton', 'karate', 'yoga',
+        'kho-kho', 'powerlifting', 'taekwondo', 'weightlifting',
+        'volleyball', 'table-tennis', 'badminton', 'chess', 'tennis',
+        'cricket', 'athletics', 'boxing', 'football', 'hockey', 'handball',
+      ],
+      sportsForWomen: [
+        'basketball', 'chess', 'boxing', 'badminton', 'swimming',
+        'tennis', 'table-tennis', 'yoga', 'karate', 'handball',
+        'powerlifting', 'kho-kho', 'taekwondo', 'weightlifting',
+      ],
+      trialsMen: [
+        { sport: 'swimming',      date: '2026-04-07', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'basketball',    date: '2026-04-08', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'ball-badminton', date: '2026-04-08', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'karate',        date: '2026-04-09', time: '10:00 AM', venue: 'PSG CAS' },
+        { sport: 'yoga',          date: '2026-04-09', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'kho-kho',       date: '2026-04-09', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'powerlifting',  date: '2026-04-10', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'taekwondo',     date: '2026-04-11', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'weightlifting', date: '2026-04-11', time: '11:00 AM', venue: 'PSG CAS' },
+        { sport: 'volleyball',    date: '2026-04-13', time: '8:00 AM',  venue: 'PSG CAS' },
+        { sport: 'table-tennis',  date: '2026-04-13', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'badminton',     date: '2026-04-15', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'chess',         date: '2026-04-15', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'tennis',        date: '2026-04-15', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'cricket',       date: '2026-04-16', time: '9:00 AM',  venue: 'PSG Medical College' },
+        { sport: 'athletics',     date: '2026-04-17', time: '9:00 AM',  venue: 'PSG Medical College' },
+        { sport: 'boxing',        date: '2026-04-17', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'football',      date: '2026-04-20', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'hockey',        date: '2026-04-25', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'handball',      date: '2026-04-25', time: '3:00 PM',  venue: 'PSG CAS' },
+      ],
+      trialsWomen: [
+        { sport: 'basketball',    date: '2026-04-06', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'chess',         date: '2026-04-06', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'boxing',        date: '2026-04-06', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'badminton',     date: '2026-04-07', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'swimming',      date: '2026-04-07', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'tennis',        date: '2026-04-07', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'table-tennis',  date: '2026-04-08', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'yoga',          date: '2026-04-09', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'karate',        date: '2026-04-09', time: '10:00 AM', venue: 'PSG CAS' },
+        { sport: 'handball',      date: '2026-04-09', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'powerlifting',  date: '2026-04-10', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'kho-kho',       date: '2026-04-10', time: '3:00 PM',  venue: 'PSG CAS' },
+        { sport: 'taekwondo',     date: '2026-04-11', time: '9:00 AM',  venue: 'PSG CAS' },
+        { sport: 'weightlifting', date: '2026-04-11', time: '11:00 AM', venue: 'PSG CAS' },
+      ],
+    },
+    contact: {
+      sportsOfficer: 'Dr. B. Navaneethan',
+      designation: 'Director of Physical Education',
+      phone: '9894188251',
+      sportsOfficer2: 'Dr. R. Soundararajan',
+      designation2: 'Asst. Physical Director',
+      phone2: '9865555599',
+      email: 'hodphysicaleducation@psgcas.ac.in',
+      website: 'https://www.psgcas.ac.in/',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.psgcas.ac.in/',
+    sourceNote: 'Direct from PSG CAS Sports Quota Admission Selection Trials 2026-27 official posters (both Men and Women).',
+    lastVerified: '2026-05-11',
+  },
+
+  // TODO: Add PSG College of Technology (PSG Tech) as a SEPARATE entry once
+  // their sports quota brochure is available. PSG Tech is engineering (TNEA),
+  // distinct from PSG CAS (arts & science, direct admission).
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

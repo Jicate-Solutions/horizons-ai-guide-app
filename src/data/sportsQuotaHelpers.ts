@@ -14,6 +14,7 @@ import {
   CandidateProfile,
   checkTNEAEligibility,
   collegeAcceptsCandidateSport,
+  compareLevels,
   EligibilityResult,
   Sport,
   Gender,
@@ -125,6 +126,8 @@ export interface CollegeMatch {
 
 /**
  * Given a candidate's profile, return all colleges and how they match.
+ * For direct-admission colleges with their own overrides (like PSG CAS),
+ * the college's own minLevel is used instead of the TNEA default.
  */
 export const findMatchingColleges = (
   candidate: CandidateProfile,
@@ -133,7 +136,7 @@ export const findMatchingColleges = (
   const all = buildAllEngineeringQuotaColleges();
 
   return all.map(college => {
-    // Check sport/gender restriction first
+    // 1. Sport / gender restriction first
     const sportCheck = collegeAcceptsCandidateSport(college, candidate.sport, candidate.gender);
     if (!sportCheck.accepted) {
       return {
@@ -144,7 +147,28 @@ export const findMatchingColleges = (
       };
     }
 
-    // Otherwise, defer to TNEA eligibility verdict
+    // 2. Direct-admission colleges (not TNEA): use the college's own minLevel
+    if (college.counsellingBody === 'Direct' && college.overrides?.minLevel) {
+      const ownMin = college.overrides.minLevel;
+      const levelOK = compareLevels(candidate.level, ownMin) >= 0;
+      if (levelOK) {
+        return {
+          college,
+          verdict: 'qualified',
+          matchReasonEn: `This college accepts ${ownMin}-level or higher. You qualify.`,
+          matchReasonTa: `இந்த கல்லூரி ${ownMin} அல்லது அதற்கு மேல் ஏற்கிறது. நீங்கள் தகுதியானவர்.`,
+        };
+      } else {
+        return {
+          college,
+          verdict: 'borderline',
+          matchReasonEn: `This college runs open trials. Even if your level is below their minimum, you can attend the trial and prove yourself.`,
+          matchReasonTa: `இந்த கல்லூரி திறந்த தேர்வுகளை நடத்துகிறது. உங்கள் அளவு குறைவாக இருந்தாலும், நீங்கள் தேர்வில் பங்கேற்று உங்கள் திறமையை நிரூபிக்கலாம்.`,
+        };
+      }
+    }
+
+    // 3. Otherwise (TNEA), defer to base TNEA eligibility verdict
     return {
       college,
       verdict: baseEligibility.verdict,
