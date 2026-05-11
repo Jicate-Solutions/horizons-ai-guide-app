@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Globe, MapPin, Calendar, GraduationCap, Award, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { Phone, Globe, MapPin, Calendar, GraduationCap, Award, ChevronDown, ChevronUp, ExternalLink, Trophy, ShieldCheck, Flag, Info } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -49,6 +49,11 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               {college.naacGrade && college.naacGrade !== 'null' && (
                 <Badge variant="secondary" className="text-[10px] md:text-xs bg-emerald-100 text-emerald-800">
                   NAAC {college.naacGrade}
+                </Badge>
+              )}
+              {college.sports?.sportsQuota && (
+                <Badge variant="secondary" className="text-[10px] md:text-xs bg-amber-100 text-amber-800 border border-amber-200">
+                  🏆 Sports Quota
                 </Badge>
               )}
             </div>
@@ -173,6 +178,109 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                   <span className="font-medium">📊 Placements:</span> {college.placementStats}
                 </div>
               )}
+
+              {/* Sports Section */}
+              <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-2.5 md:p-3 space-y-2">
+                <div className="flex items-center gap-1.5">
+                  <Trophy className="h-4 w-4 text-amber-600" />
+                  <span className="text-xs md:text-sm font-semibold text-amber-900">Sports & Athletics</span>
+                </div>
+
+                {college.sports?.sports && college.sports.sports.length > 0 && (
+                  <div>
+                    <p className="text-[10px] md:text-xs font-medium text-amber-900/80 mb-1">Sports offered:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {college.sports.sports.map((s, i) => (
+                        <span key={i} className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] md:text-xs font-medium bg-white text-amber-800 border border-amber-200">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {college.sports?.facilities && college.sports.facilities.length > 0 && (
+                  <div>
+                    <p className="text-[10px] md:text-xs font-medium text-amber-900/80 mb-1">Facilities:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {college.sports.facilities.map((f, i) => (
+                        <span key={i} className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] md:text-xs font-medium bg-white text-amber-800 border border-amber-200">
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {college.sports?.sportsQuota && (
+                  <div className="flex items-center gap-1.5 text-[10px] md:text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-md px-2 py-1 w-fit">
+                    <Award className="h-3 w-3" />
+                    Admits under Sports Quota
+                  </div>
+                )}
+
+                {college.sports?.achievements && college.sports.achievements.length > 0 && (
+                  <div>
+                    <p className="text-[10px] md:text-xs font-medium text-amber-900/80 mb-1">Achievements:</p>
+                    <ul className="list-disc list-inside text-[10px] md:text-xs text-amber-900 space-y-0.5">
+                      {college.sports.achievements.map((a, i) => (
+                        <li key={i}>{a}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Always show a way to look up sports info on the official site */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <a
+                    href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' sports facilities athletics department')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] md:text-xs font-medium bg-amber-600 hover:bg-amber-700 text-white no-underline"
+                  >
+                    <Trophy className="h-3 w-3" /> Look up sports info
+                  </a>
+                  {!college.sports && (
+                    <span className="text-[10px] md:text-xs text-amber-900/70 italic">
+                      Detailed sports data not yet verified for this college — please check the official source.
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Data Accuracy & Verification */}
+              <div className="rounded-lg border border-sky-200 bg-sky-50/60 p-2.5 md:p-3 space-y-2">
+                <div className="flex items-start gap-1.5">
+                  <Info className="h-4 w-4 text-sky-700 mt-0.5 shrink-0" />
+                  <p className="text-[10px] md:text-xs text-sky-900 leading-snug">
+                    <span className="font-semibold">Verify before you decide.</span> College fees, courses, NAAC grades and contact numbers change year to year. Always confirm on the official source below before applying or paying.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href={collegeUrl || `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] md:text-xs font-medium bg-sky-700 hover:bg-sky-800 text-white no-underline"
+                  >
+                    <ShieldCheck className="h-3 w-3" /> Verify on official site
+                  </a>
+                  <a
+                    href="https://www.naac.gov.in/index.php/en/assessment-accreditation/accredited-institutions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] md:text-xs font-medium border border-sky-300 bg-white hover:bg-sky-50 text-sky-800 no-underline"
+                  >
+                    <Award className="h-3 w-3" /> NAAC database
+                  </a>
+                  <a
+                    href={`mailto:support@vazhikatti.app?subject=${encodeURIComponent('Report inaccurate data: ' + college.name)}&body=${encodeURIComponent('Please describe the inaccuracy you noticed about ' + college.name + ':\n\n')}`}
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] md:text-xs font-medium border border-red-300 bg-white hover:bg-red-50 text-red-700 no-underline"
+                  >
+                    <Flag className="h-3 w-3" /> Report inaccurate info
+                  </a>
+                </div>
+              </div>
             </CollapsibleContent>
           </Collapsible>
         </div>

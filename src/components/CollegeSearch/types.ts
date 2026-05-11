@@ -1,3 +1,14 @@
+export interface SportsInfo {
+  /** List of sports actively offered or supported at the college (e.g. 'Cricket', 'Athletics') */
+  sports?: string[];
+  /** Notable sports facilities (e.g. 'Cricket ground', '400m track', 'Indoor stadium', 'Swimming pool') */
+  facilities?: string[];
+  /** Whether the college admits students under sports quota (TNEA / DME / university quota) */
+  sportsQuota?: boolean;
+  /** Notable sports achievements (e.g. 'University champions 2023') — only include if independently verifiable */
+  achievements?: string[];
+}
+
 export interface College {
   id: string;
   name: string;
@@ -14,6 +25,8 @@ export interface College {
   isJKKN?: boolean;
   placementStats?: string;
   facilities?: string[];
+  /** Sports details. Only populate fields when the data is verified against an official source. */
+  sports?: SportsInfo;
 }
 
 export type CollegeCategory = 

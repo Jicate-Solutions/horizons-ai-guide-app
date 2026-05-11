@@ -207,7 +207,7 @@ export const CollegeSearch = () => {
           </h2>
           <p className="text-sm text-emerald-300 font-medium mb-1">மாவட்ட வாரியாக கல்லூரிகள்</p>
           <p className="text-xs text-emerald-200/60 max-w-md mb-5">
-            Find all colleges in any Tamil Nadu district with complete details, courses & contact info
+            Find colleges in any Tamil Nadu district — courses, fees, contacts & sports details. Always verify on the official source.
           </p>
           <div className="flex items-center gap-6">
             <div className="text-center">
@@ -234,6 +234,69 @@ export const CollegeSearch = () => {
           />
         </CardContent>
       </Card>
+
+      {/* Data Accuracy Notice — honest & prominent */}
+      <div className="rounded-xl border-2 border-sky-200 bg-gradient-to-r from-sky-50 to-blue-50 p-3.5 md:p-4">
+        <div className="flex items-start gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center flex-shrink-0">
+            <span className="text-white text-base">ℹ️</span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs md:text-sm font-bold text-sky-900 mb-1">
+              About this data — please verify before you decide
+            </p>
+            <p className="text-[11px] md:text-xs text-sky-900/85 leading-snug">
+              We compile information from public sources (TNEA, DME, NAAC, NIRF, university and college websites).
+              Details such as fees, courses, cut-offs, NAAC grades, contact numbers and sports facilities
+              <span className="font-semibold"> change every year</span>. Treat this as a starting point — always confirm on the
+              college's official website or the relevant counselling portal before applying or paying any fees.
+              Found a mistake? Use the "Report inaccurate info" button on any college card.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-2">
+              <a
+                href="https://www.tneaonline.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] md:text-xs font-medium bg-white border border-sky-300 text-sky-800 hover:bg-sky-100 no-underline"
+              >
+                TNEA (Engineering)
+              </a>
+              <a
+                href="https://tnmedicalselection.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] md:text-xs font-medium bg-white border border-sky-300 text-sky-800 hover:bg-sky-100 no-underline"
+              >
+                DME TN (Medical)
+              </a>
+              <a
+                href="https://www.naac.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] md:text-xs font-medium bg-white border border-sky-300 text-sky-800 hover:bg-sky-100 no-underline"
+              >
+                NAAC
+              </a>
+              <a
+                href="https://www.nirfindia.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] md:text-xs font-medium bg-white border border-sky-300 text-sky-800 hover:bg-sky-100 no-underline"
+              >
+                NIRF Rankings
+              </a>
+              <a
+                href="https://www.ugc.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] md:text-xs font-medium bg-white border border-sky-300 text-sky-800 hover:bg-sky-100 no-underline"
+              >
+                UGC
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Sports Quota Card — always visible */}
       <button
