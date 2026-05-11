@@ -1,0 +1,428 @@
+/**
+ * SPORTS QUOTA DATA — TNEA 2026
+ *
+ * SOURCE: Official TNEA 2026 Sports Quota notification (DoTE Tamil Nadu).
+ * This data is compiled from public sources. Always verify with the college
+ * before applying. Use the "Report incorrect info" button to flag any error.
+ *
+ * Last updated: May 2026
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TYPES
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type SportLevel = 'school' | 'district' | 'state' | 'national' | 'international';
+
+export type Gender = 'male' | 'female' | 'other';
+
+export type Sport =
+  | 'athletics' | 'basketball' | 'badminton' | 'ball-badminton'
+  | 'boxing' | 'chess' | 'cricket' | 'football' | 'gymnastics'
+  | 'handball' | 'hockey' | 'kabaddi' | 'kho-kho' | 'martial-arts'
+  | 'swimming' | 'table-tennis' | 'tennis' | 'volleyball'
+  | 'weightlifting' | 'wrestling' | 'archery' | 'shooting' | 'other';
+
+export type VerificationStatus = 'verified' | 'unverified' | 'tnea-default';
+
+export interface SportInfoBilingual {
+  id: Sport;
+  en: string;
+  ta: string;
+}
+
+export const ALL_SPORTS: SportInfoBilingual[] = [
+  { id: 'athletics',      en: 'Athletics',       ta: 'அத்லெடிக்ஸ்' },
+  { id: 'badminton',      en: 'Badminton',       ta: 'பேட்மிண்டன்' },
+  { id: 'ball-badminton', en: 'Ball Badminton',  ta: 'பால் பேட்மிண்டன்' },
+  { id: 'basketball',     en: 'Basketball',      ta: 'கூடைப்பந்து' },
+  { id: 'boxing',         en: 'Boxing',          ta: 'குத்துச்சண்டை' },
+  { id: 'chess',          en: 'Chess',           ta: 'சதுரங்கம்' },
+  { id: 'cricket',        en: 'Cricket',         ta: 'கிரிக்கெட்' },
+  { id: 'football',       en: 'Football',        ta: 'கால்பந்து' },
+  { id: 'gymnastics',     en: 'Gymnastics',      ta: 'உடற்பயிற்சி' },
+  { id: 'handball',       en: 'Handball',        ta: 'கைப்பந்து' },
+  { id: 'hockey',         en: 'Hockey',          ta: 'ஹாக்கி' },
+  { id: 'kabaddi',        en: 'Kabaddi',         ta: 'கபடி' },
+  { id: 'kho-kho',        en: 'Kho-Kho',         ta: 'கோ-கோ' },
+  { id: 'martial-arts',   en: 'Martial Arts',    ta: 'தற்காப்புக் கலை' },
+  { id: 'swimming',       en: 'Swimming',        ta: 'நீச்சல்' },
+  { id: 'table-tennis',   en: 'Table Tennis',    ta: 'மேசைப் பந்தாட்டம்' },
+  { id: 'tennis',         en: 'Tennis',          ta: 'டென்னிஸ்' },
+  { id: 'volleyball',     en: 'Volleyball',      ta: 'கைப்பந்தாட்டம்' },
+  { id: 'weightlifting',  en: 'Weightlifting',   ta: 'பளுதூக்குதல்' },
+  { id: 'wrestling',      en: 'Wrestling',       ta: 'மல்யுத்தம்' },
+  { id: 'archery',        en: 'Archery',         ta: 'வில்வித்தை' },
+  { id: 'shooting',       en: 'Shooting',        ta: 'துப்பாக்கி சுடுதல்' },
+  { id: 'other',          en: 'Other sport',     ta: 'வேறு விளையாட்டு' },
+];
+
+export const SPORT_LEVELS: { id: SportLevel; en: string; ta: string; helpEn: string; helpTa: string }[] = [
+  { id: 'school',        en: 'School level',        ta: 'பள்ளி அளவு',     helpEn: 'Played for your school team in inter-school matches', helpTa: 'உங்கள் பள்ளி அணிக்காக போட்டியில் விளையாடினீர்கள்' },
+  { id: 'district',      en: 'District level',      ta: 'மாவட்ட அளவு',    helpEn: 'Represented your district. Certificate signed by District Sports Officer', helpTa: 'உங்கள் மாவட்டத்திற்காக விளையாடினீர்கள். மாவட்ட விளையாட்டு அலுவலர் கையெழுத்திட்ட சான்றிதழ்' },
+  { id: 'state',         en: 'State level',         ta: 'மாநில அளவு',     helpEn: 'Represented Tamil Nadu in state-level tournament', helpTa: 'மாநில அளவிலான போட்டியில் தமிழ்நாட்டிற்காக விளையாடினீர்கள்' },
+  { id: 'national',      en: 'National level',      ta: 'தேசிய அளவு',     helpEn: 'Represented Tamil Nadu in a national tournament (e.g. National Games, SGFI, AIU)', helpTa: 'தேசிய அளவிலான போட்டியில் (உதா: National Games, SGFI, AIU) விளையாடினீர்கள்' },
+  { id: 'international', en: 'International level', ta: 'சர்வதேச அளவு',   helpEn: 'Represented India in an international event', helpTa: 'சர்வதேச நிகழ்வில் இந்தியாவைப் பிரதிநிதித்துவப்படுத்தினீர்கள்' },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TNEA MASTER RULES (apply to ALL Tamil Nadu engineering colleges)
+// Source: DoTE TNEA 2026 Sports Quota Notification
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const TNEA_RULES = {
+  source: 'TNEA 2026 Official Notification, DoTE Tamil Nadu',
+  sourceUrl: 'https://tneaonline.org/',
+  year: 2026,
+
+  reservationPercent: 2, // up from 1% in 2025
+  approximateSeats: 4801,
+  totalColleges: 433,
+
+  // Class 12 stream
+  requiredSubjects: ['Physics', 'Chemistry', 'Mathematics'],
+
+  // Minimum marks
+  minMarks: {
+    general: 45,
+    reserved: 40,
+    reservedCategories: ['SC', 'ST', 'MBC', 'DNC', 'SCA'],
+  },
+
+  // Minimum sports level
+  minSportsLevel: 'state' as SportLevel,
+  acceptedLevels: ['state', 'national', 'international'] as SportLevel[],
+
+  // Sports accepted by TNEA (universal list)
+  acceptedSports: [
+    'athletics', 'basketball', 'badminton', 'boxing', 'chess', 'cricket',
+    'football', 'gymnastics', 'kabaddi', 'martial-arts', 'swimming',
+    'table-tennis', 'tennis', 'volleyball', 'hockey', 'kho-kho',
+    'handball', 'ball-badminton', 'weightlifting', 'wrestling',
+    'archery', 'shooting',
+  ] as Sport[],
+
+  // Universal documents
+  documents: [
+    {
+      id: 'sports-cert',
+      titleEn: 'Sports achievement certificates',
+      titleTa: 'விளையாட்டு சாதனை சான்றிதழ்கள்',
+      detailEn: 'Original certificates of all sports achievements at State / National / International level. Signed by the recognised authority (District Sports Officer for state certificates).',
+      detailTa: 'மாநில / தேசிய / சர்வதேச அளவிலான அனைத்து விளையாட்டு சாதனை சான்றிதழ்களின் அசல் நகல்கள். மாவட்ட விளையாட்டு அலுவலர் (அல்லது அதற்கு மேற்பட்ட அதிகாரி) கையெழுத்திட்டிருக்க வேண்டும்.',
+      critical: true,
+    },
+    {
+      id: '12th-marks',
+      titleEn: '12th Standard mark sheet',
+      titleTa: '12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்',
+      detailEn: 'Must have Physics + Chemistry + Mathematics. Minimum 45% (General) or 40% (SC/ST/MBC/DNC/SCA).',
+      detailTa: 'இயற்பியல் + வேதியியல் + கணிதம் இருக்க வேண்டும். குறைந்தபட்சம் 45% (பொது) அல்லது 40% (SC/ST/MBC/DNC/SCA).',
+      critical: true,
+    },
+    {
+      id: 'nativity',
+      titleEn: 'Nativity certificate (if applicable)',
+      titleTa: 'பூர்வீகச் சான்றிதழ் (தேவைப்பட்டால்)',
+      detailEn: 'Required if you did not study Classes 8–12 in Tamil Nadu. Issued by the Tahsildar.',
+      detailTa: '8 முதல் 12 வரை தமிழ்நாட்டில் படிக்கவில்லை என்றால் தேவை. வட்டாட்சியர் (Tahsildar) வழங்கும்.',
+      critical: false,
+    },
+    {
+      id: 'community',
+      titleEn: 'Community certificate (if SC/ST/BC/MBC etc.)',
+      titleTa: 'சாதிச் சான்றிதழ் (SC/ST/BC/MBC முதலியன என்றால்)',
+      detailEn: 'For applying under reduced 40% marks cut-off and reserved seats.',
+      detailTa: '40% குறைக்கப்பட்ட மதிப்பெண் வரம்பு மற்றும் இடஒதுக்கீட்டு இருக்கைக்கு விண்ணப்பிக்க.',
+      critical: false,
+    },
+    {
+      id: 'transfer-cert',
+      titleEn: 'Transfer certificate from school',
+      titleTa: 'பள்ளி மாற்றுச் சான்றிதழ் (TC)',
+      detailEn: 'Original TC from your 12th standard school.',
+      detailTa: '12-ஆம் வகுப்பு படித்த பள்ளியிலிருந்து அசல் TC.',
+      critical: true,
+    },
+    {
+      id: 'aadhaar',
+      titleEn: 'Aadhaar card',
+      titleTa: 'ஆதார் அட்டை',
+      detailEn: 'Original + photocopy.',
+      detailTa: 'அசல் + நகல்.',
+      critical: true,
+    },
+    {
+      id: 'photo',
+      titleEn: 'Passport size photos',
+      titleTa: 'பாஸ்போர்ட் அளவு புகைப்படங்கள்',
+      detailEn: 'Recent (last 6 months), white background, 4-6 copies. Some colleges require <50kb JPG for online upload.',
+      detailTa: 'சமீபத்திய (கடந்த 6 மாதம்), வெள்ளை பின்னணி, 4-6 நகல்கள். சில கல்லூரிகள் ஆன்லைனில் <50kb JPG கேட்கின்றன.',
+      critical: true,
+    },
+  ],
+
+  // Common rejection reasons
+  rejectionReasons: [
+    {
+      en: 'PT teacher\'s signature instead of District Sports Officer',
+      ta: 'மாவட்ட விளையாட்டு அலுவலருக்குப் பதிலாக PT ஆசிரியர் கையெழுத்து',
+    },
+    {
+      en: 'Certificate older than the eligibility window (most colleges: last 4 years)',
+      ta: 'தகுதி காலத்திற்கு (பெரும்பாலும் கடந்த 4 ஆண்டுகள்) முந்தைய சான்றிதழ்',
+    },
+    {
+      en: 'No SDAT (Sports Development Authority of Tamil Nadu) seal/counter-signature',
+      ta: 'SDAT (Sports Development Authority of Tamil Nadu) முத்திரை/கூட்டு-கையெழுத்து இல்லை',
+    },
+    {
+      en: 'School/district-level certificate when state-level minimum is required',
+      ta: 'மாநில அளவு குறைந்தபட்சம் தேவையானபோது பள்ளி/மாவட்ட அளவு சான்றிதழ்',
+    },
+    {
+      en: '12th marks below 45% (General) or 40% (Reserved)',
+      ta: '12-ஆம் வகுப்பு மதிப்பெண் 45%-க்கு (பொது) அல்லது 40%-க்கு (இடஒதுக்கீடு) குறைவு',
+    },
+  ],
+
+  // Key dates 2026
+  dates: {
+    rankListRelease: 'June 29, 2026',
+    grievanceRedressal: 'June 29 – July 4, 2026',
+    counsellingMonth: 'July 2026',
+    note: 'Sports quota counselling is BEFORE general counselling.',
+  },
+} as const;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COLLEGE-SPECIFIC SPORTS QUOTA DATA
+// Each college may have additional rules on top of TNEA's universal rules.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface CollegeSportsQuota {
+  id: string;
+  collegeName: string;
+  collegeNameTa?: string;
+  district: string;
+  type: 'Govt' | 'Govt-Aided' | 'Private' | 'Deemed' | 'Autonomous';
+  field: 'engineering' | 'medical' | 'arts' | 'law' | 'agriculture' | 'other';
+
+  // Counselling body — null if college handles its own admission directly
+  counsellingBody: 'TNEA' | 'NEET-UG' | 'DGE-TN' | 'Direct' | 'Other';
+
+  // College-specific overrides (only if different from counsellingBody defaults)
+  overrides?: {
+    minLevel?: SportLevel;
+    achievementsRequired?: number; // e.g. 5 for Kongu
+    achievementWindowYears?: number; // e.g. last 4 years
+    sportsForMen?: Sport[]; // if college restricts sports by gender
+    sportsForWomen?: Sport[];
+    extraDocuments?: { titleEn: string; titleTa: string; detailEn: string; detailTa: string }[];
+    sportsScholarship?: string; // e.g. "50% fee waiver for nationals"
+    selectionProcess?: string;
+  };
+
+  // Contact
+  contact: {
+    sportsOfficer?: string;
+    designation?: string; // DPE, Director of Physical Education, etc.
+    phone?: string;
+    email?: string;
+    website?: string;
+    applicationLink?: string;
+  };
+
+  // Trust signals
+  verification: VerificationStatus;
+  sourceUrl?: string;
+  sourceNote?: string;
+  lastVerified?: string; // YYYY-MM-DD
+}
+
+export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
+  // ─── VERIFIED: Kongu Engineering College ─────────────────────────────────
+  {
+    id: 'kongu_erode',
+    collegeName: 'Kongu Engineering College',
+    collegeNameTa: 'கொங்கு பொறியியல் கல்லூரி',
+    district: 'Erode',
+    type: 'Autonomous',
+    field: 'engineering',
+    counsellingBody: 'TNEA',
+    overrides: {
+      minLevel: 'state',
+      achievementsRequired: 5,
+      achievementWindowYears: 4,
+      sportsForMen: [
+        'athletics', 'badminton', 'ball-badminton', 'basketball',
+        'handball', 'hockey', 'kho-kho', 'table-tennis', 'tennis', 'volleyball',
+      ],
+      sportsForWomen: [
+        'athletics', 'badminton', 'ball-badminton', 'basketball',
+        'volleyball', 'kabaddi', 'table-tennis',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Achievement certificates as JPG (max 100KB each)',
+          titleTa: 'சாதனை சான்றிதழ்கள் JPG-ஆக (ஒவ்வொன்றும் அதிகபட்சம் 100KB)',
+          detailEn: 'All 5 sports achievement certificates uploaded online. Each file under 100KB, JPG format only.',
+          detailTa: 'அனைத்து 5 விளையாட்டு சாதனை சான்றிதழ்களும் ஆன்லைனில் பதிவேற்றம் செய்யப்பட வேண்டும். ஒவ்வொரு கோப்பும் 100KB-க்கு கீழ், JPG வடிவம் மட்டும்.',
+        },
+        {
+          titleEn: 'Passport photo (JPG, max 50KB)',
+          titleTa: 'பாஸ்போர்ட் புகைப்படம் (JPG, அதிகபட்சம் 50KB)',
+          detailEn: 'For online registration. Use a phone app to compress your photo if needed.',
+          detailTa: 'ஆன்லைன் பதிவுக்கு. தேவைப்பட்டால் புகைப்படத்தை சுருக்க தொலைபேசி பயன்பாட்டைப் பயன்படுத்தவும்.',
+        },
+      ],
+      selectionProcess: 'Online registration → Shortlist based on achievements → Trials announced later',
+    },
+    contact: {
+      sportsOfficer: 'Dr R. Jeyaraman',
+      designation: 'DPE (Director of Physical Education)',
+      phone: '9842411828',
+      website: 'https://www.kongu.edu/',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.kongu.edu/',
+    sourceNote: 'Direct from Kongu Engineering College official sports quota notification 2025-26',
+    lastVerified: '2026-05-11',
+  },
+
+  // The rest of TN engineering colleges will inherit TNEA defaults below.
+  // They are populated programmatically from the college database in
+  // sportsQuotaHelpers.ts to avoid duplicating data.
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Compare two sports levels. Returns >0 if a is higher, <0 if b is higher, 0 if equal.
+ */
+export const compareLevels = (a: SportLevel, b: SportLevel): number => {
+  const order: Record<SportLevel, number> = {
+    'school': 0, 'district': 1, 'state': 2, 'national': 3, 'international': 4,
+  };
+  return order[a] - order[b];
+};
+
+/**
+ * Check if a candidate qualifies for TNEA sports quota.
+ */
+export interface CandidateProfile {
+  sport: Sport;
+  level: SportLevel;
+  yearOfAchievement: number;
+  marks12th: number; // percentage
+  category: 'general' | 'reserved'; // SC/ST/MBC/DNC/SCA = reserved
+  gender: Gender;
+  district?: string;
+}
+
+export type Verdict = 'qualified' | 'borderline' | 'aim-higher';
+
+export interface EligibilityResult {
+  verdict: Verdict;
+  reasonEn: string;
+  reasonTa: string;
+  growthPathEn?: string;
+  growthPathTa?: string;
+}
+
+export const checkTNEAEligibility = (c: CandidateProfile): EligibilityResult => {
+  const minMarks = c.category === 'general' ? TNEA_RULES.minMarks.general : TNEA_RULES.minMarks.reserved;
+  const marksOK = c.marks12th >= minMarks;
+  const levelOK = compareLevels(c.level, TNEA_RULES.minSportsLevel) >= 0;
+  const sportOK = TNEA_RULES.acceptedSports.includes(c.sport);
+
+  // Achievement freshness (most colleges: last 4 years)
+  const currentYear = new Date().getFullYear();
+  const ageOK = (currentYear - c.yearOfAchievement) <= 4;
+
+  if (!sportOK) {
+    return {
+      verdict: 'aim-higher',
+      reasonEn: 'Your sport is not in the TNEA list of accepted sports.',
+      reasonTa: 'உங்கள் விளையாட்டு TNEA ஏற்றுக்கொள்ளும் விளையாட்டுகள் பட்டியலில் இல்லை.',
+    };
+  }
+
+  if (levelOK && marksOK && ageOK) {
+    return {
+      verdict: 'qualified',
+      reasonEn: `Your ${c.level}-level achievement and ${c.marks12th}% marks meet TNEA's minimum.`,
+      reasonTa: `உங்கள் ${c.level} அளவு சாதனையும் ${c.marks12th}% மதிப்பெண்களும் TNEA-வின் குறைந்தபட்சத்தை அடைகின்றன.`,
+    };
+  }
+
+  if (!levelOK && c.level === 'district' && marksOK) {
+    return {
+      verdict: 'aim-higher',
+      reasonEn: 'TNEA requires State level minimum. District is not enough.',
+      reasonTa: 'TNEA-க்கு குறைந்தபட்சம் மாநில அளவு தேவை. மாவட்டம் போதாது.',
+      growthPathEn: 'Aim to play in a State-level tournament this year. Contact your District Sports Officer for selection trials.',
+      growthPathTa: 'இந்த ஆண்டு மாநில அளவிலான போட்டியில் விளையாட முயற்சி செய்யவும். தேர்வுகளுக்கு உங்கள் மாவட்ட விளையாட்டு அலுவலரைத் தொடர்பு கொள்ளவும்.',
+    };
+  }
+
+  if (!marksOK) {
+    return {
+      verdict: 'aim-higher',
+      reasonEn: `Your 12th marks (${c.marks12th}%) are below TNEA's minimum of ${minMarks}% for the ${c.category} category.`,
+      reasonTa: `உங்கள் 12-ஆம் வகுப்பு மதிப்பெண்கள் (${c.marks12th}%) ${c.category === 'general' ? 'பொது' : 'இடஒதுக்கீடு'} பிரிவின் TNEA குறைந்தபட்சமான ${minMarks}%-க்கு கீழ் உள்ளன.`,
+    };
+  }
+
+  if (!ageOK) {
+    return {
+      verdict: 'borderline',
+      reasonEn: `Your certificate is older than 4 years. Some colleges may still accept it — call to confirm.`,
+      reasonTa: `உங்கள் சான்றிதழ் 4 ஆண்டுகளுக்கு மேலானது. சில கல்லூரிகள் ஏற்கலாம் — உறுதிப்படுத்த அழைக்கவும்.`,
+    };
+  }
+
+  return {
+    verdict: 'borderline',
+    reasonEn: 'You partially meet TNEA criteria. Verify with the college sports officer.',
+    reasonTa: 'நீங்கள் TNEA தகுதியை ஓரளவு பூர்த்தி செய்கிறீர்கள். கல்லூரி விளையாட்டு அலுவலருடன் சரிபார்க்கவும்.',
+  };
+};
+
+/**
+ * Check if a specific college accepts this candidate's sport for their gender.
+ */
+export const collegeAcceptsCandidateSport = (
+  college: CollegeSportsQuota,
+  sport: Sport,
+  gender: Gender,
+): { accepted: boolean; reason?: string } => {
+  const ov = college.overrides;
+  if (!ov) return { accepted: true }; // No restriction — TNEA defaults apply
+
+  if (gender === 'male' && ov.sportsForMen && !ov.sportsForMen.includes(sport)) {
+    return {
+      accepted: false,
+      reason: `This college does not offer the men's quota seat for ${sport}.`,
+    };
+  }
+  if (gender === 'female' && ov.sportsForWomen && !ov.sportsForWomen.includes(sport)) {
+    return {
+      accepted: false,
+      reason: `This college does not offer the women's quota seat for ${sport}.`,
+    };
+  }
+  return { accepted: true };
+};
+
+export const getSportLabel = (id: Sport, lang: 'en' | 'ta' = 'en'): string => {
+  const s = ALL_SPORTS.find(x => x.id === id);
+  return s ? (lang === 'ta' ? s.ta : s.en) : id;
+};
+
+export const getLevelLabel = (id: SportLevel, lang: 'en' | 'ta' = 'en'): string => {
+  const l = SPORT_LEVELS.find(x => x.id === id);
+  return l ? (lang === 'ta' ? l.ta : l.en) : id;
+};

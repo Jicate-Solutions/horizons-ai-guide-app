@@ -116,6 +116,9 @@ const TNUniversityBrowse = lazy(() => import("./pages/TNUniversityBrowse"));
 // EduCutoff Page
 const EduCutoff = lazy(() => import("./pages/EduCutoff"));
 
+// Sports Quota Eligibility Check (for 12th students)
+const SportsQuotaEligibility = lazy(() => import("./pages/SportsQuotaEligibility"));
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -226,7 +229,11 @@ function App() {
 <Route path="/admin/alumni-verification" element={<AlumniVerification />} />
                 
                 {/* Career Hub Routes */}
-                
+
+                {/* Sports Quota Eligibility — bilingual 12th-student flow */}
+                <Route path="/sports-quota-check" element={<SportsQuotaEligibility />} />
+                <Route path="/sports-quota" element={<SportsQuotaEligibility />} />
+
                 {/* Catch-all */}
                 <Route path="/survey/:surveyId" element={<ProtectedRoute><SurveyPublic /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />

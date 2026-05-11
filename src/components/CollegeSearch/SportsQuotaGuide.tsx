@@ -100,6 +100,19 @@ export const SportsQuotaGuide = () => {
             <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-900/50 text-emerald-300">{districts.length} Districts</span>
             <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-white/5 text-gray-400">13 Fields</span>
           </div>
+
+          {/* CTA: Eligibility check */}
+          <a
+            href="/sports-quota-check"
+            className="mt-3 flex items-center justify-between gap-2 px-4 py-3 rounded-xl transition hover:opacity-95"
+            style={{ background: 'linear-gradient(135deg, #c9a84c, #a68a3a)' }}
+          >
+            <div>
+              <div className="text-sm font-black text-black leading-tight">Am I eligible? Check in 30 seconds</div>
+              <div className="text-[10px] text-black/70 mt-0.5">நான் தகுதியா? 30 விநாடியில் பாருங்கள்</div>
+            </div>
+            <Trophy className="w-5 h-5 text-black flex-shrink-0" />
+          </a>
         </div>
       </div>
 
