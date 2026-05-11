@@ -7,6 +7,7 @@
  import { cn } from '@/lib/utils';
  import { Building2, MapPin, Star, IndianRupee, Briefcase, Search, Heart, Shield, Landmark } from 'lucide-react';
  import { EngineeringResult } from './EngineeringCalculator';
+ import { ReportIncorrectInfo } from '@/components/ReportIncorrectInfo';
  
  interface CollegePredictorProps {
    engineeringResult?: EngineeringResult | null;
@@ -889,6 +890,15 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                        >
                          <Heart className={cn('h-4 w-4', savedColleges.includes(college.id) && 'fill-current')} />
                        </Button>
+                       <ReportIncorrectInfo
+                         entityType="college"
+                         entityId={college.id}
+                         entityName={college.name}
+                         variant="ghost"
+                         size="icon"
+                         className="h-8 w-8 text-muted-foreground hover:text-amber-600"
+                         iconOnly
+                       />
                        <div className={cn(
                          'px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-sm font-semibold whitespace-nowrap',
                          college.overallChance === 'High' ? 'bg-green-100 text-green-700' :

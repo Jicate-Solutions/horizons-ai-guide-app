@@ -66,6 +66,17 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Data accuracy disclaimer */}
+        <div className="mt-8 pt-5 border-t border-primary-foreground/10">
+          <p className="text-xs text-primary-foreground/50 text-center max-w-3xl mx-auto leading-relaxed">
+            <strong className="font-semibold text-primary-foreground/70">A note on accuracy:</strong>{" "}
+            Information about colleges, courses, exams, and cutoffs is compiled from public sources
+            (official websites, AICTE, UGC, NAAC, NBA, NIRF) and is updated periodically. We recommend
+            verifying directly with the institution before making any final decisions. Every page has a
+            <span className="font-semibold"> "Report incorrect info" </span> button — please use it if you spot anything wrong.
+          </p>
+        </div>
       </div>
     </footer>
   );

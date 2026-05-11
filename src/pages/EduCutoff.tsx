@@ -8,6 +8,7 @@
  import { MedicalEligibilityChecker, MedicalResult } from '@/components/EduCutoff/MedicalEligibilityChecker';
  import { CollegePredictor } from '@/components/EduCutoff/CollegePredictor';
  import { Calculator, Stethoscope, Building2, GraduationCap, MapPin, CheckCircle } from 'lucide-react';
+ import DataDisclaimer from '@/components/DataDisclaimer';
  
  const EduCutoffPage = () => {
    const [activeTab, setActiveTab] = useState('engineering');
@@ -69,6 +70,9 @@
            </div>
          </div>
  
+         {/* Data accuracy notice */}
+         <DataDisclaimer entityType="college" variant="banner" className="mb-6" />
+
          {/* Main Tabs */}
          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
            <TabsList className="grid w-full grid-cols-2 max-w-[500px] h-16 p-1.5 bg-muted/50 rounded-2xl mx-auto md:mx-0">
