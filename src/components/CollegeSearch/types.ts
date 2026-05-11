@@ -91,7 +91,7 @@ export const TAMIL_NADU_DISTRICTS = [
   'Namakkal', 'Krishnagiri', 'Theni', 'Perambalur', 'Ariyalur',
   'Nilgiris', 'Ramanathapuram', 'Villupuram', 'Tiruvannamalai', 'Pudukkottai',
   'Dharmapuri', 'Kanyakumari', 'Kallakurichi', 'Chengalpattu', 'Tenkasi',
-  'Tirupattur', 'Mayiladuthurai', 'Thiruvarur'
+  'Tirupattur', 'Mayiladuthurai', 'Tiruvarur'
 ].sort();
 
 export const COLLEGE_TYPE_INFO = {
