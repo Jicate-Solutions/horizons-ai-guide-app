@@ -496,10 +496,13 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     },
     contact: {
       designation: 'Department of Physical Education, SSN College of Engineering',
+      phone: '+91-44-27469700',
+      phone2: '+91-7358768700',
       website: 'https://www.ssn.edu.in/',
       applicationLink: 'https://www.ssn.edu.in/admissions/b-e-b-tech-admissions/',
-      // SSN does not publish a direct phone for the DPE. Use the main
-      // college admissions contact form to reach the sports department.
+      // SSN does not publish a direct phone for the DPE — the numbers above
+      // are the main admissions lines (working hours 8 AM – 3:30 PM). When
+      // calling, ask to be connected to the Director of Physical Education.
     },
     verification: 'verified',
     sourceUrl: 'https://www.ssn.edu.in/sports-annexes/',
