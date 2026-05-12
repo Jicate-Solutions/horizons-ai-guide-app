@@ -975,8 +975,19 @@ const CollegeCard = ({ match, lang, L }: { match: CollegeMatch; lang: 'en' | 'ta
         )}
 
         {/* College-specific details if verified */}
-        {isVerified && college.overrides && (college.overrides.achievementsRequired || college.overrides.selectionProcess || college.overrides.sportsScholarship) && (
+        {isVerified && college.overrides && (college.overrides.achievementsRequired || college.overrides.selectionProcess || college.overrides.sportsScholarship || college.overrides.applicationDeadline) && (
           <div className="text-xs space-y-1.5 bg-emerald-50/50 rounded-lg p-2.5">
+            {college.overrides.applicationDeadline && (
+              <div className="flex items-center gap-1.5 bg-red-100 border border-red-300 rounded-md px-2 py-1.5 -mx-0.5 -mt-0.5 mb-1">
+                <Clock className="w-3.5 h-3.5 text-red-700 flex-shrink-0" />
+                <div className="text-red-900">
+                  <span className="font-bold">
+                    {lang === 'ta' ? 'விண்ணப்ப கடைசி நாள்: ' : 'Application deadline: '}
+                  </span>
+                  <span className="font-bold">{college.overrides.applicationDeadline}</span>
+                </div>
+              </div>
+            )}
             {college.overrides.achievementsRequired && (
               <div>
                 <span className="font-medium">

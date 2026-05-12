@@ -445,6 +445,8 @@ export interface CollegeSportsQuota {
     infrastructure?: { en: string; ta: string }[];
     // Recognition/scheme affiliations (e.g. Khelo India, SAI)
     schemes?: string[];
+    // Application deadline for the college's own sports admission (direct admission colleges only)
+    applicationDeadline?: string;
   };
 
   // Contact (multiple sports officers possible)
@@ -796,6 +798,80 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     verification: 'verified',
     sourceUrl: 'https://www.srmist.edu.in/about-us/administrative-heads/director-sports/',
     sourceNote: 'Sources: (1) Official SRMIST Scholarship Policy 2023 onwards (Founder\'s Scholarship Sub-Category B — Exemplary Sports Persons). (2) ssn.edu.in/about-us/administrative-heads/director-sports/ — official Directorate of Sports page. NOTE: Sports list shown is INDICATIVE based on SRMIST\'s campus facilities (tennis, basketball, badminton, volleyball etc.); the policy doc does NOT publish a definitive list. Students MUST call the Directorate of Sports to confirm their specific sport is accepted.',
+    lastVerified: '2026-05-12',
+  },
+
+  // ─── VERIFIED: KCG College of Technology (Sports Quota 2026-27) ───────────
+  // Source: Official KCG sports scholarship notification (provided by team).
+  // Selection conducted OFFLINE at campus. Trained by international players.
+  // 200+ students admitted via Sports Scholarship since inception.
+  {
+    id: 'kcg_chennai',
+    collegeName: 'KCG College of Technology',
+    collegeNameTa: 'KCG தொழில்நுட்பக் கல்லூரி',
+    district: 'Chennai',
+    type: 'Private',
+    field: 'engineering',
+    counsellingBody: 'Direct', // College runs its own Sports Scholarship admission
+    overrides: {
+      // Minimum: State / Inter-University / National per the official notice
+      minLevel: 'state',
+      sportsScholarship: 'KCG Sports Scholarship 2026-27. Selection is offline at the KCG campus, Karapakkam, Chennai. More than 200 students have entered via sports scholarship since inception. Trained by international players and experts in various fields within campus.',
+      schemes: [
+        'KCG Sports Scholarship (200+ admissions since inception)',
+        'Trained by international players and experts within campus',
+      ],
+      selectionProcess: 'Online Sports Scholarship Application + sports and academic certificates → Selection trial conducted OFFLINE at KCG campus, Karapakkam, Chennai → Selection by Department of Physical Education',
+      // 19 sports — same list applies to both men and women (per notification)
+      sportsForMen: [
+        'athletics', 'archery', 'basketball', 'badminton', 'boxing',
+        'chess', 'cricket', 'football', 'gymnastics', 'kabaddi',
+        // Horse Riding not in our standard list — student picks "other"
+        'martial-arts', // covers Martial Arts category
+        // Sailing not in our standard list — student picks "other"
+        'swimming', 'table-tennis',
+        // Throwball & Target Ball not in our standard list — student picks "other"
+        'tennis', 'volleyball',
+      ],
+      sportsForWomen: [
+        'athletics', 'archery', 'basketball', 'badminton', 'boxing',
+        'chess', 'cricket', 'football', 'gymnastics', 'kabaddi',
+        'martial-arts',
+        'swimming', 'table-tennis', 'tennis', 'volleyball',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'KCG Online Sports Scholarship Application',
+          titleTa: 'KCG ஆன்லைன் விளையாட்டு உதவித்தொகை விண்ணப்பம்',
+          detailEn: 'Apply online by 1 June 2026 (deadline). Upload academic and sports certificates with the application.',
+          detailTa: '1 ஜூன் 2026-க்குள் (கடைசி நாள்) ஆன்லைனில் விண்ணப்பிக்கவும். விண்ணப்பத்துடன் கல்வி மற்றும் விளையாட்டு சான்றிதழ்களை பதிவேற்றவும்.',
+        },
+        {
+          titleEn: 'Attend offline trial at KCG Karapakkam campus',
+          titleTa: 'KCG கரப்பாக்கம் வளாகத்தில் நேரடி தேர்வு',
+          detailEn: 'Trial dates communicated after application review. Bring all certificates in original. Selection is in-person at the campus.',
+          detailTa: 'விண்ணப்ப பரிசீலனைக்கு பிறகு தேர்வு தேதிகள் தெரிவிக்கப்படும். அனைத்து சான்றிதழ்களின் அசலையும் கொண்டு வரவும். தேர்வு வளாகத்தில் நேரடியாக நடக்கும்.',
+        },
+        {
+          titleEn: '12th marks: minimum 45% in PCM',
+          titleTa: '12-ஆம் வகுப்பு: PCM-ல் குறைந்தபட்சம் 45%',
+          detailEn: 'Must score at least 45% combined in Physics, Chemistry and Mathematics. No separate reserved-category lower bar mentioned in the KCG notice — confirm with college if applicable.',
+          detailTa: 'இயற்பியல், வேதியியல், கணிதம் (PCM) ஆகியவற்றில் சேர்த்து குறைந்தபட்சம் 45% பெற வேண்டும். KCG அறிவிப்பில் இடஒதுக்கீட்டுக்கான தனி குறைந்த வரம்பு குறிப்பிடப்படவில்லை — பொருந்தினால் கல்லூரியுடன் உறுதிப்படுத்தவும்.',
+        },
+      ],
+      applicationDeadline: '1 June 2026',
+    },
+    contact: {
+      sportsOfficer: 'Dr N. Premkumar',
+      designation: 'Head, Department of Physical Education & Sports Sciences',
+      phone: '+91-98407-62975',
+      email: 'prem.sports@kcgcollege.com',
+      website: 'https://www.kcgcollege.com/',
+      // Postal address: KCG College of Technology, Karapakkam, Chennai 600 097
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.kcgcollege.com/',
+    sourceNote: 'Direct from KCG College of Technology official Sports Scholarship 2026-27 notification (provided by team May 2026). Last date for online registration: 1 June 2026. Selection offline at campus.',
     lastVerified: '2026-05-12',
   },
 
