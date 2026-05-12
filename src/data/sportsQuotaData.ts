@@ -510,6 +510,92 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-12',
   },
 
+  // ─── VERIFIED: SRM Institute of Science and Technology (SRMIST) ──────────
+  // Source: Official SRMIST Scholarship Policy 2023 onwards + ssn.edu.in
+  // confirmation. Sports quota via Founder's Scholarship (Category B —
+  // Exemplary Sports Persons). NOT through TNEA — institutional admission
+  // via SRMJEEE + a mandatory trial at the Directorate of Sports.
+  {
+    id: 'srmist_kattankulathur',
+    collegeName: 'SRM Institute of Science and Technology (SRMIST)',
+    collegeNameTa: 'SRM அறிவியல் மற்றும் தொழில்நுட்ப நிறுவனம்',
+    district: 'Chengalpattu',
+    type: 'Deemed',
+    field: 'engineering',
+    counsellingBody: 'Direct', // Deemed university — own admission via SRMJEEE
+    overrides: {
+      // SRMIST has the WIDEST acceptance bar of any verified college so far.
+      // Per their policy doc: "Exemplary sports persons representing
+      // University / District (Province) / Zone / State / National /
+      // International" are all eligible. So District-level players who
+      // wouldn't qualify for TNEA sports quota CAN still apply here.
+      minLevel: 'district',
+      sportsScholarship: 'Founder\'s Scholarship (Sub-Category B — Exemplary Sports Persons). Fee waiver amount/percentage is not published in the policy — confirm with the Directorate of Sports before applying. Renewable yearly subject to CGPA > 7 and continued representation of the University.',
+      schemes: [
+        'Founder\'s Scholarship — Exemplary Sports Persons',
+        'Diploma / UG / PG programmes available under sports quota (select programmes only — confirm with Directorate of Sports)',
+      ],
+      selectionProcess: 'MANDATORY: Approach the Directorate of Sports at SRMIST Kattankulathur Campus for trials/selection BEFORE applying for admission. Then apply via SRMJEEE counselling. Trial recommendation from Directorate of Sports is required for the sports quota seat.',
+      // Sports list is NOT published in the SRMIST scholarship policy.
+      // Their main site mentions tennis, basketball, badminton, volleyball,
+      // hockey, kabaddi, cricket, athletics among others, but no
+      // exhaustive list. Until we get a verified list, mark as broad —
+      // a student MUST call to confirm whether their sport is offered.
+      // Listing common sports here so the app does not falsely exclude
+      // a candidate; sport restriction filtering should fall back to
+      // "verify with college" for SRMIST.
+      sportsForMen: [
+        'athletics', 'basketball', 'badminton', 'cricket', 'chess',
+        'football', 'hockey', 'kabaddi', 'table-tennis', 'tennis',
+        'volleyball', 'swimming', 'kho-kho', 'handball', 'ball-badminton',
+        'boxing', 'martial-arts', 'wrestling', 'weightlifting',
+        'archery', 'shooting',
+      ],
+      sportsForWomen: [
+        'athletics', 'basketball', 'badminton', 'cricket', 'chess',
+        'football', 'hockey', 'kabaddi', 'table-tennis', 'tennis',
+        'volleyball', 'swimming', 'kho-kho', 'handball', 'ball-badminton',
+        'boxing', 'martial-arts', 'wrestling', 'weightlifting',
+        'archery', 'shooting',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Trial recommendation from SRMIST Directorate of Sports',
+          titleTa: 'SRMIST விளையாட்டுத் துறையின் தேர்வுப் பரிந்துரை',
+          detailEn: 'Approach the Directorate of Sports at Kattankulathur Campus, attend the trial, and obtain a recommendation BEFORE applying for admission. Without this, the sports quota application will not be considered.',
+          detailTa: 'விண்ணப்பத்திற்கு முன், கட்டாங்குளத்தூர் வளாகத்தில் உள்ள விளையாட்டுத் துறையை அணுகவும், தேர்வில் கலந்து கொள்ளவும், பரிந்துரை பெறவும். இது இல்லாமல் விளையாட்டு கோட்டா விண்ணப்பம் பரிசீலிக்கப்படாது.',
+        },
+        {
+          titleEn: 'SRMJEEE application + counselling',
+          titleTa: 'SRMJEEE விண்ணப்பம் + ஆலோசனை',
+          detailEn: 'Sports quota candidates must still appear for SRMJEEE (or other entrance exam as applicable) and attend counselling. Trial recommendation alone is not enough.',
+          detailTa: 'விளையாட்டு கோட்டா விண்ணப்பதாரர்கள் SRMJEEE (அல்லது பொருந்தும் வேறு நுழைவுத் தேர்வு) எழுதி ஆலோசனையில் கலந்து கொள்ள வேண்டும். தேர்வுப் பரிந்துரை மட்டும் போதாது.',
+        },
+        {
+          titleEn: 'Original sports certificates (University/District/Zone/State/National/International)',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள் (பல்கலைக்கழக/மாவட்ட/மண்டல/மாநில/தேசிய/சர்வதேச)',
+          detailEn: 'SRMIST accepts certificates from any of these levels. First-attempt 12th pass in current admission year is required.',
+          detailTa: 'SRMIST இந்த எந்த அளவிலான சான்றிதழையும் ஏற்கும். தற்போதைய சேர்க்கை ஆண்டில் முதல் முயற்சியில் 12-ஆம் வகுப்பு தேர்ச்சி தேவை.',
+        },
+      ],
+    },
+    contact: {
+      designation: 'Directorate of Sports, SRMIST Kattankulathur Campus',
+      phone: '+91-44-27417000',
+      phone2: '+91-44-27417777',
+      email: 'infodesk@srmist.edu.in',
+      website: 'https://www.srmist.edu.in/about-us/administrative-heads/director-sports/',
+      applicationLink: 'https://www.srmist.edu.in/admissions/',
+      // Direct DPE phone is not published. The numbers above are the main
+      // SRMIST switchboard — when calling, ask to be connected to the
+      // Directorate of Sports.
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.srmist.edu.in/about-us/administrative-heads/director-sports/',
+    sourceNote: 'Sources: (1) Official SRMIST Scholarship Policy 2023 onwards (Founder\'s Scholarship Sub-Category B — Exemplary Sports Persons). (2) ssn.edu.in/about-us/administrative-heads/director-sports/ — official Directorate of Sports page. NOTE: Sports list shown is INDICATIVE based on SRMIST\'s campus facilities (tennis, basketball, badminton, volleyball etc.); the policy doc does NOT publish a definitive list. Students MUST call the Directorate of Sports to confirm their specific sport is accepted.',
+    lastVerified: '2026-05-12',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
