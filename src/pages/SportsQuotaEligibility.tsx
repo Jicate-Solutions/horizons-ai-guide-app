@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,6 +13,9 @@ import {
   GraduationCap, Dumbbell, Award, Clock,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { TNEAScoreCalculator } from '@/components/TNEAScoreCalculator';
+import { ShareableResultCard } from '@/components/ShareableResultCard';
+import type { SportAchievement } from '@/data/sportsQuotaData';
 
 import {
   ALL_SPORTS, SPORT_LEVELS, TNEA_RULES, checkTNEAEligibility,
@@ -109,9 +112,9 @@ const t = (lang: 'en' | 'ta') => ({
   checkAnother: lang === 'ta' ? 'மற்றொன்றை சரிபார்' : 'Check another',
 });
 
-type Step = 'sport' | 'level' | 'year' | 'marks' | 'gender' | 'category' | 'district' | 'results';
+type Step = 'splash' | 'sport' | 'level' | 'year' | 'marks' | 'gender' | 'category' | 'district' | 'results';
 
-const STEP_ORDER: Step[] = ['sport', 'level', 'year', 'marks', 'gender', 'category', 'district', 'results'];
+const STEP_ORDER: Step[] = ['splash', 'sport', 'level', 'year', 'marks', 'gender', 'category', 'district', 'results'];
 
 // Translate field name for display
 const translateField = (field: string, lang: 'en' | 'ta'): string => {
@@ -142,11 +145,13 @@ const SportsQuotaEligibility = () => {
   const lang: 'en' | 'ta' = language === 'ta' ? 'ta' : 'en';
   const L = t(lang);
 
-  const [step, setStep] = useState<Step>('sport');
+  const [step, setStep] = useState<Step>('splash');
   const [showAllSports, setShowAllSports] = useState(false);
   const [showAllColleges, setShowAllColleges] = useState(false);
   const [showLevelHelp, setShowLevelHelp] = useState(false);
   const [showDocs, setShowDocs] = useState(false);
+  const [tneaScore, setTneaScore] = useState<number>(0);
+  const [achievements, setAchievements] = useState<SportAchievement[]>([]);
 
   // Candidate state
   const [sport, setSport] = useState<Sport | null>(null);
@@ -245,23 +250,28 @@ const SportsQuotaEligibility = () => {
               <h1 className="text-base sm:text-lg font-bold text-emerald-900 truncate">{L.pageTitle}</h1>
             </div>
           </div>
-          {step !== 'sport' && step !== 'results' && (
+          {step !== 'splash' && step !== 'sport' && step !== 'results' && (
             <Button variant="ghost" size="sm" onClick={reset} className="text-xs text-muted-foreground">
               {L.startOver}
             </Button>
           )}
         </div>
-        {step !== 'results' && (
+        {step !== 'splash' && step !== 'results' && (
           <div className="px-4 pb-3">
             <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1.5">
-              <span>{L.step} {stepIndex + 1} {L.of} {STEP_ORDER.length - 1}</span>
+              <span>{L.step} {stepIndex} {L.of} {STEP_ORDER.length - 2}</span>
             </div>
-            <Progress value={progress} className="h-1.5" />
+            <Progress value={((stepIndex) / (STEP_ORDER.length - 2)) * 100} className="h-1.5" />
           </div>
         )}
       </header>
 
       <main className="container mx-auto px-4 py-6 pb-24 max-w-2xl">
+
+        {/* ─── SPLASH / Landing ─── */}
+        {step === 'splash' && (
+          <SplashScreen lang={lang} onStart={() => setStep('sport')} />
+        )}
 
         {/* ─── Q1: Sport ─── */}
         {step === 'sport' && (
@@ -531,6 +541,10 @@ const SportsQuotaEligibility = () => {
             setShowAllColleges={setShowAllColleges}
             showDocs={showDocs}
             setShowDocs={setShowDocs}
+            tneaScore={tneaScore}
+            setTneaScore={setTneaScore}
+            achievements={achievements}
+            setAchievements={setAchievements}
             onReset={reset}
           />
         )}
@@ -555,13 +569,19 @@ interface ResultsViewProps {
   setShowAllColleges: (v: boolean) => void;
   showDocs: boolean;
   setShowDocs: (v: boolean) => void;
+  tneaScore: number;
+  setTneaScore: (v: number) => void;
+  achievements: SportAchievement[];
+  setAchievements: (v: SportAchievement[]) => void;
   onReset: () => void;
 }
 
 const ResultsView = ({
   lang, L, eligibility, qualified, borderline, aimHigher,
   candidateProfile, showAllColleges, setShowAllColleges,
-  showDocs, setShowDocs, onReset,
+  showDocs, setShowDocs,
+  tneaScore, setTneaScore, achievements, setAchievements,
+  onReset,
 }: ResultsViewProps) => {
   const verdictColor = {
     qualified: 'bg-green-50 border-green-300 text-green-900',
@@ -729,6 +749,29 @@ const ResultsView = ({
 
       {/* Document checklist (collapsible) */}
       {showDocs && <DocumentChecklist lang={lang} L={L} />}
+
+      {/* TNEA Sports Score Calculator — shown only for TNEA-eligible students */}
+      {(eligibility.verdict === 'qualified' || eligibility.verdict === 'borderline') && (
+        <TNEAScoreCalculator
+          lang={lang}
+          onScoreChange={(score, achs) => {
+            setTneaScore(score);
+            setAchievements(achs);
+          }}
+        />
+      )}
+
+      {/* Shareable result card — the centerpiece students will WhatsApp to parents */}
+      <ShareableResultCard
+        lang={lang}
+        sport={candidateProfile.sport}
+        level={candidateProfile.level}
+        marks12th={candidateProfile.marks12th}
+        district={candidateProfile.district}
+        eligibility={eligibility}
+        tneaScore={tneaScore}
+        qualifiedColleges={qualified.length > 0 ? qualified : borderline}
+      />
 
       {/* College list */}
       {qualified.length > 0 && (
@@ -1135,6 +1178,176 @@ const TrialDateInline = ({
             +{totalCount - 4} {lang === 'ta' ? 'மேலும்' : 'more — see college website'}
           </div>
         )}
+      </div>
+    </div>
+  );
+};
+
+// =============================================================================
+// SPLASH / LANDING SCREEN
+// =============================================================================
+// The first thing a user sees. Goal: 10-second pitch → tap "Start".
+// Avoids jumping straight into Q1 without context.
+
+const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => void }) => {
+  // Live countdown to TNEA registration deadline (June 2, 2026)
+  const [daysLeft, setDaysLeft] = useState<number>(() => {
+    const deadline = new Date('2026-06-02T23:59:59+05:30').getTime();
+    const now = Date.now();
+    return Math.max(0, Math.ceil((deadline - now) / (1000 * 60 * 60 * 24)));
+  });
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const deadline = new Date('2026-06-02T23:59:59+05:30').getTime();
+      const now = Date.now();
+      setDaysLeft(Math.max(0, Math.ceil((deadline - now) / (1000 * 60 * 60 * 24))));
+    }, 60_000); // refresh every minute
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="space-y-6 pt-2">
+      {/* Hero */}
+      <div className="text-center space-y-3">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-500 to-amber-500 shadow-lg">
+          <Trophy className="w-10 h-10 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-black text-emerald-900 leading-tight">
+            {lang === 'ta'
+              ? 'விளையாட்டு கோட்டாவில் கல்லூரி கிடைக்குமா?'
+              : 'Will sports quota get you into college?'}
+          </h1>
+          <p className="text-base text-muted-foreground mt-2">
+            {lang === 'ta'
+              ? '30 விநாடியில் கண்டுபிடி. இலவசம். உள்நுழைவு தேவையில்லை.'
+              : 'Find out in 30 seconds. Free. No login required.'}
+          </p>
+        </div>
+      </div>
+
+      {/* Live deadline countdown */}
+      {daysLeft > 0 && daysLeft < 60 && (
+        <div className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-4 text-center">
+          <div className="flex items-center justify-center gap-2 text-red-700">
+            <Clock className="w-5 h-5" />
+            <span className="font-bold text-sm">
+              {lang === 'ta' ? 'TNEA 2026 விண்ணப்ப கடைசி நாள்' : 'TNEA 2026 application deadline'}
+            </span>
+          </div>
+          <div className="flex items-baseline justify-center gap-2 mt-1">
+            <div className="text-5xl font-black text-red-600">{daysLeft}</div>
+            <div className="text-base font-semibold text-red-700 pb-1">
+              {lang === 'ta' ? (daysLeft === 1 ? 'நாள்' : 'நாட்கள்') : (daysLeft === 1 ? 'day' : 'days')}
+              {' '}
+              {lang === 'ta' ? 'மீதம்' : 'left'}
+            </div>
+          </div>
+          <div className="text-[11px] text-red-700 mt-1">
+            {lang === 'ta' ? 'ஜூன் 2, 2026 வரை மட்டும்' : 'Until June 2, 2026'}
+          </div>
+        </div>
+      )}
+
+      {/* Trust signals */}
+      <div className="grid grid-cols-3 gap-2">
+        <Card className="border-emerald-200 bg-emerald-50">
+          <CardContent className="p-3 text-center">
+            <div className="text-2xl font-black text-emerald-700">6</div>
+            <div className="text-[10px] text-emerald-800 font-medium leading-tight mt-0.5">
+              {lang === 'ta' ? 'சரிபார்க்கப்பட்ட கல்லூரிகள்' : 'Verified colleges'}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-purple-200 bg-purple-50">
+          <CardContent className="p-3 text-center">
+            <div className="text-2xl font-black text-purple-700">₹40L+</div>
+            <div className="text-[10px] text-purple-800 font-medium leading-tight mt-0.5">
+              {lang === 'ta' ? 'உதவித்தொகை குறியீடு' : 'Scholarships indexed'}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-amber-200 bg-amber-50">
+          <CardContent className="p-3 text-center">
+            <div className="text-2xl font-black text-amber-700">340+</div>
+            <div className="text-[10px] text-amber-800 font-medium leading-tight mt-0.5">
+              {lang === 'ta' ? 'TN பொறியியல் கல்லூரிகள்' : 'TN engineering colleges'}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Primary CTA */}
+      <Button
+        onClick={onStart}
+        className="w-full h-14 text-base font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 shadow-lg"
+      >
+        {lang === 'ta' ? 'தகுதி பரிசோதனையை தொடங்கு' : 'Start eligibility check'}
+        <ChevronRight className="w-5 h-5 ml-1" />
+      </Button>
+
+      {/* What you'll get */}
+      <Card className="border-gray-200">
+        <CardContent className="p-4 space-y-3">
+          <div className="font-bold text-sm text-emerald-900">
+            {lang === 'ta' ? 'நீங்கள் என்ன பெறுவீர்கள்' : "What you'll get"}
+          </div>
+          <ul className="space-y-2 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700">
+                {lang === 'ta'
+                  ? 'உங்களுக்கான தகுதி முடிவு (பச்சை / அம்பர் / சிவப்பு)'
+                  : 'Your personal eligibility verdict (green / amber / red)'}
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700">
+                {lang === 'ta'
+                  ? 'அதிகாரப்பூர்வ DoTE மதிப்பெண் முறை அடிப்படையில் உங்கள் TNEA விளையாட்டு மதிப்பெண்'
+                  : 'Your TNEA Sports Score (using official DoTE marks system)'}
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700">
+                {lang === 'ta'
+                  ? 'உங்களை ஏற்கும் கல்லூரிகளின் பட்டியல் (சரிபார்க்கப்பட்ட தொடர்பு எண்களுடன்)'
+                  : 'List of colleges that will accept you (with verified phone numbers)'}
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700">
+                {lang === 'ta'
+                  ? 'பெற்றோருக்கு WhatsApp-ல் அனுப்பக்கூடிய பகிரக்கூடிய அட்டை'
+                  : 'A shareable card you can WhatsApp to your parents'}
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700">
+                {lang === 'ta'
+                  ? 'தமிழ் + ஆங்கிலம் இரண்டிலும்'
+                  : 'In Tamil and English'}
+              </span>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      {/* Trust footer */}
+      <div className="text-center text-[11px] text-muted-foreground space-y-1 pt-2">
+        <div>
+          {lang === 'ta'
+            ? 'அதிகாரப்பூர்வ DoTE தமிழ்நாடு + நேரடி கல்லூரி பிரசுரங்களிலிருந்து தரவு'
+            : 'Data from official DoTE Tamil Nadu + direct college brochures'}
+        </div>
+        <div className="font-medium text-emerald-700">
+          VAZHIKATTI · {lang === 'ta' ? 'வழிகாட்டி' : 'Vazhikatti'} · JKKN
+        </div>
       </div>
     </div>
   );
