@@ -447,6 +447,66 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-11',
   },
 
+  // ─── VERIFIED: SSN College of Engineering ────────────────────────────────
+  // SSN has TWO admission paths for sports candidates:
+  //   1. TNEA Sports Quota (2% state seats — applies to all TN engineering)
+  //   2. SSN Management Sports Quota (25 seats/year, direct admission, NATIONAL+ only)
+  // Plus a separate Sports Scholarship pool of up to ₹40 lakhs/year.
+  // Source: ssn.edu.in/sports-annexes, ssn.edu.in/admissions/b-e-b-tech-admissions
+  {
+    id: 'ssn_chengalpattu',
+    collegeName: 'SSN College of Engineering',
+    collegeNameTa: 'SSN பொறியியல் கல்லூரி',
+    district: 'Chengalpattu',
+    type: 'Autonomous',
+    field: 'engineering',
+    counsellingBody: 'TNEA',
+    overrides: {
+      // TNEA quota seat accepts State level (universal TNEA rule).
+      // SSN's separate management sports quota requires National OR International.
+      // We surface the higher bar in the verdict reason for clarity.
+      minLevel: 'state',
+      // Sports accepted by SSN's management sports quota (from official site):
+      // Athletics, Basketball, Tennis, Badminton, Cricket, Chess, Football,
+      // Table Tennis, Squash. Same list for both men and women.
+      sportsForMen: [
+        'athletics', 'basketball', 'tennis', 'badminton', 'cricket',
+        'chess', 'football', 'table-tennis',
+        // Squash not in our standard sport list — a squash player would
+        // pick "Other sport" and is still eligible per SSN's policy.
+      ],
+      sportsForWomen: [
+        'athletics', 'basketball', 'tennis', 'badminton', 'cricket',
+        'chess', 'football', 'table-tennis',
+      ],
+      sportsScholarship: 'Up to ₹40 lakhs/year scholarship pool for sports achievers. Plus 25 dedicated engineering seats per year under SSN Management Sports Quota for those who have represented India at National or International level. Apply via the admission form by selecting "Sports Quota".',
+      schemes: [
+        'SSN Management Sports Quota (25 seats/year, National/International level required)',
+        'SSN Sports Scholarship (up to ₹40 lakh annual pool)',
+      ],
+      infrastructure: [
+        { en: 'Cricket ground with turf wicket (has hosted Ranji Trophy)', ta: 'டர்ஃப் விக்கெட் கொண்ட கிரிக்கெட் மைதானம் (ரஞ்சி டிராஃபி நடத்தியது)' },
+        { en: 'Indoor stadium (international standards) — basketball, badminton, table tennis, squash', ta: 'சர்வதேச தரத்திலான உட்புற விளையாட்டரங்கம் — கூடைப்பந்து, பேட்மிண்டன், மேசை பந்து, ஸ்குவாஷ்' },
+        { en: 'Synthetic tennis courts', ta: 'செயற்கை டென்னிஸ் கோர்ட்' },
+        { en: 'Football, volleyball and athletics grounds', ta: 'கால்பந்து, கைப்பந்து மற்றும் தடகள மைதானங்கள்' },
+        { en: 'Separate AC gyms for boys and girls', ta: 'ஆண்களுக்கும் பெண்களுக்கும் தனித்தனி AC ஜிம்' },
+        { en: 'Modern Fitness Centre', ta: 'நவீன உடற்பயிற்சி மையம்' },
+      ],
+      selectionProcess: 'Two paths: (1) TNEA sports quota — apply via TNEA. (2) SSN Management Sports Quota — fill SSN admission form online, select "Sports Quota" category, attend interview/trial. National or International achievement certificates required for path 2.',
+    },
+    contact: {
+      designation: 'Department of Physical Education, SSN College of Engineering',
+      website: 'https://www.ssn.edu.in/',
+      applicationLink: 'https://www.ssn.edu.in/admissions/b-e-b-tech-admissions/',
+      // SSN does not publish a direct phone for the DPE. Use the main
+      // college admissions contact form to reach the sports department.
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.ssn.edu.in/sports-annexes/',
+    sourceNote: 'Sourced from SSN official website (Sports Annexes page + B.E./B.Tech admissions page). SSN offers BOTH TNEA sports quota AND its own 25-seat Management Sports Quota for National/International achievers, plus up to ₹40L annual scholarship pool. Sports list: Athletics, Basketball, Tennis, Badminton, Cricket, Chess, Football, Table Tennis, Squash.',
+    lastVerified: '2026-05-12',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
