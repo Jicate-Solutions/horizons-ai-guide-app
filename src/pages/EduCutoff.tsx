@@ -10,7 +10,7 @@
  import { TNEA2026BrochureInfo } from '@/components/EduCutoff/TNEA2026BrochureInfo';
  import { TNEACommunityLookup } from '@/components/EduCutoff/TNEACommunityLookup';
  import { TNEAPwDEligibilityChecker } from '@/components/EduCutoff/TNEAPwDEligibilityChecker';
- import { Calculator, Stethoscope, Building2, GraduationCap, MapPin, CheckCircle, Users, Accessibility } from 'lucide-react';
+ import { Calculator, Stethoscope, Building2, GraduationCap, MapPin, CheckCircle, Users, Accessibility, ChevronRight } from 'lucide-react';
  import DataDisclaimer from '@/components/DataDisclaimer';
  
  const EduCutoffPage = () => {
@@ -128,6 +128,34 @@
              {/* TNEA 2026 Official Brochure Info */}
              <TNEA2026BrochureInfo />
 
+             {/* Sports Quota highlight — relevant to many engineering aspirants */}
+             <a
+               href="/sports-quota-check"
+               className="relative block rounded-2xl border-2 border-amber-300 bg-gradient-to-r from-amber-50 via-orange-50 to-emerald-50 p-4 hover:border-amber-500 hover:shadow-lg transition-all group overflow-hidden"
+             >
+               <span className="absolute top-2 right-2 flex h-5 items-center justify-center">
+                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                 <span className="relative inline-flex h-5 items-center justify-center rounded-full bg-red-600 px-2 text-[9px] font-black text-white">
+                   ⚡ LIVE
+                 </span>
+               </span>
+               <div className="flex items-center gap-3">
+                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 via-orange-500 to-emerald-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
+                   <span className="text-xl">🏆</span>
+                 </div>
+                 <div className="flex-1 min-w-0">
+                   <div className="flex items-center gap-2 flex-wrap">
+                     <p className="text-sm font-bold text-gray-900">Sports Quota Eligibility — Check in 30 seconds</p>
+                     <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-200 text-amber-900">FEATURED</span>
+                   </div>
+                   <p className="text-xs text-gray-700 mt-0.5">
+                     6 verified TN engineering colleges with their selection dates. Free, no login.
+                   </p>
+                 </div>
+                 <ChevronRight className="w-5 h-5 text-amber-400 group-hover:text-amber-600 flex-shrink-0" />
+               </div>
+             </a>
+ 
              {/* Engineering Calculator */}
              <EngineeringCalculator onResultChange={setEngineeringResult} />
  

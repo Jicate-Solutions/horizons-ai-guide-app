@@ -10,7 +10,7 @@ import {
   ChevronLeft, ChevronRight, Trophy, CheckCircle2, AlertCircle,
   XCircle, Phone, Globe, MapPin, Calendar, Download, Share2,
   HelpCircle, ShieldCheck, ShieldAlert, FileText, Sparkles,
-  GraduationCap, Dumbbell, Award, Clock,
+  GraduationCap, Dumbbell, Award, Clock, Bell,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TNEAScoreCalculator } from '@/components/TNEAScoreCalculator';
@@ -19,6 +19,7 @@ import type { SportAchievement } from '@/data/sportsQuotaData';
 
 import {
   ALL_SPORTS, SPORT_LEVELS, TNEA_RULES, checkTNEAEligibility,
+  COLLEGE_SPORTS_QUOTA,
   Sport, SportLevel, Gender, CandidateProfile, EligibilityResult,
 } from '@/data/sportsQuotaData';
 import {
@@ -1189,6 +1190,192 @@ const TrialDateInline = ({
 // The first thing a user sees. Goal: 10-second pitch → tap "Start".
 // Avoids jumping straight into Q1 without context.
 
+// =============================================================================
+// SPLASH HELPERS — pull a short, human-readable "key date" out of each
+// verified college's data so we can show a compact preview on the splash.
+// =============================================================================
+
+interface CollegeKeyDate {
+  collegeName: string;
+  collegeNameTa?: string;
+  district: string;
+  type: string;
+  /** A short, ready-to-render date label. e.g. "Apply by 1 June 2026" */
+  keyDateLabel: { en: string; ta: string };
+  /** The earliest deadline as a Date, used for urgency sorting. May be null. */
+  earliestDeadline: Date | null;
+  /** Counselling body / route */
+  route: string;
+}
+
+const parseDeadline = (s?: string): Date | null => {
+  if (!s) return null;
+  // Accept formats like "1 June 2026", "June 2 2026", "2026-06-01"
+  const t = Date.parse(s.replace(/(\d+)\s+([A-Za-z]+)\s+(\d{4})/, '$2 $1, $3'));
+  return Number.isNaN(t) ? null : new Date(t);
+};
+
+const buildVerifiedCollegeDates = (): CollegeKeyDate[] =>
+  COLLEGE_SPORTS_QUOTA.filter((c) => c.verification === 'verified').map((c) => {
+    // Direct-admission deadline if present
+    const direct = c.overrides?.applicationDeadline;
+    let labelEn = '';
+    let labelTa = '';
+    let earliest: Date | null = null;
+
+    if (direct) {
+      labelEn = `Apply by ${direct}`;
+      labelTa = `${direct}-க்குள் விண்ணப்பிக்க`;
+      earliest = parseDeadline(direct);
+    } else if (c.counsellingBody === 'TNEA') {
+      // TNEA-based admission — common dates for 2026 cycle
+      labelEn = 'Via TNEA · Counselling Jul 2026';
+      labelTa = 'TNEA வழியாக · ஆலோசனை ஜூலை 2026';
+      // Use TNEA registration deadline as the action date
+      earliest = new Date('2026-06-02');
+    } else if (c.counsellingBody === 'Direct') {
+      labelEn = 'Direct admission · Contact college';
+      labelTa = 'நேரடி சேர்க்கை · கல்லூரியை தொடர்பு கொள்ளுங்கள்';
+    } else {
+      labelEn = `${c.counsellingBody} route`;
+      labelTa = `${c.counsellingBody} வழி`;
+    }
+
+    // Pull trial month out of selectionProcess if we can spot one
+    const sp = c.overrides?.selectionProcess ?? '';
+    const trialMatch = sp.match(/([A-Z][a-z]+ \d{4})/);
+    if (trialMatch && !direct) {
+      labelEn = `Trial ${trialMatch[1]}`;
+      labelTa = `தேர்வு ${trialMatch[1]}`;
+      const d = parseDeadline(`1 ${trialMatch[1]}`);
+      if (d) earliest = d;
+    }
+
+    return {
+      collegeName: c.collegeName,
+      collegeNameTa: c.collegeNameTa,
+      district: c.district,
+      type: c.type,
+      keyDateLabel: { en: labelEn, ta: labelTa },
+      earliestDeadline: earliest,
+      route: c.counsellingBody,
+    };
+  })
+  // Sort: colleges with closest deadlines first, then the rest
+  .sort((a, b) => {
+    if (a.earliestDeadline && b.earliestDeadline) {
+      return a.earliestDeadline.getTime() - b.earliestDeadline.getTime();
+    }
+    if (a.earliestDeadline) return -1;
+    if (b.earliestDeadline) return 1;
+    return 0;
+  });
+
+/**
+ * Blinking attention banner that surfaces colleges currently accepting
+ * direct sports-quota applications. Auto-hides when no college has an
+ * upcoming deadline within the next 60 days.
+ *
+ * Pulls from `verifiedColleges` so any college we mark with
+ * `applicationDeadline` in sportsQuotaData.ts shows up here.
+ */
+const LiveApplicationsBanner = ({
+  lang,
+  verifiedColleges,
+}: {
+  lang: 'en' | 'ta';
+  verifiedColleges: CollegeKeyDate[];
+}) => {
+  const now = Date.now();
+  const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
+
+  // Only colleges with an actual direct application deadline within 60 days
+  // (skip generic "Via TNEA" entries — those are handled by the TNEA countdown above)
+  const active = verifiedColleges.filter((c) => {
+    if (!c.earliestDeadline) return false;
+    if (c.route !== 'Direct' && !c.keyDateLabel.en.toLowerCase().startsWith('apply by') && !c.keyDateLabel.en.toLowerCase().startsWith('trial')) return false;
+    const ms = c.earliestDeadline.getTime() - now;
+    return ms > 0 && ms < SIXTY_DAYS;
+  });
+
+  if (active.length === 0) return null;
+
+  return (
+    <div className="relative rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 overflow-hidden shadow-md">
+      {/* Pulsing LIVE badge top-right */}
+      <span
+        aria-label="Live"
+        className="absolute -top-2 -right-2 flex h-6 items-center"
+      >
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-300 opacity-75"></span>
+        <span className="relative inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-black text-white shadow">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          {lang === 'ta' ? 'நேரலை' : 'LIVE'}
+        </span>
+      </span>
+
+      <div className="px-4 py-3">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-red-600 text-white">
+            <Bell className="w-3.5 h-3.5 animate-pulse" />
+          </span>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-black text-red-900 leading-tight">
+              {lang === 'ta'
+                ? 'விளையாட்டு கோட்டா விண்ணப்பங்கள் திறந்துள்ளன!'
+                : 'Sports quota applications open NOW!'}
+            </h3>
+            <p className="text-[11px] text-red-700/80 leading-tight mt-0.5">
+              {lang === 'ta'
+                ? 'இந்த கல்லூரிகள் நேரடியாக விளையாட்டு கோட்டா மாணவர்களைச் சேர்க்கின்றன — விரைவில் விண்ணப்பிக்கவும்'
+                : 'These colleges are accepting direct sports-quota applications — apply soon'}
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-1.5 mt-2">
+          {active.map((c) => {
+            const days = c.earliestDeadline
+              ? Math.max(0, Math.ceil((c.earliestDeadline.getTime() - now) / (24 * 60 * 60 * 1000)))
+              : 0;
+            const isCritical = days <= 7;
+            return (
+              <div
+                key={c.collegeName}
+                className={cn(
+                  'flex items-center justify-between gap-2 rounded-lg border bg-white/80 backdrop-blur-sm px-2.5 py-2',
+                  isCritical ? 'border-red-400 ring-1 ring-red-300' : 'border-orange-200',
+                )}
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-[12px] font-bold text-gray-900 leading-tight truncate">
+                    {lang === 'ta' && c.collegeNameTa ? c.collegeNameTa : c.collegeName}
+                  </p>
+                  <p className="text-[10px] text-gray-500 mt-0.5">
+                    📍 {c.district} · {lang === 'ta' ? c.keyDateLabel.ta : c.keyDateLabel.en}
+                  </p>
+                </div>
+                <div
+                  className={cn(
+                    'flex-shrink-0 rounded-md px-2 py-1 text-[10px] font-black whitespace-nowrap',
+                    isCritical
+                      ? 'bg-red-600 text-white animate-pulse'
+                      : 'bg-orange-100 text-orange-800',
+                  )}
+                >
+                  {days === 0
+                    ? (lang === 'ta' ? 'இன்றே' : 'TODAY')
+                    : `${days} ${lang === 'ta' ? 'நாட்கள்' : 'days'}`}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => void }) => {
   // Live countdown to TNEA registration deadline (June 2, 2026)
   const [daysLeft, setDaysLeft] = useState<number>(() => {
@@ -1196,6 +1383,9 @@ const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => voi
     const now = Date.now();
     return Math.max(0, Math.ceil((deadline - now) / (1000 * 60 * 60 * 24)));
   });
+
+  // Verified colleges + their key dates, computed once
+  const verifiedColleges = useMemo(() => buildVerifiedCollegeDates(), []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -1227,9 +1417,21 @@ const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => voi
         </div>
       </div>
 
+      {/* Live applications open — blinking attention banner */}
+      <LiveApplicationsBanner lang={lang} verifiedColleges={verifiedColleges} />
+
       {/* Live deadline countdown */}
       {daysLeft > 0 && daysLeft < 60 && (
-        <div className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-4 text-center">
+        <div className="relative bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-4 text-center">
+          {/* Blinking "LIVE" badge for high-urgency periods (≤ 30 days) */}
+          {daysLeft <= 30 && (
+            <span className="absolute -top-2 -right-2 flex h-5 w-12 items-center justify-center">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex h-5 w-12 items-center justify-center rounded-full bg-red-600 text-[10px] font-black text-white">
+                LIVE
+              </span>
+            </span>
+          )}
           <div className="flex items-center justify-center gap-2 text-red-700">
             <Clock className="w-5 h-5" />
             <span className="font-bold text-sm">
@@ -1286,6 +1488,69 @@ const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => voi
         {lang === 'ta' ? 'தகுதி பரிசோதனையை தொடங்கு' : 'Start eligibility check'}
         <ChevronRight className="w-5 h-5 ml-1" />
       </Button>
+
+      {/* Verified colleges + their key dates */}
+      <Card className="border-emerald-200 overflow-hidden">
+        <div className="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4" />
+            <span className="text-sm font-bold">
+              {lang === 'ta' ? 'சரிபார்க்கப்பட்ட கல்லூரிகள் & தேதிகள்' : 'Verified colleges & key dates'}
+            </span>
+          </div>
+          <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
+          </span>
+        </div>
+        <CardContent className="p-0 divide-y divide-gray-100">
+          {verifiedColleges.map((c) => {
+            const isUrgent =
+              c.earliestDeadline &&
+              c.earliestDeadline.getTime() - Date.now() < 30 * 24 * 60 * 60 * 1000 &&
+              c.earliestDeadline.getTime() > Date.now();
+            return (
+              <div
+                key={c.collegeName}
+                className="px-4 py-2.5 flex items-start justify-between gap-3"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <p className="text-[13px] font-bold text-gray-900 leading-tight">
+                      {lang === 'ta' && c.collegeNameTa ? c.collegeNameTa : c.collegeName}
+                    </p>
+                    {isUrgent && (
+                      <span className="relative inline-flex">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded bg-red-300 opacity-75"></span>
+                        <span className="relative inline-flex items-center rounded bg-red-600 px-1.5 py-0.5 text-[9px] font-black text-white">
+                          ⚡ {lang === 'ta' ? 'அவசரம்' : 'URGENT'}
+                        </span>
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-gray-500">
+                    <MapPin className="w-3 h-3 flex-shrink-0" />
+                    <span>{c.district}</span>
+                    <span>·</span>
+                    <span>{c.type}</span>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 text-right">
+                  <div className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-[11px] font-bold text-emerald-800 border border-emerald-200">
+                    <Calendar className="w-3 h-3" />
+                    {lang === 'ta' ? c.keyDateLabel.ta : c.keyDateLabel.en}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </CardContent>
+        <div className="px-4 py-2 bg-gray-50 text-[10px] text-gray-500 text-center">
+          {lang === 'ta'
+            ? `${verifiedColleges.length} கல்லூரிகள் நேரடியாக சரிபார்க்கப்பட்டுள்ளன · மேலும் வரும்`
+            : `${verifiedColleges.length} colleges directly verified · more coming`}
+        </div>
+      </Card>
 
       {/* What you'll get */}
       <Card className="border-gray-200">

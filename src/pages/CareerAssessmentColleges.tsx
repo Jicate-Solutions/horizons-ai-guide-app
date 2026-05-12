@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { CollegesPageLayout } from '@/components/CollegesPageLayout';
 import { cn } from '@/lib/utils';
 import {
-  BookOpen, Bell, MessageCircle, ChevronRight, TrendingUp, FileText, Sparkles, Brain
+  BookOpen, Bell, MessageCircle, ChevronRight, TrendingUp, FileText, Sparkles, Brain, Trophy
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════
@@ -97,6 +97,34 @@ const CareerAssessmentColleges = () => {
 
         {/* ═══ 4 PRIMARY ACTIONS ═══ */}
         <div className="space-y-2.5">
+          {/* ⭐ HIGHLIGHTED: Sports Quota Eligibility (deadline-driven) */}
+          <button onClick={() => navigate('/sports-quota-check')}
+            className="relative w-full bg-gradient-to-br from-amber-50 via-orange-50 to-emerald-50 rounded-2xl p-4 border-2 border-amber-300 hover:border-amber-500 hover:shadow-xl transition-all text-left flex items-center gap-4 active:scale-[0.99] group overflow-hidden">
+            {/* Blinking "LIVE" notification badge */}
+            <span className="absolute top-2 right-2 flex h-5 items-center justify-center">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex h-5 items-center justify-center rounded-full bg-red-600 px-2 text-[9px] font-black text-white">
+                ⚡ LIVE
+              </span>
+            </span>
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 via-orange-500 to-emerald-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform flex-shrink-0">
+              <Trophy className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-sm font-bold text-gray-900">Sports Quota Eligibility</p>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-900">FEATURED</span>
+              </div>
+              <p className="text-xs text-gray-600 mt-0.5">
+                6 verified colleges · deadlines updated · check in 30 seconds
+              </p>
+              <p className="text-[10px] text-amber-700 font-tamil mt-0.5">
+                விளையாட்டு கோட்டா தகுதி — 30 விநாடியில் பாருங்கள்
+              </p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-amber-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
+          </button>
+
           {/* Syllabus Tracker */}
           <button onClick={() => navigate('/syllabus-tracker')}
             className="w-full bg-white rounded-2xl p-4 border-2 border-gray-100 hover:border-emerald-400 hover:shadow-lg transition-all text-left flex items-center gap-4 active:scale-[0.99] group">
