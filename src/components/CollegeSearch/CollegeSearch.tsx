@@ -10,6 +10,7 @@ import { CollegeList } from './CollegeList';
 import { FacilityChecklist } from './FacilityChecklist';
 import { SportsQuotaGuide } from './SportsQuotaGuide';
 import { College, CollegeCategory, COLLEGE_TYPE_INFO, isAutonomousCollege, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES, KANYAKUMARI_FEATURED_COLLEGES, KRISHNAGIRI_FEATURED_COLLEGES, MADURAI_FEATURED_COLLEGES, MAYILADUTHURAI_FEATURED_COLLEGES, NAGAPATTINAM_FEATURED_COLLEGES, NILGIRIS_FEATURED_COLLEGES, PERAMBALUR_FEATURED_COLLEGES, PUDUKKOTTAI_FEATURED_COLLEGES, RAMANATHAPURAM_FEATURED_COLLEGES, RANIPET_FEATURED_COLLEGES, SIVAGANGA_FEATURED_COLLEGES, TENKASI_FEATURED_COLLEGES, THANJAVUR_FEATURED_COLLEGES, THENI_FEATURED_COLLEGES, THOOTHUKUDI_FEATURED_COLLEGES, TIRUCHIRAPPALLI_FEATURED_COLLEGES, TIRUNELVELI_FEATURED_COLLEGES, TIRUPATHUR_FEATURED_COLLEGES, TIRUVALLUR_FEATURED_COLLEGES, TIRUVANNAMALAI_FEATURED_COLLEGES, TIRUVARUR_FEATURED_COLLEGES, VELLORE_FEATURED_COLLEGES, VILUPPURAM_FEATURED_COLLEGES, VIRUDHUNAGAR_FEATURED_COLLEGES } from './types';
+import { mergeWithBrochure, BROCHURE_COLLEGES_BY_DISTRICT } from './brochureBridge';
 
 // Helper function to normalize college name for comparison
 const normalizeCollegeName = (name: string): string => {
@@ -136,8 +137,14 @@ export const CollegeSearch = () => {
       };
 
       if (localData[district]) {
-        // Use local data directly - no API call needed
-        setColleges(localData[district]);
+        // Use local curated data, augmented with brochure entries the
+        // curated list didn't cover (so every TN district shows the full
+        // engineering directory).
+        setColleges(mergeWithBrochure(district, localData[district]));
+      } else if (BROCHURE_COLLEGES_BY_DISTRICT[district]) {
+        // No curated list for this district yet — fall back to brochure
+        // engineering colleges directly, no API call needed.
+        setColleges(BROCHURE_COLLEGES_BY_DISTRICT[district]);
       } else {
         // Try Supabase for other districts
         try {

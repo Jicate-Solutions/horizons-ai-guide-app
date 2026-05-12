@@ -8,7 +8,9 @@
  import { MedicalEligibilityChecker, MedicalResult } from '@/components/EduCutoff/MedicalEligibilityChecker';
  import { CollegePredictor } from '@/components/EduCutoff/CollegePredictor';
  import { TNEA2026BrochureInfo } from '@/components/EduCutoff/TNEA2026BrochureInfo';
- import { Calculator, Stethoscope, Building2, GraduationCap, MapPin, CheckCircle } from 'lucide-react';
+ import { TNEACommunityLookup } from '@/components/EduCutoff/TNEACommunityLookup';
+ import { TNEAPwDEligibilityChecker } from '@/components/EduCutoff/TNEAPwDEligibilityChecker';
+ import { Calculator, Stethoscope, Building2, GraduationCap, MapPin, CheckCircle, Users, Accessibility } from 'lucide-react';
  import DataDisclaimer from '@/components/DataDisclaimer';
  
  const EduCutoffPage = () => {
@@ -76,7 +78,7 @@
 
          {/* Main Tabs */}
          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-           <TabsList className="grid w-full grid-cols-2 max-w-[500px] h-16 p-1.5 bg-muted/50 rounded-2xl mx-auto md:mx-0">
+           <TabsList className="grid w-full grid-cols-3 max-w-[760px] h-16 p-1.5 bg-muted/50 rounded-2xl mx-auto md:mx-0">
              <TabsTrigger value="engineering" className="text-sm md:text-base gap-2 rounded-xl data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg h-full font-bold">
                <Calculator className="h-5 w-5" />
                <div className="text-left">
@@ -89,6 +91,13 @@
                <div className="text-left">
                  <div>Medical</div>
                  <div className="text-[10px] font-normal opacity-80">NEET Score</div>
+               </div>
+             </TabsTrigger>
+             <TabsTrigger value="quick-checks" className="text-sm md:text-base gap-2 rounded-xl data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-lg h-full font-bold">
+               <Users className="h-5 w-5" />
+               <div className="text-left">
+                 <div>Quick Checks</div>
+                 <div className="text-[10px] font-normal opacity-80">Community · PwD</div>
                </div>
              </TabsTrigger>
            </TabsList>
@@ -116,31 +125,6 @@
                </CardContent>
              </Card>
  
-             {/* TNEA 2026 Hub call-out */}
-             <Card className="bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600 border-0 text-white overflow-hidden">
-               <CardContent className="p-4 md:p-5">
-                 <div className="flex items-start gap-3 flex-wrap">
-                   <div className="flex-1 min-w-[200px]">
-                     <Badge className="bg-yellow-400 text-emerald-900 border-0 font-bold mb-2">
-                       ✨ NEW · TNEA 2026
-                     </Badge>
-                     <h3 className="font-black text-lg md:text-xl leading-tight">
-                       Open the dedicated TNEA 2026 Hub
-                     </h3>
-                     <p className="text-xs md:text-sm text-emerald-50 mt-1 max-w-xl">
-                       Community lookup (371 entries), PwD branch matrix (21 disabilities), fee &amp; concession calculator, and counselling flow simulator — all from the official brochure.
-                     </p>
-                   </div>
-                   <a
-                     href="/tnea-2026"
-                     className="inline-flex items-center gap-1.5 bg-white text-emerald-700 hover:bg-emerald-50 font-bold px-4 py-2.5 rounded-lg text-sm whitespace-nowrap transition-all hover:shadow-lg"
-                   >
-                     Open Hub →
-                   </a>
-                 </div>
-               </CardContent>
-             </Card>
-
              {/* TNEA 2026 Official Brochure Info */}
              <TNEA2026BrochureInfo />
 
@@ -187,6 +171,54 @@
  
              {/* Medical Checker */}
              <MedicalEligibilityChecker onResultChange={setMedicalResult} />
+           </TabsContent>
+
+           {/* TNEA Quick Checks Tab — Community + PwD */}
+           <TabsContent value="quick-checks" className="space-y-8">
+             <Card className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 border-emerald-200">
+               <CardContent className="py-4">
+                 <div className="flex flex-wrap items-center gap-4">
+                   <div className="flex-1">
+                     <h3 className="font-semibold text-foreground flex items-center gap-2">
+                       <Users className="h-4 w-4 text-emerald-700" />
+                       TNEA 2026 Quick Eligibility Checks
+                     </h3>
+                     <p className="text-sm text-muted-foreground mt-1">
+                       Two reference tools sourced directly from the official TNEA 2026 brochure.
+                       <span className="block font-tamil mt-0.5">அதிகாரப்பூர்வ TNEA 2026 விவரக்குறிப்பிலிருந்து இரண்டு கருவிகள்.</span>
+                     </p>
+                   </div>
+                   <div className="flex gap-2 flex-wrap">
+                     <Badge variant="outline" className="border-emerald-300">Annexure I · 371 communities</Badge>
+                     <Badge variant="outline" className="border-emerald-300">21 PwD types</Badge>
+                   </div>
+                 </div>
+               </CardContent>
+             </Card>
+
+             {/* Community lookup */}
+             <div>
+               <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+                 <Users className="h-5 w-5 text-emerald-600" />
+                 Community Lookup
+                 <span className="text-xs font-normal text-muted-foreground font-tamil ml-2">
+                   சமூகம் தேடல்
+                 </span>
+               </h2>
+               <TNEACommunityLookup />
+             </div>
+
+             {/* PwD eligibility */}
+             <div>
+               <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+                 <Accessibility className="h-5 w-5 text-rose-600" />
+                 PwD Eligibility Checker
+                 <span className="text-xs font-normal text-muted-foreground font-tamil ml-2">
+                   மாற்றுத்திறனாளி தகுதி
+                 </span>
+               </h2>
+               <TNEAPwDEligibilityChecker />
+             </div>
            </TabsContent>
          </Tabs>
  
