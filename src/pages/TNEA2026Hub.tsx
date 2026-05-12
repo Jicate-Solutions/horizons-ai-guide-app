@@ -298,6 +298,14 @@ const TNEA2026Hub = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
               <CrossLink
+                to="/tn-engineering-colleges"
+                icon={Building2}
+                title={isTa ? '468 கல்லூரிகள் அடைவு' : '468-College Directory'}
+                desc={isTa
+                  ? 'TNEA குறியீடு, கிளைகள், மாவட்டம் — அதிகாரப்பூர்வ பட்டியல்'
+                  : 'TNEA codes, branches, district — official booklet data'}
+              />
+              <CrossLink
                 to="/sports-quota-check"
                 icon={Trophy}
                 title={isTa ? 'விளையாட்டு ஒதுக்கீடு தகுதி' : 'Sports Quota Eligibility'}
@@ -312,14 +320,6 @@ const TNEA2026Hub = () => {
                 desc={isTa
                   ? 'NEET-UG தகுதி & உங்கள் மதிப்பெண்ணுக்கான கல்லூரி'
                   : 'NEET-UG eligibility and college predictor for your score'}
-              />
-              <CrossLink
-                to="/tn-university-entrance"
-                icon={CheckCircle2}
-                title={isTa ? 'மற்ற நுழைவுத் தேர்வுகள்' : 'Other Entrance Exams'}
-                desc={isTa
-                  ? 'அண்ணா பல்கலைக்கழகம், SRM, VIT, BITS, …'
-                  : 'Anna University, SRM, VIT, BITS, and more'}
               />
             </div>
           </CardContent>
