@@ -119,6 +119,9 @@ const EduCutoff = lazy(() => import("./pages/EduCutoff"));
 // Sports Quota Eligibility Check (for 12th students)
 const SportsQuotaEligibility = lazy(() => import("./pages/SportsQuotaEligibility"));
 
+// TNEA 2026 dedicated hub (brochure-derived tools)
+const TNEA2026Hub = lazy(() => import("./pages/TNEA2026Hub"));
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -233,6 +236,10 @@ function App() {
                 {/* Sports Quota Eligibility — bilingual 12th-student flow */}
                 <Route path="/sports-quota-check" element={<SportsQuotaEligibility />} />
                 <Route path="/sports-quota" element={<SportsQuotaEligibility />} />
+
+                {/* TNEA 2026 — dedicated hub with every brochure-derived tool */}
+                <Route path="/tnea-2026" element={<TNEA2026Hub />} />
+                <Route path="/tnea" element={<TNEA2026Hub />} />
 
                 {/* Catch-all */}
                 <Route path="/survey/:surveyId" element={<ProtectedRoute><SurveyPublic /></ProtectedRoute>} />

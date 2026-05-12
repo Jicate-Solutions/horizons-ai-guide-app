@@ -81,16 +81,18 @@ const getCourseTypeConfig = (courseName: string): CourseTypeConfig => {
 };
 
 // Get minimum marks requirement based on community
+// Per TNEA 2026 Official Brochure (PCM average in HSC +2)
+// Source: dte.tn.gov.in / tneaonline.org — Information Brochure 2026
 const getMinMarksForCommunity = (community: Community): number => {
   const minMarksMap: Record<Community, number> = {
-    OC: 50,
-    BC: 45,
-    BCM: 45,
-    MBC: 40,
-    DNC: 40,
-    SC: 35,
-    SCA: 35,
-    ST: 35,
+    OC: 45,   // General — 45.00 %
+    BC: 40,   // Backward Class (incl. BC Muslim) — 40.00 %
+    BCM: 40,  // Backward Class Muslim — 40.00 %
+    MBC: 40,  // Most Backward & Denotified Communities — 40.00 %
+    DNC: 40,  // Denotified — 40.00 %
+    SC: 40,   // Scheduled Caste — 40.00 %
+    SCA: 40,  // SC Arunthathiyars — 40.00 %
+    ST: 40,   // Scheduled Tribe — 40.00 %
   };
   return minMarksMap[community];
 };

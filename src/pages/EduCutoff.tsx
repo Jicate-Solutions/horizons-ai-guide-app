@@ -116,6 +116,31 @@
                </CardContent>
              </Card>
  
+             {/* TNEA 2026 Hub call-out */}
+             <Card className="bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600 border-0 text-white overflow-hidden">
+               <CardContent className="p-4 md:p-5">
+                 <div className="flex items-start gap-3 flex-wrap">
+                   <div className="flex-1 min-w-[200px]">
+                     <Badge className="bg-yellow-400 text-emerald-900 border-0 font-bold mb-2">
+                       ✨ NEW · TNEA 2026
+                     </Badge>
+                     <h3 className="font-black text-lg md:text-xl leading-tight">
+                       Open the dedicated TNEA 2026 Hub
+                     </h3>
+                     <p className="text-xs md:text-sm text-emerald-50 mt-1 max-w-xl">
+                       Community lookup (371 entries), PwD branch matrix (21 disabilities), fee &amp; concession calculator, and counselling flow simulator — all from the official brochure.
+                     </p>
+                   </div>
+                   <a
+                     href="/tnea-2026"
+                     className="inline-flex items-center gap-1.5 bg-white text-emerald-700 hover:bg-emerald-50 font-bold px-4 py-2.5 rounded-lg text-sm whitespace-nowrap transition-all hover:shadow-lg"
+                   >
+                     Open Hub →
+                   </a>
+                 </div>
+               </CardContent>
+             </Card>
+
              {/* TNEA 2026 Official Brochure Info */}
              <TNEA2026BrochureInfo />
 

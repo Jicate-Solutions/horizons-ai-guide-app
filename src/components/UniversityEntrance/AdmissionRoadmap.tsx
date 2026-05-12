@@ -145,8 +145,9 @@ export const AdmissionRoadmap = ({ university }: AdmissionRoadmapProps) => {
             colorScheme: 'purple',
             details: [
               'Physics, Chemistry & Maths mandatory',
-              'Minimum 50% in Maths (45% for reserved)',
-              'Minimum 50% in aggregate (45% for reserved)'
+              'Min 45% PCM average (General / OC)',
+              'Min 40% PCM average (BC/BCM/MBC/DNC/SC/SCA/ST)',
+              'Per TNEA 2026 Brochure — improvement marks not counted'
             ]
           },
           {

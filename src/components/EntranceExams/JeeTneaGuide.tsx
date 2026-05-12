@@ -237,6 +237,19 @@ export const JeeTneaGuide = () => {
               <div className="text-xs text-emerald-600">Tamil Nadu engineering colleges</div>
             </div>
           </div>
+
+          {/* CTA to TNEA 2026 Guide */}
+          <a href="/tnea-2026" className="block group">
+            <div className="bg-gradient-to-r from-emerald-600 to-amber-600 rounded-xl p-4 text-white shadow hover:shadow-lg transition">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-amber-200 mb-1">Official 2026 Brochure</div>
+                  <div className="font-bold text-sm md:text-base">Full TNEA 2026 Guide — Eligibility, Reservation, Special Quotas, Counselling</div>
+                </div>
+                <span className="text-amber-200 text-2xl group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </div>
+          </a>
         </CardContent>
       )}
     </Card>
