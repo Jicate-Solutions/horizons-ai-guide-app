@@ -2,7 +2,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 const newsItemsByLang: Record<string, string[]> = {
   en: [
-    "🔴 TNEA 2026 Counselling — Registration dates to be announced soon!",
+    "🔴 TNEA 2026 Brochure Released — Min 45% PCM (GEN) / 40% (BC/SC/ST) | Fees ₹500 / ₹250!",
     "📢 NEET UG 2026 — Exam on May 4, 2026 | Results expected in June!",
     "💰 BC/MBC Post-Matric Scholarship 2026 — Apply before Dec 31, 2026!",
     "🎯 Free AI Career Guidance — Available 24/7 on VAZHIKATTI!",
@@ -12,7 +12,7 @@ const newsItemsByLang: Record<string, string[]> = {
     "🚂 Railway RRB NTPC 2026 — Apply now on rrbapply.gov.in!",
   ],
   ta: [
-    "🔴 TNEA 2026 கலந்தாய்வு — பதிவு தேதிகள் விரைவில் அறிவிக்கப்படும்!",
+    "🔴 TNEA 2026 அறிவிப்பு வெளியீடு — குறைந்தபட்சம் 45% (GEN) / 40% (BC/SC/ST) | கட்டணம் ₹500 / ₹250!",
     "📢 NEET UG 2026 — மே 4, 2026 தேர்வு | முடிவுகள் ஜூனில் எதிர்பார்க்கப்படுகிறது!",
     "💰 BC/MBC உதவித்தொகை 2026 — டிசம்பர் 31 முன் விண்ணப்பிக்கவும்!",
     "🎯 இலவச AI தொழில் வழிகாட்டுதல் — வழிகாட்டியில் 24/7 கிடைக்கும்!",

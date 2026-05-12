@@ -7,6 +7,7 @@
  import { EngineeringCalculator, EngineeringResult } from '@/components/EduCutoff/EngineeringCalculator';
  import { MedicalEligibilityChecker, MedicalResult } from '@/components/EduCutoff/MedicalEligibilityChecker';
  import { CollegePredictor } from '@/components/EduCutoff/CollegePredictor';
+ import { TNEA2026BrochureInfo } from '@/components/EduCutoff/TNEA2026BrochureInfo';
  import { Calculator, Stethoscope, Building2, GraduationCap, MapPin, CheckCircle } from 'lucide-react';
  import DataDisclaimer from '@/components/DataDisclaimer';
  
@@ -115,6 +116,9 @@
                </CardContent>
              </Card>
  
+             {/* TNEA 2026 Official Brochure Info */}
+             <TNEA2026BrochureInfo />
+
              {/* Engineering Calculator */}
              <EngineeringCalculator onResultChange={setEngineeringResult} />
  
