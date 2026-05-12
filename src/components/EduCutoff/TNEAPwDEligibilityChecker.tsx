@@ -18,6 +18,8 @@ import {
   Droplet,
   Layers,
   Shield,
+  Printer,
+  FileDown,
 } from 'lucide-react';
 import {
   PWD_DISABILITIES,
@@ -26,6 +28,10 @@ import {
   type PwDDisability,
   type Suitability,
 } from '@/data/tneaPwDData';
+import {
+  PWD_CERTIFICATE_ACTIONS,
+  openActionSheet,
+} from '@/lib/tneaActionSheet';
 
 /**
  * TNEA 2026 PwD (Persons with Benchmark Disabilities) Eligibility Checker.
@@ -247,6 +253,54 @@ export const TNEAPwDEligibilityChecker = () => {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Real-world action sheet for this disability */}
+              <div className="bg-gradient-to-br from-rose-600 via-pink-600 to-rose-700 rounded-xl p-4 text-white shadow-lg">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <FileDown className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <Badge className="bg-yellow-400 text-rose-900 border-0 mb-1.5 text-[10px] font-bold">
+                      TAKE THIS TO THE MEDICAL BOARD &amp; COLLEGE
+                    </Badge>
+                    <h4 className="font-bold text-sm mb-0.5">
+                      Get your printable PwD Action Sheet
+                    </h4>
+                    <p className="text-rose-50 text-[11px] leading-relaxed">
+                      Lists every document for Annexure-{selected.certificate}, the
+                      step-by-step Medical Board procedure, where to apply for
+                      UDID, and the exact questions to ask the college's
+                      Disability Help Cell.
+                    </p>
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => {
+                    const pwdAction = PWD_CERTIFICATE_ACTIONS[selected.certificate];
+                    if (!pwdAction) return;
+                    openActionSheet({
+                      community: 'PwD candidate',
+                      generatedOn: new Date().toLocaleDateString('en-IN', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                      }),
+                      actions: [],
+                      registrationFee: 500,
+                      isPwD: true,
+                      pwdAction,
+                      pwdDisabilityName: selected.name,
+                    });
+                  }}
+                  className="w-full bg-white text-rose-700 hover:bg-rose-50 font-bold shadow"
+                  size="sm"
+                >
+                  <Printer className="w-4 h-4 mr-2" />
+                  Open my PwD Action Sheet
+                </Button>
               </div>
 
               <Button

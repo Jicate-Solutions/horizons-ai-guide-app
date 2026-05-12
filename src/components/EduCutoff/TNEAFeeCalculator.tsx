@@ -17,7 +17,15 @@ import {
   Heart,
   Info,
   TrendingUp,
+  FileDown,
+  Printer,
+  User,
 } from 'lucide-react';
+import {
+  CONCESSION_ACTIONS,
+  openActionSheet,
+  type ConcessionKey,
+} from '@/lib/tneaActionSheet';
 
 /**
  * TNEA 2026 Fee Concession Calculator
@@ -33,6 +41,7 @@ import {
 type Community = 'OC' | 'BC' | 'BCM' | 'MBC' | 'DNC' | 'SC' | 'SCA' | 'ST';
 
 interface Inputs {
+  candidateName: string;
   community: Community;
   studiedGovtSchool: boolean; // 6th-12th in Govt-class school
   isFirstGraduate: boolean; // first graduate in family (no sibling already used it)
@@ -53,6 +62,7 @@ interface ConcessionResult {
 
 export const TNEAFeeCalculator = () => {
   const [inputs, setInputs] = useState<Inputs>({
+    candidateName: '',
     community: 'OC',
     studiedGovtSchool: false,
     isFirstGraduate: false,
@@ -243,6 +253,21 @@ export const TNEAFeeCalculator = () => {
         <div className="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
           <div className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
             Tell us about yourself
+          </div>
+
+          {/* Candidate name (optional, used on the printable sheet) */}
+          <div>
+            <Label htmlFor="candidate-name" className="text-xs font-semibold text-gray-700 mb-2 block">
+              Candidate Name <span className="text-gray-400 font-normal">(optional, for the printed sheet)</span>
+            </Label>
+            <Input
+              id="candidate-name"
+              type="text"
+              value={inputs.candidateName}
+              onChange={(e) => update('candidateName', e.target.value)}
+              placeholder="e.g. Arun Kumar S"
+              className="text-sm"
+            />
           </div>
 
           {/* Community */}
@@ -478,6 +503,86 @@ export const TNEAFeeCalculator = () => {
                 );
               })}
             </div>
+
+            {/* Real-world action sheet — only when at least one concession applies */}
+            {eligibleCount > 0 && (
+              <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-700 rounded-xl p-5 text-white shadow-lg">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <FileDown className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <Badge className="bg-yellow-400 text-emerald-900 border-0 mb-2 text-[10px] font-bold">
+                      TAKE THIS TO THE COLLEGE OFFICE
+                    </Badge>
+                    <h3 className="font-bold text-base mb-1">
+                      Your printable Action Sheet is ready
+                    </h3>
+                    <p className="text-emerald-50 text-xs leading-relaxed">
+                      Includes every document you need to procure, where to get it,
+                      typical fees and timelines, G.O. numbers to cite, common
+                      rejection reasons, and the exact questions to ask the
+                      college office. Designed to print on A4.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 mb-3 text-[10px]">
+                  <div className="bg-white/10 rounded-lg p-2">
+                    <div className="opacity-80">Schemes covered</div>
+                    <div className="font-bold text-base">{eligibleCount}</div>
+                  </div>
+                  <div className="bg-white/10 rounded-lg p-2">
+                    <div className="opacity-80">Documents listed</div>
+                    <div className="font-bold text-base">
+                      {results
+                        .filter((r) => r.status === 'eligible')
+                        .reduce((sum, r) => {
+                          const action = CONCESSION_ACTIONS[r.key as ConcessionKey];
+                          return sum + (action?.documents.length ?? 0);
+                        }, 0)}
+                    </div>
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => {
+                    const eligibleActions = results
+                      .filter((r) => r.status === 'eligible')
+                      .map((r) => CONCESSION_ACTIONS[r.key as ConcessionKey])
+                      .filter(Boolean);
+
+                    openActionSheet({
+                      candidateName: inputs.candidateName || undefined,
+                      community: inputs.community,
+                      collegeType:
+                        inputs.collegeType === 'govt'
+                          ? 'Government College'
+                          : inputs.collegeType === 'aided'
+                          ? 'Aided College'
+                          : 'Self-Financing College',
+                      annualIncome: inputs.annualIncome,
+                      generatedOn: new Date().toLocaleDateString('en-IN', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                      }),
+                      actions: eligibleActions,
+                      registrationFee,
+                    });
+                  }}
+                  className="w-full bg-white text-emerald-700 hover:bg-emerald-50 font-bold shadow-md"
+                  size="lg"
+                >
+                  <Printer className="w-4 h-4 mr-2" />
+                  Open my Action Sheet (print / save as PDF)
+                </Button>
+
+                <div className="text-[10px] text-emerald-100/80 mt-2 text-center">
+                  Opens in a new tab. Click "Print" inside to save as PDF or print on paper.
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -487,7 +592,8 @@ export const TNEAFeeCalculator = () => {
           <div>
             Each concession requires a separate certificate. Get them from the
             appropriate authority <strong>before the TNEA application deadline</strong>
-            {' '}— certificates dated after the cutoff are not accepted.
+            {' '}— certificates dated after the cutoff are not accepted. The
+            Action Sheet above lists every authority, fee and processing time.
           </div>
         </div>
       </CardContent>
