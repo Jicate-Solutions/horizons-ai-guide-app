@@ -216,9 +216,192 @@ export const TNEA_RULES = {
   counsellingFees: {
     general: '₹500',
     reserved: '₹250',                               // SC / SCA / ST from Tamil Nadu only
-    note: 'Pay via debit/credit card, UPI, net banking, or demand draft on tneaonline.org.',
+    sportsQuota: '₹100',                            // Special categories incl. Sports
+    note: 'Pay via debit/credit card, UPI, net banking, or demand draft on tneaonline.org. Sports-quota applicants pay the lower ₹100 special-category rate.',
   },
+
+  // Document upload specifications (sports-quota applicants)
+  documentSpecs: {
+    formats: ['PDF', 'JPEG'],
+    maxFileSizeMB: 2,
+    note: 'All documents must be clear, legible and unaltered. Sports certificates must be signed by the concerned sports authority and show the level of competition (State / National / International).',
+  },
+
+  // After seat allotment, candidates have 4 options
+  allotmentOptions: [
+    { id: 'accept-join',     en: 'Accept and Join',          ta: 'ஏற்று சேர்' },
+    { id: 'accept-upward',   en: 'Accept and Upward',        ta: 'ஏற்று மேலே செல்' },
+    { id: 'reject-next',     en: 'Reject and Go to Next Round', ta: 'நிராகரித்து அடுத்த சுற்றுக்கு செல்' },
+    { id: 'reject-withdraw', en: 'Reject and Withdraw',      ta: 'நிராகரித்து விலகு' },
+  ],
+
+  // The 10 top engineering colleges most actively used for TNEA sports quota,
+  // per the DoTE 2026 notification. Useful for "where can I realistically aim?"
+  // queries from students with strong sports profiles.
+  topSportsQuotaColleges: [
+    { name: 'College of Engineering, Guindy (CEG)',  district: 'Chennai',     ownership: 'Govt' },
+    { name: 'Madras Institute of Technology (MIT)',  district: 'Chennai',     ownership: 'Govt' },
+    { name: 'PSG College of Technology',             district: 'Coimbatore',  ownership: 'Private' },
+    { name: 'Kumaraguru College of Technology',      district: 'Coimbatore',  ownership: 'Private' },
+    { name: 'SSN College of Engineering',            district: 'Chengalpattu', ownership: 'Private' },
+    { name: 'Coimbatore Institute of Technology',    district: 'Coimbatore',  ownership: 'Govt-Aided' },
+    { name: 'Thiagarajar College of Engineering',    district: 'Madurai',     ownership: 'Private' },
+    { name: 'Kongu Engineering College',             district: 'Erode',       ownership: 'Private' },
+    { name: 'Velammal Engineering College',          district: 'Chennai',     ownership: 'Private' },
+    { name: "St. Joseph's College of Engineering",   district: 'Chennai',     ownership: 'Private' },
+  ],
 } as const;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TNEA SPORTS MARKS SCORING TABLE
+// Used by the marks-calculator feature. Source: DoTE TNEA 2026 official
+// "Structured Marks Allocation for Sports Achievements" table.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type MedalType = 'gold' | 'silver' | 'bronze' | 'participation';
+
+export interface MarksRow {
+  id: string;
+  competitionEn: string;
+  competitionTa: string;
+  category: 'international' | 'national' | 'state' | 'regional' | 'district';
+  frequencyEn?: string;
+  gold: number | null;
+  silver: number | null;
+  bronze: number | null;
+  participation: number | null;
+}
+
+export const TNEA_MARKS_TABLE: MarksRow[] = [
+  // ── International ──
+  {
+    id: 'intl-olympics',
+    competitionEn: 'Olympics / Asian Games (representing India)',
+    competitionTa: 'ஒலிம்பிக்ஸ் / ஆசிய விளையாட்டுப் போட்டிகள் (இந்தியாவைப் பிரதிநிதித்துவம்)',
+    category: 'international',
+    frequencyEn: 'Once in 4 years',
+    gold: 1000, silver: 850, bronze: 650, participation: 400,
+  },
+  {
+    id: 'intl-2yr',
+    competitionEn: 'International (Category II — every 2 years, representing India)',
+    competitionTa: 'சர்வதேச (வகை II — 2 ஆண்டுகளுக்கு ஒருமுறை, இந்தியாவைப் பிரதிநிதித்துவம்)',
+    category: 'international',
+    frequencyEn: 'Once in 2 years',
+    gold: 500, silver: 450, bronze: 400, participation: 150,
+  },
+  {
+    id: 'intl-annual',
+    competitionEn: 'International (Category III — annual, representing India)',
+    competitionTa: 'சர்வதேச (வகை III — ஆண்டுதோறும், இந்தியாவைப் பிரதிநிதித்துவம்)',
+    category: 'international',
+    frequencyEn: 'Every year',
+    gold: 400, silver: 350, bronze: 300, participation: 200,
+  },
+
+  // ── National ──
+  {
+    id: 'nat-federation',
+    competitionEn: 'National Championships / National Games (National Federations / IOA)',
+    competitionTa: 'தேசிய சாம்பியன்ஷிப் / தேசிய விளையாட்டுகள் (தேசிய கூட்டமைப்புகள் / IOA)',
+    category: 'national',
+    gold: 190, silver: 160, bronze: 130, participation: 100,
+  },
+  {
+    id: 'nat-sgfi',
+    competitionEn: 'SGFI National Level Competition',
+    competitionTa: 'SGFI தேசிய அளவிலான போட்டி',
+    category: 'national',
+    gold: 190, silver: 160, bronze: 130, participation: 100,
+  },
+  {
+    id: 'nat-khelo-india',
+    competitionEn: 'Khelo India Youth Games (National Level)',
+    competitionTa: 'Khelo India இளைஞர் விளையாட்டுகள் (தேசிய அளவு)',
+    category: 'national',
+    gold: 190, silver: 160, bronze: 130, participation: 100,
+  },
+
+  // ── State ──
+  {
+    id: 'state-association',
+    competitionEn: 'State Championship (representing revenue district, State Sports Associations)',
+    competitionTa: 'மாநில சாம்பியன்ஷிப் (வருவாய் மாவட்டப் பிரதிநிதி, மாநில விளையாட்டுச் சங்கங்கள்)',
+    category: 'state',
+    gold: 95, silver: 80, bronze: 65, participation: 50,
+  },
+  {
+    id: 'state-bharathiyar',
+    competitionEn: 'Bharathiyar Day Sports Meet (State Level)',
+    competitionTa: 'பாரதியார் தின விளையாட்டுக் கூட்டம் (மாநில அளவு)',
+    category: 'state',
+    gold: 95, silver: 80, bronze: 65, participation: 50,
+  },
+  {
+    id: 'state-republic',
+    competitionEn: 'Republic Day Sports Meet (State Level)',
+    competitionTa: 'குடியரசு தின விளையாட்டுக் கூட்டம் (மாநில அளவு)',
+    category: 'state',
+    gold: 95, silver: 80, bronze: 65, participation: 50,
+  },
+
+  // ── Regional ──
+  {
+    id: 'regional-board',
+    competitionEn: 'KVS / CBSE / CISCE (ICSE) Board Sports Meet (Regional Level)',
+    competitionTa: 'KVS / CBSE / CISCE (ICSE) வாரிய விளையாட்டுக் கூட்டம் (வட்டார அளவு)',
+    category: 'regional',
+    gold: 60, silver: 45, bronze: 30, participation: 10,
+  },
+
+  // ── District ──
+  {
+    id: 'district-association',
+    competitionEn: 'District Tournaments / Sports Meet (District Sports Associations, SDAT/TNOA recognised)',
+    competitionTa: 'மாவட்ட போட்டிகள் / விளையாட்டுக் கூட்டம் (SDAT / TNOA அங்கீகாரம் பெற்ற மாவட்ட விளையாட்டுச் சங்கங்கள்)',
+    category: 'district',
+    gold: 45, silver: 30, bronze: 15, participation: 5,
+  },
+  {
+    id: 'district-school',
+    competitionEn: 'District / Education District Inter-School Competition',
+    competitionTa: 'மாவட்ட / கல்வி மாவட்ட பள்ளிகளுக்கிடையேயான போட்டி',
+    category: 'district',
+    gold: 45, silver: 30, bronze: 15, participation: 5,
+  },
+  {
+    id: 'district-cm-trophy',
+    competitionEn: 'SDAT — District Level Chief Minister\'s Trophy',
+    competitionTa: 'SDAT — மாவட்ட அளவிலான முதலமைச்சர் கோப்பை',
+    category: 'district',
+    gold: 45, silver: 30, bronze: 15, participation: 5,
+  },
+];
+
+/**
+ * Calculate a candidate's TNEA sports score given a list of achievements.
+ */
+export interface SportAchievement {
+  marksRowId: string;     // id from TNEA_MARKS_TABLE
+  medal: MedalType;
+}
+
+export const calculateTNEASportsScore = (
+  achievements: SportAchievement[]
+): { totalMarks: number; breakdown: { row: MarksRow; medal: MedalType; marks: number }[] } => {
+  let totalMarks = 0;
+  const breakdown: { row: MarksRow; medal: MedalType; marks: number }[] = [];
+
+  for (const ach of achievements) {
+    const row = TNEA_MARKS_TABLE.find(r => r.id === ach.marksRowId);
+    if (!row) continue;
+    const m = row[ach.medal];
+    if (m == null) continue;
+    totalMarks += m;
+    breakdown.push({ row, medal: ach.medal, marks: m });
+  }
+  return { totalMarks, breakdown };
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COLLEGE-SPECIFIC SPORTS QUOTA DATA

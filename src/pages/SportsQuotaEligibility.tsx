@@ -699,8 +699,8 @@ const ResultsView = ({
             </div>
             <div className="text-[10px] text-muted-foreground text-center">
               {lang === 'ta'
-                ? `விண்ணப்ப கட்டணம்: பொது ${TNEA_RULES.counsellingFees.general} · SC/SCA/ST (தமிழ்நாடு) ${TNEA_RULES.counsellingFees.reserved}`
-                : `Counselling fee: General ${TNEA_RULES.counsellingFees.general} · SC/SCA/ST (TN) ${TNEA_RULES.counsellingFees.reserved}`}
+                ? `விளையாட்டு கோட்டா கட்டணம்: ${TNEA_RULES.counsellingFees.sportsQuota} (சிறப்பு பிரிவு) · பொது ${TNEA_RULES.counsellingFees.general} · SC/SCA/ST (தமிழ்நாடு) ${TNEA_RULES.counsellingFees.reserved}`
+                : `Sports-quota fee: ${TNEA_RULES.counsellingFees.sportsQuota} (special category) · General ${TNEA_RULES.counsellingFees.general} · SC/SCA/ST (TN) ${TNEA_RULES.counsellingFees.reserved}`}
               {' · '}
               {lang === 'ta' ? 'உதவி நேரம்' : 'Helpline'}: {TNEA_RULES.helpline.timing}
             </div>
