@@ -630,6 +630,84 @@ const ResultsView = ({
         </Card>
       </div>
 
+      {/* TNEA 2026 key dates + helpline — show only if student is on TNEA path */}
+      {(eligibility.verdict === 'qualified' || eligibility.verdict === 'borderline') && (
+        <Card className="border-amber-300 bg-gradient-to-br from-amber-50 to-orange-50">
+          <CardContent className="p-4 space-y-3">
+            <div className="flex items-start gap-2">
+              <Calendar className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-bold text-sm text-amber-900">
+                  {lang === 'ta' ? 'TNEA 2026 முக்கிய தேதிகள்' : 'TNEA 2026 key dates'}
+                </h3>
+                <p className="text-[11px] text-amber-700">
+                  {lang === 'ta'
+                    ? 'விளையாட்டு கோட்டாவுக்கு விண்ணப்பிக்கும் அனைவருக்கும் பொருந்தும்'
+                    : 'Applies to anyone applying via TNEA sports quota'}
+                </p>
+              </div>
+            </div>
+            <div className="space-y-1.5 text-xs">
+              <div className="flex items-start gap-2 bg-red-100 border border-red-300 rounded-lg p-2">
+                <Clock className="w-3.5 h-3.5 text-red-700 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <div className="font-bold text-red-900">
+                    {lang === 'ta' ? 'விண்ணப்ப கடைசி நாள்' : 'Application deadline'}: {TNEA_RULES.dates.registrationDeadline}
+                  </div>
+                  <div className="text-[11px] text-red-800">
+                    {lang === 'ta'
+                      ? 'tneaonline.org-ல் இப்போதே பதிவு செய்யுங்கள்'
+                      : 'Register on tneaonline.org now'}
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-2 text-[11px]">
+                <span className="text-muted-foreground">{lang === 'ta' ? 'ஆவண சரிபார்ப்பு' : 'Document verification'}:</span>
+                <span className="font-medium">{TNEA_RULES.dates.tfcVerificationWindow}</span>
+              </div>
+              <div className="flex gap-2 text-[11px]">
+                <span className="text-muted-foreground">{lang === 'ta' ? 'ரேங்க் லிஸ்ட்' : 'Rank list'}:</span>
+                <span className="font-medium">{TNEA_RULES.dates.rankListRelease}</span>
+              </div>
+              <div className="flex gap-2 text-[11px]">
+                <span className="text-muted-foreground">{lang === 'ta' ? 'ஆலோசனை' : 'Counselling'}:</span>
+                <span className="font-medium">{TNEA_RULES.dates.counsellingMonth}</span>
+              </div>
+              <div className="text-[10px] text-amber-800 italic pt-1 border-t border-amber-200">
+                {lang === 'ta'
+                  ? 'விளையாட்டு கோட்டா ஆலோசனை நேரில் (in-person) நடக்கும், பொது ஆலோசனைக்கு முன்.'
+                  : 'Sports quota counselling is held IN PERSON, before general counselling.'}
+              </div>
+            </div>
+            {/* TNEA helpline */}
+            <div className="pt-3 border-t border-amber-200 flex flex-wrap gap-2">
+              <a
+                href={`tel:${TNEA_RULES.helpline.phone}`}
+                className="flex-1 flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2 px-3 rounded-lg transition"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                {lang === 'ta' ? 'TNEA உதவி எண்' : 'TNEA helpline'}: {TNEA_RULES.helpline.phone}
+              </a>
+              <a
+                href={TNEA_RULES.helpline.website}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 bg-white border border-amber-400 text-amber-800 text-xs font-medium py-2 px-3 rounded-lg hover:bg-amber-50 transition"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                tneaonline.org
+              </a>
+            </div>
+            <div className="text-[10px] text-muted-foreground text-center">
+              {lang === 'ta'
+                ? `விண்ணப்ப கட்டணம்: பொது ${TNEA_RULES.counsellingFees.general} · SC/SCA/ST (தமிழ்நாடு) ${TNEA_RULES.counsellingFees.reserved}`
+                : `Counselling fee: General ${TNEA_RULES.counsellingFees.general} · SC/SCA/ST (TN) ${TNEA_RULES.counsellingFees.reserved}`}
+              {' · '}
+              {lang === 'ta' ? 'உதவி நேரம்' : 'Helpline'}: {TNEA_RULES.helpline.timing}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Action row */}
       <div className="grid grid-cols-2 gap-3">
         <a

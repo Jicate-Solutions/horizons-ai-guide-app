@@ -191,12 +191,32 @@ export const TNEA_RULES = {
     },
   ],
 
-  // Key dates 2026
+  // Key dates 2026 — verified May 12, 2026 from tneaonline.org and
+  // multiple secondary sources reporting the official DoTE notification
   dates: {
+    registrationOpened: 'May 3, 2026',
+    registrationDeadline: 'June 2, 2026',          // URGENT — last date to apply
+    randomNumberRelease: 'June 5, 2026',
+    tfcVerificationWindow: 'June 8 – 20, 2026',
     rankListRelease: 'June 29, 2026',
     grievanceRedressal: 'June 29 – July 4, 2026',
+    choiceFillingMonth: '4th week of July 2026',
     counsellingMonth: 'July 2026',
-    note: 'Sports quota counselling is BEFORE general counselling.',
+    note: 'Sports quota counselling is held IN PERSON and BEFORE general counselling.',
+  },
+
+  // Official TNEA contact for students with questions
+  helpline: {
+    phone: '1800-425-0110',                         // toll-free
+    timing: '8:00 AM – 6:00 PM',
+    website: 'https://tneaonline.org/',
+  },
+
+  // Counselling registration fees (one-time, online payment)
+  counsellingFees: {
+    general: '₹500',
+    reserved: '₹250',                               // SC / SCA / ST from Tamil Nadu only
+    note: 'Pay via debit/credit card, UPI, net banking, or demand draft on tneaonline.org.',
   },
 } as const;
 
