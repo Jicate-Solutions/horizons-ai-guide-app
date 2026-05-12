@@ -1222,11 +1222,31 @@ const buildVerifiedCollegeDates = (): CollegeKeyDate[] =>
     let labelEn = '';
     let labelTa = '';
     let earliest: Date | null = null;
+    const now = Date.now();
 
     if (direct) {
-      labelEn = `Apply by ${direct}`;
-      labelTa = `${direct}-க்குள் விண்ணப்பிக்க`;
-      earliest = parseDeadline(direct);
+      const parsed = parseDeadline(direct);
+      earliest = parsed;
+      const isPast = parsed && parsed.getTime() < now;
+      // Polytechnic-style trials publish a single date that is both the trial
+      // and the application cut-off. Detect "trial / selection" wording in
+      // selectionProcess to label these correctly.
+      const sp = c.overrides?.selectionProcess?.toLowerCase() ?? '';
+      const isTrialDate = /trial|selection/.test(sp);
+
+      if (isPast && isTrialDate) {
+        labelEn = `Trial held ${direct} · Contact college`;
+        labelTa = `${direct} தேர்வு முடிந்தது · கல்லூரியை தொடர்பு கொள்ளுங்கள்`;
+      } else if (isPast) {
+        labelEn = `${direct} (passed) · Contact college`;
+        labelTa = `${direct} (முடிந்தது) · கல்லூரியை தொடர்பு கொள்ளுங்கள்`;
+      } else if (isTrialDate) {
+        labelEn = `Trial on ${direct}`;
+        labelTa = `${direct} அன்று தேர்வு`;
+      } else {
+        labelEn = `Apply by ${direct}`;
+        labelTa = `${direct}-க்குள் விண்ணப்பிக்க`;
+      }
     } else if (c.counsellingBody === 'TNEA') {
       // TNEA-based admission — common dates for 2026 cycle
       labelEn = 'Via TNEA · Counselling Jul 2026';
@@ -1242,6 +1262,7 @@ const buildVerifiedCollegeDates = (): CollegeKeyDate[] =>
     }
 
     // Pull trial month out of selectionProcess if we can spot one
+    // (only when there's no explicit applicationDeadline)
     const sp = c.overrides?.selectionProcess ?? '';
     const trialMatch = sp.match(/([A-Z][a-z]+ \d{4})/);
     if (trialMatch && !direct) {
@@ -1288,31 +1309,63 @@ const LiveApplicationsBanner = ({
 }) => {
   const now = Date.now();
   const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
+  const RECENT_PAST_DAYS = 45 * 24 * 60 * 60 * 1000;
 
-  // Only colleges with an actual direct application deadline within 60 days
-  // (skip generic "Via TNEA" entries — those are handled by the TNEA countdown above)
-  const active = verifiedColleges.filter((c) => {
-    if (!c.earliestDeadline) return false;
-    if (c.route !== 'Direct' && !c.keyDateLabel.en.toLowerCase().startsWith('apply by') && !c.keyDateLabel.en.toLowerCase().startsWith('trial')) return false;
+  // Bucket colleges into:
+  //   - upcoming:    deadline is in the future and within 60 days  → blinking red LIVE
+  //   - recent past: deadline passed within the last 45 days       → amber "Contact college"
+  // Anything older or further out is hidden so the banner stays focused.
+  type Item = CollegeKeyDate & { status: 'upcoming' | 'recent_past' };
+
+  const items: Item[] = verifiedColleges.flatMap<Item>((c) => {
+    if (!c.earliestDeadline) return [];
+    // skip generic TNEA-only entries — the global TNEA countdown handles those
+    const label = c.keyDateLabel.en.toLowerCase();
+    if (
+      c.route !== 'Direct' &&
+      !label.startsWith('apply by') &&
+      !label.startsWith('trial') &&
+      !label.includes('trial held') &&
+      !label.includes('passed')
+    ) {
+      return [];
+    }
     const ms = c.earliestDeadline.getTime() - now;
-    return ms > 0 && ms < SIXTY_DAYS;
+    if (ms > 0 && ms < SIXTY_DAYS) return [{ ...c, status: 'upcoming' }];
+    if (ms <= 0 && Math.abs(ms) < RECENT_PAST_DAYS) {
+      return [{ ...c, status: 'recent_past' }];
+    }
+    return [];
   });
 
-  if (active.length === 0) return null;
+  // Sort: upcoming first (soonest deadline), then recent past (most recent first)
+  items.sort((a, b) => {
+    if (a.status !== b.status) return a.status === 'upcoming' ? -1 : 1;
+    if (!a.earliestDeadline || !b.earliestDeadline) return 0;
+    return a.status === 'upcoming'
+      ? a.earliestDeadline.getTime() - b.earliestDeadline.getTime()
+      : b.earliestDeadline.getTime() - a.earliestDeadline.getTime();
+  });
+
+  if (items.length === 0) return null;
+
+  const hasUpcoming = items.some((i) => i.status === 'upcoming');
 
   return (
     <div className="relative rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 overflow-hidden shadow-md">
-      {/* Pulsing LIVE badge top-right */}
-      <span
-        aria-label="Live"
-        className="absolute -top-2 -right-2 flex h-6 items-center"
-      >
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-300 opacity-75"></span>
-        <span className="relative inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-black text-white shadow">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          {lang === 'ta' ? 'நேரலை' : 'LIVE'}
+      {/* Pulsing LIVE badge top-right — only when at least one entry is upcoming */}
+      {hasUpcoming && (
+        <span
+          aria-label="Live"
+          className="absolute -top-2 -right-2 flex h-6 items-center"
+        >
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-300 opacity-75"></span>
+          <span className="relative inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-black text-white shadow">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            {lang === 'ta' ? 'நேரலை' : 'LIVE'}
+          </span>
         </span>
-      </span>
+      )}
 
       <div className="px-4 py-3">
         <div className="flex items-center gap-2 mb-2">
@@ -1322,29 +1375,33 @@ const LiveApplicationsBanner = ({
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-black text-red-900 leading-tight">
               {lang === 'ta'
-                ? 'விளையாட்டு கோட்டா விண்ணப்பங்கள் திறந்துள்ளன!'
-                : 'Sports quota applications open NOW!'}
+                ? 'நேரடி விளையாட்டு கோட்டா செயல்பாடுகள்'
+                : 'Sports quota — colleges with active selection'}
             </h3>
             <p className="text-[11px] text-red-700/80 leading-tight mt-0.5">
               {lang === 'ta'
-                ? 'இந்த கல்லூரிகள் நேரடியாக விளையாட்டு கோட்டா மாணவர்களைச் சேர்க்கின்றன — விரைவில் விண்ணப்பிக்கவும்'
-                : 'These colleges are accepting direct sports-quota applications — apply soon'}
+                ? 'இந்த கல்லூரிகள் நேரடியாக விளையாட்டு கோட்டா மாணவர்களைச் சேர்க்கின்றன'
+                : 'These colleges run their own sports-quota selection rounds'}
             </p>
           </div>
         </div>
 
         <div className="space-y-1.5 mt-2">
-          {active.map((c) => {
-            const days = c.earliestDeadline
-              ? Math.max(0, Math.ceil((c.earliestDeadline.getTime() - now) / (24 * 60 * 60 * 1000)))
-              : 0;
-            const isCritical = days <= 7;
+          {items.map((c) => {
+            const ms = c.earliestDeadline!.getTime() - now;
+            const days = Math.ceil(Math.abs(ms) / (24 * 60 * 60 * 1000));
+            const isUpcoming = c.status === 'upcoming';
+            const isCritical = isUpcoming && days <= 7;
             return (
               <div
                 key={c.collegeName}
                 className={cn(
                   'flex items-center justify-between gap-2 rounded-lg border bg-white/80 backdrop-blur-sm px-2.5 py-2',
-                  isCritical ? 'border-red-400 ring-1 ring-red-300' : 'border-orange-200',
+                  isCritical
+                    ? 'border-red-400 ring-1 ring-red-300'
+                    : isUpcoming
+                    ? 'border-orange-200'
+                    : 'border-amber-200',
                 )}
               >
                 <div className="flex-1 min-w-0">
@@ -1360,12 +1417,20 @@ const LiveApplicationsBanner = ({
                     'flex-shrink-0 rounded-md px-2 py-1 text-[10px] font-black whitespace-nowrap',
                     isCritical
                       ? 'bg-red-600 text-white animate-pulse'
-                      : 'bg-orange-100 text-orange-800',
+                      : isUpcoming
+                      ? 'bg-orange-100 text-orange-800'
+                      : 'bg-amber-100 text-amber-800',
                   )}
                 >
-                  {days === 0
-                    ? (lang === 'ta' ? 'இன்றே' : 'TODAY')
-                    : `${days} ${lang === 'ta' ? 'நாட்கள்' : 'days'}`}
+                  {isUpcoming
+                    ? days === 0
+                      ? lang === 'ta'
+                        ? 'இன்றே'
+                        : 'TODAY'
+                      : `${days} ${lang === 'ta' ? 'நாட்கள்' : 'days'}`
+                    : lang === 'ta'
+                    ? 'கல்லூரியை தொடர்பு கொள்ளுங்கள்'
+                    : 'Contact college'}
                 </div>
               </div>
             );
@@ -1456,7 +1521,7 @@ const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => voi
       <div className="grid grid-cols-3 gap-2">
         <Card className="border-emerald-200 bg-emerald-50">
           <CardContent className="p-3 text-center">
-            <div className="text-2xl font-black text-emerald-700">6</div>
+            <div className="text-2xl font-black text-emerald-700">{verifiedColleges.length}</div>
             <div className="text-[10px] text-emerald-800 font-medium leading-tight mt-0.5">
               {lang === 'ta' ? 'சரிபார்க்கப்பட்ட கல்லூரிகள்' : 'Verified colleges'}
             </div>

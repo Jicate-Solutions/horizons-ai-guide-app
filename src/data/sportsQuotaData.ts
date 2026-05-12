@@ -875,6 +875,85 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-12',
   },
 
+  // ─── VERIFIED: Nandha Polytechnic College ─────────────────────────────
+  // Source: Official Sports Quota Selection Trials 2026-2027 notification
+  // (provided by team May 2026). Trials were conducted 20 April 2026 at NPC
+  // Playground. 100% scholarship for eligible candidates. 10th-pass entry.
+  {
+    id: 'nandha_polytechnic_erode',
+    collegeName: 'Nandha Polytechnic College',
+    collegeNameTa: 'நந்தா பாலிடெக்னிக் கல்லூரி',
+    district: 'Erode',
+    type: 'Private',
+    field: 'other', // polytechnic — not classified under engineering/medical/arts/law/agriculture
+    counsellingBody: 'Direct', // College runs its own sports-quota selection trials
+    overrides: {
+      // Minimum: 10th pass (polytechnic entry — lower than degree-level requirement)
+      minLevel: 'district', // accepts even district-level achievers given 10th-pass entry
+      sportsScholarship: '100% Scholarship for eligible candidates selected through the offline trials at NPC Playground. Diploma-level admission (10th pass entry).',
+      schemes: [
+        '100% Sports Scholarship for selected candidates',
+        'Diploma courses — 10th-pass eligibility (polytechnic level)',
+      ],
+      selectionProcess: 'Offline selection trials held 20 April 2026 at NPC Playground, 09:00 AM. Trial day: bring Aadhaar, passport photos, birth certificate, sports achievement certificates. Selected candidates receive 100% scholarship for the 2026-27 academic year.',
+      // 13 sports listed in the official notification (same list applies to both genders)
+      sportsForMen: [
+        'football', 'handball', 'cricket', 'table-tennis', 'chess',
+        // Carrom not in the standard sport enum — student picks "other"
+        'kabaddi', 'volleyball', 'athletics', 'badminton',
+        // Throwball not in the standard enum — student picks "other"
+        'basketball', 'kho-kho',
+      ],
+      sportsForWomen: [
+        'football', 'handball', 'cricket', 'table-tennis', 'chess',
+        'kabaddi', 'volleyball', 'athletics', 'badminton',
+        'basketball', 'kho-kho',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Aadhaar Card',
+          titleTa: 'ஆதார் அட்டை',
+          detailEn: 'Required as identity proof on trial day.',
+          detailTa: 'தேர்வு நாளில் அடையாள ஆதாரமாக தேவை.',
+        },
+        {
+          titleEn: 'Passport-size photographs',
+          titleTa: 'பாஸ்போர்ட் அளவு புகைப்படங்கள்',
+          detailEn: 'Multiple copies to be brought on trial day.',
+          detailTa: 'தேர்வு நாளில் பல நகல்கள் கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Birth Certificate',
+          titleTa: 'பிறப்புச் சான்றிதழ்',
+          detailEn: 'Original to verify age eligibility.',
+          detailTa: 'வயது தகுதியை சரிபார்க்க அசல் தேவை.',
+        },
+        {
+          titleEn: 'Sports Achievement Certificates',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ்கள்',
+          detailEn: 'All achievement certificates in any of the 13 listed sports — original copies for verification at trial.',
+          detailTa: 'பட்டியலிடப்பட்ட 13 விளையாட்டுகளில் எதிலும் உள்ள அனைத்து சாதனை சான்றிதழ்களும் — தேர்வின் போது சரிபார்ப்புக்காக அசல் நகல்கள்.',
+        },
+        {
+          titleEn: '10th Standard pass certificate',
+          titleTa: '10-ஆம் வகுப்பு தேர்ச்சி சான்றிதழ்',
+          detailEn: 'Minimum eligibility for polytechnic admission.',
+          detailTa: 'பாலிடெக்னிக் சேர்க்கைக்கான குறைந்தபட்ச தகுதி.',
+        },
+      ],
+      applicationDeadline: '20 April 2026', // trial date (past); contact college for any late-application window
+    },
+    contact: {
+      sportsOfficer: 'Mr M. Manikandan',
+      designation: 'Department of Physical Education',
+      phone: '+91-82208-71970',
+      // No email or website provided in notification — contact via phone only
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Nandha Polytechnic College official Sports Quota Selection Trials 2026-2027 notification (provided by team May 2026). Trials conducted 20 April 2026 at NPC Playground, 09:00 AM. 100% scholarship offered. Contact: Mr. M. Manikandan (8220871970) for current admission status.',
+    lastVerified: '2026-05-12',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
