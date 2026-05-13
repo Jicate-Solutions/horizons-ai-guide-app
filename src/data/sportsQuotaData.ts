@@ -1985,6 +1985,311 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: G T N Arts College (GTNAC) ────────────────────────────────
+  // Source: Official GTN College Sports Quota Admission 2026-27 notification
+  // (provided by team May 2026). Arts & Science college in Dindigul, Tamil
+  // Nadu. Single-day trial on 12 April 2026 at 7:30 AM. Wide list of 26 sports.
+  {
+    id: 'gtn_dindigul',
+    collegeName: 'G T N Arts College',
+    collegeNameTa: 'ஜி.டி.என். கலைக் கல்லூரி',
+    district: 'Dindigul',
+    type: 'Private', // Aided arts & science college; not explicitly autonomous
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      // No minimum level specified in the notification — open trial. Defaulting
+      // to 'district' so school-level players know to call before showing up.
+      minLevel: 'district',
+      sportsScholarship: 'Sports Quota Admission for 2026-27 — admission to UG and PG arts & commerce & science programmes at GTN Arts College, Dindigul. Trial-based selection, in-charge: Dr. Rajasekar.',
+      schemes: [
+        'Sports Quota Admission (UG and PG)',
+        'Trial-based selection',
+      ],
+      selectionProcess: 'Single-day offline sports trial held 12 April 2026, 7:30 AM at GTN Arts College, Dindigul. All listed sports trialled the same day. Bring original sports certificates and academic mark sheets. Contact Dr. Rajasekar (in-charge) to confirm any late-application window.',
+      // 26 sports listed in the notification. Cycling, Best Physique,
+      // Traditional Archery, Skating not in the standard enum — mapped to
+      // 'other' or the closest available sport.
+      sportsForMen: [
+        'basketball', 'handball', 'football', 'tennis', 'hockey',
+        'boxing', 'martial-arts', // Judo
+        'kabaddi', 'kho-kho', 'taekwondo', 'swimming', 'karate',
+        'weightlifting', 'powerlifting', 'chess', 'yoga', 'shooting',
+        'gymnastics', 'volleyball', 'table-tennis', 'cricket', 'athletics',
+        'archery', // Traditional Archery
+        'other', // Fencing, Skating, Best Physique
+      ],
+      sportsForWomen: [
+        'basketball', 'handball', 'football', 'tennis', 'hockey',
+        'boxing', 'martial-arts',
+        'kabaddi', 'kho-kho', 'taekwondo', 'swimming', 'karate',
+        'weightlifting', 'powerlifting', 'chess', 'yoga', 'shooting',
+        'gymnastics', 'volleyball', 'table-tennis', 'cricket', 'athletics',
+        'archery',
+        'other', // Fencing, Skating, Best Physique
+      ],
+      trialsMen: [
+        // All on 12 April 2026, 7:30 AM at GTN Arts College Ground.
+        { sport: 'basketball',   date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'handball',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'football',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'tennis',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'hockey',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'boxing',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'martial-arts', date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' }, // Judo
+        { sport: 'kabaddi',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'kho-kho',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'taekwondo',    date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'swimming',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'karate',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'weightlifting',date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'powerlifting', date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'chess',        date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'yoga',         date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'shooting',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'gymnastics',   date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'volleyball',   date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'table-tennis', date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'cricket',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'athletics',    date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'archery',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' }, // Traditional Archery
+        { sport: 'other',        date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' }, // Fencing, Skating, Best Physique
+      ],
+      trialsWomen: [
+        { sport: 'basketball',   date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'handball',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'football',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'tennis',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'hockey',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'boxing',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'martial-arts', date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'kabaddi',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'kho-kho',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'taekwondo',    date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'swimming',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'karate',       date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'weightlifting',date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'powerlifting', date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'chess',        date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'yoga',         date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'shooting',     date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'gymnastics',   date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'volleyball',   date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'table-tennis', date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'cricket',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'athletics',    date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'archery',      date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+        { sport: 'other',        date: '2026-04-12', time: '7:30 AM', venue: 'GTN Arts College, Dindigul' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Original sports certificates',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All achievement and participation certificates — originals for verification at trial.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் — தேர்வில் சரிபார்ப்புக்காக அசல்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+      ],
+      applicationDeadline: '12 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'Dr. Rajasekar',
+      designation: 'Sports In-charge',
+      phone: '+91-94441-20045',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from G T N Arts College Sports Quota Admission 2026-27 notification (provided by team May 2026). Aided arts & science college in Dindigul, Tamil Nadu. Single-day sports trial held 12 April 2026, 7:30 AM. 26 sports including Best Physique, Traditional Archery, Skating, Fencing (mapped to nearest enum or "other"). In-charge: Dr. Rajasekar (9444120045).',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Sri Shanmugha Educational Institutions (SSEI) ─────────────
+  // Source: Official SSEI Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). Multi-disciplinary educational group on a
+  // 130-acre campus at Pullipalayam, Sankari Taluk, Salem (Tamil Nadu).
+  // Includes Engineering & Technology (Autonomous), Pharmacy, Nursing, Allied
+  // Health Science, Medical Science & Research, and Health Inspector courses.
+  // Single-day trial on 2 May 2026 at the SSEI Ground.
+  {
+    id: 'shanmugha_salem',
+    collegeName: 'Sri Shanmugha Educational Institutions (SSEI)',
+    collegeNameTa: 'ஸ்ரீ சண்முக கல்வி நிறுவனங்கள் (SSEI)',
+    district: 'Salem',
+    type: 'Private',
+    field: 'engineering', // primary route (autonomous engineering college); group also covers Pharmacy, Nursing, Allied Health, Medical Science
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: '100% Scholarship for eligible candidates. Admissions across the Sri Shanmugha Educational Institutions group: Engineering & Technology (Autonomous), Pharmacy, Nursing, Allied Health Science, Medical Science & Research, and Health Inspector courses.',
+      schemes: [
+        '100% Sports Scholarship (eligible candidates)',
+        'Open across Engineering, Pharmacy, Nursing, Allied Health, Medical Science, Health Inspector',
+        '130-acre campus, Pullipalayam, Sankari Taluk, Salem',
+      ],
+      selectionProcess: 'Single-day offline sports trial held 2 May 2026 at SSEI Ground (Pullipalayam, Sankari Taluk, Salem). All 7 listed sports trialled the same day. Open for both Men and Women. Online registration via QR code on the official poster. Contact 9688728161 for current admission status.',
+      sportsForMen: [
+        'kabaddi', 'hockey', 'cricket', 'athletics', 'volleyball',
+        'badminton', 'football',
+      ],
+      sportsForWomen: [
+        'kabaddi', 'hockey', 'cricket', 'athletics', 'volleyball',
+        'badminton', 'football',
+      ],
+      trialsMen: [
+        { sport: 'kabaddi',    date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'hockey',     date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'cricket',    date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'athletics',  date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'volleyball', date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'badminton',  date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'football',   date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+      ],
+      trialsWomen: [
+        { sport: 'kabaddi',    date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'hockey',     date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'cricket',    date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'athletics',  date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'volleyball', date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'badminton',  date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+        { sport: 'football',   date: '2026-05-02', time: 'Morning (confirm)', venue: 'SSEI Ground, Pullipalayam, Sankari, Salem' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Online registration via QR code',
+          titleTa: 'QR கோடு மூலம் ஆன்லைன் பதிவு',
+          detailEn: 'Scan the QR code on the bottom left of the official poster to register before the trial date.',
+          detailTa: 'தேர்வு நாளுக்கு முன், அதிகாரப்பூர்வ சுவரொட்டியின் கீழ்-இடதுபுறத்தில் உள்ள QR கோடை ஸ்கேன் செய்து பதிவு செய்யவும்.',
+        },
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: 'Aadhaar + academic certificates',
+          titleTa: 'ஆதார் + கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Aadhaar card and 10th, 12th (and UG for PG applicants) mark sheets.',
+          detailTa: 'ஆதார் அட்டை மற்றும் 10-ஆம், 12-ஆம் (PG விண்ணப்பதாரர்களுக்கு UG) வகுப்பு மதிப்பெண் சான்றிதழ்கள்.',
+        },
+      ],
+      applicationDeadline: '2 May 2026',
+    },
+    contact: {
+      designation: 'Sri Shanmugha Educational Institutions — Sports Admissions',
+      phone: '+91-96887-28161',
+      website: 'https://shanmugha.edu.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://shanmugha.edu.in',
+    sourceNote: 'Direct from Sri Shanmugha Educational Institutions (SSEI) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). 130-acre campus, Pullipalayam, Sankari Taluk, Salem, Tamil Nadu. Engineering & Technology (Autonomous), Pharmacy, Nursing, Allied Health Science, Medical Science & Research, Health Inspector. Single-day trial on 2 May 2026 at SSEI Ground. 100% scholarship for eligible candidates. 7 sports (Kabaddi, Hockey, Cricket, Athletics, Volleyball, Badminton, Football) for Men & Women. Registration via QR code on the official poster. More info: 9688728161.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: GEMS Arts and Science College (Autonomous) ────────────────
+  // Source: Official GEMS Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). NAAC-accredited (First Cycle, 'A' Grade)
+  // autonomous arts & science college in Ramapuram, Malappuram district,
+  // Kerala (affiliated to the University of Calicut). Two-day trial held
+  // 29-30 April 2026, 9 AM daily. Open for both Men and Women.
+  {
+    id: 'gems_malappuram',
+    collegeName: 'GEMS Arts and Science College (Autonomous)',
+    collegeNameTa: 'GEMS கலை மற்றும் அறிவியல் கல்லூரி (தன்னாட்சி)',
+    district: 'Malappuram',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Sports Quota Admission 2026-27 — admissions across UG and PG programmes at GEMS Arts and Science College (Autonomous), Ramapuram, Malappuram, Kerala. NAAC-accredited (First Cycle) with "A" Grade. ISO 9001:2015 certified institution. Affiliated to University of Calicut.',
+      schemes: [
+        'Sports Quota Admission (UG and PG)',
+        'NAAC "A" Grade (First Cycle)',
+        'ISO 9001:2015 certified',
+        'Affiliated to University of Calicut',
+      ],
+      selectionProcess: 'Two-day offline sports trial held 29-30 April 2026, 9:00 AM daily at GEMS Arts and Science College, Ramapuram (Kadungapuram P.O.), Malappuram, Kerala. Day 1 (29 April): Football, Basketball, Athletics, Badminton, Tug of War. Day 2 (30 April): Cricket, Kabaddi, Karate, Volleyball, Table Tennis, Chess. Open for both Men & Women. Online registration via QR code on the official poster.',
+      // Tug of War not in the standard sport enum — mapped to 'other'.
+      sportsForMen: [
+        // 29 April
+        'football', 'basketball', 'athletics', 'badminton',
+        // 30 April
+        'cricket', 'kabaddi', 'karate', 'volleyball', 'table-tennis', 'chess',
+        'other', // Tug of War
+      ],
+      sportsForWomen: [
+        'football', 'basketball', 'athletics', 'badminton',
+        'cricket', 'kabaddi', 'karate', 'volleyball', 'table-tennis', 'chess',
+        'other', // Tug of War
+      ],
+      trialsMen: [
+        // Day 1 — 29 April 2026
+        { sport: 'football',     date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'basketball',   date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'athletics',    date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'badminton',    date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'other',        date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' }, // Tug of War
+        // Day 2 — 30 April 2026
+        { sport: 'cricket',      date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'kabaddi',      date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'karate',       date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'volleyball',   date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'table-tennis', date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'chess',        date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+      ],
+      trialsWomen: [
+        { sport: 'football',     date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'basketball',   date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'athletics',    date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'badminton',    date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'other',        date: '2026-04-29', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' }, // Tug of War
+        { sport: 'cricket',      date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'kabaddi',      date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'karate',       date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'volleyball',   date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'table-tennis', date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+        { sport: 'chess',        date: '2026-04-30', time: '9:00 AM', venue: 'GEMS Arts and Science College, Ramapuram, Malappuram' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Online registration via QR code',
+          titleTa: 'QR கோடு மூலம் ஆன்லைன் பதிவு',
+          detailEn: 'Scan the QR code on the official poster to register before the trial date.',
+          detailTa: 'தேர்வு நாளுக்கு முன், அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்து பதிவு செய்யவும்.',
+        },
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: 'Plus Two / UG mark sheets',
+          titleTa: 'பிளஸ் டூ / UG மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: '10th, +2, and UG (for PG applicants) original mark sheets.',
+          detailTa: '10-ஆம் வகுப்பு, +2, மற்றும் UG (PG விண்ணப்பதாரர்களுக்கு) அசல் மதிப்பெண் சான்றிதழ்கள்.',
+        },
+      ],
+      applicationDeadline: '29 April 2026', // first day of the trial window
+    },
+    contact: {
+      designation: 'GEMS Arts and Science College — Sports Admissions',
+      phone: '+91-94470-17280',
+      phone2: '+91-77361-45972',
+      website: 'https://gemsasc.ac.in',
+      applicationLink: 'https://digivista.gemsasc.ac.in/online-admission/#/sign-in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://gemsasc.ac.in',
+    sourceNote: 'Direct from GEMS Arts and Science College (Autonomous) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). NAAC-accredited (First Cycle, "A" Grade), ISO 9001:2015 certified. Autonomous arts & science college affiliated to University of Calicut, located at Kadungapuram P.O., Ramapuram, Malappuram, Kerala 679321. Two-day trial 29-30 April 2026, 9 AM daily. Day 1: Football, Basketball, Athletics, Badminton, Tug of War. Day 2: Cricket, Kabaddi, Karate, Volleyball, Table Tennis, Chess. Open for Men & Women. Online application via the College portal; registration via QR code on the official poster.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
