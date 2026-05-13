@@ -1624,6 +1624,367 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: Jeppiaar Institute of Technology (JIT) ───────────────────
+  // Source: Official JIT Sports Quota Admissions 2026-27 notification
+  // (provided by team May 2026). Autonomous engineering college near Chennai
+  // (Sriperumbudur area, Kanchipuram district). NAAC A+ and NBA accredited.
+  // TNEA counselling code 1140. Single-day trial on 4 April 2026 — long past
+  // by mid-May 2026, so this entry surfaces in the "Verified colleges" card
+  // for late applicants who can call the coach to confirm next steps.
+  {
+    id: 'jit_kanchipuram',
+    collegeName: 'Jeppiaar Institute of Technology (JIT)',
+    collegeNameTa: 'ஜெப்பியார் தொழில்நுட்ப நிறுவனம் (JIT)',
+    district: 'Kanchipuram',
+    type: 'Autonomous',
+    field: 'engineering',
+    // JIT is Anna University-affiliated and admits via TNEA (counselling code
+    // 1140); the sports-quota seats are filled through a direct trial held
+    // before TNEA counselling. We mark counsellingBody as 'TNEA' so the
+    // standard TNEA timeline still surfaces.
+    counsellingBody: 'TNEA',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: '100% Scholarship based on sports certification. TNEA counselling code 1140. NAAC A+ and NBA-accredited autonomous engineering college near Chennai.',
+      schemes: [
+        '100% Sports Scholarship (based on certification level)',
+        'TNEA counselling code 1140',
+        'NAAC A+ and NBA accredited',
+      ],
+      selectionProcess: 'Sports Selection Trials held 4 April 2026 at JIT Ground. Time slots: certain sports (marked orange on the official poster) start at 3:00 PM; all other games start at 9:30 AM. Registration deadline was 31 March 2026. After the trial, sports-quota candidates also apply through TNEA counselling using code 1140. Contact the coach / physical directors below to confirm any late-application window.',
+      // Cycling, Rowing not in the standard enum — mapped to 'other'.
+      // Carrom not in the enum either — also 'other'.
+      sportsForMen: [
+        // Combat & Individual
+        'boxing', 'taekwondo', 'wrestling', 'archery', 'shooting',
+        'athletics', 'martial-arts', // Judo
+        // Team Games
+        'cricket', 'volleyball', 'kabaddi', 'basketball', 'kho-kho',
+        'football',
+        // Racket & Indoor
+        'badminton', 'tennis', 'chess',
+        // Cycling, Rowing, Carrom → 'other'
+        'other',
+      ],
+      sportsForWomen: [
+        'boxing', 'taekwondo', 'wrestling', 'archery', 'shooting',
+        'athletics', 'martial-arts', // Judo
+        'cricket', 'volleyball', 'kabaddi', 'basketball', 'kho-kho',
+        'football',
+        'badminton', 'tennis', 'chess',
+        'other', // Cycling, Rowing, Carrom
+      ],
+      trialsMen: [
+        // All on 4 April 2026 at JIT Ground.
+        // The official poster splits start times into 9:30 AM (default) and
+        // 3:00 PM (orange-marked games). The notification did not disclose
+        // which specific games are in the 3:00 PM slot — we default to
+        // 9:30 AM and direct candidates to confirm with the coach.
+        { sport: 'boxing',       date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'taekwondo',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'martial-arts', date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' }, // Judo
+        { sport: 'wrestling',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'archery',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'shooting',     date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'athletics',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'cricket',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'volleyball',   date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'kabaddi',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'basketball',   date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'kho-kho',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'football',     date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'badminton',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'tennis',       date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'chess',        date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'other',        date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' }, // Cycling, Rowing, Carrom
+      ],
+      trialsWomen: [
+        { sport: 'boxing',       date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'taekwondo',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'martial-arts', date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' }, // Judo
+        { sport: 'wrestling',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'archery',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'shooting',     date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'athletics',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'cricket',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'volleyball',   date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'kabaddi',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'basketball',   date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'kho-kho',      date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'football',     date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'badminton',    date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'tennis',       date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'chess',        date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' },
+        { sport: 'other',        date: '2026-04-04', time: '9:30 AM / 3:00 PM (confirm with coach)', venue: 'JIT Ground' }, // Cycling, Rowing, Carrom
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Original sports certificates',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All achievement and participation certificates in original — scholarship is awarded based on the certification level.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்களும் அசலில் — சான்றிதழ் அளவை அடிப்படையாகக் கொண்டே உதவித்தொகை வழங்கப்படும்.',
+        },
+        {
+          titleEn: 'TNEA application',
+          titleTa: 'TNEA விண்ணப்பம்',
+          detailEn: 'Apply through TNEA using counselling code 1140. Sports-quota candidates need both the trial recommendation and the TNEA seat allotment.',
+          detailTa: 'ஆலோசனை குறியீடு 1140 பயன்படுத்தி TNEA மூலம் விண்ணப்பிக்கவும். விளையாட்டு கோட்டா விண்ணப்பதாரர்களுக்கு தேர்வு பரிந்துரை மற்றும் TNEA இட ஒதுக்கீடு இரண்டும் தேவை.',
+        },
+        {
+          titleEn: 'Aadhaar + 10th & 12th mark sheets',
+          titleTa: 'ஆதார் + 10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'Standard ID and academic transcripts for TNEA verification.',
+          detailTa: 'TNEA சரிபார்ப்புக்கான வழக்கமான அடையாள ஆதாரம் மற்றும் கல்வி சான்றிதழ்கள்.',
+        },
+      ],
+      applicationDeadline: '4 April 2026', // trial date (already past in May 2026)
+    },
+    contact: {
+      sportsOfficer: 'M. Kumaravel',
+      designation: 'Physical Director',
+      phone: '+91-97862-07757',
+      sportsOfficer2: 'V. Pratheep Kumar',
+      designation2: 'Physical Director',
+      phone2: '+91-90039-90413',
+      website: 'https://www.jeppiaarinstitute.org',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.jeppiaarinstitute.org',
+    sourceNote: 'Direct from Jeppiaar Institute of Technology (JIT) Sports Quota Admissions 2026-27 notification (provided by team May 2026). NAAC A+ and NBA accredited autonomous engineering college near Chennai, TNEA counselling code 1140. Sports trials held 4 April 2026 at JIT Ground (9:30 AM and 3:00 PM batches). 100% scholarship based on sports certification. Additional contact: Ravishankar (Coach) 9790756904; M. Kumaravel office 044-2715 9000.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Vels Institute of Science, Technology & Advanced Studies (VISTAS) ──
+  // Source: Official VISTAS Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). Multi-campus deemed-to-be university based at
+  // Pallavaram, Chennai (Chengalpattu district), with additional campuses at
+  // Thalambur, Periyapalayam, and Thiruvanmiyur. NAAC A++ accredited and
+  // UGC Category 1 Institution. Three-day main trial (10-12 April) plus a
+  // separate Football trial (7 May at Home Games Sports Arena, Thalambur).
+  {
+    id: 'vistas_pallavaram',
+    collegeName: 'Vels Institute of Science, Technology & Advanced Studies (VISTAS)',
+    collegeNameTa: 'வேல்ஸ் அறிவியல், தொழில்நுட்பம் & மேம்பட்ட படிப்புகள் நிறுவனம் (VISTAS)',
+    district: 'Chengalpattu',
+    type: 'Deemed',
+    field: 'other', // multi-campus, multi-discipline (Engineering, Arts, Pharmacy, Management, etc.)
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Sports quota admissions across all VISTAS programmes (Engineering, Pharmacy, Management, Arts & Science). NAAC A++ accredited and ranked Category 1 Institution by UGC. Multi-campus access — main trial at Pallavaram, separate Football trial at the Home Games Sports Arena, Thalambur.',
+      schemes: [
+        'Sports quota admission across all VISTAS programmes',
+        'NAAC A++ accredited',
+        'UGC Category 1 Institution',
+        'Multi-campus: Pallavaram, Thalambur, Periyapalayam, Thiruvanmiyur',
+      ],
+      selectionProcess: 'Three-day main sports trial: 10-12 April 2026, daily reporting at 7:00 AM at VISTAS Pallavaram. Sport-specific days: 10 April — Cricket, Athletics, Boxing, Judo, Mallakhamb. 11 April — Aquatics (Swimming), Fencing, Gymnastics, Volleyball, Tennis. 12 April — Kabaddi, Table Tennis, Badminton, Taekwondo, Wrestling. Separate Football trial: 7 May 2026, 7:00 AM reporting at Home Games Sports Arena, Thalambur. Registration via QR code on the official poster.',
+      // Mallakhamb and Fencing not in the standard sport enum — mapped to 'other'.
+      sportsForMen: [
+        // 10 April
+        'cricket', 'athletics', 'boxing', 'martial-arts', // Judo
+        // 11 April
+        'swimming', 'gymnastics', 'volleyball', 'tennis',
+        // 12 April
+        'kabaddi', 'table-tennis', 'badminton', 'taekwondo', 'wrestling',
+        // 7 May (separate trial)
+        'football',
+        'other', // Mallakhamb + Fencing
+      ],
+      sportsForWomen: [
+        'cricket', 'athletics', 'boxing', 'martial-arts',
+        'swimming', 'gymnastics', 'volleyball', 'tennis',
+        'kabaddi', 'table-tennis', 'badminton', 'taekwondo', 'wrestling',
+        'football',
+        'other', // Mallakhamb + Fencing
+      ],
+      trialsMen: [
+        // 10 April 2026 — Pallavaram
+        { sport: 'cricket',      date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'athletics',    date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'boxing',       date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'martial-arts', date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' }, // Judo
+        { sport: 'other',        date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' }, // Mallakhamb
+        // 11 April 2026 — Pallavaram
+        { sport: 'swimming',     date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' }, // Aquatics
+        { sport: 'gymnastics',   date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'volleyball',   date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'tennis',       date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        // 12 April 2026 — Pallavaram
+        { sport: 'kabaddi',      date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'table-tennis', date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'badminton',    date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'taekwondo',    date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'wrestling',    date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        // 7 May 2026 — separate Football trial at Thalambur
+        { sport: 'football',     date: '2026-05-07', time: '7:00 AM', venue: 'Home Games Sports Arena, Thalambur' },
+      ],
+      trialsWomen: [
+        { sport: 'cricket',      date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'athletics',    date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'boxing',       date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'martial-arts', date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' }, // Judo
+        { sport: 'other',        date: '2026-04-10', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' }, // Mallakhamb
+        { sport: 'swimming',     date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'gymnastics',   date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'volleyball',   date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'tennis',       date: '2026-04-11', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'kabaddi',      date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'table-tennis', date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'badminton',    date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'taekwondo',    date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'wrestling',    date: '2026-04-12', time: '7:00 AM', venue: 'VISTAS, Pallavaram (Chennai)' },
+        { sport: 'football',     date: '2026-05-07', time: '7:00 AM', venue: 'Home Games Sports Arena, Thalambur' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Online registration via QR code',
+          titleTa: 'QR கோடு மூலம் ஆன்லைன் பதிவு',
+          detailEn: 'Scan the QR code on the official poster to register before reporting on your sport-specific trial date.',
+          detailTa: 'உங்கள் விளையாட்டுக்கான தேர்வு நாளில் வருவதற்கு முன், அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்து பதிவு செய்யவும்.',
+        },
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates — originals required at trial.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்களும் — தேர்வில் அசல் தேவை.',
+        },
+        {
+          titleEn: 'Aadhaar + academic mark sheets',
+          titleTa: 'ஆதார் + கல்வி மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'Aadhaar card and original 10th, 12th (and UG marks card for PG applicants).',
+          detailTa: 'ஆதார் அட்டை மற்றும் அசல் 10-ஆம், 12-ஆம் வகுப்பு (PG விண்ணப்பதாரர்களுக்கு UG மதிப்பெண் அட்டை).',
+        },
+      ],
+      applicationDeadline: '10 April 2026', // first day of the main trial window
+    },
+    contact: {
+      designation: 'VISTAS Sports Quota Admissions',
+      phone: '+91-98840-22166',
+      phone2: '+91-99767-73065',
+      website: 'https://www.vistas.ac.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.vistas.ac.in',
+    sourceNote: 'Direct from Vels Institute of Science, Technology & Advanced Studies (VISTAS) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). NAAC A++ accredited, UGC Category 1 Institution. Main 3-day trial 10-12 April 2026 at Pallavaram, Chennai (7 AM reporting). Separate Football trial 7 May 2026, 7 AM at Home Games Sports Arena, Thalambur. Other campuses: Thalambur, Periyapalayam, Thiruvanmiyur. Additional contact: 7708667413. Registration via QR code on the official poster.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: VLB Janakiammal College of Arts and Science ──────────────
+  // Source: Official VLB Janakiammal Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). Autonomous arts & science
+  // college in Kovaipudur, Coimbatore. Bharathiar University affiliated,
+  // AICTE approved, NAAC re-accredited. Generous benefit package — Free
+  // Education + Food + Accommodation for deserving men & women players.
+  // Three-day trial 16-18 April 2026, 8 AM at the College Ground.
+  {
+    id: 'vlbj_coimbatore',
+    collegeName: 'VLB Janakiammal College of Arts and Science',
+    collegeNameTa: 'VLB ஜானகியம்மாள் கலை மற்றும் அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      // Notification specifies State / University / National / International
+      // level achievers only — district players DO NOT qualify here.
+      minLevel: 'state',
+      sportsScholarship: 'Free Education + Free Food + Free Accommodation for deserving men & women players. Open to State, University, National, and International level achievers. Autonomous arts & science college, Bharathiar University affiliated, NAAC re-accredited.',
+      schemes: [
+        'Free Education (deserving players)',
+        'Free Food (deserving players)',
+        'Free Accommodation (deserving players)',
+        'Open across 24 UG and 4 PG programmes including AI courses and V-ALPHA (MBA / BCA / BBA)',
+      ],
+      selectionProcess: 'Three-day offline selection trial held 16-18 April 2026, 8:00 AM daily at the College Ground (Kovaipudur, Coimbatore-641 042). Sport-specific days: 16 April — Football, Kho-Kho. 17 April — Handball, Kabaddi. 18 April — Cricket, Chess, Athletics, Swimming, Taekwondo, Best Physique, Weightlifting, Powerlifting, Boxing, Karate, Silambam. Bring original sports certificates. Open ONLY to State / University / National / International level achievers.',
+      // Silambam and Best Physique not in standard enum — mapped to 'other'.
+      sportsForMen: [
+        // 16 April
+        'football', 'kho-kho',
+        // 17 April
+        'handball', 'kabaddi',
+        // 18 April
+        'cricket', 'chess', 'athletics', 'swimming', 'taekwondo',
+        'weightlifting', 'powerlifting', 'boxing', 'karate',
+        'other', // Best Physique + Silambam
+      ],
+      sportsForWomen: [
+        'football', 'kho-kho',
+        'handball', 'kabaddi',
+        'cricket', 'chess', 'athletics', 'swimming', 'taekwondo',
+        'weightlifting', 'powerlifting', 'boxing', 'karate',
+        'other', // Best Physique + Silambam
+      ],
+      trialsMen: [
+        // Day 1 — 16 April 2026
+        { sport: 'football',      date: '2026-04-16', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'kho-kho',       date: '2026-04-16', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        // Day 2 — 17 April 2026
+        { sport: 'handball',      date: '2026-04-17', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'kabaddi',       date: '2026-04-17', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        // Day 3 — 18 April 2026
+        { sport: 'cricket',       date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'chess',         date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'athletics',     date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'swimming',      date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'taekwondo',     date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'weightlifting', date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'powerlifting',  date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'boxing',        date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'karate',        date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'other',         date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' }, // Best Physique + Silambam
+      ],
+      trialsWomen: [
+        { sport: 'football',      date: '2026-04-16', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'kho-kho',       date: '2026-04-16', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'handball',      date: '2026-04-17', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'kabaddi',       date: '2026-04-17', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'cricket',       date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'chess',         date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'athletics',     date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'swimming',      date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'taekwondo',     date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'weightlifting', date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'powerlifting',  date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'boxing',        date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'karate',        date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' },
+        { sport: 'other',         date: '2026-04-18', time: '8:00 AM', venue: 'VLB Janakiammal College Ground, Kovaipudur, Coimbatore' }, // Best Physique + Silambam
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Original sports certificates (State / University / National / International)',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள் (மாநில / பல்கலைக்கழக / தேசிய / சர்வதேச)',
+          detailEn: 'Originals are mandatory at the trial. Only State / University / National / International level certificates are accepted — district-level alone does NOT qualify.',
+          detailTa: 'தேர்வில் அசல் கட்டாயம். மாநில / பல்கலைக்கழக / தேசிய / சர்வதேச அளவிலான சான்றிதழ்கள் மட்டுமே ஏற்கப்படும் — மாவட்ட அளவு மட்டும் தகுதியாகாது.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Aadhaar + passport photos',
+          titleTa: 'ஆதார் + பாஸ்போர்ட் புகைப்படங்கள்',
+          detailEn: 'Standard ID and multiple passport-size photos for registration.',
+          detailTa: 'பதிவுக்கான வழக்கமான அடையாள ஆதாரம் மற்றும் பல பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+      ],
+      applicationDeadline: '16 April 2026', // first day of the trial window
+    },
+    contact: {
+      sportsOfficer: 'Mr. Pradheep',
+      designation: 'Sports Quota Coordinator',
+      phone: '+91-70923-48060',
+      sportsOfficer2: 'Mr. Veerabathiran',
+      designation2: 'Sports Quota Coordinator',
+      phone2: '+91-82481-61717',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from VLB Janakiammal College of Arts and Science Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Autonomous arts & science college, Kovaipudur, Coimbatore-641 042. Bharathiar University affiliated, AICTE approved, NAAC re-accredited. Three-day trial 16-18 April 2026, 8 AM daily at the College Ground. Free Education + Food + Accommodation for deserving men & women players. Eligibility: State / University / National / International level only. 24 UG + 4 PG programmes including AI courses and V-ALPHA (MBA / BCA / BBA).',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
