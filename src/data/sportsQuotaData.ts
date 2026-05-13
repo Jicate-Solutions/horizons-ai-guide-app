@@ -2845,6 +2845,317 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: Meenakshi Academy of Higher Education & Research (MAHER) ─
+  // Source: Official MAHER 100% Sports Scholarship Admission Selection Trials
+  // 2026-27 notification (provided by team May 2026). NAAC A+ accredited
+  // Deemed University located at K.K. Nagar, Chennai-78. Sports admissions
+  // restricted to UG & PG programmes under the Faculty of Humanities &
+  // Sciences and the Faculty of Yoga Sciences and Therapy. Single-day trial
+  // on 10 April 2026 — Women at 8:00 AM, Men at 1:00 PM (gender-specific
+  // time slots, expressed via separate trialsMen / trialsWomen arrays).
+  // Sports: Kabaddi & Volleyball only. Important rule: only certificates
+  // from the past 3 years (2023 onwards) are verified.
+  {
+    id: 'maher_chennai',
+    collegeName: 'Meenakshi Academy of Higher Education & Research (MAHER)',
+    collegeNameTa: 'மீனாட்சி உயர் கல்வி & ஆராய்ச்சி கழகம் (MAHER)',
+    district: 'Chennai',
+    type: 'Deemed',
+    field: 'arts', // Faculty of Humanities & Sciences and Faculty of Yoga Sciences and Therapy
+    counsellingBody: 'Direct', // Deemed university — own admission
+    overrides: {
+      // No minimum level stated — open trial.
+      minLevel: 'district',
+      // Sports certificates older than 3 years are NOT verified at MAHER.
+      // Other colleges use 4 years; we mirror that field but with the stricter
+      // window so the eligibility flow can correctly reject 2022-and-earlier
+      // certificates for MAHER specifically.
+      achievementWindowYears: 3,
+      sportsScholarship: '100% Sports Scholarship for selected athletes. Admissions across UG & PG programmes under the Faculty of Humanities & Sciences and the Faculty of Yoga Sciences and Therapy. NAAC A+ accredited Deemed University at K.K. Nagar, Chennai.',
+      schemes: [
+        '100% Sports Scholarship',
+        'NAAC A+ accredited Deemed University',
+        'Faculty of Humanities & Sciences (UG & PG)',
+        'Faculty of Yoga Sciences and Therapy (UG & PG)',
+        'STRICT: Only sports certificates from the past 3 years are verified',
+      ],
+      selectionProcess: 'Single-day offline sports trial on 10 April 2026 at MAHER University Campus, K.K. Nagar, Chennai-78. Gender-specific time slots: Women report 8:00 AM, Men report 1:00 PM. Sports: Kabaddi & Volleyball (both M & W). Trial day: bring original sports certificates and sports achievement proofs (only certs from the past 3 years will be verified). Wear proper sports attire for the trial.',
+      sportsForMen: ['kabaddi', 'volleyball'],
+      sportsForWomen: ['kabaddi', 'volleyball'],
+      trialsMen: [
+        // Men trials at 1:00 PM
+        { sport: 'kabaddi',    date: '2026-04-10', time: '1:00 PM', venue: 'MAHER University Campus, K.K. Nagar, Chennai-78' },
+        { sport: 'volleyball', date: '2026-04-10', time: '1:00 PM', venue: 'MAHER University Campus, K.K. Nagar, Chennai-78' },
+      ],
+      trialsWomen: [
+        // Women trials at 8:00 AM
+        { sport: 'kabaddi',    date: '2026-04-10', time: '8:00 AM', venue: 'MAHER University Campus, K.K. Nagar, Chennai-78' },
+        { sport: 'volleyball', date: '2026-04-10', time: '8:00 AM', venue: 'MAHER University Campus, K.K. Nagar, Chennai-78' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Original sports certificates (within last 3 years only)',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள் (கடந்த 3 ஆண்டுகளுக்குள் மட்டுமே)',
+          detailEn: 'STRICT: Only sports certificates from the past 3 years (2023-2026) will be verified. Older certificates will not be accepted.',
+          detailTa: 'கடுமையான விதி: கடந்த 3 ஆண்டுகளில் (2023-2026) பெற்ற விளையாட்டு சான்றிதழ்கள் மட்டுமே சரிபார்க்கப்படும். பழைய சான்றிதழ்கள் ஏற்கப்படாது.',
+        },
+        {
+          titleEn: 'Sports achievement proofs',
+          titleTa: 'விளையாட்டு சாதனை ஆதாரங்கள்',
+          detailEn: 'Medal photographs, news clippings, tournament certificates — all originals.',
+          detailTa: 'பதக்க புகைப்படங்கள், செய்தித்தாள் வெட்டுகள், போட்டி சான்றிதழ்கள் — அனைத்தும் அசலில்.',
+        },
+        {
+          titleEn: 'Proper sports attire',
+          titleTa: 'பொருத்தமான விளையாட்டு உடை',
+          detailEn: 'Wear proper sports kit/uniform for active trial — you will play on the spot.',
+          detailTa: 'நேரடியாக விளையாட பொருத்தமான விளையாட்டு உடையை அணிந்து வரவும்.',
+        },
+      ],
+      applicationDeadline: '10 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'Dr. C.M. Balasubramanian',
+      designation: 'Deputy Director, Physical Education & Sports, MAHER',
+      phone: '+91-81246-13513',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Meenakshi Academy of Higher Education & Research (MAHER) 100% Sports Scholarship Admission Selection Trials 2026-27 notification (provided by team May 2026). NAAC A+ accredited Deemed University at K.K. Nagar, Chennai-78. Sports admissions restricted to UG & PG programmes under the Faculty of Humanities & Sciences and the Faculty of Yoga Sciences and Therapy. Single-day trial 10 April 2026 — Women report 8:00 AM, Men report 1:00 PM. Sports: Kabaddi & Volleyball. STRICT: only sports certificates from the past 3 years are verified.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Cheran College of Physical Education & Research Centre ──
+  // Source: Official Cheran College of Physical Education Sports Quota
+  // Selection Trials 2026-27 notification (provided by team May 2026).
+  // NCTE-approved physical education college affiliated to TNPESU (Tamil Nadu
+  // Physical Education and Sports University). Located at Punnamchathiram,
+  // Erode Main Road, Karur-639136. Two-day trial 18-19 April 2026, 7 AM
+  // daily. Tiered fee concession 50-100% for merit players.
+  // NOTE: Programmes are physical-education only (B.P.Ed, M.P.Ed, B.P.Es, Ph.D)
+  // — students interested in regular UG/PG arts/engineering should look at
+  // other colleges.
+  {
+    id: 'cheran_karur',
+    collegeName: 'Cheran College of Physical Education & Research Centre',
+    collegeNameTa: 'சேரன் உடற்கல்வி & ஆராய்ச்சி மைய கல்லூரி',
+    district: 'Karur',
+    type: 'Private',
+    field: 'other', // Physical education college (B.P.Ed / M.P.Ed / B.P.Es / Ph.D in PE only)
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: '50% to 100% Fee Concession for merit players, based on achievement certificates and skills demonstrated at the trial. Physical-education-focused college offering B.P.Ed, M.P.Ed, B.P.Es, and Ph.D programmes. NCTE-approved, affiliated to TNPESU (Tamil Nadu Physical Education and Sports University).',
+      schemes: [
+        '50%-100% Fee Concession (merit-based)',
+        'Programmes: B.P.Ed / M.P.Ed / B.P.Es / Ph.D in Physical Education',
+        'NCTE-approved, TNPESU-affiliated',
+      ],
+      selectionProcess: 'Two-day offline selection trial held 18-19 April 2026, 7:00 AM daily at Cheran College of Physical Education, Punnamchathiram, Erode Main Road, Karur-639136. Sport-specific days: 18 April — Cricket, Volleyball, Athletics, Basketball, Kho-Kho, Judo, Tennis. 19 April — Kabaddi, Handball, Hockey, Football, Table Tennis, Mallakhamb, Taekwondo. Bring originals: sports certificates, 10th, 12th, UG mark sheets, Aadhaar, community certificate, passport + stamp photos.',
+      // Mallakhamb not in standard enum — mapped to 'other'. Judo → 'martial-arts'.
+      sportsForMen: [
+        // 18 April
+        'cricket', 'volleyball', 'athletics', 'basketball', 'kho-kho',
+        'martial-arts', // Judo
+        'tennis',
+        // 19 April
+        'kabaddi', 'handball', 'hockey', 'football', 'table-tennis',
+        'taekwondo',
+        'other', // Mallakhamb
+      ],
+      sportsForWomen: [
+        'cricket', 'volleyball', 'athletics', 'basketball', 'kho-kho',
+        'martial-arts', 'tennis',
+        'kabaddi', 'handball', 'hockey', 'football', 'table-tennis',
+        'taekwondo',
+        'other',
+      ],
+      trialsMen: [
+        // Day 1 — 18 April 2026
+        { sport: 'cricket',      date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'volleyball',   date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'athletics',    date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'basketball',   date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'kho-kho',      date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'martial-arts', date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' }, // Judo
+        { sport: 'tennis',       date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        // Day 2 — 19 April 2026
+        { sport: 'kabaddi',      date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'handball',     date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'hockey',       date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'football',     date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'table-tennis', date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'taekwondo',    date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'other',        date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' }, // Mallakhamb
+      ],
+      trialsWomen: [
+        { sport: 'cricket',      date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'volleyball',   date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'athletics',    date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'basketball',   date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'kho-kho',      date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'martial-arts', date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'tennis',       date: '2026-04-18', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'kabaddi',      date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'handball',     date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'hockey',       date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'football',     date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'table-tennis', date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'taekwondo',    date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+        { sport: 'other',        date: '2026-04-19', time: '7:00 AM', venue: 'Cheran College of Physical Education, Punnamchathiram, Karur' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Original Sports Certificates',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All achievement certificates in original — concession tier (50% to 100%) is decided based on level and skill.',
+          detailTa: 'அனைத்து சாதனை சான்றிதழ்களும் அசலில் — அளவு மற்றும் திறன் அடிப்படையில் சலுகை அளவு (50%-100%) தீர்மானிக்கப்படும்.',
+        },
+        {
+          titleEn: '10th and 12th Mark Sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'Originals required for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் தேவை.',
+        },
+        {
+          titleEn: 'UG Mark Sheets (for M.P.Ed / Ph.D applicants)',
+          titleTa: 'UG மதிப்பெண் சான்றிதழ்கள் (M.P.Ed / Ph.D விண்ணப்பதாரர்களுக்கு)',
+          detailEn: 'Bachelor\'s degree mark sheet originals.',
+          detailTa: 'பட்டப்படிப்பு மதிப்பெண் சான்றிதழ்களின் அசல்.',
+        },
+        {
+          titleEn: 'Aadhaar + Community Certificate',
+          titleTa: 'ஆதார் + சமூகச் சான்றிதழ்',
+          detailEn: 'Aadhaar card and Tamil Nadu Community Certificate (originals).',
+          detailTa: 'ஆதார் அட்டை மற்றும் தமிழ்நாடு சமூகச் சான்றிதழ் (அசல்).',
+        },
+        {
+          titleEn: 'Passport + Stamp size photos',
+          titleTa: 'பாஸ்போர்ட் + ஸ்டாம்ப் அளவு புகைப்படங்கள்',
+          detailEn: 'Multiple passport-size and stamp-size photographs.',
+          detailTa: 'பல பாஸ்போர்ட் அளவு மற்றும் ஸ்டாம்ப் அளவு புகைப்படங்கள்.',
+        },
+      ],
+      applicationDeadline: '18 April 2026',
+    },
+    contact: {
+      designation: 'Cheran College of Physical Education — Sports Admissions',
+      phone: '+91-96263-22044',
+      phone2: '+91-90807-38884',
+      email: 'cheranbped@gmail.com',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Cheran College of Physical Education & Research Centre Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). NCTE-approved, affiliated to TNPESU. Located at Punnamchathiram, Erode Main Road, Karur-639136. Two-day trial 18-19 April 2026, 7:00 AM daily. 50% to 100% Fee Concession for merit players. Programmes are physical-education only: B.P.Ed, M.P.Ed, B.P.Es, Ph.D. Phone: 9626322044, 9080738884. Email: cheranbped@gmail.com.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Nachiappa Swamigal Polytechnic College ───────────────────
+  // Source: Official Nachiappa Swamigal Polytechnic Sports Quota Selection
+  // Trials 2026-27 notification (provided by team May 2026). Polytechnic
+  // college (Code 824) located at Koviloor, Karaikudi-630307 (Sivaganga
+  // district). Diploma-level engineering programmes (Civil, Mechanical, EEE,
+  // ECE). Single-day trial 13 April 2026, 8:00 AM. Football & Handball are
+  // MEN ONLY this cycle.
+  {
+    id: 'nachiappa_polytechnic_sivaganga',
+    collegeName: 'Nachiappa Swamigal Polytechnic College',
+    collegeNameTa: 'நாச்சியப்ப சுவாமிகள் பாலிடெக்னிக் கல்லூரி',
+    district: 'Sivaganga',
+    type: 'Private',
+    field: 'other', // Polytechnic — diploma-level
+    counsellingBody: 'Direct',
+    overrides: {
+      // Polytechnic admission — accepts district-level achievers.
+      minLevel: 'district',
+      sportsScholarship: 'Sports Quota Admission to Diploma-level programmes (Polytechnic, Code 824) — Civil, Mechanical, EEE, ECE. Single-day trial-based selection. Contact the Department of Physical Education for fee concession / scholarship details.',
+      schemes: [
+        'Diploma-level engineering programmes (Civil / Mechanical / EEE / ECE)',
+        'Polytechnic Code 824',
+        '10th-pass eligibility (Diploma level)',
+      ],
+      selectionProcess: 'Single-day offline sports trial on 13 April 2026, 8:00 AM at Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi-630307. Open for both Men & Women across most sports — but Football and Handball are MEN ONLY this cycle. Bring: Aadhaar, passport-size photo, original Birth Certificate, and Sports Achievement Certificate (if any). Multiple coach contacts available — call C. Saravanan (9944761547) or any coach below for details.',
+      // Gender allocations:
+      //   Men only: Football, Handball
+      //   Both: Kho-Kho, Kabaddi, Volleyball, Athletics, Basketball, Hockey
+      //   Indoor Games (chess / carrom / TT etc) — both, mapped to 'other'
+      sportsForMen: [
+        'football', 'handball',
+        'kho-kho', 'kabaddi', 'volleyball', 'athletics',
+        'basketball', 'hockey',
+        'other', // Indoor Games (chess, carrom, table tennis bundled)
+      ],
+      sportsForWomen: [
+        // No football, no handball for women
+        'kho-kho', 'kabaddi', 'volleyball', 'athletics',
+        'basketball', 'hockey',
+        'other', // Indoor Games
+      ],
+      trialsMen: [
+        { sport: 'football',   date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'handball',   date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'kho-kho',    date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'kabaddi',    date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'volleyball', date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'athletics',  date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'basketball', date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'hockey',     date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'other',      date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' }, // Indoor Games
+      ],
+      trialsWomen: [
+        { sport: 'kho-kho',    date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'kabaddi',    date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'volleyball', date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'athletics',  date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'basketball', date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'hockey',     date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' },
+        { sport: 'other',      date: '2026-04-13', time: '8:00 AM', venue: 'Nachiappa Swamigal Polytechnic College, Koviloor, Karaikudi' }, // Indoor Games
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Aadhaar Card',
+          titleTa: 'ஆதார் அட்டை',
+          detailEn: 'Required as identity proof on trial day.',
+          detailTa: 'தேர்வு நாளில் அடையாள ஆதாரமாக தேவை.',
+        },
+        {
+          titleEn: 'Passport-size photo',
+          titleTa: 'பாஸ்போர்ட் அளவு புகைப்படம்',
+          detailEn: 'Recent passport-size photographs for registration.',
+          detailTa: 'பதிவுக்கான சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+        {
+          titleEn: 'Original Birth Certificate',
+          titleTa: 'அசல் பிறப்புச் சான்றிதழ்',
+          detailEn: 'Required to verify age eligibility for the diploma programme.',
+          detailTa: 'டிப்ளமா படிப்புக்கான வயது தகுதியை சரிபார்க்க தேவை.',
+        },
+        {
+          titleEn: 'Sports Achievement Certificate (if any)',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ் (ஏதேனும் இருந்தால்)',
+          detailEn: 'Optional but recommended — improves your chances and scholarship tier.',
+          detailTa: 'விருப்பத்தேர்வு ஆனால் பரிந்துரைக்கப்படுகிறது — உங்கள் வாய்ப்புகள் மற்றும் உதவித்தொகை அளவை மேம்படுத்தும்.',
+        },
+        {
+          titleEn: '10th-standard pass certificate',
+          titleTa: '10-ஆம் வகுப்பு தேர்ச்சி சான்றிதழ்',
+          detailEn: 'Minimum academic eligibility for diploma admission.',
+          detailTa: 'டிப்ளமா சேர்க்கைக்கான குறைந்தபட்ச கல்வித் தகுதி.',
+        },
+      ],
+      applicationDeadline: '13 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'C. Saravanan',
+      designation: 'M.Ped, M.Phil, Ph.D (Department of Physical Education)',
+      phone: '+91-99447-61547',
+      sportsOfficer2: 'Muruganantham P. (Coach)',
+      designation2: 'Coach (other coaches: Senthilganesh.P 9840475257, Saravanan.KS 9843529772, Amalraj.S 9943282447, Pandimurugan.J 9944102551)',
+      phone2: '+91-78455-95723',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Nachiappa Swamigal Polytechnic College (Code 824) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Diploma-level polytechnic in Koviloor, Karaikudi-630307 (Sivaganga district). Programmes: Civil, Mechanical, EEE, ECE. Single-day trial 13 April 2026, 8:00 AM. Football & Handball are MEN ONLY; other sports open to both M&W. Indoor Games (chess / carrom / TT bundle) available. Multiple coaches available: C. Saravanan (9944761547 - DPE), Muruganantham.P (7845595723), Senthilganesh.P (9840475257), Saravanan.KS (9843529772), Amalraj.S (9943282447), Pandimurugan.J (9944102551).',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
