@@ -896,18 +896,50 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
         'Diploma courses — 10th-pass eligibility (polytechnic level)',
       ],
       selectionProcess: 'Offline selection trials held 20 April 2026 at NPC Playground, 09:00 AM. Trial day: bring Aadhaar, passport photos, birth certificate, sports achievement certificates. Selected candidates receive 100% scholarship for the 2026-27 academic year.',
-      // 13 sports listed in the official notification (same list applies to both genders)
+      // 13 sports listed in the official notification (same list applies to both genders):
+      // Football, Handball, Cricket, Table Tennis, Chess, Carrom, Kabaddi,
+      // Volleyball, Athletics, Badminton, Throwball, Basketball, Kho-Kho.
+      // Carrom and Throwball are not in the standard sport enum — students playing
+      // either pick "Other sport" in the eligibility flow (mapped to 'other').
       sportsForMen: [
         'football', 'handball', 'cricket', 'table-tennis', 'chess',
-        // Carrom not in the standard sport enum — student picks "other"
         'kabaddi', 'volleyball', 'athletics', 'badminton',
-        // Throwball not in the standard enum — student picks "other"
         'basketball', 'kho-kho',
+        'other', // Carrom + Throwball
       ],
       sportsForWomen: [
         'football', 'handball', 'cricket', 'table-tennis', 'chess',
         'kabaddi', 'volleyball', 'athletics', 'badminton',
         'basketball', 'kho-kho',
+        'other', // Carrom + Throwball
+      ],
+      trialsMen: [
+        { sport: 'football',     date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'handball',     date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'cricket',      date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'table-tennis', date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'chess',        date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'kabaddi',      date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'volleyball',   date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'athletics',    date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'badminton',    date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'basketball',   date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'kho-kho',      date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'other',        date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' }, // Carrom + Throwball
+      ],
+      trialsWomen: [
+        { sport: 'football',     date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'handball',     date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'cricket',      date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'table-tennis', date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'chess',        date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'kabaddi',      date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'volleyball',   date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'athletics',    date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'badminton',    date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'basketball',   date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'kho-kho',      date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' },
+        { sport: 'other',        date: '2026-04-20', time: '9:00 AM', venue: 'NPC Playground' }, // Carrom + Throwball
       ],
       extraDocuments: [
         {
@@ -1034,6 +1066,99 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     verification: 'verified',
     sourceUrl: 'https://caias.in/',
     sourceNote: 'Direct from CAIAS Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Group & individual events: Basketball, Football, Volleyball, Throwball, Kabaddi, Kho-Kho. Open to Men and Women. Sports scholarships for UG and PG courses.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Dr. N.G.P. Institute of Technology (NGPIT) ────────────────
+  // Source: Official Sports Quota Admissions 2026-27 notification (provided by
+  // team May 2026). NGPIT is an autonomous engineering college in Coimbatore
+  // (Kalapatti Road), affiliated to Anna University, NAAC A+ & NBA-accredited.
+  // UG admissions go through TNEA + a Management/Direct route. The sports quota
+  // route offers 100% scholarship (tuition + hostel) for exceptional athletes,
+  // plus free education, food & nutrition support, medical insurance, and
+  // physiotherapy. No fixed trial date in the notification — admissions are
+  // rolling on a "Limited Seats" basis. Contact the college to schedule.
+  {
+    id: 'ngpit_coimbatore',
+    collegeName: 'Dr. N.G.P. Institute of Technology',
+    collegeNameTa: 'டாக்டர் என்.ஜி.பி தொழில்நுட்ப நிறுவனம்',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'engineering',
+    // NGPIT B.E./B.Tech seats are split between TNEA and a direct/management
+    // sports-quota route. We mark it as TNEA so the standard TNEA counselling
+    // info still surfaces, but the override below explains the direct route.
+    counsellingBody: 'TNEA',
+    overrides: {
+      // Notification highlights "exceptional athletes" — i.e. state level and
+      // above for the 100% scholarship. Lower achievers can still apply via
+      // standard TNEA sports quota counselling.
+      minLevel: 'state',
+      sportsScholarship: '100% Scholarship (tuition + hostel) for exceptional athletes. Free education, food & nutrition support, medical insurance, physiotherapy, customized sports diet, and world-class infrastructure for selected student-athletes.',
+      schemes: [
+        '100% Tuition Scholarship for exceptional athletes',
+        '100% Hostel Fee Waiver',
+        'Food & Nutrition support + customized sports diet',
+        'Medical insurance and on-campus physiotherapy',
+      ],
+      infrastructure: [
+        { en: 'World-class indoor and outdoor sports facilities on the 19-acre Kalapatti campus', ta: 'கலபட்டி வளாகத்தில் (19 ஏக்கர்) உலகத் தரத்திலான உட்புற & வெளிப்புற விளையாட்டு வசதிகள்' },
+        { en: 'Cricket ground, basketball, volleyball, football, athletics, handball, throwball courts', ta: 'கிரிக்கெட் மைதானம், கூடைப்பந்து, கைப்பந்தாட்டம், கால்பந்து, அத்லெடிக்ஸ், கைப்பந்து, த்ரோபால் கோர்ட்டுகள்' },
+        { en: 'Indoor stadium with chess, carrom, table tennis, badminton', ta: 'உட்புற அரங்கம் — சதுரங்கம், கேரம், மேசைப் பந்தாட்டம், பேட்மிண்டன்' },
+        { en: 'On-campus physiotherapy & medical support via KMCH partnership', ta: 'KMCH கூட்டாண்மை மூலம் வளாகத்திலேயே ஃபிசியோதெரபி & மருத்துவ உதவி' },
+      ],
+      // Standard sports list at NGPIT (per official college info)
+      sportsForMen: [
+        'cricket', 'basketball', 'volleyball', 'football', 'athletics',
+        'handball', 'kabaddi', 'badminton', 'table-tennis', 'chess',
+        'hockey', 'swimming',
+        'other', // Throwball + Carrom
+      ],
+      sportsForWomen: [
+        'cricket', 'basketball', 'volleyball', 'football', 'athletics',
+        'handball', 'kabaddi', 'badminton', 'table-tennis', 'chess',
+        'hockey', 'swimming',
+        'other', // Throwball + Carrom
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports achievement certificates (originals)',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All state/national/international level certificates in original. Higher achievement level = higher scholarship.',
+          detailTa: 'அனைத்து மாநில/தேசிய/சர்வதேச அளவிலான சான்றிதழ்களையும் அசலில். உயர் சாதனை அளவு = அதிக உதவித்தொகை.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'Original mark sheets — required for TNEA verification and direct sports-quota admission.',
+          detailTa: 'அசல் மதிப்பெண் சான்றிதழ்கள் — TNEA சரிபார்ப்பு மற்றும் நேரடி விளையாட்டு கோட்டா சேர்க்கைக்கு தேவை.',
+        },
+        {
+          titleEn: 'Transfer Certificate (TC) and Conduct Certificate',
+          titleTa: 'மாற்றுச் சான்றிதழ் (TC) & நடத்தைச் சான்றிதழ்',
+          detailEn: 'From last attended school/college.',
+          detailTa: 'கடைசியாக பயின்ற பள்ளி / கல்லூரியிலிருந்து.',
+        },
+        {
+          titleEn: 'Aadhaar card + passport photos',
+          titleTa: 'ஆதார் அட்டை + பாஸ்போர்ட் புகைப்படங்கள்',
+          detailEn: 'Standard ID and 4-6 passport-size photos.',
+          detailTa: 'வழக்கமான அடையாள ஆதாரம் மற்றும் 4-6 பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+      ],
+      selectionProcess: 'Two routes: (1) TNEA Sports Quota — apply via tneaonline.org for the universal 2% reservation. (2) NGPIT Direct Sports Admission — contact the college directly (numbers below) to arrange a sport-specific trial at the Kalapatti campus. Selected athletes are offered 100% scholarship covering tuition and hostel, plus food and medical support. Limited seats — admissions open and rolling.',
+      // No fixed trial date in the notification — rolling admissions
+    },
+    contact: {
+      designation: 'NGPIT Sports Admissions',
+      phone: '+91-94896-66767',
+      phone2: '+91-77086-66767',
+      website: 'https://www.drngpit.ac.in',
+      applicationLink: 'https://www.drngpit.ac.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.drngpit.ac.in',
+    sourceNote: 'Direct from Dr. N.G.P. Institute of Technology Sports Quota Admissions 2026-27 notification (provided by team May 2026). 100% Scholarship (Tuition & Hostel) for exceptional athletes, free education + hostel, food & nutrition support, world-class infrastructure, medical insurance & physiotherapy, customized sports diet. Admissions open with limited seats — contact numbers: 9489666767, 7708666767, 9025286806. Anna University-affiliated autonomous engineering college, NAAC A+ and NBA accredited, located on Kalapatti Road, Coimbatore.',
     lastVerified: '2026-05-13',
   },
 
