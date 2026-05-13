@@ -3156,6 +3156,284 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: Women's Christian College (WCC), Chennai ─────────────────
+  // Source: Official WCC Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). Autonomous arts & science college affiliated
+  // to the University of Madras, re-accredited by NAAC in July 2025 with
+  // Grade A+, recognised as "College with Potential for Excellence".
+  // IMPORTANT: WCC is a WOMEN-ONLY college — sportsForMen and trialsMen
+  // are intentionally empty so men are correctly excluded from this match.
+  {
+    id: 'wcc_chennai',
+    collegeName: "Women's Christian College (WCC), Chennai",
+    collegeNameTa: 'பெண்கள் கிறிஸ்தவ கல்லூரி (WCC), சென்னை',
+    district: 'Chennai',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      // Notification accepts International / National / State / District /
+      // Divisional / Inter-school — i.e. school-level players also accepted.
+      minLevel: 'school',
+      sportsScholarship: 'Performance-based Scholarship and awards for sports achievers. WCC is a women-only autonomous arts & science college affiliated to the University of Madras, NAAC A+ (re-accredited July 2025), recognised as "College with Potential for Excellence".',
+      schemes: [
+        'Performance-based Scholarship + Awards for achievers',
+        'Refreshments + Jersey + Conveyance for matches',
+        'Medical insurance for student-athletes',
+        'Special academic coaching for sports students',
+        'NAAC A+ (re-accredited July 2025)',
+        'WOMEN ONLY college',
+      ],
+      selectionProcess: 'Single-day offline sports trial on 8 April 2026, 8:00 AM at WCC Playfield, Chennai. Open to players from International / National / State / District / Divisional / Inter-school levels. Bring sports kit + original and photocopies of Sports Merit certificates. Selected students receive performance-based scholarship, jersey, refreshments, conveyance for matches, medical insurance, and special academic coaching.',
+      // WOMEN ONLY college — sportsForMen and trialsMen left intentionally empty.
+      // Throwball, Squash, Fencing not in standard enum — mapped to 'other'.
+      // Rifle Shooting → 'shooting'.
+      sportsForMen: [],
+      sportsForWomen: [
+        'volleyball', 'basketball', 'football', 'cricket', 'tennis',
+        'ball-badminton', 'handball', 'athletics', 'badminton',
+        'table-tennis', 'chess', 'yoga', 'shooting', 'swimming', 'boxing',
+        'other', // Throwball + Squash + Fencing
+      ],
+      trialsMen: [],
+      trialsWomen: [
+        { sport: 'volleyball',     date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'basketball',     date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'football',       date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'cricket',        date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'tennis',         date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'ball-badminton', date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'handball',       date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'athletics',      date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'badminton',      date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'table-tennis',   date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'chess',          date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'yoga',           date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'shooting',       date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' }, // Rifle Shooting
+        { sport: 'swimming',       date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'boxing',         date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' },
+        { sport: 'other',          date: '2026-04-08', time: '8:00 AM', venue: 'WCC Playfield, Chennai' }, // Throwball, Squash, Fencing
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports kit',
+          titleTa: 'விளையாட்டு உடை',
+          detailEn: 'Wear/bring proper sports kit — you will play on the spot.',
+          detailTa: 'பொருத்தமான விளையாட்டு உடையை அணிந்து வரவும் — நிகழ்வில் நேரடியாக விளையாட வேண்டும்.',
+        },
+        {
+          titleEn: 'Sports Merit certificates (originals + photocopies)',
+          titleTa: 'விளையாட்டு திறமை சான்றிதழ்கள் (அசல் + நகல்கள்)',
+          detailEn: 'Bring BOTH original and photocopies of all sports merit certificates.',
+          detailTa: 'அனைத்து விளையாட்டு திறமை சான்றிதழ்களின் அசல் மற்றும் நகல்கள் இரண்டையும் கொண்டு வாரவும்.',
+        },
+        {
+          titleEn: '10th / 12th mark sheets',
+          titleTa: '10-ஆம் / 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'Originals for admission verification.',
+          detailTa: 'சேர்க்கை சரிபார்ப்புக்கான அசல்.',
+        },
+      ],
+      applicationDeadline: '8 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'Dr. Agnes Vijaya Rani',
+      designation: 'Director of Physical Education',
+      phone: '+91-97909-30415',
+      sportsOfficer2: 'Dr. Naveena Priya',
+      designation2: 'Director of Physical Education',
+      phone2: '+91-90922-25279',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Women\'s Christian College (WCC), Chennai Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). WOMEN ONLY college. Autonomous arts & science college affiliated to University of Madras, re-accredited by NAAC in July 2025 with Grade A+, "College with Potential for Excellence". Single-day trial 8 April 2026, 8:00 AM at WCC Playfield. 18 sports including Volleyball, Basketball, Football, Cricket, Tennis, Ball Badminton, Handball, Throwball, Athletics, Badminton, Table Tennis, Chess, Yoga, Rifle Shooting, Swimming, Boxing, Squash, Fencing. Eligibility: International / National / State / District / Divisional / Inter-school. Performance-based scholarship + jersey + refreshments + conveyance + medical insurance + academic coaching.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: AVS College of Arts & Science, Salem ─────────────────────
+  // Source: Official AVS College Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). Autonomous arts & science
+  // college at Ramalingapuram, Salem-106. 10-sport schedule across 9 trial
+  // dates from 10-21 April 2026, all at 3:00 PM at AVS Campus. Open to
+  // both Men and Women across all sports.
+  {
+    id: 'avs_salem',
+    collegeName: 'AVS College of Arts & Science (Autonomous), Salem',
+    collegeNameTa: 'AVS கலை மற்றும் அறிவியல் கல்லூரி (தன்னாட்சி), சேலம்',
+    district: 'Salem',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Sports Quota Admission 2026-27 at AVS College of Arts & Science (Autonomous), Ramalingapuram, Salem-106. Contact Director of Physical Education for scholarship details based on level and skill demonstrated at the trial.',
+      schemes: [
+        'Sports Quota Admission (Autonomous arts & science)',
+        'Trials across 9 dates (10-21 April 2026) at 3:00 PM daily',
+      ],
+      selectionProcess: 'Multi-day offline sports trial held 10-21 April 2026, 3:00 PM daily at AVS Campus, Ramalingapuram, Salem-106. Sport-specific dates: 10 April — Volleyball; 11 April — Basketball; 13 April — Hockey; 15 April — Athletics, Handball; 16 April — Kabaddi; 17 April — Kho-Kho, Ball Badminton; 18 April — Football; 20 April — Cricket; 21 April — Badminton, Judo. Open for both Men & Women across all sports.',
+      // Judo → 'martial-arts'
+      sportsForMen: [
+        'volleyball', 'basketball', 'hockey', 'athletics', 'handball',
+        'kabaddi', 'kho-kho', 'ball-badminton', 'football', 'cricket',
+        'badminton', 'martial-arts', // Judo
+      ],
+      sportsForWomen: [
+        'volleyball', 'basketball', 'hockey', 'athletics', 'handball',
+        'kabaddi', 'kho-kho', 'ball-badminton', 'football', 'cricket',
+        'badminton', 'martial-arts',
+      ],
+      trialsMen: [
+        { sport: 'volleyball',     date: '2026-04-10', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'basketball',     date: '2026-04-11', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'hockey',         date: '2026-04-13', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'athletics',      date: '2026-04-15', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'handball',       date: '2026-04-15', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'kabaddi',        date: '2026-04-16', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'kho-kho',        date: '2026-04-17', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'ball-badminton', date: '2026-04-17', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'football',       date: '2026-04-18', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'cricket',        date: '2026-04-20', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'badminton',      date: '2026-04-21', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'martial-arts',   date: '2026-04-21', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' }, // Judo
+      ],
+      trialsWomen: [
+        { sport: 'volleyball',     date: '2026-04-10', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'basketball',     date: '2026-04-11', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'hockey',         date: '2026-04-13', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'athletics',      date: '2026-04-15', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'handball',       date: '2026-04-15', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'kabaddi',        date: '2026-04-16', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'kho-kho',        date: '2026-04-17', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'ball-badminton', date: '2026-04-17', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'football',       date: '2026-04-18', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'cricket',        date: '2026-04-20', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'badminton',      date: '2026-04-21', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+        { sport: 'martial-arts',   date: '2026-04-21', time: '3:00 PM', venue: 'AVS Campus, Ramalingapuram, Salem' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Aadhaar + passport photos',
+          titleTa: 'ஆதார் + பாஸ்போர்ட் புகைப்படங்கள்',
+          detailEn: 'Standard ID and recent passport-size photographs.',
+          detailTa: 'வழக்கமான அடையாள ஆதாரம் மற்றும் சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+      ],
+      applicationDeadline: '10 April 2026', // first day of the trial window
+    },
+    contact: {
+      sportsOfficer: 'Dr. R. Suresh Kumar',
+      designation: 'Director of Physical Education',
+      phone: '+91-94432-18257',
+      phone2: '+91-80728-52795',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from AVS College of Arts & Science (Autonomous), Salem Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Located at Ramalingapuram, Salem-106. 10-sport schedule across 9 trial dates from 10-21 April 2026, all at 3:00 PM at AVS Campus. Sport-specific dates: 10 April Volleyball; 11 April Basketball; 13 April Hockey; 15 April Athletics & Handball; 16 April Kabaddi; 17 April Kho-Kho & Ball Badminton; 18 April Football; 20 April Cricket; 21 April Badminton & Judo. Open for both Men & Women. Contact Dr. R. Suresh Kumar (DPE): 9443218257 / 8072852795.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Marudhar Kesari Jain College for Women ───────────────────
+  // Source: Official Marudhar Kesari Jain College for Women Sports Quota
+  // Selection Trials 2026-27 notification (provided by team May 2026).
+  // Autonomous women's college at Vaniyambadi, Tirupattur District-635 751.
+  // NAAC A (3rd cycle), recognised under UGC 2(f) & 12(B), permanently
+  // affiliated to Thiruvalluvar University. Single-day trial 1 April 2026,
+  // 9:00 AM. WOMEN ONLY college — sportsForMen and trialsMen empty.
+  // Strong sports track record: 9 international + 56 national + 138 state +
+  // 52 university players in 2025-26. Up to 100% scholarship for selected.
+  {
+    id: 'mkj_tirupattur',
+    collegeName: 'Marudhar Kesari Jain College for Women (Autonomous)',
+    collegeNameTa: 'மருதர் கேசரி ஜெயின் பெண்கள் கல்லூரி (தன்னாட்சி)',
+    district: 'Tirupathur',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship for selected candidates. Women-only autonomous arts & science college at Vaniyambadi, Tirupattur District. NAAC A (3rd cycle), UGC 2(f) & 12(B), permanently affiliated to Thiruvalluvar University. Track record (2025-26): 9 International + 56 National + 138 State + 52 University players. ₹6.65L in CM Trophy cash prizes, ₹10.10L overall cash prizes, ₹23.02L in sports fee concessions.',
+      schemes: [
+        'Up to 100% Scholarship for selected athletes',
+        '14 professional coaches + 7 PED staff members',
+        '2025-26 track record: 9 International, 56 National, 138 State, 52 University players',
+        '₹23+ lakh in sports fee concessions awarded (2025-26)',
+        'NAAC A (3rd cycle), Thiruvalluvar University affiliated',
+        'WOMEN ONLY college',
+      ],
+      selectionProcess: 'Single-day offline sports trial on 1 April 2026, 9:00 AM at Marudhar Kesari Jain College for Women campus, Vaniyambadi, Tirupattur District-635 751. Conducted by the Department of Physical Education. Open to women across 20 outdoor & general sports. Indoor facilities also available for Badminton, Table Tennis, Volleyball, Basketball, Kabaddi, and Chess. Bring academic and sports certificates for verification.',
+      // WOMEN ONLY — sportsForMen and trialsMen left intentionally empty.
+      // Silambam and Malkhumb (Mallakhamb) not in standard enum — mapped to 'other'.
+      // Judo → 'martial-arts'. Karate is in the enum.
+      sportsForMen: [],
+      sportsForWomen: [
+        'athletics', 'badminton', 'ball-badminton', 'basketball', 'chess',
+        'cricket', 'kho-kho', 'football',
+        'martial-arts', // Judo
+        'karate', 'boxing', 'taekwondo',
+        'volleyball', 'handball', 'hockey', 'table-tennis', 'kabaddi',
+        'swimming',
+        'other', // Silambam + Malkhumb (Mallakhamb)
+      ],
+      trialsMen: [],
+      trialsWomen: [
+        { sport: 'athletics',      date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'badminton',      date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'ball-badminton', date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'basketball',     date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'chess',          date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'cricket',        date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'kho-kho',        date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'football',       date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'martial-arts',   date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' }, // Judo
+        { sport: 'karate',         date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'boxing',         date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'taekwondo',      date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'volleyball',     date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'handball',       date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'hockey',         date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'table-tennis',   date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'kabaddi',        date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'swimming',       date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' },
+        { sport: 'other',          date: '2026-04-01', time: '9:00 AM', venue: 'Marudhar Kesari Jain College for Women, Vaniyambadi' }, // Silambam + Mallakhamb
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th, 12th (and UG marks card for PG) certificates for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் 10-ஆம், 12-ஆம் (PG-க்கு UG மதிப்பெண் அட்டை) வகுப்பு சான்றிதழ்கள்.',
+        },
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+      ],
+      applicationDeadline: '1 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'Dr. D. Prince Deva Fredrick',
+      designation: 'Director of Physical Education',
+      phone: '+91-99947-87139',
+      phone2: '+91-79045-54871',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Marudhar Kesari Jain College for Women (Autonomous) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). WOMEN ONLY autonomous college at Vaniyambadi, Tirupattur District-635 751. NAAC A (3rd cycle), UGC 2(f) & 12(B), permanently affiliated to Thiruvalluvar University. Single-day trial 1 April 2026, 9:00 AM. Up to 100% scholarship for selected candidates. Strong sports record (2025-26): 9 International + 56 National + 138 State + 52 University players. ₹6.65L CM Trophy cash prizes, ₹10.10L overall cash prizes, ₹23.02L in fee concessions. 7 PED staff, 14 professional coaches. 20 outdoor sports + indoor facilities for Badminton, TT, Volleyball, Basketball, Kabaddi, Chess. DPE: Dr. D. Prince Deva Fredrick. Phones: 9994787139, 7904554871.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
