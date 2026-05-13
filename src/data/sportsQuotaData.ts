@@ -954,6 +954,89 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-12',
   },
 
+  // ─── VERIFIED: Christ Academy Institute for Advanced Studies (CAIAS) ─────
+  // Bengaluru, Karnataka — UG & PG sports scholarships for 2026-27.
+  // Direct admission via campus trial (not through TNEA).
+  {
+    id: 'caias_bengaluru',
+    collegeName: 'Christ Academy Institute for Advanced Studies (CAIAS)',
+    collegeNameTa: 'கிறிஸ்ட் அகாடமி இன்ஸ்டிடியூட் ஃபார் அட்வான்ஸ்டு ஸ்டடீஸ் (CAIAS)',
+    district: 'Bengaluru',
+    type: 'Private',
+    field: 'arts', // UG & PG programmes in Commerce, Management, Science, Arts
+    counsellingBody: 'Direct',
+    overrides: {
+      // Open trial — accepts school/district level candidates as well
+      minLevel: 'school',
+      sportsForMen: [
+        'basketball', 'football', 'volleyball', 'kabaddi', 'kho-kho',
+        // Throwball is not in the standard sport list — players can pick "Other sport"
+        'other',
+      ],
+      sportsForWomen: [
+        'basketball', 'football', 'volleyball', 'kabaddi', 'kho-kho',
+        // Throwball — pick "Other sport" in the eligibility flow
+        'other',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports achievement certificates (originals)',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ்கள் (அசல்)',
+          detailEn: 'Bring originals of all sports/games certificates earned at school, district, state, or national level for verification on trial day.',
+          detailTa: 'பள்ளி, மாவட்ட, மாநில, அல்லது தேசிய அளவில் பெற்ற அனைத்து விளையாட்டு சான்றிதழ்களின் அசலை தேர்வு நாளில் சரிபார்ப்புக்காக கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Passport-size photographs',
+          titleTa: 'பாஸ்போர்ட் அளவு புகைப்படங்கள்',
+          detailEn: 'Multiple copies for registration on trial day.',
+          detailTa: 'தேர்வு நாளில் பதிவுக்காக பல நகல்கள்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் மற்றும் 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Sports kit / playing attire',
+          titleTa: 'விளையாட்டு உடை / விளையாடும் உடை',
+          detailEn: 'Wear/bring appropriate sports gear for the trial — you will play on the spot.',
+          detailTa: 'தேர்வுக்கான பொருத்தமான விளையாட்டு உடையை அணிந்து வரவும் — நிகழ்வில் நேரடியாக விளையாட வேண்டும்.',
+        },
+      ],
+      sportsScholarship: 'Sports scholarships available for UG and PG courses. Awarded based on performance at the selection trial and prior achievement level.',
+      selectionProcess: 'Walk-in trial at CAIAS Campus on 18 April 2026, 8:00 AM onwards → On-spot selection → Scholarship offer based on performance',
+      trialsMen: [
+        { sport: 'basketball', date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'football',   date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'volleyball', date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'kabaddi',    date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'kho-kho',    date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'other',      date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' }, // Throwball
+      ],
+      trialsWomen: [
+        { sport: 'basketball', date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'football',   date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'volleyball', date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'kabaddi',    date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'kho-kho',    date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' },
+        { sport: 'other',      date: '2026-04-18', time: '8:00 AM', venue: 'CAIAS Campus, Bengaluru' }, // Throwball
+      ],
+      applicationDeadline: '18 April 2026', // walk-in trial date
+    },
+    contact: {
+      sportsOfficer: 'Dr. Devaraj N D',
+      designation: 'Director — Physical Education',
+      phone: '9787136105',
+      email: 'sports.degree@caias.in',
+      website: 'https://caias.in/',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://caias.in/',
+    sourceNote: 'Direct from CAIAS Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Group & individual events: Basketball, Football, Volleyball, Throwball, Kabaddi, Kho-Kho. Open to Men and Women. Sports scholarships for UG and PG courses.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
