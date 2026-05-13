@@ -2543,6 +2543,308 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: Jawahar Science College, Neyveli ─────────────────────────
+  // Source: Official Jawahar Science College Sports Quota Admission Trials
+  // 2026-27 notification (provided by team May 2026). Affiliated to Annamalai
+  // University. Managed by Jawahar Education Society. Located at Block-14,
+  // Neyveli-3 (Cuddalore district). Two-day trial 17-18 April 2026, 8:30 AM
+  // daily. Wide list of sports (20+) including Pencak Silat, Mallakhamb, and
+  // Best Physique — mapped to "Other sport" in the eligibility flow.
+  {
+    id: 'jawahar_neyveli',
+    collegeName: 'Jawahar Science College, Neyveli',
+    collegeNameTa: 'ஜவஹர் அறிவியல் கல்லூரி, நெய்வேலி',
+    district: 'Cuddalore',
+    type: 'Private',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      // Notification accepts International / National / SGFI / State / District / Zonal —
+      // setting min level to 'district' since district achievers are explicitly listed.
+      minLevel: 'district',
+      sportsScholarship: 'Special fees concession for selected sports admissions. Limited seats on First Come – First Served basis. Affiliated to Annamalai University, managed by Jawahar Education Society. UG programmes (B.A. English, B.Com, BBA, BCA, B.Sc.) and PG programmes (M.A., M.Com, M.S.W, M.Sc.) available.',
+      schemes: [
+        'Special fees concession (sports quota)',
+        'Limited seats — First Come, First Served',
+        'Open to International / National / SGFI / State / District / Zonal level achievers',
+        'Affiliated to Annamalai University',
+      ],
+      selectionProcess: 'Two-day offline sports trial held 17-18 April 2026, 8:30 AM daily at Jawahar Science College, Block-14, Neyveli-3. Sport-specific days: 17 April — Cricket, Football, Handball, Hockey, Kabaddi, Kho-Kho, Volleyball, Judo. 18 April — Athletics, Archery, Pencak Silat, Ball Badminton, Badminton, Basketball, Best Physique, Mallakhamb, Swimming, Table Tennis, Taekwondo, Weight Lifting. Open for both Men & Women. Online application available — contact 9080685043 for the application link.',
+      // Pencak Silat, Mallakhamb, Best Physique not in standard enum — mapped to 'other'.
+      // Judo → 'martial-arts'.
+      sportsForMen: [
+        // 17 April
+        'cricket', 'football', 'handball', 'hockey', 'kabaddi', 'kho-kho',
+        'volleyball', 'martial-arts', // Judo
+        // 18 April
+        'athletics', 'archery', 'ball-badminton', 'badminton', 'basketball',
+        'swimming', 'table-tennis', 'taekwondo', 'weightlifting',
+        'other', // Pencak Silat, Mallakhamb, Best Physique
+      ],
+      sportsForWomen: [
+        'cricket', 'football', 'handball', 'hockey', 'kabaddi', 'kho-kho',
+        'volleyball', 'martial-arts',
+        'athletics', 'archery', 'ball-badminton', 'badminton', 'basketball',
+        'swimming', 'table-tennis', 'taekwondo', 'weightlifting',
+        'other',
+      ],
+      trialsMen: [
+        // Day 1 — 17 April 2026
+        { sport: 'cricket',      date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'football',     date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'handball',     date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'hockey',       date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'kabaddi',      date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'kho-kho',      date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'volleyball',   date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'martial-arts', date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' }, // Judo
+        // Day 2 — 18 April 2026
+        { sport: 'athletics',    date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'archery',      date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'ball-badminton',date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'badminton',    date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'basketball',   date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'swimming',     date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'table-tennis', date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'taekwondo',    date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'weightlifting',date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'other',        date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' }, // Pencak Silat, Mallakhamb, Best Physique
+      ],
+      trialsWomen: [
+        { sport: 'cricket',      date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'football',     date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'handball',     date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'hockey',       date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'kabaddi',      date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'kho-kho',      date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'volleyball',   date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'martial-arts', date: '2026-04-17', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'athletics',    date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'archery',      date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'ball-badminton',date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'badminton',    date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'basketball',   date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'swimming',     date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'table-tennis', date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'taekwondo',    date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'weightlifting',date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+        { sport: 'other',        date: '2026-04-18', time: '8:30 AM', venue: 'Jawahar Science College, Block-14, Neyveli-3' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: '10th Mark Sheet',
+          titleTa: '10-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்',
+          detailEn: 'Original 10th-grade mark sheet for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் 10-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்.',
+        },
+        {
+          titleEn: 'Aadhaar Card',
+          titleTa: 'ஆதார் அட்டை',
+          detailEn: 'Required as identity proof on trial day.',
+          detailTa: 'தேர்வு நாளில் அடையாள ஆதாரமாக தேவை.',
+        },
+        {
+          titleEn: 'Birth Certificate',
+          titleTa: 'பிறப்புச் சான்றிதழ்',
+          detailEn: 'Original to verify age eligibility.',
+          detailTa: 'வயது தகுதியை சரிபார்க்க அசல் தேவை.',
+        },
+        {
+          titleEn: 'Passport Size Photo',
+          titleTa: 'பாஸ்போர்ட் அளவு புகைப்படம்',
+          detailEn: 'Recent passport-size photographs for registration.',
+          detailTa: 'பதிவுக்கான சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+        {
+          titleEn: 'Sports Certificate (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ் (அசல்)',
+          detailEn: 'All sports achievement certificates in original — required to verify your eligibility level (International / National / SGFI / State / District / Zonal).',
+          detailTa: 'உங்கள் தகுதி அளவை சரிபார்க்க அனைத்து விளையாட்டு சாதனை சான்றிதழ்கள் அசலில் (சர்வதேச / தேசிய / SGFI / மாநில / மாவட்ட / மண்டல) தேவை.',
+        },
+      ],
+      applicationDeadline: '17 April 2026', // first day of the trial window
+    },
+    contact: {
+      designation: 'Jawahar Science College — Sports Admissions',
+      phone: '+91-90806-85043',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Jawahar Science College, Neyveli Sports Quota Admission Trials 2026-27 notification (provided by team May 2026). Affiliated to Annamalai University, managed by Jawahar Education Society. Located at Block-14, Neyveli-3 (Cuddalore district). Two-day trial 17-18 April 2026, 8:30 AM daily. Wide eligibility: International, National, SGFI, State, District, Zonal. Special fees concession for sports admissions on First Come – First Served basis. 20+ sports including Pencak Silat, Mallakhamb, Best Physique (mapped to "Other"). Online application available; contact 9080685043 for application link.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Rathinam College of Arts & Science ───────────────────────
+  // Source: Official Rathinam College Kabaddi Sports Quota Selection Trials
+  // 2026-27 notification (provided by team May 2026). NAAC A++ (3.60 CGPA),
+  // Bharathiar University, AICTE approved. Rathinam Techzone Campus,
+  // Eachanari, Coimbatore-641021. NOTE: This is the FIRST TRIAL and is for
+  // KABADDI ONLY — Men 13 April, Women 17 April 2026, 6:00 AM reporting.
+  // Up to 100% scholarship + free food, hostel, gym, kit, coaching.
+  {
+    id: 'rathinam_coimbatore',
+    collegeName: 'Rathinam College of Arts & Science',
+    collegeNameTa: 'ரத்தினம் கலை மற்றும் அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship for selected athletes. Benefits package: Free Education + Free Food + Free Hostel + Free Accommodation + Playing Kit + Gym Facilities + Professional Coaching + Tournament Exposure. NAAC A++ (3.60 CGPA), Bharathiar University affiliated.',
+      schemes: [
+        'Up to 100% Sports Scholarship',
+        'Free Education',
+        'Free Food + Free Hostel + Free Accommodation',
+        'Playing Kit + Gym + Professional Coaching + Tournament Exposure',
+        'NAAC A++ (3.60 CGPA)',
+      ],
+      selectionProcess: 'First Trial — KABADDI ONLY for 2026-27 academic year. Men\'s Kabaddi trial: 13 April 2026, 6:00 AM reporting. Women\'s Kabaddi trial: 17 April 2026, 6:00 AM reporting. Venue: Rathinam Techzone Campus, Eachanari, Coimbatore-641021. Registration via QR code → Google Form (on the official poster). Other sports trials, if any, will be announced separately by the Department of Physical Education.',
+      // First trial covers Kabaddi only — other sports may be announced later.
+      sportsForMen: ['kabaddi'],
+      sportsForWomen: ['kabaddi'],
+      trialsMen: [
+        { sport: 'kabaddi', date: '2026-04-13', time: '6:00 AM', venue: 'Rathinam Techzone Campus, Eachanari, Coimbatore' },
+      ],
+      trialsWomen: [
+        { sport: 'kabaddi', date: '2026-04-17', time: '6:00 AM', venue: 'Rathinam Techzone Campus, Eachanari, Coimbatore' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Online registration via QR code / Google Form',
+          titleTa: 'QR கோடு / Google Form மூலம் ஆன்லைன் பதிவு',
+          detailEn: 'Scan the QR code on the official poster to access the Google Form and register before reporting on your trial date.',
+          detailTa: 'உங்கள் தேர்வு நாளில் வருவதற்கு முன், அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்து Google Form-ல் பதிவு செய்யவும்.',
+        },
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All Kabaddi achievement and participation certificates in original.',
+          detailTa: 'அனைத்து கபடி சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Kabaddi kit / sports attire',
+          titleTa: 'கபடி உடை / விளையாட்டு உடை',
+          detailEn: 'Wear/bring appropriate kabaddi attire — trial will be on the mat.',
+          detailTa: 'பொருத்தமான கபடி உடையை அணிந்து வரவும் — தேர்வு மேட்டில் நடைபெறும்.',
+        },
+      ],
+      applicationDeadline: '13 April 2026', // Men's trial date (earliest of the two)
+    },
+    contact: {
+      sportsOfficer: 'Dr. S. Joisy',
+      designation: 'Director of Physical Education',
+      phone: '+91-86101-75821', // Kabaddi Men's Coach (primary callable number)
+      sportsOfficer2: 'Mr. S. Ramesh',
+      designation2: 'Asst. Director of Physical Education (Kabaddi Women: 8428186118)',
+      phone2: '+91-84281-86118', // Kabaddi Women's Coach
+      website: 'https://www.rathinamcollege.edu.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.rathinamcollege.edu.in',
+    sourceNote: 'Direct from Rathinam College of Arts & Science Kabaddi Sports Quota Selection Trials (First Trial) 2026-27 notification (provided by team May 2026). NAAC A++ (3.60 CGPA), Bharathiar University affiliated, AICTE approved. Rathinam Techzone Campus, Eachanari, Coimbatore-641021. First trial covers KABADDI ONLY — Men 13 April 2026, Women 17 April 2026, 6:00 AM reporting. Up to 100% scholarship + Free Education + Food + Hostel + Accommodation + Kit + Gym + Coaching + Tournament Exposure. Kabaddi Men\'s Coach: 8610175821. Kabaddi Women\'s Coach: 8428186118. Physical Education Leadership: Dr. S. Joisy (DPE), Mr. S. Ramesh (Asst. DPE). Other sports trials may be announced separately.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Sri Ramakrishna College of Arts & Science (SRCAS) ────────
+  // Source: Official SRCAS Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). Autonomous arts & science college at Nava
+  // India, Coimbatore-641 006. NAAC A+, ISO 9001:2015 certified, AICTE & UGC
+  // approved. Ranked 76th in NIRF 2025. Three-day trial 6-8 April 2026 with
+  // gender-specific sport allocations.
+  {
+    id: 'srcas_coimbatore',
+    collegeName: 'Sri Ramakrishna College of Arts & Science (SRCAS)',
+    collegeNameTa: 'ஸ்ரீ ராமகிருஷ்ணா கலை மற்றும் அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Sports Quota Admission 2026-27 — admissions across UG and PG programmes at Sri Ramakrishna College of Arts & Science. Autonomous, NAAC A+, ISO 9001:2015 certified, AICTE & UGC approved. Ranked 76th in NIRF 2025.',
+      schemes: [
+        'Sports Quota Admission (UG and PG)',
+        'NAAC A+ accredited',
+        'ISO 9001:2015 certified',
+        'NIRF 2025 Rank 76',
+        'AICTE & UGC approved',
+      ],
+      selectionProcess: 'Three-day offline sports trial held 6-8 April 2026 at SRCAS, Nava India, Coimbatore-641 006. Sport-specific days with gender-specific allocations: 6 April — Football (M), Volleyball (M & W), Hockey (M). 7 April — Basketball (M & W), Kho-Kho (M & W), Kabaddi (M). 8 April — Ball Badminton (M & W), Table Tennis (M & W). Online registration via QR code on the official poster.',
+      // Gender-specific allocations per the notification:
+      //   Men:   Football, Volleyball, Hockey, Basketball, Kho-Kho, Kabaddi, Ball Badminton, Table Tennis
+      //   Women: Volleyball, Basketball, Kho-Kho, Ball Badminton, Table Tennis
+      // Football, Hockey, and Kabaddi are MEN ONLY this cycle.
+      sportsForMen: [
+        'football', 'volleyball', 'hockey',
+        'basketball', 'kho-kho', 'kabaddi',
+        'ball-badminton', 'table-tennis',
+      ],
+      sportsForWomen: [
+        'volleyball',
+        'basketball', 'kho-kho',
+        'ball-badminton', 'table-tennis',
+      ],
+      trialsMen: [
+        // 6 April 2026
+        { sport: 'football',       date: '2026-04-06', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'volleyball',     date: '2026-04-06', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'hockey',         date: '2026-04-06', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        // 7 April 2026
+        { sport: 'basketball',     date: '2026-04-07', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'kho-kho',        date: '2026-04-07', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'kabaddi',        date: '2026-04-07', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        // 8 April 2026
+        { sport: 'ball-badminton', date: '2026-04-08', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'table-tennis',   date: '2026-04-08', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+      ],
+      trialsWomen: [
+        // 6 April 2026 — Volleyball only
+        { sport: 'volleyball',     date: '2026-04-06', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        // 7 April 2026
+        { sport: 'basketball',     date: '2026-04-07', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'kho-kho',        date: '2026-04-07', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        // 8 April 2026
+        { sport: 'ball-badminton', date: '2026-04-08', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+        { sport: 'table-tennis',   date: '2026-04-08', time: 'See poster', venue: 'SRCAS, Nava India, Coimbatore' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Online registration via QR code',
+          titleTa: 'QR கோடு மூலம் ஆன்லைன் பதிவு',
+          detailEn: 'Scan the QR code on the official poster to register before reporting on your sport-specific trial date.',
+          detailTa: 'உங்கள் விளையாட்டுக்கான தேர்வு நாளில் வருவதற்கு முன், அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்து பதிவு செய்யவும்.',
+        },
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+      ],
+      applicationDeadline: '6 April 2026', // first day of the trial window
+    },
+    contact: {
+      designation: 'SRCAS — Department of Physical Education',
+      phone: '+91-98946-48915',
+      phone2: '+91-63808-14199',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Sri Ramakrishna College of Arts & Science (SRCAS) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Autonomous arts & science college at Nava India, Coimbatore-641 006. NAAC A+, ISO 9001:2015 certified, AICTE & UGC approved. Ranked 76th in NIRF 2025. Three-day trial 6-8 April 2026 organised by the Department of Physical Education. Gender-specific sports allocations: Football, Hockey, Kabaddi are MEN ONLY this cycle. Additional contact: 9865706011. Online registration via QR code on the official poster.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
