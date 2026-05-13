@@ -735,40 +735,103 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
       // International" are all eligible. So District-level players who
       // wouldn't qualify for TNEA sports quota CAN still apply here.
       minLevel: 'district',
-      sportsScholarship: 'Founder\'s Scholarship (Sub-Category B — Exemplary Sports Persons). Fee waiver amount/percentage is not published in the policy — confirm with the Directorate of Sports before applying. Renewable yearly subject to CGPA > 7 and continued representation of the University.',
+      sportsScholarship: 'Up to 100% Sports Scholarship under the Founder\'s Scholarship (Sub-Category B — Exemplary Sports Persons). Admissions open across Engineering, Management, Science & Humanities, Hotel Management, and Law. Renewable yearly subject to CGPA > 7 and continued representation of the University.',
       schemes: [
-        'Founder\'s Scholarship — Exemplary Sports Persons',
-        'Diploma / UG / PG programmes available under sports quota (select programmes only — confirm with Directorate of Sports)',
+        'Up to 100% Sports Scholarship (Founder\'s Scholarship — Exemplary Sports Persons)',
+        'Open to Engineering, Management, Science & Humanities, Hotel Management, Law',
+        'University / District / Zone / State / National / International level all accepted',
       ],
-      selectionProcess: 'MANDATORY: Approach the Directorate of Sports at SRMIST Kattankulathur Campus for trials/selection BEFORE applying for admission. Then apply via SRMJEEE counselling. Trial recommendation from Directorate of Sports is required for the sports quota seat.',
-      // Sports list is NOT published in the SRMIST scholarship policy.
-      // Their main site mentions tennis, basketball, badminton, volleyball,
-      // hockey, kabaddi, cricket, athletics among others, but no
-      // exhaustive list. Until we get a verified list, mark as broad —
-      // a student MUST call to confirm whether their sport is offered.
-      // Listing common sports here so the app does not falsely exclude
-      // a candidate; sport restriction filtering should fall back to
-      // "verify with college" for SRMIST.
+      selectionProcess: 'Sports Quota Selection Trials 2026-27 — Apply via Google Form / official SRMIST website. Reporting time on trial day: 8:00 AM at the Directorate of Sports, SRMIST Kattankulathur Campus. Trial-specific dates are sport-wise (see schedule below). After the trial, candidates must also apply through SRMJEEE counselling — the trial recommendation feeds into the sports quota seat allocation.',
+      // 2026-27 published trial schedule from official notification:
+      //   12 Apr: Aquatics (Swimming & Diving), Basketball, Beach Volleyball
+      //   13 Apr: Football, Kabaddi (M), Volleyball (W)
+      //   14 Apr: Athletics, Boxing, Cricket (M), Fencing, Kabaddi (W)
+      //   15 Apr: Hockey, Ball Badminton, Volleyball (M)
+      //   16 Apr: Archery, Chess, Judo & Taekwondo, Tennis, Weightlifting
+      //   17 Apr: Badminton, Cricket (W), Table Tennis
+      // Beach Volleyball, Diving, Fencing, Judo not in our standard sport enum
+      // — players pick "Other sport" in the eligibility flow (mapped to 'other').
       sportsForMen: [
-        'athletics', 'basketball', 'badminton', 'cricket', 'chess',
-        'football', 'hockey', 'kabaddi', 'table-tennis', 'tennis',
-        'volleyball', 'swimming', 'kho-kho', 'handball', 'ball-badminton',
-        'boxing', 'martial-arts', 'wrestling', 'weightlifting',
-        'archery', 'shooting',
+        'swimming', 'basketball',
+        'football', 'kabaddi',
+        'athletics', 'boxing', 'cricket',
+        'hockey', 'ball-badminton', 'volleyball',
+        'archery', 'chess', 'taekwondo', 'tennis', 'weightlifting',
+        'badminton', 'table-tennis',
+        'martial-arts', // Judo (also Taekwondo)
+        'other', // Diving, Beach Volleyball, Fencing
       ],
       sportsForWomen: [
-        'athletics', 'basketball', 'badminton', 'cricket', 'chess',
-        'football', 'hockey', 'kabaddi', 'table-tennis', 'tennis',
-        'volleyball', 'swimming', 'kho-kho', 'handball', 'ball-badminton',
-        'boxing', 'martial-arts', 'wrestling', 'weightlifting',
-        'archery', 'shooting',
+        'swimming', 'basketball',
+        'volleyball', 'football',
+        'athletics', 'boxing', 'kabaddi',
+        'hockey', 'ball-badminton',
+        'archery', 'chess', 'taekwondo', 'tennis', 'weightlifting',
+        'badminton', 'cricket', 'table-tennis',
+        'martial-arts', // Judo
+        'other', // Diving, Beach Volleyball, Fencing
       ],
+      trialsMen: [
+        // 12 April 2026
+        { sport: 'swimming',       date: '2026-04-12', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'basketball',     date: '2026-04-12', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'other',          date: '2026-04-12', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' }, // Beach Volleyball + Diving
+        // 13 April 2026
+        { sport: 'football',       date: '2026-04-13', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'kabaddi',        date: '2026-04-13', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 14 April 2026
+        { sport: 'athletics',      date: '2026-04-14', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'boxing',         date: '2026-04-14', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'cricket',        date: '2026-04-14', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 15 April 2026
+        { sport: 'hockey',         date: '2026-04-15', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'ball-badminton', date: '2026-04-15', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'volleyball',     date: '2026-04-15', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 16 April 2026
+        { sport: 'archery',        date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'chess',          date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'taekwondo',      date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'martial-arts',   date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' }, // Judo
+        { sport: 'tennis',         date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'weightlifting',  date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 17 April 2026
+        { sport: 'badminton',      date: '2026-04-17', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'table-tennis',   date: '2026-04-17', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+      ],
+      trialsWomen: [
+        // 12 April 2026
+        { sport: 'swimming',       date: '2026-04-12', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'basketball',     date: '2026-04-12', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'other',          date: '2026-04-12', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' }, // Beach Volleyball + Diving
+        // 13 April 2026
+        { sport: 'volleyball',     date: '2026-04-13', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'football',       date: '2026-04-13', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 14 April 2026
+        { sport: 'athletics',      date: '2026-04-14', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'boxing',         date: '2026-04-14', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'kabaddi',        date: '2026-04-14', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 15 April 2026
+        { sport: 'hockey',         date: '2026-04-15', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'ball-badminton', date: '2026-04-15', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 16 April 2026
+        { sport: 'archery',        date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'chess',          date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'taekwondo',      date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'martial-arts',   date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' }, // Judo
+        { sport: 'tennis',         date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'weightlifting',  date: '2026-04-16', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        // 17 April 2026
+        { sport: 'badminton',      date: '2026-04-17', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'cricket',        date: '2026-04-17', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+        { sport: 'table-tennis',   date: '2026-04-17', time: '8:00 AM', venue: 'SRMIST Kattankulathur — Directorate of Sports' },
+      ],
+      applicationDeadline: '12 April 2026', // first trial date — overall window 12-17 April 2026
       extraDocuments: [
         {
-          titleEn: 'Trial recommendation from SRMIST Directorate of Sports',
-          titleTa: 'SRMIST விளையாட்டுத் துறையின் தேர்வுப் பரிந்துரை',
-          detailEn: 'Approach the Directorate of Sports at Kattankulathur Campus, attend the trial, and obtain a recommendation BEFORE applying for admission. Without this, the sports quota application will not be considered.',
-          detailTa: 'விண்ணப்பத்திற்கு முன், கட்டாங்குளத்தூர் வளாகத்தில் உள்ள விளையாட்டுத் துறையை அணுகவும், தேர்வில் கலந்து கொள்ளவும், பரிந்துரை பெறவும். இது இல்லாமல் விளையாட்டு கோட்டா விண்ணப்பம் பரிசீலிக்கப்படாது.',
+          titleEn: 'Original sports certificates (University/District/Zone/State/National/International)',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள் (பல்கலைக்கழக/மாவட்ட/மண்டல/மாநில/தேசிய/சர்வதேச)',
+          detailEn: 'SRMIST accepts certificates from any of these levels. First-attempt 12th pass in current admission year is required.',
+          detailTa: 'SRMIST இந்த எந்த அளவிலான சான்றிதழையும் ஏற்கும். தற்போதைய சேர்க்கை ஆண்டில் முதல் முயற்சியில் 12-ஆம் வகுப்பு தேர்ச்சி தேவை.',
         },
         {
           titleEn: 'SRMJEEE application + counselling',
@@ -777,28 +840,25 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
           detailTa: 'விளையாட்டு கோட்டா விண்ணப்பதாரர்கள் SRMJEEE (அல்லது பொருந்தும் வேறு நுழைவுத் தேர்வு) எழுதி ஆலோசனையில் கலந்து கொள்ள வேண்டும். தேர்வுப் பரிந்துரை மட்டும் போதாது.',
         },
         {
-          titleEn: 'Original sports certificates (University/District/Zone/State/National/International)',
-          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள் (பல்கலைக்கழக/மாவட்ட/மண்டல/மாநில/தேசிய/சர்வதேச)',
-          detailEn: 'SRMIST accepts certificates from any of these levels. First-attempt 12th pass in current admission year is required.',
-          detailTa: 'SRMIST இந்த எந்த அளவிலான சான்றிதழையும் ஏற்கும். தற்போதைய சேர்க்கை ஆண்டில் முதல் முயற்சியில் 12-ஆம் வகுப்பு தேர்ச்சி தேவை.',
+          titleEn: 'Online application form (Google Form / website)',
+          titleTa: 'ஆன்லைன் விண்ணப்பப் படிவம் (Google Form / இணையதளம்)',
+          detailEn: 'Submit the online sports trial application via Google Form (link from srmist.edu.in) before reporting on your sport-specific trial date.',
+          detailTa: 'உங்கள் விளையாட்டுக்கான தேர்வு நாளில் வருவதற்கு முன், Google Form (srmist.edu.in இணைப்பு) மூலம் ஆன்லைன் விளையாட்டு தேர்வு விண்ணப்பத்தை சமர்ப்பிக்கவும்.',
         },
       ],
     },
     contact: {
       designation: 'Directorate of Sports, SRMIST Kattankulathur Campus',
-      phone: '+91-44-27417000',
-      phone2: '+91-44-27417777',
-      email: 'infodesk@srmist.edu.in',
+      phone: '+91-80-69087000',
+      phone2: '+91-44-27453902',
+      email: 'directorateofsportssrm@gmail.com',
       website: 'https://www.srmist.edu.in/about-us/administrative-heads/director-sports/',
       applicationLink: 'https://www.srmist.edu.in/admissions/',
-      // Direct DPE phone is not published. The numbers above are the main
-      // SRMIST switchboard — when calling, ask to be connected to the
-      // Directorate of Sports.
     },
     verification: 'verified',
     sourceUrl: 'https://www.srmist.edu.in/about-us/administrative-heads/director-sports/',
-    sourceNote: 'Sources: (1) Official SRMIST Scholarship Policy 2023 onwards (Founder\'s Scholarship Sub-Category B — Exemplary Sports Persons). (2) ssn.edu.in/about-us/administrative-heads/director-sports/ — official Directorate of Sports page. NOTE: Sports list shown is INDICATIVE based on SRMIST\'s campus facilities (tennis, basketball, badminton, volleyball etc.); the policy doc does NOT publish a definitive list. Students MUST call the Directorate of Sports to confirm their specific sport is accepted.',
-    lastVerified: '2026-05-12',
+    sourceNote: 'Sources: (1) Official SRMIST Sports Quota Selection Trials 2026-27 notification (provided by team May 2026) — includes the full 12-17 April 2026 sport-wise trial schedule, 100% scholarship, 8:00 AM reporting time, helpline 080 69087000 / 044 27453902 and email directorateofsportssrm@gmail.com. (2) SRMIST Founder\'s Scholarship Policy (Sub-Category B — Exemplary Sports Persons). Admissions across Engineering, Management, Science & Humanities, Hotel Management, and Law. Inquiry: Directorate of Admissions, 2nd Floor, University Building, SRM Nagar, Kattankulathur.',
+    lastVerified: '2026-05-13',
   },
 
   // ─── VERIFIED: KCG College of Technology (Sports Quota 2026-27) ───────────
@@ -1307,6 +1367,260 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     },
     verification: 'verified',
     sourceNote: 'Direct from Kovai Kalaimagal College of Arts and Science (KKCAS) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Bharathiar University-affiliated autonomous arts & science college, Narasipuram, Coimbatore. Trials conducted 6 & 7 May 2026, 09:30 AM – 04:30 PM at KKCAS Ground. Up to 100% Scholarship (tiered: District 25%, State 50%, National 100%). 22 sports across ball games, martial arts, athletics, traditional/board games, and swimming. Renewal requires athletic performance + 75% attendance. Contact: Dr. K. Ooraniyan (8220094942) or Mrs. A. Maheshwari (9965164552) for current admission status.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: KGiSL Educational Institutions ────────────────────────────
+  // Source: Official KGiSL Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). KGiSL Educational Institutions is an umbrella
+  // group in Saravanampatti, Coimbatore covering engineering (KGiSL Institute
+  // of Technology), management/IT (KGiSL Institute of Information Management),
+  // and Microcollege. Trials are split across two days — team games on 10 Apr,
+  // individual events on 11 Apr 2026. Application deadline was 10-11 April
+  // 2026 (before 6:30 PM). Up to 100% scholarship for eligible candidates.
+  // Note: Cricket (PG-Men) and Basketball (Men) are gender-restricted in the
+  // notification; we set those only in sportsForMen / trialsMen.
+  {
+    id: 'kgisl_coimbatore',
+    collegeName: 'KGiSL Educational Institutions',
+    collegeNameTa: 'KGiSL கல்வி நிறுவனங்கள்',
+    district: 'Coimbatore',
+    type: 'Private',
+    field: 'engineering', // primary route (KGiSL Institute of Technology); also covers IIM and Microcollege
+    counsellingBody: 'Direct', // KGiSL runs its own sports-quota selection trials
+    overrides: {
+      // Notification doesn't specify min level — open to all participation/
+      // achievement levels, scored on the trial day. Defaulting to 'district'
+      // so school-level players know to call before showing up.
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship for eligible candidates selected through the offline trials at KGiSL Play Grounds. Admissions across engineering, IT/management, and other KGiSL Educational Institutions programmes for the 2026-27 academic year.',
+      schemes: [
+        'Up to 100% Sports Scholarship (eligible candidates)',
+        'Open across KGiSL Educational Institutions (KGiSL IT, IIM, Microcollege)',
+      ],
+      selectionProcess: 'Two-day offline selection trials at KGiSL Play Grounds, Saravanampatti, Coimbatore. Day 1 (10 April 2026): Team games — Volleyball, Ball Badminton, Kho-Kho, Kabaddi (Men), Hockey, Basketball (Men), Cricket (PG-Men). Day 2 (11 April 2026): Individual events — Athletics, Powerlifting, Boxing, Swimming, Chess, Taekwondo, Judo, Weightlifting. Application closed 10-11 April 2026 before 6:30 PM — contact the Directors of Physical Education for current admission status.',
+      // Sports list per official notification. Note gender restrictions:
+      //   Kabaddi   → Men only
+      //   Basketball → Men only
+      //   Cricket (PG) → Men only
+      //   Other team games — both M & W
+      //   All individual events — both M & W
+      // Judo not in the standard sport enum — mapped to 'martial-arts'
+      sportsForMen: [
+        // Team games (Day 1)
+        'volleyball', 'ball-badminton', 'kho-kho', 'kabaddi', 'hockey',
+        'basketball', 'cricket',
+        // Individual events (Day 2)
+        'athletics', 'powerlifting', 'boxing', 'swimming', 'chess',
+        'taekwondo', 'weightlifting',
+        'martial-arts', // Judo
+      ],
+      sportsForWomen: [
+        // Team games (Day 1) — no Kabaddi, Basketball, Cricket for women
+        'volleyball', 'ball-badminton', 'kho-kho', 'hockey',
+        // Individual events (Day 2) — all sports
+        'athletics', 'powerlifting', 'boxing', 'swimming', 'chess',
+        'taekwondo', 'weightlifting',
+        'martial-arts', // Judo
+      ],
+      trialsMen: [
+        // Day 1 — 10 April 2026 (team games)
+        { sport: 'volleyball',     date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'ball-badminton', date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'kho-kho',        date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'kabaddi',        date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'hockey',         date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'basketball',     date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'cricket',        date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' }, // PG only
+        // Day 2 — 11 April 2026 (individual events)
+        { sport: 'athletics',      date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'powerlifting',   date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'boxing',         date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'swimming',       date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'chess',          date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'taekwondo',      date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'martial-arts',   date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' }, // Judo
+        { sport: 'weightlifting',  date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+      ],
+      trialsWomen: [
+        // Day 1 — 10 April 2026 (team games — Volleyball, Ball Badminton, Kho-Kho, Hockey only)
+        { sport: 'volleyball',     date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'ball-badminton', date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'kho-kho',        date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'hockey',         date: '2026-04-10', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        // Day 2 — 11 April 2026 (individual events — all)
+        { sport: 'athletics',      date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'powerlifting',   date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'boxing',         date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'swimming',       date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'chess',          date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'taekwondo',      date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+        { sport: 'martial-arts',   date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' }, // Judo
+        { sport: 'weightlifting',  date: '2026-04-11', time: '6:30 PM (apply by)', venue: 'KGiSL Play Grounds, Saravanampatti' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Achievement Certificates (originals)',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement certificates in the listed sports — bring originals for verification at trial.',
+          detailTa: 'பட்டியலிடப்பட்ட விளையாட்டுகளில் உள்ள அனைத்து சாதனை சான்றிதழ்களும் — தேர்வில் சரிபார்ப்புக்காக அசல் கொண்டு வாரவும்.',
+        },
+        {
+          titleEn: 'Aadhaar Card',
+          titleTa: 'ஆதார் அட்டை',
+          detailEn: 'Required as identity proof on trial day.',
+          detailTa: 'தேர்வு நாளில் அடையாள ஆதாரமாக தேவை.',
+        },
+        {
+          titleEn: 'Recent passport-size photograph',
+          titleTa: 'சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படம்',
+          detailEn: 'Carry multiple recent passport-size photos for trial registration.',
+          detailTa: 'தேர்வு பதிவுக்காக பல சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்களை கொண்டு வாரவும்.',
+        },
+      ],
+      applicationDeadline: '10 April 2026', // first trial day — overall window 10-11 April 2026
+    },
+    contact: {
+      sportsOfficer: 'Dr. J Suresh',
+      designation: 'Director of Physical Education',
+      phone: '+91-99760-08900',
+      sportsOfficer2: 'Mr. M Murugan',
+      designation2: 'Director of Physical Education',
+      phone2: '+91-97875-76263',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from KGiSL Educational Institutions Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Trials at KGiSL Play Grounds, Saravanampatti, Coimbatore. Day 1 (10 April): Volleyball, Ball Badminton, Kho-Kho, Kabaddi (M), Hockey, Basketball (M), Cricket PG (M). Day 2 (11 April): Athletics, Powerlifting, Boxing, Swimming, Chess, Taekwondo, Judo, Weightlifting (all M/W). Up to 100% scholarship. Application deadline was 10-11 April 2026 before 6:30 PM. Additional contacts: Dr. N Arjunan (DPE) 9789793798; Dr. K Amirthavalli (DPE) 9842983421; Ms. M Pavithra (Asst. PD) 8072275315.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: The New College (Autonomous), Chennai ────────────────────
+  // Source: Official The New College Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). The New College is an autonomous
+  // arts & science college affiliated to the University of Madras, NAAC A++
+  // (3.61/4) accredited, located at 147 Peters Road, Royapettah, Chennai-14.
+  // IMPORTANT: This year's trials are for MEN ONLY — trialsWomen and
+  // sportsForWomen are left empty so the eligibility flow correctly excludes
+  // women candidates from this match. Up to 100% sports scholarship for both
+  // UG & PG programmes; free food and accommodation during the trial period.
+  {
+    id: 'thenewcollege_chennai',
+    collegeName: 'The New College (Autonomous), Chennai',
+    collegeNameTa: 'த நியூ காலேஜ் (தன்னாட்சி), சென்னை',
+    district: 'Chennai',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct', // College runs its own sports-quota selection trials
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Sports Scholarship for UG and PG programmes. Free food and accommodation provided during the trial period at the college campus. The New College is NAAC A++ (3.61/4) accredited and affiliated to the University of Madras.',
+      schemes: [
+        'Up to 100% Sports Scholarship (UG and PG)',
+        'Free food and accommodation during trial days',
+        'NAAC A++ (3.61/4) accredited',
+      ],
+      selectionProcess: 'Sports Quota Selection Trials 2026-27 (MEN ONLY) — held at The New College campus, 147 Peters Road, Royapettah, Chennai-600 014. Online registration via Google Form (link in official notification). Sport-specific dates and times: 29 April (Kabaddi 7 AM), 30 April (Football, Volleyball 6:30 AM; Basketball, Handball 9:00 AM), 1 May (Kho-Kho, Ball Badminton, Hockey 9:00 AM), 2 May (Athletics, Cricket 7 AM; Weightlifting, Powerlifting, Taekwondo, Best Physique/Bodybuilding, Judo, Badminton, Chess, Tennis, Table Tennis, Boxing, Rowing, Swimming, Shooting, Fencing, Archery & Yoga 10 AM). Trial uniform: proper sports attire required.',
+      // Per the official notification, trials are for MEN ONLY this year.
+      // Best Physique / Bodybuilding, Rowing, Fencing, Judo not in our standard
+      // enum — mapped to 'other' (judo also surfaces under 'martial-arts').
+      sportsForMen: [
+        // 29 Apr
+        'kabaddi',
+        // 30 Apr
+        'football', 'volleyball', 'basketball', 'handball',
+        // 1 May
+        'kho-kho', 'ball-badminton', 'hockey',
+        // 2 May AM
+        'athletics', 'cricket',
+        // 2 May Late AM batch
+        'weightlifting', 'powerlifting', 'taekwondo',
+        'martial-arts', // Judo
+        'badminton', 'chess', 'tennis', 'table-tennis', 'boxing',
+        'swimming', 'shooting', 'archery', 'yoga',
+        'other', // Best Physique / Bodybuilding, Rowing, Fencing
+      ],
+      // Women's trials not conducted this cycle — empty array signals the
+      // eligibility flow to exclude women candidates from this college.
+      sportsForWomen: [],
+      trialsMen: [
+        // 29 April 2026
+        { sport: 'kabaddi',        date: '2026-04-29', time: '7:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        // 30 April 2026
+        { sport: 'football',       date: '2026-04-30', time: '6:30 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'volleyball',     date: '2026-04-30', time: '6:30 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'basketball',     date: '2026-04-30', time: '9:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'handball',       date: '2026-04-30', time: '9:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        // 1 May 2026
+        { sport: 'kho-kho',        date: '2026-05-01', time: '9:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'ball-badminton', date: '2026-05-01', time: '9:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'hockey',         date: '2026-05-01', time: '9:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        // 2 May 2026 AM
+        { sport: 'athletics',      date: '2026-05-02', time: '7:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'cricket',        date: '2026-05-02', time: '7:00 AM',  venue: 'The New College campus, Royapettah, Chennai' },
+        // 2 May 2026 Late AM (10 AM batch)
+        { sport: 'weightlifting',  date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'powerlifting',   date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'taekwondo',      date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'martial-arts',   date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' }, // Judo
+        { sport: 'badminton',      date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'chess',          date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'tennis',         date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'table-tennis',   date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'boxing',         date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'swimming',       date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'shooting',       date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'archery',        date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'yoga',           date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' },
+        { sport: 'other',          date: '2026-05-02', time: '10:00 AM', venue: 'The New College campus, Royapettah, Chennai' }, // Best Physique/Bodybuilding, Rowing, Fencing
+      ],
+      // No women's trials this cycle — left intentionally empty.
+      trialsWomen: [],
+      extraDocuments: [
+        {
+          titleEn: 'Photocopy of Aadhaar Card',
+          titleTa: 'ஆதார் அட்டையின் நகல்',
+          detailEn: 'Bring a photocopy of your Aadhaar card to the trial.',
+          detailTa: 'உங்கள் ஆதார் அட்டையின் நகலை தேர்வுக்கு கொண்டு வாரவும்.',
+        },
+        {
+          titleEn: 'Original academic certificates',
+          titleTa: 'அசல் கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Originals of 10th, 12th, and UG mark sheets (PG applicants).',
+          detailTa: '10-ஆம், 12-ஆம் வகுப்பு, மற்றும் UG மதிப்பெண் சான்றிதழ்களின் அசல் (PG விண்ணப்பதாரர்கள்).',
+        },
+        {
+          titleEn: 'Original sports certificates',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All sports achievement and participation certificates in original — verified at the trial.',
+          detailTa: 'அனைத்து விளையாட்டு சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில் — தேர்வில் சரிபார்க்கப்படும்.',
+        },
+        {
+          titleEn: 'Proper sports uniform',
+          titleTa: 'பொருத்தமான விளையாட்டு உடை',
+          detailEn: 'Wear/bring appropriate sports uniform — participants must attend the trial in proper sports attire.',
+          detailTa: 'பொருத்தமான விளையாட்டு உடையை அணிந்து வரவும் — பங்கேற்பாளர்கள் சரியான விளையாட்டு உடையில் தேர்வில் கலந்து கொள்ள வேண்டும்.',
+        },
+        {
+          titleEn: 'Online Google Form registration',
+          titleTa: 'ஆன்லைன் Google Form பதிவு',
+          detailEn: 'Register online via the Google Form link in the official notification before the trial date.',
+          detailTa: 'தேர்வு நாளுக்கு முன்பு அதிகாரப்பூர்வ அறிவிப்பில் உள்ள Google Form இணைப்பு மூலம் ஆன்லைனில் பதிவு செய்யவும்.',
+        },
+      ],
+      applicationDeadline: '29 April 2026', // first trial date — overall window 29 April – 2 May 2026
+    },
+    contact: {
+      sportsOfficer: 'Dr. U. Mahaboob Basha',
+      designation: 'Director of Physical Education',
+      phone: '+91-99404-55991',
+      sportsOfficer2: 'Prof. M. Nasar Khan',
+      designation2: 'Assistant Director of Physical Education',
+      phone2: '+91-96778-46006',
+      email: 'physicaldirector@thenewcollege.edu.in',
+      website: 'http://www.thenewcollege.edu.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'http://www.thenewcollege.edu.in',
+    sourceNote: 'Direct from The New College (Autonomous), Chennai Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). MEN ONLY this cycle. NAAC A++ (3.61/4), University of Madras affiliated. Trials held 29 April – 2 May 2026 at The New College campus, 147 Peters Road, Royapettah, Chennai-600 014. Up to 100% Sports Scholarship for UG & PG. Free food + accommodation during trial period. Additional contact: Prof. M. Yashwanth (Asst. DPE) 9087147093. Email: physicaldirector@thenewcollege.edu.in. Online registration via Google Form linked in the official notification.',
     lastVerified: '2026-05-13',
   },
 
