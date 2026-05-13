@@ -1162,6 +1162,154 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: Kovai Kalaimagal College of Arts and Science (KKCAS) ─────
+  // Source: Official KKCAS Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). KKCAS is an autonomous arts & science college
+  // in Narasipuram, Coimbatore, affiliated to Bharathiar University.
+  // Performance-based scholarship: District 25%, State 50%, National 100%.
+  // Trials run across two days (6 & 7 May 2026), 09:30 AM – 04:30 PM at KKCAS
+  // Ground. Wide list of 22 sports including water (Swimming), traditional
+  // (Silambam, Kabaddi, Kho-Kho), combat (Boxing, Karate, Taekwondo) and
+  // standard ball games. Silambam is not in our standard sport enum — players
+  // pick "Other sport" in the flow (mapped to 'other').
+  {
+    id: 'kkcas_coimbatore',
+    collegeName: 'Kovai Kalaimagal College of Arts and Science',
+    collegeNameTa: 'கோவை கலைமகள் கலை மற்றும் அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct', // KKCAS runs its own sports-quota selection trials
+    overrides: {
+      // Accepts district-level and above. Tiered scholarship reflects the level:
+      //   District = 25%, State = 50%, National = 100%
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship for outstanding sports achievers. Tiered by level: District = 25%, State = 50%, National = 100%. Scholarship is performance-based and conditional on maintaining athletic performance, participating in competitions, and meeting minimum 75% attendance.',
+      schemes: [
+        'Up to 100% Scholarship (performance-based)',
+        'District level = 25% fee waiver',
+        'State level = 50% fee waiver',
+        'National level = 100% fee waiver',
+        'Renewal conditional on athletic performance + 75% attendance',
+      ],
+      // 22 sports listed in the official notification — same for men & women
+      sportsForMen: [
+        // Ball games
+        'volleyball', 'football', 'basketball', 'handball', 'cricket',
+        'tennis', 'table-tennis', 'ball-badminton', 'badminton',
+        // Martial arts & combat
+        'karate', 'boxing', 'taekwondo',
+        // Athletics & strength
+        'weightlifting', 'powerlifting', 'athletics',
+        // Traditional & board games
+        'kho-kho', 'kabaddi', 'chess', 'yoga',
+        // Water sports
+        'swimming',
+        // Silambam not in the standard enum — student picks "Other sport"
+        'other',
+      ],
+      sportsForWomen: [
+        'volleyball', 'football', 'basketball', 'handball', 'cricket',
+        'tennis', 'table-tennis', 'ball-badminton', 'badminton',
+        'karate', 'boxing', 'taekwondo',
+        'weightlifting', 'powerlifting', 'athletics',
+        'kho-kho', 'kabaddi', 'chess', 'yoga',
+        'swimming',
+        'other', // Silambam
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Participation Certificates',
+          titleTa: 'விளையாட்டு பங்கேற்பு சான்றிதழ்கள்',
+          detailEn: 'All participation certificates from recognized sports bodies — district / state / national level. Originals required at the trial.',
+          detailTa: 'அங்கீகரிக்கப்பட்ட விளையாட்டு அமைப்புகளிலிருந்து அனைத்து பங்கேற்பு சான்றிதழ்கள் — மாவட்ட / மாநில / தேசிய அளவில். தேர்வின் போது அசல் தேவை.',
+        },
+        {
+          titleEn: 'Sports Achievement Records',
+          titleTa: 'விளையாட்டு சாதனை பதிவுகள்',
+          detailEn: 'All medal certificates, position records, ranking proof — these determine your scholarship tier (25% / 50% / 100%).',
+          detailTa: 'அனைத்து பதக்க சான்றிதழ்கள், இடம் பெற்ற பதிவுகள், தரவரிசை ஆதாரம் — இவை உங்கள் உதவித்தொகை அளவை (25% / 50% / 100%) தீர்மானிக்கும்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'Minimum academic qualification required — bring originals.',
+          detailTa: 'குறைந்தபட்ச கல்வித் தகுதி தேவை — அசல் சான்றிதழ்களை கொண்டு வாரவும்.',
+        },
+        {
+          titleEn: 'Aadhaar card + passport photos',
+          titleTa: 'ஆதார் அட்டை + பாஸ்போர்ட் புகைப்படங்கள்',
+          detailEn: 'Standard ID and passport-size photographs for trial registration.',
+          detailTa: 'தேர்வு பதிவுக்கு வழக்கமான அடையாள ஆதாரம் மற்றும் பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+      ],
+      selectionProcess: 'Two-day offline selection trial held 6 & 7 May 2026, 09:30 AM – 04:30 PM at KKCAS Ground, Narasipuram, Coimbatore. Performance-based selection. Trial day: bring all sports participation & achievement certificates (originals), academic mark sheets, Aadhaar and photos. Scholarship tier decided on the spot based on highest verified level — District (25%), State (50%) or National (100%). Renewal requires continued athletic performance and minimum 75% attendance.',
+      // Earlier of the two trial dates — used by the splash banner
+      applicationDeadline: '6 May 2026',
+      trialsMen: [
+        // Day 1 — 6 May 2026
+        { sport: 'volleyball',     date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'football',       date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'basketball',     date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'handball',       date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'cricket',        date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'tennis',         date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'table-tennis',   date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'ball-badminton', date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'badminton',      date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'kho-kho',        date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'kabaddi',        date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        // Day 2 — 7 May 2026
+        { sport: 'karate',         date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'boxing',         date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'taekwondo',      date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'weightlifting',  date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'powerlifting',   date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'athletics',      date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'chess',          date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'yoga',           date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'swimming',       date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'other',          date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' }, // Silambam
+      ],
+      trialsWomen: [
+        // Day 1 — 6 May 2026
+        { sport: 'volleyball',     date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'football',       date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'basketball',     date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'handball',       date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'cricket',        date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'tennis',         date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'table-tennis',   date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'ball-badminton', date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'badminton',      date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'kho-kho',        date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'kabaddi',        date: '2026-05-06', time: '9:30 AM', venue: 'KKCAS Ground' },
+        // Day 2 — 7 May 2026
+        { sport: 'karate',         date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'boxing',         date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'taekwondo',      date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'weightlifting',  date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'powerlifting',   date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'athletics',      date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'chess',          date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'yoga',           date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'swimming',       date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' },
+        { sport: 'other',          date: '2026-05-07', time: '9:30 AM', venue: 'KKCAS Ground' }, // Silambam
+      ],
+    },
+    contact: {
+      sportsOfficer: 'Dr. K. Ooraniyan',
+      designation: 'Department of Physical Education',
+      phone: '+91-82200-94942',
+      sportsOfficer2: 'Mrs. A. Maheshwari',
+      designation2: 'Department of Physical Education',
+      phone2: '+91-99651-64552',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Kovai Kalaimagal College of Arts and Science (KKCAS) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Bharathiar University-affiliated autonomous arts & science college, Narasipuram, Coimbatore. Trials conducted 6 & 7 May 2026, 09:30 AM – 04:30 PM at KKCAS Ground. Up to 100% Scholarship (tiered: District 25%, State 50%, National 100%). 22 sports across ball games, martial arts, athletics, traditional/board games, and swimming. Renewal requires athletic performance + 75% attendance. Contact: Dr. K. Ooraniyan (8220094942) or Mrs. A. Maheshwari (9965164552) for current admission status.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
