@@ -3434,6 +3434,535 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: Shri Nehru Maha Vidyalaya College (SNMV), Coimbatore ─────
+  // Source: Official SNMV Sports Quota Selection Trials 2026-27 notification
+  // (provided by team May 2026). Autonomous arts & science college affiliated
+  // to Bharathiar University, NAAC A+ re-accredited. Located at Shri Gambhira
+  // Bafna Nagar, Malumachampatti, Coimbatore-641 050. Single-day trial on
+  // 15 April 2026, 9:30 AM at SNMV Campus. Up to 100% Merit Scholarship.
+  {
+    id: 'snmv_coimbatore',
+    collegeName: 'Shri Nehru Maha Vidyalaya College of Arts and Science (SNMV)',
+    collegeNameTa: 'ஸ்ரீ நேரு மகா வித்யாலயா கலை & அறிவியல் கல்லூரி (SNMV)',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Merit Scholarship for sports students offering free education. Autonomous arts & science college affiliated to Bharathiar University, NAAC A+ re-accredited.',
+      schemes: [
+        'Up to 100% Merit Scholarship (free education)',
+        'NAAC A+ re-accredited',
+        'Bharathiar University affiliated',
+      ],
+      selectionProcess: 'Single-day offline sports trial on 15 April 2026, 9:30 AM at SNMV Campus, Shri Gambhira Bafna Nagar, Malumachampatti, Coimbatore-641 050. Online registration via QR code or https://forms.gle/ehihiWE4sXnDNG9V8 (registration closed 13 April 2026 — contact Mr. G. Sadeesh Kumar for any late-application window). Bring Sports Certificates on trial day.',
+      sportsForMen: [
+        'kabaddi', 'volleyball', 'basketball', 'badminton', 'football',
+        'athletics', 'cricket', 'weightlifting', 'powerlifting',
+        'taekwondo', 'karate',
+      ],
+      sportsForWomen: [
+        'kabaddi', 'volleyball', 'basketball', 'badminton', 'football',
+        'athletics', 'cricket', 'weightlifting', 'powerlifting',
+        'taekwondo', 'karate',
+      ],
+      trialsMen: [
+        { sport: 'kabaddi',       date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'volleyball',    date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'basketball',    date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'badminton',     date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'football',      date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'athletics',     date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'cricket',       date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'weightlifting', date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'powerlifting',  date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'taekwondo',     date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'karate',        date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+      ],
+      trialsWomen: [
+        { sport: 'kabaddi',       date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'volleyball',    date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'basketball',    date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'badminton',     date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'football',      date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'athletics',     date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'cricket',       date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'weightlifting', date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'powerlifting',  date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'taekwondo',     date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+        { sport: 'karate',        date: '2026-04-15', time: '9:30 AM', venue: 'SNMV Campus, Malumachampatti, Coimbatore' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All achievement and participation certificates in original — mandatory on trial day.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில் — தேர்வு நாளில் கட்டாயம்.',
+        },
+        {
+          titleEn: 'Online registration (Google Form)',
+          titleTa: 'ஆன்லைன் பதிவு (Google Form)',
+          detailEn: 'Register at https://forms.gle/ehihiWE4sXnDNG9V8 or scan the QR code on the official poster.',
+          detailTa: 'https://forms.gle/ehihiWE4sXnDNG9V8-ல் பதிவு செய்யவும் அல்லது அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்யவும்.',
+        },
+      ],
+      applicationDeadline: '15 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'Mr. G. Sadeesh Kumar',
+      designation: 'Physical Director',
+      phone: '+91-96550-13890',
+      applicationLink: 'https://forms.gle/ehihiWE4sXnDNG9V8',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Shri Nehru Maha Vidyalaya College of Arts and Science (SNMV) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Autonomous arts & science college affiliated to Bharathiar University, NAAC A+ re-accredited. Located at Shri Gambhira Bafna Nagar, Malumachampatti, Coimbatore-641 050. Single-day trial 15 April 2026, 9:30 AM at SNMV Campus. Up to 100% Merit Scholarship for sports students (free education). Registration closed 13 April 2026 — call Mr. G. Sadeesh Kumar (9655013890) for any late-application window. Online registration link: https://forms.gle/ehihiWE4sXnDNG9V8',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Karpagam Academy of Higher Education (KAHE) ──────────────
+  // Source: Official Karpagam Academy Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). Deemed-to-be University at
+  // Coimbatore. Up to 100% Scholarship for meritorious players.
+  // IMPORTANT: This cycle's trial schedule is heavily MEN-FOCUSED — only
+  // Volleyball (W) on 10 April is listed for women; all other sports (Kabaddi,
+  // Volleyball, Football, Handball, Silambam) are Men-only on the schedule.
+  // Silambam not in standard sport enum → mapped to 'other'.
+  {
+    id: 'karpagam_coimbatore',
+    collegeName: 'Karpagam Academy of Higher Education (KAHE)',
+    collegeNameTa: 'கர்ப்பகம் உயர் கல்வி கழகம் (KAHE)',
+    district: 'Coimbatore',
+    type: 'Deemed',
+    field: 'arts', // Deemed University with multi-disciplinary programmes
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship for meritorious players. Deemed-to-be University at Coimbatore. Overall coordinator: Dr. S. Suthakar (Director of Physical Education and Sports).',
+      schemes: [
+        'Up to 100% Scholarship for meritorious players',
+        'Deemed-to-be University',
+      ],
+      selectionProcess: 'Multi-day offline sports trial across 10-16 April 2026 at Karpagam Academy, Coimbatore. Gender-specific schedule: 10 April — Volleyball (W) + Kabaddi (M); 11 April — Volleyball (M); 13 April — Football (M); 15 April — Handball (M); 16 April — Silambam (M). Online registration via QR code or https://forms.gle/GieRuWsNt9J6jqQu9. Bring originals: 10th mark sheet, Aadhaar, Birth Certificate, Sports Certificate, Community Certificate, passport-size photo.',
+      // This cycle's trials only list 1 women's sport (Volleyball) — set the
+      // women's array accordingly so the eligibility flow correctly excludes
+      // women who play other sports. Men's trials cover 5 sports including
+      // Silambam (mapped to 'other').
+      sportsForMen: [
+        'kabaddi', 'volleyball', 'football', 'handball',
+        'other', // Silambam
+      ],
+      sportsForWomen: [
+        'volleyball', // only sport listed for women this cycle
+      ],
+      trialsMen: [
+        // 10 April — Kabaddi (M)
+        { sport: 'kabaddi',    date: '2026-04-10', time: 'See poster', venue: 'Karpagam Academy of Higher Education, Coimbatore' },
+        // 11 April — Volleyball (M)
+        { sport: 'volleyball', date: '2026-04-11', time: 'See poster', venue: 'Karpagam Academy of Higher Education, Coimbatore' },
+        // 13 April — Football (M)
+        { sport: 'football',   date: '2026-04-13', time: 'See poster', venue: 'Karpagam Academy of Higher Education, Coimbatore' },
+        // 15 April — Handball (M)
+        { sport: 'handball',   date: '2026-04-15', time: 'See poster', venue: 'Karpagam Academy of Higher Education, Coimbatore' },
+        // 16 April — Silambam (M)
+        { sport: 'other',      date: '2026-04-16', time: 'See poster', venue: 'Karpagam Academy of Higher Education, Coimbatore' }, // Silambam
+      ],
+      trialsWomen: [
+        // 10 April — Volleyball (W) ONLY
+        { sport: 'volleyball', date: '2026-04-10', time: 'See poster', venue: 'Karpagam Academy of Higher Education, Coimbatore' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: '10th Marksheet (original)',
+          titleTa: '10-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ் (அசல்)',
+          detailEn: 'Original 10th-grade mark sheet required.',
+          detailTa: 'அசல் 10-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ் தேவை.',
+        },
+        {
+          titleEn: 'Aadhaar Card',
+          titleTa: 'ஆதார் அட்டை',
+          detailEn: 'Identity proof.',
+          detailTa: 'அடையாள ஆதாரம்.',
+        },
+        {
+          titleEn: 'Birth Certificate',
+          titleTa: 'பிறப்புச் சான்றிதழ்',
+          detailEn: 'Original.',
+          detailTa: 'அசல்.',
+        },
+        {
+          titleEn: 'Sports Certificate',
+          titleTa: 'விளையாட்டு சான்றிதழ்',
+          detailEn: 'All sports achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: 'Community Certificate',
+          titleTa: 'சமூகச் சான்றிதழ்',
+          detailEn: 'Tamil Nadu Community Certificate.',
+          detailTa: 'தமிழ்நாடு சமூகச் சான்றிதழ்.',
+        },
+        {
+          titleEn: 'Passport-size photo',
+          titleTa: 'பாஸ்போர்ட் அளவு புகைப்படம்',
+          detailEn: 'Recent passport-size photos.',
+          detailTa: 'சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+        {
+          titleEn: 'Online registration (Google Form)',
+          titleTa: 'ஆன்லைன் பதிவு (Google Form)',
+          detailEn: 'Register at https://forms.gle/GieRuWsNt9J6jqQu9 or scan the QR code on the official poster.',
+          detailTa: 'https://forms.gle/GieRuWsNt9J6jqQu9-ல் பதிவு செய்யவும் அல்லது அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்யவும்.',
+        },
+      ],
+      applicationDeadline: '10 April 2026', // first day of the trial window
+    },
+    contact: {
+      sportsOfficer: 'Dr. S. Suthakar',
+      designation: 'Director of Physical Education and Sports (Overall Coordinator)',
+      phone: '+91-99650-65096',
+      applicationLink: 'https://forms.gle/GieRuWsNt9J6jqQu9',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Karpagam Academy of Higher Education (KAHE) Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Deemed-to-be University at Coimbatore. Up to 100% Scholarship for meritorious players. This cycle\'s trials are heavily MEN-FOCUSED — only Volleyball (Women) on 10 April is listed for women; Kabaddi, Volleyball, Football, Handball, and Silambam are all MEN-only across 10-16 April. Overall coordinator: Dr. S. Suthakar (9965065096). Online registration: https://forms.gle/GieRuWsNt9J6jqQu9',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Kongunadu College of Engineering and Technology ──────────
+  // Source: Official Kongunadu CET Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). Autonomous engineering college,
+  // AICTE approved, NAAC accredited, Anna University affiliated. Located at
+  // Namakkal-Trichy Main Road, Tholurpatti, Thottiam, Tiruchirappalli-621215.
+  // Gender-specific trial DATES: Women on 12 April, Men on 13 April 2026.
+  // Some sports are gender-restricted: Football, Cricket, Boxing — Women
+  // only this cycle; Squash — Men only this cycle.
+  {
+    id: 'kongunadu_cet_tiruchirappalli',
+    collegeName: 'Kongunadu College of Engineering and Technology',
+    collegeNameTa: 'கொங்குநாடு பொறியியல் மற்றும் தொழில்நுட்பக் கல்லூரி',
+    district: 'Tiruchirappalli',
+    type: 'Autonomous',
+    field: 'engineering',
+    // Anna University affiliated — admits via TNEA. Sports quota direct route
+    // available; we mark counsellingBody as 'TNEA' so general TNEA info still
+    // surfaces and add the direct-trial details via overrides.
+    counsellingBody: 'TNEA',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship for meritorious players including free education and free hostel fees. Autonomous engineering college, AICTE approved, NAAC accredited, Anna University affiliated. Programmes: Agri, AI&DS, BME, Civil, CSE, ECE, EEE, IT, Mech.',
+      schemes: [
+        'Up to 100% Sports Scholarship',
+        'Free Education + Free Hostel Fees (meritorious players)',
+        'Programmes: Agri, AI&DS, BME, Civil, CSE, ECE, EEE, IT, Mech',
+        'Anna University affiliated, NAAC accredited',
+      ],
+      selectionProcess: 'Gender-specific trial dates at Kongunadu College of Engineering and Technology, Tholurpatti, Thottiam, Tiruchirappalli-621215. Women\'s trials: 12 April 2026. Men\'s trials: 13 April 2026. Most sports open to both genders (Athletics, Hockey, Basketball, Volleyball, Kabaddi, Handball, Taekwondo, Kho-Kho, Judo). Women-only sports this cycle: Football, Cricket, Boxing. Men-only: Squash. Apply through TNEA as well (sports quota seats coordinated with general counselling).',
+      // Squash not in standard enum → 'other'. Judo → 'martial-arts'.
+      sportsForMen: [
+        // Common (M & W)
+        'athletics', 'hockey', 'basketball', 'volleyball', 'kabaddi',
+        'handball', 'taekwondo', 'kho-kho', 'martial-arts', // Judo
+        // Men Only
+        'other', // Squash
+      ],
+      sportsForWomen: [
+        // Common
+        'athletics', 'hockey', 'basketball', 'volleyball', 'kabaddi',
+        'handball', 'taekwondo', 'kho-kho', 'martial-arts', // Judo
+        // Women Only
+        'football', 'cricket', 'boxing',
+      ],
+      trialsMen: [
+        // 13 April 2026 — Men's day
+        { sport: 'athletics',    date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'hockey',       date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'basketball',   date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'volleyball',   date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'kabaddi',      date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'handball',     date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'taekwondo',    date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'kho-kho',      date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'martial-arts', date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' }, // Judo
+        { sport: 'other',        date: '2026-04-13', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' }, // Squash
+      ],
+      trialsWomen: [
+        // 12 April 2026 — Women's day
+        { sport: 'athletics',    date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'hockey',       date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'basketball',   date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'volleyball',   date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'kabaddi',      date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'handball',     date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'taekwondo',    date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'kho-kho',      date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'martial-arts', date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' }, // Judo
+        // Women-only sports
+        { sport: 'football',     date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'cricket',      date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+        { sport: 'boxing',       date: '2026-04-12', time: 'See poster', venue: 'Kongunadu CET, Tholurpatti, Thottiam, Tiruchirappalli' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. Both TNEA and direct admission paths require these in original.',
+          detailTa: 'UG சேர்க்கைக்கு. TNEA மற்றும் நேரடி சேர்க்கை இரண்டுக்கும் அசல் தேவை.',
+        },
+        {
+          titleEn: 'TNEA application',
+          titleTa: 'TNEA விண்ணப்பம்',
+          detailEn: 'Apply through TNEA as well — sports quota seats are coordinated with general counselling.',
+          detailTa: 'TNEA மூலமாகவும் விண்ணப்பிக்கவும் — விளையாட்டு கோட்டா இடங்கள் பொது ஆலோசனையுடன் ஒருங்கிணைக்கப்படுகின்றன.',
+        },
+      ],
+      applicationDeadline: '12 April 2026', // women's trial — earlier of the two
+    },
+    contact: {
+      sportsOfficer: 'Mr. S. Palanivel',
+      designation: 'Kongunadu CET Sports Admissions',
+      phone: '+91-94885-19521',
+      sportsOfficer2: 'Mr. T. Saravanakumar',
+      designation2: 'Kongunadu CET Sports Admissions',
+      phone2: '+91-97879-23620',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Kongunadu College of Engineering and Technology Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Autonomous engineering college, AICTE approved, NAAC accredited, Anna University affiliated. Located at Namakkal-Trichy Main Road, Tholurpatti, Thottiam, Tiruchirappalli-621215. Gender-specific trial dates: Women 12 April 2026, Men 13 April 2026. Up to 100% scholarship including free education and free hostel fees. Programmes: Agri, AI&DS, BME, Civil, CSE, ECE, EEE, IT, Mech. Additional contacts: Mr. S. Palanivel 9488519521 / 8012505039, Mr. T. Saravanakumar 9787923620, Mrs. J. Nithyalaksmi 9894034066, Mr. T. Sathish 8667874787, Mr. S. Ilayaraja 9894918764.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Joy University, Tirunelveli ──────────────────────────────
+  // Source: Official Joy University Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). Private university established
+  // under TNPU Act 2019, UGC-recognised under Section 2(f). Located at
+  // Raja Nagar, Vadakangulam, Near Kanyakumari, Tirunelveli Dist-627116.
+  // Eight-day trial schedule across 15-23 April 2026 at 3:00 PM daily at
+  // Joy University Ground. Up to 100% Merit Scholarship.
+  {
+    id: 'joy_tirunelveli',
+    collegeName: 'Joy University, Tirunelveli',
+    collegeNameTa: 'ஜாய் பல்கலைக்கழகம், திருநெல்வேலி',
+    district: 'Tirunelveli',
+    type: 'Private',
+    field: 'other', // Private university with multi-disciplinary programmes
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Merit Scholarship for selected athletes. Private university established via TNPU Act 2019 & TNPU (Amend.) Act 2024, UGC-recognised under Section 2(f) of the UGC Act 1956. Located at Raja Nagar, Vadakangulam, near Kanyakumari.',
+      schemes: [
+        'Up to 100% Merit Scholarship',
+        'Private University (TNPU Act 2019)',
+        'UGC-recognised under Section 2(f)',
+      ],
+      selectionProcess: 'Eight-day offline sports trial across 15-23 April 2026 at Joy University Ground, Raja Nagar, Vadakangulam, near Kanyakumari (Tirunelveli district-627116). Reporting time: 3:00 PM for all trial dates. Sport-specific schedule: 15 April — Table Tennis, Badminton, Ball Badminton; 16 April — Tennis, Handball; 17 April — Kho-Kho, Taekwondo; 18 April — Kabaddi, Beach Sports, Wrestling; 20 April — Volleyball, Basketball; 21 April — Cricket, Hockey; 22 April — Boxing, Weightlifting, Powerlifting; 23 April — Squash, Athletics, Chess. Open for both Boys & Girls across all sports.',
+      // Beach Sports + Squash not in standard sport enum → mapped to 'other'.
+      sportsForMen: [
+        // 15 April
+        'table-tennis', 'badminton', 'ball-badminton',
+        // 16 April
+        'tennis', 'handball',
+        // 17 April
+        'kho-kho', 'taekwondo',
+        // 18 April
+        'kabaddi', 'wrestling',
+        // 20 April
+        'volleyball', 'basketball',
+        // 21 April
+        'cricket', 'hockey',
+        // 22 April
+        'boxing', 'weightlifting', 'powerlifting',
+        // 23 April
+        'athletics', 'chess',
+        // Beach Sports + Squash
+        'other',
+      ],
+      sportsForWomen: [
+        'table-tennis', 'badminton', 'ball-badminton',
+        'tennis', 'handball',
+        'kho-kho', 'taekwondo',
+        'kabaddi', 'wrestling',
+        'volleyball', 'basketball',
+        'cricket', 'hockey',
+        'boxing', 'weightlifting', 'powerlifting',
+        'athletics', 'chess',
+        'other',
+      ],
+      trialsMen: [
+        // 15 April 2026
+        { sport: 'table-tennis',   date: '2026-04-15', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'badminton',      date: '2026-04-15', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'ball-badminton', date: '2026-04-15', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 16 April 2026
+        { sport: 'tennis',         date: '2026-04-16', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'handball',       date: '2026-04-16', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 17 April 2026
+        { sport: 'kho-kho',        date: '2026-04-17', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'taekwondo',      date: '2026-04-17', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 18 April 2026
+        { sport: 'kabaddi',        date: '2026-04-18', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'wrestling',      date: '2026-04-18', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'other',          date: '2026-04-18', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' }, // Beach Sports
+        // 20 April 2026
+        { sport: 'volleyball',     date: '2026-04-20', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'basketball',     date: '2026-04-20', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 21 April 2026
+        { sport: 'cricket',        date: '2026-04-21', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'hockey',         date: '2026-04-21', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 22 April 2026
+        { sport: 'boxing',         date: '2026-04-22', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'weightlifting',  date: '2026-04-22', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'powerlifting',   date: '2026-04-22', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 23 April 2026
+        { sport: 'athletics',      date: '2026-04-23', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'chess',          date: '2026-04-23', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        // 23 April — also Squash (separate 'other' entry)
+      ],
+      trialsWomen: [
+        { sport: 'table-tennis',   date: '2026-04-15', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'badminton',      date: '2026-04-15', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'ball-badminton', date: '2026-04-15', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'tennis',         date: '2026-04-16', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'handball',       date: '2026-04-16', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'kho-kho',        date: '2026-04-17', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'taekwondo',      date: '2026-04-17', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'kabaddi',        date: '2026-04-18', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'wrestling',      date: '2026-04-18', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'other',          date: '2026-04-18', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' }, // Beach Sports
+        { sport: 'volleyball',     date: '2026-04-20', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'basketball',     date: '2026-04-20', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'cricket',        date: '2026-04-21', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'hockey',         date: '2026-04-21', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'boxing',         date: '2026-04-22', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'weightlifting',  date: '2026-04-22', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'powerlifting',   date: '2026-04-22', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'athletics',      date: '2026-04-23', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+        { sport: 'chess',          date: '2026-04-23', time: '3:00 PM', venue: 'Joy University Ground, Vadakangulam' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: '10th and 12th mark sheets',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்கள்',
+          detailEn: 'For UG admission. PG applicants should also bring graduation mark sheet.',
+          detailTa: 'UG சேர்க்கைக்கு. PG விண்ணப்பதாரர்கள் பட்டப்படிப்பு மதிப்பெண் சான்றிதழையும் கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Aadhaar + passport photos',
+          titleTa: 'ஆதார் + பாஸ்போர்ட் புகைப்படங்கள்',
+          detailEn: 'Standard ID and recent passport-size photographs.',
+          detailTa: 'வழக்கமான அடையாள ஆதாரம் மற்றும் சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+      ],
+      applicationDeadline: '15 April 2026', // first day of the trial window
+    },
+    contact: {
+      sportsOfficer: 'Dr. M. Murugan',
+      designation: 'Director of Physical Education & Sports',
+      phone: '+91-97872-49719',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Joy University Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Private university established via TNPU Act 2019 & TNPU (Amend.) Act 2024, UGC-recognised under Section 2(f). Located at Raja Nagar, Vadakangulam, Near Kanyakumari, Tirunelveli Dist-627116. Eight-day trial 15-23 April 2026, 3:00 PM daily at Joy University Ground. Up to 100% Merit Scholarship. Sport-specific schedule across 8 days. Open for both Boys & Girls. Contact: Dr. M. Murugan (Director of PE & Sports) — 9787249719.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Thiagarajar Polytechnic College (TPC), Salem ─────────────
+  // Source: Official Thiagarajar Polytechnic College Sports Admissions 2026-27
+  // notification (provided by team May 2026). Government-aided, autonomous,
+  // NBA-accredited polytechnic at Junction Main Road, Salem-636 005.
+  // RECOGNITION: "Best Institution Award" winner for 16 consecutive years —
+  // the highest sports award in polytechnic history. 100% scholarship for
+  // eligible players. NOTE: No fixed trial date in the notification — rolling
+  // admissions across the year. Several sports are MEN ONLY this cycle.
+  {
+    id: 'thiagarajar_polytechnic_salem',
+    collegeName: 'Thiagarajar Polytechnic College (TPC), Salem',
+    collegeNameTa: 'தியாகராஜர் பாலிடெக்னிக் கல்லூரி (TPC), சேலம்',
+    district: 'Salem',
+    type: 'Govt-Aided',
+    field: 'other', // Polytechnic / diploma-level
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: '100% Scholarship for eligible players. Government-aided autonomous polytechnic, NBA accredited. RECOGNITION: "Best Institution Award" winner for 16 consecutive years — the highest sports award in polytechnic history.',
+      schemes: [
+        '100% Scholarship (eligible players)',
+        '"Best Institution Award" — 16 consecutive years',
+        'NBA-accredited Government-aided Autonomous polytechnic',
+        'Aided programmes: CIVIL, MECH, PROD, TEXT, EEE',
+        'Self-supporting programmes: AIML, CSE, ECE, ARCH, CSIT & CE, IOT',
+        'Free sports equipment + kits, on-duty permissions',
+        'Financial assistance for tournament participation + injury treatment',
+        'Management and sports scholarships',
+      ],
+      selectionProcess: 'Direct sports-quota admission at Thiagarajar Polytechnic College, Junction Main Road, Salem-636 005. The Department of Physical Education conducts sports trials and admissions across the year (no fixed single trial date in the notification — rolling). Contact Dr. D. Soundarraj (Physical Director, 9443518126) to schedule a sport-specific trial. Programmes: Aided (CIVIL, MECH, PROD, TEXT, EEE), Self-supporting (AIML, CSE, ECE, ARCH, CSIT & CE, IOT).',
+      // Gender allocations per notification:
+      //   M&W: Athletics, Carrom, Badminton, Ball Badminton, Throwball, Chess,
+      //        Kabaddi, Kho-Kho, Tennikoit, Table Tennis, Volleyball
+      //   Men only: Basketball, Cricket, Football, Handball, Hockey
+      // Carrom, Throwball, Tennikoit not in standard enum → mapped to 'other'.
+      sportsForMen: [
+        'athletics', 'badminton', 'ball-badminton', 'chess',
+        'kabaddi', 'kho-kho', 'table-tennis', 'volleyball',
+        'other', // Carrom + Throwball + Tennikoit
+        // Men only
+        'basketball', 'cricket', 'football', 'handball', 'hockey',
+      ],
+      sportsForWomen: [
+        // Only M&W sports — no Basketball, Cricket, Football, Handball, Hockey
+        'athletics', 'badminton', 'ball-badminton', 'chess',
+        'kabaddi', 'kho-kho', 'table-tennis', 'volleyball',
+        'other', // Carrom + Throwball + Tennikoit
+      ],
+      // No fixed trial date in the notification — admissions are rolling.
+      // trialsMen and trialsWomen intentionally omitted so the splash card
+      // shows "Direct admission · Contact college" instead of a fake date.
+      extraDocuments: [
+        {
+          titleEn: 'Sports certificates (originals)',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள் (அசல்)',
+          detailEn: 'All achievement and participation certificates in original.',
+          detailTa: 'அனைத்து சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் அசலில்.',
+        },
+        {
+          titleEn: '10th-grade pass certificate',
+          titleTa: '10-ஆம் வகுப்பு தேர்ச்சி சான்றிதழ்',
+          detailEn: 'Minimum eligibility for polytechnic admission.',
+          detailTa: 'பாலிடெக்னிக் சேர்க்கைக்கான குறைந்தபட்ச தகுதி.',
+        },
+        {
+          titleEn: 'TNPOLY application',
+          titleTa: 'TNPOLY விண்ணப்பம்',
+          detailEn: 'Apply through the TN Directorate of Technical Education TNPOLY admission portal as well.',
+          detailTa: 'TN தொழில்நுட்பக் கல்வி இயக்ககத்தின் TNPOLY சேர்க்கை இணையதளம் மூலமாகவும் விண்ணப்பிக்கவும்.',
+        },
+      ],
+      // applicationDeadline intentionally OMITTED — no fixed trial date.
+    },
+    contact: {
+      sportsOfficer: 'Dr. D. Soundarraj',
+      designation: 'Physical Director',
+      phone: '+91-94435-18126',
+      sportsOfficer2: 'L. Kannan',
+      designation2: 'Department of Physical Education',
+      phone2: '+91-97151-61942',
+      website: 'https://www.tpt.edu.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.tpt.edu.in',
+    sourceNote: 'Direct from Thiagarajar Polytechnic College (TPC), Salem Sports Admissions 2026-27 notification (provided by team May 2026). Government-aided autonomous NBA-accredited polytechnic at Junction Main Road, Salem-636 005. RECOGNITION: "Best Institution Award" winner for 16 consecutive years (highest sports award in polytechnic history). 100% Scholarship for eligible players. Athlete support: free sports equipment & kits, on-duty permissions for sports activities, financial assistance for tournament participation and injury treatment, management and sports scholarships. Aided programmes: CIVIL, MECH, PROD, TEXT, EEE. Self-supporting: AIML, CSE, ECE, ARCH, CSIT & CE, IOT. M&W sports: Athletics, Carrom, Badminton, Ball Badminton, Throwball, Chess, Kabaddi, Kho-Kho, Tennikoit, Table Tennis, Volleyball. Men only: Basketball, Cricket, Football, Handball, Hockey.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
