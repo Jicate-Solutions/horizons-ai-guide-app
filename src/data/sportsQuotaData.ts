@@ -2290,6 +2290,259 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: St. Joseph's College (Autonomous), Trichy ─────────────────
+  // Source: Official St. Joseph's College Sports Quota Admission notification
+  // (provided by team May 2026). NAAC A++ (Cycle IV), Heritage Status, awarded
+  // "College with Potential for Excellence". Located at Trichy-620002, Tamil
+  // Nadu. NOTE: The notification provided lists 2025 (last cycle) trial
+  // dates, not 2026-27 dates — we capture the historical schedule and the
+  // contact information so candidates can call the Department of Physical
+  // Education for the current 2026-27 trial window. We intentionally OMIT
+  // applicationDeadline and trialsMen/Women so the splash card shows the
+  // generic "Direct admission · Contact college" label instead of surfacing
+  // last year's dates as if they were live.
+  {
+    id: 'stjosephs_trichy',
+    collegeName: "St. Joseph's College (Autonomous), Trichy",
+    collegeNameTa: 'புனித ஜோசப் கல்லூரி (தன்னாட்சி), திருச்சி',
+    district: 'Tiruchirappalli',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Scholarship on college fees and hostel fees for meritorious sports players. St. Joseph\'s College is NAAC A++ (Cycle IV) accredited, holds Heritage Status, and is awarded "College with Potential for Excellence" by UGC.',
+      schemes: [
+        'Up to 100% Scholarship on college fees',
+        'Up to 100% Scholarship on hostel fees',
+        'NAAC A++ (Cycle IV) accredited',
+        'Heritage Status + Potential for Excellence',
+      ],
+      // We list the previous-cycle (2025) schedule here as historical context
+      // — the 2026-27 dates have not yet been published. Candidates should
+      // call the contacts below to confirm the current trial schedule.
+      selectionProcess: 'Direct admission via Department of Physical Education at St. Joseph\'s College, Trichy. PREVIOUS CYCLE (2025) trial schedule was: Cricket 3 April 8:00 AM, Football 4 April 7:00 AM, Ball Badminton 15 April 8:00 AM, Basketball 16 April 7:00 AM, Volleyball 17 April 7:00 AM, Kabaddi 19 April 7:00 AM. The 2026-27 dates have not been published in the available notification — contact Dr. A. Prem Edwin (9789697373) or Dr. S. Renilton Breeze (9944351303) to confirm the current trial schedule. Bring all original academic and sports certificates for verification.',
+      sportsForMen: [
+        'cricket', 'football', 'ball-badminton', 'basketball',
+        'volleyball', 'kabaddi',
+      ],
+      sportsForWomen: [
+        'cricket', 'football', 'ball-badminton', 'basketball',
+        'volleyball', 'kabaddi',
+      ],
+      // applicationDeadline + trialsMen/trialsWomen INTENTIONALLY OMITTED —
+      // the 2026-27 dates aren't published. See selectionProcess for the
+      // 2025 historical schedule as a guide.
+      extraDocuments: [
+        {
+          titleEn: 'Original academic certificates',
+          titleTa: 'அசல் கல்விச் சான்றிதழ்கள்',
+          detailEn: 'All academic certificates (10th, 12th, UG marks card for PG) in original for verification.',
+          detailTa: 'அனைத்து கல்விச் சான்றிதழ்களும் (10-ஆம், 12-ஆம் வகுப்பு, PG-க்கு UG மதிப்பெண் அட்டை) சரிபார்ப்புக்காக அசலில்.',
+        },
+        {
+          titleEn: 'Original sports certificates',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'All sports achievement certificates in original — required for the scholarship tier.',
+          detailTa: 'அனைத்து விளையாட்டு சாதனை சான்றிதழ்களும் அசலில் — உதவித்தொகை அளவுக்குத் தேவை.',
+        },
+      ],
+    },
+    contact: {
+      sportsOfficer: 'Dr. A. Prem Edwin',
+      designation: 'Director of Physical Education',
+      phone: '+91-97896-97373',
+      sportsOfficer2: 'Dr. S. Renilton Breeze',
+      designation2: 'Asst. Director of Physical Education',
+      phone2: '+91-99443-51303',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from St. Joseph\'s College (Autonomous), Trichy Sports Quota Admission notification (provided by team May 2026). NAAC A++ (Cycle IV), Heritage Status, "College with Potential for Excellence". Located at Trichy-620002. Up to 100% Scholarship on college and hostel fees for meritorious sports players. Sports: Cricket, Football, Ball Badminton, Basketball, Volleyball, Kabaddi. IMPORTANT: The notification provided lists 2025 (last cycle) trial dates — 2026-27 schedule must be confirmed by calling Dr. A. Prem Edwin (9789697373) or Dr. S. Renilton Breeze (9944351303).',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Dhaanish Ahmed College of Engineering (DACE) ─────────────
+  // Source: Official DACE TAIIKU BECA 2026 sports quota notification
+  // (provided by team May 2026). NAAC A+ accredited autonomous engineering
+  // college, Anna University affiliated, AICTE approved. TNEA counselling
+  // code 1424. Open to School / District / State / National-level players —
+  // this is a college-run direct sports trial separate from TNEA's universal
+  // 2% sports quota (which only accepts State+). No specific trial date in
+  // the notification — students register via the QR code / Bitly link.
+  {
+    id: 'dace_kanchipuram',
+    collegeName: 'Dhaanish Ahmed College of Engineering (DACE)',
+    collegeNameTa: 'தானிஷ் அஹமது பொறியியல் கல்லூரி (DACE)',
+    district: 'Kanchipuram',
+    type: 'Autonomous',
+    field: 'engineering',
+    // DACE admits via TNEA (counselling code 1424). The TAIIKU BECA 2026
+    // trial is a college-run direct path on top of TNEA — accepts even
+    // school-level achievers, which the universal TNEA quota would not.
+    counsellingBody: 'TNEA',
+    overrides: {
+      // Notification explicitly accepts School / District / State / National
+      minLevel: 'school',
+      sportsScholarship: 'Up to 100% Sports Scholarship for eligible players selected through TAIIKU BECA 2026. NAAC A+ accredited autonomous engineering college, Anna University affiliated, AICTE approved.',
+      schemes: [
+        'Up to 100% Sports Scholarship (TAIIKU BECA 2026)',
+        'TNEA counselling code 1424',
+        'NAAC A+, Anna University affiliated, AICTE approved',
+        'School / District / State / National level all accepted (college direct path)',
+      ],
+      selectionProcess: 'TAIIKU BECA 2026 — DACE\'s college-run sports trial open to players from School, District, State, or National levels (broader than the TNEA universal sports quota which only accepts State+). Online registration via QR code or the official link: https://bit.ly/4rk8gUR. Selection-trial date and venue to be confirmed by the Physical Director — call Dr. S Dhayanithi (9094883773) for the current schedule. Sports quota candidates also need to apply through TNEA using counselling code 1424.',
+      sportsForMen: [
+        'cricket', 'volleyball', 'football', 'athletics', 'kabaddi',
+      ],
+      sportsForWomen: [
+        'cricket', 'volleyball', 'football', 'athletics', 'kabaddi',
+      ],
+      // No specific trial date in the notification — applicationDeadline and
+      // trialsMen/trialsWomen intentionally omitted so the splash card shows
+      // the standard "Via TNEA · Counselling Jul 2026" label.
+      extraDocuments: [
+        {
+          titleEn: 'Sports achievement certificate (original)',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ் (அசல்)',
+          detailEn: 'Valid sports certificate is mandatory — players from School/District/State/National levels all eligible.',
+          detailTa: 'செல்லுபடியாகும் விளையாட்டு சான்றிதழ் கட்டாயம் — பள்ளி / மாவட்ட / மாநில / தேசிய அளவிலான ஆட்டக்காரர்கள் எல்லோரும் தகுதியானவர்கள்.',
+        },
+        {
+          titleEn: 'Transfer Certificate (TC)',
+          titleTa: 'மாற்றுச் சான்றிதழ் (TC)',
+          detailEn: 'From last attended school/college.',
+          detailTa: 'கடைசியாக பயின்ற பள்ளி / கல்லூரியிலிருந்து.',
+        },
+        {
+          titleEn: '2 passport-size photos',
+          titleTa: '2 பாஸ்போர்ட் அளவு புகைப்படங்கள்',
+          detailEn: 'Two recent passport-size photographs.',
+          detailTa: 'இரண்டு சமீபத்திய பாஸ்போர்ட் அளவு புகைப்படங்கள்.',
+        },
+        {
+          titleEn: 'E-Community Certificate',
+          titleTa: 'மின்-சமூகம் சான்றிதழ்',
+          detailEn: 'Online Community Certificate (E-Community) from the Tamil Nadu government portal.',
+          detailTa: 'தமிழ்நாடு அரசின் இணையதளத்தில் இருந்து ஆன்லைன் சமூக சான்றிதழ் (மின்-சமூகம்).',
+        },
+        {
+          titleEn: '10th and 12th mark sheets (copies)',
+          titleTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்களின் நகல்கள்',
+          detailEn: 'Photocopies of 10th and 12th mark sheets.',
+          detailTa: '10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் சான்றிதழ்களின் நகல்கள்.',
+        },
+        {
+          titleEn: 'Online registration (QR code / bit.ly link)',
+          titleTa: 'ஆன்லைன் பதிவு (QR கோடு / bit.ly இணைப்பு)',
+          detailEn: 'Register at https://bit.ly/4rk8gUR or scan the QR code on the official poster.',
+          detailTa: 'https://bit.ly/4rk8gUR-ல் பதிவு செய்யவும் அல்லது அதிகாரப்பூர்வ சுவரொட்டியில் உள்ள QR கோடை ஸ்கேன் செய்யவும்.',
+        },
+      ],
+    },
+    contact: {
+      sportsOfficer: 'Dr. S Dhayanithi',
+      designation: 'Physical Director',
+      phone: '+91-90948-83773',
+      sportsOfficer2: 'Mr. C Elayaraja',
+      designation2: 'Admission Counselor',
+      phone2: '+91-87786-12120',
+      applicationLink: 'https://bit.ly/4rk8gUR',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Dhaanish Ahmed College of Engineering (DACE) TAIIKU BECA 2026 Sports Quota notification (provided by team May 2026). NAAC A+ accredited autonomous engineering college, Anna University affiliated, AICTE approved. TNEA counselling code 1424. Open to School / District / State / National level players in Cricket, Volleyball, Football, Athletics, Kabaddi. Up to 100% Sports Scholarship for eligible players. Online registration via QR code or https://bit.ly/4rk8gUR. Contacts: Dr. S Dhayanithi (PD) 9094883773; Mr. C Elayaraja (Admission Counselor) 8778612120.',
+    lastVerified: '2026-05-13',
+  },
+
+  // ─── VERIFIED: Annai Arts and Science College, Harur ─────────────────────
+  // Source: Official Annai College Sports Quota Selection Trials 2026-27
+  // notification (provided by team May 2026). Located at Salem Main Road,
+  // Nambipatti, Harur, Dharmapuri district. Tiered scholarship: State level
+  // = 100%, District level = 50%. Free-entry team-format trial (volleyball,
+  // kabaddi, basketball — minimum 3 members per team). Trial dates 25-26
+  // April 2026; cash prizes of ₹4000 (1st) / ₹2000 (2nd) for winning teams.
+  {
+    id: 'annai_dharmapuri',
+    collegeName: 'Annai Arts and Science College, Harur',
+    collegeNameTa: 'அன்னை கலை மற்றும் அறிவியல் கல்லூரி, ஹாரூர்',
+    district: 'Dharmapuri',
+    type: 'Private',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      // Tiered: District = 50% scholarship; State = 100% scholarship.
+      // District is the lower acceptance level.
+      minLevel: 'district',
+      sportsScholarship: 'Tiered Sports Scholarship — State Level = 100% Scholarship, District Level = 50% Scholarship. Cash prizes for winning teams: ₹4000 (1st), ₹2000 (2nd). Free entry. Open for Men & Women across Volleyball, Kabaddi, and Basketball.',
+      schemes: [
+        '100% Scholarship for State level achievers',
+        '50% Scholarship for District level achievers',
+        '₹4000 prize (1st), ₹2000 prize (2nd) for winning teams',
+        'Free entry · Team format (min 3 members per team)',
+      ],
+      selectionProcess: 'Two-day team-format selection trial held 25 & 26 April 2026 at Annai College Campus, Salem Main Road, Nambipatti, Harur, Dharmapuri-636 903. Sports: Volleyball, Kabaddi, Basketball — for both Men and Women. Each team must consist of a minimum of 3 members who passed the 12th grade in 2025 or 2026. Bring original Aadhaar card (photocopies and mobile photos NOT accepted). Must attend in proper game kit. Entry is free.',
+      sportsForMen: [
+        'volleyball', 'kabaddi', 'basketball',
+      ],
+      sportsForWomen: [
+        'volleyball', 'kabaddi', 'basketball',
+      ],
+      trialsMen: [
+        { sport: 'volleyball', date: '2026-04-25', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'kabaddi',    date: '2026-04-25', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'basketball', date: '2026-04-25', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'volleyball', date: '2026-04-26', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'kabaddi',    date: '2026-04-26', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'basketball', date: '2026-04-26', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+      ],
+      trialsWomen: [
+        { sport: 'volleyball', date: '2026-04-25', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'kabaddi',    date: '2026-04-25', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'basketball', date: '2026-04-25', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'volleyball', date: '2026-04-26', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'kabaddi',    date: '2026-04-26', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+        { sport: 'basketball', date: '2026-04-26', time: 'See poster', venue: 'Annai College Campus, Salem Main Road, Nambipatti, Harur' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Original Aadhaar card',
+          titleTa: 'அசல் ஆதார் அட்டை',
+          detailEn: 'STRICT requirement — original Aadhaar card only. Photocopies and mobile photos will NOT be accepted on the trial day.',
+          detailTa: 'கடுமையான விதி — அசல் ஆதார் அட்டை மட்டுமே. நகல்கள் மற்றும் மொபைல் புகைப்படங்கள் தேர்வு நாளில் ஏற்கப்படாது.',
+        },
+        {
+          titleEn: 'Original sports certificates',
+          titleTa: 'அசல் விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'Sports achievement certificates — State level = 100% scholarship, District level = 50%.',
+          detailTa: 'விளையாட்டு சாதனை சான்றிதழ்கள் — மாநில அளவு = 100% உதவித்தொகை, மாவட்ட அளவு = 50%.',
+        },
+        {
+          titleEn: '12th-grade pass certificate (2025 or 2026)',
+          titleTa: '12-ஆம் வகுப்பு தேர்ச்சிச் சான்றிதழ் (2025 அல்லது 2026)',
+          detailEn: 'Must have passed 12th grade in 2025 or 2026. Minimum 3 team members required per team.',
+          detailTa: '2025 அல்லது 2026-ல் 12-ஆம் வகுப்பு தேர்ச்சி பெற்றிருக்க வேண்டும். ஒரு அணியில் குறைந்தபட்சம் 3 உறுப்பினர்கள் தேவை.',
+        },
+        {
+          titleEn: 'Proper game kit',
+          titleTa: 'பொருத்தமான விளையாட்டு உடை',
+          detailEn: 'Attend in proper sports/game uniform.',
+          detailTa: 'பொருத்தமான விளையாட்டு / கேம் உடையில் வரவும்.',
+        },
+      ],
+      applicationDeadline: '25 April 2026', // first day of the trial window
+    },
+    contact: {
+      sportsOfficer: 'Team Registration',
+      designation: 'Sports Trials Coordinator',
+      phone: '+91-95002-03612',
+      sportsOfficer2: 'General Admissions',
+      designation2: 'Admissions Office',
+      phone2: '+91-94865-77717',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Annai Arts and Science College, Harur Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Salem Main Road, Nambipatti, Harur, Dharmapuri-636 903. Two-day team-format selection trial 25-26 April 2026. Sports: Volleyball, Kabaddi, Basketball (M&W). Tiered scholarship: State = 100%, District = 50%. ₹4000 / ₹2000 cash prizes. Free entry. Team min 3 members, 12th-grade pass in 2025 or 2026 required. STRICT: bring ORIGINAL Aadhaar (no photocopy or mobile photo). 24+ UG/PG programmes including B.Sc. AI & Data Science, Hotel Management, Clinical Lab Tech, and a Ph.D. in Tamil.',
+    lastVerified: '2026-05-13',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
