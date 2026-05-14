@@ -372,8 +372,15 @@ const GovernmentExams = () => {
                                     {/* ── ACTION BUTTONS ── */}
                                     <div className="grid grid-cols-2 gap-2.5 pt-2">
                                       {detail && detail.topics > 0 && (
-                                        <button onClick={() => navigate(`/government-exams/${detail.cat}/${detail.id}`)} className="flex items-center justify-center gap-2 h-12 rounded-xl border-2 border-indigo-200 bg-indigo-50 text-sm font-bold text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 transition-all active:scale-95">
-                                          <BookOpen className="w-4.5 h-4.5" /> {t ? 'பாடத்திட்டம்' : 'Syllabus'} ({detail.topics})
+                                        <button
+                                          onClick={() =>
+                                            exam.syllabusPdf
+                                              ? window.open(exam.syllabusPdf, '_blank', 'noopener,noreferrer')
+                                              : navigate(`/government-exams/${detail.cat}/${detail.id}`)
+                                          }
+                                          className="flex items-center justify-center gap-2 h-12 rounded-xl border-2 border-indigo-200 bg-indigo-50 text-sm font-bold text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 transition-all active:scale-95"
+                                        >
+                                          <BookOpen className="w-4 h-4" /> {t ? 'பாடத்திட்டம்' : 'Syllabus'} ({detail.topics})
                                         </button>
                                       )}
                                       {detail && detail.pyq > 0 && (

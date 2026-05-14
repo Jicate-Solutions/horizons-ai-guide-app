@@ -70,6 +70,12 @@ export interface Exam {
   postsTamil?: string[];
   examPattern?: ExamPattern[];
   syllabus: Syllabus;
+  /**
+   * Optional path to the official syllabus PDF (served from /public).
+   * When present, the "Syllabus" button opens this PDF directly instead of
+   * navigating to the in-app detail page.
+   */
+  syllabusPdf?: string;
   pyq: Question[];
   previousYearPapers?: PreviousYearPaper[];
 }
@@ -1617,6 +1623,7 @@ const stateExams: Exam[] = [
       { paper: 'Part B: General Studies (SSLC)', paperTamil: 'பகுதி B: பொதுப் படிப்பு (SSLC)', marks: 112, duration: 'Included in 3 Hours', questions: 75 },
       { paper: 'Part C: Aptitude & Mental Ability', paperTamil: 'பகுதி C: திறன் & மன திறன்', marks: 38, duration: 'Included in 3 Hours', questions: 25 }
     ],
+    syllabusPdf: '/tnpsc-group4-syllabus.pdf',
     syllabus: {
       'Part A — General Studies (SSLC Standard, 75 Qs, 112.5 Marks)': [
         {
@@ -2892,7 +2899,7 @@ export const officialSyllabusUrls: Record<string, string> = {
   'ssc-mts': 'https://ssc.gov.in',
   'ssc-gd': 'https://ssc.gov.in/portal/pdf/GD_Constable_2025_Notification.pdf',
   'ssc-steno': 'https://ssc.gov.in',
-  'tnpsc-group4': 'https://www.tnpsc.gov.in/notifications/2025_Group_IV_Notification.pdf',
+  'tnpsc-group4': '/tnpsc-group4-syllabus.pdf',
   'tn-police-constable': 'https://www.tnusrb.tn.gov.in',
   'tn-forest-guard': 'https://www.tnfusrc.gov.in',
   'india-post-gds': 'https://indiapostgdsonline.gov.in',
