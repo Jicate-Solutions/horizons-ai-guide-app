@@ -177,7 +177,7 @@ const C = (id: string, name: string, short: string, dur: string, ent: string, en
   id, name, shortName: short, duration: dur, entrance: ent, entranceRequired: entReq, fee, salaryRange: sal, demandLevel: dem, description: desc, careers, topColleges: colleges, skills, ...extra
 });
 
-// ═══ 1. ENGINEERING & TECHNOLOGY (20 courses) ═══
+// ═══ 1. ENGINEERING & TECHNOLOGY (22 courses) ═══
 const engineeringCourses: CourseCategory = {
   name: "Engineering & Technology",
   icon: "🔧",
@@ -202,6 +202,8 @@ const engineeringCourses: CourseCategory = {
     C("btech-agri", "B.Tech Agricultural Engineering", "B.Tech Agri", "4 years", "JEE Main / ICAR", true, "₹1-6L", "₹3-12 LPA", 3, "Farm machinery, irrigation systems, food processing.", ["Agricultural Engineer", "Farm Manager", "Agri-tech"], ["TNAU Coimbatore", "IIT Kharagpur", "ICAR Colleges"], ["Farm Machinery", "Irrigation", "Soil Science"]),
     C("btech-env", "B.Tech Environmental Engineering", "B.Tech Env", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-12 LPA", 3, "Pollution control, waste management, environmental impact assessment.", ["Environmental Engineer", "EIA Consultant", "Pollution Control"], ["IIT Madras", "NIT Trichy", "Anna Univ"], ["EIA", "Water Treatment", "Waste Management"]),
     C("btech-instru", "B.Tech Instrumentation Engineering", "B.Tech Instru", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-15 LPA", 3, "Sensors, control systems, process automation, IoT.", ["Instrumentation Engineer", "Process Control", "IoT"], ["NIT Trichy", "Anna Univ", "PSG Tech"], ["PLC/SCADA", "Sensors", "Control Systems"]),
+    C("btech-mechatronics", "B.Tech Mechatronics Engineering", "B.Tech Mechatronics", "4 years", "JEE Main / TNEA", true, "₹1-10L", "₹4-16 LPA", 4, "A blend of mechanical, electronics and computer control — robotics, automation and smart manufacturing systems.", ["Automation Engineer", "Robotics Engineer", "Mechatronics Engineer", "Control Systems Engineer"], ["Anna Univ", "PSG Tech", "Kongu Engineering College", "Thiagarajar College of Engineering"], ["Robotics", "PLC/SCADA", "CAD", "Embedded Systems"]),
+    C("btech-petroleum", "B.Tech Petroleum Engineering", "B.Tech Petroleum", "4 years", "JEE Main / TNEA", true, "₹2-15L", "₹4-25 LPA", 3, "Exploration, drilling and production of oil and gas. A niche, high-paying field with employers like ONGC and private energy firms.", ["Petroleum Engineer", "Drilling Engineer", "Reservoir Engineer", "ONGC/Oil PSU"], ["Anna Univ (ACT Campus)", "AMET University", "Hindustan Institute of Tech"], ["Reservoir Engineering", "Drilling", "Geology", "Process Safety"]),
   ],
 };
 
@@ -218,7 +220,7 @@ const architectureCourses: CourseCategory = {
   ],
 };
 
-// ═══ 3. PURE SCIENCES (18 courses) ═══
+// ═══ 3. PURE SCIENCES (19 courses) ═══
 const pureScienceCourses: CourseCategory = {
   name: "Pure Sciences & IT",
   icon: "🔬",
@@ -241,6 +243,7 @@ const pureScienceCourses: CourseCategory = {
     C("bsc-it", "B.Sc Information Technology", "B.Sc IT", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 4, "IT systems, networking, web and application development, databases. Offered widely in TN arts & science colleges, distinct from B.Sc CS.", ["Software Developer", "System Administrator", "IT Support", "Web Developer"], ["Loyola", "MCC", "PSG College of Arts & Science", "Bharathiar University"], ["Programming", "Networking", "Web Development", "Databases"]),
     C("bsc-data-science", "B.Sc Data Science", "B.Sc Data Science", "3 years", "Merit / CUET", false, "₹40K-4L", "₹4-15 LPA", 5, "Statistics, programming and analytics applied to data. A growing 3-year route into analytics roles, distinct from the 4-year B.Tech AI & Data Science.", ["Data Analyst", "Business Analyst", "Data Scientist", "MIS Executive"], ["Loyola", "PSG College of Arts & Science", "Christ University", "Madras Christian College"], ["Python", "Statistics", "SQL", "Data Visualization"], { hot: true }),
     C("bsc-psychology", "B.Sc Psychology", "B.Sc Psychology", "3 years", "Merit / CUET", false, "₹25K-4L", "₹3-15 LPA", 4, "The science of mind and behaviour, with a stronger research and lab emphasis than the B.A route. Many TN colleges now offer it as a B.Sc.", ["Counsellor", "Clinical Psychologist", "HR Specialist", "Research Assistant"], ["Women's Christian College", "Stella Maris", "MCC", "Christ University"], ["Counselling", "Research Methods", "Statistics", "Communication"]),
+    C("bsc-cybersecurity", "B.Sc Cyber Security", "B.Sc Cyber Security", "3 years", "Merit / CUET", false, "₹40K-4L", "₹4-15 LPA", 5, "Network security, ethical hacking, digital forensics and information protection. A fast-growing 3-year route into security roles.", ["Security Analyst", "Ethical Hacker", "SOC Analyst", "Cyber Forensic Investigator"], ["Loyola", "PSG College of Arts & Science", "SRM", "Hindustan Institute of Tech"], ["Ethical Hacking", "Networking", "Cryptography", "Digital Forensics"], { hot: true }),
   ],
 };
 const defenseCourses: CourseCategory = {
@@ -339,7 +342,7 @@ const professionalCourses: CourseCategory = {
   ],
 };
 
-// ═══ 11. COMMERCE & MANAGEMENT UG (12 courses) ═══
+// ═══ 11. COMMERCE & MANAGEMENT UG (14 courses) ═══
 const ugCommerceCourses: CourseCategory = {
   name: "Commerce & Management UG",
   icon: "💼",
@@ -356,6 +359,8 @@ const ugCommerceCourses: CourseCategory = {
     C("ba-economics", "B.A Economics (Honours)", "B.A Economics", "3 years", "Merit / CUET", false, "₹15K-5L", "₹4-20 LPA", 4, "Economic theory, policy analysis. Gateway to RBI/UPSC/MBA.", ["Economist", "Policy Analyst", "RBI", "UPSC", "Banking"], ["St. Stephen's", "Hindu College", "Presidency", "DSE"], ["Economic Analysis", "Statistics", "Policy"]),
     C("bcom-af", "B.Com Accounting & Finance", "B.Com A&F", "3 years", "Merit / CUET", false, "₹15K-4L", "₹3-12 LPA", 4, "A specialised B.Com focused on accounting, taxation, auditing and corporate finance. A common, strong base for CA/CMA preparation.", ["Accountant", "Auditor", "Financial Analyst", "CA/CMA Preparation", "Banking"], ["Loyola", "PSG College of Arts & Science", "Christ University", "Madras Christian College"], ["Advanced Accounting", "Taxation", "Auditing", "Finance"]),
     C("bms", "BMS — Bachelor of Management Studies", "BMS", "3 years", "Merit / CUET", false, "₹40K-5L", "₹3-12 LPA", 4, "Management-focused degree with a heavier emphasis on management theory and analytics than BBA. A direct route into management trainee roles and MBA.", ["Management Trainee", "Business Analyst", "Operations Executive", "HR Executive"], ["Christ University", "Loyola", "Symbiosis", "PSG College of Arts & Science"], ["Management", "Analytics", "Marketing", "Operations"]),
+    C("bcom-ism", "B.Com Information Systems Management", "B.Com ISM", "3 years", "Merit / CUET", false, "₹15K-4L", "₹3-12 LPA", 4, "Commerce combined with business software, ERP and data tools — a strong fit for finance roles that need IT skills.", ["Business Analyst", "ERP Consultant", "Accountant", "MIS Executive"], ["Loyola", "PSG College of Arts & Science", "Madras Christian College", "Bharathiar University"], ["Accounting", "ERP/Tally", "Business Software", "Data Tools"]),
+    C("bcom-bank", "B.Com Bank Management", "B.Com Bank Mgmt", "3 years", "Merit / CUET", false, "₹15K-3L", "₹3-10 LPA", 4, "Commerce focused on banking operations, financial services and insurance — a direct base for bank exams and finance jobs.", ["Bank PO/Clerk", "Financial Services Executive", "Loan Officer", "Insurance Advisor"], ["PSG College of Arts & Science", "Loyola", "Bharathiar University", "Madras University"], ["Banking Operations", "Finance", "Accounting", "Financial Services"]),
   ],
 };
 
@@ -420,7 +425,7 @@ const socialWorkCourses: CourseCategory = {
   ],
 };
 
-// ═══ 17. ARTS & HUMANITIES UG (12 courses) ═══
+// ═══ 17. ARTS & HUMANITIES UG (17 courses) ═══
 const artsUGCourses: CourseCategory = {
   name: "Humanities & Liberal Arts",
   icon: "📚",
@@ -437,6 +442,11 @@ const artsUGCourses: CourseCategory = {
     C("ba-philosophy", "B.A Philosophy", "B.A Philosophy", "3 years", "Merit / CUET", false, "₹5K-1.5L", "₹3-10 LPA", 2, "Logic, ethics, metaphysics. Develops critical thinking for UPSC/Law.", ["UPSC (Ethics paper)", "Lawyer", "Writer", "Professor"], ["St. Stephen's", "Presidency", "JNU"], ["Logic", "Ethics", "Critical Thinking"]),
     C("ba-journalism", "B.A Journalism", "B.A Journalism", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 3, "News reporting, writing, digital journalism.", ["Journalist", "Reporter", "Digital Content Creator", "PR"], ["IIMC Delhi", "ACJ Chennai", "Symbiosis"], ["Writing", "Reporting", "Digital Media"]),
     C("ba-music", "B.A Music (Carnatic / Hindustani)", "B.A Music", "3 years", "Audition / Merit", false, "₹10K-2L", "₹2-10 LPA", 2, "Classical music — vocal or instrumental. Perform or teach.", ["Musician", "Music Teacher", "Performer", "Composer"], ["Kalakshetra Chennai", "University of Madras", "BHU"], ["Carnatic/Hindustani Music", "Performance", "Theory"]),
+    C("ba-sanskrit", "B.A Sanskrit", "B.A Sanskrit", "3 years", "Merit", false, "₹8K-1.5L", "₹2-8 LPA", 2, "Classical Sanskrit language, literature and texts. A base for teaching, research, and competitive exams that reward a language subject.", ["Sanskrit Teacher", "Researcher", "Translator", "Epigraphist"], ["University of Madras", "Madras Sanskrit College", "Annamalai University"], ["Sanskrit", "Translation", "Classical Literature"]),
+    C("ba-french", "B.A French (or other foreign language)", "B.A French", "3 years", "Merit", false, "₹20K-3L", "₹3-12 LPA", 3, "Foreign-language degree (French, German, etc.) — opens translation, tourism, BPO and overseas-facing roles.", ["Translator", "Interpreter", "Language Trainer", "Tourism / BPO Roles"], ["University of Madras", "Stella Maris", "Alliance Française (affiliated)", "Pondicherry University"], ["French Language", "Translation", "Communication"]),
+    C("ba-anthropology", "B.A Anthropology", "B.A Anthropology", "3 years", "Merit / CUET", false, "₹15K-2.5L", "₹3-10 LPA", 3, "The study of human societies, cultures and evolution. Useful for research, social development and the UPSC optional subject.", ["Researcher", "Social Development Officer", "NGO / Policy Roles", "UPSC Aspirant"], ["University of Madras", "Pondicherry University", "Central Universities"], ["Ethnography", "Research Methods", "Social Analysis"]),
+    C("ba-defence-studies", "B.A Defence & Strategic Studies", "B.A Defence Studies", "3 years", "Merit", false, "₹10K-2L", "₹2-10 LPA", 2, "National security, military history and strategy. Pairs well with defence-services aspirations and the UPSC optional.", ["Defence Services Aspirant", "Researcher", "Civil Services Aspirant", "Teacher"], ["University of Madras", "Annamalai University", "Central Universities"], ["Strategic Studies", "Military History", "International Relations"]),
+    C("blib-sc", "B.Lib.Sc — Library & Information Science", "B.Lib.Sc", "1 year (after a degree)", "Merit", false, "₹8K-1L", "₹2-8 LPA", 2, "Library management, cataloguing and digital information systems. A one-year professional course taken after any UG degree.", ["Librarian", "Information Officer", "Archivist", "Documentation Assistant"], ["University of Madras", "Annamalai University", "Bharathidasan University"], ["Cataloguing", "Digital Libraries", "Information Management"]),
   ],
 };
 

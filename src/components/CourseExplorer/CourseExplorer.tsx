@@ -54,12 +54,12 @@ const CourseExplorer = () => {
           </h1>
           <p className="text-sm text-violet-300 font-medium mb-1">உங்கள் எதிர்காலப் படிப்பைக் கண்டறியுங்கள்</p>
           <p className="text-xs text-violet-200/60 max-w-md mb-5">
-            Discover the perfect course for your future — select your board, stream, and group to explore 149+ courses
+            Discover the perfect course for your future — select your board, stream, and group to explore 159+ courses
           </p>
 
           <div className="flex items-center gap-6 md:gap-8 mb-4">
             {[
-              { value: '149+', label: 'Courses', color: 'text-white' },
+              { value: '159+', label: 'Courses', color: 'text-white' },
               { value: String(boards.length), label: 'Boards', color: 'text-amber-300' },
               { value: '5', label: 'Streams', color: 'text-violet-300' },
               { value: '20+', label: 'Groups', color: 'text-emerald-300' },
@@ -83,7 +83,7 @@ const CourseExplorer = () => {
         {[
           { step: '1', emoji: '📚', label: 'Select Board', desc: 'TN, CBSE, ICSE...' },
           { step: '2', emoji: '🔬', label: 'Pick Stream', desc: 'Science, Commerce...' },
-          { step: '3', emoji: '🎯', label: 'Explore Courses', desc: '149+ options' },
+          { step: '3', emoji: '🎯', label: 'Explore Courses', desc: '159+ options' },
         ].map((s, i) => (
           <div key={i} className="bg-white rounded-xl p-3 border border-gray-200 text-center shadow-sm">
             <div className="text-2xl mb-1">{s.emoji}</div>
