@@ -1266,6 +1266,7 @@ const sscExams: Exam[] = [
       { paper: 'Tier 2 Session 2 - English & GA', paperTamil: 'நிலை 2 அமர்வு 2 - ஆங்கிலம் & பொது அறிவு', marks: 60, duration: '60 mins', questions: 60 },
       { paper: 'Tier 2 Session 2 - Computer Knowledge', paperTamil: 'நிலை 2 அமர்வு 2 - கணினி அறிவு', marks: 15, duration: 'Included', questions: 15 }
     ],
+    syllabusPdf: '/ssc-chsl-2026-syllabus.pdf',
     syllabus: {
       'Tier 1 — Qualifying CBT (100 Qs, 200 Marks, 60 Minutes)': [
         {
@@ -2895,7 +2896,7 @@ export const officialSyllabusUrls: Record<string, string> = {
   'rrb-ntpc': 'https://www.rrbapply.gov.in/syllabus',
   'rrb-group-d': 'https://www.rrbapply.gov.in/syllabus',
   'rpf-constable': 'https://www.rrbapply.gov.in/syllabus',
-  'ssc-chsl': 'https://ssc.gov.in',
+  'ssc-chsl': '/ssc-chsl-2026-syllabus.pdf',
   'ssc-mts': 'https://ssc.gov.in',
   'ssc-gd': 'https://ssc.gov.in/portal/pdf/GD_Constable_2025_Notification.pdf',
   'ssc-steno': 'https://ssc.gov.in',
