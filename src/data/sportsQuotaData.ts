@@ -4279,6 +4279,202 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-14',
   },
 
+  // ─── VERIFIED: Shree Venkateshwara Group of Institutions, Erode ─────────
+  // Source: Official Shree Venkateshwara Group of Institutions Sports Quota
+  // Selection Trials 2026 notification (provided by team May 2026). Located
+  // at Othakuthirai, Gobichettipalayam, Erode. Two-day trial schedule:
+  // 7 April 2026 and 8 April 2026. Up to 100% free education for deserving
+  // sports players based on achievement and trial performance. The flyer
+  // does not split events by gender, so trials are treated as open to both
+  // Men and Women. Carrom, Throwball and Best Physique are not in the
+  // standard Sport enum — mapped to 'other'.
+  {
+    id: 'svgi_erode',
+    collegeName: 'Shree Venkateshwara Group of Institutions',
+    collegeNameTa: 'ஶ்ரீ வெங்கடேஶ்வரா குழும நிறுவனங்கள்',
+    district: 'Erode',
+    type: 'Private',
+    field: 'engineering',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% free education for deserving sports players, awarded based on sporting achievements and performance in the selection trials. Trials conducted across two days covering a wide range of team, combat and individual sports.',
+      schemes: [
+        'Up to 100% free education for deserving sports players',
+        'Scholarship based on achievements + trial performance',
+        'Two-day trial schedule covering 16 sports',
+        'Open to both Men and Women',
+      ],
+      selectionProcess: 'Two-day offline selection trials at Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode. Day 1 (7 April 2026): Kabaddi, Volleyball, Chess, Carrom, Cricket, Football, Handball, Throwball. Day 2 (8 April 2026): Kho-Kho, Weight Lifting, Power Lifting, Best Physique, Wrestling, Hockey, Athletics (Track & Field), Yoga. Bring sports achievement certificates for verification. Contact a coordinator to register.',
+      sportsForMen: [
+        'kabaddi', 'volleyball', 'chess', 'cricket', 'football', 'handball',
+        'kho-kho', 'weightlifting', 'powerlifting', 'wrestling', 'hockey',
+        'athletics', 'yoga',
+        'other', // Carrom + Throwball + Best Physique
+      ],
+      sportsForWomen: [
+        'kabaddi', 'volleyball', 'chess', 'cricket', 'football', 'handball',
+        'kho-kho', 'weightlifting', 'powerlifting', 'wrestling', 'hockey',
+        'athletics', 'yoga',
+        'other', // Carrom + Throwball + Best Physique
+      ],
+      trialsMen: [
+        { sport: 'kabaddi',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'volleyball',   date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'chess',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'cricket',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'football',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'handball',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'other',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Carrom + Throwball (Day 1)
+        { sport: 'kho-kho',      date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'weightlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'powerlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'wrestling',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'hockey',       date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'athletics',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'yoga',         date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+      ],
+      trialsWomen: [
+        { sport: 'kabaddi',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'volleyball',   date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'chess',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'cricket',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'football',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'handball',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'other',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Carrom + Throwball (Day 1)
+        { sport: 'kho-kho',      date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'weightlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'powerlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'wrestling',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'hockey',       date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'athletics',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'yoga',         date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'Original sports achievement and participation certificates for verification at the trial.',
+          detailTa: 'முயற்சியில் சரிபார்ப்புக்காக அசல் விளையாட்டு சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள்.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th and 12th mark sheets for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் 10-ஆம் மற்றும் 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள்.',
+        },
+      ],
+      applicationDeadline: '7-8 April 2026 (trial dates)',
+    },
+    contact: {
+      sportsOfficer: 'Mr. N. Prabakaran',
+      designation: 'Sports Quota Coordinator',
+      phone: '+91-80156-43050',
+      sportsOfficer2: 'Mr. P. Dinesh',
+      designation2: 'Sports Quota Coordinator',
+      phone2: '+91-96591-21351',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Shree Venkateshwara Group of Institutions Sports Quota Selection Trials 2026 notification (provided by team May 2026). Located at Othakuthirai, Gobichettipalayam, Erode. Up to 100% free education for deserving sports players based on achievements and trial performance. Two-day trial schedule: Day 1 (7 April 2026) — Kabaddi, Volleyball, Chess, Carrom, Cricket, Football, Handball, Throwball; Day 2 (8 April 2026) — Kho-Kho, Weight Lifting, Power Lifting, Best Physique, Wrestling, Hockey, Athletics (Track & Field), Yoga. Carrom, Throwball and Best Physique mapped to "other" (not in standard enum). Flyer does not split events by gender — treated as open to both Men and Women. Coordinators: Mr. N. Prabakaran 80156 43050, Mr. P. Dinesh 96591 21351, Mr. A. Elavarasan 95976 72410, Mr. K. Manikandan 96987 82434, Ms. S. Bhavani 84385 43050, Mr. N. Ramu Udhyakumar 96888 82626.',
+    lastVerified: '2026-05-14',
+  },
+
+  // ─── VERIFIED: Excel Group Institutions, Komarapalayam ─────────────────
+  // Source: Official Excel Group Institutions Sports Quota Admissions &
+  // Selection Trials 2026-27 notification (provided by team May 2026).
+  // Located on NH-544, Salem-Coimbatore Highway, Komarapalayam-637 303
+  // (Namakkal district). Single-day trial on 29 May 2026, 9:30 AM at the
+  // Excel Aero Ground. Open to District / State / National level athletes
+  // with valid sports achievement certificates. All events open to Men &
+  // Women except Football, which is Men-only. Judo mapped to 'martial-arts'.
+  {
+    id: 'excel_komarapalayam',
+    collegeName: 'Excel Group Institutions',
+    collegeNameTa: 'எக்செல் குழும நிறுவனங்கள்',
+    district: 'Namakkal',
+    type: 'Private',
+    field: 'engineering',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Sports Quota admissions for the 2026-27 academic year. Open to District, State and National level participants with valid sports achievement certificates. The institution seeks athletes with discipline, commitment, team spirit, strong athletic performance and leadership qualities.',
+      schemes: [
+        'Sports Quota admissions for 2026-27',
+        'Open to District / State / National level athletes',
+        'Valid sports achievement certificates required',
+        'All events open to Men & Women (Football is Men-only)',
+      ],
+      selectionProcess: 'Single-day offline selection trials on 29 May 2026, starting 9:30 AM at the Excel Aero Ground, Excel Group Institutions, NH-544, Salem-Coimbatore Highway, Komarapalayam-637 303. Trials cover team sports (Volleyball, Ball Badminton, Basketball, Football [Men only], Kabaddi), combat sports (Judo, Taekwondo, Boxing, Wrestling) and individual/field sports (Athletics Track & Field, Table Tennis, Weight Lifting). Bring valid sports achievement certificates for verification.',
+      sportsForMen: [
+        'volleyball', 'ball-badminton', 'basketball', 'football', 'kabaddi',
+        'martial-arts', // Judo
+        'taekwondo', 'boxing', 'wrestling',
+        'athletics', 'table-tennis', 'weightlifting',
+      ],
+      sportsForWomen: [
+        'volleyball', 'ball-badminton', 'basketball', 'kabaddi',
+        'martial-arts', // Judo
+        'taekwondo', 'boxing', 'wrestling',
+        'athletics', 'table-tennis', 'weightlifting',
+      ],
+      trialsMen: [
+        { sport: 'volleyball',    date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'ball-badminton', date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'basketball',    date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'football',      date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'kabaddi',       date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'martial-arts',  date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' }, // Judo
+        { sport: 'taekwondo',     date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'boxing',        date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'wrestling',     date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'athletics',     date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'table-tennis',  date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'weightlifting', date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+      ],
+      trialsWomen: [
+        { sport: 'volleyball',    date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'ball-badminton', date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'basketball',    date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'kabaddi',       date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'martial-arts',  date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' }, // Judo
+        { sport: 'taekwondo',     date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'boxing',        date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'wrestling',     date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'athletics',     date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'table-tennis',  date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+        { sport: 'weightlifting', date: '2026-05-29', time: '9:30 AM', venue: 'Excel Aero Ground, Excel Group Institutions, NH-544, Komarapalayam' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Achievement Certificates',
+          titleTa: 'விளையாட்டு சாதனை சான்றிதழ்கள்',
+          detailEn: 'Valid original sports achievement certificates at District, State or National level — required for eligibility and verification at the trial.',
+          detailTa: 'மாவட்டம், மாநிலம் அல்லது தேசிய அளவிலான செல்லுபடியாகும் அசல் விளையாட்டு சாதனை சான்றிதழ்கள் — தகுதி மற்றும் சரிபார்ப்புக்குத் தேவை.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th and 12th mark sheets for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் 10-ஆம் மற்றும் 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள்.',
+        },
+      ],
+      applicationDeadline: '29 May 2026 (trial date)',
+    },
+    contact: {
+      sportsOfficer: 'C. Vivek',
+      designation: 'Physical Director',
+      phone: '+91-99435-29099',
+      sportsOfficer2: 'G. Raja',
+      designation2: 'Physical Director',
+      phone2: '+91-99444-05054',
+      website: 'https://excelinstitutions.com',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://excelinstitutions.com',
+    sourceNote: 'Direct from Excel Group Institutions Sports Quota Admissions & Selection Trials 2026-27 notification (provided by team May 2026). Located on NH-544, Salem-Coimbatore Highway, Komarapalayam-637 303 (Namakkal district). Single-day trial on 29 May 2026, 9:30 AM at the Excel Aero Ground. Trials for Men & Women: team sports (Volleyball, Ball Badminton, Basketball, Football [Men only], Kabaddi), combat sports (Judo, Taekwondo, Boxing, Wrestling), individual/field sports (Athletics Track & Field, Table Tennis, Weight Lifting). Judo mapped to "martial-arts". Open to District / State / National level participants with valid sports achievement certificates. Physical Directors: C. Vivek 99435 29099, G. Raja 99444 05054, L. Prakash 93454 10153. Website: excelinstitutions.com',
+    lastVerified: '2026-05-14',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.

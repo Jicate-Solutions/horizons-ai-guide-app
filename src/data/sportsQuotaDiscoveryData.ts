@@ -64,6 +64,8 @@ export const DISCOVERY_COLLEGE_IDS: string[] = [
   'holycross_trichy',
   'hicet_coimbatore',
   'drngpasc_coimbatore',
+  'svgi_erode',
+  'excel_komarapalayam',
 ];
 
 // -----------------------------------------------------------------------------
