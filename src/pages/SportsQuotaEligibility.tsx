@@ -26,6 +26,7 @@ import {
   buildAllEngineeringQuotaColleges, findMatchingColleges, sortByDistrict,
   CollegeMatch,
 } from '@/data/sportsQuotaHelpers';
+import { DISCOVERY_COLLEGE_IDS } from '@/data/sportsQuotaDiscoveryData';
 import { ReportIncorrectInfo } from '@/components/ReportIncorrectInfo';
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -1215,9 +1216,16 @@ const parseDeadline = (s?: string): Date | null => {
   return Number.isNaN(t) ? null : new Date(t);
 };
 
+// Restrict the splash banner to the team-curated allowlist used by the
+// Sports Quota Discovery page. Previously this filter referenced a
+// non-existent `userProvided` flag, which excluded every college and
+// left the banner empty. Sharing DISCOVERY_COLLEGE_IDS keeps both
+// surfaces (banner + Discovery page) in lock-step from a single source.
+const VERIFIED_COLLEGE_ALLOWLIST = new Set<string>(DISCOVERY_COLLEGE_IDS);
+
 const buildVerifiedCollegeDates = (): CollegeKeyDate[] =>
   COLLEGE_SPORTS_QUOTA
-    .filter((c) => c.verification === 'verified' && c.userProvided === true)
+    .filter((c) => c.verification === 'verified' && VERIFIED_COLLEGE_ALLOWLIST.has(c.id))
     .map((c) => {
     // Direct-admission deadline if present
     const direct = c.overrides?.applicationDeadline;
