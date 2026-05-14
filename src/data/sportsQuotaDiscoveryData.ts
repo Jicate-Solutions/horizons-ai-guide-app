@@ -60,6 +60,10 @@ export const DISCOVERY_COLLEGE_IDS: string[] = [
   'kongunadu_cet_tiruchirappalli',
   'joy_tirunelveli',
   'thiagarajar_polytechnic_salem',
+  'snsct_coimbatore',
+  'holycross_trichy',
+  'hicet_coimbatore',
+  'drngpasc_coimbatore',
 ];
 
 // -----------------------------------------------------------------------------

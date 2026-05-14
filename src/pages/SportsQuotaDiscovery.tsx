@@ -21,9 +21,7 @@
  */
 
 import { useMemo, useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft,
   Calendar,
   CalendarClock,
   CalendarX,
@@ -616,8 +614,6 @@ const EmptyState = ({ onReset }: { onReset: () => void }) => (
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SportsQuotaDiscovery = () => {
-  const navigate = useNavigate();
-
   const allTrials = useMemo(() => flattenColleges(), []);
 
   const [selectedDistricts, setSelectedDistricts] = useState<Set<string>>(new Set());
@@ -773,7 +769,7 @@ const SportsQuotaDiscovery = () => {
             </div>
           </div>
 
-          <div className="sticky top-0 z-20 -mx-4 px-4 pb-3 pt-3 bg-gradient-to-b from-emerald-50/95 via-white/95 to-white/80 backdrop-blur-sm border-b border-emerald-100">
+          <div className="-mx-4 px-4 pb-3 pt-3 bg-gradient-to-b from-emerald-50/95 via-white/95 to-white/80 border-b border-emerald-100">
             <div className="relative mb-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input

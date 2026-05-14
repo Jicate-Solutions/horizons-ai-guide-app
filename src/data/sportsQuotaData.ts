@@ -3963,6 +3963,322 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-13',
   },
 
+  // ─── VERIFIED: SNS College of Technology (SNSCT), Coimbatore ─────────────
+  // Source: Official SNS Group Sports Scholarship Selection Trials 2026-27
+  // notification (provided by team May 2026). Single-day Basketball-only
+  // trial on 9 April 2026, 7:00 AM at SNS College of Technology campus,
+  // Vazhiyampalayam, Saravanampatti, Coimbatore-641035. Trials cover BOTH
+  // SNS College of Technology and Dr. SNS Rajalakshmi College of Arts and
+  // Science. Up to 100% sports scholarship. Open to Boys and Girls. Register
+  // by scanning QR code on official poster.
+  {
+    id: 'snsct_coimbatore',
+    collegeName: 'SNS College of Technology / Dr. SNS Rajalakshmi College of Arts and Science',
+    collegeNameTa: 'எஸ்.என்.எஸ். தொழில்நுட்பக் கல்லூரி / டாக்டர். எஸ்.என்.எஸ். ராஜலக்ஷ்மி கலை அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'engineering',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Up to 100% Sports Scholarship for selected Basketball players (Boys & Girls). Joint selection trial covering BOTH SNS College of Technology (engineering) and Dr. SNS Rajalakshmi College of Arts and Science. Single-day Basketball-only trial. Register by scanning QR code on official poster.',
+      schemes: [
+        'Up to 100% Sports Scholarship',
+        'Joint trial for SNSCT (engineering) + Dr. SNS Rajalakshmi (arts & science)',
+        'Basketball ONLY — Boys and Girls both eligible',
+        'Single-day offline trial',
+      ],
+      selectionProcess: 'Single-day offline Basketball trial on 9 April 2026 at 7:00 AM at SNS College of Technology campus, Vazhiyampalayam, Saravanampatti, Coimbatore-641035. Open to both Boys and Girls. Common selection for SNS College of Technology and Dr. SNS Rajalakshmi College of Arts and Science. Register via QR code on the official poster.',
+      sportsForMen: ['basketball'],
+      sportsForWomen: ['basketball'],
+      trialsMen: [
+        { sport: 'basketball', date: '2026-04-09', time: '7:00 AM', venue: 'SNS College of Technology, Vazhiyampalayam, Saravanampatti, Coimbatore-641035' },
+      ],
+      trialsWomen: [
+        { sport: 'basketball', date: '2026-04-09', time: '7:00 AM', venue: 'SNS College of Technology, Vazhiyampalayam, Saravanampatti, Coimbatore-641035' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'Bring original Basketball achievement certificates (school / district / state / national level) for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் கூடைப்பந்து சாதனை சான்றிதழ்கள் (பள்ளி/மாவட்டம்/மாநிலம்/தேசிய நிலை) கொண்டு வரவும்.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th & 12th marks cards for verification.',
+          detailTa: 'சரிபார்ப்புக்காக அசல் 10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள்.',
+        },
+      ],
+      applicationDeadline: '9 April 2026',
+    },
+    contact: {
+      sportsOfficer: 'SNS Sports Cell',
+      designation: 'Department of Physical Education',
+      phone: '+91-81441-55544',
+      website: 'https://www.snsgroups.com',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.snsgroups.com',
+    sourceNote: 'Direct from SNS Group Sports Scholarship Selection Trials 2026-27 notification (provided by team May 2026). Basketball-only joint trial covering SNS College of Technology (autonomous engineering, Vazhiyampalayam, Saravanampatti, Coimbatore-641035) and Dr. SNS Rajalakshmi College of Arts and Science. Single-day trial on 9 April 2026 at 7:00 AM. Open to Boys and Girls. Up to 100% sports scholarship for selected players. QR code registration via the official poster. Phone: +91-81441-55544. Website: https://www.snsgroups.com',
+    lastVerified: '2026-05-14',
+  },
+
+  // ─── VERIFIED: Holy Cross College (Autonomous), Trichy ──────────────────
+  // Source: Official Holy Cross College Tiruchirappalli Sports Quota
+  // Admission 2026-27 notification (provided by team May 2026). Autonomous
+  // women's arts and science college, Tiruchirappalli. Single-day trial
+  // on 31 March 2026, 7:00 AM. WOMEN ONLY — exclusively for sportswomen.
+  // 100% Scholarship + Free Education + Free Accommodation + Free Food +
+  // Medical Insurance + Government recruitment support under Sports Quota.
+  {
+    id: 'holycross_trichy',
+    collegeName: 'Holy Cross College (Autonomous), Trichy',
+    collegeNameTa: 'ஹோலி கிராஸ் கல்லூரி (தன்னாட்சி), திருச்சி',
+    district: 'Tiruchirappalli',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: '100% Scholarship + Completely Free Education + Free Accommodation + Free Food + Medical insurance for all players. Career support: recruitment under Sports Quota in Central and State Government. Exclusively for women.',
+      schemes: [
+        '100% Scholarship — completely free education',
+        'Free accommodation and food',
+        'Medical insurance for all selected players',
+        'Career: recruitment support under Central & State Govt. Sports Quota',
+        'WOMEN ONLY college',
+      ],
+      selectionProcess: 'Single-day offline trial on 31 March 2026 at 7:00 AM at Holy Cross College (Autonomous), Tiruchirappalli campus. Exclusively for women. Trials cover team sports (Volleyball, Basketball, Kabaddi, Hockey, Football, Handball, Kho-Kho, Cricket, Softball, Netball), racket sports (Ball Badminton, Table Tennis, Badminton, Tennis) and individual/combat sports (Athletics, Boxing, Chess, Fencing, Cycling, Swimming). Apply online via admission.hcctrichy.ac.in.',
+      // Softball, Netball, Fencing, Cycling → 'other' (not in standard enum).
+      // "Shuttle" = Shuttlecock = Badminton (deduped).
+      sportsForMen: [],
+      sportsForWomen: [
+        'volleyball', 'basketball', 'kabaddi', 'hockey', 'football', 'handball',
+        'kho-kho', 'cricket',
+        'other', // Softball + Netball + Fencing + Cycling
+        'ball-badminton', 'table-tennis', 'badminton', 'tennis',
+        'athletics', 'boxing', 'chess', 'swimming',
+      ],
+      trialsMen: [],
+      trialsWomen: [
+        { sport: 'volleyball',     date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'basketball',     date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'kabaddi',        date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'hockey',         date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'football',       date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'handball',       date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'kho-kho',        date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'cricket',        date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'ball-badminton', date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'table-tennis',   date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'badminton',      date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'tennis',         date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'athletics',      date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'boxing',         date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'chess',          date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'swimming',       date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' },
+        { sport: 'other',          date: '2026-03-31', time: '7:00 AM', venue: 'Holy Cross College (Autonomous), Tiruchirappalli' }, // Softball + Netball + Fencing + Cycling
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'Original sports achievement and participation certificates for verification at the trial.',
+          detailTa: 'விளையாட்டு சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் (அசல்) - முயற்சியில் சரிபார்ப்புக்காக.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th and 12th marks cards for verification.',
+          detailTa: 'அசல் 10-ஆம் மற்றும் 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள் சரிபார்ப்புக்காக.',
+        },
+      ],
+      applicationDeadline: '31 March 2026',
+    },
+    contact: {
+      sportsOfficer: 'Dr. Glady',
+      designation: 'Sports Department',
+      phone: '+91-85085-32365',
+      sportsOfficer2: 'Ms. Bhavithra',
+      designation2: 'Sports Department',
+      phone2: '+91-63813-22533',
+      website: 'https://www.hcctrichy.ac.in',
+      applicationLink: 'https://admission.hcctrichy.ac.in/',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.hcctrichy.ac.in',
+    sourceNote: 'Direct from Holy Cross College (Autonomous), Tiruchirappalli Sports Quota Admission 2026-27 notification (provided by team May 2026). WOMEN ONLY autonomous arts & science college in Tiruchirappalli. Single-day trial on 31 March 2026, 7:00 AM. Comprehensive benefits package: 100% Scholarship, completely free education, free accommodation & food, medical insurance for all players, career recruitment support under Central & State Govt. Sports Quota. Sports covered: team sports (Volleyball, Basketball, Kabaddi, Hockey, Football, Handball, Kho-Kho, Cricket, Softball, Netball), racket sports (Ball Badminton, Table Tennis, Badminton, Tennis), individual/combat sports (Athletics, Boxing, Chess, Fencing, Cycling, Swimming). Contacts: Dr. Glady 8508532365, Ms. Bhavithra 6381322533. Apply online at admission.hcctrichy.ac.in.',
+    lastVerified: '2026-05-14',
+  },
+
+  // ─── VERIFIED: Hindusthan College of Engineering and Technology (HiCET) ─
+  // Source: Official HiCET Sports Quota Admissions 2026-27 notification
+  // (provided by team May 2026). Autonomous AICTE-approved engineering
+  // college, NAAC A++ accredited, affiliated to Anna University. Located at
+  // Valley Campus, Pollachi Highway, Coimbatore. Two-day trial schedule:
+  // Boys on 17 April 2026, Girls on 18 April 2026. 100% Sports Scholarship.
+  {
+    id: 'hicet_coimbatore',
+    collegeName: 'Hindusthan College of Engineering and Technology (HiCET)',
+    collegeNameTa: 'ஹிந்துஸ்தான் பொறியியல் மற்றும் தொழில்நுட்பக் கல்லூரி (HiCET)',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'engineering',
+    counsellingBody: 'TNEA',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: '100% Sports Scholarship for aspiring sportspeople (both boys and girls). Autonomous AICTE-approved NAAC A++ engineering college affiliated to Anna University, Chennai. Admissions open for Engineering (BE/BTech) and Management (MBA, MCA, ME) programmes.',
+      schemes: [
+        '100% Sports Scholarship for selected players (boys and girls)',
+        'Autonomous · AICTE approved · NAAC A++ accredited',
+        'Affiliated to Anna University, Chennai',
+        'UG: AIML, CSE, EEE, ECE, Aero, IT, Mech, Food Tech, Civil, Mechatronics, EIE, Auto, Bio-Med, Agri, Chem',
+        'PG: MBA, MCA, ME',
+      ],
+      selectionProcess: 'Two-day offline selection trials at HiCET Valley Campus, Pollachi Highway, Coimbatore. Boys trial on 17 April 2026; Girls trial on 18 April 2026. Register by scanning the QR code provided on the official poster. Trials cover 12 sports: Ball Badminton, Basketball, Volleyball, Kho-Kho, Badminton, Table Tennis, Kabaddi, Handball, Hockey, Athletics, Tennis, Cricket — all open to both Men and Women.',
+      sportsForMen: [
+        'ball-badminton', 'basketball', 'volleyball', 'kho-kho',
+        'badminton', 'table-tennis', 'kabaddi', 'handball',
+        'hockey', 'athletics', 'tennis', 'cricket',
+      ],
+      sportsForWomen: [
+        'ball-badminton', 'basketball', 'volleyball', 'kho-kho',
+        'badminton', 'table-tennis', 'kabaddi', 'handball',
+        'hockey', 'athletics', 'tennis', 'cricket',
+      ],
+      trialsMen: [
+        { sport: 'ball-badminton', date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'basketball',     date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'volleyball',     date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'kho-kho',        date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'badminton',      date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'table-tennis',   date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'kabaddi',        date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'handball',       date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'hockey',         date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'athletics',      date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'tennis',         date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'cricket',        date: '2026-04-17', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+      ],
+      trialsWomen: [
+        { sport: 'ball-badminton', date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'basketball',     date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'volleyball',     date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'kho-kho',        date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'badminton',      date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'table-tennis',   date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'kabaddi',        date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'handball',       date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'hockey',         date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'athletics',      date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'tennis',         date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+        { sport: 'cricket',        date: '2026-04-18', time: '8:00 AM', venue: 'HiCET Valley Campus, Pollachi Highway, Coimbatore' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'Original sports achievement certificates (school / district / state / national / inter-collegiate level) for verification at the trial.',
+          detailTa: 'விளையாட்டு சாதனை சான்றிதழ்கள் (பள்ளி/மாவட்டம்/மாநிலம்/தேசிய/கல்லூரிகளுக்கிடையேயான நிலை) அசலில் சரிபார்ப்புக்காக.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th and 12th mark sheets; for PG admissions also bring UG provisional/degree certificate.',
+          detailTa: 'அசல் 10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள்; PG சேர்க்கைக்கு UG தற்காலிக/பட்டச் சான்றிதழும் கொண்டு வரவும்.',
+        },
+      ],
+      applicationDeadline: '17 April 2026 (Boys) / 18 April 2026 (Girls)',
+    },
+    contact: {
+      sportsOfficer: 'Lt Dr. Ravikumar V',
+      designation: 'Director of Physical Education',
+      phone: '+91-98943-01002',
+      sportsOfficer2: 'Mr. Vimal',
+      designation2: 'Sports Department',
+      phone2: '+91-99947-73060',
+      website: 'https://www.hicet.ac.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.hicet.ac.in',
+    sourceNote: 'Direct from Hindusthan College of Engineering and Technology (HiCET) Sports Quota Admissions 2026-27 notification (provided by team May 2026). Autonomous AICTE-approved engineering college, NAAC A++ accredited, affiliated to Anna University, Chennai. Valley Campus, Pollachi Highway, Coimbatore. Two-day trial: Boys 17 April 2026, Girls 18 April 2026. 100% Sports Scholarship for selected players. 12 sports for both M & W: Ball Badminton, Basketball, Volleyball, Kho-Kho, Badminton, Table Tennis, Kabaddi, Handball, Hockey, Athletics, Tennis, Cricket. UG programmes: AIML, CSE, EEE, ECE, Aeronautical, IT, Mechanical, Food Tech, Civil, Mechatronics, EIE, Automobile, Bio-Medical, Agricultural, Chemical. PG: MBA, MCA, ME. Contacts: Lt Dr. Ravikumar V 98943 01002, Mr. Vimal 99947 73060, Mr. Kannan 86670 63961, Mr. Bharani 81480 01621. QR code registration via official poster.',
+    lastVerified: '2026-05-14',
+  },
+
+  // ─── VERIFIED: Dr. N.G.P. Arts and Science College, Coimbatore ──────────
+  // Source: Official Dr. N.G.P. Arts and Science College Sports Quota
+  // Selection Trials 2026-27 notification (provided by team May 2026).
+  // Separate from Dr. N.G.P. Institute of Technology (ngpit_coimbatore) —
+  // this is the dedicated arts and science college. Four-day trial schedule
+  // (15-18 April 2026) covering Kabaddi, Athletics, Volleyball, Basketball.
+  // Most events are Men-only; Athletics open to Men & Women. Comprehensive
+  // benefits: completely free education + food + accommodation + kits +
+  // medical insurance + KMCH Hospital sports injury treatment.
+  {
+    id: 'drngpasc_coimbatore',
+    collegeName: 'Dr. N.G.P. Arts and Science College',
+    collegeNameTa: 'டாக்டர். என்.ஜி.பி. கலை மற்றும் அறிவியல் கல்லூரி',
+    district: 'Coimbatore',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      sportsScholarship: 'Completely FREE education for UG and PG sports-quota admits — includes free food and accommodation, playing kits, medical insurance, healthy dietary food, free physiotherapy, and free treatment for sports injuries at KMCH Hospital. Integrated infrastructure for combined education and sports training with qualified coaching staff.',
+      schemes: [
+        'Completely FREE education + food + accommodation',
+        'Free playing kits and sports equipment',
+        'Medical insurance + healthy dietary food + free physiotherapy',
+        'Free sports-injury treatment at KMCH Hospital',
+        'Qualified coaching staff + integrated training infrastructure',
+        'Both UG and PG sports quota admissions',
+      ],
+      selectionProcess: 'Four-day sport-specific trial schedule at Dr. N.G.P. Arts and Science College, Coimbatore. All trials begin at 8:00 AM. Kabaddi (Men): 15 April 2026; Athletics (Men & Women): 16 April 2026; Volleyball (Men): 17 April 2026; Basketball (Men): 18 April 2026. Bring sports + academic certificates in original.',
+      sportsForMen: ['kabaddi', 'athletics', 'volleyball', 'basketball'],
+      sportsForWomen: ['athletics'],
+      trialsMen: [
+        { sport: 'kabaddi',    date: '2026-04-15', time: '8:00 AM', venue: 'Dr. N.G.P. Arts and Science College, Coimbatore' },
+        { sport: 'athletics',  date: '2026-04-16', time: '8:00 AM', venue: 'Dr. N.G.P. Arts and Science College, Coimbatore' },
+        { sport: 'volleyball', date: '2026-04-17', time: '8:00 AM', venue: 'Dr. N.G.P. Arts and Science College, Coimbatore' },
+        { sport: 'basketball', date: '2026-04-18', time: '8:00 AM', venue: 'Dr. N.G.P. Arts and Science College, Coimbatore' },
+      ],
+      trialsWomen: [
+        { sport: 'athletics',  date: '2026-04-16', time: '8:00 AM', venue: 'Dr. N.G.P. Arts and Science College, Coimbatore' },
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Certificates',
+          titleTa: 'விளையாட்டு சான்றிதழ்கள்',
+          detailEn: 'Original achievement and participation certificates for the trial sport — school, district, state, national, or university level.',
+          detailTa: 'விளையாட்டுக்கான அசல் சாதனை மற்றும் பங்கேற்பு சான்றிதழ்கள் — பள்ளி, மாவட்டம், மாநிலம், தேசிய அல்லது பல்கலைக்கழக நிலை.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th & 12th mark sheets (and UG provisional certificate for PG aspirants).',
+          detailTa: 'அசல் 10-ஆம் & 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள் (PG-க்கு UG தற்காலிக சான்றிதழும்).',
+        },
+      ],
+      applicationDeadline: '15-18 April 2026 (sport-specific)',
+    },
+    contact: {
+      sportsOfficer: 'Mr. A. Thanasingh',
+      designation: 'Sports Department',
+      phone: '+91-94445-66273',
+      sportsOfficer2: 'Mr. D. Vinoth Rohan',
+      designation2: 'Sports Department',
+      phone2: '+91-63838-34632',
+      email: 'drngpsports@gmail.com',
+      website: 'https://www.drngpasc.ac.in',
+    },
+    verification: 'verified',
+    sourceUrl: 'https://www.drngpasc.ac.in',
+    sourceNote: 'Direct from Dr. N.G.P. Arts and Science College Sports Quota Selection Trials 2026-27 notification (provided by team May 2026). Autonomous arts and science college in Coimbatore (separate institution from Dr. N.G.P. Institute of Technology). Four-day sport-wise trial schedule starting 8:00 AM: Kabaddi M (15 Apr), Athletics M+W (16 Apr), Volleyball M (17 Apr), Basketball M (18 Apr). UG + PG sports quota admissions. Comprehensive support: completely free education + food + accommodation + playing kits + medical insurance + healthy dietary food + free physiotherapy + free KMCH Hospital sports-injury treatment. Coaching: qualified coaching staff with integrated education-sports infrastructure. Contacts: Mr. A. Thanasingh 94445 66273, Mr. D. Vinoth Rohan 63838 34632, Ms. T. Dhurga Devi 82487 16027. Email: drngpsports@gmail.com. Website: https://www.drngpasc.ac.in',
+    lastVerified: '2026-05-14',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
