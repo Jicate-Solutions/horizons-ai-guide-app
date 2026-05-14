@@ -218,7 +218,7 @@ const architectureCourses: CourseCategory = {
   ],
 };
 
-// ═══ 3. PURE SCIENCES (15 courses) ═══
+// ═══ 3. PURE SCIENCES (18 courses) ═══
 const pureScienceCourses: CourseCategory = {
   name: "Pure Sciences & IT",
   icon: "🔬",
@@ -238,10 +238,11 @@ const pureScienceCourses: CourseCategory = {
     C("bsc-geology", "B.Sc Geology", "B.Sc Geology", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-12 LPA", 3, "Study earth sciences, minerals, groundwater, petroleum exploration.", ["Geologist", "Mining Consultant", "ONGC/ISRO", "GSI"], ["BHU", "Presidency", "Andhra University"], ["Mineralogy", "Geophysics", "GIS"]),
     C("bsc-food-nutrition", "B.Sc Food Science & Nutrition", "B.Sc Food/Nutrition", "3 years", "Merit / CUET", false, "₹20K-3L", "₹3-10 LPA", 3, "Food processing, nutrition planning, dietetics, food safety.", ["Food Technologist", "Dietitian", "Nutritionist", "FSSAI Inspector"], ["NIFTEM", "Women's Christian College", "Central Universities"], ["Nutrition", "Food Processing", "FSSAI"]),
     C("bsc-animation", "B.Sc Animation & Multimedia", "B.Sc Animation", "3 years", "Merit / Portfolio", false, "₹50K-5L", "₹3-15 LPA", 4, "2D/3D animation, VFX, game design, multimedia production.", ["Animator", "VFX Artist", "Game Designer", "Motion Graphics"], ["Arena", "MAAC", "Frameboxx", "LPU"], ["Maya/Blender", "After Effects", "Game Engines"]),
+    C("bsc-it", "B.Sc Information Technology", "B.Sc IT", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 4, "IT systems, networking, web and application development, databases. Offered widely in TN arts & science colleges, distinct from B.Sc CS.", ["Software Developer", "System Administrator", "IT Support", "Web Developer"], ["Loyola", "MCC", "PSG College of Arts & Science", "Bharathiar University"], ["Programming", "Networking", "Web Development", "Databases"]),
+    C("bsc-data-science", "B.Sc Data Science", "B.Sc Data Science", "3 years", "Merit / CUET", false, "₹40K-4L", "₹4-15 LPA", 5, "Statistics, programming and analytics applied to data. A growing 3-year route into analytics roles, distinct from the 4-year B.Tech AI & Data Science.", ["Data Analyst", "Business Analyst", "Data Scientist", "MIS Executive"], ["Loyola", "PSG College of Arts & Science", "Christ University", "Madras Christian College"], ["Python", "Statistics", "SQL", "Data Visualization"], { hot: true }),
+    C("bsc-psychology", "B.Sc Psychology", "B.Sc Psychology", "3 years", "Merit / CUET", false, "₹25K-4L", "₹3-15 LPA", 4, "The science of mind and behaviour, with a stronger research and lab emphasis than the B.A route. Many TN colleges now offer it as a B.Sc.", ["Counsellor", "Clinical Psychologist", "HR Specialist", "Research Assistant"], ["Women's Christian College", "Stella Maris", "MCC", "Christ University"], ["Counselling", "Research Methods", "Statistics", "Communication"]),
   ],
 };
-
-// ═══ 4. DEFENCE SERVICES (4 courses) ═══
 const defenseCourses: CourseCategory = {
   name: "Defence Services",
   icon: "🎖️",
@@ -338,7 +339,7 @@ const professionalCourses: CourseCategory = {
   ],
 };
 
-// ═══ 11. COMMERCE & MANAGEMENT UG (10 courses) ═══
+// ═══ 11. COMMERCE & MANAGEMENT UG (12 courses) ═══
 const ugCommerceCourses: CourseCategory = {
   name: "Commerce & Management UG",
   icon: "💼",
@@ -353,6 +354,8 @@ const ugCommerceCourses: CourseCategory = {
     C("bba-hospital", "BBA Hospital Administration", "BBA Hospital", "3 years", "Merit", false, "₹50K-5L", "₹3-10 LPA", 3, "Hospital management, healthcare administration.", ["Hospital Administrator", "Health IT Manager", "Clinic Manager"], ["Manipal", "AIIMS", "Apollo Hospitals"], ["Hospital Management", "Health IT", "Operations"]),
     C("bba-llb", "BBA LLB — Integrated Law", "BBA LLB", "5 years", "CLAT / State", true, "₹1-8L", "₹5-25 LPA", 4, "Business + Law. Become a corporate lawyer.", ["Corporate Lawyer", "Legal Advisor", "Business Consultant"], ["NLU Delhi", "NALSAR", "NLSIU Bangalore"], ["Corporate Law", "Business Law", "Contracts"]),
     C("ba-economics", "B.A Economics (Honours)", "B.A Economics", "3 years", "Merit / CUET", false, "₹15K-5L", "₹4-20 LPA", 4, "Economic theory, policy analysis. Gateway to RBI/UPSC/MBA.", ["Economist", "Policy Analyst", "RBI", "UPSC", "Banking"], ["St. Stephen's", "Hindu College", "Presidency", "DSE"], ["Economic Analysis", "Statistics", "Policy"]),
+    C("bcom-af", "B.Com Accounting & Finance", "B.Com A&F", "3 years", "Merit / CUET", false, "₹15K-4L", "₹3-12 LPA", 4, "A specialised B.Com focused on accounting, taxation, auditing and corporate finance. A common, strong base for CA/CMA preparation.", ["Accountant", "Auditor", "Financial Analyst", "CA/CMA Preparation", "Banking"], ["Loyola", "PSG College of Arts & Science", "Christ University", "Madras Christian College"], ["Advanced Accounting", "Taxation", "Auditing", "Finance"]),
+    C("bms", "BMS — Bachelor of Management Studies", "BMS", "3 years", "Merit / CUET", false, "₹40K-5L", "₹3-12 LPA", 4, "Management-focused degree with a heavier emphasis on management theory and analytics than BBA. A direct route into management trainee roles and MBA.", ["Management Trainee", "Business Analyst", "Operations Executive", "HR Executive"], ["Christ University", "Loyola", "Symbiosis", "PSG College of Arts & Science"], ["Management", "Analytics", "Marketing", "Operations"]),
   ],
 };
 
