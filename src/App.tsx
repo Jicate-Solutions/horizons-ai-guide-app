@@ -75,6 +75,7 @@ const SavedCourses = lazy(() => import("./pages/SavedCourses"));
 
 // College Tab Pages (named exports → need wrapper)
 const FindCollegesPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.FindCollegesPage })));
+const SportsQuotaTabPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.SportsQuotaTabPage })));
 const ScholarshipsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.ScholarshipsPage })));
 const EduCutoffPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.EduCutoffPage })));
 const EntranceExamsPage = lazy(() => import("./pages/CollegesTabPages").then(m => ({ default: m.EntranceExamsPage })));
@@ -165,6 +166,7 @@ function App() {
                 <Route path="/career-assessment/chat" element={<CareerChat />} />
                 <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
                 <Route path="/career-assessment/colleges/find-colleges" element={<FindCollegesPage />} />
+                <Route path="/career-assessment/colleges/sports-quota" element={<SportsQuotaTabPage />} />
                 <Route path="/career-assessment/colleges/scholarships" element={<ScholarshipsPage />} />
                 <Route path="/career-assessment/colleges/educutoff" element={<EduCutoffPage />} />
                 <Route path="/career-assessment/colleges/entrance-exams" element={<EntranceExamsPage />} />

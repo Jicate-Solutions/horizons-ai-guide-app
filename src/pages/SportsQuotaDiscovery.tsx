@@ -46,6 +46,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { CollegesPageLayout } from '@/components/CollegesPageLayout';
 import {
   COLLEGE_SPORTS_QUOTA,
   ALL_SPORTS,
@@ -731,103 +732,95 @@ const SportsQuotaDiscovery = () => {
   }, [allTrials]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50/40 via-white to-white pb-12">
-      <div className="container mx-auto px-4 py-6 max-w-6xl">
-        <Button
-          variant="ghost"
-          onClick={() => navigate('/sports-quota')}
-          className="mb-3 -ml-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-800"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1.5" />
-          Back to Sports Quota Check
-        </Button>
-
-        <div className="mb-6">
-          <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-amber-500 flex items-center justify-center shadow-md">
-              <Trophy className="w-6 h-6 text-white" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-black text-emerald-900 leading-tight">
-                Sports Quota Discovery
-              </h1>
-              <p className="text-sm text-gray-600 mt-1">
-                Selection trials at colleges for the 2026-27 academic year.
-                Filter by district, sport, gender, and trial date.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 mt-4">
-            <div className="rounded-lg bg-white border border-emerald-200 px-3 py-2 text-center">
-              <div className="text-lg sm:text-xl font-black text-emerald-700">{stats.total}</div>
-              <div className="text-[10px] text-emerald-800 font-medium leading-tight">
-                Verified colleges
+    <CollegesPageLayout activeTab="sportsquota">
+      <div className="bg-gradient-to-b from-emerald-50/40 via-white to-white -mx-3 -my-3 md:-mx-4 md:-my-6 px-4 py-6 pb-12 min-h-[calc(100vh-7rem)]">
+        <div className="container mx-auto max-w-6xl">
+          <div className="mb-6">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-amber-500 flex items-center justify-center shadow-md">
+                <Trophy className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-2xl sm:text-3xl font-black text-emerald-900 leading-tight">
+                  Sports Quota Discovery
+                </h1>
+                <p className="text-sm text-gray-600 mt-1">
+                  Selection trials at colleges for the 2026-27 academic year.
+                  Filter by district, sport, gender, and trial date.
+                </p>
               </div>
             </div>
-            <div className="rounded-lg bg-white border border-amber-200 px-3 py-2 text-center">
-              <div className="text-lg sm:text-xl font-black text-amber-700">{stats.upcoming}</div>
-              <div className="text-[10px] text-amber-800 font-medium leading-tight">
-                Upcoming trials
+
+            <div className="grid grid-cols-3 gap-2 mt-4">
+              <div className="rounded-lg bg-white border border-emerald-200 px-3 py-2 text-center">
+                <div className="text-lg sm:text-xl font-black text-emerald-700">{stats.total}</div>
+                <div className="text-[10px] text-emerald-800 font-medium leading-tight">
+                  Verified colleges
+                </div>
               </div>
-            </div>
-            <div className="rounded-lg bg-white border border-gray-200 px-3 py-2 text-center">
-              <div className="text-lg sm:text-xl font-black text-gray-700">{stats.past}</div>
-              <div className="text-[10px] text-gray-600 font-medium leading-tight">
-                Past trials (call college)
+              <div className="rounded-lg bg-white border border-amber-200 px-3 py-2 text-center">
+                <div className="text-lg sm:text-xl font-black text-amber-700">{stats.upcoming}</div>
+                <div className="text-[10px] text-amber-800 font-medium leading-tight">
+                  Upcoming trials
+                </div>
+              </div>
+              <div className="rounded-lg bg-white border border-gray-200 px-3 py-2 text-center">
+                <div className="text-lg sm:text-xl font-black text-gray-700">{stats.past}</div>
+                <div className="text-[10px] text-gray-600 font-medium leading-tight">
+                  Past trials (call college)
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="sticky top-0 z-20 -mx-4 px-4 pb-3 pt-3 bg-gradient-to-b from-emerald-50/95 via-white/95 to-white/80 backdrop-blur-sm border-b border-emerald-100">
-          <div className="relative mb-2">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <Input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search college or district…"
-              className="h-10 pl-9 pr-9 bg-white border-gray-300"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-gray-100"
-                aria-label="Clear search"
-              >
-                <X className="w-3.5 h-3.5 text-gray-400" />
-              </button>
-            )}
-          </div>
+          <div className="sticky top-0 z-20 -mx-4 px-4 pb-3 pt-3 bg-gradient-to-b from-emerald-50/95 via-white/95 to-white/80 backdrop-blur-sm border-b border-emerald-100">
+            <div className="relative mb-2">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search college or district…"
+                className="h-10 pl-9 pr-9 bg-white border-gray-300"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-gray-100"
+                  aria-label="Clear search"
+                >
+                  <X className="w-3.5 h-3.5 text-gray-400" />
+                </button>
+              )}
+            </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <Filter className="w-4 h-4 text-gray-500 hidden sm:inline" />
+            <div className="flex flex-wrap items-center gap-2">
+              <Filter className="w-4 h-4 text-gray-500 hidden sm:inline" />
 
-            <MultiSelectFilter
-              label="District"
-              icon={<MapPin className="w-3.5 h-3.5" />}
-              options={districtOptions}
-              selected={selectedDistricts}
-              onChange={setSelectedDistricts}
-              placeholder="Search district…"
-            />
+              <MultiSelectFilter
+                label="District"
+                icon={<MapPin className="w-3.5 h-3.5" />}
+                options={districtOptions}
+                selected={selectedDistricts}
+                onChange={setSelectedDistricts}
+                placeholder="Search district…"
+              />
 
-            <MultiSelectFilter
-              label="Sport"
-              icon={<Trophy className="w-3.5 h-3.5" />}
-              options={sportOptions}
-              selected={selectedSports}
-              onChange={(next) => setSelectedSports(next)}
-              placeholder="Search sport…"
-            />
+              <MultiSelectFilter
+                label="Sport"
+                icon={<Trophy className="w-3.5 h-3.5" />}
+                options={sportOptions}
+                selected={selectedSports}
+                onChange={(next) => setSelectedSports(next)}
+                placeholder="Search sport…"
+              />
 
-            <SegmentedControl<GenderFilter>
-              value={gender}
-              onChange={setGender}
-              options={[
-                { value: 'all', label: 'All' },
-                { value: 'men', label: 'Men' },
-                { value: 'women', label: 'Women' },
+              <SegmentedControl<GenderFilter>
+                value={gender}
+                onChange={setGender}
+                options={[
+                  { value: 'all', label: 'All' },
+                  { value: 'men', label: 'Men' },
+                  { value: 'women', label: 'Women' },
               ]}
             />
 
@@ -925,8 +918,9 @@ const SportsQuotaDiscovery = () => {
             Always verify the latest schedule by calling the college.
           </p>
         </div>
+        </div>
       </div>
-    </div>
+    </CollegesPageLayout>
   );
 };
 
