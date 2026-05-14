@@ -8,6 +8,7 @@ import { GovernmentJobs } from '@/components/GovernmentJobs';
 import { UniversityEntranceExams } from '@/components/UniversityEntrance';
 import { CourseExplorer } from '@/components/CourseExplorer';
 import { StartupGuide } from '@/components/StartupGuide';
+import SportsQuotaDiscoveryPage from '@/pages/SportsQuotaDiscovery';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,28 +24,11 @@ export const FindCollegesPage = () => (
   </CollegesPageLayout>
 );
 
-export const SportsQuotaTabPage = () => (
-  <CollegesPageLayout activeTab="sportsquota">
-    {/* Compact title bar — matches the pattern of other tabs that don't ship
-        their own hero. The full hero on the standalone /sports-quota-discovery
-        route still exists for direct visitors. */}
-    <div className="mb-4 flex items-start gap-3">
-      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-amber-500 flex items-center justify-center shadow-sm">
-        <Trophy className="w-5 h-5 text-white" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <h1 className="text-lg sm:text-xl font-bold text-emerald-900 leading-tight">
-          Sports Quota Discovery
-        </h1>
-        <p className="text-xs text-gray-600 mt-0.5">
-          2026-27 selection trials at colleges across India. Filter by district,
-          sport, gender, and date.
-        </p>
-      </div>
-    </div>
-    <SportsQuotaDiscoveryContent showStats />
-  </CollegesPageLayout>
-);
+// Sports Quota Discovery tab.
+// The SportsQuotaDiscovery page already wraps itself in <CollegesPageLayout
+// activeTab="sportsquota">, so this is just a passthrough — re-exporting it
+// here keeps every College Finder tab declared in one place.
+export const SportsQuotaTabPage = SportsQuotaDiscoveryPage;
 
 export const ScholarshipsPage = () => (
   <CollegesPageLayout activeTab="scholarships">
