@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Building2, Loader2, Trophy, ChevronRight } from 'lucide-react';
+import { Building2, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
@@ -66,7 +65,6 @@ const removeDuplicates = (colleges: College[]): College[] => {
 
 export const CollegeSearch = () => {
   const { toast } = useToast();
-  const navigate = useNavigate();
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
   const [colleges, setColleges] = useState<College[]>([]);
   const [loading, setLoading] = useState(false);
@@ -304,25 +302,6 @@ export const CollegeSearch = () => {
           </div>
         </div>
       </div>
-
-      {/* Sports Quota Discovery — always visible. Navigates to the dedicated
-          /sports-quota-discovery page which shows the team-curated 2026-27
-          selection trial list with District / Sport / Gender / Past-Upcoming
-          filters. */}
-      <button
-        onClick={() => navigate('/sports-quota-discovery')}
-        className="w-full flex items-center gap-3 p-3.5 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 hover:shadow-md transition-all active:scale-[0.99] text-left"
-      >
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
-          <Trophy className="w-5 h-5 text-white" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-bold text-gray-900">Sports Quota Discovery</p>
-          <p className="text-xs text-gray-500">30 colleges · 2026-27 trials · Filter by district, sport, gender, date</p>
-        </div>
-        <ChevronRight className="w-5 h-5 text-amber-500 flex-shrink-0" />
-      </button>
-
 
       {/* Summary Stats */}
       {selectedDistrict && !loading && colleges.length > 0 && (
