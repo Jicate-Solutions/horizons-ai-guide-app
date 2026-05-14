@@ -4334,6 +4334,7 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
         { sport: 'hockey',       date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
         { sport: 'athletics',    date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
         { sport: 'yoga',         date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'other',        date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Best Physique (Day 2)
       ],
       trialsWomen: [
         { sport: 'kabaddi',      date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
