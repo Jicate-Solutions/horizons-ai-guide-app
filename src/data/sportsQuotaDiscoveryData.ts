@@ -66,6 +66,7 @@ export const DISCOVERY_COLLEGE_IDS: string[] = [
   'drngpasc_coimbatore',
   'svgi_erode',
   'excel_komarapalayam',
+  'vellalar_erode',
 ];
 
 // -----------------------------------------------------------------------------

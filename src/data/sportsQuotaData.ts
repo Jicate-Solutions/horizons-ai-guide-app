@@ -4478,6 +4478,76 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
     lastVerified: '2026-05-14',
   },
 
+  // ─── VERIFIED: Vellalar College for Women (Autonomous), Erode ───────────
+  // Source: Official Vellalar College for Women Sports Quota Admission
+  // 2026-27 notification (provided by team May 2026). WOMEN ONLY autonomous
+  // arts & science college at Thindal, Erode, affiliated to Bharathiar
+  // University, Coimbatore. Scholarship is MERIT-CERTIFICATE based — no fixed
+  // selection-trial date on the flyer; scholarship awarded on sports merit
+  // certificates, judged on peak performance over the past two calendar
+  // years. Because there is no trial date, applicationDeadline / trialsMen /
+  // trialsWomen are intentionally omitted — the Discovery card will show
+  // "Direct admission · Contact college". Wushu is not in the standard Sport
+  // enum — mapped to 'other'. Judo → 'martial-arts'.
+  {
+    id: 'vellalar_erode',
+    collegeName: 'Vellalar College for Women (Autonomous)',
+    collegeNameTa: 'வெள்ளாளர் மகளிர் கல்லூரி (தன்னாட்சி)',
+    district: 'Erode',
+    type: 'Autonomous',
+    field: 'arts',
+    counsellingBody: 'Direct',
+    overrides: {
+      minLevel: 'district',
+      achievementWindowYears: 2,
+      sportsScholarship: 'Sports Quota Scholarship awarded on the basis of sports merit certificates. Selection considers the candidate\'s peak performance over the past two calendar years. WOMEN ONLY autonomous arts & science college at Thindal, Erode, affiliated to Bharathiar University, Coimbatore.',
+      schemes: [
+        'Sports Quota Scholarship based on sports merit certificates',
+        'Selection judged on peak performance over the last 2 calendar years',
+        'Affiliated to Bharathiar University, Coimbatore',
+        'WOMEN ONLY college',
+      ],
+      selectionProcess: 'Scholarship-based admission via the Department of Physical Education. No fixed selection-trial date — the Sports Quota Scholarship is awarded on the strength of submitted sports merit certificates, with the candidate\'s peak performance over the past two calendar years (2024 and 2025) considered. Contact the college directly for admission and to submit certificates. Phone: 99948 68115 / 70101 42525. Email: vcwsportsquota@gmail.com. Instagram: @vellalites_sports.',
+      // WOMEN ONLY — sportsForMen left intentionally empty.
+      // Wushu not in standard enum → 'other'. Judo → 'martial-arts'.
+      sportsForMen: [],
+      sportsForWomen: [
+        'football', 'handball', 'ball-badminton', 'badminton', 'volleyball',
+        'kho-kho', 'kabaddi', 'cricket',
+        'tennis', 'table-tennis', 'chess',
+        'wrestling', 'taekwondo', 'boxing', 'karate',
+        'martial-arts', // Judo
+        'other', // Wushu
+        'athletics', 'powerlifting', 'weightlifting',
+        'swimming',
+      ],
+      extraDocuments: [
+        {
+          titleEn: 'Sports Merit Certificates',
+          titleTa: 'விளையாட்டு தகுதிச் சான்றிதழ்கள்',
+          detailEn: 'Original sports merit / achievement certificates — peak performance over the past two calendar years is considered for the scholarship.',
+          detailTa: 'அசல் விளையாட்டு தகுதி / சாதனை சான்றிதழ்கள் — கடந்த இரண்டு நாட்காட்டி ஆண்டுகளில் சிறந்த செயல்திறன் உதவித்தொகைக்காகக் கருதப்படும்.',
+        },
+        {
+          titleEn: 'Academic Certificates',
+          titleTa: 'கல்விச் சான்றிதழ்கள்',
+          detailEn: 'Original 10th and 12th mark sheets for admission.',
+          detailTa: 'சேர்க்கைக்காக அசல் 10-ஆம் மற்றும் 12-ஆம் வகுப்பு மதிப்பெண் அட்டைகள்.',
+        },
+      ],
+    },
+    contact: {
+      sportsOfficer: 'Department of Physical Education',
+      designation: 'Sports Quota Admissions',
+      phone: '+91-99948-68115',
+      phone2: '+91-70101-42525',
+      email: 'vcwsportsquota@gmail.com',
+    },
+    verification: 'verified',
+    sourceNote: 'Direct from Vellalar College for Women (Autonomous) Sports Quota Admission 2026-27 notification (provided by team May 2026). WOMEN ONLY autonomous arts & science college at Thindal, Erode, affiliated to Bharathiar University, Coimbatore. Sports Quota Scholarship awarded on sports merit certificates — selection considers peak performance over the past two calendar years. No fixed trial date on the flyer (merit-certificate based admission). Eligible disciplines: Football, Handball, Ball Badminton, Badminton, Volleyball, Kho-Kho, Kabaddi, Cricket, Tennis, Table Tennis, Chess, Wrestling, Taekwondo, Boxing, Karate, Judo, Wushu, Athletics, Power Lifting, Weight Lifting, Swimming. Wushu mapped to "other" (not in standard enum); Judo mapped to "martial-arts". Contact: Phone 99948 68115 / 70101 42525, Email vcwsportsquota@gmail.com, Instagram @vellalites_sports.',
+    lastVerified: '2026-05-14',
+  },
+
   // The rest of TN engineering colleges will inherit TNEA defaults below.
   // They are populated programmatically from the college database in
   // sportsQuotaHelpers.ts to avoid duplicating data.
