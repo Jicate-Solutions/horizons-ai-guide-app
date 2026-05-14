@@ -79,20 +79,24 @@ export interface CareerMatch {
   /** Honest watch-out specific to this student + career */
   watchOut: string;
   /**
-   * Whether this is a career a 12th student can START on right after 12th
-   * (true for 'direct-after-12th' and 'professional-track'), or a longer path
-   * that needs a completed degree first ('degree-then-exam'/'degree-then-build').
-   * This is what stops a degree-gated career like Civil Servant being ranked
-   * as a top "match" alongside courses a student can actually enrol in now.
+   * Whether this is a career a 12th student can START on right after 12th.
+   *
+   * By design this is ALWAYS true now: the Career Predictor's data
+   * (CAREER_PATHWAYS) only contains 'direct-after-12th' and
+   * 'professional-track' careers. Degree-first careers (Civil Servant,
+   * Teacher) and open-ended build paths (Entrepreneur) were deliberately
+   * removed — a predictor for a 12th student should only surface careers
+   * that map to a real course decision they make NOW. The flag is kept as
+   * an explicit guard: if it is ever false, a degree-gated career has
+   * wrongly entered the dataset.
    */
   isImmediatePath: boolean;
 }
 
 /**
- * Is this a path a 12th student can step onto right after board exams?
- * 'direct-after-12th'  — joins the UG course directly (Engineer, Doctor, Nurse)
- * 'professional-track' — registers for the professional course directly (CA)
- * vs the long-game routes that need a finished degree FIRST.
+ * Guard: is this a path a 12th student can step onto right after board exams?
+ * Given the data is curated to contain only such careers, this should always
+ * return true — it exists to catch a bad data entry, not to branch the UI.
  */
 export function isImmediatePath(pathway: CareerPathway): boolean {
   return (
@@ -439,57 +443,19 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
 }
 
 /**
- * The result of analysing a student — split honestly into two groups so a
- * degree-gated career can never masquerade as a top "match".
- */
-export interface CareerAnalysis {
-  /**
-   * Careers a 12th student can START on right after board exams — join the
-   * course or register for the professional track directly. THESE are the
-   * real "top matches" and are ranked by score.
-   */
-  immediateMatches: CareerMatch[];
-  /**
-   * Longer-game careers (Civil Servant, Government Teacher, Entrepreneur).
-   * Still scored and still shown — a student deciding "I want this" makes real
-   * choices now — but presented separately as "paths worth planning for",
-   * never as something reachable directly after 12th.
-   */
-  longerPaths: CareerMatch[];
-}
-
-/**
- * Analyse a student: score every eligible career, then SPLIT the results into
- * immediate paths vs longer paths. This split is the core honesty fix — it is
- * what stops "Civil Servant — 84% match" appearing in the same ranked list as
- * "Software Engineer", when a 12th student cannot take UPSC/TNPSC for years.
+ * The top N career matches for a student, ranked by score.
  *
- * @param immediateN  how many immediate matches to keep (default 5)
- * @param longerN     how many longer paths to keep (default 3)
- */
-export function analyseCareers(
-  profile: StudentProfile,
-  immediateN = 5,
-  longerN = 3,
-): CareerAnalysis {
-  const all = scoreCareers(profile); // already ranked by score
-
-  const immediate = all.filter((m) => m.isImmediatePath);
-  const longer = all.filter((m) => !m.isImmediatePath);
-
-  return {
-    immediateMatches: immediate.slice(0, immediateN),
-    longerPaths: longer.slice(0, longerN),
-  };
-}
-
-/**
- * Backward-compatible convenience: the top N IMMEDIATE matches only.
- * Kept so existing callers keep working — but note it now returns ONLY careers
- * a 12th student can start on directly, never degree-gated ones.
+ * Every career in the dataset is one a 12th student can act on directly (see
+ * isImmediatePath), so there is no "longer paths" split to make — the earlier
+ * design had a separate bucket for degree-gated careers, but those careers were
+ * removed from CAREER_PATHWAYS entirely. As a safety guard we still drop any
+ * entry that somehow fails isImmediatePath, so a bad data addition can never
+ * surface a degree-gated career as a "match".
  */
 export function topCareerMatches(profile: StudentProfile, n = 5): CareerMatch[] {
-  return analyseCareers(profile, n).immediateMatches;
+  return scoreCareers(profile)
+    .filter((m) => m.isImmediatePath)
+    .slice(0, n);
 }
 
 /**

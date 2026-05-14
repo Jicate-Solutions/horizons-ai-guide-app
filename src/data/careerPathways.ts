@@ -107,27 +107,24 @@ export interface CareerPathway {
   /** Entrance exam(s) gating entry */
   entranceExams: EntranceExam[];
   /**
-   * HOW a 12th student actually reaches this career. This is critical for
-   * honesty: a 12th student is NOT "directly" eligible to be a Civil Servant —
-   * that needs a full degree first, then years of competitive exams. The UI
-   * must show this clearly so no student is misled into thinking a long-game
-   * career is something they can step into right after board exams.
+   * HOW a 12th student actually reaches this career.
+   *
+   * IMPORTANT — by design, the Career Predictor only contains careers a student
+   * can ACT ON directly after 12th. Careers that require finishing a degree
+   * first (Civil Servant, Teacher) or are long-build paths with no defined
+   * entry (Entrepreneur) were deliberately removed: a predictor for a 12th
+   * student should only surface things that map to a real course decision
+   * they make NOW. The type below is intentionally narrow so such a career
+   * cannot be re-added without a deliberate change here.
    *
    *  - 'direct-after-12th'  → you join the UG course straight after 12th and
-   *                           that course IS the path (Engineer, Doctor, Nurse).
+   *                           that course IS the path (Engineer, Doctor, Nurse,
+   *                           Lawyer via 5-yr integrated, Pharmacist).
    *  - 'professional-track' → a multi-year professional qualification you
-   *                           register for after 12th (CA via ICAI).
-   *  - 'degree-then-exam'   → you must FINISH any degree first, THEN spend
-   *                           years on a competitive exam (Civil Servant,
-   *                           and the government-teacher route via TET).
-   *  - 'degree-then-build'  → a degree first, then years of building/experience
-   *                           with no fixed exam (Entrepreneur).
+   *                           register for directly after 12th, no prior
+   *                           degree needed (CA via ICAI).
    */
-  pathwayType:
-    | 'direct-after-12th'
-    | 'professional-track'
-    | 'degree-then-exam'
-    | 'degree-then-build';
+  pathwayType: 'direct-after-12th' | 'professional-track';
   /**
    * Honest, plain-language summary of the realistic time from finishing 12th
    * to actually working in this career. Shown prominently in the UI.
@@ -187,8 +184,8 @@ export interface CareerPathway {
  *   - tneaBranchCodes → looked up in TNEA_COLLEGES (engineering)
  *   - neetCourses     → looked up in neetColleges (medical)
  *   - directAdmissionNote → for careers with no centralised college dataset
- *     (CA, Law, Teacher, Civil Servant, Entrepreneur), an honest explanation
- *     of where to study instead of a misleading half-list.
+ *     (CA, Law), an honest explanation of where to study instead of a
+ *     misleading half-list.
  */
 export interface CollegeResolver {
   /** 2-letter TNEA branch codes whose colleges suit this career */
@@ -249,20 +246,6 @@ export const CAREER_COLLEGE_RESOLVERS: Record<string, CollegeResolver> = {
   lawyer: {
     directAdmissionNote:
       'Law colleges are not in a single engineering-style list. For the 5-year integrated degree: CLAT leads to the National Law Universities, while Tamil Nadu government law colleges (Chennai, Madurai, Coimbatore, Tirunelveli, Tiruchirappalli) admit through their own affordable, merit-based process. Private law colleges admit on 12th marks.',
-  },
-  teacher: {
-    directAdmissionNote:
-      'Becoming a teacher is a degree + B.Ed (or an integrated B.Sc B.Ed / B.El.Ed). Any government or aided arts & science college works for the degree; government and aided B.Ed colleges keep costs very low. Choose based on the subject you want to teach and proximity to home.',
-    collegeFinderQuery: 'B.Ed',
-  },
-  'civil-servant': {
-    directAdmissionNote:
-      'There is no "civil services college" — you need any UG degree, then prepare for UPSC or TNPSC. The smart move is a low-cost government arts college (BA History / Political Science / Economics align well with the syllabus) so family money is preserved for the preparation years.',
-  },
-  entrepreneur: {
-    directAdmissionNote:
-      'There is no single path or college for entrepreneurship. A practical, low-cost degree (BBA, B.Com, or B.E for tech ventures) is your foundation and safety net. Keep fees low — your real capital is the time and money you will need to start something.',
-    collegeFinderQuery: 'BBA',
   },
 };
 
@@ -954,154 +937,6 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     ],
     lastReviewed: '2026-05',
   },
-
-  // ─── CIVIL SERVANT (IAS / GROUP 1) ─────────────────────────────────────────
-  {
-    id: 'civil-servant',
-    title: 'Civil Servant (IAS / TNPSC Group 1)',
-    titleTa: 'அரசுப் பணி அதிகாரி (IAS / குழு 1)',
-    icon: '🏛️',
-    color: 'from-emerald-600 to-green-700',
-    whatIsIt:
-      'Run government departments and shape public policy. Reached through UPSC (national) or TNPSC (state) after any degree.',
-    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb', 'vocational'],
-    strongGroupCodes: ['304', '404', '405'],
-    ugCourses: ['Any UG degree (BA, B.Sc, B.Com, B.E — all accepted)'],
-    entranceExams: ['None (direct admission)'],
-    pathwayType: 'degree-then-exam',
-    timeToCareer:
-      'NOT a direct-after-12th career. First finish ANY 3-4 year UG degree, THEN prepare 2-4 years for UPSC/TNPSC. Realistically ~6-8 years from now.',
-    skillWeights: {
-      mathematics: 5,
-      language: 9,
-      science: 4,
-      creativity: 5,
-      people: 8,
-      physical: 4,
-      digital: 4,
-    },
-    priorityFit: {
-      salary: 6,
-      security: 10,
-      balance: 5,
-      abroad: 2,
-      prestige: 10,
-      passion: 8,
-      growth: 6,
-      hometown: 8,
-    },
-    competitiveBoardPct: { comfortable: 70, stretch: 55 },
-    salaryReality: {
-      startingLPA: '₹7–12 LPA equivalent (pay + allowances + housing) for an entry officer',
-      midCareerLPA: '₹15–25 LPA equivalent with very strong job security and benefits',
-      note: 'You do not earn this until you clear the exam — which takes most aspirants 2–4 years after graduation. The non-monetary value (security, respect, impact) is the real draw.',
-    },
-    demand: {
-      score: 7,
-      note: 'A fixed number of posts each year, filled by a national/state exam. Demand is constant; competition is intense.',
-    },
-    entryDifficulty: {
-      score: 10,
-      note: 'Among the most competitive exams in India. Success rates are very low — but a planned, multi-year approach works.',
-    },
-    collegeTiers: [
-      {
-        label: 'Any affordable UG degree (the degree is just the eligibility)',
-        examples: ['Government arts colleges', 'BA / B.Sc / B.Com at any recognised college'],
-        cutoffGuide: 'No special cutoff — focus on a degree that is cheap and leaves you time to read widely.',
-        feeRange: '₹5K–50K / year — keep this LOW so you can afford exam prep years',
-      },
-    ],
-    costReality:
-      'The smart move is a low-cost degree (often a government arts college) so your family money is preserved for the 2–4 years of exam preparation that follow. The exam itself has minimal fees.',
-    backupOptions: [
-      'Other government posts: TNPSC Group 2/4, banking (IBPS), SSC, RRB — large number of vacancies',
-      'Teaching (B.Ed → government teacher) — secure and respected',
-      'Use your actual degree (BA/B.Com/B.E) for a regular career while preparing',
-    ],
-    honestCaveat:
-      'Civil services preparation is a long road and most aspirants do not clear it. That is not a reason to avoid it — it is a reason to ALWAYS keep building your degree-based career in parallel, and to set a personal limit on how many years you will attempt.',
-    roadmap: [
-      {
-        title: 'Choose a low-cost, reading-friendly UG degree',
-        titleTa: 'குறைந்த செலவிலான, படிப்புக்கு உகந்த UG பட்டம் தேர்வு',
-        detail:
-          'BA in History / Political Science / Economics aligns well with the syllabus, but any degree is accepted.',
-        window: 'Now → after board exams',
-        phase: 'now',
-      },
-      {
-        title: 'Start newspaper + NCERT reading habit immediately',
-        titleTa: 'செய்தித்தாள் + NCERT படிக்கும் பழக்கம்',
-        detail: 'Daily current-affairs reading from year 1 of college is the single biggest long-term advantage.',
-        window: 'Throughout college',
-        phase: 'next',
-      },
-      {
-        title: 'Begin structured prep in 2nd / 3rd year',
-        titleTa: '2/3-ஆம் ஆண்டில் முறையான தயாரிப்பு',
-        detail: 'Cover the static syllabus while in college so post-graduation is for revision and mocks.',
-        window: 'College years 2–3',
-        phase: 'later',
-      },
-      {
-        title: 'Attempt TNPSC / UPSC with a planned number of tries',
-        titleTa: 'திட்டமிட்ட முயற்சிகளுடன் தேர்வு எழுதவும்',
-        detail: 'Decide in advance how many years you will give it — and keep your degree career alive alongside.',
-        window: 'After graduation',
-        phase: 'later',
-      },
-    ],
-    ninetyDayPlan: [
-      {
-        title: 'Start reading a newspaper every single day',
-        titleTa: 'தினமும் ஒரு செய்தித்தாள் படிக்கத் தொடங்கவும்',
-        detail:
-          'The Hindu or a quality Tamil daily. This one habit, started now, compounds for years. It is free.',
-        priority: 'high',
-      },
-      {
-        title: 'Explore the TNPSC exam structure',
-        titleTa: 'TNPSC தேர்வு அமைப்பை ஆராயவும்',
-        detail: 'Understand Group 1/2/4 — the state route has far more vacancies than UPSC and is a real career.',
-        priority: 'high',
-        appRoute: '/government-exams',
-      },
-      {
-        title: 'Pick a low-cost UG college',
-        titleTa: 'குறைந்த செலவிலான UG கல்லூரியைத் தேர்வு செய்யவும்',
-        detail: 'Government arts colleges keep family money free for the preparation years ahead.',
-        priority: 'medium',
-        appRoute: '/career-assessment/colleges/find-colleges',
-      },
-      {
-        title: 'Re-read your old NCERT History & Polity books',
-        titleTa: 'பழைய NCERT வரலாறு & அரசியல் புத்தகங்களை மீண்டும் படிக்கவும்',
-        detail: 'NCERTs are the foundation of both UPSC and TNPSC. You may already own them.',
-        priority: 'medium',
-      },
-      documentsAction,
-    ],
-    buildNowSkills: [
-      {
-        skill: 'Daily reading + note-making',
-        why: 'Civil services is fundamentally a reading-and-retention exam. The habit is the skill.',
-        freeResource: 'A newspaper + a notebook. Genuinely that simple to start.',
-      },
-      {
-        skill: 'Clear written expression (English or Tamil)',
-        why: 'The mains exam is descriptive — you must write structured, clear answers under time.',
-        freeResource: 'Write a short daily summary of one news article',
-      },
-      {
-        skill: 'General awareness',
-        why: 'A broad understanding of history, polity, geography and economy underpins everything.',
-        freeResource: 'NCERT textbooks (classes 6–12) — free and foundational',
-      },
-    ],
-    lastReviewed: '2026-05',
-  },
-
   // ─── NURSE / ALLIED HEALTH ─────────────────────────────────────────────────
   {
     id: 'nurse',
@@ -1569,303 +1404,6 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     ],
     lastReviewed: '2026-05',
   },
-
-  // ─── TEACHER ───────────────────────────────────────────────────────────────
-  {
-    id: 'teacher',
-    title: 'Teacher / Educator',
-    titleTa: 'ஆசிரியர்',
-    icon: '📚',
-    color: 'from-emerald-500 to-teal-600',
-    whatIsIt:
-      'Educate the next generation in schools or colleges. A stable, respected career — government teaching posts in particular are highly secure.',
-    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb', 'vocational'],
-    strongGroupCodes: ['404', '401', '301'],
-    ugCourses: ['B.Sc/BA/B.Com + B.Ed', 'B.El.Ed', 'Integrated B.Sc B.Ed', 'D.El.Ed (diploma route)'],
-    entranceExams: ['None (direct admission)'],
-    pathwayType: 'degree-then-exam',
-    timeToCareer:
-      'NOT a direct-after-12th job. First a UG degree, then B.Ed, then the TET exam for a government post. Realistically ~5-6 years from now to a secure teaching job.',
-    skillWeights: {
-      mathematics: 5,
-      language: 9,
-      science: 5,
-      creativity: 7,
-      people: 9,
-      physical: 3,
-      digital: 4,
-    },
-    priorityFit: {
-      salary: 5,
-      security: 9,
-      balance: 8,
-      abroad: 3,
-      prestige: 7,
-      passion: 9,
-      growth: 5,
-      hometown: 9,
-    },
-    competitiveBoardPct: { comfortable: 60, stretch: 50 },
-    salaryReality: {
-      startingLPA: '₹2.5–4 LPA in private schools; government teacher pay is notably higher and very secure',
-      midCareerLPA: '₹6–12 LPA in government service with allowances; private varies widely',
-      note: 'Private school pay starts low. A government teaching post (via TET + recruitment) is the high-value goal — secure, respected, with good work-life balance.',
-    },
-    demand: {
-      score: 7,
-      note: 'Constant demand for teachers. Government posts are competitive but appear regularly.',
-    },
-    entryDifficulty: {
-      score: 5,
-      note: 'Becoming a teacher is straightforward; landing a GOVERNMENT teaching post (via TET) is the competitive step.',
-    },
-    collegeTiers: [
-      {
-        label: 'Degree + B.Ed (the standard route)',
-        examples: ['Government arts & science colleges + government / aided B.Ed colleges'],
-        cutoffGuide: 'Merit-based on 12th and then degree marks — accessible across TN.',
-        feeRange: '₹5K–60K / year — government and aided colleges keep this low',
-      },
-      {
-        label: 'Integrated B.Sc B.Ed / B.El.Ed',
-        examples: ['Integrated teacher-education programmes at select institutions'],
-        cutoffGuide: 'Merit-based; saves a year versus doing degree and B.Ed separately.',
-        feeRange: '₹10K–80K / year',
-      },
-    ],
-    costReality:
-      'One of the most affordable career paths — a degree plus B.Ed in government/aided colleges can total well under ₹2L. The investment is the TET exam preparation that follows.',
-    backupOptions: [
-      'Private school teaching while preparing for government TET',
-      'Other government posts via TNPSC (a teaching degree does not limit you)',
-      'Coaching / tuition / EdTech content roles',
-    ],
-    honestCaveat:
-      'Private-school teaching alone is not well paid. The path is genuinely rewarding when the goal is a government post — so treat TET preparation as the real objective from the start, not an afterthought.',
-    roadmap: [
-      {
-        title: 'Finish 12th — any stream can become a teacher',
-        titleTa: '12-ஐ முடிக்கவும் — எந்த பிரிவும் ஆசிரியராகலாம்',
-        detail: 'Choose a degree subject you would enjoy teaching for decades.',
-        window: 'Now → board exams',
-        phase: 'now',
-      },
-      {
-        title: 'Complete a UG degree, then B.Ed (or an integrated programme)',
-        titleTa: 'பட்டப்படிப்பு + B.Ed',
-        detail: 'B.Ed is the standard teaching qualification. Integrated programmes combine both and save a year.',
-        window: 'College years',
-        phase: 'next',
-      },
-      {
-        title: 'Clear TET (Teacher Eligibility Test)',
-        titleTa: 'TET தேர்வில் தேர்ச்சி பெறவும்',
-        detail: 'TET is mandatory for government teaching posts. Start preparing during B.Ed.',
-        window: 'During / after B.Ed',
-        phase: 'later',
-      },
-      {
-        title: 'Apply for government / aided school posts',
-        titleTa: 'அரசு / உதவி பெறும் பள்ளி பணிகளுக்கு விண்ணப்பிக்கவும்',
-        detail: 'Government recruitment is the secure, well-paid destination. Private schools are a stepping stone.',
-        window: 'After qualification',
-        phase: 'later',
-      },
-    ],
-    ninetyDayPlan: [
-      {
-        title: 'Pick a degree subject you would love to teach',
-        titleTa: 'நீங்கள் கற்பிக்க விரும்பும் பாடத்தைத் தேர்வு செய்யவும்',
-        detail: 'You will teach this for decades — choose genuine interest over "what is easy".',
-        priority: 'high',
-        appRoute: '/career-assessment/colleges/course-explorer',
-      },
-      {
-        title: 'Understand the degree → B.Ed → TET pathway',
-        titleTa: 'பட்டப்படிப்பு → B.Ed → TET வழியைப் புரிந்துகொள்ளவும்',
-        detail: 'Knowing the full route now lets you plan B.Ed and TET timing efficiently.',
-        priority: 'high',
-      },
-      {
-        title: 'List affordable government / aided colleges',
-        titleTa: 'மலிவு அரசு / உதவி கல்லூரிகளைப் பட்டியலிடவும்',
-        detail: 'Keeping degree costs low matters since the long-term goal is a government post.',
-        priority: 'medium',
-        appRoute: '/career-assessment/colleges/find-colleges',
-      },
-      documentsAction,
-      {
-        title: 'Spend time around teaching',
-        titleTa: 'கற்பித்தலை நெருங்கி அனுபவிக்கவும்',
-        detail: 'Help a younger student, assist a teacher. The best teachers genuinely enjoy explaining things.',
-        priority: 'low',
-      },
-    ],
-    buildNowSkills: [
-      {
-        skill: 'Clear explanation and communication',
-        why: 'Teaching is the craft of making hard things simple. It is the entire job.',
-        freeResource: 'Practise teaching a concept to a younger student',
-      },
-      {
-        skill: 'Patience and classroom presence',
-        why: 'Managing a room of learners calmly is a real, learnable skill.',
-        freeResource: 'Tutor / mentor someone regularly',
-      },
-      {
-        skill: 'Subject depth',
-        why: 'You must know your subject well beyond the syllabus level to teach it confidently.',
-        freeResource: 'Read widely in the subject you want to teach',
-      },
-    ],
-    lastReviewed: '2026-05',
-  },
-
-  // ─── ENTREPRENEUR / BUSINESS OWNER ─────────────────────────────────────────
-  {
-    id: 'entrepreneur',
-    title: 'Entrepreneur / Business Owner',
-    titleTa: 'தொழில் முனைவோர்',
-    icon: '🚀',
-    color: 'from-pink-500 to-rose-600',
-    whatIsIt:
-      'Build and run your own business. There is no single degree for this — it is a path of skills, a support network and a tolerance for risk.',
-    eligibleStreams: ['commerce', 'pcm', 'arts', 'pcb', 'pcmb', 'vocational'],
-    strongGroupCodes: ['302', '301', '308'],
-    ugCourses: ['BBA', 'B.Com', 'B.E (for tech businesses)', 'Any degree + real-world skill building'],
-    entranceExams: ['None (direct admission)'],
-    pathwayType: 'degree-then-build',
-    timeToCareer:
-      'There is no direct path. Do a practical UG degree first as your foundation and safety net, building a skill alongside. Most start something seriously ~3-5 years from now.',
-    skillWeights: {
-      mathematics: 6,
-      language: 7,
-      science: 3,
-      creativity: 9,
-      people: 9,
-      physical: 4,
-      digital: 7,
-    },
-    priorityFit: {
-      salary: 8,
-      security: 2,
-      balance: 3,
-      abroad: 5,
-      prestige: 7,
-      passion: 10,
-      growth: 9,
-      hometown: 8,
-    },
-    competitiveBoardPct: { comfortable: 55, stretch: 45 },
-    salaryReality: {
-      startingLPA: 'Often near zero — or negative — in the first 1–3 years',
-      midCareerLPA: 'Highly variable: from modest to very high. Most businesses are modest; a few are large.',
-      note: 'This is the highest-variance path. Honest framing: most new businesses stay small or close. The ones that work usually had a founder with real skills and a fallback.',
-    },
-    demand: {
-      score: 5,
-      note: 'You create your own demand. There is no recruiter — the market decides.',
-    },
-    entryDifficulty: {
-      score: 7,
-      note: 'No exam gates you, but sustaining a business is genuinely hard. The "entry" is easy; the survival is not.',
-    },
-    collegeTiers: [
-      {
-        label: 'A practical degree as your foundation + safety net',
-        examples: ['BBA / B.Com for business literacy; B.E for tech ventures; any degree works'],
-        cutoffGuide: 'No special cutoff. Pick a degree that is affordable and teaches you useful, real skills.',
-        feeRange: '₹5K–1.5L / year — keep debt LOW; you may need savings to start a business',
-      },
-    ],
-    costReality:
-      'The degree should be deliberately low-cost, because your real capital is the money and time you will need to start something. Heavy education debt and entrepreneurship are a dangerous combination.',
-    backupOptions: [
-      'Your degree (BBA / B.Com / B.E) is itself the backup — use it for a job while building on the side',
-      'Join a startup first to learn how businesses run before starting your own',
-      'Family business / franchise as a lower-risk entry into running things',
-    ],
-    honestCaveat:
-      'Romanticised online, hard in reality. The students who succeed almost always (a) build a real skill first, (b) start small while studying, and (c) keep a degree-based fallback. Skipping a degree to "focus on business" at 18 is rarely the wise move.',
-    roadmap: [
-      {
-        title: 'Finish 12th and choose a practical, low-cost degree',
-        titleTa: '12-ஐ முடித்து நடைமுறை, மலிவு பட்டத்தைத் தேர்வு செய்யவும்',
-        detail: 'BBA or B.Com builds business literacy; any degree works. Keep cost low — preserve capital.',
-        window: 'Now → after board exams',
-        phase: 'now',
-      },
-      {
-        title: 'Build one real, sellable skill during college',
-        titleTa: 'கல்லூரியில் ஒரு உண்மையான திறனை உருவாக்கவும்',
-        detail: 'Coding, design, content, sales, a trade — something the market will actually pay for.',
-        window: 'College years 1–2',
-        phase: 'next',
-      },
-      {
-        title: 'Start something small while still studying',
-        titleTa: 'படிக்கும்போதே சிறிய அளவில் தொடங்கவும்',
-        detail: 'A tiny real business teaches more than any course. Low stakes, real lessons.',
-        window: 'College years 2–4',
-        phase: 'later',
-      },
-      {
-        title: 'Scale what works — or take a job and keep building',
-        titleTa: 'வேலை செய்வது வெற்றி பெற்றதை விரிவாக்குங்கள்',
-        detail: 'Either grow your venture, or use your degree for income while you keep iterating.',
-        window: 'After graduation',
-        phase: 'later',
-      },
-    ],
-    ninetyDayPlan: [
-      {
-        title: 'Choose an affordable degree that keeps options open',
-        titleTa: 'விருப்பங்களைத் திறந்து வைக்கும் மலிவு பட்டத்தைத் தேர்வு செய்யவும்',
-        detail: 'BBA / B.Com / B.E — pick based on interest, but keep the fees low. The degree is your safety net.',
-        priority: 'high',
-        appRoute: '/career-assessment/colleges/course-explorer',
-      },
-      {
-        title: 'Explore the Startup Guide in this app',
-        titleTa: 'இந்த ஆப்பில் Startup Guide-ஐ ஆராயவும்',
-        detail: 'Understand what actually starting a business in TN involves before you commit.',
-        priority: 'high',
-        appRoute: '/career-assessment/colleges/startup',
-      },
-      {
-        title: 'Pick ONE skill to start learning now',
-        titleTa: 'இப்போதே கற்க ஒரு திறனைத் தேர்வு செய்யவும்',
-        detail: 'A skill people pay for is your real foundation. Start before college, not after.',
-        priority: 'medium',
-      },
-      documentsAction,
-      {
-        title: 'Talk to a real small-business owner',
-        titleTa: 'ஒரு சிறு தொழில் உரிமையாளரிடம் பேசவும்',
-        detail: 'An honest conversation about the hard parts is worth more than any motivational video.',
-        priority: 'low',
-      },
-    ],
-    buildNowSkills: [
-      {
-        skill: 'One marketable skill (code/design/sales/trade)',
-        why: 'Businesses are built on a real capability. Pick one and go deep.',
-        freeResource: 'Free online courses in your chosen skill — abundant and free',
-      },
-      {
-        skill: 'Communication and persuasion',
-        why: 'Selling, hiring, negotiating — all of it is people-work.',
-        freeResource: 'Practise pitching ideas clearly; sell something small',
-      },
-      {
-        skill: 'Basic money management',
-        why: 'Understanding cash, costs and pricing prevents the most common business failures.',
-        freeResource: 'Free "small business finance basics" resources',
-      },
-    ],
-    lastReviewed: '2026-05',
-  },
-
   // ─── PHARMACIST ────────────────────────────────────────────────────────────
   {
     id: 'pharmacist',

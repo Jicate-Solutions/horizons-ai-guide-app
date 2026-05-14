@@ -1,4 +1,4 @@
-import { GraduationCap, Route, Briefcase, Landmark, Clock } from 'lucide-react';
+import { GraduationCap, Route, Clock } from 'lucide-react';
 import type { CareerPathway } from '@/data/careerPathways';
 
 interface PathwayTypeBannerProps {
@@ -9,14 +9,19 @@ interface PathwayTypeBannerProps {
 
 /**
  * WHY THIS EXISTS:
- * A 12th student seeing "Civil Servant — 84% Strong match" with an
- * "Exam: None (direct admission)" chip could reasonably think they can step
- * into that role straight after board exams. They cannot — it needs a full
- * degree first, then years of competitive exams.
+ * Earlier, careers like "Civil Servant" appeared in the predictor with an
+ * "Exam: None (direct admission)" chip — which wrongly implied a 12th student
+ * could step into that role straight after board exams. Those degree-first
+ * careers have since been removed from the dataset entirely.
  *
- * This banner makes the REAL route unmistakable. Every career is honestly
- * classified by HOW a 12th student reaches it, and the long-game careers carry
- * a clear, visually distinct warning-toned banner so nobody is misled.
+ * This banner remains to make the REAL route unmistakable for the careers that
+ * ARE shown — every one of which a 12th student can act on now. It states the
+ * route plainly and shows the honest `timeToCareer` so a student knows what
+ * they are committing to before they get excited about a match score.
+ *
+ * There are only two pathway types now:
+ *   - 'direct-after-12th'  — join the UG course straight after 12th
+ *   - 'professional-track' — register for a professional course directly (CA)
  */
 
 const TYPE_META: Record<
@@ -25,9 +30,7 @@ const TYPE_META: Record<
     label: string;
     labelTa: string;
     icon: typeof GraduationCap;
-    // tone: 'direct' = calm green, 'long' = amber so it visually reads as
-    // "read this carefully, this is a longer commitment"
-    tone: 'direct' | 'professional' | 'long';
+    tone: 'direct' | 'professional';
   }
 > = {
   'direct-after-12th': {
@@ -42,22 +45,10 @@ const TYPE_META: Record<
     icon: Route,
     tone: 'professional',
   },
-  'degree-then-exam': {
-    label: 'Needs a degree first, then a competitive exam',
-    labelTa: 'முதலில் பட்டப்படிப்பு, பின் போட்டித் தேர்வு',
-    icon: Landmark,
-    tone: 'long',
-  },
-  'degree-then-build': {
-    label: 'Needs a degree first, then years of building',
-    labelTa: 'முதலில் பட்டப்படிப்பு, பின் பல ஆண்டு உழைப்பு',
-    icon: Briefcase,
-    tone: 'long',
-  },
 };
 
 const TONE_CLASSES: Record<
-  'direct' | 'professional' | 'long',
+  'direct' | 'professional',
   { box: string; icon: string; label: string; time: string }
 > = {
   direct: {
@@ -71,12 +62,6 @@ const TONE_CLASSES: Record<
     icon: 'text-blue-600',
     label: 'text-blue-800',
     time: 'text-blue-700',
-  },
-  long: {
-    box: 'border-amber-300 bg-amber-50',
-    icon: 'text-amber-600',
-    label: 'text-amber-900',
-    time: 'text-amber-800',
   },
 };
 
@@ -110,9 +95,7 @@ export const PathwayTypeBanner = ({
           <Icon className={`h-5 w-5 ${tone.icon}`} />
         </div>
         <div className="min-w-0">
-          <p className={`text-[12px] font-bold ${tone.label}`}>
-            {meta.label}
-          </p>
+          <p className={`text-[12px] font-bold ${tone.label}`}>{meta.label}</p>
           <p className="text-[10px] text-gray-500">{meta.labelTa}</p>
           <div className="mt-1.5 flex items-start gap-1">
             <Clock className={`mt-0.5 h-3 w-3 shrink-0 ${tone.icon}`} />

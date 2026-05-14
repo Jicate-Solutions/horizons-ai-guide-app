@@ -9,9 +9,9 @@
 //   - neetColleges    (real TN/national medical colleges with cutoffs)
 //
 // It never invents a college. For careers that have no centralised dataset
-// (CA, Law, Teacher, Civil Servant, Entrepreneur), it deliberately returns NO
-// list and instead carries the pathway's honest `directAdmissionNote` — because
-// a misleading half-list is worse than clear guidance.
+// (CA, Law), it deliberately returns NO list and instead carries the pathway's
+// honest `directAdmissionNote` — because a misleading half-list is worse than
+// clear guidance.
 //
 // Results are grouped into tiers (government / aided / private) and sorted so a
 // student sees the affordable, high-value options first.

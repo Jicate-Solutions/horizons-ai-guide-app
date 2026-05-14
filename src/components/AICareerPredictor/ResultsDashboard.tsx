@@ -357,8 +357,9 @@ export const ResultsDashboard = ({
                 )}
 
                 {/* HOW a 12th student actually reaches this career — shown
-                    prominently so a long-game career (Civil Servant, etc.) is
-                    never mistaken for something reachable directly after 12th. */}
+                    prominently so the real route and realistic time-to-career
+                    are clear before a student gets attached to a match score.
+                    Every career here is one they can act on directly now. */}
                 <PathwayTypeBanner pathway={activeMatch.pathway} variant="full" />
 
                 {/* The UG course(s) that lead here */}

@@ -42,9 +42,9 @@ const phaseMeta = {
 /**
  * The roadmap is now genuinely per-career. A Doctor's roadmap talks about NEET
  * and counselling; a CA's roadmap talks about ICAI registration and articleship;
- * a Civil Servant's roadmap talks about choosing a low-cost degree and starting
- * a newspaper habit. None of this is shared boilerplate — it all comes from the
- * curated CAREER_PATHWAYS data, so the "Personalised" label is finally true.
+ * a Lawyer's roadmap talks about CLAT and the 5-year integrated degree. None of
+ * this is shared boilerplate — it all comes from the curated CAREER_PATHWAYS
+ * data, so the "Personalised" label is finally true.
  */
 export const CareerRoadmap = ({ pathway }: CareerRoadmapProps) => {
   return (
