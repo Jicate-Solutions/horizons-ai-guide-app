@@ -180,6 +180,7 @@ export const governmentExams: GovernmentExam[] = [
     applicationStatus: 'upcoming',
     description: 'Non-Technical Popular Categories: Commercial Cum Ticket Clerk, Account Clerk, etc.',
     posts: ['Commercial Cum Ticket Clerk', 'Account Clerk', 'Junior Clerk', 'Trains Clerk'],
+    syllabusPdf: '/rrb-ntpc-2026-syllabus.pdf',
   },
   {
     id: 'rrb-group-d',

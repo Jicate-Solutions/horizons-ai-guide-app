@@ -2893,7 +2893,7 @@ export const officialSyllabusUrls: Record<string, string> = {
   'bsf-constable': 'https://www.bsf.gov.in/exam-notification',
   'crpf-constable': 'https://crpf.gov.in/recruitment.htm',
   'cisf-constable': 'https://cisfrectt.in',
-  'rrb-ntpc': 'https://www.rrbapply.gov.in/syllabus',
+  'rrb-ntpc': '/rrb-ntpc-2026-syllabus.pdf',
   'rrb-group-d': 'https://www.rrbapply.gov.in/syllabus',
   'rpf-constable': 'https://www.rrbapply.gov.in/syllabus',
   'ssc-chsl': '/ssc-chsl-2026-syllabus.pdf',
