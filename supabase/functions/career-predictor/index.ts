@@ -1,9 +1,34 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// CAREER PREDICTOR — narrative layer
+// ─────────────────────────────────────────────────────────────────────────────
+// IMPORTANT ARCHITECTURE NOTE:
+// The match scores, roadmaps, reality-check figures and 90-day plans are NO
+// LONGER produced here. They are computed deterministically on the client by
+// the scoring engine (src/lib/careerScoring.ts) from curated, inspectable data
+// (src/data/careerPathways.ts).
+//
+// This function does ONE job: take those already-decided, verified facts and
+// write a warm, personalised narrative around them — the encouraging,
+// human-sounding paragraph a counsellor would say. It must NEVER invent or
+// change a number. If the AI is unavailable, the app still works fully; the
+// narrative is a presentation enhancement, not the source of truth.
+// ─────────────────────────────────────────────────────────────────────────────
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+interface MatchSummary {
+  title: string;
+  score: number;
+  band: string;
+  headline: string;
+  topComponent?: string;
+  watchOut?: string;
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -12,155 +37,162 @@ serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { type } = body;
+
+    // Expected payload from the client (post scoring-engine run):
+    //   groupCode, stream, expectedPercentage, topPriorities (string[]),
+    //   interests (string[]), matches (MatchSummary[] — top 3)
+    const {
+      groupCode = "",
+      stream = "",
+      expectedPercentage,
+      topPriorities = [],
+      interests = [],
+      matches = [],
+    }: {
+      groupCode?: string;
+      stream?: string;
+      expectedPercentage?: number;
+      topPriorities?: string[];
+      interests?: string[];
+      matches?: MatchSummary[];
+    } = body;
+
+    // Defensive: if no matches were sent, there is nothing to narrate.
+    if (!Array.isArray(matches) || matches.length === 0) {
+      return new Response(
+        JSON.stringify({
+          narrative:
+            "Your results below are based on a transparent scoring of your answers. Open any career to see exactly how its match score was calculated, the step-by-step roadmap, and your personalised 90-day plan.",
+          perCareer: {},
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+
+    // If the AI key is missing, gracefully return a clean non-AI narrative.
+    // The app is fully functional without this — by design.
     if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+      const top = matches[0];
+      return new Response(
+        JSON.stringify({
+          narrative: `Based on your answers, "${top.title}" came out as your strongest match at ${top.score}%. ${top.headline} Every score below is calculated from your inputs — tap "See the calculation" on any career to check the maths yourself.`,
+          perCareer: {},
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
-    let systemPrompt = "";
-    let userPrompt = "";
-    let tools = [];
-    let toolChoice = {};
+    const matchList = matches
+      .slice(0, 3)
+      .map(
+        (m, i) =>
+          `${i + 1}. ${m.title} — match ${m.score}% (${m.band}). Key reason: ${m.headline}${
+            m.watchOut ? ` Watch-out: ${m.watchOut}` : ""
+          }`,
+      )
+      .join("\n");
 
-    if (type === "skills") {
-      const { career } = body;
-      systemPrompt = `You are a career skill advisor for Tamil Nadu 12th-standard students (Class of 2026). Analyze skill requirements for the given career and provide actionable recommendations with current skill levels and learning resources relevant to Indian students.`;
+    const systemPrompt = `You are a warm, honest career counsellor for a Tamil Nadu 12th-standard student. You are given results that have ALREADY been calculated by a transparent scoring engine. Your ONLY job is to write the encouraging, human narrative around these fixed facts.
 
-      userPrompt = `For a career as a ${career || "Software Developer"}, provide skill gap analysis with 4-5 key skills needed. Include free/affordable Indian learning resources.`;
+ABSOLUTE RULES:
+- NEVER invent, change, or contradict any match score, career name, or fact you are given. The numbers are final.
+- NEVER add salary figures, cutoffs, or statistics — those are shown separately from verified data.
+- Do NOT claim the student "will" succeed or give guarantees. Be encouraging but honest.
+- Acknowledge the top match, briefly explain in plain words why it fits this specific student, and gently note that the lower matches are still real options.
+- Keep a calm, respectful, parent-friendly tone. No hype, no emojis, no exclamation overload.
+- Write for a student who may be the first in their family to go to college.
+- 'narrative': 2-3 short sentences, overall and personal.
+- 'perCareer': for EACH career title given, one single encouraging-but-honest sentence (max 25 words) that connects it to this student's profile.`;
 
-      tools = [{
+    const userPrompt = `STUDENT PROFILE (already analysed):
+- TN 12th group: ${groupCode || "not specified"} (stream: ${stream || "not specified"})
+- Expected board %: ${expectedPercentage ?? "not specified"}
+- Top priorities they ranked: ${topPriorities.length ? topPriorities.join(", ") : "not specified"}
+- Interests they picked: ${interests.length ? interests.join(", ") : "not specified"}
+
+CALCULATED RESULTS (these are FINAL — narrate, do not change):
+${matchList}
+
+Write the narrative and per-career sentences. Remember: you are explaining results that already exist, in a warm and honest voice.`;
+
+    const tools = [
+      {
         type: "function",
         function: {
-          name: "provide_skill_analysis",
-          description: "Provide skill gap analysis for a career",
+          name: "provide_narrative",
+          description:
+            "Provide a warm, honest narrative around already-calculated career results.",
           parameters: {
             type: "object",
             properties: {
-              skills: {
+              narrative: {
+                type: "string",
+                description:
+                  "2-3 short sentences: warm, honest overall summary personalised to this student.",
+              },
+              perCareer: {
                 type: "array",
+                description: "One entry per career title provided.",
                 items: {
                   type: "object",
                   properties: {
-                    skill: { type: "string" },
-                    importance: { type: "number", description: "Importance score 1-10" },
-                    currentLevel: { type: "number", description: "Estimated current level for a 12th student 1-10" },
-                    resources: {
-                      type: "array",
-                      items: { type: "string" },
-                      description: "2-3 learning resources"
-                    }
+                    title: {
+                      type: "string",
+                      description: "Exact career title as given.",
+                    },
+                    note: {
+                      type: "string",
+                      description:
+                        "One encouraging-but-honest sentence (max 25 words) connecting this career to the student.",
+                    },
                   },
-                  required: ["skill", "importance", "currentLevel", "resources"]
-                }
-              }
+                  required: ["title", "note"],
+                },
+              },
             },
-            required: ["skills"]
-          }
-        }
-      }];
-      toolChoice = { type: "function", function: { name: "provide_skill_analysis" } };
-    } else {
-      // Full career prediction using all 7-step assessment data
-      const {
-        interests, workPreference, workStyle,
-        budget, location, duration, percentage, examReadiness,
-        skillRatings, strongestSubject, weakestSubject, entranceScore
-      } = body;
-
-      systemPrompt = `You are an expert career counselor specializing in Tamil Nadu 12th-standard students (Class of 2026). Your job is to recommend SPECIFIC, REALISTIC career paths that a 12th student in Tamil Nadu can actually pursue.
-
-IMPORTANT RULES:
-- Recommend careers that are DIRECTLY accessible after 12th standard through proper UG courses (B.E/B.Tech, MBBS, B.Sc, BBA, B.Com, BA, BCA, etc.)
-- Career titles should be the END GOAL profession, not vague roles
-- Examples of GOOD career titles: "Software Engineer", "Doctor (MBBS)", "Chartered Accountant", "Civil Engineer", "Data Scientist", "Mechanical Engineer", "Pharmacist", "Lawyer", "IAS Officer", "Architect"
-- Examples of BAD career titles: "EdTech Product Manager", "Curriculum Developer for E-learning", "International Education Consultant" — these are too niche and not relevant for a 12th student
-- Match scores should reflect how well the student's profile fits, ranging 70-95%
-- Salary ranges must be realistic for India (in LPA format)
-- Growth rates should reflect current Indian job market trends
-- Consider the student's group subjects, budget, location preference, and exam readiness when recommending`;
-
-      userPrompt = `STUDENT ASSESSMENT DATA:
-
-📚 12th Group & Subjects: ${interests || "Not specified"}
-🎯 Top Interests: ${workPreference || "Not specified"}
-📊 Career Priorities (ranked): ${workStyle || "Not specified"}
-
-💰 Family Budget: ${budget || "Not specified"}
-📍 Preferred Location: ${location || "Not specified"}
-⏰ Course Duration Preference: ${duration || "Not specified"}
-🎯 Exam Readiness: ${examReadiness || "Not specified"}
-
-📈 Expected Percentage: ${percentage || "Not specified"}
-📗 Strongest Subject: ${strongestSubject || "Not specified"}
-📕 Weakest Subject: ${weakestSubject || "Not specified"}
-${entranceScore ? `🏆 Entrance Exam Score: ${entranceScore}` : ""}
-
-Self-rated Skills: ${skillRatings ? JSON.stringify(skillRatings) : "Not provided"}
-
-Based on ALL of the above data, provide the TOP 5 most suitable career paths for this student. Each career must be a realistic, well-known profession achievable through standard Indian education pathways.`;
-
-      tools = [{
-        type: "function",
-        function: {
-          name: "provide_career_predictions",
-          description: "Provide career predictions based on student assessment",
-          parameters: {
-            type: "object",
-            properties: {
-              predictions: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    career: { type: "string", description: "Specific career title (e.g. Software Engineer, Doctor, CA)" },
-                    matchScore: { type: "number", description: "Match percentage 70-95" },
-                    icon: { type: "string", description: "Single emoji for the career" },
-                    color: { type: "string", description: "Tailwind gradient like 'from-blue-500 to-indigo-600'" },
-                    description: { type: "string", description: "One sentence about why this suits the student" },
-                    avgSalary: { type: "string", description: "Salary range like '₹8-25 LPA'" },
-                    growthRate: { type: "string", description: "Growth rate like '+35%'" }
-                  },
-                  required: ["career", "matchScore", "icon", "color", "description", "avgSalary", "growthRate"]
-                }
-              }
-            },
-            required: ["predictions"]
-          }
-        }
-      }];
-      toolChoice = { type: "function", function: { name: "provide_career_predictions" } };
-    }
-
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
+            required: ["narrative", "perCareer"],
+          },
+        },
       },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt }
-        ],
-        tools,
-        tool_choice: toolChoice
-      }),
-    });
+    ];
+
+    const response = await fetch(
+      "https://ai.gateway.lovable.dev/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${LOVABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-flash",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+          tools,
+          tool_choice: {
+            type: "function",
+            function: { name: "provide_narrative" },
+          },
+        }),
+      },
+    );
 
     if (!response.ok) {
-      if (response.status === 429) {
+      // On rate-limit / credit issues, degrade gracefully — the client already
+      // has the full deterministic result; it just won't get the AI prose.
+      if (response.status === 429 || response.status === 402) {
+        const top = matches[0];
         return new Response(
-          JSON.stringify({ error: "Rate limit exceeded. Please try again in a moment." }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: "AI credits exhausted. Please try again later." }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          JSON.stringify({
+            narrative: `Your strongest match is "${top.title}" at ${top.score}%. ${top.headline} Every score below is calculated from your own answers — open any career to see the full breakdown.`,
+            perCareer: {},
+            degraded: true,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
       const errorText = await response.text();
@@ -169,38 +201,51 @@ Based on ALL of the above data, provide the TOP 5 most suitable career paths for
     }
 
     const data = await response.json();
-
     const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
+
     if (toolCall?.function?.arguments) {
-      const result = JSON.parse(toolCall.function.arguments);
+      const parsed = JSON.parse(toolCall.function.arguments);
+      // Normalise perCareer into a title -> note map for easy client lookup.
+      const perCareerMap: Record<string, string> = {};
+      if (Array.isArray(parsed.perCareer)) {
+        for (const entry of parsed.perCareer) {
+          if (entry?.title && entry?.note) {
+            perCareerMap[entry.title] = entry.note;
+          }
+        }
+      }
       return new Response(
-        JSON.stringify(result),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        JSON.stringify({
+          narrative: parsed.narrative ?? "",
+          perCareer: perCareerMap,
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
+    // Fallback if the model returned plain content instead of a tool call.
     const content = data.choices?.[0]?.message?.content;
-    if (content) {
-      try {
-        const parsed = JSON.parse(content);
-        return new Response(
-          JSON.stringify(parsed),
-          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      } catch {
-        return new Response(
-          JSON.stringify({ message: content }),
-          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-    }
-
-    throw new Error("No valid response from AI");
-  } catch (error) {
-    console.error("Career predictor error:", error);
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({
+        narrative:
+          typeof content === "string" && content.length > 0
+            ? content
+            : `Your strongest match is "${matches[0].title}" at ${matches[0].score}%. Open any career below to see how its score was calculated.`,
+        perCareer: {},
+      }),
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
+  } catch (error) {
+    console.error("Career predictor narrative error:", error);
+    // Even on a hard error, return a usable narrative so the UI never breaks.
+    return new Response(
+      JSON.stringify({
+        narrative:
+          "Your results below are calculated transparently from your answers. Open any career to see the exact score breakdown, roadmap, and your 90-day plan.",
+        perCareer: {},
+        error: error instanceof Error ? error.message : "Unknown error",
+      }),
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 });

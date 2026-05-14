@@ -8,4 +8,7 @@ export { default as AcademicPerformance } from './AcademicPerformance';
 export { default as WizardProgress } from './WizardProgress';
 export { default as CareerRoadmap } from './CareerRoadmap';
 export { default as ActionItems } from './ActionItems';
+export { default as ScoreBreakdown } from './ScoreBreakdown';
+export { default as RealityCheck } from './RealityCheck';
+export { default as BuildNowSkills } from './BuildNowSkills';
 export { default as ResultsDashboard } from './ResultsDashboard';
