@@ -4,11 +4,11 @@
  * A standalone, filterable directory of sports-quota trials at colleges
  * across India for the 2026-27 academic year.
  *
- * This page surfaces ONLY entries marked `userProvided: true` in
- * sportsQuotaData.ts — i.e. the trial notifications shared by the JKKN
- * team. Other entries (legacy TNEA-default colleges) are intentionally
- * excluded — they remain in the data file for the eligibility flow's
- * scoring calculations but are not shown here.
+ * This page surfaces ONLY entries whose id is on the DISCOVERY_COLLEGE_IDS
+ * allowlist in src/data/sportsQuotaDiscoveryData.ts — i.e. the trial
+ * notifications shared by the JKKN team. Other entries (legacy TNEA-default
+ * colleges) are intentionally excluded — they remain in the data file for
+ * the eligibility flow's scoring calculations but are not shown here.
  *
  * Filters (all combine with AND):
  *   • District       (multi-select)
@@ -54,6 +54,12 @@ import {
   type Sport,
   type SportTrialDate,
 } from '@/data/sportsQuotaData';
+import { DISCOVERY_COLLEGE_IDS } from '@/data/sportsQuotaDiscoveryData';
+
+// Single source of truth for which colleges appear on this page. The list is
+// declared in sportsQuotaDiscoveryData.ts and shared with the eligibility
+// splash banner so both surfaces stay in lock-step.
+const DISCOVERY_ALLOWLIST = new Set<string>(DISCOVERY_COLLEGE_IDS);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -129,7 +135,7 @@ const buildOccurrences = (
 };
 
 const flattenColleges = (): FlattenedTrial[] =>
-  COLLEGE_SPORTS_QUOTA.filter((c) => c.userProvided === true).map((c) => {
+  COLLEGE_SPORTS_QUOTA.filter((c) => DISCOVERY_ALLOWLIST.has(c.id)).map((c) => {
     const trialsMen = c.overrides?.trialsMen ?? [];
     const trialsWomen = c.overrides?.trialsWomen ?? [];
     const trialDates = buildOccurrences(trialsMen, trialsWomen);
