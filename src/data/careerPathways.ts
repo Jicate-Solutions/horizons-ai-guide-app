@@ -152,6 +152,92 @@ export interface CareerPathway {
   lastReviewed: string;
 }
 
+/**
+ * How to resolve REAL Tamil Nadu colleges for a career, from the existing
+ * verified datasets. Kept as a separate, explicit table (rather than guessed)
+ * so every mapping is reviewable:
+ *   - tneaBranchCodes → looked up in TNEA_COLLEGES (engineering)
+ *   - neetCourses     → looked up in neetColleges (medical)
+ *   - directAdmissionNote → for careers with no centralised college dataset
+ *     (CA, Law, Teacher, Civil Servant, Entrepreneur), an honest explanation
+ *     of where to study instead of a misleading half-list.
+ */
+export interface CollegeResolver {
+  /** 2-letter TNEA branch codes whose colleges suit this career */
+  tneaBranchCodes?: string[];
+  /** NEET course names (MBBS, BDS, etc.) whose colleges suit this career */
+  neetCourses?: string[];
+  /** For non-centralised careers: honest guidance instead of a fake list */
+  directAdmissionNote?: string;
+  /** Deep-link query for the in-app College Finder, when relevant */
+  collegeFinderQuery?: string;
+}
+
+/**
+ * Career id → college resolver. Engineering and medical careers map onto real
+ * named-college datasets; the rest get honest "how to choose where to study"
+ * guidance, because a half-accurate college list is worse than none.
+ */
+export const CAREER_COLLEGE_RESOLVERS: Record<string, CollegeResolver> = {
+  'software-engineer': {
+    // CS, CSE(SS), IT, IT(SS), AI&DS, CSE(AI/ML), Computer & Communication,
+    // Computer Tech, Information Science, CS & Business System.
+    tneaBranchCodes: ['CS', 'CM', 'IT', 'IM', 'AD', 'AM', 'CO', 'CT', 'IG', 'CB', 'TS'],
+    collegeFinderQuery: 'Computer Science',
+  },
+  'data-scientist': {
+    // AI & Data Science, CSE(AI/ML), CSE(Big Data), CS, CSE(SS), IT.
+    tneaBranchCodes: ['AD', 'AM', 'BD', 'CS', 'CM', 'IT'],
+    collegeFinderQuery: 'Data Science',
+  },
+  'mechanical-engineer': {
+    // Mechanical and its many variants + Automobile + Mechatronics.
+    tneaBranchCodes: ['ME', 'MH', 'MS', 'MF', 'MU', 'XM', 'AU', 'AS', 'MC', 'MZ', 'MG', 'PR'],
+    collegeFinderQuery: 'Mechanical',
+  },
+  'doctor-mbbs': {
+    neetCourses: ['MBBS'],
+  },
+  // Nurse & Pharmacist: there is no single centralised "named college" dataset
+  // bundled in the app yet, so we give honest guidance + a finder query rather
+  // than a misleading partial list. (B.Pharm appears partly via the TNEA "PH"
+  // pharmaceutical-tech branch, which we surface as a related option.)
+  nurse: {
+    directAdmissionNote:
+      'B.Sc Nursing has no single state counselling portal like TNEA. Apply directly to government nursing colleges (attached to government medical colleges in most districts) and to private nursing colleges. Government seats are far cheaper — always apply there first.',
+    collegeFinderQuery: 'Nursing',
+  },
+  pharmacist: {
+    tneaBranchCodes: ['PH', 'PM'], // Pharmaceutical Technology (degree-level)
+    directAdmissionNote:
+      'Most B.Pharm / Pharm.D admissions are direct to the college (no single state portal). Apply to government pharmacy colleges first — they are attached to government medical colleges in several districts — then private colleges as backup.',
+    collegeFinderQuery: 'Pharmacy',
+  },
+  'chartered-accountant': {
+    directAdmissionNote:
+      'CA needs no college admission at all — you register directly with ICAI after 12th and study from anywhere. For the recommended parallel B.Com safety net, any arts & science college works; pick one that is affordable and close to home.',
+    collegeFinderQuery: 'B.Com',
+  },
+  lawyer: {
+    directAdmissionNote:
+      'Law colleges are not in a single engineering-style list. For the 5-year integrated degree: CLAT leads to the National Law Universities, while Tamil Nadu government law colleges (Chennai, Madurai, Coimbatore, Tirunelveli, Tiruchirappalli) admit through their own affordable, merit-based process. Private law colleges admit on 12th marks.',
+  },
+  teacher: {
+    directAdmissionNote:
+      'Becoming a teacher is a degree + B.Ed (or an integrated B.Sc B.Ed / B.El.Ed). Any government or aided arts & science college works for the degree; government and aided B.Ed colleges keep costs very low. Choose based on the subject you want to teach and proximity to home.',
+    collegeFinderQuery: 'B.Ed',
+  },
+  'civil-servant': {
+    directAdmissionNote:
+      'There is no "civil services college" — you need any UG degree, then prepare for UPSC or TNPSC. The smart move is a low-cost government arts college (BA History / Political Science / Economics align well with the syllabus) so family money is preserved for the preparation years.',
+  },
+  entrepreneur: {
+    directAdmissionNote:
+      'There is no single path or college for entrepreneurship. A practical, low-cost degree (BBA, B.Com, or B.E for tech ventures) is your foundation and safety net. Keep fees low — your real capital is the time and money you will need to start something.',
+    collegeFinderQuery: 'BBA',
+  },
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared action fragments — keeps the data DRY while staying per-career honest
 // ─────────────────────────────────────────────────────────────────────────────

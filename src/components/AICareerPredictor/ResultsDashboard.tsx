@@ -22,6 +22,7 @@ import type { CareerMatch } from '@/lib/careerScoring';
 import { SCORING_METHODOLOGY } from '@/lib/careerScoring';
 import ScoreBreakdown from './ScoreBreakdown';
 import RealityCheck from './RealityCheck';
+import CollegesForCareer from './CollegesForCareer';
 import CareerRoadmap from './CareerRoadmap';
 import ActionItems from './ActionItems';
 import BuildNowSkills from './BuildNowSkills';
@@ -376,6 +377,9 @@ export const ResultsDashboard = ({
 
             {/* The honest reality check */}
             <RealityCheck pathway={activeMatch.pathway} />
+
+            {/* Real, named colleges that offer this career's courses */}
+            <CollegesForCareer pathway={activeMatch.pathway} />
 
             {/* The genuinely per-career roadmap */}
             <CareerRoadmap pathway={activeMatch.pathway} />
