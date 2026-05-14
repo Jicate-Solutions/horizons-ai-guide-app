@@ -12,4 +12,5 @@ export { default as ScoreBreakdown } from './ScoreBreakdown';
 export { default as RealityCheck } from './RealityCheck';
 export { default as CollegesForCareer } from './CollegesForCareer';
 export { default as BuildNowSkills } from './BuildNowSkills';
+export { default as PathwayTypeBanner } from './PathwayTypeBanner';
 export { default as ResultsDashboard } from './ResultsDashboard';

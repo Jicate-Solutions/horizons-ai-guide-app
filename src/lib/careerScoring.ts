@@ -78,6 +78,27 @@ export interface CareerMatch {
   headlineTa: string;
   /** Honest watch-out specific to this student + career */
   watchOut: string;
+  /**
+   * Whether this is a career a 12th student can START on right after 12th
+   * (true for 'direct-after-12th' and 'professional-track'), or a longer path
+   * that needs a completed degree first ('degree-then-exam'/'degree-then-build').
+   * This is what stops a degree-gated career like Civil Servant being ranked
+   * as a top "match" alongside courses a student can actually enrol in now.
+   */
+  isImmediatePath: boolean;
+}
+
+/**
+ * Is this a path a 12th student can step onto right after board exams?
+ * 'direct-after-12th'  — joins the UG course directly (Engineer, Doctor, Nurse)
+ * 'professional-track' — registers for the professional course directly (CA)
+ * vs the long-game routes that need a finished degree FIRST.
+ */
+export function isImmediatePath(pathway: CareerPathway): boolean {
+  return (
+    pathway.pathwayType === 'direct-after-12th' ||
+    pathway.pathwayType === 'professional-track'
+  );
 }
 
 // ─── Weights — fixed and documented ──────────────────────────────────────────
@@ -394,7 +415,16 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
       breakdown,
     );
 
-    return { pathway, score, band, breakdown, headline, headlineTa, watchOut };
+    return {
+      pathway,
+      score,
+      band,
+      breakdown,
+      headline,
+      headlineTa,
+      watchOut,
+      isImmediatePath: isImmediatePath(pathway),
+    };
   });
 
   // Rank by score, then by group strength as a tiebreaker.
@@ -408,9 +438,58 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
   return matches;
 }
 
-/** Convenience: the top N matches. */
+/**
+ * The result of analysing a student — split honestly into two groups so a
+ * degree-gated career can never masquerade as a top "match".
+ */
+export interface CareerAnalysis {
+  /**
+   * Careers a 12th student can START on right after board exams — join the
+   * course or register for the professional track directly. THESE are the
+   * real "top matches" and are ranked by score.
+   */
+  immediateMatches: CareerMatch[];
+  /**
+   * Longer-game careers (Civil Servant, Government Teacher, Entrepreneur).
+   * Still scored and still shown — a student deciding "I want this" makes real
+   * choices now — but presented separately as "paths worth planning for",
+   * never as something reachable directly after 12th.
+   */
+  longerPaths: CareerMatch[];
+}
+
+/**
+ * Analyse a student: score every eligible career, then SPLIT the results into
+ * immediate paths vs longer paths. This split is the core honesty fix — it is
+ * what stops "Civil Servant — 84% match" appearing in the same ranked list as
+ * "Software Engineer", when a 12th student cannot take UPSC/TNPSC for years.
+ *
+ * @param immediateN  how many immediate matches to keep (default 5)
+ * @param longerN     how many longer paths to keep (default 3)
+ */
+export function analyseCareers(
+  profile: StudentProfile,
+  immediateN = 5,
+  longerN = 3,
+): CareerAnalysis {
+  const all = scoreCareers(profile); // already ranked by score
+
+  const immediate = all.filter((m) => m.isImmediatePath);
+  const longer = all.filter((m) => !m.isImmediatePath);
+
+  return {
+    immediateMatches: immediate.slice(0, immediateN),
+    longerPaths: longer.slice(0, longerN),
+  };
+}
+
+/**
+ * Backward-compatible convenience: the top N IMMEDIATE matches only.
+ * Kept so existing callers keep working — but note it now returns ONLY careers
+ * a 12th student can start on directly, never degree-gated ones.
+ */
 export function topCareerMatches(profile: StudentProfile, n = 5): CareerMatch[] {
-  return scoreCareers(profile).slice(0, n);
+  return analyseCareers(profile, n).immediateMatches;
 }
 
 /**
@@ -419,6 +498,6 @@ export function topCareerMatches(profile: StudentProfile, n = 5): CareerMatch[] 
  * the number. Transparency is the point.
  */
 export const SCORING_METHODOLOGY = {
-  en: `Every match score is calculated, not guessed. We compare your self-rated skills against what each career actually needs (40%), how well the career delivers on the priorities you ranked (30%), whether your 12th group is a strong foundation for it (15%), and whether your expected marks make the mainstream route realistic (15%). Careers your 12th group cannot lead to are never shown. The same answers always give the same result.`,
-  ta: `ஒவ்வொரு பொருத்த மதிப்பெண்ணும் ஊகிக்கப்படவில்லை — கணக்கிடப்படுகிறது. உங்கள் திறன்கள் (40%), உங்கள் முன்னுரிமைகள் (30%), உங்கள் 12-ஆம் வகுப்புக் குழு (15%), மற்றும் எதிர்பார்க்கப்படும் மதிப்பெண்கள் (15%) ஆகியவற்றை ஒவ்வொரு தொழிலுக்கும் ஒப்பிட்டுக் கணக்கிடப்படுகிறது. உங்கள் குழுவால் அடைய முடியாத தொழில்கள் காட்டப்படாது.`,
+  en: `Every match score is calculated, not guessed. We compare your self-rated skills against what each career actually needs (40%), how well the career delivers on the priorities you ranked (30%), whether your 12th group is a strong foundation for it (15%), and whether your expected marks make the mainstream route realistic (15%). Careers your 12th group cannot lead to are never shown. Careers that need a completed degree first — like the civil services or a government teaching post — are shown separately as "longer paths to plan for", never mixed in with courses you can join right after 12th. The same answers always give the same result.`,
+  ta: `ஒவ்வொரு பொருத்த மதிப்பெண்ணும் ஊகிக்கப்படவில்லை — கணக்கிடப்படுகிறது. உங்கள் திறன்கள் (40%), உங்கள் முன்னுரிமைகள் (30%), உங்கள் 12-ஆம் வகுப்புக் குழு (15%), மற்றும் எதிர்பார்க்கப்படும் மதிப்பெண்கள் (15%) ஆகியவற்றை ஒவ்வொரு தொழிலுக்கும் ஒப்பிட்டுக் கணக்கிடப்படுகிறது. உங்கள் குழுவால் அடைய முடியாத தொழில்கள் காட்டப்படாது. முதலில் பட்டப்படிப்பு தேவைப்படும் தொழில்கள் — அரசுப் பணி போன்றவை — தனியாக "திட்டமிட வேண்டிய நீண்ட பாதைகள்" எனக் காட்டப்படும்.`,
 };

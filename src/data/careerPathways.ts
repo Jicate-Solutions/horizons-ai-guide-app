@@ -50,6 +50,7 @@ export type EntranceExam =
   | 'CA Foundation'
   | 'None (direct admission)';
 
+
 export interface RoadmapStage {
   /** Short title, e.g. "Score 90%+ in Board exams" */
   title: string;
@@ -105,6 +106,33 @@ export interface CareerPathway {
   ugCourses: string[];
   /** Entrance exam(s) gating entry */
   entranceExams: EntranceExam[];
+  /**
+   * HOW a 12th student actually reaches this career. This is critical for
+   * honesty: a 12th student is NOT "directly" eligible to be a Civil Servant —
+   * that needs a full degree first, then years of competitive exams. The UI
+   * must show this clearly so no student is misled into thinking a long-game
+   * career is something they can step into right after board exams.
+   *
+   *  - 'direct-after-12th'  → you join the UG course straight after 12th and
+   *                           that course IS the path (Engineer, Doctor, Nurse).
+   *  - 'professional-track' → a multi-year professional qualification you
+   *                           register for after 12th (CA via ICAI).
+   *  - 'degree-then-exam'   → you must FINISH any degree first, THEN spend
+   *                           years on a competitive exam (Civil Servant,
+   *                           and the government-teacher route via TET).
+   *  - 'degree-then-build'  → a degree first, then years of building/experience
+   *                           with no fixed exam (Entrepreneur).
+   */
+  pathwayType:
+    | 'direct-after-12th'
+    | 'professional-track'
+    | 'degree-then-exam'
+    | 'degree-then-build';
+  /**
+   * Honest, plain-language summary of the realistic time from finishing 12th
+   * to actually working in this career. Shown prominently in the UI.
+   */
+  timeToCareer: string;
 
   // ─── SCORING INPUTS ────────────────────────────────────────────────────────
   /**
@@ -268,6 +296,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['102', '101'],
     ugCourses: ['B.E / B.Tech CSE', 'B.E / B.Tech IT', 'B.Sc Computer Science', 'BCA'],
     entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.E/B.Tech directly — that degree is the path. Working as a software engineer typically ~4 years from now.',
     skillWeights: {
       mathematics: 8,
       language: 5,
@@ -444,6 +475,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['208', '103'],
     ugCourses: ['MBBS'],
     entranceExams: ['NEET-UG'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you take NEET, then join MBBS directly. It is a long course: ~5.5 years to a basic doctor, more for specialisation.',
     skillWeights: {
       mathematics: 3,
       language: 6,
@@ -617,6 +651,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['301', '302', '304', '308'],
     ugCourses: ['CA (via ICAI)', 'B.Com alongside CA', 'BBA alongside CA'],
     entranceExams: ['CA Foundation'],
+    pathwayType: 'professional-track',
+    timeToCareer:
+      'After 12th you register with ICAI directly and begin the CA course. Qualifying as a CA realistically takes ~4-5 years of exams plus articleship.',
     skillWeights: {
       mathematics: 8,
       language: 6,
@@ -765,6 +802,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['101', '102', '103'],
     ugCourses: ['B.E / B.Tech Mechanical', 'B.E Automobile', 'B.E Mechatronics', 'Diploma → B.E lateral entry'],
     entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.E/B.Tech directly. Working as a mechanical engineer is typically ~4 years from now.',
     skillWeights: {
       mathematics: 8,
       language: 4,
@@ -928,6 +968,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['304', '404', '405'],
     ugCourses: ['Any UG degree (BA, B.Sc, B.Com, B.E — all accepted)'],
     entranceExams: ['None (direct admission)'],
+    pathwayType: 'degree-then-exam',
+    timeToCareer:
+      'NOT a direct-after-12th career. First finish ANY 3-4 year UG degree, THEN prepare 2-4 years for UPSC/TNPSC. Realistically ~6-8 years from now.',
     skillWeights: {
       mathematics: 5,
       language: 9,
@@ -1072,6 +1115,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['204', '208'],
     ugCourses: ['B.Sc Nursing', 'GNM (diploma route)', 'B.Sc Allied Health Sciences'],
     entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.Sc Nursing directly — that degree is the path. Working as a nurse is typically ~4 years from now.',
     skillWeights: {
       mathematics: 3,
       language: 6,
@@ -1222,6 +1268,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['304', '404', '305'],
     ugCourses: ['BA LLB (5-year integrated)', 'BBA LLB', 'B.Com LLB', 'LLB (after any degree)'],
     entranceExams: ['CLAT', 'CUET'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 5-year integrated law degree directly. Practising as a lawyer is typically ~5 years from now.',
     skillWeights: {
       mathematics: 3,
       language: 10,
@@ -1380,6 +1429,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       'B.Com with analytics',
     ],
     entranceExams: ['TNEA', 'JEE Main', 'CUET'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a relevant UG degree (B.Tech / B.Sc) directly, building data skills alongside. Working in the field is typically ~4 years from now.',
     skillWeights: {
       mathematics: 10,
       language: 5,
@@ -1531,6 +1583,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['404', '401', '301'],
     ugCourses: ['B.Sc/BA/B.Com + B.Ed', 'B.El.Ed', 'Integrated B.Sc B.Ed', 'D.El.Ed (diploma route)'],
     entranceExams: ['None (direct admission)'],
+    pathwayType: 'degree-then-exam',
+    timeToCareer:
+      'NOT a direct-after-12th job. First a UG degree, then B.Ed, then the TET exam for a government post. Realistically ~5-6 years from now to a secure teaching job.',
     skillWeights: {
       mathematics: 5,
       language: 9,
@@ -1679,6 +1734,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['302', '301', '308'],
     ugCourses: ['BBA', 'B.Com', 'B.E (for tech businesses)', 'Any degree + real-world skill building'],
     entranceExams: ['None (direct admission)'],
+    pathwayType: 'degree-then-build',
+    timeToCareer:
+      'There is no direct path. Do a practical UG degree first as your foundation and safety net, building a skill alongside. Most start something seriously ~3-5 years from now.',
     skillWeights: {
       mathematics: 6,
       language: 7,
@@ -1821,6 +1879,9 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     strongGroupCodes: ['208', '203', '104'],
     ugCourses: ['B.Pharm', 'Pharm.D', 'D.Pharm (diploma route)'],
     entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join B.Pharm (4 years) or Pharm.D (6 years) directly — that degree is the path.',
     skillWeights: {
       mathematics: 4,
       language: 5,

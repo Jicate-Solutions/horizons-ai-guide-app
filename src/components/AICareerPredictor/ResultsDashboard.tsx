@@ -26,6 +26,7 @@ import CollegesForCareer from './CollegesForCareer';
 import CareerRoadmap from './CareerRoadmap';
 import ActionItems from './ActionItems';
 import BuildNowSkills from './BuildNowSkills';
+import PathwayTypeBanner from './PathwayTypeBanner';
 
 interface ResultsDashboardProps {
   /** Ranked matches from the deterministic scoring engine */
@@ -241,6 +242,12 @@ export const ResultsDashboard = ({
                     {bandLabel[match.band]}
                   </Badge>
 
+                  {/* Pathway type — visible BEFORE the student clicks in, so a
+                      long-game career is flagged honestly right on the card. */}
+                  <div className="mt-1.5">
+                    <PathwayTypeBanner pathway={match.pathway} variant="compact" />
+                  </div>
+
                   {isActive && (
                     <p className="mt-2 text-[10px] font-medium text-emerald-600">
                       ▾ Showing details below
@@ -348,8 +355,17 @@ export const ResultsDashboard = ({
                     {perCareerNotes[activeMatch.pathway.title]}
                   </p>
                 )}
-                {/* Eligibility + courses — concrete facts */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
+
+                {/* HOW a 12th student actually reaches this career — shown
+                    prominently so a long-game career (Civil Servant, etc.) is
+                    never mistaken for something reachable directly after 12th. */}
+                <PathwayTypeBanner pathway={activeMatch.pathway} variant="full" />
+
+                {/* The UG course(s) that lead here */}
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  <span className="text-[10px] font-semibold text-gray-400">
+                    UG course:
+                  </span>
                   {activeMatch.pathway.ugCourses.map((c) => (
                     <span
                       key={c}
@@ -359,16 +375,31 @@ export const ResultsDashboard = ({
                     </span>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {activeMatch.pathway.entranceExams.map((e) => (
-                    <span
-                      key={e}
-                      className="rounded bg-violet-50 px-1.5 py-0.5 text-[10px] font-medium text-violet-600"
-                    >
-                      Exam: {e}
+
+                {/* Entrance exam — only shown when there genuinely IS one.
+                    For 'None (direct admission)' careers we deliberately do NOT
+                    show a chip, because "Exam: None" misleads a 12th student
+                    into thinking the whole career is direct. The PathwayTypeBanner
+                    above already explains the real route honestly. */}
+                {activeMatch.pathway.entranceExams.some(
+                  (e) => e !== 'None (direct admission)',
+                ) && (
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="text-[10px] font-semibold text-gray-400">
+                      Entrance exam:
                     </span>
-                  ))}
-                </div>
+                    {activeMatch.pathway.entranceExams
+                      .filter((e) => e !== 'None (direct admission)')
+                      .map((e) => (
+                        <span
+                          key={e}
+                          className="rounded bg-violet-50 px-1.5 py-0.5 text-[10px] font-medium text-violet-600"
+                        >
+                          {e}
+                        </span>
+                      ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
 
