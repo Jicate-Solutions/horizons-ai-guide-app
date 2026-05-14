@@ -12,6 +12,7 @@ import {
   Scale,
   Building2,
   ListChecks,
+  Download,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -37,6 +38,7 @@ import CareerRoadmap from './CareerRoadmap';
 import ActionItems from './ActionItems';
 import BuildNowSkills from './BuildNowSkills';
 import PathwayTypeBanner from './PathwayTypeBanner';
+import { generateCareerPredictorPDF } from './generateCareerPredictorPDF';
 
 interface ResultsDashboardProps {
   /** Ranked matches from the deterministic scoring engine */
@@ -127,6 +129,16 @@ export const ResultsDashboard = ({
         `mailto:?subject=My Career Analysis&body=${encodeURIComponent(text)}`,
         '_blank',
       );
+    }
+  };
+
+  // Download the full result as a PDF the student can keep, print, or show
+  // to parents and teachers. The generator is fully client-side (jsPDF).
+  const handleDownloadPDF = () => {
+    try {
+      generateCareerPredictorPDF({ matches, narrative });
+    } catch (err) {
+      console.error('PDF generation failed:', err);
     }
   };
 
@@ -491,6 +503,10 @@ export const ResultsDashboard = ({
 
         {/* ─── Actions ────────────────────────────────────────────── */}
         <div className="mt-8 flex flex-wrap justify-center gap-2.5">
+          <Button className="gap-2" onClick={handleDownloadPDF}>
+            <Download className="h-4 w-4" />
+            Download as PDF
+          </Button>
           <Button
             variant="outline"
             className="gap-2"
