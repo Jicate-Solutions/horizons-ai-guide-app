@@ -47,6 +47,9 @@ serve(async (req) => {
       expectedPercentage,
       topPriorities = [],
       interests = [],
+      decisionOwner = "",
+      firstGeneration = "",
+      earningUrgency = "",
       matches = [],
     }: {
       groupCode?: string;
@@ -54,6 +57,9 @@ serve(async (req) => {
       expectedPercentage?: number;
       topPriorities?: string[];
       interests?: string[];
+      decisionOwner?: string;
+      firstGeneration?: string;
+      earningUrgency?: string;
       matches?: MatchSummary[];
     } = body;
 
@@ -106,16 +112,41 @@ ABSOLUTE RULES:
 - 'narrative': 2-3 short sentences, overall and personal.
 - 'perCareer': for EACH career title given, one single encouraging-but-honest sentence (max 25 words) that connects it to this student's profile.`;
 
+    // Translate the "Your Real Situation" ids into plain language for the
+    // prompt, so the AI narrative can speak to the student's actual life.
+    const decisionText: Record<string, string> = {
+      mine: "this is mostly their own decision",
+      shared: "this is a shared decision with their family",
+      family: "this is mostly their family's expectation",
+    };
+    const urgencyText: Record<string, string> = {
+      flexible: "they can take their time — a longer path is fine",
+      within3: "they would like to be earning within about 3 years",
+      soon: "their family needs them earning soon",
+    };
+    const lifeContextLines = [
+      decisionOwner ? `- Decision ownership: ${decisionText[decisionOwner] ?? decisionOwner}` : "",
+      firstGeneration === "yes"
+        ? "- They are the FIRST in their family to attend college — be especially encouraging and mention that scholarships/first-graduate support exist"
+        : firstGeneration === "no"
+          ? "- Others in their family have degrees"
+          : "",
+      earningUrgency ? `- Earning timeline: ${urgencyText[earningUrgency] ?? earningUrgency}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
     const userPrompt = `STUDENT PROFILE (already analysed):
 - TN 12th group: ${groupCode || "not specified"} (stream: ${stream || "not specified"})
 - Expected board %: ${expectedPercentage ?? "not specified"}
 - Top priorities they ranked: ${topPriorities.length ? topPriorities.join(", ") : "not specified"}
 - Interests they picked: ${interests.length ? interests.join(", ") : "not specified"}
+${lifeContextLines ? "\nTHEIR REAL SITUATION (weave this in warmly and respectfully — it matters as much as the scores):\n" + lifeContextLines : ""}
 
 CALCULATED RESULTS (these are FINAL — narrate, do not change):
 ${matchList}
 
-Write the narrative and per-career sentences. Remember: you are explaining results that already exist, in a warm and honest voice.`;
+Write the narrative and per-career sentences. Remember: you are explaining results that already exist, in a warm and honest voice. If their real situation is given, acknowledge it naturally — a good counsellor speaks to the whole person, not just their marks.`;
 
     const tools = [
       {

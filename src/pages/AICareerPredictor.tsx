@@ -36,6 +36,7 @@ import InterestAssessment from '@/components/AICareerPredictor/InterestAssessmen
 import SkillAssessment from '@/components/AICareerPredictor/SkillAssessment';
 import PriorityRanker from '@/components/AICareerPredictor/PriorityRanker';
 import SituationForm from '@/components/AICareerPredictor/SituationForm';
+import RealSituationStep from '@/components/AICareerPredictor/RealSituationStep';
 import AcademicPerformance from '@/components/AICareerPredictor/AcademicPerformance';
 import WizardProgress from '@/components/AICareerPredictor/WizardProgress';
 import ResultsDashboard from '@/components/AICareerPredictor/ResultsDashboard';
@@ -46,7 +47,7 @@ const stepVariants = {
   exit: { opacity: 0, x: -30 },
 };
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 8;
 const STEP_LABELS = [
   'Board',
   'Group',
@@ -54,6 +55,7 @@ const STEP_LABELS = [
   'Skills',
   'Priorities',
   'Situation',
+  'Real Life',
   'Academics',
 ];
 
@@ -99,6 +101,10 @@ const AICareerPredictor = () => {
   const [location, setLocation] = useState('');
   const [duration, setDuration] = useState('');
   const [examReadiness, setExamReadiness] = useState('');
+  // "Your Real Situation" step — the counsellor-style life context.
+  const [decisionOwner, setDecisionOwner] = useState('');
+  const [firstGeneration, setFirstGeneration] = useState('');
+  const [earningUrgency, setEarningUrgency] = useState('');
   const [percentage, setPercentage] = useState('');
   const [strongestSubject, setStrongestSubject] = useState('');
   const [weakestSubject, setWeakestSubject] = useState('');
@@ -161,6 +167,10 @@ const AICareerPredictor = () => {
       location,
       strongestSubject,
       weakestSubject,
+      // "Your Real Situation" — counsellor-style life context.
+      decisionOwner,
+      firstGeneration,
+      earningUrgency,
     };
   };
 
@@ -194,6 +204,11 @@ const AICareerPredictor = () => {
             expectedPercentage: profile.expectedPercentage,
             topPriorities: profile.rankedPriorities.slice(0, 3),
             interests: profile.interests,
+            // "Your Real Situation" context — lets the AI narrative speak to
+            // the student's actual life, not just their skills.
+            decisionOwner: profile.decisionOwner,
+            firstGeneration: profile.firstGeneration,
+            earningUrgency: profile.earningUrgency,
             matches: computed.slice(0, 3).map((m) => ({
               title: m.pathway.title,
               score: m.score,
@@ -267,7 +282,9 @@ const AICareerPredictor = () => {
     if (step === 5) return true;
     if (step === 6)
       return !!budget && !!location && !!duration && !!examReadiness;
-    if (step === 7) return !!percentage;
+    if (step === 7)
+      return !!decisionOwner && !!firstGeneration && !!earningUrgency;
+    if (step === 8) return !!percentage;
     return true;
   };
 
@@ -340,7 +357,7 @@ const AICareerPredictor = () => {
                   தொழில் கணிப்பான்
                 </p>
                 <p className="mx-auto mb-7 max-w-xl text-base text-muted-foreground">
-                  Answer 7 honest questions. We calculate — transparently — which
+                  Answer 8 honest questions. We calculate — transparently — which
                   careers genuinely fit you, and give you a real roadmap and a
                   90-day action plan you can start tomorrow.
                 </p>
@@ -381,7 +398,7 @@ const AICareerPredictor = () => {
                   {[
                     {
                       emoji: '📝',
-                      label: 'You answer 7 questions',
+                      label: 'You answer 8 questions',
                     },
                     {
                       emoji: '🧮',
@@ -559,6 +576,25 @@ const AICareerPredictor = () => {
               {step === 7 && (
                 <motion.div
                   key="s7"
+                  variants={stepVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.3 }}
+                >
+                  <RealSituationStep
+                    decisionOwner={decisionOwner}
+                    firstGeneration={firstGeneration}
+                    earningUrgency={earningUrgency}
+                    onChangeDecisionOwner={setDecisionOwner}
+                    onChangeFirstGeneration={setFirstGeneration}
+                    onChangeEarningUrgency={setEarningUrgency}
+                  />
+                </motion.div>
+              )}
+              {step === 8 && (
+                <motion.div
+                  key="s8"
                   variants={stepVariants}
                   initial="initial"
                   animate="animate"

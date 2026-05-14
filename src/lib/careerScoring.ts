@@ -49,6 +49,15 @@ export interface StudentProfile {
   /** Strongest / weakest subject names (free-form) */
   strongestSubject?: string;
   weakestSubject?: string;
+  // ─── LIFE CONTEXT (from the "Your Real Situation" step) ──────────────────
+  // The factors a real counsellor weighs that pure skill/interest scoring
+  // misses. These genuinely change the ranking via lifeFitNudge below.
+  /** Whose decision this is: 'mine' | 'shared' | 'family' */
+  decisionOwner?: string;
+  /** First in family to attend college: 'yes' | 'no' */
+  firstGeneration?: string;
+  /** How soon income is needed: 'flexible' | 'within3' | 'soon' */
+  earningUrgency?: string;
 }
 
 // ─── Outputs ─────────────────────────────────────────────────────────────────
@@ -328,6 +337,96 @@ function interestNudge(profile: StudentProfile, pathway: CareerPathway): number 
   return hit ? 3 : 0; // capped at +3, applied after the weighted total
 }
 
+// ─── Life-fit adjustment ─────────────────────────────────────────────────────
+// The counsellor's layer. A career can match a student's skills perfectly and
+// still be the wrong recommendation for their actual life. This applies a
+// small, capped, FULLY TRANSPARENT adjustment (it appears in the breakdown as
+// its own line, never a hidden nudge) based on the "Your Real Situation" step:
+//
+//   - Earning urgency: if a student must earn soon, faster-payoff paths get a
+//     lift and long, expensive, hard-entry paths get an honest reduction. This
+//     is the single most important real-life factor the old tool was blind to.
+//   - First-generation: a tiny lift for lower-cost / lower-risk paths, since a
+//     first-generation student usually has less financial cushion for a long
+//     gamble. (Scholarships are surfaced separately in the UI regardless.)
+//
+// The adjustment is capped at roughly ±10 so it can meaningfully reorder
+// careers without ever overpowering the core skill/priority scoring.
+function scoreLifeFit(
+  profile: StudentProfile,
+  pathway: CareerPathway,
+): ScoreComponent {
+  const MAX = 10;
+  let earned = MAX / 2; // neutral midpoint — no answers means no opinion
+  const reasons: string[] = [];
+
+  // How "fast to a real income" is this path? Use the curated honest fields:
+  // entryDifficulty (1-10, higher = harder) is the best proxy we have, plus
+  // pathwayType. professional-track (e.g. CA) and lower entry difficulty mean
+  // a quicker, surer route to earning.
+  const entryDifficulty = pathway.entryDifficulty?.score ?? 5;
+  const isHardLongPath = entryDifficulty >= 8;
+  const isQuickerPath = entryDifficulty <= 5;
+
+  // ── Earning urgency ──
+  if (profile.earningUrgency === 'soon') {
+    if (isQuickerPath) {
+      earned += 4;
+      reasons.push(
+        'fits your need to start earning soon — a relatively quick, reachable route',
+      );
+    } else if (isHardLongPath) {
+      earned -= 4;
+      reasons.push(
+        'this is a long, highly competitive route — a real concern given you need to earn soon',
+      );
+    } else {
+      reasons.push('a moderate route given your need to earn soon');
+    }
+  } else if (profile.earningUrgency === 'within3') {
+    if (isQuickerPath) {
+      earned += 2;
+      reasons.push('a reasonably quick route, which suits your ~3-year goal');
+    } else if (isHardLongPath) {
+      earned -= 2;
+      reasons.push('a longer route than your ~3-year earning goal ideally wants');
+    }
+  } else if (profile.earningUrgency === 'flexible') {
+    // No penalty either way — the student has said time is not a constraint.
+    if (isHardLongPath) {
+      reasons.push(
+        'a long path — and you have said you can take your time, which helps',
+      );
+    }
+  }
+
+  // ── First-generation learner ──
+  // A small lift for quicker / lower-risk paths; first-generation students
+  // typically have less cushion to absorb a long, costly gamble. This is a
+  // gentle thumb on the scale, not a verdict.
+  if (profile.firstGeneration === 'yes') {
+    if (isQuickerPath && earned < MAX) {
+      earned += 1.5;
+      reasons.push(
+        'a lower-risk route — sensible as a first-generation college student',
+      );
+    }
+  }
+
+  earned = clamp(earned, 0, MAX);
+
+  return {
+    label: 'Life fit',
+    labelTa: 'வாழ்க்கைப் பொருத்தம்',
+    earned: round(earned),
+    max: MAX,
+    reason:
+      reasons.length > 0
+        ? reasons.join('; ') + '.'
+        : 'Your situation does not strongly push this career up or down.',
+  };
+}
+
 // ─── Band classification ─────────────────────────────────────────────────────
 function classifyBand(
   score: number,
@@ -345,8 +444,12 @@ function buildHeadline(
   pathway: CareerPathway,
   breakdown: ScoreComponent[],
 ): { headline: string; headlineTa: string; watchOut: string } {
+  // The headline/watch-out describe the core MATCH. "Life fit" is a separate
+  // situational adjustment with a neutral midpoint, so a neutral 5/10 must not
+  // be mistaken for the "weakest" dimension — exclude it from this selection.
+  const coreComponents = breakdown.filter((c) => c.label !== 'Life fit');
   // Find the strongest and weakest components (by % of max earned).
-  const withPct = breakdown.map((c) => ({
+  const withPct = coreComponents.map((c) => ({
     c,
     pct: c.max > 0 ? c.earned / c.max : 0,
   }));
@@ -406,11 +509,20 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
     const priority = scorePriorityFit(profile, pathway);
     const group = scoreGroupStrength(profile, pathway);
     const academic = scoreAcademicReadiness(profile, pathway);
+    const lifeFit = scoreLifeFit(profile, pathway);
 
-    const breakdown = [skill, priority, group, academic];
+    // The 4 core components sum to 100. Life fit is a separate, transparent
+    // adjustment: its neutral midpoint is 5/10, so (earned - 5) swings the
+    // final score by -5..+5 — enough to honestly reorder careers for a
+    // student's real situation, never enough to overpower the core match.
+    const lifeFitAdjustment = lifeFit.earned - lifeFit.max / 2;
+
+    // Breakdown shows every component, including life fit, so the student
+    // (or a reviewer) can see exactly why the number is what it is.
+    const breakdown = [skill, priority, group, academic, lifeFit];
     const base = skill.earned + priority.earned + group.earned + academic.earned;
     const nudge = interestNudge(profile, pathway);
-    const score = clamp(round(base + nudge), 5, 99);
+    const score = clamp(round(base + nudge + lifeFitAdjustment), 5, 99);
 
     const band = classifyBand(score, group.earned);
     const { headline, headlineTa, watchOut } = buildHeadline(
@@ -464,6 +576,6 @@ export function topCareerMatches(profile: StudentProfile, n = 5): CareerMatch[] 
  * the number. Transparency is the point.
  */
 export const SCORING_METHODOLOGY = {
-  en: `Every match score is calculated, not guessed. We compare your self-rated skills against what each career actually needs (40%), how well the career delivers on the priorities you ranked (30%), whether your 12th group is a strong foundation for it (15%), and whether your expected marks make the mainstream route realistic (15%). Careers your 12th group cannot lead to are never shown. Careers that need a completed degree first — like the civil services or a government teaching post — are shown separately as "longer paths to plan for", never mixed in with courses you can join right after 12th. The same answers always give the same result.`,
-  ta: `ஒவ்வொரு பொருத்த மதிப்பெண்ணும் ஊகிக்கப்படவில்லை — கணக்கிடப்படுகிறது. உங்கள் திறன்கள் (40%), உங்கள் முன்னுரிமைகள் (30%), உங்கள் 12-ஆம் வகுப்புக் குழு (15%), மற்றும் எதிர்பார்க்கப்படும் மதிப்பெண்கள் (15%) ஆகியவற்றை ஒவ்வொரு தொழிலுக்கும் ஒப்பிட்டுக் கணக்கிடப்படுகிறது. உங்கள் குழுவால் அடைய முடியாத தொழில்கள் காட்டப்படாது. முதலில் பட்டப்படிப்பு தேவைப்படும் தொழில்கள் — அரசுப் பணி போன்றவை — தனியாக "திட்டமிட வேண்டிய நீண்ட பாதைகள்" எனக் காட்டப்படும்.`,
+  en: `Every match score is calculated, not guessed. We compare your self-rated skills against what each career actually needs (40%), how well the career delivers on the priorities you ranked (30%), whether your 12th group is a strong foundation for it (15%), and whether your expected marks make the mainstream route realistic (15%). On top of that, a small "life fit" adjustment reflects your real situation — how soon you need to earn, and whether you are the first in your family at college — because a career that does not fit your life is not a good recommendation, however well it matches your skills. Careers your 12th group cannot lead to are never shown. Careers that need a completed degree first — like the civil services or a government teaching post — are shown separately as "longer paths to plan for", never mixed in with courses you can join right after 12th. The same answers always give the same result.`,
+  ta: `ஒவ்வொரு பொருத்த மதிப்பெண்ணும் ஊகிக்கப்படவில்லை — கணக்கிடப்படுகிறது. உங்கள் திறன்கள் (40%), உங்கள் முன்னுரிமைகள் (30%), உங்கள் 12-ஆம் வகுப்புக் குழு (15%), மற்றும் எதிர்பார்க்கப்படும் மதிப்பெண்கள் (15%) ஆகியவற்றுடன், உங்கள் உண்மையான சூழ்நிலையை (எவ்வளவு விரைவில் சம்பாதிக்க வேண்டும் என்பது போன்றவை) பிரதிபலிக்கும் சிறிய "வாழ்க்கைப் பொருத்தம்" சரிசெய்தலும் சேர்க்கப்படுகிறது. உங்கள் குழுவால் அடைய முடியாத தொழில்கள் காட்டப்படாது. முதலில் பட்டப்படிப்பு தேவைப்படும் தொழில்கள் தனியாகக் காட்டப்படும்.`,
 };
