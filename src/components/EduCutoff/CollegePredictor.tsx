@@ -722,7 +722,26 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
    };
  
    const userCutoff = engineeringResult?.cutoff || cutoffScore || 0;
-   const userCategory = engineeringResult?.category || categoryCode || 'OC';
+   const rawCategory = engineeringResult?.category || categoryCode || 'OC';
+
+   // The college cutoff tables carry the 5 standard TNEA columns
+   // (OC / BC / MBC / SC / ST). The community selector also offers the finer
+   // TN sub-categories — map each to the bucket TNEA actually places it in,
+   // instead of silently falling back to OC (which would compare a reserved
+   // category student against the higher OC cutoff and wrongly make every
+   // prediction look pessimistic).
+   //   BCM (Backward Class Muslim)        -> BC column
+   //   DNC (Denotified Communities)       -> MBC column (grouped MBC/DNC)
+   //   SCA (SC Arunthathiyar)             -> SC column
+   //   EWS (general, economically weaker) -> competes nearest OC
+   const CATEGORY_TO_CUTOFF_BUCKET: Record<string, string> = {
+     OC: 'OC', EWS: 'OC',
+     BC: 'BC', BCM: 'BC',
+     MBC: 'MBC', DNC: 'MBC',
+     SC: 'SC', SCA: 'SC',
+     ST: 'ST',
+   };
+   const userCategory = CATEGORY_TO_CUTOFF_BUCKET[rawCategory] ?? 'OC';
 
    const predictedColleges = allColleges.map(college => {
      const collegeCutoff = college.lastYearCutoff[userCategory] || college.lastYearCutoff['OC'];

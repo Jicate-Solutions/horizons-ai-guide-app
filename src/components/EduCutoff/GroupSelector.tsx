@@ -273,7 +273,10 @@ export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorPro
       {/* Marks Structure Info */}
       <div className="mt-4 p-3 bg-gray-50 rounded-lg">
         <p className="text-xs text-gray-600">
-          <strong>📊 Total Marks:</strong> Part I (100) + Part II English (100) + Part III 4 Subjects (400) = <strong>600 Marks</strong> | Pass: 35% per subject
+          <strong>📊 Board total:</strong> Part I Language (100) + Part II English (100) + Part III 4 Subjects (400) = <strong>600 marks</strong>. Pass: 35% per subject.
+        </p>
+        <p className="text-xs text-gray-500 mt-1">
+          <strong>Note:</strong> This calculator uses your <strong>4 core (Part III) subject marks</strong> — that is what TNEA engineering cutoff and college admission percentages are based on. Language and English count towards your board total but are not used in the cutoff calculation.
         </p>
       </div>
     </div>
