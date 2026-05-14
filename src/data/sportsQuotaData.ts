@@ -4286,8 +4286,9 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
   // 7 April 2026 and 8 April 2026. Up to 100% free education for deserving
   // sports players based on achievement and trial performance. The flyer
   // does not split events by gender, so trials are treated as open to both
-  // Men and Women. Carrom, Throwball and Best Physique are not in the
-  // standard Sport enum — mapped to 'other'.
+  // Men and Women. The flyer also does not state a reporting time, so the
+  // trial time is marked "See poster" rather than guessed. Carrom, Throwball
+  // and Best Physique are not in the standard Sport enum — mapped to 'other'.
   {
     id: 'svgi_erode',
     collegeName: 'Shree Venkateshwara Group of Institutions',
@@ -4319,36 +4320,36 @@ export const COLLEGE_SPORTS_QUOTA: CollegeSportsQuota[] = [
         'other', // Carrom + Throwball + Best Physique
       ],
       trialsMen: [
-        { sport: 'kabaddi',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'volleyball',   date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'chess',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'cricket',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'football',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'handball',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'other',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Carrom + Throwball (Day 1)
-        { sport: 'kho-kho',      date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'weightlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'powerlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'wrestling',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'hockey',       date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'athletics',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'yoga',         date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'kabaddi',      date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'volleyball',   date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'chess',        date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'cricket',      date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'football',     date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'handball',     date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'other',        date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Carrom + Throwball (Day 1)
+        { sport: 'kho-kho',      date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'weightlifting', date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'powerlifting', date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'wrestling',    date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'hockey',       date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'athletics',    date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'yoga',         date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
       ],
       trialsWomen: [
-        { sport: 'kabaddi',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'volleyball',   date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'chess',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'cricket',      date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'football',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'handball',     date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'other',        date: '2026-04-07', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Carrom + Throwball (Day 1)
-        { sport: 'kho-kho',      date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'weightlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'powerlifting', date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'wrestling',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'hockey',       date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'athletics',    date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
-        { sport: 'yoga',         date: '2026-04-08', time: '9:00 AM', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'kabaddi',      date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'volleyball',   date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'chess',        date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'cricket',      date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'football',     date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'handball',     date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'other',        date: '2026-04-07', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' }, // Carrom + Throwball (Day 1)
+        { sport: 'kho-kho',      date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'weightlifting', date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'powerlifting', date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'wrestling',    date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'hockey',       date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'athletics',    date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
+        { sport: 'yoga',         date: '2026-04-08', time: 'See poster', venue: 'Shree Venkateshwara Group of Institutions, Othakuthirai, Gobichettipalayam, Erode' },
       ],
       extraDocuments: [
         {
