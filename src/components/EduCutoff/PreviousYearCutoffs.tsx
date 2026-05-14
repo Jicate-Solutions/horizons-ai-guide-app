@@ -232,24 +232,34 @@ export const PreviousYearCutoffs = () => {
                           </div>
                         </div>
 
-                        {/* Category grid */}
+                        {/* Category grid. NOTE: expected2026 is an OC-only
+                            projection — the data does not carry per-category
+                            2026 estimates. So the toggle only changes the OC
+                            cell; BC/MBC/SC/ST always show their real 2025
+                            values. Showing the OC estimate in every column
+                            (the previous behaviour) was simply wrong. */}
                         <div className="grid grid-cols-5 gap-1.5">
                           {(['oc', 'bc', 'mbc', 'sc', 'st'] as const).map(cat => {
-                            const val = showExpected && entry.expected2026 ? entry.expected2026 : entry[cat];
+                            const isOcProjection =
+                              cat === 'oc' && showExpected && entry.expected2026 != null;
+                            const val = isOcProjection ? entry.expected2026 : entry[cat];
                             const colors = categoryColors[cat];
                             return (
                               <div key={cat} className={cn('rounded-lg p-2 text-center border', colors.bg)}>
-                                <div className={cn('text-[10px] font-bold mb-0.5', colors.text)}>{cat.toUpperCase()}</div>
-                                <div className={cn('text-xs font-black', colors.text)}>{cat === 'oc' && showExpected && entry.expected2026 ? entry.expected2026 : val}</div>
+                                <div className={cn('text-[10px] font-bold mb-0.5', colors.text)}>
+                                  {cat.toUpperCase()}
+                                  {isOcProjection && <span className="ml-0.5">*</span>}
+                                </div>
+                                <div className={cn('text-xs font-black', colors.text)}>{val}</div>
                               </div>
                             );
                           })}
                         </div>
 
                         {/* 2026 expected row */}
-                        {showExpected && entry.expected2026 && (
+                        {showExpected && entry.expected2026 != null && (
                           <div className="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 flex items-center justify-between">
-                            <span className="text-xs font-semibold text-amber-700">🎯 2026 Expected (OC)</span>
+                            <span className="text-xs font-semibold text-amber-700">🎯 2026 Expected (OC only*)</span>
                             <span className="text-sm font-black text-amber-700">{entry.expected2026}</span>
                           </div>
                         )}
@@ -269,6 +279,11 @@ export const PreviousYearCutoffs = () => {
           ⚠️ Data based on <strong>TNEA 2025 DOTE official data</strong>, NEET 2024-25 TN counselling, and Govt exam results.
           2026 Expected cutoffs are trend-based estimates — always verify from official sources before applying.
         </p>
+        {showExpected && (
+          <p className="text-[11px] text-gray-400 text-center mt-1.5">
+            * The 2026 projection is an OC-category estimate only. BC / MBC / SC / ST columns continue to show actual 2025 cutoffs, as per-category 2026 estimates are not available.
+          </p>
+        )}
       </div>
     </div>
   );
