@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Building2, Loader2, Trophy, X, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Building2, Loader2, Trophy, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
@@ -8,7 +9,6 @@ import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
 import { FacilityChecklist } from './FacilityChecklist';
-import { SportsQuotaGuide } from './SportsQuotaGuide';
 import { College, CollegeCategory, COLLEGE_TYPE_INFO, isAutonomousCollege, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES, KANYAKUMARI_FEATURED_COLLEGES, KRISHNAGIRI_FEATURED_COLLEGES, MADURAI_FEATURED_COLLEGES, MAYILADUTHURAI_FEATURED_COLLEGES, NAGAPATTINAM_FEATURED_COLLEGES, NILGIRIS_FEATURED_COLLEGES, PERAMBALUR_FEATURED_COLLEGES, PUDUKKOTTAI_FEATURED_COLLEGES, RAMANATHAPURAM_FEATURED_COLLEGES, RANIPET_FEATURED_COLLEGES, SIVAGANGA_FEATURED_COLLEGES, TENKASI_FEATURED_COLLEGES, THANJAVUR_FEATURED_COLLEGES, THENI_FEATURED_COLLEGES, THOOTHUKUDI_FEATURED_COLLEGES, TIRUCHIRAPPALLI_FEATURED_COLLEGES, TIRUNELVELI_FEATURED_COLLEGES, TIRUPATHUR_FEATURED_COLLEGES, TIRUVALLUR_FEATURED_COLLEGES, TIRUVANNAMALAI_FEATURED_COLLEGES, TIRUVARUR_FEATURED_COLLEGES, VELLORE_FEATURED_COLLEGES, VILUPPURAM_FEATURED_COLLEGES, VIRUDHUNAGAR_FEATURED_COLLEGES } from './types';
 import { mergeWithBrochure, BROCHURE_COLLEGES_BY_DISTRICT } from './brochureBridge';
 
@@ -66,6 +66,7 @@ const removeDuplicates = (colleges: College[]): College[] => {
 
 export const CollegeSearch = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
   const [colleges, setColleges] = useState<College[]>([]);
   const [loading, setLoading] = useState(false);
@@ -77,7 +78,6 @@ export const CollegeSearch = () => {
   const [selectedNaacGrade, setSelectedNaacGrade] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('name');
   const [autonomousFilter, setAutonomousFilter] = useState(false);
-  const [showSportsDirectory, setShowSportsDirectory] = useState(false);
   
 
   // Fetch colleges when district changes
@@ -305,43 +305,24 @@ export const CollegeSearch = () => {
         </div>
       </div>
 
-      {/* Sports Quota Card — always visible */}
+      {/* Sports Quota Discovery — always visible. Navigates to the dedicated
+          /sports-quota-discovery page which shows the team-curated 2026-27
+          selection trial list with District / Sport / Gender / Past-Upcoming
+          filters. */}
       <button
-        onClick={() => setShowSportsDirectory(true)}
+        onClick={() => navigate('/sports-quota-discovery')}
         className="w-full flex items-center gap-3 p-3.5 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 hover:shadow-md transition-all active:scale-[0.99] text-left"
       >
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
           <Trophy className="w-5 h-5 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-bold text-gray-900">Sports Quota Directory</p>
-          <p className="text-xs text-gray-500">436 colleges · 30 districts · Search & verify with TNEA codes</p>
+          <p className="text-sm font-bold text-gray-900">Sports Quota Discovery</p>
+          <p className="text-xs text-gray-500">30 colleges · 2026-27 trials · Filter by district, sport, gender, date</p>
         </div>
         <ChevronRight className="w-5 h-5 text-amber-500 flex-shrink-0" />
       </button>
 
-      {/* Sports Quota Directory Overlay */}
-      {showSportsDirectory && (
-        <div className="fixed inset-0 z-50 flex flex-col" onClick={() => setShowSportsDirectory(false)}>
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-          <div className="relative flex-1 flex flex-col mt-12 mx-0 sm:mx-4 sm:mb-4 overflow-hidden" onClick={e => e.stopPropagation()}>
-            {/* Close bar */}
-            <div className="flex items-center justify-between px-4 py-3 rounded-t-2xl" style={{ background: '#16161e' }}>
-              <span className="text-sm font-bold text-white">🏆 Sports Quota Directory</span>
-              <button
-                onClick={() => setShowSportsDirectory(false)}
-                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"
-              >
-                <X className="w-4 h-4 text-white" />
-              </button>
-            </div>
-            {/* Directory content */}
-            <div className="flex-1 overflow-y-auto">
-              <SportsQuotaGuide />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Summary Stats */}
       {selectedDistrict && !loading && colleges.length > 0 && (
