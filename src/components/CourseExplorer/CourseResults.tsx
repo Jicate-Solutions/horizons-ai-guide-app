@@ -42,7 +42,10 @@ const CourseResults = ({ categories, groupCode, onViewDetails }: CourseResultsPr
               📚 Courses for Group {groupCode}
             </h3>
             <p className="text-sm text-gray-500">
-              {totalCourses} courses across {filteredCategories.length} categories
+              {totalCourses} {totalCourses === 1 ? "course" : "courses"}
+              {filterCategory === "all"
+                ? ` across ${filteredCategories.length} categories`
+                : ` in ${filterCategory}`}
             </p>
           </div>
           <div className="relative flex-1 max-w-sm">
@@ -56,31 +59,68 @@ const CourseResults = ({ categories, groupCode, onViewDetails }: CourseResultsPr
           </div>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex gap-2 overflow-x-auto mt-3 pb-1">
-          <button
-            onClick={() => setFilterCategory("all")}
-            className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-              filterCategory === "all"
-                ? "bg-purple-600 text-white"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
-          >
-            All Categories
-          </button>
-          {categories.map((cat) => (
+        {/* ── Category Filter ──────────────────────────────────────────
+            Redesigned: instead of a thin horizontal-scroll strip of
+            identical grey pills, every category is shown at once in a
+            wrapping grid, each with its course count, so a student can
+            see all their options without scrolling and can tell which
+            categories actually have courses for their group. */}
+        <div className="mt-4">
+          <p className="text-xs font-semibold text-gray-500 mb-2">
+            Filter by category
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {/* "All" chip */}
             <button
-              key={cat.name}
-              onClick={() => setFilterCategory(cat.name === filterCategory ? "all" : cat.name)}
-              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                filterCategory === cat.name
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              onClick={() => setFilterCategory("all")}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                filterCategory === "all"
+                  ? "bg-purple-600 text-white border-purple-600 shadow-sm"
+                  : "bg-white text-gray-700 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
               }`}
             >
-              {cat.icon} {cat.name}
+              All Categories
+              <span
+                className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold ${
+                  filterCategory === "all"
+                    ? "bg-white/25 text-white"
+                    : "bg-gray-100 text-gray-500"
+                }`}
+              >
+                {categories.reduce((sum, c) => sum + c.courses.length, 0)}
+              </span>
             </button>
-          ))}
+
+            {/* One chip per category, each showing its course count */}
+            {categories.map((cat) => {
+              const isActive = filterCategory === cat.name;
+              return (
+                <button
+                  key={cat.name}
+                  onClick={() =>
+                    setFilterCategory(isActive ? "all" : cat.name)
+                  }
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                    isActive
+                      ? "bg-purple-600 text-white border-purple-600 shadow-sm"
+                      : "bg-white text-gray-700 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.name}</span>
+                  <span
+                    className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold ${
+                      isActive
+                        ? "bg-white/25 text-white"
+                        : "bg-gray-100 text-gray-500"
+                    }`}
+                  >
+                    {cat.courses.length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
