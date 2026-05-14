@@ -88,7 +88,7 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
               <ListChecks className="h-4 w-4 text-orange-600" />
               Your Next 90 Days
             </h3>
-            <p className="text-[11px] text-gray-500">
+            <p className="text-sm text-gray-500">
               அடுத்த 90 நாட்கள் — concrete steps for {pathway.title}
             </p>
           </div>
@@ -97,7 +97,7 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
               {done}
               <span className="text-sm text-gray-400">/{total}</span>
             </p>
-            <p className="text-[10px] text-gray-500">done</p>
+            <p className="text-xs text-gray-500">done</p>
           </div>
         </div>
         <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white">
@@ -138,7 +138,7 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-1.5">
                       <p
-                        className={`text-[12.5px] font-semibold ${
+                        className={`text-sm font-semibold ${
                           isChecked
                             ? 'text-gray-400 line-through'
                             : 'text-gray-900'
@@ -148,14 +148,14 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
                       </p>
                       <Badge
                         variant="outline"
-                        className={`px-1.5 py-0 text-[9px] font-bold ${meta.chip}`}
+                        className={`px-1.5 py-0 text-xs font-bold ${meta.chip}`}
                       >
                         {meta.label}
                       </Badge>
                     </div>
-                    <p className="text-[10px] text-gray-400">{item.titleTa}</p>
+                    <p className="text-xs text-gray-400">{item.titleTa}</p>
                     <p
-                      className={`mt-1 text-[11px] leading-snug ${
+                      className={`mt-1 text-sm leading-snug ${
                         isChecked ? 'text-gray-400' : 'text-gray-600'
                       }`}
                     >
@@ -166,7 +166,7 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
                     {item.appRoute && (
                       <button
                         onClick={() => navigate(item.appRoute!)}
-                        className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-[10.5px] font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
+                        className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
                       >
                         Open the tool for this
                         <ArrowRight className="h-3 w-3" />
@@ -177,7 +177,7 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-[10.5px] font-semibold text-blue-700 transition-colors hover:bg-blue-100"
+                        className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
                       >
                         Official link
                         <ExternalLink className="h-3 w-3" />
@@ -193,7 +193,7 @@ export const ActionItems = ({ pathway }: ActionItemsProps) => {
           );
         })}
 
-        <p className="px-1 pt-1 text-[10px] italic text-gray-400">
+        <p className="px-1 pt-1 text-xs italic text-gray-400">
           Your progress is saved on this device — come back any time and pick up
           where you left off.
         </p>

@@ -80,7 +80,7 @@ export const PathwayTypeBanner = ({
         className={`inline-flex items-center gap-1 rounded border px-1.5 py-0.5 ${tone.box}`}
       >
         <Icon className={`h-3 w-3 ${tone.icon}`} />
-        <span className={`text-[9.5px] font-bold leading-tight ${tone.label}`}>
+        <span className={`text-xs font-bold leading-tight ${tone.label}`}>
           {meta.label}
         </span>
       </div>
@@ -95,11 +95,11 @@ export const PathwayTypeBanner = ({
           <Icon className={`h-5 w-5 ${tone.icon}`} />
         </div>
         <div className="min-w-0">
-          <p className={`text-[12px] font-bold ${tone.label}`}>{meta.label}</p>
-          <p className="text-[10px] text-gray-500">{meta.labelTa}</p>
+          <p className={`text-sm font-bold ${tone.label}`}>{meta.label}</p>
+          <p className="text-xs text-gray-500">{meta.labelTa}</p>
           <div className="mt-1.5 flex items-start gap-1">
             <Clock className={`mt-0.5 h-3 w-3 shrink-0 ${tone.icon}`} />
-            <p className={`text-[11px] font-medium leading-snug ${tone.time}`}>
+            <p className={`text-sm font-medium leading-snug ${tone.time}`}>
               {pathway.timeToCareer}
             </p>
           </div>

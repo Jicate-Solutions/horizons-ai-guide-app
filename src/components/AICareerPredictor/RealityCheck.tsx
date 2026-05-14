@@ -40,7 +40,7 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
           <Gauge className="h-4 w-4 text-slate-600" />
           The Honest Reality Check
         </h3>
-        <p className="text-[11px] text-gray-500">
+        <p className="text-sm text-gray-500">
           நேர்மையான யதார்த்தம் — what a good counsellor would actually tell you
         </p>
       </div>
@@ -53,15 +53,15 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
           </div>
           <div className="min-w-0">
             <p className="text-xs font-bold text-gray-800">Salary — the real picture</p>
-            <p className="mt-0.5 text-[11px] leading-snug text-gray-600">
+            <p className="mt-0.5 text-sm leading-snug text-gray-600">
               <span className="font-semibold">Starting:</span>{' '}
               {pathway.salaryReality.startingLPA}
             </p>
-            <p className="text-[11px] leading-snug text-gray-600">
+            <p className="text-sm leading-snug text-gray-600">
               <span className="font-semibold">Mid-career:</span>{' '}
               {pathway.salaryReality.midCareerLPA}
             </p>
-            <p className="mt-1 text-[10.5px] italic leading-snug text-gray-500">
+            <p className="mt-1 text-xs italic leading-snug text-gray-500">
               {pathway.salaryReality.note}
             </p>
           </div>
@@ -72,17 +72,17 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
           <div className="rounded-lg border border-gray-100 bg-gray-50/60 p-2.5">
             <div className="flex items-center gap-1.5">
               <TrendingUp className="h-3.5 w-3.5 text-blue-600" />
-              <span className="text-[11px] font-bold text-gray-800">
+              <span className="text-sm font-bold text-gray-800">
                 Job demand
               </span>
-              <span className="ml-auto text-[11px] tabular-nums text-gray-500">
+              <span className="ml-auto text-sm tabular-nums text-gray-500">
                 {pathway.demand.score}/10
               </span>
             </div>
             <div className="my-1.5">
               <DotMeter score={pathway.demand.score} tone="bg-blue-500" />
             </div>
-            <p className="text-[10.5px] leading-snug text-gray-500">
+            <p className="text-xs leading-snug text-gray-500">
               {pathway.demand.note}
             </p>
           </div>
@@ -90,17 +90,17 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
           <div className="rounded-lg border border-gray-100 bg-gray-50/60 p-2.5">
             <div className="flex items-center gap-1.5">
               <Gauge className="h-3.5 w-3.5 text-amber-600" />
-              <span className="text-[11px] font-bold text-gray-800">
+              <span className="text-sm font-bold text-gray-800">
                 Entry difficulty
               </span>
-              <span className="ml-auto text-[11px] tabular-nums text-gray-500">
+              <span className="ml-auto text-sm tabular-nums text-gray-500">
                 {pathway.entryDifficulty.score}/10
               </span>
             </div>
             <div className="my-1.5">
               <DotMeter score={pathway.entryDifficulty.score} tone="bg-amber-500" />
             </div>
-            <p className="text-[10.5px] leading-snug text-gray-500">
+            <p className="text-xs leading-snug text-gray-500">
               {pathway.entryDifficulty.note}
             </p>
           </div>
@@ -121,24 +121,24 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
                 transition={{ delay: i * 0.05 }}
                 className="rounded-lg border border-gray-100 bg-white p-2.5"
               >
-                <p className="text-[11px] font-semibold text-gray-800">
+                <p className="text-sm font-semibold text-gray-800">
                   {tier.label}
                 </p>
-                <p className="mt-0.5 text-[10.5px] text-gray-500">
+                <p className="mt-0.5 text-xs text-gray-500">
                   {tier.examples.join(' · ')}
                 </p>
                 <div className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5">
-                  <span className="text-[10.5px] text-gray-600">
+                  <span className="text-xs text-gray-600">
                     <span className="font-semibold">Cutoff:</span> {tier.cutoffGuide}
                   </span>
-                  <span className="text-[10.5px] text-gray-600">
+                  <span className="text-xs text-gray-600">
                     <span className="font-semibold">Fees:</span> {tier.feeRange}
                   </span>
                 </div>
               </motion.div>
             ))}
           </div>
-          <p className="mt-1.5 text-[10px] italic text-gray-500">
+          <p className="mt-1.5 text-xs italic text-gray-500">
             {pathway.costReality}
           </p>
         </div>
@@ -153,7 +153,7 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
             {pathway.backupOptions.map((opt) => (
               <li
                 key={opt}
-                className="flex gap-1.5 text-[11px] leading-snug text-sky-900"
+                className="flex gap-1.5 text-sm leading-snug text-sky-900"
               >
                 <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-sky-400" />
                 {opt}
@@ -168,7 +168,7 @@ export const RealityCheck = ({ pathway }: RealityCheckProps) => {
             <AlertTriangle className="h-3.5 w-3.5" />
             The one thing to be honest with yourself about
           </p>
-          <p className="mt-1 text-[11px] leading-snug text-amber-900">
+          <p className="mt-1 text-sm leading-snug text-amber-900">
             {pathway.honestCaveat}
           </p>
         </div>

@@ -33,7 +33,7 @@ export const WizardProgress = ({ currentStep, totalSteps, stepLabels }: WizardPr
                 >
                   {isComplete ? <Check className="h-4 w-4" /> : stepNum}
                 </motion.div>
-                <span className={`text-[10px] mt-1 text-center leading-tight hidden sm:block ${
+                <span className={`text-xs mt-1 text-center leading-tight hidden sm:block ${
                   isCurrent ? "text-primary font-semibold" : "text-muted-foreground"
                 }`}>
                   {stepLabels[i]}

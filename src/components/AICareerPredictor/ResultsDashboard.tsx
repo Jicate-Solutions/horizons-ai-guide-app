@@ -126,7 +126,7 @@ export const ResultsDashboard = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      <div className="container mx-auto max-w-3xl px-4 py-6">
+      <div className="container mx-auto max-w-6xl px-4 py-6 lg:px-8">
         <Button variant="ghost" onClick={onBack} className="mb-4">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
@@ -140,7 +140,7 @@ export const ResultsDashboard = ({
         >
           <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-            <span className="text-[11px] font-semibold text-emerald-700">
+            <span className="text-sm font-semibold text-emerald-700">
               Calculated from your answers — not guessed
             </span>
           </div>
@@ -164,11 +164,11 @@ export const ResultsDashboard = ({
               <CardContent className="flex gap-3 p-4">
                 <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
                 <div>
-                  <p className="text-[13px] leading-relaxed text-gray-700">
+                  <p className="text-base leading-relaxed text-gray-700">
                     {narrative}
                   </p>
                   {narrativeDegraded && (
-                    <p className="mt-1 text-[10px] italic text-gray-400">
+                    <p className="mt-1 text-xs italic text-gray-400">
                       (AI summary briefly unavailable — your full calculated
                       results are unaffected.)
                     </p>
@@ -211,14 +211,14 @@ export const ResultsDashboard = ({
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <div className="absolute right-0 top-0 rounded-bl-lg bg-gray-100 px-2 py-0.5 text-[10px] font-bold text-gray-500">
+                  <div className="absolute right-0 top-0 rounded-bl-lg bg-gray-100 px-2 py-0.5 text-xs font-bold text-gray-500">
                     #{index + 1}
                   </div>
                   <div className="text-3xl">{match.pathway.icon}</div>
-                  <h3 className="mt-2 text-[13px] font-bold leading-tight text-gray-900">
+                  <h3 className="mt-2 text-base font-bold leading-tight text-gray-900">
                     {match.pathway.title}
                   </h3>
-                  <p className="text-[10px] text-gray-400">
+                  <p className="text-xs text-gray-400">
                     {match.pathway.titleTa}
                   </p>
 
@@ -237,7 +237,7 @@ export const ResultsDashboard = ({
                   </div>
 
                   <Badge
-                    className={`mt-2 px-1.5 py-0 text-[9px] font-bold ${bandChip[match.band]}`}
+                    className={`mt-2 px-1.5 py-0 text-xs font-bold ${bandChip[match.band]}`}
                   >
                     {bandLabel[match.band]}
                   </Badge>
@@ -249,7 +249,7 @@ export const ResultsDashboard = ({
                   </div>
 
                   {isActive && (
-                    <p className="mt-2 text-[10px] font-medium text-emerald-600">
+                    <p className="mt-2 text-xs font-medium text-emerald-600">
                       ▾ Showing details below
                     </p>
                   )}
@@ -296,16 +296,16 @@ export const ResultsDashboard = ({
                         <span className="text-2xl">{match.pathway.icon}</span>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-[12.5px] font-semibold text-gray-900">
+                            <span className="text-sm font-semibold text-gray-900">
                               {match.pathway.title}
                             </span>
                             <Badge
-                              className={`px-1.5 py-0 text-[9px] font-bold ${bandChip[match.band]}`}
+                              className={`px-1.5 py-0 text-xs font-bold ${bandChip[match.band]}`}
                             >
                               {match.score}%
                             </Badge>
                           </div>
-                          <p className="truncate text-[10.5px] text-gray-500">
+                          <p className="truncate text-xs text-gray-500">
                             {match.pathway.whatIsIt}
                           </p>
                         </div>
@@ -319,13 +319,20 @@ export const ResultsDashboard = ({
         </motion.div>
 
         {/* ─── Section 2: Deep dive on the selected career ────────── */}
+        {/* Two columns on desktop: LEFT = who & why (identity, score
+            breakdown, honest reality check); RIGHT = what to do next
+            (colleges, roadmap, 90-day plan, build-now skills). Collapses to
+            a single stacked column on mobile. Left column is sticky on large
+            screens so the match score stays visible while scrolling actions. */}
         <div id="career-detail" className="scroll-mt-4">
           <motion.div
             key={activeMatch.pathway.id}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
+            className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:items-start"
           >
+            {/* ── LEFT COLUMN — who & why ── */}
+            <div className="space-y-4 lg:col-span-5 lg:sticky lg:top-4">
             {/* Selected-career header */}
             <Card className="overflow-hidden border-gray-200">
               <div
@@ -337,21 +344,21 @@ export const ResultsDashboard = ({
                     <h2 className="text-base font-bold text-white">
                       {activeMatch.pathway.title}
                     </h2>
-                    <p className="text-[11px] text-white/80">
+                    <p className="text-sm text-white/80">
                       {activeMatch.score}% match · {bandLabel[activeMatch.band]}
                     </p>
                   </div>
                 </div>
               </div>
               <CardContent className="space-y-2 p-4">
-                <p className="text-[12.5px] leading-snug text-gray-700">
+                <p className="text-sm leading-snug text-gray-700">
                   {activeMatch.pathway.whatIsIt}
                 </p>
-                <p className="text-[12px] font-medium text-emerald-700">
+                <p className="text-sm font-medium text-emerald-700">
                   {activeMatch.headline}
                 </p>
                 {perCareerNotes?.[activeMatch.pathway.title] && (
-                  <p className="text-[11.5px] italic leading-snug text-gray-500">
+                  <p className="text-sm italic leading-snug text-gray-500">
                     {perCareerNotes[activeMatch.pathway.title]}
                   </p>
                 )}
@@ -364,13 +371,13 @@ export const ResultsDashboard = ({
 
                 {/* The UG course(s) that lead here */}
                 <div className="flex flex-wrap gap-1.5 pt-0.5">
-                  <span className="text-[10px] font-semibold text-gray-400">
+                  <span className="text-xs font-semibold text-gray-400">
                     UG course:
                   </span>
                   {activeMatch.pathway.ugCourses.map((c) => (
                     <span
                       key={c}
-                      className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] font-medium text-gray-600"
+                      className="rounded bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-600"
                     >
                       {c}
                     </span>
@@ -386,7 +393,7 @@ export const ResultsDashboard = ({
                   (e) => e !== 'None (direct admission)',
                 ) && (
                   <div className="flex flex-wrap gap-1.5">
-                    <span className="text-[10px] font-semibold text-gray-400">
+                    <span className="text-xs font-semibold text-gray-400">
                       Entrance exam:
                     </span>
                     {activeMatch.pathway.entranceExams
@@ -394,7 +401,7 @@ export const ResultsDashboard = ({
                       .map((e) => (
                         <span
                           key={e}
-                          className="rounded bg-violet-50 px-1.5 py-0.5 text-[10px] font-medium text-violet-600"
+                          className="rounded bg-violet-50 px-1.5 py-0.5 text-xs font-medium text-violet-600"
                         >
                           {e}
                         </span>
@@ -409,7 +416,10 @@ export const ResultsDashboard = ({
 
             {/* The honest reality check */}
             <RealityCheck pathway={activeMatch.pathway} />
+            </div>
 
+            {/* ── RIGHT COLUMN — what to do next ── */}
+            <div className="space-y-4 lg:col-span-7">
             {/* Real, named colleges that offer this career's courses */}
             <CollegesForCareer pathway={activeMatch.pathway} />
 
@@ -421,6 +431,7 @@ export const ResultsDashboard = ({
 
             {/* Skills to start building now */}
             <BuildNowSkills pathway={activeMatch.pathway} />
+            </div>
           </motion.div>
         </div>
 
@@ -429,10 +440,10 @@ export const ResultsDashboard = ({
           <CardContent className="flex gap-2 p-3">
             <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gray-400" />
             <div>
-              <p className="text-[11px] font-semibold text-gray-600">
+              <p className="text-sm font-semibold text-gray-600">
                 How these results were produced
               </p>
-              <p className="mt-0.5 text-[10.5px] leading-snug text-gray-500">
+              <p className="mt-0.5 text-xs leading-snug text-gray-500">
                 {SCORING_METHODOLOGY.en}
               </p>
             </div>
