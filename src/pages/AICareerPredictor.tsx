@@ -108,6 +108,9 @@ const AICareerPredictor = () => {
   const [percentage, setPercentage] = useState('');
   const [strongestSubject, setStrongestSubject] = useState('');
   const [weakestSubject, setWeakestSubject] = useState('');
+  // Optional reality-check marks — calibrate the skill self-ratings.
+  const [strongestSubjectMark, setStrongestSubjectMark] = useState('');
+  const [weakestSubjectMark, setWeakestSubjectMark] = useState('');
   const [entranceScore, setEntranceScore] = useState('');
   const [notAppeared, setNotAppeared] = useState(false);
 
@@ -167,6 +170,13 @@ const AICareerPredictor = () => {
       location,
       strongestSubject,
       weakestSubject,
+      // Optional reality-check marks (parsed to numbers; NaN if unfilled).
+      strongestSubjectMark: strongestSubjectMark
+        ? Number(strongestSubjectMark)
+        : undefined,
+      weakestSubjectMark: weakestSubjectMark
+        ? Number(weakestSubjectMark)
+        : undefined,
       // "Your Real Situation" — counsellor-style life context.
       decisionOwner,
       firstGeneration,
@@ -613,6 +623,10 @@ const AICareerPredictor = () => {
                     notAppeared={notAppeared}
                     onChangeNotAppeared={setNotAppeared}
                     selectedGroup={selectedGroup}
+                    strongestSubjectMark={strongestSubjectMark}
+                    onChangeStrongestMark={setStrongestSubjectMark}
+                    weakestSubjectMark={weakestSubjectMark}
+                    onChangeWeakestMark={setWeakestSubjectMark}
                   />
                 </motion.div>
               )}

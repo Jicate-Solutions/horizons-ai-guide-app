@@ -20,6 +20,13 @@ interface AcademicPerformanceProps {
   notAppeared: boolean;
   onChangeNotAppeared: (v: boolean) => void;
   selectedGroup: string;
+  // Optional actual marks — used to sanity-check the earlier skill
+  // self-ratings (a "reality check" so a guessed 5/5 is not taken at
+  // face value). Both optional; empty = no calibration applied.
+  strongestSubjectMark: string;
+  onChangeStrongestMark: (v: string) => void;
+  weakestSubjectMark: string;
+  onChangeWeakestMark: (v: string) => void;
 }
 
 const percentageOptions = [
@@ -46,7 +53,9 @@ export const AcademicPerformance = ({
   weakestSubject, onChangeWeakest,
   entranceScore, onChangeEntranceScore,
   notAppeared, onChangeNotAppeared,
-  selectedGroup
+  selectedGroup,
+  strongestSubjectMark, onChangeStrongestMark,
+  weakestSubjectMark, onChangeWeakestMark,
 }: AcademicPerformanceProps) => {
   // Determine subjects from selected group
   const getSubjects = (): string[] => {
@@ -138,6 +147,55 @@ export const AcademicPerformance = ({
           </SelectContent>
         </Select>
       </motion.div>
+
+      {/* Reality-check marks — optional. A 12th student rating their own
+          skills 1-5 is partly guessing; an actual subject mark is a real
+          data point. If given, the engine uses these to gently calibrate
+          the earlier skill self-ratings instead of taking them at face
+          value. Both optional — empty just means no calibration. */}
+      {(strongestSubject || weakestSubject) && (
+        <motion.div variants={itemVariants} className="space-y-3">
+          <div>
+            <p className="font-semibold text-sm">
+              A quick reality check (optional)
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Your real marks help us sanity-check your skill ratings — so a
+              guessed rating is not taken at face value.
+            </p>
+          </div>
+          {strongestSubject && (
+            <div className="space-y-1">
+              <label className="text-sm text-muted-foreground">
+                Your approximate mark in {strongestSubject} (%)
+              </label>
+              <Input
+                type="number"
+                min={0}
+                max={100}
+                placeholder={`e.g. 85 — your ${strongestSubject} mark`}
+                value={strongestSubjectMark}
+                onChange={(e) => onChangeStrongestMark(e.target.value)}
+              />
+            </div>
+          )}
+          {weakestSubject && (
+            <div className="space-y-1">
+              <label className="text-sm text-muted-foreground">
+                Your approximate mark in {weakestSubject} (%)
+              </label>
+              <Input
+                type="number"
+                min={0}
+                max={100}
+                placeholder={`e.g. 60 — your ${weakestSubject} mark`}
+                value={weakestSubjectMark}
+                onChange={(e) => onChangeWeakestMark(e.target.value)}
+              />
+            </div>
+          )}
+        </motion.div>
+      )}
 
       {/* Entrance Exam Score (conditional) */}
       {examType && (

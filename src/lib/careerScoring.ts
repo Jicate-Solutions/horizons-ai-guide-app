@@ -49,6 +49,14 @@ export interface StudentProfile {
   /** Strongest / weakest subject names (free-form) */
   strongestSubject?: string;
   weakestSubject?: string;
+  /**
+   * Optional actual marks (0-100) in the strongest/weakest subjects. Used as
+   * a reality check on the skill self-ratings: a student rating every skill
+   * 5/5 but reporting a 62% strongest-subject mark is gently calibrated, so a
+   * guessed rating is not taken at face value. Undefined = no calibration.
+   */
+  strongestSubjectMark?: number;
+  weakestSubjectMark?: number;
   // ─── LIFE CONTEXT (from the "Your Real Situation" step) ──────────────────
   // The factors a real counsellor weighs that pure skill/interest scoring
   // misses. These genuinely change the ranking via lifeFitNudge below.
@@ -166,15 +174,60 @@ function scoreSkillAlignment(
   }
 
   const fraction = weightedMax > 0 ? weightedScore / weightedMax : 0;
-  const earned = fraction * WEIGHTS.skillAlignment;
+  let earned = fraction * WEIGHTS.skillAlignment;
+
+  // ── Reality-check calibration ──
+  // A 12th student rating their own skills 1-5 is partly guessing. If they
+  // also gave actual subject marks, we sanity-check: convert their average
+  // self-rating and their average reported mark to the same 0-1 scale, and
+  // if the self-rating runs meaningfully ahead of what the marks suggest,
+  // gently dampen the skill score. This only ever TEMPERS over-optimism —
+  // it never inflates a score — and is capped at a 15% reduction so it
+  // calibrates rather than overrides. No marks given → no change at all.
+  let calibrationNote = '';
+  const marks: number[] = [];
+  if (
+    typeof profile.strongestSubjectMark === 'number' &&
+    !Number.isNaN(profile.strongestSubjectMark)
+  ) {
+    marks.push(clamp(profile.strongestSubjectMark, 0, 100));
+  }
+  if (
+    typeof profile.weakestSubjectMark === 'number' &&
+    !Number.isNaN(profile.weakestSubjectMark)
+  ) {
+    marks.push(clamp(profile.weakestSubjectMark, 0, 100));
+  }
+  if (marks.length > 0) {
+    const ratingValues = skills.map((s) =>
+      clamp(profile.skillRatings[s] ?? 3, 1, 5),
+    );
+    const avgRatingNorm =
+      ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length / 5; // 0-1
+    const avgMarkNorm =
+      marks.reduce((a, b) => a + b, 0) / marks.length / 100; // 0-1
+    // Positive gap = self-rating runs ahead of marks (over-optimism).
+    const gap = avgRatingNorm - avgMarkNorm;
+    if (gap > 0.15) {
+      // Scale a dampening factor with the gap, capped at 15% reduction.
+      const dampening = Math.min(0.15, (gap - 0.15) * 0.5);
+      earned = earned * (1 - dampening);
+      calibrationNote =
+        ' Your self-ratings ran a little ahead of your reported marks, so this is calibrated slightly — an honest check, not a penalty.';
+    } else {
+      calibrationNote =
+        ' Your reported marks line up with your self-ratings, which makes this score more reliable.';
+    }
+  }
 
   const topRating = profile.skillRatings[topSkillName as SkillId] ?? 3;
-  const reason =
+  const baseReason =
     topRating >= 4
       ? `Your strong self-rating in the skills this career relies on most lifts this score.`
       : topRating <= 2
         ? `This career leans heavily on skills you rated yourself low on — that pulls the score down honestly.`
         : `Your skill profile is a moderate fit for what this career needs day to day.`;
+  const reason = baseReason + calibrationNote;
 
   return {
     label: 'Skill alignment',

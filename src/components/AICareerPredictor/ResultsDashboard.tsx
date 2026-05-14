@@ -8,6 +8,10 @@ import {
   Trophy,
   Sparkles,
   ShieldCheck,
+  Calculator,
+  Scale,
+  Building2,
+  ListChecks,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,6 +21,12 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/ui/tabs';
 
 import type { CareerMatch } from '@/lib/careerScoring';
 import { SCORING_METHODOLOGY } from '@/lib/careerScoring';
@@ -417,21 +427,64 @@ export const ResultsDashboard = ({
                 </CardContent>
               </Card>
 
-              {/* On wide screens, the two-up sections sit side by side so the
-                  page reads horizontally instead of as one long strip. */}
-              <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                <ScoreBreakdown match={activeMatch} defaultOpen />
-                <RealityCheck pathway={activeMatch.pathway} />
-              </div>
+              {/* The detailed view, organized into tabs so a student takes in
+                  one thing at a time instead of an overwhelming long scroll.
+                  Tab state is keyed to the career so switching careers resets
+                  to the Overview tab. */}
+              <Tabs defaultValue="overview" className="w-full">
+                <TabsList className="grid h-auto w-full grid-cols-2 gap-1 sm:grid-cols-4">
+                  <TabsTrigger
+                    value="overview"
+                    className="flex items-center gap-1.5 py-2 text-[12px]"
+                  >
+                    <Calculator className="h-3.5 w-3.5" />
+                    Overview
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="reality"
+                    className="flex items-center gap-1.5 py-2 text-[12px]"
+                  >
+                    <Scale className="h-3.5 w-3.5" />
+                    Reality Check
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="colleges"
+                    className="flex items-center gap-1.5 py-2 text-[12px]"
+                  >
+                    <Building2 className="h-3.5 w-3.5" />
+                    Colleges
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="plan"
+                    className="flex items-center gap-1.5 py-2 text-[12px]"
+                  >
+                    <ListChecks className="h-3.5 w-3.5" />
+                    Action Plan
+                  </TabsTrigger>
+                </TabsList>
 
-              <CollegesForCareer pathway={activeMatch.pathway} />
+                {/* OVERVIEW — why this career scored what it did */}
+                <TabsContent value="overview" className="mt-4">
+                  <ScoreBreakdown match={activeMatch} defaultOpen />
+                </TabsContent>
 
-              <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                <CareerRoadmap pathway={activeMatch.pathway} />
-                <ActionItems pathway={activeMatch.pathway} />
-              </div>
+                {/* REALITY CHECK — the honest picture */}
+                <TabsContent value="reality" className="mt-4">
+                  <RealityCheck pathway={activeMatch.pathway} />
+                </TabsContent>
 
-              <BuildNowSkills pathway={activeMatch.pathway} />
+                {/* COLLEGES — where to actually study this */}
+                <TabsContent value="colleges" className="mt-4">
+                  <CollegesForCareer pathway={activeMatch.pathway} />
+                </TabsContent>
+
+                {/* ACTION PLAN — the roadmap, 90-day plan and skills to build */}
+                <TabsContent value="plan" className="mt-4 space-y-4">
+                  <CareerRoadmap pathway={activeMatch.pathway} />
+                  <ActionItems pathway={activeMatch.pathway} />
+                  <BuildNowSkills pathway={activeMatch.pathway} />
+                </TabsContent>
+              </Tabs>
             </motion.div>
           </div>
         </div>
