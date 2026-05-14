@@ -2903,7 +2903,7 @@ export const officialSyllabusUrls: Record<string, string> = {
   'tnpsc-group4': '/tnpsc-group4-syllabus.pdf',
   'tn-police-constable': 'https://www.tnusrb.tn.gov.in',
   'tn-forest-guard': 'https://www.tnfusrc.gov.in',
-  'india-post-gds': 'https://indiapostgdsonline.gov.in',
+  'india-post-gds': '/india-post-gds-2026-syllabus.pdf',
   'army-clerk': 'https://joinindianarmy.nic.in/writereaddata/Portal/Images/SYLLABUS_Clerk.pdf',
   'nvs-lab-attendant': 'https://navodaya.gov.in/nvs/en/Recruitment',
   'kvs-non-teaching': 'https://kvsangathan.nic.in/RecruitmentNotices',

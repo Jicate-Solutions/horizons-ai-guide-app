@@ -310,6 +310,7 @@ export const governmentExams: GovernmentExam[] = [
     applicationStatus: 'open',
     description: 'No Exam — Merit based on 10th marks. Posts: BPM (₹12K-29K), ABPM, Dak Sevak',
     posts: ['Branch Postmaster', 'Assistant Branch Postmaster', 'Dak Sevak'],
+    syllabusPdf: '/india-post-gds-2026-syllabus.pdf',
   },
 
   // STATE GOVERNMENT - TAMIL NADU
