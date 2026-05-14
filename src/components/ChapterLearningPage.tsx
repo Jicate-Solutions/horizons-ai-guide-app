@@ -232,8 +232,8 @@ const ChapterLearningPage = ({ chapter, onBack }: Props) => {
           <p className="text-sm font-bold text-gray-900">{chapter.name}</p>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-[10px] text-gray-500">Class {chapter.class}</span>
-            {chapter.priority === 'high' && <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">HIGH PRIORITY</span>}
-            {chapter.expectedQuestions && <span className="text-[8px] text-gray-400">~{chapter.expectedQuestions}Q in exam</span>}
+            {chapter.priority === 'high' && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">HIGH PRIORITY</span>}
+            {chapter.expectedQuestions && <span className="text-[10px] text-gray-400">~{chapter.expectedQuestions}Q in exam</span>}
             {progress.completed && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
           </div>
         </div>

@@ -293,7 +293,7 @@ export function TNEAScoreCalculator({ lang, onScoreChange }: TNEAScoreCalculator
               {/* Step 1: Category */}
               <div>
                 <div className="text-xs font-semibold mb-1.5">{L.selectCategory}</div>
-                <div className="grid grid-cols-5 gap-1.5">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
                   {(Object.keys(CATEGORY_LABELS) as MarksRow['category'][]).map(cat => (
                     <button
                       key={cat}
@@ -356,7 +356,7 @@ export function TNEAScoreCalculator({ lang, onScoreChange }: TNEAScoreCalculator
               {pickerRowId && (
                 <div>
                   <div className="text-xs font-semibold mb-1.5">{L.selectMedal}</div>
-                  <div className="grid grid-cols-4 gap-1.5">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                     {(['gold', 'silver', 'bronze', 'participation'] as MedalType[]).map(m => {
                       const row = TNEA_MARKS_TABLE.find(r => r.id === pickerRowId);
                       if (!row) return null;
