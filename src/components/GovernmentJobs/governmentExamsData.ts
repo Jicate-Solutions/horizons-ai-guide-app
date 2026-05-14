@@ -236,6 +236,7 @@ export const governmentExams: GovernmentExam[] = [
     applicationStatus: 'upcoming',
     description: 'LDC, DEO, PA/SA posts in Central Govt — Tier-I CBE: July–Sep 2026 (Ad: April 2026)',
     posts: ['LDC (Lower Division Clerk)', 'DEO (Data Entry Operator)', 'PA/SA (Postal Assistant/Sorting Assistant)'],
+    syllabusPdf: '/ssc-chsl-2026-syllabus.pdf',
   },
   {
     id: 'ssc-mts',
@@ -328,6 +329,7 @@ export const governmentExams: GovernmentExam[] = [
     applicationStatus: 'upcoming',
     description: 'Combined Civil Services Exam IV — VAO, Junior Assistant, Typist, Steno-Typist. Notification: 06.10.2026 | Exam: 20.12.2026 (1 Day)',
     posts: ['VAO', 'Junior Assistant', 'Typist', 'Steno-Typist', 'Field Surveyor'],
+    syllabusPdf: '/tnpsc-group4-syllabus.pdf',
   },
   {
     id: 'tn-police-constable',

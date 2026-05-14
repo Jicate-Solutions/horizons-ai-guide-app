@@ -17,6 +17,11 @@ export interface GovernmentExam {
   applicationStatus: 'open' | 'upcoming' | 'closed';
   description: string;
   posts?: string[];
+  /**
+   * Optional path to the official syllabus PDF (served from /public).
+   * When present, the "Syllabus" button opens this PDF directly.
+   */
+  syllabusPdf?: string;
 }
 
 export type CategoryType = 'all' | 'defence' | 'railway' | 'ssc' | 'state' | 'central';
