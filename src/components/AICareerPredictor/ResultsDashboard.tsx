@@ -41,10 +41,6 @@ interface ResultsDashboardProps {
   onRetake: () => void;
 }
 
-const containerVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { staggerChildren: 0.08 } },
-};
 const itemVariants = {
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
@@ -80,7 +76,7 @@ export const ResultsDashboard = ({
     confetti({
       particleCount: 70,
       spread: 65,
-      origin: { x: 0.5, y: 0.35 },
+      origin: { x: 0.5, y: 0.3 },
       colors: ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'],
     });
   }, []);
@@ -89,7 +85,7 @@ export const ResultsDashboard = ({
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto max-w-2xl px-4 py-16 text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             No results to show. Please retake the assessment.
           </p>
           <Button onClick={onRetake} className="mt-4 gap-2">
@@ -124,9 +120,90 @@ export const ResultsDashboard = ({
     }
   };
 
+  // Selecting a career: set it active, and on narrow screens scroll the detail
+  // pane into view (on wide screens the two columns are side-by-side already).
+  const selectCareer = (id: string) => {
+    setActiveId(id);
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      document
+        .getElementById('career-detail')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const isWide =
+    typeof window !== 'undefined' && window.innerWidth >= 1024;
+
+  // ─── A single career row in the left selector column ──────────────────────
+  const MatchRow = ({
+    match,
+    index,
+  }: {
+    match: CareerMatch;
+    index: number;
+  }) => {
+    const isActive = match.pathway.id === activeMatch.pathway.id;
+    return (
+      <button
+        onClick={() => selectCareer(match.pathway.id)}
+        className={`w-full rounded-xl border bg-white p-4 text-left transition-all ${
+          isActive
+            ? 'border-emerald-400 shadow-sm ring-2 ring-emerald-100'
+            : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+        }`}
+      >
+        <div className="flex items-start gap-3">
+          <span className="text-3xl leading-none">{match.pathway.icon}</span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="text-[15px] font-bold leading-tight text-gray-900">
+                {match.pathway.title}
+              </h3>
+              <span className="shrink-0 rounded-md bg-gray-100 px-1.5 py-0.5 text-[11px] font-bold text-gray-500">
+                #{index + 1}
+              </span>
+            </div>
+            <p className="text-[12px] text-gray-400">
+              {match.pathway.titleTa}
+            </p>
+
+            <div className="mt-2 flex items-center gap-2">
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
+                <motion.div
+                  className={`h-full rounded-full bg-gradient-to-r ${match.pathway.color}`}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${match.score}%` }}
+                  transition={{ duration: 0.9, delay: index * 0.12 }}
+                />
+              </div>
+              <span className="text-sm font-bold tabular-nums text-gray-700">
+                {match.score}%
+              </span>
+            </div>
+
+            <div className="mt-2 flex flex-wrap items-center gap-1.5">
+              <Badge
+                className={`px-2 py-0.5 text-[11px] font-bold ${bandChip[match.band]}`}
+              >
+                {bandLabel[match.band]}
+              </Badge>
+              <PathwayTypeBanner pathway={match.pathway} variant="compact" />
+            </div>
+          </div>
+        </div>
+        {isActive && (
+          <p className="mt-2.5 text-[12px] font-semibold text-emerald-600">
+            ● Showing full details {isWide ? 'on the right' : 'below'}
+          </p>
+        )}
+      </button>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      <div className="container mx-auto max-w-6xl px-4 py-6 lg:px-8">
+      {/* Wide container — uses the full page on desktop instead of a thin strip */}
+      <div className="container mx-auto max-w-7xl px-4 py-6 lg:px-8">
         <Button variant="ghost" onClick={onBack} className="mb-4">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
@@ -138,16 +215,16 @@ export const ResultsDashboard = ({
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-            <span className="text-sm font-semibold text-emerald-700">
+          <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3.5 py-1.5">
+            <ShieldCheck className="h-4 w-4 text-emerald-600" />
+            <span className="text-[13px] font-semibold text-emerald-700">
               Calculated from your answers — not guessed
             </span>
           </div>
-          <h1 className="text-2xl font-bold md:text-3xl">
+          <h1 className="text-3xl font-bold md:text-4xl">
             Your Career Analysis
           </h1>
-          <p className="mt-1 text-xs text-muted-foreground">
+          <p className="mt-1 text-sm text-muted-foreground">
             Generated {today}
           </p>
         </motion.div>
@@ -158,13 +235,13 @@ export const ResultsDashboard = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6"
+            className="mx-auto mb-6 max-w-4xl"
           >
             <Card className="border-emerald-100 bg-emerald-50/40">
               <CardContent className="flex gap-3 p-4">
-                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
                 <div>
-                  <p className="text-base leading-relaxed text-gray-700">
+                  <p className="text-[15px] leading-relaxed text-gray-700">
                     {narrative}
                   </p>
                   {narrativeDegraded && (
@@ -179,282 +256,190 @@ export const ResultsDashboard = ({
           </motion.div>
         )}
 
-        {/* ─── Section 1: Top matches ─────────────────────────────── */}
-        <motion.div
-          variants={containerVariants}
-          initial="initial"
-          animate="animate"
-          className="mb-8"
-        >
-          <h2 className="mb-3 flex items-center gap-2 text-base font-bold">
-            <Trophy className="h-4 w-4 text-amber-500" />
-            Your Top Matches
-          </h2>
+        {/* ═══ TWO-COLUMN LAYOUT ═══════════════════════════════════════
+            Desktop (lg+): left = career selector, right = full details,
+            side by side, using the whole page width.
+            Mobile: stacks — selector first, details below. */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(320px,380px)_1fr]">
+          {/* ─── LEFT: career selector column ───────────────────────── */}
+          <div className="lg:sticky lg:top-4 lg:self-start">
+            <h2 className="mb-2 flex items-center gap-2 text-lg font-bold">
+              <Trophy className="h-5 w-5 text-amber-500" />
+              Your Top Matches
+            </h2>
+            <p className="mb-3 text-[13px] text-muted-foreground">
+              Tap any career to see its full breakdown.
+            </p>
 
-          <div className="grid gap-3 sm:grid-cols-3">
-            {top3.map((match, index) => {
-              const isActive = match.pathway.id === activeId;
-              return (
-                <motion.button
+            <div className="space-y-2.5">
+              {top3.map((match, index) => (
+                <motion.div
                   key={match.pathway.id}
                   variants={itemVariants}
-                  onClick={() => {
-                    setActiveId(match.pathway.id);
-                    // Scroll the detail section into view on mobile.
-                    document
-                      .getElementById('career-detail')
-                      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }}
-                  className={`relative overflow-hidden rounded-xl border bg-white p-4 text-left transition-all ${
-                    isActive
-                      ? 'border-emerald-400 ring-2 ring-emerald-100'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
+                  initial="initial"
+                  animate="animate"
+                  transition={{ delay: index * 0.08 }}
                 >
-                  <div className="absolute right-0 top-0 rounded-bl-lg bg-gray-100 px-2 py-0.5 text-xs font-bold text-gray-500">
-                    #{index + 1}
-                  </div>
-                  <div className="text-3xl">{match.pathway.icon}</div>
-                  <h3 className="mt-2 text-base font-bold leading-tight text-gray-900">
-                    {match.pathway.title}
-                  </h3>
-                  <p className="text-xs text-gray-400">
-                    {match.pathway.titleTa}
-                  </p>
+                  <MatchRow match={match} index={index} />
+                </motion.div>
+              ))}
+            </div>
 
-                  <div className="mt-2 flex items-center gap-2">
-                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-100">
-                      <motion.div
-                        className={`h-full rounded-full bg-gradient-to-r ${match.pathway.color}`}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${match.score}%` }}
-                        transition={{ duration: 0.9, delay: index * 0.15 }}
-                      />
-                    </div>
-                    <span className="text-xs font-bold tabular-nums">
-                      {match.score}%
-                    </span>
-                  </div>
-
-                  <Badge
-                    className={`mt-2 px-1.5 py-0 text-xs font-bold ${bandChip[match.band]}`}
-                  >
-                    {bandLabel[match.band]}
-                  </Badge>
-
-                  {/* Pathway type — visible BEFORE the student clicks in, so a
-                      long-game career is flagged honestly right on the card. */}
-                  <div className="mt-1.5">
-                    <PathwayTypeBanner pathway={match.pathway} variant="compact" />
-                  </div>
-
-                  {isActive && (
-                    <p className="mt-2 text-xs font-medium text-emerald-600">
-                      ▾ Showing details below
-                    </p>
-                  )}
-                </motion.button>
-              );
-            })}
-          </div>
-
-          {/* Remaining matches */}
-          {rest.length > 0 && (
-            <Collapsible open={showAll} onOpenChange={setShowAll}>
-              <CollapsibleTrigger asChild>
-                <Button variant="outline" className="mt-3 w-full gap-2">
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${showAll ? 'rotate-180' : ''}`}
-                  />
-                  {showAll
-                    ? 'Hide other options'
-                    : `See ${rest.length} more option${rest.length > 1 ? 's' : ''} you are eligible for`}
-                </Button>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <div className="mt-3 space-y-2">
-                  {rest.map((match) => {
-                    const isActive = match.pathway.id === activeId;
-                    return (
-                      <button
+            {/* Remaining matches */}
+            {rest.length > 0 && (
+              <Collapsible open={showAll} onOpenChange={setShowAll}>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" className="mt-2.5 w-full gap-2">
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${showAll ? 'rotate-180' : ''}`}
+                    />
+                    {showAll
+                      ? 'Hide other options'
+                      : `See ${rest.length} more option${rest.length > 1 ? 's' : ''}`}
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="mt-2.5 space-y-2.5">
+                    {rest.map((match, i) => (
+                      <MatchRow
                         key={match.pathway.id}
-                        onClick={() => {
-                          setActiveId(match.pathway.id);
-                          document
-                            .getElementById('career-detail')
-                            ?.scrollIntoView({
-                              behavior: 'smooth',
-                              block: 'start',
-                            });
-                        }}
-                        className={`flex w-full items-center gap-3 rounded-lg border bg-white p-3 text-left transition-all ${
-                          isActive
-                            ? 'border-emerald-400 ring-1 ring-emerald-100'
-                            : 'border-gray-200 hover:bg-gray-50'
-                        }`}
-                      >
-                        <span className="text-2xl">{match.pathway.icon}</span>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-gray-900">
-                              {match.pathway.title}
-                            </span>
-                            <Badge
-                              className={`px-1.5 py-0 text-xs font-bold ${bandChip[match.band]}`}
-                            >
-                              {match.score}%
-                            </Badge>
-                          </div>
-                          <p className="truncate text-xs text-gray-500">
-                            {match.pathway.whatIsIt}
-                          </p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          )}
-        </motion.div>
-
-        {/* ─── Section 2: Deep dive on the selected career ────────── */}
-        {/* Two columns on desktop: LEFT = who & why (identity, score
-            breakdown, honest reality check); RIGHT = what to do next
-            (colleges, roadmap, 90-day plan, build-now skills). Collapses to
-            a single stacked column on mobile. Left column is sticky on large
-            screens so the match score stays visible while scrolling actions. */}
-        <div id="career-detail" className="scroll-mt-4">
-          <motion.div
-            key={activeMatch.pathway.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:items-start"
-          >
-            {/* ── LEFT COLUMN — who & why ── */}
-            <div className="space-y-4 lg:col-span-5 lg:sticky lg:top-4">
-            {/* Selected-career header */}
-            <Card className="overflow-hidden border-gray-200">
-              <div
-                className={`bg-gradient-to-r ${activeMatch.pathway.color} px-4 py-3`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{activeMatch.pathway.icon}</span>
-                  <div className="min-w-0">
-                    <h2 className="text-base font-bold text-white">
-                      {activeMatch.pathway.title}
-                    </h2>
-                    <p className="text-sm text-white/80">
-                      {activeMatch.score}% match · {bandLabel[activeMatch.band]}
-                    </p>
+                        match={match}
+                        index={top3.length + i}
+                      />
+                    ))}
                   </div>
-                </div>
-              </div>
-              <CardContent className="space-y-2 p-4">
-                <p className="text-sm leading-snug text-gray-700">
-                  {activeMatch.pathway.whatIsIt}
-                </p>
-                <p className="text-sm font-medium text-emerald-700">
-                  {activeMatch.headline}
-                </p>
-                {perCareerNotes?.[activeMatch.pathway.title] && (
-                  <p className="text-sm italic leading-snug text-gray-500">
-                    {perCareerNotes[activeMatch.pathway.title]}
+                </CollapsibleContent>
+              </Collapsible>
+            )}
+
+            {/* Methodology note — sits quietly under the selector on desktop */}
+            <Card className="mt-4 border-gray-200 bg-gray-50/60">
+              <CardContent className="flex gap-2 p-3">
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+                <div>
+                  <p className="text-[12px] font-semibold text-gray-600">
+                    How these results were produced
                   </p>
-                )}
-
-                {/* HOW a 12th student actually reaches this career — shown
-                    prominently so the real route and realistic time-to-career
-                    are clear before a student gets attached to a match score.
-                    Every career here is one they can act on directly now. */}
-                <PathwayTypeBanner pathway={activeMatch.pathway} variant="full" />
-
-                {/* The UG course(s) that lead here */}
-                <div className="flex flex-wrap gap-1.5 pt-0.5">
-                  <span className="text-xs font-semibold text-gray-400">
-                    UG course:
-                  </span>
-                  {activeMatch.pathway.ugCourses.map((c) => (
-                    <span
-                      key={c}
-                      className="rounded bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-600"
-                    >
-                      {c}
-                    </span>
-                  ))}
+                  <p className="mt-0.5 text-[12px] leading-snug text-gray-500">
+                    {SCORING_METHODOLOGY.en}
+                  </p>
                 </div>
-
-                {/* Entrance exam — only shown when there genuinely IS one.
-                    For 'None (direct admission)' careers we deliberately do NOT
-                    show a chip, because "Exam: None" misleads a 12th student
-                    into thinking the whole career is direct. The PathwayTypeBanner
-                    above already explains the real route honestly. */}
-                {activeMatch.pathway.entranceExams.some(
-                  (e) => e !== 'None (direct admission)',
-                ) && (
-                  <div className="flex flex-wrap gap-1.5">
-                    <span className="text-xs font-semibold text-gray-400">
-                      Entrance exam:
-                    </span>
-                    {activeMatch.pathway.entranceExams
-                      .filter((e) => e !== 'None (direct admission)')
-                      .map((e) => (
-                        <span
-                          key={e}
-                          className="rounded bg-violet-50 px-1.5 py-0.5 text-xs font-medium text-violet-600"
-                        >
-                          {e}
-                        </span>
-                      ))}
-                  </div>
-                )}
               </CardContent>
             </Card>
+          </div>
 
-            {/* The transparent score breakdown */}
-            <ScoreBreakdown match={activeMatch} defaultOpen />
+          {/* ─── RIGHT: detailed view of the selected career ────────── */}
+          <div id="career-detail" className="scroll-mt-4">
+            <motion.div
+              key={activeMatch.pathway.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-4"
+            >
+              {/* Selected-career header */}
+              <Card className="overflow-hidden border-gray-200">
+                <div
+                  className={`bg-gradient-to-r ${activeMatch.pathway.color} px-5 py-4`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-4xl">{activeMatch.pathway.icon}</span>
+                    <div className="min-w-0">
+                      <h2 className="text-xl font-bold text-white">
+                        {activeMatch.pathway.title}
+                      </h2>
+                      <p className="text-[13px] text-white/90">
+                        {activeMatch.score}% match ·{' '}
+                        {bandLabel[activeMatch.band]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <CardContent className="space-y-3 p-5">
+                  <p className="text-[15px] leading-relaxed text-gray-700">
+                    {activeMatch.pathway.whatIsIt}
+                  </p>
+                  <p className="text-sm font-medium text-emerald-700">
+                    {activeMatch.headline}
+                  </p>
+                  {perCareerNotes?.[activeMatch.pathway.title] && (
+                    <p className="text-[13px] italic leading-relaxed text-gray-500">
+                      {perCareerNotes[activeMatch.pathway.title]}
+                    </p>
+                  )}
 
-            {/* The honest reality check */}
-            <RealityCheck pathway={activeMatch.pathway} />
-            </div>
+                  {/* HOW a 12th student actually reaches this career — shown
+                      prominently so the real route and realistic time-to-career
+                      are clear. Every career here is one they can act on now. */}
+                  <PathwayTypeBanner
+                    pathway={activeMatch.pathway}
+                    variant="full"
+                  />
 
-            {/* ── RIGHT COLUMN — what to do next ── */}
-            <div className="space-y-4 lg:col-span-7">
-            {/* Real, named colleges that offer this career's courses */}
-            <CollegesForCareer pathway={activeMatch.pathway} />
+                  {/* The UG course(s) that lead here */}
+                  <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                    <span className="text-[12px] font-semibold text-gray-400">
+                      UG course:
+                    </span>
+                    {activeMatch.pathway.ugCourses.map((c) => (
+                      <span
+                        key={c}
+                        className="rounded-md bg-gray-100 px-2 py-0.5 text-[12px] font-medium text-gray-600"
+                      >
+                        {c}
+                      </span>
+                    ))}
+                  </div>
 
-            {/* The genuinely per-career roadmap */}
-            <CareerRoadmap pathway={activeMatch.pathway} />
+                  {/* Entrance exam — only shown when there genuinely IS one.
+                      For 'None (direct admission)' careers we deliberately do
+                      NOT show a chip, because "Exam: None" misleads a 12th
+                      student. The PathwayTypeBanner above explains the real
+                      route honestly. */}
+                  {activeMatch.pathway.entranceExams.some(
+                    (e) => e !== 'None (direct admission)',
+                  ) && (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[12px] font-semibold text-gray-400">
+                        Entrance exam:
+                      </span>
+                      {activeMatch.pathway.entranceExams
+                        .filter((e) => e !== 'None (direct admission)')
+                        .map((e) => (
+                          <span
+                            key={e}
+                            className="rounded-md bg-violet-50 px-2 py-0.5 text-[12px] font-medium text-violet-600"
+                          >
+                            {e}
+                          </span>
+                        ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
 
-            {/* The 90-day action plan with persistence */}
-            <ActionItems pathway={activeMatch.pathway} />
+              {/* On wide screens, the two-up sections sit side by side so the
+                  page reads horizontally instead of as one long strip. */}
+              <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+                <ScoreBreakdown match={activeMatch} defaultOpen />
+                <RealityCheck pathway={activeMatch.pathway} />
+              </div>
 
-            {/* Skills to start building now */}
-            <BuildNowSkills pathway={activeMatch.pathway} />
-            </div>
-          </motion.div>
+              <CollegesForCareer pathway={activeMatch.pathway} />
+
+              <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+                <CareerRoadmap pathway={activeMatch.pathway} />
+                <ActionItems pathway={activeMatch.pathway} />
+              </div>
+
+              <BuildNowSkills pathway={activeMatch.pathway} />
+            </motion.div>
+          </div>
         </div>
 
-        {/* ─── Methodology note — transparency for everyone ───────── */}
-        <Card className="mt-6 border-gray-200 bg-gray-50/60">
-          <CardContent className="flex gap-2 p-3">
-            <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gray-400" />
-            <div>
-              <p className="text-sm font-semibold text-gray-600">
-                How these results were produced
-              </p>
-              <p className="mt-0.5 text-xs leading-snug text-gray-500">
-                {SCORING_METHODOLOGY.en}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* ─── Actions ────────────────────────────────────────────── */}
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-8 flex flex-wrap justify-center gap-2.5">
           <Button
             variant="outline"
-            size="sm"
             className="gap-2"
             onClick={() => handleShare('whatsapp')}
           >
@@ -462,18 +447,12 @@ export const ResultsDashboard = ({
           </Button>
           <Button
             variant="outline"
-            size="sm"
             className="gap-2"
             onClick={() => handleShare('email')}
           >
             Email my results
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-2"
-            onClick={onRetake}
-          >
+          <Button variant="outline" className="gap-2" onClick={onRetake}>
             <RotateCcw className="h-4 w-4" />
             Retake assessment
           </Button>

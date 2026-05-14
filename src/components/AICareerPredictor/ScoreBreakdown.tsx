@@ -67,7 +67,7 @@ export const ScoreBreakdown = ({ match, defaultOpen = false }: ScoreBreakdownPro
           <CardContent className="space-y-3 p-3">
             {/* Band label */}
             <div
-              className={`inline-flex items-center rounded-md border px-2 py-0.5 text-sm font-bold ${meta.tone}`}
+              className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[13px] font-bold ${meta.tone}`}
             >
               {meta.label} · {match.score}/100
             </div>
@@ -79,10 +79,10 @@ export const ScoreBreakdown = ({ match, defaultOpen = false }: ScoreBreakdownPro
                 return (
                   <div key={c.label}>
                     <div className="mb-0.5 flex items-baseline justify-between">
-                      <span className="text-sm font-semibold text-gray-700">
+                      <span className="text-[13px] font-semibold text-gray-700">
                         {c.label}
                       </span>
-                      <span className="text-sm tabular-nums text-gray-500">
+                      <span className="text-[13px] tabular-nums text-gray-500">
                         {c.earned}
                         <span className="text-gray-400"> / {c.max}</span>
                       </span>
@@ -95,7 +95,7 @@ export const ScoreBreakdown = ({ match, defaultOpen = false }: ScoreBreakdownPro
                         className={`h-full rounded-full ${meta.bar}`}
                       />
                     </div>
-                    <p className="mt-1 text-xs leading-snug text-gray-500">
+                    <p className="mt-1 text-[12px] leading-snug text-gray-500">
                       {c.reason}
                     </p>
                   </div>
@@ -106,7 +106,7 @@ export const ScoreBreakdown = ({ match, defaultOpen = false }: ScoreBreakdownPro
             {/* Methodology note — the transparency statement */}
             <div className="flex gap-2 rounded-md bg-gray-50 p-2">
               <Info className="mt-0.5 h-3 w-3 shrink-0 text-gray-400" />
-              <p className="text-xs leading-snug text-gray-500">
+              <p className="text-[12px] leading-snug text-gray-500">
                 {SCORING_METHODOLOGY.en}
               </p>
             </div>

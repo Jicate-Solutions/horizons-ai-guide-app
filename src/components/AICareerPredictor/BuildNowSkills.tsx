@@ -24,7 +24,7 @@ export const BuildNowSkills = ({ pathway }: BuildNowSkillsProps) => {
           <Dumbbell className="h-4 w-4 text-indigo-600" />
           Skills to Start Building Now
         </h3>
-        <p className="text-sm text-gray-500">
+        <p className="text-[13px] text-gray-500">
           இப்போதே வளர்க்க வேண்டிய திறன்கள் — free, and you can begin today
         </p>
       </div>
@@ -39,19 +39,19 @@ export const BuildNowSkills = ({ pathway }: BuildNowSkillsProps) => {
             className="rounded-lg border border-gray-200 bg-white p-3"
           >
             <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-[12px] font-bold text-indigo-700">
                 {index + 1}
               </span>
-              <p className="text-sm font-semibold text-gray-900">
+              <p className="text-[14px] font-semibold text-gray-900">
                 {s.skill}
               </p>
             </div>
-            <p className="mt-1 text-sm leading-snug text-gray-600">
+            <p className="mt-1 text-[13px] leading-snug text-gray-600">
               {s.why}
             </p>
             <div className="mt-1.5 flex items-start gap-1 rounded-md bg-indigo-50/70 px-2 py-1">
               <ArrowUpRight className="mt-0.5 h-3 w-3 shrink-0 text-indigo-500" />
-              <p className="text-xs leading-snug text-indigo-800">
+              <p className="text-[12px] leading-snug text-indigo-800">
                 <span className="font-semibold">Free start:</span>{' '}
                 {s.freeResource}
               </p>

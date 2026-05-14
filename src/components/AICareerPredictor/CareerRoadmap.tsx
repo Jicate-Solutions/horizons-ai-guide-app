@@ -54,7 +54,7 @@ export const CareerRoadmap = ({ pathway }: CareerRoadmapProps) => {
           <MapPin className="h-4 w-4 text-emerald-600" />
           Your Roadmap to {pathway.title}
         </h3>
-        <p className="text-sm text-gray-500">
+        <p className="text-[13px] text-gray-500">
           {pathway.titleTa} — the actual sequence of steps from here
         </p>
       </div>
@@ -85,7 +85,7 @@ export const CareerRoadmap = ({ pathway }: CareerRoadmapProps) => {
                     {stage.phase === 'now' ? (
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
                     ) : (
-                      <span className="text-xs font-bold text-white">
+                      <span className="text-[12px] font-bold text-white">
                         {index + 1}
                       </span>
                     )}
@@ -95,24 +95,24 @@ export const CareerRoadmap = ({ pathway }: CareerRoadmapProps) => {
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-1.5">
-                          <p className="text-base font-semibold text-gray-900">
+                          <p className="text-[14px] font-semibold text-gray-900">
                             {stage.title}
                           </p>
                           <Badge
-                            className={`px-1.5 py-0 text-xs font-bold ${meta.badge}`}
+                            className={`px-1.5 py-0 text-[11px] font-bold ${meta.badge}`}
                           >
                             {meta.label}
                           </Badge>
                         </div>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-[12px] text-gray-500">
                           {stage.titleTa}
                         </p>
                       </div>
-                      <span className="shrink-0 rounded bg-white/70 px-1.5 py-0.5 text-xs font-medium text-gray-500">
+                      <span className="shrink-0 rounded bg-white/70 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">
                         {stage.window}
                       </span>
                     </div>
-                    <p className="mt-1.5 text-sm leading-snug text-gray-600">
+                    <p className="mt-1.5 text-[13px] leading-snug text-gray-600">
                       {stage.detail}
                     </p>
                   </div>

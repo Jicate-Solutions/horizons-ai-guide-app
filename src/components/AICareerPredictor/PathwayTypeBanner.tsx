@@ -77,10 +77,10 @@ export const PathwayTypeBanner = ({
   if (variant === 'compact') {
     return (
       <div
-        className={`inline-flex items-center gap-1 rounded border px-1.5 py-0.5 ${tone.box}`}
+        className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 ${tone.box}`}
       >
-        <Icon className={`h-3 w-3 ${tone.icon}`} />
-        <span className={`text-xs font-bold leading-tight ${tone.label}`}>
+        <Icon className={`h-3.5 w-3.5 ${tone.icon}`} />
+        <span className={`text-[11px] font-bold leading-tight ${tone.label}`}>
           {meta.label}
         </span>
       </div>
@@ -89,17 +89,17 @@ export const PathwayTypeBanner = ({
 
   // Full: the prominent banner shown in the career detail header.
   return (
-    <div className={`rounded-lg border p-3 ${tone.box}`}>
+    <div className={`rounded-lg border p-3.5 ${tone.box}`}>
       <div className="flex items-start gap-2.5">
         <div className="mt-0.5 shrink-0">
           <Icon className={`h-5 w-5 ${tone.icon}`} />
         </div>
         <div className="min-w-0">
-          <p className={`text-sm font-bold ${tone.label}`}>{meta.label}</p>
-          <p className="text-xs text-gray-500">{meta.labelTa}</p>
-          <div className="mt-1.5 flex items-start gap-1">
-            <Clock className={`mt-0.5 h-3 w-3 shrink-0 ${tone.icon}`} />
-            <p className={`text-sm font-medium leading-snug ${tone.time}`}>
+          <p className={`text-[14px] font-bold ${tone.label}`}>{meta.label}</p>
+          <p className="text-[12px] text-gray-500">{meta.labelTa}</p>
+          <div className="mt-1.5 flex items-start gap-1.5">
+            <Clock className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${tone.icon}`} />
+            <p className={`text-[13px] font-medium leading-snug ${tone.time}`}>
               {pathway.timeToCareer}
             </p>
           </div>

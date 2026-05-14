@@ -323,12 +323,12 @@ const AICareerPredictor = () => {
         {/* ─── Intro ───────────────────────────────────────────────── */}
         {step === 0 && (
           <motion.div
-            className="mx-auto max-w-2xl py-4 text-center"
+            className="mx-auto max-w-3xl py-4 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Card className="mb-6 overflow-hidden border-0 shadow-xl">
-              <CardContent className="p-6 md:p-10">
+              <CardContent className="p-6 md:p-12">
                 <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 shadow-xl shadow-primary/25">
                   <Brain className="h-10 w-10 text-white" />
                 </div>
@@ -336,48 +336,48 @@ const AICareerPredictor = () => {
                 <h1 className="mb-1 text-3xl font-bold md:text-4xl">
                   Career Predictor
                 </h1>
-                <p className="mb-4 text-sm font-medium text-emerald-600">
+                <p className="mb-4 text-base font-medium text-emerald-600">
                   தொழில் கணிப்பான்
                 </p>
-                <p className="mx-auto mb-6 max-w-md text-sm text-muted-foreground">
+                <p className="mx-auto mb-7 max-w-xl text-base text-muted-foreground">
                   Answer 7 honest questions. We calculate — transparently — which
                   careers genuinely fit you, and give you a real roadmap and a
                   90-day action plan you can start tomorrow.
                 </p>
 
                 {/* HONEST badges — every one of these is literally true */}
-                <div className="mb-7 flex flex-wrap justify-center gap-2">
+                <div className="mb-8 flex flex-wrap justify-center gap-2">
                   <Badge
                     variant="secondary"
-                    className="px-3 py-1.5 text-xs"
+                    className="px-3 py-1.5 text-[13px]"
                   >
-                    <Calculator className="mr-1 h-3 w-3" />
+                    <Calculator className="mr-1 h-3.5 w-3.5" />
                     Calculated, not guessed
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="px-3 py-1.5 text-xs"
+                    className="px-3 py-1.5 text-[13px]"
                   >
-                    <ShieldCheck className="mr-1 h-3 w-3" />
+                    <ShieldCheck className="mr-1 h-3.5 w-3.5" />
                     Every score is explained
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="px-3 py-1.5 text-xs"
+                    className="px-3 py-1.5 text-[13px]"
                   >
-                    <ListChecks className="mr-1 h-3 w-3" />
+                    <ListChecks className="mr-1 h-3.5 w-3.5" />
                     Real 90-day plan
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="px-3 py-1.5 text-xs"
+                    className="px-3 py-1.5 text-[13px]"
                   >
                     ⏱️ About 5 minutes
                   </Badge>
                 </div>
 
                 {/* How it works — honest about the method */}
-                <div className="mx-auto mb-7 grid max-w-md grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="mx-auto mb-8 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
                   {[
                     {
                       emoji: '📝',
@@ -393,10 +393,10 @@ const AICareerPredictor = () => {
                     },
                   ].map((s, i) => (
                     <div key={i} className="text-center">
-                      <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-xl">
+                      <div className="mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-2xl">
                         {s.emoji}
                       </div>
-                      <p className="text-[10px] font-semibold uppercase text-muted-foreground">
+                      <p className="text-[13px] font-semibold text-muted-foreground">
                         {s.label}
                       </p>
                     </div>
@@ -416,19 +416,19 @@ const AICareerPredictor = () => {
                 {hasSavedResult && (
                   <button
                     onClick={restoreSavedResult}
-                    className="mt-3 text-xs font-medium text-primary hover:underline"
+                    className="mt-3 text-sm font-medium text-primary hover:underline"
                   >
                     Or view your previous result
                   </button>
                 )}
 
                 {/* Honest method note instead of fake stats / testimonials */}
-                <div className="mt-8 rounded-xl bg-muted/50 p-4 text-left">
-                  <p className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
-                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+                <div className="mx-auto mt-8 max-w-xl rounded-xl bg-muted/50 p-5 text-left">
+                  <p className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
+                    <ShieldCheck className="h-4 w-4 text-emerald-600" />
                     Why you can trust this
                   </p>
-                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-muted-foreground">
                     This tool does not invent match percentages. It scores each
                     career from your own answers against a curated database of
                     Tamil Nadu education pathways — and shows you the exact
@@ -443,11 +443,11 @@ const AICareerPredictor = () => {
 
         {/* ─── Wizard ──────────────────────────────────────────────── */}
         {step >= 1 && (
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-3xl">
             <div className="mb-6 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
                 <Brain className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+                <span className="text-[15px] font-medium text-primary">
                   Career Predictor
                 </span>
               </div>
