@@ -1216,7 +1216,9 @@ const parseDeadline = (s?: string): Date | null => {
 };
 
 const buildVerifiedCollegeDates = (): CollegeKeyDate[] =>
-  COLLEGE_SPORTS_QUOTA.filter((c) => c.verification === 'verified').map((c) => {
+  COLLEGE_SPORTS_QUOTA
+    .filter((c) => c.verification === 'verified' && c.userProvided === true)
+    .map((c) => {
     // Direct-admission deadline if present
     const direct = c.overrides?.applicationDeadline;
     let labelEn = '';
@@ -1442,6 +1444,8 @@ const LiveApplicationsBanner = ({
 };
 
 const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => void }) => {
+  const navigate = useNavigate();
+
   // Live countdown to TNEA registration deadline (June 2, 2026)
   const [daysLeft, setDaysLeft] = useState<number>(() => {
     const deadline = new Date('2026-06-02T23:59:59+05:30').getTime();
@@ -1554,13 +1558,29 @@ const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => voi
         <ChevronRight className="w-5 h-5 ml-1" />
       </Button>
 
-      {/* Verified colleges + their key dates */}
+      {/* Secondary CTA — Discovery (filterable college browser) */}
+      <a
+        href="/sports-quota-discovery"
+        className="w-full flex items-center justify-between gap-3 h-12 px-4 rounded-md border-2 border-amber-300 bg-amber-50 hover:bg-amber-100 transition group"
+      >
+        <div className="text-left">
+          <div className="text-sm font-bold text-amber-900 leading-tight">
+            {lang === 'ta' ? 'அனைத்து கல்லூரிகளையும் பார்வையிடு' : 'Browse all colleges'}
+          </div>
+          <div className="text-[11px] text-amber-700">
+            {lang === 'ta' ? 'மாவட்டம் / விளையாட்டு / பாலினம் / தேதி வடிகட்டிகள்' : 'Filter by district · sport · gender · date'}
+          </div>
+        </div>
+        <ChevronRight className="w-4 h-4 text-amber-700 group-hover:translate-x-0.5 transition" />
+      </a>
+
+      {/* Sports Quota Discovery — directory of selection trials */}
       <Card className="border-emerald-200 overflow-hidden">
         <div className="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4" />
             <span className="text-sm font-bold">
-              {lang === 'ta' ? 'சரிபார்க்கப்பட்ட கல்லூரிகள் & தேதிகள்' : 'Verified colleges & key dates'}
+              {lang === 'ta' ? 'விளையாட்டு கோட்டா தேர்வுகள் கண்டுபிடிப்பு' : 'Sports Quota Discovery'}
             </span>
           </div>
           <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
@@ -1568,53 +1588,37 @@ const SplashScreen = ({ lang, onStart }: { lang: 'en' | 'ta'; onStart: () => voi
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
           </span>
         </div>
-        <CardContent className="p-0 divide-y divide-gray-100">
-          {verifiedColleges.map((c) => {
-            const isUrgent =
-              c.earliestDeadline &&
-              c.earliestDeadline.getTime() - Date.now() < 30 * 24 * 60 * 60 * 1000 &&
-              c.earliestDeadline.getTime() > Date.now();
-            return (
-              <div
-                key={c.collegeName}
-                className="px-4 py-2.5 flex items-start justify-between gap-3"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <p className="text-[13px] font-bold text-gray-900 leading-tight">
-                      {lang === 'ta' && c.collegeNameTa ? c.collegeNameTa : c.collegeName}
-                    </p>
-                    {isUrgent && (
-                      <span className="relative inline-flex">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded bg-red-300 opacity-75"></span>
-                        <span className="relative inline-flex items-center rounded bg-red-600 px-1.5 py-0.5 text-[9px] font-black text-white">
-                          ⚡ {lang === 'ta' ? 'அவசரம்' : 'URGENT'}
-                        </span>
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-gray-500">
-                    <MapPin className="w-3 h-3 flex-shrink-0" />
-                    <span>{c.district}</span>
-                    <span>·</span>
-                    <span>{c.type}</span>
-                  </div>
-                </div>
-                <div className="flex-shrink-0 text-right">
-                  <div className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-[11px] font-bold text-emerald-800 border border-emerald-200">
-                    <Calendar className="w-3 h-3" />
-                    {lang === 'ta' ? c.keyDateLabel.ta : c.keyDateLabel.en}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <CardContent className="p-4 space-y-3">
+          <p className="text-[13px] text-gray-700 leading-relaxed">
+            {lang === 'ta'
+              ? `${verifiedColleges.length} கல்லூரிகளில் 2026-27 ஆம் ஆண்டுக்கான விளையாட்டு கோட்டா தேர்வு விவரங்கள். மாவட்டம், விளையாட்டு, பாலினம், கடந்த/வரும் தேர்வுகள் என வடிகட்டிக் காணலாம்.`
+              : `Browse 2026-27 sports quota selection trials at ${verifiedColleges.length} verified colleges. Filter by district, sport, gender, and past/upcoming trials.`}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            <Badge variant="outline" className="text-[10px] bg-emerald-50 text-emerald-800 border-emerald-200">
+              <MapPin className="w-2.5 h-2.5 mr-1" />
+              {lang === 'ta' ? 'மாவட்டம்' : 'District'}
+            </Badge>
+            <Badge variant="outline" className="text-[10px] bg-amber-50 text-amber-800 border-amber-200">
+              <Trophy className="w-2.5 h-2.5 mr-1" />
+              {lang === 'ta' ? 'விளையாட்டு' : 'Sport'}
+            </Badge>
+            <Badge variant="outline" className="text-[10px] bg-blue-50 text-blue-800 border-blue-200">
+              {lang === 'ta' ? 'ஆண் / பெண்' : 'Men / Women'}
+            </Badge>
+            <Badge variant="outline" className="text-[10px] bg-purple-50 text-purple-800 border-purple-200">
+              <Calendar className="w-2.5 h-2.5 mr-1" />
+              {lang === 'ta' ? 'கடந்த / வரும்' : 'Past / Upcoming'}
+            </Badge>
+          </div>
+          <Button
+            onClick={() => navigate('/sports-quota-discovery')}
+            className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold"
+          >
+            {lang === 'ta' ? 'தேர்வுகளை பார்க்க' : 'Browse all trials'}
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
         </CardContent>
-        <div className="px-4 py-2 bg-gray-50 text-[10px] text-gray-500 text-center">
-          {lang === 'ta'
-            ? `${verifiedColleges.length} கல்லூரிகள் நேரடியாக சரிபார்க்கப்பட்டுள்ளன · மேலும் வரும்`
-            : `${verifiedColleges.length} colleges directly verified · more coming`}
-        </div>
       </Card>
 
       {/* What you'll get */}
