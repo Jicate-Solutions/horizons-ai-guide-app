@@ -12,7 +12,7 @@ interface GroupSelectorProps {
 const groupCourseName: Record<string, string> = {
   '101': 'Statistics',
   '102': 'Computer Science',
-  '103': 'Biology + Maths',
+  '103': 'Pure Science (PCMB) — Biology + Maths',
   '104': 'Bio-Chemistry',
   '105': 'English for Communication',
   '106': 'Home Science',
@@ -54,7 +54,7 @@ const groupCategories: { category: GroupCategory; title: string; titleTamil: str
     groups: [
       { id: '101', code: '101', name: 'Statistics Group', category: 'science_maths', icon: '📊', subjects: ['Physics', 'Chemistry', 'Statistics', 'Mathematics'], careers: ['Engineering', 'Data Science'], color: 'text-blue-600', bgColor: 'bg-blue-50' },
       { id: '102', code: '102', name: 'Computer Science Group', category: 'science_maths', icon: '💻', subjects: ['Physics', 'Chemistry', 'Computer Science', 'Mathematics'], careers: ['Engineering', 'IT'], color: 'text-blue-600', bgColor: 'bg-blue-50' },
-      { id: '103', code: '103', name: 'Biology + Maths Group', category: 'science_maths', icon: '🧬', subjects: ['Physics', 'Chemistry', 'Biology', 'Mathematics'], careers: ['Engineering + Medical'], color: 'text-purple-600', bgColor: 'bg-purple-50' },
+      { id: '103', code: '103', name: 'Pure Science (PCMB) Group', category: 'science_maths', icon: '🧬', subjects: ['Physics', 'Chemistry', 'Biology', 'Mathematics'], careers: ['Engineering + Medical'], color: 'text-purple-600', bgColor: 'bg-purple-50' },
       { id: '104', code: '104', name: 'Bio-Chemistry Group', category: 'science_maths', icon: '🧪', subjects: ['Physics', 'Chemistry', 'Bio-Chemistry', 'Mathematics'], careers: ['Biotech', 'Research'], color: 'text-blue-600', bgColor: 'bg-blue-50' },
       { id: '105', code: '105', name: 'English Comm. Group', category: 'science_maths', icon: '📝', subjects: ['Physics', 'Chemistry', 'English for Communication', 'Mathematics'], careers: ['Engineering', 'Teaching'], color: 'text-blue-600', bgColor: 'bg-blue-50' },
       { id: '106', code: '106', name: 'Home Science Group', category: 'science_maths', icon: '🏠', subjects: ['Physics', 'Chemistry', 'Mathematics', 'Home Science'], careers: ['Engineering', 'Home Science'], color: 'text-blue-600', bgColor: 'bg-blue-50' },
