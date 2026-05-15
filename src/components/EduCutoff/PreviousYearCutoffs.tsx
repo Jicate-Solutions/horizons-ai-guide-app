@@ -59,6 +59,17 @@ const engineeringCutoffs: CutoffEntry[] = [
   { college: 'Govt CE, Tirunelveli', course: 'CSE', oc: 188.00, bc: 186.00, mbc: 182.00, sc: 161.00, st: 138.00, year: '2025', expected2026: 188.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
   { college: 'Govt CE, Thanjavur', course: 'CSE', oc: 185.50, bc: 183.50, mbc: 180.00, sc: 158.00, st: 135.00, year: '2025', expected2026: 186.00, trend: 'stable', note: 'TNEA Cutoff / 200' },
   { college: 'Govt CE, Namakkal', course: 'CSE', oc: 183.00, bc: 181.00, mbc: 178.00, sc: 156.00, st: 133.00, year: '2025', expected2026: 183.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  // Excel Engineering College, Komarapalayam (TNEA Code 2634)
+  { college: 'Excel Engineering College, Komarapalayam', course: 'Computer Science (CSE)', oc: 147.50, bc: 137.50, mbc: 132.50, sc: 107.50, st: 95.00, year: '2025', expected2026: 148.00, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'Excel Engineering College, Komarapalayam', course: 'AI & Data Science', oc: 142.50, bc: 132.50, mbc: 127.50, sc: 102.50, st: 90.00, year: '2025', expected2026: 143.00, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'Excel Engineering College, Komarapalayam', course: 'Information Technology', oc: 140.00, bc: 127.50, mbc: 122.50, sc: 100.00, st: 87.50, year: '2025', expected2026: 140.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'Excel Engineering College, Komarapalayam', course: 'Electronics & Comm (ECE)', oc: 135.00, bc: 122.50, mbc: 117.50, sc: 95.00, st: 82.50, year: '2025', expected2026: 135.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'Excel Engineering College, Komarapalayam', course: 'Mechanical / Aeronautical', oc: 125.00, bc: 112.50, mbc: 107.50, sc: 85.00, st: 75.00, year: '2025', expected2026: 125.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  // JKKN College of Engineering & Technology, Komarapalayam
+  { college: 'JKKN College of Engineering, Komarapalayam', course: 'Computer Science (CSE)', oc: 145.00, bc: 135.00, mbc: 130.00, sc: 110.00, st: 95.00, year: '2025', expected2026: 145.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'JKKN College of Engineering, Komarapalayam', course: 'Information Technology', oc: 145.00, bc: 135.00, mbc: 130.00, sc: 110.00, st: 95.00, year: '2025', expected2026: 145.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'JKKN College of Engineering, Komarapalayam', course: 'Electronics & Comm (ECE)', oc: 140.00, bc: 130.00, mbc: 125.00, sc: 100.00, st: 88.00, year: '2025', expected2026: 140.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
+  { college: 'JKKN College of Engineering, Komarapalayam', course: 'EEE / Mechanical', oc: 130.00, bc: 115.00, mbc: 110.00, sc: 90.00, st: 78.00, year: '2025', expected2026: 130.50, trend: 'stable', note: 'TNEA Cutoff / 200' },
   // NIT Trichy (JEE)
   { college: 'NIT Trichy', course: 'CSE (JEE Main)', oc: '98.5%ile', bc: '95%ile', mbc: '92%ile', sc: '75%ile', st: '60%ile', year: '2025', expected2026: '98.8%ile', trend: 'up', note: 'JEE Main Percentile' },
   { college: 'NIT Trichy', course: 'ECE (JEE Main)', oc: '97.2%ile', bc: '93.5%ile', mbc: '90.5%ile', sc: '73%ile', st: '57%ile', year: '2025', expected2026: '97.5%ile', trend: 'up', note: 'JEE Main Percentile' },
