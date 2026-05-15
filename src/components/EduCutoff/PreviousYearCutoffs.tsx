@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 
 type CourseType = 'engineering' | 'medical' | 'pharma' | 'govt';
 
-interface CutoffEntry {
+export interface CutoffEntry {
   college: string;
   course: string;
   oc: number | string;
@@ -20,7 +20,7 @@ interface CutoffEntry {
 }
 
 // ═══ TNEA 2025 ACTUAL + 2026 EXPECTED ═══
-const engineeringCutoffs: CutoffEntry[] = [
+export const engineeringCutoffs: CutoffEntry[] = [
   // CEG Anna University
   { college: 'CEG, Anna University', course: 'Computer Science (CSE)', oc: 199.50, bc: 199.00, mbc: 198.50, sc: 190.00, st: 175.00, year: '2025', expected2026: 199.75, trend: 'up', note: 'TNEA Cutoff / 200' },
   { college: 'CEG, Anna University', course: 'Electronics & Comm (ECE)', oc: 198.50, bc: 197.50, mbc: 196.00, sc: 185.00, st: 170.00, year: '2025', expected2026: 198.75, trend: 'up', note: 'TNEA Cutoff / 200' },
@@ -77,7 +77,7 @@ const engineeringCutoffs: CutoffEntry[] = [
 ];
 
 // ═══ NEET 2024-25 ACTUAL + 2026 EXPECTED ═══
-const medicalCutoffs: CutoffEntry[] = [
+export const medicalCutoffs: CutoffEntry[] = [
   { college: 'Madras Medical College, Chennai', course: 'MBBS', oc: 650, bc: 615, mbc: 595, sc: 485, st: 385, year: '2024-25', expected2026: 655, trend: 'up', note: 'NEET Score / 720' },
   { college: 'Stanley Medical College, Chennai', course: 'MBBS', oc: 638, bc: 603, mbc: 583, sc: 468, st: 373, year: '2024-25', expected2026: 642, trend: 'up', note: 'NEET Score / 720' },
   { college: 'Kilpauk Medical College, Chennai', course: 'MBBS', oc: 628, bc: 593, mbc: 573, sc: 458, st: 362, year: '2024-25', expected2026: 632, trend: 'up', note: 'NEET Score / 720' },
@@ -109,7 +109,7 @@ const medicalCutoffs: CutoffEntry[] = [
 // 12th science marks reduced to a base of 200 — NO entrance exam.
 // Numbers are 2025 indicative cutoffs sourced from published rank lists.
 // Verify against the official allotment list on tnmedicalselection.net.
-const pharmaNursingCutoffs: CutoffEntry[] = [
+export const pharmaNursingCutoffs: CutoffEntry[] = [
   // ─── B.Pharm — Government Colleges ───
   { college: 'Madras Medical College, Chennai', course: 'B.Pharm', oc: 195.5, bc: 192.0, mbc: 188.0, sc: 168.0, st: 152.0, year: '2025', expected2026: 196.0, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
   { college: 'Madurai Medical College, Madurai', course: 'B.Pharm', oc: 191.0, bc: 187.5, mbc: 183.0, sc: 162.0, st: 145.0, year: '2025', expected2026: 191.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },

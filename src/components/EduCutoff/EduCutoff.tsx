@@ -10,11 +10,12 @@ import { CollegePredictor } from './CollegePredictor';
 import { PreviousYearCutoffs } from './PreviousYearCutoffs';
 import { CounsellingGuide } from './CounsellingGuide';
 import { CounsellingTracker } from './CounsellingTracker';
+import { SmartRankPredictor } from './SmartRankPredictor';
 import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
-import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight, Shield, Info, Building2, Compass, School, Bookmark } from 'lucide-react';
+import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight, Shield, Info, Building2, Compass, School, Bookmark, Target } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-type PageTab = 'calculator' | 'cutoffs' | 'counselling' | 'tracker';
+type PageTab = 'calculator' | 'predictor' | 'cutoffs' | 'counselling' | 'tracker';
 
 /**
  * Commerce and Arts UG admissions in Tamil Nadu are merit-based on the 12th
@@ -106,6 +107,7 @@ export const EduCutoff = () => {
 
   const pageTabs = [
     { id: 'calculator' as PageTab, label: 'Calculate Cutoff', tamil: 'கட்ஆஃப் கணக்கிடு', icon: Calculator, desc: 'Enter marks → Get cutoff → See colleges' },
+    { id: 'predictor' as PageTab, label: 'Smart Predictor', tamil: 'புத்திசாலி கணிப்பான்', icon: Target, desc: 'Probability + strategy for choice-filling' },
     { id: 'cutoffs' as PageTab, label: 'Previous Cutoffs', tamil: 'முந்தைய கட்ஆஃப்', icon: ClipboardList, desc: 'Browse last year marks' },
     { id: 'counselling' as PageTab, label: 'Counselling', tamil: 'கலந்தாய்வு', icon: Calendar, desc: 'Dates, steps & apply links' },
     { id: 'tracker' as PageTab, label: 'My Tracker', tamil: 'எனது நிலை', icon: Shield, desc: 'Track your application status' },
@@ -162,7 +164,7 @@ export const EduCutoff = () => {
 
       {/* ═══ 3 TAB SELECTOR ═══ */}
       <div className="bg-white rounded-2xl border-2 border-gray-200 p-1.5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1.5">
           {pageTabs.map(tab => (
             <button
               key={tab.id}
@@ -367,7 +369,10 @@ export const EduCutoff = () => {
         </div>
       )}
 
-      {/* ═══ TAB 2: PREVIOUS YEAR CUTOFFS ═══ */}
+      {/* ═══ TAB 2: SMART RANK PREDICTOR ═══ */}
+      {activeTab === 'predictor' && <SmartRankPredictor />}
+
+      {/* ═══ TAB 3: PREVIOUS YEAR CUTOFFS ═══ */}
       {activeTab === 'cutoffs' && <PreviousYearCutoffs />}
 
       {/* ═══ TAB 3: COUNSELLING GUIDE ═══ */}
