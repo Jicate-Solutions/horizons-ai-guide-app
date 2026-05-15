@@ -38,6 +38,14 @@ export interface CutoffResult {
   overallPercentage: number;
   percentile: number;
   neetScore?: number;
+  /**
+   * 12th science aggregate reduced to a base of 200 — the metric the
+   * TN Selection Committee uses for Paramedical Degree Courses
+   * (B.Pharm, B.Sc Nursing, BPT, etc.) and Pharm.D admissions.
+   * Formula: (Physics + Chemistry + Biology) × 2/3, capped at 200.
+   * Only populated for Bio-eligible groups.
+   */
+  paramedicalScore?: number;
 }
 
 export interface EligibleCourse {

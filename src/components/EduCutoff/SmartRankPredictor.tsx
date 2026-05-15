@@ -23,7 +23,7 @@
  * so when those are updated the predictor stays in sync automatically.
  */
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   engineeringCutoffs,
   medicalCutoffs,
@@ -97,10 +97,40 @@ const toNumber = (v: number | string): number | null => {
   return Number.isFinite(n) ? n : null;
 };
 
-export const SmartRankPredictor = () => {
-  const [stream, setStream] = useState<Stream>('engineering');
-  const [score, setScore] = useState<string>('');
-  const [category, setCategory] = useState<Category>('oc');
+interface SmartRankPredictorProps {
+  /** When embedded inside the calculator, hide the marketing header. */
+  embedded?: boolean;
+  /** Pre-select a stream (e.g. when called from the calculator's results). */
+  initialStream?: Stream;
+  /** Pre-fill the score input. */
+  initialScore?: number;
+  /** Pre-select a community category. */
+  initialCategory?: Category;
+}
+
+export const SmartRankPredictor = ({
+  embedded = false,
+  initialStream,
+  initialScore,
+  initialCategory,
+}: SmartRankPredictorProps = {}) => {
+  const [stream, setStream] = useState<Stream>(initialStream ?? 'engineering');
+  const [score, setScore] = useState<string>(initialScore != null ? String(initialScore) : '');
+  const [category, setCategory] = useState<Category>(initialCategory ?? 'oc');
+
+  // When the parent re-renders with new initial values (e.g. the student
+  // re-calculates in the calculator), reflect those changes here too.
+  // We only update if a value is actually provided — otherwise the user's
+  // own edits inside the predictor are preserved.
+  useEffect(() => {
+    if (initialStream) setStream(initialStream);
+  }, [initialStream]);
+  useEffect(() => {
+    if (initialScore != null) setScore(String(initialScore));
+  }, [initialScore]);
+  useEffect(() => {
+    if (initialCategory) setCategory(initialCategory);
+  }, [initialCategory]);
 
   const streamMeta = STREAMS.find((s) => s.id === stream)!;
   const isNeet = stream === 'medical';
@@ -151,24 +181,39 @@ export const SmartRankPredictor = () => {
 
   return (
     <div className="space-y-4">
-      {/* ── HEADER ── */}
-      <div className="rounded-2xl bg-gradient-to-br from-violet-700 via-purple-700 to-violet-800 p-5 text-white shadow-lg">
-        <div className="flex items-start gap-3">
-          <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-            <Target className="w-6 h-6 text-amber-300" />
+      {/* ── HEADER (hidden when embedded inside calculator) ── */}
+      {!embedded && (
+        <div className="rounded-2xl bg-gradient-to-br from-violet-700 via-purple-700 to-violet-800 p-5 text-white shadow-lg">
+          <div className="flex items-start gap-3">
+            <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
+              <Target className="w-6 h-6 text-amber-300" />
+            </div>
+            <div className="min-w-0">
+              <h2 className="text-xl md:text-2xl font-black leading-tight">Smart Rank Predictor</h2>
+              <p className="text-sm text-violet-100/90 mt-0.5">
+                See your real probability of getting each college — plus a choice-filling strategy
+              </p>
+              <p className="text-xs text-violet-200/70 mt-2 leading-relaxed">
+                Based on 2025 actual cutoffs with realistic ±buffer for year-to-year drift.
+                This is the strategy advice missing from official portals.
+              </p>
+            </div>
           </div>
+        </div>
+      )}
+
+      {/* When embedded, show a compact strip explaining what's below */}
+      {embedded && (
+        <div className="rounded-xl bg-violet-50 border border-violet-200 px-4 py-3 flex items-center gap-2.5">
+          <Target className="w-5 h-5 text-violet-700 flex-shrink-0" />
           <div className="min-w-0">
-            <h2 className="text-xl md:text-2xl font-black leading-tight">Smart Rank Predictor</h2>
-            <p className="text-sm text-violet-100/90 mt-0.5">
-              See your real probability of getting each college — plus a choice-filling strategy
-            </p>
-            <p className="text-xs text-violet-200/70 mt-2 leading-relaxed">
-              Based on 2025 actual cutoffs with realistic ±buffer for year-to-year drift.
-              This is the strategy advice missing from official portals.
+            <p className="text-sm font-bold text-violet-900 leading-tight">Your college probability + choice-filling strategy</p>
+            <p className="text-[11px] text-violet-700 leading-tight mt-0.5">
+              Pre-filled from your marks above. Change stream or category below if you want to explore other options.
             </p>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ── INPUTS ── */}
       <div className="bg-white rounded-2xl border-2 border-gray-200 p-4 space-y-4">
