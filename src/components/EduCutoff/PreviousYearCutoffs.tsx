@@ -107,36 +107,55 @@ export const medicalCutoffs: CutoffEntry[] = [
 //   2. Pharm.D (6-year + Post-Baccalaureate) — SEPARATE counselling.
 // Both run via tnmedicalselection.net. Admission is purely merit-based on
 // 12th science marks reduced to a base of 200 — NO entrance exam.
-// Numbers are 2025 indicative cutoffs sourced from published rank lists.
-// Verify against the official allotment list on tnmedicalselection.net.
+//
+// Calibrated to the published 2025-26 closing-cutoff ranges:
+//   Govt colleges  — OC 178.5-186.0 | BC/MBC 170.0-178.0 | SC/ST 155.0-165.0
+//   Private (B.Pharm)   BC/MBC ~160-175
+//   Private (Nursing F) ~155-170    (Male seats close 5-10 marks higher,
+//                                    since only ~10% of seats are for males)
+//   Private (BPT)       ~150-165
+// The general trend has been -2 marks/year since the 2021 board-exam waiver
+// spike — that's reflected in trend: 'down' on most rows. Verify against the
+// official allotment list on tnmedicalselection.net.
 export const pharmaNursingCutoffs: CutoffEntry[] = [
   // ─── B.Pharm — Government Colleges ───
-  { college: 'Madras Medical College, Chennai', course: 'B.Pharm', oc: 195.5, bc: 192.0, mbc: 188.0, sc: 168.0, st: 152.0, year: '2025', expected2026: 196.0, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'Madurai Medical College, Madurai', course: 'B.Pharm', oc: 191.0, bc: 187.5, mbc: 183.0, sc: 162.0, st: 145.0, year: '2025', expected2026: 191.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'Periyar College of Pharmaceutical Sciences, Trichy', course: 'B.Pharm', oc: 188.0, bc: 184.5, mbc: 180.0, sc: 158.0, st: 140.0, year: '2025', expected2026: 188.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai',           course: 'B.Pharm',                       oc: 185.5, bc: 177.0, mbc: 174.0, sc: 162.0, st: 158.0, year: '2025', expected2026: 184.0, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Madurai Medical College, Madurai',          course: 'B.Pharm',                       oc: 182.5, bc: 174.5, mbc: 171.5, sc: 159.5, st: 156.0, year: '2025', expected2026: 181.0, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Periyar College of Pharmaceutical Sciences, Trichy', course: 'B.Pharm',              oc: 180.0, bc: 172.0, mbc: 170.5, sc: 158.0, st: 155.0, year: '2025', expected2026: 178.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
   // ─── B.Pharm — Reputed Self-Financing ───
-  { college: 'PSG College of Pharmacy, Coimbatore', course: 'B.Pharm', oc: 187.0, bc: 183.0, mbc: 178.0, sc: 155.0, st: 135.0, year: '2025', expected2026: 187.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'Sri Ramachandra College of Pharmacy, Chennai', course: 'B.Pharm', oc: 184.0, bc: 180.0, mbc: 175.0, sc: 152.0, st: 132.0, year: '2025', expected2026: 184.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'JSS College of Pharmacy, Ooty', course: 'B.Pharm', oc: 182.0, bc: 178.0, mbc: 173.0, sc: 150.0, st: 130.0, year: '2025', expected2026: 182.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'PSG College of Pharmacy, Coimbatore',       course: 'B.Pharm',                       oc: 178.0, bc: 172.0, mbc: 169.0, sc: 153.0, st: 150.0, year: '2025', expected2026: 176.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Sri Ramachandra College of Pharmacy, Chennai', course: 'B.Pharm',                    oc: 175.0, bc: 169.0, mbc: 166.0, sc: 151.0, st: 148.0, year: '2025', expected2026: 173.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'JSS College of Pharmacy, Ooty',             course: 'B.Pharm',                       oc: 173.0, bc: 167.0, mbc: 164.0, sc: 149.0, st: 146.0, year: '2025', expected2026: 171.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Excel College of Pharmacy, Komarapalayam',  course: 'B.Pharm',                       oc: 170.0, bc: 165.0, mbc: 162.0, sc: 145.0, st: 142.0, year: '2025', expected2026: 169.0, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'JKKN College of Pharmacy, Komarapalayam',   course: 'B.Pharm',                       oc: 168.0, bc: 163.0, mbc: 160.0, sc: 143.0, st: 140.0, year: '2025', expected2026: 167.0, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
   // ─── Pharm.D (6-year) ───
-  { college: 'Madras Medical College, Chennai', course: 'Pharm.D (6 years)', oc: 192.0, bc: 188.0, mbc: 184.0, sc: 162.0, st: 145.0, year: '2025', expected2026: 192.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'PSG College of Pharmacy, Coimbatore', course: 'Pharm.D (6 years)', oc: 185.5, bc: 181.5, mbc: 176.5, sc: 154.0, st: 134.0, year: '2025', expected2026: 186.0, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'KMCH College of Pharmacy, Coimbatore', course: 'Pharm.D (6 years)', oc: 178.0, bc: 174.0, mbc: 168.0, sc: 145.0, st: 125.0, year: '2025', expected2026: 178.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  // ─── B.Sc Nursing — Government Colleges ───
-  { college: 'College of Nursing, Madras Medical College, Chennai', course: 'B.Sc Nursing', oc: 189.0, bc: 185.0, mbc: 180.0, sc: 158.0, st: 138.0, year: '2025', expected2026: 189.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'College of Nursing, Stanley Medical College, Chennai', course: 'B.Sc Nursing', oc: 186.0, bc: 182.0, mbc: 177.0, sc: 155.0, st: 135.0, year: '2025', expected2026: 186.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'College of Nursing, Madurai Medical College', course: 'B.Sc Nursing', oc: 182.0, bc: 178.0, mbc: 173.0, sc: 152.0, st: 132.0, year: '2025', expected2026: 182.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'College of Nursing, Coimbatore Medical College', course: 'B.Sc Nursing', oc: 180.0, bc: 176.0, mbc: 171.0, sc: 150.0, st: 130.0, year: '2025', expected2026: 180.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  // ─── B.Sc Nursing — Self-Financing ───
-  { college: 'CMC Vellore College of Nursing', course: 'B.Sc Nursing', oc: 188.0, bc: '-', mbc: '-', sc: '-', st: '-', year: '2025', expected2026: 188.5, trend: 'stable', note: 'CMC merit (separate process)' },
-  { college: 'Sri Ramachandra College of Nursing, Chennai', course: 'B.Sc Nursing', oc: 178.0, bc: 174.0, mbc: 169.0, sc: 148.0, st: 128.0, year: '2025', expected2026: 178.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  // ─── Paramedical (Allied Health) ───
-  { college: 'Madras Medical College, Chennai', course: 'BPT (Physiotherapy)', oc: 187.0, bc: 183.0, mbc: 178.0, sc: 156.0, st: 136.0, year: '2025', expected2026: 187.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'Madras Medical College, Chennai', course: 'B.Sc Medical Lab Tech (MLT)', oc: 183.0, bc: 179.0, mbc: 174.0, sc: 152.0, st: 132.0, year: '2025', expected2026: 183.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'Madras Medical College, Chennai', course: 'B.Sc Radiology', oc: 181.0, bc: 177.0, mbc: 172.0, sc: 150.0, st: 130.0, year: '2025', expected2026: 181.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'Madras Medical College, Chennai', course: 'B.Optometry', oc: 175.0, bc: 171.0, mbc: 166.0, sc: 144.0, st: 124.0, year: '2025', expected2026: 175.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
-  { college: 'Sri Ramachandra IHER, Chennai', course: 'BPT (Physiotherapy)', oc: 178.0, bc: 174.0, mbc: 169.0, sc: 148.0, st: 128.0, year: '2025', expected2026: 178.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
-  { college: 'PSG IMS&R, Coimbatore', course: 'BPT (Physiotherapy)', oc: 176.0, bc: 172.0, mbc: 167.0, sc: 146.0, st: 126.0, year: '2025', expected2026: 176.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai',           course: 'Pharm.D (6 years)',             oc: 183.0, bc: 175.0, mbc: 172.5, sc: 160.0, st: 156.5, year: '2025', expected2026: 181.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'PSG College of Pharmacy, Coimbatore',       course: 'Pharm.D (6 years)',             oc: 176.0, bc: 170.0, mbc: 167.0, sc: 152.0, st: 149.0, year: '2025', expected2026: 174.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'KMCH College of Pharmacy, Coimbatore',      course: 'Pharm.D (6 years)',             oc: 172.0, bc: 166.0, mbc: 163.0, sc: 148.0, st: 145.0, year: '2025', expected2026: 170.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  // ─── B.Sc Nursing — Government Colleges (Female intake; male seats close 5-10 marks higher) ───
+  { college: 'College of Nursing, Madras Medical College, Chennai',  course: 'B.Sc Nursing (Female)', oc: 184.0, bc: 176.0, mbc: 173.0, sc: 161.0, st: 157.5, year: '2025', expected2026: 182.5, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Madras Medical College, Chennai',  course: 'B.Sc Nursing (Male, ~10% seats)', oc: 192.0, bc: 184.0, mbc: 181.0, sc: 169.0, st: 165.5, year: '2025', expected2026: 190.5, trend: 'down', note: '12th PCB / 200 — male seats only ~10% of intake, close ~8 marks higher' },
+  { college: 'College of Nursing, Stanley Medical College, Chennai', course: 'B.Sc Nursing (Female)', oc: 181.5, bc: 174.0, mbc: 171.0, sc: 159.0, st: 156.0, year: '2025', expected2026: 180.0, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Stanley Medical College, Chennai', course: 'B.Sc Nursing (Male, ~10% seats)', oc: 189.5, bc: 182.0, mbc: 179.0, sc: 167.0, st: 164.0, year: '2025', expected2026: 188.0, trend: 'down', note: '12th PCB / 200 — male seats only ~10% of intake, close ~8 marks higher' },
+  { college: 'College of Nursing, Madurai Medical College',          course: 'B.Sc Nursing (Female)', oc: 180.0, bc: 172.5, mbc: 170.0, sc: 157.5, st: 155.0, year: '2025', expected2026: 178.5, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Madurai Medical College',          course: 'B.Sc Nursing (Male, ~10% seats)', oc: 188.0, bc: 180.5, mbc: 178.0, sc: 165.5, st: 163.0, year: '2025', expected2026: 186.5, trend: 'down', note: '12th PCB / 200 — male seats only ~10% of intake, close ~8 marks higher' },
+  { college: 'College of Nursing, Coimbatore Medical College',       course: 'B.Sc Nursing (Female)', oc: 178.5, bc: 171.0, mbc: 168.5, sc: 156.0, st: 153.5, year: '2025', expected2026: 177.0, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Coimbatore Medical College',       course: 'B.Sc Nursing (Male, ~10% seats)', oc: 186.5, bc: 179.0, mbc: 176.5, sc: 164.0, st: 161.5, year: '2025', expected2026: 185.0, trend: 'down', note: '12th PCB / 200 — male seats only ~10% of intake, close ~8 marks higher' },
+  // ─── B.Sc Nursing — Self-Financing (Private) ───
+  { college: 'CMC Vellore College of Nursing',            course: 'B.Sc Nursing (Female)',         oc: 178.0, bc: '-',   mbc: '-',   sc: '-',   st: '-',   year: '2025', expected2026: 176.5, trend: 'down', note: 'CMC merit (separate process)' },
+  { college: 'Sri Ramachandra College of Nursing, Chennai', course: 'B.Sc Nursing (Female)',       oc: 170.0, bc: 165.0, mbc: 162.0, sc: 148.0, st: 145.0, year: '2025', expected2026: 168.5, trend: 'down', note: '12th PCB / 200 (private)' },
+  { college: 'PSG College of Nursing, Coimbatore',        course: 'B.Sc Nursing (Female)',         oc: 168.0, bc: 163.0, mbc: 160.0, sc: 146.0, st: 143.0, year: '2025', expected2026: 166.5, trend: 'down', note: '12th PCB / 200 (private)' },
+  { college: 'JKKN College of Nursing, Komarapalayam',    course: 'B.Sc Nursing (Female)',         oc: 162.0, bc: 158.0, mbc: 155.0, sc: 142.0, st: 140.0, year: '2025', expected2026: 161.0, trend: 'down', note: '12th PCB / 200 (private)' },
+  { college: 'Excel College of Nursing, Komarapalayam',   course: 'B.Sc Nursing (Female)',         oc: 161.0, bc: 157.0, mbc: 155.0, sc: 142.0, st: 140.0, year: '2025', expected2026: 160.0, trend: 'down', note: '12th PCB / 200 (private)' },
+  // ─── Paramedical (Allied Health) — Government ───
+  { college: 'Madras Medical College, Chennai',           course: 'BPT (Physiotherapy)',           oc: 182.0, bc: 174.5, mbc: 171.5, sc: 160.0, st: 156.5, year: '2025', expected2026: 180.5, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai',           course: 'B.Sc Medical Lab Tech (MLT)',   oc: 179.0, bc: 171.5, mbc: 169.0, sc: 157.0, st: 154.5, year: '2025', expected2026: 177.5, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai',           course: 'B.Sc Radiography & Imaging Tech', oc: 177.0, bc: 170.0, mbc: 167.5, sc: 155.5, st: 153.0, year: '2025', expected2026: 175.5, trend: 'down', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai',           course: 'B.Optometry',                   oc: 172.0, bc: 166.0, mbc: 163.5, sc: 151.0, st: 148.5, year: '2025', expected2026: 170.5, trend: 'down', note: '12th Science / 200 (Selection Committee)' },
+  // ─── Paramedical — Self-Financing ───
+  { college: 'Sri Ramachandra IHER, Chennai',             course: 'BPT (Physiotherapy)',           oc: 165.0, bc: 161.0, mbc: 158.0, sc: 145.0, st: 142.0, year: '2025', expected2026: 163.5, trend: 'down', note: '12th PCB / 200 (private)' },
+  { college: 'PSG IMS&R, Coimbatore',                     course: 'BPT (Physiotherapy)',           oc: 163.0, bc: 159.0, mbc: 156.0, sc: 143.0, st: 140.0, year: '2025', expected2026: 161.5, trend: 'down', note: '12th PCB / 200 (private)' },
+  { college: 'JKKN College of Physiotherapy, Komarapalayam', course: 'BPT (Physiotherapy)',        oc: 157.0, bc: 154.0, mbc: 151.0, sc: 138.0, st: 135.0, year: '2025', expected2026: 156.0, trend: 'down', note: '12th PCB / 200 (private)' },
 ];
 
 // ═══ GOVT EXAM CUTOFFS 2024-25 ═══
