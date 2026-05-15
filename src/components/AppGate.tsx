@@ -25,10 +25,32 @@ import { Lock, Eye, EyeOff } from 'lucide-react';
 
 const GATE_PASSWORD = '739727';
 
+// One-time cleanup: previous versions of this gate stored a 30-day
+// "remember me" flag in localStorage under these keys. Now that every
+// page load should ask for the password, those stale flags must be
+// removed or returning users will silently skip the popup.
+const OLD_GATE_KEYS = [
+  'vazhikatti.gate.v1',
+  'vazhikatti.gate.v2',
+];
+
+const purgeOldGateKeys = () => {
+  try {
+    for (const k of OLD_GATE_KEYS) localStorage.removeItem(k);
+  } catch {
+    /* ignore */
+  }
+};
+
 export const AppGate = ({ children }: { children: React.ReactNode }) => {
-  // Always start locked. No persistence across page loads — every fresh
-  // load of the app shows the popup. (The component lives in memory while
-  // the user is on the site, so it only re-prompts on reload / revisit.)
+  // Wipe any stale "remember me" flags from earlier versions on mount.
+  // Synchronous module-load purge ensures it happens before the first
+  // render, so there's no flash of unlocked-state.
+  purgeOldGateKeys();
+
+  // Always start locked. No persistence — every fresh page load shows
+  // the popup. (The component lives in memory while the user is on the
+  // site, so it only re-prompts on reload / revisit.)
   const [locked, setLocked] = useState<boolean>(true);
   const [input, setInput] = useState('');
   const [showPassword, setShowPassword] = useState(false);
