@@ -100,12 +100,15 @@ const medicalCutoffs: CutoffEntry[] = [
   { college: 'Govt Ayurveda College', course: 'BAMS', oc: 325, bc: 298, mbc: 278, sc: 233, st: 185, year: '2024-25', expected2026: 330, trend: 'stable', note: 'NEET Score / 720' },
 ];
 
-// ═══ PHARMACY / NURSING / PARAMEDICAL CUTOFFS 2025-26 ═══
-// All admissions via TN Selection Committee (tnmedicalselection.net), merit-based
-// on 12th science subject marks reduced to a base of 200. No entrance exam.
-// Numbers are 2025 indicative cutoffs at the lowest admitted rank in each
-// category — sourced from the published rank lists. Verify against the official
-// allotment list on tnmedicalselection.net before relying on them.
+// ═══ PARAMEDICAL & PHARM.D CUTOFFS 2025-26 ═══
+// Two TN Selection Committee counsellings are represented here:
+//   1. Unified Paramedical Degree Counselling — ONE application covers all
+//      19 courses including B.Sc Nursing, B.Pharm, BPT, BMLT, B.Optom, etc.
+//   2. Pharm.D (6-year + Post-Baccalaureate) — SEPARATE counselling.
+// Both run via tnmedicalselection.net. Admission is purely merit-based on
+// 12th science marks reduced to a base of 200 — NO entrance exam.
+// Numbers are 2025 indicative cutoffs sourced from published rank lists.
+// Verify against the official allotment list on tnmedicalselection.net.
 const pharmaNursingCutoffs: CutoffEntry[] = [
   // ─── B.Pharm — Government Colleges ───
   { college: 'Madras Medical College, Chennai', course: 'B.Pharm', oc: 195.5, bc: 192.0, mbc: 188.0, sc: 168.0, st: 152.0, year: '2025', expected2026: 196.0, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
@@ -166,7 +169,7 @@ const categoryColors: Record<string, { label: string; bg: string; text: string; 
 const tabs = [
   { id: 'engineering' as CourseType, label: 'Engineering', subLabel: 'TNEA 2025', icon: Building2, info: 'Cutoff out of 200' },
   { id: 'medical' as CourseType, label: 'Medical', subLabel: 'NEET 2024-25', icon: Stethoscope, info: 'NEET score out of 720' },
-  { id: 'pharma' as CourseType, label: 'Pharmacy / Nursing', subLabel: 'TN Selection 2025', icon: Pill, info: '12th science marks out of 200' },
+  { id: 'pharma' as CourseType, label: 'Paramedical & Pharm.D', subLabel: 'TN Selection 2025', icon: Pill, info: '12th science marks out of 200' },
   { id: 'govt' as CourseType, label: 'Govt Exams', subLabel: '2024-25', icon: Landmark, info: 'Exam-specific marks' },
 ];
 
