@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ChevronDown, Search, GraduationCap, Building2, Stethoscope, Landmark, Info, TrendingUp, Pill } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
+import { DataFreshnessTag } from './DataFreshnessTag';
+import type { DataKey } from './dataFreshness';
 
 type CourseType = 'engineering' | 'medical' | 'pharma' | 'govt';
 
@@ -204,6 +206,12 @@ export const PreviousYearCutoffs = () => {
     activeTab === 'pharma' ? pharmaNursingCutoffs :
     govtExamCutoffs;
   const currentTab = tabs.find(t => t.id === activeTab)!;
+  // Map the active tab to its freshness key so the tag updates per stream.
+  const freshnessKey: DataKey =
+    activeTab === 'engineering' ? 'engineering-cutoffs' :
+    activeTab === 'medical'     ? 'medical-cutoffs' :
+    activeTab === 'pharma'      ? 'paramedical-cutoffs' :
+                                  'govt-exams';
 
   const filtered = search.trim()
     ? data.filter(e => e.college.toLowerCase().includes(search.toLowerCase()) || e.course.toLowerCase().includes(search.toLowerCase()))
@@ -232,6 +240,9 @@ export const PreviousYearCutoffs = () => {
           </button>
         ))}
       </div>
+
+      {/* Data freshness — visible so a student can judge how current the cutoff data is */}
+      <DataFreshnessTag dataKey={freshnessKey} variant="banner" />
 
       {/* Toggle 2026 Expected */}
       <div className="flex items-center justify-between bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5">

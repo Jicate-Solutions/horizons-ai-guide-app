@@ -30,6 +30,8 @@ import {
   pharmaNursingCutoffs,
   type CutoffEntry,
 } from './PreviousYearCutoffs';
+import { DataFreshnessTag } from './DataFreshnessTag';
+import type { DataKey } from './dataFreshness';
 import { cn } from '@/lib/utils';
 import {
   Target, Shield, TrendingUp, AlertTriangle, Info,
@@ -357,14 +359,23 @@ export const SmartRankPredictor = ({
         </div>
       )}
 
-      {/* ── HONESTY FOOTER ── */}
-      <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-[11px] text-gray-600 leading-relaxed">
-        <strong>How this works:</strong> probabilities are derived from your score vs each
-        college&apos;s last-year cutoff for your category, with a realistic ±buffer to
-        account for year-to-year drift (typically ±3-5 marks on /200 scales). This is
-        guidance, not a guarantee — actual cutoffs depend on exam difficulty,
-        applicant pool, and seat changes. Always confirm against the official
-        counselling portal before locking choices.
+      {/* ── DATA FRESHNESS + HONESTY FOOTER ── */}
+      <div className="space-y-2">
+        {(() => {
+          const freshnessKey: DataKey =
+            stream === 'engineering' ? 'engineering-cutoffs' :
+            stream === 'medical'     ? 'medical-cutoffs' :
+                                       'paramedical-cutoffs';
+          return <DataFreshnessTag dataKey={freshnessKey} variant="inline" />;
+        })()}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-[11px] text-gray-600 leading-relaxed">
+          <strong>How this works:</strong> probabilities are derived from your score vs each
+          college&apos;s last-year cutoff for your category, with a realistic ±buffer to
+          account for year-to-year drift (typically ±3-5 marks on /200 scales). This is
+          guidance, not a guarantee — actual cutoffs depend on exam difficulty,
+          applicant pool, and seat changes. Always confirm against the official
+          counselling portal before locking choices.
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ExternalLink, Calendar, FileText, CheckCircle, Clock, AlertTriangle, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { DataFreshnessTag } from './DataFreshnessTag';
 
 interface CounsellingStep {
   step: number;
@@ -440,6 +441,11 @@ export const CounsellingGuide = () => {
             <p className="text-xs text-emerald-200">கலந்தாய்வு வழிகாட்டி — Procedures, dates & apply links</p>
           </div>
         </div>
+      </div>
+
+      {/* Data freshness — counselling info covers TNEA, NEET, Pharmacy/Nursing/Paramedical */}
+      <div className="p-4 bg-gray-50/50 border-b border-gray-100">
+        <DataFreshnessTag dataKey="tnea-counselling" variant="banner" />
       </div>
 
       {/* Counselling Cards */}
