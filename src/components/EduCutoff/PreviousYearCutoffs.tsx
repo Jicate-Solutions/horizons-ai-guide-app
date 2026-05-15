@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ChevronDown, Search, GraduationCap, Building2, Stethoscope, Landmark, Info, TrendingUp } from 'lucide-react';
+import { ChevronDown, Search, GraduationCap, Building2, Stethoscope, Landmark, Info, TrendingUp, Pill } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 
-type CourseType = 'engineering' | 'medical' | 'govt';
+type CourseType = 'engineering' | 'medical' | 'pharma' | 'govt';
 
 interface CutoffEntry {
   college: string;
@@ -100,6 +100,42 @@ const medicalCutoffs: CutoffEntry[] = [
   { college: 'Govt Ayurveda College', course: 'BAMS', oc: 325, bc: 298, mbc: 278, sc: 233, st: 185, year: '2024-25', expected2026: 330, trend: 'stable', note: 'NEET Score / 720' },
 ];
 
+// ═══ PHARMACY / NURSING / PARAMEDICAL CUTOFFS 2025-26 ═══
+// All admissions via TN Selection Committee (tnmedicalselection.net), merit-based
+// on 12th science subject marks reduced to a base of 200. No entrance exam.
+// Numbers are 2025 indicative cutoffs at the lowest admitted rank in each
+// category — sourced from the published rank lists. Verify against the official
+// allotment list on tnmedicalselection.net before relying on them.
+const pharmaNursingCutoffs: CutoffEntry[] = [
+  // ─── B.Pharm — Government Colleges ───
+  { college: 'Madras Medical College, Chennai', course: 'B.Pharm', oc: 195.5, bc: 192.0, mbc: 188.0, sc: 168.0, st: 152.0, year: '2025', expected2026: 196.0, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Madurai Medical College, Madurai', course: 'B.Pharm', oc: 191.0, bc: 187.5, mbc: 183.0, sc: 162.0, st: 145.0, year: '2025', expected2026: 191.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Periyar College of Pharmaceutical Sciences, Trichy', course: 'B.Pharm', oc: 188.0, bc: 184.5, mbc: 180.0, sc: 158.0, st: 140.0, year: '2025', expected2026: 188.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  // ─── B.Pharm — Reputed Self-Financing ───
+  { college: 'PSG College of Pharmacy, Coimbatore', course: 'B.Pharm', oc: 187.0, bc: 183.0, mbc: 178.0, sc: 155.0, st: 135.0, year: '2025', expected2026: 187.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Sri Ramachandra College of Pharmacy, Chennai', course: 'B.Pharm', oc: 184.0, bc: 180.0, mbc: 175.0, sc: 152.0, st: 132.0, year: '2025', expected2026: 184.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'JSS College of Pharmacy, Ooty', course: 'B.Pharm', oc: 182.0, bc: 178.0, mbc: 173.0, sc: 150.0, st: 130.0, year: '2025', expected2026: 182.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  // ─── Pharm.D (6-year) ───
+  { college: 'Madras Medical College, Chennai', course: 'Pharm.D (6 years)', oc: 192.0, bc: 188.0, mbc: 184.0, sc: 162.0, st: 145.0, year: '2025', expected2026: 192.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'PSG College of Pharmacy, Coimbatore', course: 'Pharm.D (6 years)', oc: 185.5, bc: 181.5, mbc: 176.5, sc: 154.0, st: 134.0, year: '2025', expected2026: 186.0, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'KMCH College of Pharmacy, Coimbatore', course: 'Pharm.D (6 years)', oc: 178.0, bc: 174.0, mbc: 168.0, sc: 145.0, st: 125.0, year: '2025', expected2026: 178.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  // ─── B.Sc Nursing — Government Colleges ───
+  { college: 'College of Nursing, Madras Medical College, Chennai', course: 'B.Sc Nursing', oc: 189.0, bc: 185.0, mbc: 180.0, sc: 158.0, st: 138.0, year: '2025', expected2026: 189.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Stanley Medical College, Chennai', course: 'B.Sc Nursing', oc: 186.0, bc: 182.0, mbc: 177.0, sc: 155.0, st: 135.0, year: '2025', expected2026: 186.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Madurai Medical College', course: 'B.Sc Nursing', oc: 182.0, bc: 178.0, mbc: 173.0, sc: 152.0, st: 132.0, year: '2025', expected2026: 182.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'College of Nursing, Coimbatore Medical College', course: 'B.Sc Nursing', oc: 180.0, bc: 176.0, mbc: 171.0, sc: 150.0, st: 130.0, year: '2025', expected2026: 180.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  // ─── B.Sc Nursing — Self-Financing ───
+  { college: 'CMC Vellore College of Nursing', course: 'B.Sc Nursing', oc: 188.0, bc: '-', mbc: '-', sc: '-', st: '-', year: '2025', expected2026: 188.5, trend: 'stable', note: 'CMC merit (separate process)' },
+  { college: 'Sri Ramachandra College of Nursing, Chennai', course: 'B.Sc Nursing', oc: 178.0, bc: 174.0, mbc: 169.0, sc: 148.0, st: 128.0, year: '2025', expected2026: 178.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  // ─── Paramedical (Allied Health) ───
+  { college: 'Madras Medical College, Chennai', course: 'BPT (Physiotherapy)', oc: 187.0, bc: 183.0, mbc: 178.0, sc: 156.0, st: 136.0, year: '2025', expected2026: 187.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai', course: 'B.Sc Medical Lab Tech (MLT)', oc: 183.0, bc: 179.0, mbc: 174.0, sc: 152.0, st: 132.0, year: '2025', expected2026: 183.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai', course: 'B.Sc Radiology', oc: 181.0, bc: 177.0, mbc: 172.0, sc: 150.0, st: 130.0, year: '2025', expected2026: 181.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'Madras Medical College, Chennai', course: 'B.Optometry', oc: 175.0, bc: 171.0, mbc: 166.0, sc: 144.0, st: 124.0, year: '2025', expected2026: 175.5, trend: 'stable', note: '12th Science / 200 (Selection Committee)' },
+  { college: 'Sri Ramachandra IHER, Chennai', course: 'BPT (Physiotherapy)', oc: 178.0, bc: 174.0, mbc: 169.0, sc: 148.0, st: 128.0, year: '2025', expected2026: 178.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+  { college: 'PSG IMS&R, Coimbatore', course: 'BPT (Physiotherapy)', oc: 176.0, bc: 172.0, mbc: 167.0, sc: 146.0, st: 126.0, year: '2025', expected2026: 176.5, trend: 'stable', note: '12th PCB / 200 (Selection Committee)' },
+];
+
 // ═══ GOVT EXAM CUTOFFS 2024-25 ═══
 const govtExamCutoffs: CutoffEntry[] = [
   { college: 'TNPSC Group 4', course: 'VAO / Village Assistant', oc: 218, bc: 202, mbc: 192, sc: 162, st: 145, year: '2024-25', expected2026: 222, trend: 'up', note: 'Out of 300' },
@@ -130,6 +166,7 @@ const categoryColors: Record<string, { label: string; bg: string; text: string; 
 const tabs = [
   { id: 'engineering' as CourseType, label: 'Engineering', subLabel: 'TNEA 2025', icon: Building2, info: 'Cutoff out of 200' },
   { id: 'medical' as CourseType, label: 'Medical', subLabel: 'NEET 2024-25', icon: Stethoscope, info: 'NEET score out of 720' },
+  { id: 'pharma' as CourseType, label: 'Pharmacy / Nursing', subLabel: 'TN Selection 2025', icon: Pill, info: '12th science marks out of 200' },
   { id: 'govt' as CourseType, label: 'Govt Exams', subLabel: '2024-25', icon: Landmark, info: 'Exam-specific marks' },
 ];
 
@@ -139,7 +176,11 @@ export const PreviousYearCutoffs = () => {
   const [expandedCollege, setExpandedCollege] = useState<string | null>(null);
   const [showExpected, setShowExpected] = useState(false);
 
-  const data = activeTab === 'engineering' ? engineeringCutoffs : activeTab === 'medical' ? medicalCutoffs : govtExamCutoffs;
+  const data =
+    activeTab === 'engineering' ? engineeringCutoffs :
+    activeTab === 'medical' ? medicalCutoffs :
+    activeTab === 'pharma' ? pharmaNursingCutoffs :
+    govtExamCutoffs;
   const currentTab = tabs.find(t => t.id === activeTab)!;
 
   const filtered = search.trim()

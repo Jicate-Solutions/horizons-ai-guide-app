@@ -95,3 +95,36 @@ export const isEligibleForMedical = (groupCode: StudentGroup): boolean => {
   const category = getGroupCategory(groupCode);
   return category === 'science_bio' || groupCode === '103' || groupCode === '104';
 };
+
+/**
+ * Eligibility for B.Pharm / Pharm.D (TN Selection Committee).
+ * Per the TN Selection Committee prospectus: HSC pass with Physics, Chemistry
+ * and Mathematics OR Biology — so all Science groups qualify (PCM students
+ * are eligible for B.Pharm; PCB students are eligible for B.Pharm + Pharm.D).
+ * Admission is merit-based on 12th science marks reduced to a base of 200.
+ */
+export const isEligibleForPharmacy = (groupCode: StudentGroup): boolean => {
+  const category = getGroupCategory(groupCode);
+  return category === 'science_maths' || category === 'science_bio';
+};
+
+/**
+ * Eligibility for B.Sc Nursing (TN Selection Committee / Dr. MGR Medical Univ).
+ * Requires HSC pass with Physics, Chemistry, Biology — so Bio groups qualify.
+ * TN does NOT conduct an entrance exam for B.Sc Nursing; admission is purely
+ * merit-based on 12th PCB marks reduced to a base of 200.
+ */
+export const isEligibleForNursing = (groupCode: StudentGroup): boolean => {
+  const category = getGroupCategory(groupCode);
+  return category === 'science_bio' || groupCode === '103' || groupCode === '104';
+};
+
+/**
+ * Eligibility for Paramedical / Allied Health degree courses (BPT, BMLT,
+ * B.Optom, etc.) via TN Selection Committee. Same as Nursing — Bio groups,
+ * merit on PCB marks /200.
+ */
+export const isEligibleForParamedical = (groupCode: StudentGroup): boolean => {
+  const category = getGroupCategory(groupCode);
+  return category === 'science_bio' || groupCode === '103' || groupCode === '104';
+};
