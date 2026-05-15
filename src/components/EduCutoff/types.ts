@@ -42,8 +42,10 @@ export interface CutoffResult {
    * 12th science aggregate reduced to a base of 200 — the metric the
    * TN Selection Committee uses for Paramedical Degree Courses
    * (B.Pharm, B.Sc Nursing, BPT, etc.) and Pharm.D admissions.
-   * Formula: (Physics + Chemistry + Biology) × 2/3, capped at 200.
-   * Only populated for Bio-eligible groups.
+   * Formula: sum of the four prescribed science subjects of the
+   * student's group (each /100, so total /400), divided by 2.
+   * Works for all Bio groups (201-208) including Group 208's
+   * Botany + Zoology split, and Bio-Maths groups 103/104.
    */
   paramedicalScore?: number;
 }

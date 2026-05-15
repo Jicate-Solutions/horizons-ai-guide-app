@@ -48,7 +48,7 @@ const getEligibleCoursesText = (groupCode: StudentGroup): string => {
       }
       return 'Engineering (B.E/B.Tech), B.Sc, BCA, B.Arch, Pilot Training, NDA, Merchant Navy';
     case 'science_bio':
-      return 'MBBS, BDS, BAMS, BHMS, B.Pharm, B.Sc Nursing, Agriculture, Veterinary, Biotechnology';
+      return 'With NEET: MBBS, BDS, BAMS, BHMS, BSMS, BNYS, Veterinary. Without NEET (12th marks only): B.Pharm, B.Sc Nursing, BPT, BMLT, B.Optom, Pharm.D, paramedical degrees, B.Sc Agriculture (TNAU), B.Sc Biotechnology.';
     case 'commerce':
       return 'B.Com, BBA, BCA, CA Foundation, CS, CMA, Banking, Hotel Management';
     case 'arts':
@@ -239,7 +239,9 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
           <div>
             <Label className="text-sm font-medium text-gray-700 mb-3 block">PART III — ALL SUBJECTS (Each out of 100)</Label>
             <p className="text-xs text-gray-500 mb-3">
-              All subjects contribute to your overall percentage. No cutoff formula — admission is by NEET or 12th %.
+              All 4 science subjects are added together and reduced to a base of 200 — this is the
+              actual TN Selection Committee formula for B.Pharm, B.Sc Nursing, BPT and other paramedical
+              courses. MBBS/BDS/BAMS admission is via NEET score (enter below if you have it).
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {subjects.map((subj) => (
@@ -299,8 +301,11 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
               />
             </div>
             <p className="text-xs text-rose-600 mt-2">
-              NEET score is required for MBBS, BDS, BAMS, BHMS, B.Pharm admission. 
-              Leave blank if not appeared.
+              NEET score is required for <strong>MBBS, BDS, BAMS, BHMS, BNYS, BSMS</strong>.
+              <span className="block mt-1 text-rose-500">
+                Leave blank if not appeared — you can still apply for B.Pharm, B.Sc Nursing,
+                BPT and other paramedical courses through TN Selection Committee on 12th marks alone.
+              </span>
             </p>
           </div>
         )}

@@ -73,14 +73,35 @@ export const EduCutoff = () => {
       // 12th science aggregate /200 — used by TN Selection Committee for
       // Paramedical Degree Courses (B.Pharm, B.Sc Nursing, BPT, etc.) and
       // Pharm.D admissions. Computed for any Bio-eligible group.
+      //
+      // The TN Selection Committee rule: rank on the prescribed science
+      // subjects of the student's group, totalled (each /100, so 4 subjects
+      // total /400), reduced to a base of 200 — i.e. sum / 2.
+      //
+      // This handles every Bio variant correctly:
+      //   Group 201-207: P + C + Biology + (4th)        all out of 400 -> /2
+      //   Group 208:     P + C + Botany   + Zoology      "
+      //   Group 103/104: P + C + Bio(/Bio-Chem) + Maths  "
+      //
+      // We look up the actual 4 prescribed subjects from groupCategories so
+      // this stays correct if new bio groups are ever added.
       let paramedicalScore: number | undefined;
       if (isEligibleForMedical(selectedGroup)) {
-        const physics = marks.Physics ?? 0;
-        const chemistry = marks.Chemistry ?? 0;
-        const biology = marks.Biology ?? 0;
-        if (physics > 0 || chemistry > 0 || biology > 0) {
-          // (P + C + B) is out of 300; multiply by 2/3 to get /200.
-          paramedicalScore = Math.round(((physics + chemistry + biology) * 2 / 3) * 10) / 10;
+        // Find this group's prescribed subjects.
+        let prescribedSubjects: string[] = [];
+        for (const cat of groupCategories) {
+          const g = cat.groups.find(gg => gg.id === selectedGroup);
+          if (g) { prescribedSubjects = g.subjects; break; }
+        }
+        if (prescribedSubjects.length === 4) {
+          const subjectMarks = prescribedSubjects.map(s => marks[s] ?? 0);
+          const total = subjectMarks.reduce((a, b) => a + b, 0);
+          // Only emit a score if at least the core science trio has marks
+          // (i.e. don't compute a /200 score from a single subject).
+          const filled = subjectMarks.filter(m => m > 0).length;
+          if (filled >= 3) {
+            paramedicalScore = Math.round((total / 2) * 10) / 10;
+          }
         }
       }
 
