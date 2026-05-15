@@ -1,4 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Home, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PillNavigation } from '@/components/PillNavigation';
@@ -11,8 +13,32 @@ interface CollegesPageLayoutProps {
   children: React.ReactNode;
 }
 
+/** Brief loading screen shown while a tab "opens" as a new page. */
+const TabLoader = () => (
+  <div className="flex flex-col items-center justify-center py-24">
+    <div className="relative w-12 h-12">
+      <div className="absolute inset-0 rounded-full border-[3px] border-emerald-100" />
+      <div className="absolute inset-0 rounded-full border-[3px] border-emerald-600 border-t-transparent animate-spin" />
+    </div>
+    <p className="mt-4 text-sm font-medium text-emerald-700">Loading…</p>
+  </div>
+);
+
 export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Show a short loading effect on every tab change, so each tab opens
+  // as a distinct "next page" rather than appearing to expand inline.
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    // Scroll the page back to the top so the new tab reads as a fresh screen.
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    const t = setTimeout(() => setIsLoading(false), 420);
+    return () => clearTimeout(t);
+  }, [location.pathname]);
 
   const handleSignOut = async () => {
     try {
@@ -78,7 +104,28 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
 
       {/* ═══ SCROLLABLE CONTENT ═══ */}
       <main className="px-3 py-3 md:px-4 md:py-6 max-w-7xl mx-auto" id="colleges-content-scroll">
-        {children}
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <motion.div
+              key="tab-loader"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <TabLoader />
+            </motion.div>
+          ) : (
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, ease: 'easeOut' }}
+            >
+              {children}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
 
       {/* ═══ FLOATING AI CHAT ═══ */}
