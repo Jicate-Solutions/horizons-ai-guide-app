@@ -1,4 +1,41 @@
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { supabase } from "@/integrations/supabase/client";
+
+interface LiveNewsItem {
+  title: string;
+  link: string;
+  source: string;
+  publishedAt: string;
+}
+
+// localStorage cache key + TTL. 30 minutes balances freshness against
+// not hammering the edge function on every page load.
+const CACHE_KEY = "vazhikatti.news.cache.v1";
+const CACHE_TTL_MS = 30 * 60 * 1000;
+
+const readCache = (): LiveNewsItem[] | null => {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { items: LiveNewsItem[]; cachedAt: number };
+    if (Date.now() - parsed.cachedAt > CACHE_TTL_MS) return null;
+    return parsed.items;
+  } catch {
+    return null;
+  }
+};
+
+const writeCache = (items: LiveNewsItem[]) => {
+  try {
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({ items, cachedAt: Date.now() }),
+    );
+  } catch {
+    /* ignore quota / private mode errors */
+  }
+};
 
 const newsItemsByLang: Record<string, string[]> = {
   en: [
@@ -90,8 +127,54 @@ const badgeLabel: Record<string, string> = {
 
 const NewsTicker = () => {
   const { language } = useLanguage();
-  const items = newsItemsByLang[language] || newsItemsByLang['en'];
+  const hardcodedItems = newsItemsByLang[language] || newsItemsByLang['en'];
   const badge = badgeLabel[language] || badgeLabel['en'];
+
+  // Live news from RSS feeds. Empty by default; populated by the edge
+  // function call below. If the call fails the ticker still shows the
+  // hardcoded items, so it never goes blank.
+  const [liveItems, setLiveItems] = useState<LiveNewsItem[]>(() => readCache() ?? []);
+
+  useEffect(() => {
+    // If we already have a warm cache, don't refetch on every mount —
+    // readCache already gated by TTL, so an empty initial state means we
+    // need a fresh fetch.
+    if (liveItems.length > 0) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('fetch-education-news', {
+          body: {},
+        });
+        if (cancelled) return;
+        if (error) {
+          // Quietly fall back to hardcoded; no user-visible error.
+          console.warn('news fetch failed:', error.message);
+          return;
+        }
+        const items = (data?.items ?? []) as LiveNewsItem[];
+        if (items.length > 0) {
+          setLiveItems(items);
+          writeCache(items);
+        }
+      } catch (err) {
+        console.warn('news fetch threw:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Build the final ticker contents: live items first (newest, most
+  // useful), then hardcoded fallback items as evergreen context. If the
+  // live fetch failed, only hardcoded items show — ticker still works.
+  const liveStrings = liveItems.map(
+    (it) => `📰 ${it.title} — ${it.source}`,
+  );
+  const items = liveStrings.length > 0
+    ? [...liveStrings, ...hardcodedItems]
+    : hardcodedItems;
 
   return (
     <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-emerald-700 text-white py-2.5 overflow-hidden shadow-sm">

@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.jkkn-chat]
 verify_jwt = false
+
+[functions.fetch-education-news]
+verify_jwt = false
