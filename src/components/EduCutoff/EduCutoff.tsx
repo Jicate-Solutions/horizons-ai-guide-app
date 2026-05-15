@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { GroupSelector, groupCategories } from './GroupSelector';
 import { MarksEntryForm } from './MarksEntryForm';
@@ -10,12 +11,25 @@ import { PreviousYearCutoffs } from './PreviousYearCutoffs';
 import { CounsellingGuide } from './CounsellingGuide';
 import { CounsellingTracker } from './CounsellingTracker';
 import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
-import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight, Shield } from 'lucide-react';
+import { Calculator, GraduationCap, ClipboardList, Calendar, ChevronRight, Shield, Info, Building2, Compass, School, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type PageTab = 'calculator' | 'cutoffs' | 'counselling' | 'tracker';
 
+/**
+ * Commerce and Arts UG admissions in Tamil Nadu are merit-based on the 12th
+ * aggregate (via TNGASA for govt arts & science colleges) — there is NO
+ * TNEA-style computed cutoff score for these streams. So the cutoff
+ * calculator only applies to Science (Maths) → Engineering and Science
+ * (Bio) → Medical. For Commerce/Arts we show a guidance panel instead.
+ */
+const hasCutoffBasedAdmission = (group: StudentGroup): boolean => {
+  const category = getGroupCategory(group);
+  return category === 'science_maths' || category === 'science_bio';
+};
+
 export const EduCutoff = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<PageTab>('calculator');
   const [selectedGroup, setSelectedGroup] = useState<StudentGroup | null>(null);
   const [marks, setMarks] = useState<Record<string, number | null>>({});
@@ -203,11 +217,94 @@ export const EduCutoff = () => {
               <span className="w-7 h-7 rounded-full bg-violet-700 text-white text-xs font-bold flex items-center justify-center">1</span>
               <p className="text-sm font-bold text-gray-900">Select Your Group</p>
             </div>
-            <GroupSelector selectedGroup={selectedGroup} onSelectGroup={setSelectedGroup} />
+            <GroupSelector
+              selectedGroup={selectedGroup}
+              onSelectGroup={(g) => {
+                setSelectedGroup(g);
+                // Clear any prior calculation when the group changes, so a
+                // result from a previous (e.g. Science) group never lingers.
+                setResult(null);
+                setMarks({});
+              }}
+            />
           </div>
 
-          {/* Step 2: Marks Entry */}
-          {selectedGroup && (
+          {/* Commerce / Arts: no cutoff-based admission — show guidance instead */}
+          {selectedGroup && !hasCutoffBasedAdmission(selectedGroup) && (
+            <div className="bg-white rounded-xl border-2 border-amber-200 overflow-hidden">
+              <div className="bg-amber-50 px-4 py-3 flex items-start gap-2.5 border-b border-amber-200">
+                <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-bold text-amber-900">
+                    {getGroupCategory(selectedGroup) === 'commerce' ? 'Commerce' : 'Arts'} stream
+                    doesn't use a cutoff calculation
+                  </p>
+                  <p className="text-xs text-amber-700 leading-tight mt-0.5">
+                    வணிகம் / கலை பிரிவுக்கு கட்ஆஃப் கணக்கீடு பொருந்தாது
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  The TNEA cutoff formula (Maths / Physics / Chemistry) is an
+                  <span className="font-semibold"> Engineering admission</span> tool, and NEET
+                  decides <span className="font-semibold">Medical admission</span>. For Commerce
+                  and Arts degrees (B.Com, B.A, BBA, B.Sc, etc.), Tamil Nadu admissions work
+                  differently:
+                </p>
+                <ul className="space-y-1.5 text-sm text-gray-700">
+                  <li className="flex gap-2">
+                    <span className="text-emerald-600 font-bold">•</span>
+                    <span>Admission is <span className="font-semibold">merit-based on your overall
+                    12th marks</span> — there is no separate cutoff score to calculate.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-600 font-bold">•</span>
+                    <span>Government Arts &amp; Science colleges admit through
+                    <span className="font-semibold"> TNGASA</span> (a centralised, rank-list based
+                    process on tngasa.in), using your aggregate marks.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-emerald-600 font-bold">•</span>
+                    <span>Private and autonomous colleges admit directly on 12th marks; some
+                    central universities use CUET.</span>
+                  </li>
+                </ul>
+                <p className="text-sm font-semibold text-gray-800 pt-1">
+                  What's actually useful for you:
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => navigate('/career-assessment/colleges/find-colleges')}
+                    className="flex items-center gap-2 p-3 rounded-xl border-2 border-blue-200 bg-blue-50 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-all active:scale-95"
+                  >
+                    <Building2 className="w-4 h-4" /> College Finder
+                  </button>
+                  <button
+                    onClick={() => navigate('/career-assessment/colleges/course-explorer')}
+                    className="flex items-center gap-2 p-3 rounded-xl border-2 border-cyan-200 bg-cyan-50 text-sm font-bold text-cyan-700 hover:bg-cyan-100 transition-all active:scale-95"
+                  >
+                    <Compass className="w-4 h-4" /> Course Explorer
+                  </button>
+                  <button
+                    onClick={() => navigate('/career-assessment/colleges/tn-university')}
+                    className="flex items-center gap-2 p-3 rounded-xl border-2 border-violet-200 bg-violet-50 text-sm font-bold text-violet-700 hover:bg-violet-100 transition-all active:scale-95"
+                  >
+                    <School className="w-4 h-4" /> University Hub
+                  </button>
+                  <button
+                    onClick={() => navigate('/career-assessment/colleges/scholarships')}
+                    className="flex items-center gap-2 p-3 rounded-xl border-2 border-amber-200 bg-amber-50 text-sm font-bold text-amber-700 hover:bg-amber-100 transition-all active:scale-95"
+                  >
+                    <Bookmark className="w-4 h-4" /> Scholarships
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Marks Entry — only for cutoff-based streams */}
+          {selectedGroup && hasCutoffBasedAdmission(selectedGroup) && (
             <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-7 h-7 rounded-full bg-violet-700 text-white text-xs font-bold flex items-center justify-center">2</span>
@@ -217,8 +314,8 @@ export const EduCutoff = () => {
             </div>
           )}
 
-          {/* Step 3: Category Selection */}
-          {selectedGroup && (
+          {/* Step 3: Category Selection — only for cutoff-based streams */}
+          {selectedGroup && hasCutoffBasedAdmission(selectedGroup) && (
             <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-7 h-7 rounded-full bg-violet-700 text-white text-xs font-bold flex items-center justify-center">3</span>
@@ -233,8 +330,8 @@ export const EduCutoff = () => {
             </div>
           )}
 
-          {/* Calculate Button */}
-          {selectedGroup && (
+          {/* Calculate Button — only for cutoff-based streams */}
+          {selectedGroup && hasCutoffBasedAdmission(selectedGroup) && (
             <Button
               size="lg"
               className="w-full h-14 text-base font-bold rounded-xl bg-violet-700 hover:bg-violet-800 active:scale-[0.98]"
@@ -249,8 +346,8 @@ export const EduCutoff = () => {
             </Button>
           )}
 
-          {/* Results */}
-          {result && selectedGroup && (
+          {/* Results — only for cutoff-based streams */}
+          {result && selectedGroup && hasCutoffBasedAdmission(selectedGroup) && (
             <div className="space-y-4">
               <CutoffResults result={result} group={selectedGroup} marks={marks} category={selectedCategory || undefined} />
               <EligibleCourses
