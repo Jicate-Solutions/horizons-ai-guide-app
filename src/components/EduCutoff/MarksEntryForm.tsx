@@ -65,7 +65,6 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
   const subjects = getSubjectsForGroup(group);
   const category = getGroupCategory(group);
   const isTNEA = isEligibleForTNEA(group);
-  const showNEET = category === 'science_bio' || group === '103' || group === '104';
 
   // Separate PCM (cutoff subjects) from 4th subject
   const pcmSubjects = subjects.filter(s => ['Mathematics', 'Physics', 'Chemistry'].includes(s.subject));
@@ -234,29 +233,126 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
           </>
         )}
 
-        {/* ─── FOR BIO GROUPS: ALL SUBJECTS EQUALLY ─── */}
-        {category === 'science_bio' && (
-          <div>
-            <Label className="text-sm font-medium text-gray-700 mb-3 block">PART III — ALL SUBJECTS (Each out of 100)</Label>
-            <p className="text-xs text-gray-500 mb-3">
-              All 4 science subjects are added together and reduced to a base of 200 — this is the
-              actual TN Selection Committee formula for B.Pharm, B.Sc Nursing, BPT and other paramedical
-              courses. MBBS/BDS/BAMS admission is via NEET score (enter below if you have it).
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {subjects.map((subj) => (
-                <div key={subj.subject}>
-                  {renderInput(
-                    subj.subject,
-                    subj.icon,
-                    marks[subj.subject] ?? null,
-                    (v) => handleMarkChange(subj.subject, v)
-                  )}
+        {/* ─── BIO GROUPS: 12th marks /200 is the primary cutoff for paramedical ─── */}
+        {category === 'science_bio' && (() => {
+          // Live preview: sum of the 4 prescribed subjects / 2 = /200 score
+          // (the actual TN Selection Committee formula for paramedical degrees).
+          const subjectValues = subjects.map((s) => marks[s.subject] ?? 0);
+          const filledCount = subjectValues.filter((v) => v > 0).length;
+          const liveScore = filledCount >= 3
+            ? Math.round((subjectValues.reduce((a, b) => a + b, 0) / 2) * 10) / 10
+            : null;
+
+          return (
+            <div className="space-y-4">
+              {/* ── PRIMARY: 12th marks (paramedical cutoff) ── */}
+              <div className="rounded-2xl border-2 border-emerald-300 bg-emerald-50/40 p-5">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 text-lg font-bold">
+                    📘
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-black text-emerald-900 leading-tight">
+                      Your 12th Science Marks
+                    </h3>
+                    <p className="text-xs text-emerald-800/80 leading-snug mt-0.5">
+                      Used for B.Pharm, B.Sc Nursing, BPT, B.Optom, Pharm.D and all paramedical
+                      courses via TN Selection Committee. <strong>NEET is not required.</strong>
+                    </p>
+                  </div>
                 </div>
-              ))}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {subjects.map((subj) => (
+                    <div key={subj.subject}>
+                      {renderInput(
+                        subj.subject,
+                        subj.icon,
+                        marks[subj.subject] ?? null,
+                        (v) => handleMarkChange(subj.subject, v),
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Live cutoff preview */}
+                <div className={cn(
+                  'mt-4 rounded-xl border-2 p-4 transition-all',
+                  liveScore != null
+                    ? 'border-emerald-400 bg-white'
+                    : 'border-dashed border-emerald-200 bg-white/50',
+                )}>
+                  <div className="flex items-baseline justify-between gap-3 flex-wrap">
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-wide">
+                        Your Paramedical Cutoff Score
+                      </p>
+                      <p className="text-[10px] text-emerald-700/70 leading-tight mt-0.5">
+                        (Physics + Chemistry + 2 Bio subjects) ÷ 2
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      {liveScore != null ? (
+                        <>
+                          <p className="text-3xl font-black text-emerald-700 leading-none">
+                            {liveScore.toFixed(1)}
+                            <span className="text-base text-emerald-600/70 font-bold">/200</span>
+                          </p>
+                        </>
+                      ) : (
+                        <p className="text-xs text-emerald-700/60 italic">
+                          Enter at least 3 subject marks to see your score
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── SECONDARY: NEET (only if the student appeared for it) ── */}
+              <details className="rounded-xl border border-rose-200 bg-rose-50/30 overflow-hidden group">
+                <summary className="cursor-pointer px-4 py-3 flex items-center justify-between gap-3 hover:bg-rose-50/60 transition-colors list-none">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <span className="text-base">🏥</span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-rose-800 leading-tight">
+                        Did you appear for NEET? <span className="font-normal text-rose-600">(Optional)</span>
+                      </p>
+                      <p className="text-[11px] text-rose-700/80 leading-tight mt-0.5">
+                        Only needed for MBBS, BDS, BAMS, BHMS — tap to add your score
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-rose-600 text-xs font-bold flex-shrink-0 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div className="px-4 pb-4 pt-2 border-t border-rose-200">
+                  <Label className="text-xs font-medium text-rose-700 mb-2 block">
+                    NEET Score (out of 720)
+                  </Label>
+                  <div className="max-w-xs">
+                    <Input
+                      type="number"
+                      min={0}
+                      max={720}
+                      placeholder="e.g. 615"
+                      value={neetScore ?? ''}
+                      onChange={(e) => {
+                        const val = e.target.value === '' ? null : Math.min(720, Math.max(0, parseInt(e.target.value) || 0));
+                        setNeetScore(val);
+                      }}
+                      className="text-lg font-semibold"
+                    />
+                  </div>
+                  <p className="text-[11px] text-rose-600/80 mt-2 leading-snug">
+                    Required for: MBBS, BDS, BAMS, BHMS, BNYS, BSMS.
+                    Leave blank if you didn't sit NEET — your 12th marks above are enough for
+                    B.Pharm, B.Sc Nursing, BPT and other paramedical courses.
+                  </p>
+                </div>
+              </details>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* ─── FOR COMMERCE / ARTS: ALL SUBJECTS EQUALLY ─── */}
         {(category === 'commerce' || category === 'arts') && (
@@ -280,8 +376,9 @@ export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) =>
           </div>
         )}
 
-        {/* NEET Score for Bio groups */}
-        {showNEET && (
+        {/* NEET Score — only for Bio-Maths cross-eligible groups (103, 104). */}
+        {/* Pure Bio groups (201-208) get the NEET disclosure inside the bio block above. */}
+        {(group === '103' || group === '104') && (
           <div className="rounded-xl border border-rose-200 bg-rose-50/30 p-4">
             <Label className="text-sm font-medium text-rose-700 mb-3 block">
               🏥 NEET SCORE (For Medical / Dental / AYUSH)
