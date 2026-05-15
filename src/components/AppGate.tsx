@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react';
 import { Lock, Eye, EyeOff } from 'lucide-react';
 
 const GATE_PASSWORD = '739727';
-const GATE_VERSION = 'v1';
+const GATE_VERSION = 'v2'; // bumped from v1 to force everyone to re-enter the code
 const GATE_KEY = `vazhikatti.gate.${GATE_VERSION}`;
 const GATE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
