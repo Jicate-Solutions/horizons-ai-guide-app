@@ -79,32 +79,14 @@ const groupCategories: { category: GroupCategory; title: string; titleTamil: str
       { id: '207', code: '207', name: 'Bio-Home Science', category: 'science_bio', icon: '🏠', subjects: ['Physics', 'Chemistry', 'Biology', 'Home Science'], careers: ['Medical', 'Home Science'], color: 'text-green-600', bgColor: 'bg-green-50' },
       { id: '208', code: '208', name: 'Botany & Zoology', category: 'science_bio', icon: '🌿', subjects: ['Physics', 'Chemistry', 'Botany', 'Zoology'], careers: ['Research', 'Agriculture'], color: 'text-green-600', bgColor: 'bg-green-50' },
     ]
-  },
-  {
-    category: 'commerce',
-    title: 'COMMERCE',
-    titleTamil: 'வணிகவியல்',
-    icon: '💼',
-    series: '300 Series',
-    careers: ['B.Com', 'BBA', 'CA', 'CS', 'CMA', 'MBA', 'Banking', 'Insurance', 'Law'],
-    color: 'border-orange-500 text-orange-600',
-    bgColor: 'bg-orange-50 hover:bg-orange-100',
-    groups: [
-      { id: '301', code: '301', name: 'Commerce-Statistics', category: 'commerce', icon: '📊', subjects: ['Statistics', 'Economics', 'Commerce', 'Accountancy'], careers: ['Finance', 'Analytics'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '302', code: '302', name: 'Commerce-Computer Sci.', category: 'commerce', icon: '💻', subjects: ['Computer Science', 'Economics', 'Commerce', 'Accountancy'], careers: ['IT', 'Business'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '303', code: '303', name: 'Commerce-English Comm.', category: 'commerce', icon: '📝', subjects: ['English for Communication', 'Economics', 'Commerce', 'Accountancy'], careers: ['Business', 'Communication'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '304', code: '304', name: 'Commerce-History', category: 'commerce', icon: '📜', subjects: ['History', 'Economics', 'Commerce', 'Accountancy'], careers: ['Civil Services', 'Business'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '305', code: '305', name: 'Commerce-Political Sci.', category: 'commerce', icon: '🏛️', subjects: ['Economics', 'Political Science', 'Commerce', 'Accountancy'], careers: ['Law', 'Civil Services'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '306', code: '306', name: 'Commerce-Ethics', category: 'commerce', icon: '🕉️', subjects: ['Economics', 'Commerce', 'Accountancy', 'Ethics & Indian Culture'], careers: ['Business', 'Teaching'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '307', code: '307', name: 'Commerce-Language', category: 'commerce', icon: '📖', subjects: ['Economics', 'Commerce', 'Accountancy', 'Advanced Language'], careers: ['Business', 'Literature'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-      { id: '308', code: '308', name: 'Commerce-Business Maths', category: 'commerce', icon: '🔢', subjects: ['Economics', 'Commerce', 'Accountancy', 'Business Maths'], careers: ['Finance', 'Banking'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
-    ]
   }
-  // NOTE: The Arts / Humanities (400-series) category is intentionally NOT
-  // listed here. Arts UG admissions in Tamil Nadu are merit-based on the 12th
-  // aggregate (TNGASA / direct / CUET) — there is no cutoff calculation for
-  // Arts, so it does not belong in the Cutoff Calculator's group selector.
-  // Arts students are guided to College Finder / Course Explorer instead.
+  // NOTE: The Commerce (300-series) and Arts / Humanities (400-series)
+  // categories are intentionally NOT listed here. Commerce and Arts UG
+  // admissions in Tamil Nadu are merit-based on the 12th aggregate (TNGASA /
+  // direct / CUET) — there is no cutoff calculation for these streams, so
+  // they do not belong in the Cutoff Calculator's group selector. Commerce
+  // and Arts students are guided to College Finder / Course Explorer
+  // instead.
 ];
 
 export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorProps) => {
