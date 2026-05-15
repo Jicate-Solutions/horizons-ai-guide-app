@@ -1,7 +1,7 @@
 /**
  * AppGate — POPUP/MODAL password screen that appears OVER the landing
- * page, not in place of it. The landing page renders behind the modal
- * (blurred + dimmed), just like a popup on a college website.
+ * page every time the app is opened. No "remember me", no skip — every
+ * fresh page load shows the popup until the access code is entered.
  *
  * HONEST CAVEAT:
  * This is a SOFT gate, not real security. The expected password lives
@@ -12,9 +12,10 @@
  * Behaviour:
  *   - Renders children (the rest of the app) immediately, always.
  *   - On top of the children, a blurred/dimmed backdrop + centred
- *     white popup asks for the access code IF the user hasn't unlocked.
- *   - On correct code, the popup is removed and the unlock is
- *     remembered in localStorage for 30 days.
+ *     white popup asks for the access code on every page load.
+ *   - On correct code, the popup is removed for THIS browsing session
+ *     only — reloading the page or revisiting the URL will show the
+ *     popup again.
  *   - Wrong code shakes the input and shows an inline error.
  *   - Body scroll is locked while the popup is up.
  */
@@ -23,62 +24,31 @@ import { useEffect, useState } from 'react';
 import { Lock, Eye, EyeOff } from 'lucide-react';
 
 const GATE_PASSWORD = '739727';
-const GATE_VERSION = 'v2'; // bumped from v1 to force everyone to re-enter the code
-const GATE_KEY = `vazhikatti.gate.${GATE_VERSION}`;
-const GATE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
-
-const isUnlocked = (): boolean => {
-  try {
-    const raw = localStorage.getItem(GATE_KEY);
-    if (!raw) return false;
-    const { unlockedAt } = JSON.parse(raw) as { unlockedAt: number };
-    if (!unlockedAt) return false;
-    if (Date.now() - unlockedAt > GATE_TTL_MS) {
-      localStorage.removeItem(GATE_KEY);
-      return false;
-    }
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-const recordUnlock = () => {
-  try {
-    localStorage.setItem(GATE_KEY, JSON.stringify({ unlockedAt: Date.now() }));
-  } catch {
-    /* ignore */
-  }
-};
 
 export const AppGate = ({ children }: { children: React.ReactNode }) => {
+  // Always start locked. No persistence across page loads — every fresh
+  // load of the app shows the popup. (The component lives in memory while
+  // the user is on the site, so it only re-prompts on reload / revisit.)
   const [locked, setLocked] = useState<boolean>(true);
-  const [checked, setChecked] = useState<boolean>(false);
   const [input, setInput] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [shake, setShake] = useState(false);
 
-  useEffect(() => {
-    setLocked(!isUnlocked());
-    setChecked(true);
-  }, []);
-
   // Lock body scroll while popup is up; restore when unlocked.
   useEffect(() => {
-    if (locked && checked) {
+    if (locked) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = prev;
       };
     }
-  }, [locked, checked]);
+  }, [locked]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (input === GATE_PASSWORD) {
-      recordUnlock();
       setLocked(false);
     } else {
       setError(true);
@@ -92,8 +62,8 @@ export const AppGate = ({ children }: { children: React.ReactNode }) => {
       {/* App renders always — sits behind the modal */}
       {children}
 
-      {/* Modal overlay — only while locked, after the initial check */}
-      {checked && locked && (
+      {/* Modal overlay — visible until the user enters the correct code */}
+      {locked && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
           role="dialog"
