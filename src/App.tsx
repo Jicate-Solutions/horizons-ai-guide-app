@@ -9,7 +9,6 @@ import { LanguageProvider } from "@/hooks/useLanguage";
 import { lazy, Suspense } from "react";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { AppGate } from "@/components/AppGate";
 
 const NotificationBanner = lazy(() => import("@/components/NotificationBanner"));
 
@@ -128,7 +127,6 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <AppGate>
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <AuthProvider>
@@ -262,7 +260,6 @@ function App() {
       </AuthProvider>
     </LanguageProvider>
   </QueryClientProvider>
-  </AppGate>
   );
 }
 
