@@ -99,25 +99,12 @@ const groupCategories: { category: GroupCategory; title: string; titleTamil: str
       { id: '307', code: '307', name: 'Commerce-Language', category: 'commerce', icon: '📖', subjects: ['Economics', 'Commerce', 'Accountancy', 'Advanced Language'], careers: ['Business', 'Literature'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
       { id: '308', code: '308', name: 'Commerce-Business Maths', category: 'commerce', icon: '🔢', subjects: ['Economics', 'Commerce', 'Accountancy', 'Business Maths'], careers: ['Finance', 'Banking'], color: 'text-orange-600', bgColor: 'bg-orange-50' },
     ]
-  },
-  {
-    category: 'arts',
-    title: 'ARTS / HUMANITIES',
-    titleTamil: 'கலை / மனிதநேயம்',
-    icon: '📚',
-    series: '400 Series',
-    careers: ['BA', 'Law (LLB)', 'Civil Services (UPSC/TNPSC)', 'Journalism', 'B.Ed', 'Social Work'],
-    color: 'border-pink-500 text-pink-600',
-    bgColor: 'bg-pink-50 hover:bg-pink-100',
-    groups: [
-      { id: '401', code: '401', name: 'Arts-Statistics', category: 'arts', icon: '📊', subjects: ['Statistics', 'Geography', 'History', 'Economics'], careers: ['Civil Services', 'Research'], color: 'text-pink-600', bgColor: 'bg-pink-50' },
-      { id: '402', code: '402', name: 'Arts-Computer Science', category: 'arts', icon: '💻', subjects: ['Computer Science', 'Geography', 'History', 'Economics'], careers: ['IT', 'Civil Services'], color: 'text-pink-600', bgColor: 'bg-pink-50' },
-      { id: '403', code: '403', name: 'Arts-English Comm.', category: 'arts', icon: '📝', subjects: ['Geography', 'English for Communication', 'History', 'Economics'], careers: ['Journalism', 'Teaching'], color: 'text-pink-600', bgColor: 'bg-pink-50' },
-      { id: '404', code: '404', name: 'Arts-Political Science', category: 'arts', icon: '🏛️', subjects: ['Geography', 'History', 'Economics', 'Political Science'], careers: ['Law', 'Civil Services'], color: 'text-pink-600', bgColor: 'bg-pink-50' },
-      { id: '405', code: '405', name: 'Arts-Ethics', category: 'arts', icon: '🕉️', subjects: ['Geography', 'History', 'Economics', 'Ethics & Indian Culture'], careers: ['Civil Services', 'Teaching'], color: 'text-pink-600', bgColor: 'bg-pink-50' },
-      { id: '406', code: '406', name: 'Arts-Language', category: 'arts', icon: '📖', subjects: ['Geography', 'History', 'Economics', 'Advanced Language'], careers: ['Literature', 'Teaching'], color: 'text-pink-600', bgColor: 'bg-pink-50' },
-    ]
   }
+  // NOTE: The Arts / Humanities (400-series) category is intentionally NOT
+  // listed here. Arts UG admissions in Tamil Nadu are merit-based on the 12th
+  // aggregate (TNGASA / direct / CUET) — there is no cutoff calculation for
+  // Arts, so it does not belong in the Cutoff Calculator's group selector.
+  // Arts students are guided to College Finder / Course Explorer instead.
 ];
 
 export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorProps) => {
