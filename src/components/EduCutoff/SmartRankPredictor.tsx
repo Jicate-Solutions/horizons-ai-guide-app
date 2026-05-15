@@ -427,46 +427,63 @@ const ParamedicalTrendReference = ({ category }: { category: Category }) => {
         {/* 5-year trend */}
         <div>
           <p className="text-xs font-bold text-gray-800 mb-2">
-            5-year closing cutoff range at top govt colleges (paramedical degree, OC unless noted)
+            5-year closing cutoff range at top govt colleges (paramedical degree)
           </p>
           <div className="rounded-lg border border-gray-200 overflow-hidden">
-            <div className="grid grid-cols-12 bg-gray-50 px-3 py-2 text-[11px] font-bold text-gray-700">
-              <div className="col-span-3">Session</div>
-              <div className="col-span-3">OC</div>
-              <div className="col-span-3">BC / MBC</div>
-              <div className="col-span-3">SC / ST</div>
+            {/* Header — mobile shows only the student's selected category; desktop shows all three */}
+            <div className="bg-gray-50 px-3 py-2 text-[11px] font-bold text-gray-700">
+              <div className="grid grid-cols-2 md:grid-cols-12 gap-x-2">
+                <div className="md:col-span-3">Session</div>
+                <div className="md:col-span-3 hidden md:block">OC</div>
+                <div className="md:col-span-3 hidden md:block">BC / MBC</div>
+                <div className="md:col-span-3 hidden md:block">SC / ST</div>
+                {/* Mobile-only header showing just the selected category */}
+                <div className="md:hidden text-violet-700">{categoryLabel}</div>
+              </div>
             </div>
             {TREND_ROWS.map((r, i) => (
               <div
                 key={r.year}
                 className={cn(
-                  'grid grid-cols-12 px-3 py-2 text-[11px] border-t border-gray-100',
+                  'px-3 py-2 text-[11px] border-t border-gray-100',
                   r.note ? 'bg-amber-50/40' : i === 0 ? 'bg-emerald-50/30' : 'bg-white',
                 )}
               >
-                <div className="col-span-3 font-bold text-gray-800">
-                  {r.year}
-                  {i === 0 && <span className="ml-1 text-[9px] text-emerald-700 font-bold">current</span>}
-                </div>
-                <div className={cn('col-span-3 font-mono', categoryKey === 'oc' ? 'text-violet-800 font-bold' : 'text-gray-700')}>
-                  {r.oc}
-                </div>
-                <div className={cn('col-span-3 font-mono', categoryKey === 'bcmbc' ? 'text-violet-800 font-bold' : 'text-gray-700')}>
-                  {r.bcmbc}
-                </div>
-                <div className={cn('col-span-3 font-mono', categoryKey === 'scst' ? 'text-violet-800 font-bold' : 'text-gray-700')}>
-                  {r.scst}
+                <div className="grid grid-cols-2 md:grid-cols-12 gap-x-2">
+                  <div className="md:col-span-3 font-bold text-gray-800">
+                    {r.year}
+                    {i === 0 && <span className="ml-1 text-[9px] text-emerald-700 font-bold">current</span>}
+                  </div>
+
+                  {/* Mobile-only: show ONLY the student's selected category column */}
+                  <div className={cn(
+                    'md:hidden font-mono font-bold text-violet-800',
+                  )}>
+                    {categoryKey === 'oc' ? r.oc : categoryKey === 'bcmbc' ? r.bcmbc : r.scst}
+                  </div>
+
+                  {/* Desktop: show all three columns, highlight the selected one */}
+                  <div className={cn('hidden md:block md:col-span-3 font-mono', categoryKey === 'oc' ? 'text-violet-800 font-bold' : 'text-gray-700')}>
+                    {r.oc}
+                  </div>
+                  <div className={cn('hidden md:block md:col-span-3 font-mono', categoryKey === 'bcmbc' ? 'text-violet-800 font-bold' : 'text-gray-700')}>
+                    {r.bcmbc}
+                  </div>
+                  <div className={cn('hidden md:block md:col-span-3 font-mono', categoryKey === 'scst' ? 'text-violet-800 font-bold' : 'text-gray-700')}>
+                    {r.scst}
+                  </div>
                 </div>
                 {r.note && (
-                  <div className="col-span-12 text-[10px] text-amber-800 mt-1 italic">⚠ {r.note}</div>
+                  <div className="text-[10px] text-amber-800 mt-1 italic">⚠ {r.note}</div>
                 )}
               </div>
             ))}
           </div>
           <p className="text-[10px] text-gray-500 mt-1.5 leading-tight">
-            Your <strong>{categoryLabel}</strong> column is highlighted. The trend has been ~2 marks/year
-            down since the 2021 spike, so a 2025-26 cutoff is the most relevant benchmark — older
-            cutoffs read artificially high.
+            <span className="md:hidden">Showing your <strong>{categoryLabel}</strong> column. </span>
+            <span className="hidden md:inline">Your <strong>{categoryLabel}</strong> column is highlighted. </span>
+            The trend has been ~2 marks/year down since the 2021 spike, so a 2025-26 cutoff is the
+            most relevant benchmark — older cutoffs read artificially high.
           </p>
         </div>
 
