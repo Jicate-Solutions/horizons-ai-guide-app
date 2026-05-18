@@ -74,10 +74,11 @@ const HeroSection = () => {
             <p
               className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide animate-fade-up"
               style={{
-                background: 'linear-gradient(180deg, #F5D77A 0%, #D4AF37 55%, #B8860B 100%)',
+                background: 'linear-gradient(180deg, #E8C76A 0%, #C9961F 50%, #9A6B0C 100%)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
+                textShadow: '0 1px 2px rgba(0,0,0,0.25)',
               }}
             >
               தமிழ்நாடு மாணவர்களுக்கான வழிகாட்டி
