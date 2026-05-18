@@ -71,7 +71,15 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="text-white space-y-5">
-            <p className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide text-amber-400 animate-fade-up">
+            <p
+              className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide animate-fade-up"
+              style={{
+                background: 'linear-gradient(180deg, #F5D77A 0%, #D4AF37 55%, #B8860B 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
               தமிழ்நாடு மாணவர்களுக்கான வழிகாட்டி
             </p>
             <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400/20 to-amber-500/20 backdrop-blur-sm text-amber-400 px-4 py-2 rounded-full text-sm font-semibold border border-amber-400/30 animate-fade-up">
