@@ -6,7 +6,7 @@
  import Footer from '@/components/Footer';
  import { EngineeringCalculator, EngineeringResult } from '@/components/EduCutoff/EngineeringCalculator';
  import { MedicalEligibilityChecker, MedicalResult } from '@/components/EduCutoff/MedicalEligibilityChecker';
- import { CollegePredictor } from '@/components/EduCutoff/CollegePredictor';
+ import { TNEACollegePredictor } from '@/components/EduCutoff/TNEACollegePredictor';
  import { TNEA2026BrochureInfo } from '@/components/EduCutoff/TNEA2026BrochureInfo';
  import { TNEACommunityLookup } from '@/components/EduCutoff/TNEACommunityLookup';
  import { TNEAPwDEligibilityChecker } from '@/components/EduCutoff/TNEAPwDEligibilityChecker';
@@ -169,7 +169,7 @@
                      உங்களுக்கான கல்லூரிகள்
                    </span>
                  </h2>
-                 <CollegePredictor engineeringResult={engineeringResult} />
+                 <TNEACollegePredictor engineeringResult={engineeringResult} />
                </div>
              )}
            </TabsContent>
