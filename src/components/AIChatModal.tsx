@@ -358,11 +358,15 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
     } catch (apiError) {
     }
 
-    // If API didn't work, use local response
+    // If API didn't work, show an HONEST notice + offline info.
+    // (Previously this silently served canned replies, which made an AI
+    // outage look like the AI just giving shallow, context-blind answers.)
     if (!apiSuccess) {
       const userMsg = userMessages[userMessages.length - 1]?.content || '';
-      const localReply = getLocalChatReply(userMsg);
-      const localMsg: Message = { role: "assistant", content: localReply };
+      const notice =
+        "⚠️ *The live AI is temporarily unavailable, so this is a general offline answer " +
+        "(it can't use the conversation so far). Please try again in a moment.*\n\n";
+      const localMsg: Message = { role: "assistant", content: notice + getLocalChatReply(userMsg) };
       setMessages(prev => [...prev, localMsg]);
     }
   }, [saveMessage, speakText]);
@@ -389,9 +393,11 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
     try {
       await streamChat(newMessages);
     } catch (error) {
-      // Show a helpful local response instead of error
-      const localReply = getLocalChatReply(input.trim());
-      const localMsg: Message = { role: "assistant", content: localReply };
+      // Network/throw failure — show an honest offline notice, not a silent canned reply
+      const notice =
+        "⚠️ *The live AI is temporarily unavailable, so this is a general offline answer. " +
+        "Please try again in a moment.*\n\n";
+      const localMsg: Message = { role: "assistant", content: notice + getLocalChatReply(input.trim()) };
       setMessages([...newMessages, localMsg]);
     } finally {
       setIsLoading(false);

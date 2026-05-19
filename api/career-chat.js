@@ -44,7 +44,7 @@ export default async function handler(req, res) {
             'anthropic-version': '2023-06-01',
           },
           body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
+            model: 'claude-sonnet-4-6',
             max_tokens: 500,
             messages: [{
               role: 'user',
@@ -122,8 +122,9 @@ FORMATTING:
 - Use **bold** for important terms
 - Use bullet points for lists
 - Structure with clear headings using **Header:**
-- Keep responses focused and practical
-- For long topics, break into clear sections
+- Give thorough, in-depth answers — explain the reasoning, not just the conclusion
+- For long or complex topics, break the answer into clear sections with headings
+- For a follow-up question, build on what was already discussed instead of restarting or repeating
 
 IMPORTANT RULES:
 - Always give specific, actionable advice — not vague suggestions
@@ -149,8 +150,8 @@ You are part of VAZHIKATTI — a free, neutral AI career guidance platform for 1
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2048,
+        model: 'claude-sonnet-4-6',
+        max_tokens: 4096,
         system: systemPrompt,
         stream: true,
         messages: apiMessages,
