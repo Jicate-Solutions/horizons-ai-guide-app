@@ -302,6 +302,12 @@
              </p>
            </div>
  
+           <div className="p-3 bg-amber-50 rounded-lg border border-amber-200 mb-4">
+             <p className="text-xs text-amber-800 leading-relaxed">
+               <strong>This is a reference list of government colleges offering this course — not a list of colleges you are guaranteed admission to.</strong> Each college has its own cutoff that changes every year and differs by community. A college appearing here does NOT mean your marks qualify for it. Use the cutoff predictor and the official counselling seat matrix to check which of these your score can actually reach.
+             </p>
+           </div>
+ 
            <div className="space-y-3">
              {collegesForCourse.map((college, idx) => (
                <div key={idx} className="p-4 bg-gray-50 rounded-xl border">
