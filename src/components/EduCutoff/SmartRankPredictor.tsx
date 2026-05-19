@@ -25,11 +25,11 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import {
-  engineeringCutoffs,
   medicalCutoffs,
   pharmaNursingCutoffs,
   type CutoffEntry,
 } from './PreviousYearCutoffs';
+import { tneaEngineeringCutoffs } from '@/data/tneaEngineeringCutoffs';
 import { DataFreshnessTag } from './DataFreshnessTag';
 import type { DataKey } from './dataFreshness';
 import { cn } from '@/lib/utils';
@@ -146,7 +146,7 @@ export const SmartRankPredictor = ({
 
   /** Cutoff data for the chosen stream. */
   const data: CutoffEntry[] = useMemo(() => {
-    if (stream === 'engineering') return engineeringCutoffs;
+    if (stream === 'engineering') return tneaEngineeringCutoffs;
     if (stream === 'medical') return medicalCutoffs;
     return pharmaNursingCutoffs;
   }, [stream]);
@@ -362,16 +362,16 @@ export const SmartRankPredictor = ({
           <AlertTriangle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-bold text-amber-900">
-              No close matches in this app's sample list for your score in {category.toUpperCase()}.
+              No 2024 cutoff matches your score in {category.toUpperCase()}.
             </p>
             <p className="text-xs text-amber-800 mt-1.5 leading-relaxed">
-              This app only carries a sample of well-known colleges, which tend to have
-              higher cutoffs. There are <strong>many more colleges across Tamil Nadu</strong> —
-              including many that admit students at your score range — that aren't in this
-              sample list.
+              The predictor checks the <strong>full official DOTE 2024 list</strong> —
+              280 colleges and 825 branches across Tamil Nadu. If nothing shows, your
+              score is likely outside the recorded 2024 range for this community. Try
+              the exact mark, or pick a different community.
             </p>
             <p className="text-xs text-amber-800 mt-1.5 leading-relaxed">
-              Browse the full official seat matrix and allotment list on{' '}
+              You can also browse the full official seat matrix and allotment list on{' '}
               <a href="https://www.tneaonline.org" target="_blank" rel="noopener noreferrer" className="underline font-semibold">
                 tneaonline.org
               </a>{' '}
@@ -570,21 +570,34 @@ const Section = ({
   entries: ScoredEntry[];
   isNeet: boolean;
 }) => {
+  const [expanded, setExpanded] = useState(false);
   if (entries.length === 0) return null;
+  const INITIAL = 12;
+  const shown = expanded ? entries : entries.slice(0, INITIAL);
   return (
     <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden">
-      <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
-        <h3 className="text-sm font-black text-gray-900">{title}</h3>
-        <p className="text-xs text-gray-600 mt-0.5">{subtitle}</p>
+      <div className="px-4 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between gap-3">
+        <div>
+          <h3 className="text-sm font-black text-gray-900">{title}</h3>
+          <p className="text-xs text-gray-600 mt-0.5">{subtitle}</p>
+        </div>
+        <span className="text-[11px] font-bold text-gray-500 whitespace-nowrap">
+          {entries.length} {entries.length === 1 ? 'college' : 'colleges'}
+        </span>
       </div>
       <div className="divide-y divide-gray-100">
-        {entries.slice(0, 12).map((e, i) => (
+        {shown.map((e, i) => (
           <Row key={`${e.college}-${e.course}-${i}`} entry={e} isNeet={isNeet} />
         ))}
-        {entries.length > 12 && (
-          <div className="px-4 py-2 text-[11px] text-gray-500 text-center">
-            + {entries.length - 12} more in this bucket
-          </div>
+        {entries.length > INITIAL && (
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="w-full px-4 py-2.5 text-xs font-bold text-violet-700 hover:bg-violet-50 transition-colors"
+          >
+            {expanded
+              ? '▲ Show fewer'
+              : `▼ Show all ${entries.length} colleges`}
+          </button>
         )}
       </div>
     </div>
