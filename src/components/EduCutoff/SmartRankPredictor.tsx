@@ -155,11 +155,23 @@ export const SmartRankPredictor = ({
   const scored: ScoredEntry[] = useMemo(() => {
     if (numericScore == null) return [];
     const out: ScoredEntry[] = [];
+
+    // How far BELOW a cutoff a college can be and still count as a real
+    // "reach". Cutoffs drift year-to-year, but only by a few marks. A
+    // college whose cutoff is far above the student's score is simply
+    // not an option — showing it as a 5% "reach" misleads the student
+    // (e.g. a 154 score should NOT see a 185-cutoff Anna University
+    // course at all). Beyond this gap, the college is dropped entirely.
+    // NEET's /720 scale drifts wider, so the cutoff is scaled up 4x.
+    const REACH_CUTOFF_GAP = isNeet ? 40 : 10;
+
     for (const e of data) {
       const cutoffRaw = e[category];
       const cutoff = toNumber(cutoffRaw);
       if (cutoff == null) continue; // skip rows without a numeric cutoff for this category
       const delta = numericScore - cutoff;
+      // Drop colleges the student is too far below — not a realistic option.
+      if (delta < -REACH_CUTOFF_GAP) continue;
       const { band, probability } = bandFor(delta, isNeet);
       out.push({ ...e, categoryCutoff: cutoff, delta, band, probability });
     }
@@ -349,11 +361,25 @@ export const SmartRankPredictor = ({
         <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-bold text-amber-900">No matching colleges found for {category.toUpperCase()} in this stream.</p>
-            <p className="text-xs text-amber-800 mt-1">
-              The cutoff data in this app is a curated sample, not exhaustive. The
-              official allotment list on tnmedicalselection.net / tneaonline.org is
-              the authoritative source.
+            <p className="text-sm font-bold text-amber-900">
+              No close matches in this app's sample list for your score in {category.toUpperCase()}.
+            </p>
+            <p className="text-xs text-amber-800 mt-1.5 leading-relaxed">
+              This app only carries a sample of well-known colleges, which tend to have
+              higher cutoffs. There are <strong>many more colleges across Tamil Nadu</strong> —
+              including many that admit students at your score range — that aren't in this
+              sample list.
+            </p>
+            <p className="text-xs text-amber-800 mt-1.5 leading-relaxed">
+              Browse the full official seat matrix and allotment list on{' '}
+              <a href="https://www.tneaonline.org" target="_blank" rel="noopener noreferrer" className="underline font-semibold">
+                tneaonline.org
+              </a>{' '}
+              (engineering) or{' '}
+              <a href="https://tnmedicalselection.net" target="_blank" rel="noopener noreferrer" className="underline font-semibold">
+                tnmedicalselection.net
+              </a>{' '}
+              (medical / paramedical) — every student who applies gets to fill choices.
             </p>
           </div>
         </div>
