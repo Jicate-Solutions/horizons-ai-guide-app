@@ -879,7 +879,7 @@ export const TNEA_DATA_META = {
 } as const;
 
 export type ChanceTier = 'Safe' | 'Likely' | 'Reach';
-export type MatchBasis = 'exact' | 'oc-estimate' | 'rough';
+export type MatchBasis = 'exact' | 'estimate';
 
 export interface CollegePrediction extends TneaCutoffEntry {
   /** Cutoff used for the comparison, for the chosen community */
@@ -897,18 +897,19 @@ export interface CollegePrediction extends TneaCutoffEntry {
  *
  * @param studentMark  TNEA cutoff mark, out of 200
  * @param category     The student's community
- * @returns            Eligible college-branch rows, best (highest cutoff) first.
+ * @returns            Reachable college-branch rows, best (highest cutoff) first.
  *
- * Matching rules:
- *  - exact:        the branch has a recorded 2024 cutoff for the student's
- *                  community  -> most reliable.
- *  - oc-estimate:  no community-specific cutoff, but an OC cutoff exists.
- *                  Clearing the OC bar means the student would clear their
- *                  own (always <= OC) community cutoff -> conservative.
- *  - rough:        only other-community data exists -> rough reference.
+ * Reference cutoff per branch:
+ *  - exact:     the branch has a recorded 2024 cutoff for the student's
+ *               community -> compared directly (most reliable).
+ *  - estimate:  the community's figure was not separately listed, so the
+ *               AVERAGE of the cutoffs that WERE recorded for that branch
+ *               is used. (An earlier build fell back to the OC cutoff --
+ *               the toughest bar -- which wrongly hid most colleges from
+ *               reserved-community students with a mid-range mark.)
  *
  * Chance bands are based on the gap between the mark and the reference:
- *  - Safe   : mark is >= 6 above the cutoff
+ *  - Safe   : mark is >= 6 above the cutoff (a comfortable margin)
  *  - Likely : mark is between 0 and 6 above the cutoff
  *  - Reach  : mark is up to 4 below the cutoff (cutoffs drift year to year)
  */
@@ -919,22 +920,19 @@ export function predictColleges(
   const out: CollegePrediction[] = [];
 
   for (const e of TNEA_CUTOFFS_2024) {
-    let ref: number | undefined;
+    let ref: number;
     let basis: MatchBasis;
 
     if (e.cutoffs[category] !== undefined) {
-      ref = e.cutoffs[category];
+      ref = e.cutoffs[category] as number;
       basis = 'exact';
-    } else if (e.cutoffs.OC !== undefined) {
-      ref = e.cutoffs.OC;
-      basis = 'oc-estimate';
     } else {
       const vals = Object.values(e.cutoffs);
       if (vals.length === 0) continue;
-      ref = Math.max(...vals);
-      basis = 'rough';
+      const avg = vals.reduce((s, v) => s + v, 0) / vals.length;
+      ref = Math.round(avg * 100) / 100;
+      basis = 'estimate';
     }
-    if (ref === undefined) continue;
 
     const gap = Math.round((studentMark - ref) * 100) / 100;
     if (gap < -4) continue; // out of reach
@@ -949,4 +947,15 @@ export function predictColleges(
 
   out.sort((a, b) => b.referenceCutoff - a.referenceCutoff);
   return out;
+}
+
+/**
+ * Only the SAFE list -- the colleges a student can confidently expect to
+ * get with the given mark (mark comfortably above the 2024 cutoff).
+ */
+export function predictSafeColleges(
+  studentMark: number,
+  category: TneaCategory,
+): CollegePrediction[] {
+  return predictColleges(studentMark, category).filter((p) => p.chance === 'Safe');
 }

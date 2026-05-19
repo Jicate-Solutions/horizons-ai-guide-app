@@ -8,13 +8,13 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import {
-  Building2, MapPin, Search, ShieldCheck, TrendingUp, Target,
-  Landmark, GraduationCap, Minus, Plus, Info, ChevronDown,
+  MapPin, Search, ShieldCheck, Landmark, GraduationCap,
+  Minus, Plus, Info, ChevronDown,
 } from 'lucide-react';
 import { EngineeringResult } from './EngineeringCalculator';
 import {
-  predictColleges, TNEA_DISTRICTS, TNEA_BRANCH_FAMILIES, TNEA_DATA_META,
-  type TneaCategory, type CollegePrediction, type ChanceTier,
+  predictSafeColleges, TNEA_DISTRICTS, TNEA_BRANCH_FAMILIES, TNEA_DATA_META,
+  type TneaCategory, type CollegePrediction,
 } from '@/data/tneaCutoffs2024';
 
 interface TNEACollegePredictorProps {
@@ -31,27 +31,6 @@ const CATEGORY_MAP: Record<string, TneaCategory> = {
   MBC_V: 'MBC', DNC: 'MBC', SC: 'SC', SCA: 'SCA', ST: 'ST',
 };
 
-const TIER_STYLE: Record<ChanceTier, {
-  label: string; tamil: string; icon: typeof ShieldCheck;
-  text: string; bg: string; border: string; ring: string;
-}> = {
-  Safe: {
-    label: 'Safe', tamil: 'உறுதி', icon: ShieldCheck,
-    text: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-200',
-    ring: 'data-[active=true]:ring-emerald-500',
-  },
-  Likely: {
-    label: 'Likely', tamil: 'வாய்ப்பு', icon: TrendingUp,
-    text: 'text-amber-700', bg: 'bg-amber-50', border: 'border-amber-200',
-    ring: 'data-[active=true]:ring-amber-500',
-  },
-  Reach: {
-    label: 'Reach', tamil: 'கடினம்', icon: Target,
-    text: 'text-orange-700', bg: 'bg-orange-50', border: 'border-orange-200',
-    ring: 'data-[active=true]:ring-orange-500',
-  },
-};
-
 const PAGE_SIZE = 25;
 
 export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictorProps) => {
@@ -59,7 +38,6 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
   const category: TneaCategory = CATEGORY_MAP[engineeringResult?.category ?? 'OC'] ?? 'OC';
 
   const [mark, setMark] = useState<number>(baseMark);
-  const [tier, setTier] = useState<ChanceTier | 'All'>('All');
   const [family, setFamily] = useState<string>('All');
   const [district, setDistrict] = useState<string>('All');
   const [collegeType, setCollegeType] = useState<string>('All');
@@ -73,23 +51,17 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
 
   useEffect(() => {
     setVisible(PAGE_SIZE);
-  }, [mark, tier, family, district, collegeType, search]);
+  }, [mark, family, district, collegeType, search]);
 
-  const predictions = useMemo<CollegePrediction[]>(
-    () => (mark > 0 ? predictColleges(mark, category) : []),
+  // Only the SAFE list — colleges the student can confidently get.
+  const safeColleges = useMemo<CollegePrediction[]>(
+    () => (mark > 0 ? predictSafeColleges(mark, category) : []),
     [mark, category],
   );
 
-  const tierCounts = useMemo(() => {
-    const c = { Safe: 0, Likely: 0, Reach: 0 };
-    predictions.forEach((p) => { c[p.chance] += 1; });
-    return c;
-  }, [predictions]);
-
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return predictions.filter((p) => {
-      if (tier !== 'All' && p.chance !== tier) return false;
+    return safeColleges.filter((p) => {
       if (family !== 'All' && p.branchFamily !== family) return false;
       if (district !== 'All' && p.district !== district) return false;
       if (collegeType !== 'All' && p.collegeType !== collegeType) return false;
@@ -98,7 +70,7 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
         && !p.district.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [predictions, tier, family, district, collegeType, search]);
+  }, [safeColleges, family, district, collegeType, search]);
 
   // group eligible branches under their college
   const grouped = useMemo(() => {
@@ -116,16 +88,17 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
 
   const clamp = (v: number) => Math.max(0, Math.min(200, Math.round(v * 4) / 4));
   const resetFilters = () => {
-    setTier('All'); setFamily('All'); setDistrict('All');
-    setCollegeType('All'); setSearch('');
+    setFamily('All'); setDistrict('All'); setCollegeType('All'); setSearch('');
   };
+  const hasFilters = family !== 'All' || district !== 'All'
+    || collegeType !== 'All' || search !== '';
 
   if (!engineeringResult) {
     return (
       <Card className="border-2 border-dashed border-primary/30">
         <CardContent className="py-10 text-center text-muted-foreground">
           <GraduationCap className="h-10 w-10 mx-auto mb-3 text-primary/40" />
-          Calculate your TNEA cutoff above to see the colleges you can get.
+          Calculate your TNEA cutoff above to see the colleges you can safely get.
           <div className="text-xs font-tamil mt-1">
             கல்லூரிகளைப் பார்க்க மேலே உங்கள் கட்ஆஃப்பைக் கணக்கிடவும்.
           </div>
@@ -142,14 +115,14 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
           <div className="flex flex-wrap items-center gap-4 justify-between">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-md">
-                <Building2 className="h-6 w-6 text-white" />
+                <ShieldCheck className="h-6 w-6 text-white" />
               </div>
               <div>
                 <h3 className="font-bold text-foreground leading-tight">
-                  Colleges You Can Get — TNEA 2024 Data
+                  Safe Colleges You Can Get — TNEA 2024 Data
                 </h3>
                 <p className="text-xs text-muted-foreground font-tamil">
-                  நீங்கள் சேரக்கூடிய பொறியியல் கல்லூரிகள்
+                  நீங்கள் உறுதியாகச் சேரக்கூடிய பொறியியல் கல்லூரிகள்
                 </p>
               </div>
             </div>
@@ -194,44 +167,22 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
         </CardContent>
       </Card>
 
-      {/* ── Summary tiles (also act as tier filter) ──────────────── */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <button
-          data-active={tier === 'All'}
-          onClick={() => setTier('All')}
-          className={cn(
-            'rounded-xl border-2 p-3 text-left transition-all bg-white dark:bg-card',
-            'hover:shadow-md data-[active=true]:ring-2 data-[active=true]:ring-primary',
-            'border-border',
-          )}
-        >
-          <div className="text-2xl font-black text-foreground">{predictions.length}</div>
-          <div className="text-xs text-muted-foreground">Total branch matches</div>
-        </button>
-        {(['Safe', 'Likely', 'Reach'] as ChanceTier[]).map((t) => {
-          const s = TIER_STYLE[t];
-          const Icon = s.icon;
-          return (
-            <button
-              key={t}
-              data-active={tier === t}
-              onClick={() => setTier(tier === t ? 'All' : t)}
-              className={cn(
-                'rounded-xl border-2 p-3 text-left transition-all hover:shadow-md',
-                'data-[active=true]:ring-2', s.bg, s.border, s.ring,
-              )}
-            >
-              <div className="flex items-center justify-between">
-                <div className={cn('text-2xl font-black', s.text)}>{tierCounts[t]}</div>
-                <Icon className={cn('h-5 w-5', s.text)} />
-              </div>
-              <div className={cn('text-xs font-medium', s.text)}>
-                {s.label} <span className="font-tamil opacity-80">· {s.tamil}</span>
-              </div>
-            </button>
-          );
-        })}
-      </div>
+      {/* ── Safe-list summary ────────────────────────────────────── */}
+      <Card className="border-2 border-emerald-300 bg-emerald-50/70 dark:bg-emerald-950/20">
+        <CardContent className="py-4 flex items-center gap-4">
+          <ShieldCheck className="h-9 w-9 text-emerald-600 shrink-0" />
+          <div>
+            <div className="text-2xl font-black text-emerald-700">
+              {safeColleges.length} safe branch matches
+            </div>
+            <div className="text-sm text-emerald-800/80">
+              You can confidently get into these with a cutoff of{' '}
+              <strong>{mark}</strong> in the <strong>{engineeringResult.category}</strong> community —
+              your mark clears each one with a comfortable margin.
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* ── Filters ──────────────────────────────────────────────── */}
       <div className="flex flex-wrap items-center gap-2">
@@ -270,8 +221,7 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
             <SelectItem value="Private">Private only</SelectItem>
           </SelectContent>
         </Select>
-        {(tier !== 'All' || family !== 'All' || district !== 'All'
-          || collegeType !== 'All' || search) && (
+        {hasFilters && (
           <Button variant="ghost" size="sm" onClick={resetFilters} className="h-10">
             Clear filters
           </Button>
@@ -280,8 +230,8 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
 
       <div className="text-sm text-muted-foreground">
         Showing <strong className="text-foreground">{grouped.length}</strong> colleges
-        {' · '}<strong className="text-foreground">{filtered.length}</strong> branches
-        {filtered.length !== predictions.length && ` (filtered from ${predictions.length})`}
+        {' · '}<strong className="text-foreground">{filtered.length}</strong> safe branches
+        {filtered.length !== safeColleges.length && ` (filtered from ${safeColleges.length})`}
       </div>
 
       {/* ── Results ──────────────────────────────────────────────── */}
@@ -289,16 +239,15 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
         <Card className="border-2 border-dashed">
           <CardContent className="py-10 text-center text-muted-foreground">
             <Search className="h-9 w-9 mx-auto mb-3 opacity-30" />
-            No colleges match these filters.
-            {predictions.length > 0
-              ? ' Try clearing the filters.'
-              : ' Your cutoff is below the 2024 range for this list — try a slightly higher mark.'}
+            {safeColleges.length > 0
+              ? 'No safe colleges match these filters — try clearing them.'
+              : 'No colleges are a safe match at this cutoff yet. A slightly higher mark will open up options.'}
           </CardContent>
         </Card>
       ) : (
         <div className="space-y-3">
           {grouped.slice(0, visible).map(({ college, branches }) => (
-            <Card key={college.collegeCode} className="border-2 hover:border-primary/30 transition-colors">
+            <Card key={college.collegeCode} className="border-2 hover:border-emerald-300 transition-colors">
               <CardContent className="p-4">
                 {/* college header */}
                 <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -326,53 +275,45 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
                       </span>
                     </div>
                   </div>
-                  <Badge className="bg-primary/10 text-primary hover:bg-primary/10 shrink-0">
-                    {branches.length} branch{branches.length > 1 ? 'es' : ''}
+                  <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 shrink-0 gap-1">
+                    <ShieldCheck className="h-3 w-3" />
+                    {branches.length} safe branch{branches.length > 1 ? 'es' : ''}
                   </Badge>
                 </div>
 
                 {/* branch rows */}
                 <div className="mt-3 divide-y divide-border/70">
-                  {branches.map((b) => {
-                    const s = TIER_STYLE[b.chance];
-                    const Icon = s.icon;
-                    return (
-                      <div
-                        key={b.branchCode}
-                        className="flex items-center justify-between gap-3 py-2"
-                      >
-                        <div className="min-w-0">
-                          <div className="text-sm font-medium text-foreground truncate">
-                            {b.branchName}
-                          </div>
-                          <div className="text-[11px] text-muted-foreground">
-                            2024 cutoff{' '}
-                            <strong className="text-foreground">{b.referenceCutoff}</strong>
-                            {' · '}
-                            {b.matchBasis === 'exact'
-                              ? `${engineeringResult.category} community`
-                              : b.matchBasis === 'oc-estimate'
-                                ? 'estimated from OC cutoff'
-                                : 'rough estimate'}
-                          </div>
+                  {branches.map((b) => (
+                    <div
+                      key={b.branchCode}
+                      className="flex items-center justify-between gap-3 py-2"
+                    >
+                      <div className="min-w-0">
+                        <div className="text-sm font-medium text-foreground truncate">
+                          {b.branchName}
                         </div>
-                        <div className="flex items-center gap-2 shrink-0">
-                          <span className="text-[11px] text-muted-foreground hidden sm:block">
-                            {b.gap >= 0 ? `+${b.gap}` : b.gap} marks
-                          </span>
-                          <Badge
-                            className={cn(
-                              'gap-1 border', s.bg, s.text, s.border,
-                              'hover:opacity-90',
-                            )}
-                            variant="outline"
-                          >
-                            <Icon className="h-3 w-3" />{s.label}
-                          </Badge>
+                        <div className="text-[11px] text-muted-foreground">
+                          2024 cutoff{' '}
+                          <strong className="text-foreground">{b.referenceCutoff}</strong>
+                          {' · '}
+                          {b.matchBasis === 'exact'
+                            ? `${engineeringResult.category} community`
+                            : 'community figure estimated'}
                         </div>
                       </div>
-                    );
-                  })}
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[11px] text-emerald-700 font-medium hidden sm:block">
+                          +{b.gap} marks clear
+                        </span>
+                        <Badge
+                          variant="outline"
+                          className="gap-1 border bg-emerald-50 text-emerald-700 border-emerald-200"
+                        >
+                          <ShieldCheck className="h-3 w-3" />Safe
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -399,16 +340,14 @@ export const TNEACollegePredictor = ({ engineeringResult }: TNEACollegePredictor
           <div className="flex items-start gap-2">
             <Info className="h-3.5 w-3.5 mt-0.5 shrink-0" />
             <span>
-              <strong className="text-foreground">Safe</strong> = your mark is well above
-              the 2024 cutoff · <strong className="text-foreground">Likely</strong> = just
-              above it · <strong className="text-foreground">Reach</strong> = slightly below
-              (cutoffs shift a little every year, so borderline branches are still shown).
+              This list shows <strong className="text-foreground">only Safe matches</strong> —
+              branches where your mark is at least 6 marks above the 2024 cutoff, a comfortable
+              margin even allowing for year-to-year drift. Where your community's figure was not
+              separately listed for a branch, the average of the recorded 2024 cutoffs is used.
             </span>
           </div>
           <div>
-            Where a cutoff for your community was not recorded for a branch, the OC cutoff
-            is used as a conservative reference. Source:{' '}
-            <strong className="text-foreground">{TNEA_DATA_META.source}</strong> —{' '}
+            Source: <strong className="text-foreground">{TNEA_DATA_META.source}</strong> —{' '}
             {TNEA_DATA_META.documentTitle} ({TNEA_DATA_META.totalRecords} branch records,{' '}
             {TNEA_DATA_META.totalColleges} colleges). Always confirm on the official TNEA
             counselling website before making decisions.
