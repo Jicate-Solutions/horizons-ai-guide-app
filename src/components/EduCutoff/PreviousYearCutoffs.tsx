@@ -76,6 +76,18 @@ export const engineeringCutoffs: CutoffEntry[] = [
   { college: 'NIT Trichy', course: 'CSE (JEE Main)', oc: '98.5%ile', bc: '95%ile', mbc: '92%ile', sc: '75%ile', st: '60%ile', year: '2025', expected2026: '98.8%ile', trend: 'up', note: 'JEE Main Percentile' },
   { college: 'NIT Trichy', course: 'ECE (JEE Main)', oc: '97.2%ile', bc: '93.5%ile', mbc: '90.5%ile', sc: '73%ile', st: '57%ile', year: '2025', expected2026: '97.5%ile', trend: 'up', note: 'JEE Main Percentile' },
   { college: 'NIT Trichy', course: 'Mechanical (JEE Main)', oc: '93%ile', bc: '88%ile', mbc: '84%ile', sc: '65%ile', st: '48%ile', year: '2025', expected2026: '93.5%ile', trend: 'stable', note: 'JEE Main Percentile' },
+  // ─── Additional colleges across more districts ───
+  // NOTE: the cutoffs below are APPROXIMATE, placed within the published
+  // cut-off band for each college. They are NOT exact per-community figures
+  // from the official TNEA allotment list — verify on tneaonline.org before
+  // relying on them. They are added so students see colleges in more
+  // districts; precise numbers need the official TNEA cutoff file.
+  { college: 'Sona College of Technology, Salem', course: 'Computer Science (CSE)', oc: 178.00, bc: 172.00, mbc: 168.00, sc: 150.00, st: 138.00, year: '2025', expected2026: 178.50, trend: 'stable', note: 'Approximate band 140-180 — verify on tneaonline.org' },
+  { college: 'Sona College of Technology, Salem', course: 'Mechanical / ECE', oc: 165.00, bc: 158.00, mbc: 153.00, sc: 138.00, st: 128.00, year: '2025', expected2026: 165.50, trend: 'stable', note: 'Approximate band 140-180 — verify on tneaonline.org' },
+  { college: 'Chennai Institute of Technology, Kancheepuram', course: 'Computer Science (CSE)', oc: 176.00, bc: 170.00, mbc: 165.00, sc: 148.00, st: 136.00, year: '2025', expected2026: 176.50, trend: 'stable', note: 'Approximate band 140-180 — verify on tneaonline.org' },
+  { college: 'Chennai Institute of Technology, Kancheepuram', course: 'ECE / AI & Data Science', oc: 168.00, bc: 161.00, mbc: 156.00, sc: 140.00, st: 130.00, year: '2025', expected2026: 168.50, trend: 'stable', note: 'Approximate band 140-180 — verify on tneaonline.org' },
+  { college: 'Rajalakshmi Engineering College, Thiruvallur', course: 'Computer Science (CSE)', oc: 177.00, bc: 171.00, mbc: 166.00, sc: 149.00, st: 137.00, year: '2025', expected2026: 177.50, trend: 'stable', note: 'Approximate band 140-180 — verify on tneaonline.org' },
+  { college: 'Rajalakshmi Engineering College, Thiruvallur', course: 'Mechanical / Civil / EEE', oc: 160.00, bc: 153.00, mbc: 148.00, sc: 133.00, st: 124.00, year: '2025', expected2026: 160.50, trend: 'stable', note: 'Approximate band 140-180 — verify on tneaonline.org' },
 ];
 
 // ═══ NEET 2024-25 ACTUAL + 2026 EXPECTED ═══

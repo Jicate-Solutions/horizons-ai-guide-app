@@ -407,13 +407,35 @@
                      </div>
                    </div>
                  ))}
+                 <a
+                   href="https://www.tneaonline.org"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="block text-center p-3 rounded-xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 text-xs text-emerald-800 font-semibold hover:bg-emerald-50 transition-colors"
+                 >
+                   This is a sample list. See ALL eligible colleges across the 38 districts
+                   on the official TNEA portal →
+                 </a>
                </div>
              ) : (
-               <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 leading-relaxed">
-                 None of the colleges in this app's sample list are within reach of your
-                 current score for {(communityCategory || 'OC').toUpperCase()}. This app only carries
-                 a sample of colleges — there are many more across Tamil Nadu, including
-                 lower-cutoff ones, in the official counselling seat matrix at tneaonline.org.
+               <div className="p-4 bg-amber-50 border-2 border-amber-200 rounded-xl">
+                 <p className="text-sm font-bold text-amber-900 mb-1">
+                   No colleges in this app's list match your score yet
+                 </p>
+                 <p className="text-xs text-amber-800 leading-relaxed mb-3">
+                   This app carries a sample of colleges. Tamil Nadu has 450+ engineering
+                   colleges across all 38 districts — many with cutoffs in your range. The
+                   complete, official list for your score and community ({(communityCategory || 'OC').toUpperCase()})
+                   is on the TNEA portal.
+                 </p>
+                 <a
+                   href="https://www.tneaonline.org"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center justify-center w-full h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-colors"
+                 >
+                   See all eligible colleges on TNEA portal →
+                 </a>
                </div>
              )
            ) : (
