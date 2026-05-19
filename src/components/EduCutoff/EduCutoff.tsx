@@ -391,6 +391,7 @@ export const EduCutoff = () => {
                 cutoffScore={result.tneaCutoff ?? 0}
                 percentage={result.overallPercentage}
                 neetScore={result.neetScore}
+                communityCategory={selectedCategory || undefined}
               />
               {/*
                 Embedded Smart Rank Predictor — shows probability bands and

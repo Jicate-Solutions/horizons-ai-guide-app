@@ -3,6 +3,7 @@
  import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
  import { cn } from '@/lib/utils';
  import { StudentGroup, EligibleCourse, getGroupCategory, isEligibleForTNEA, isEligibleForMedical } from './types';
+ import { engineeringCutoffs } from './PreviousYearCutoffs';
  import { CheckCircle2, AlertTriangle, XCircle, Star, MapPin, GraduationCap } from 'lucide-react';
  
  interface CollegeInfo {
@@ -78,12 +79,70 @@
      { name: 'Govt. Polytechnic, Madurai', location: 'Madurai', type: 'Government', fee: '₹2,000/year' },
    ],
  };
- 
+
+ /**
+  * Build a REAL, score-filtered list of engineering colleges (government
+  * AND self-financing private) from the shared engineeringCutoffs data.
+  * Only returns colleges whose cutoff the student's score can realistically
+  * reach. Falls back to OC cutoff if category is unknown (errs on safe side).
+  */
+ interface ReachableCollege {
+   name: string;
+   course: string;
+   cutoff: number;
+   delta: number;
+   type: 'Government' | 'Self-Financing';
+ }
+
+ const GOVT_HINTS = ['anna university', 'govt', 'government', 'ceg', 'mit,', 'gct', 'cit,', 'nit '];
+
+ const isGovernment = (collegeName: string): boolean => {
+   const n = collegeName.toLowerCase();
+   return GOVT_HINTS.some((h) => n.includes(h));
+ };
+
+ const getReachableEngineeringColleges = (
+   studentScore: number,
+   category?: string,
+ ): ReachableCollege[] => {
+   if (!studentScore || studentScore <= 0) return [];
+   const catKey = (category || 'oc').toLowerCase();
+   const validCat = ['oc', 'bc', 'mbc', 'sc', 'st'].includes(catKey) ? catKey : 'oc';
+
+   const REACH_BUFFER = 8;
+   const out: ReachableCollege[] = [];
+
+   for (const e of engineeringCutoffs) {
+     const raw = (e as Record<string, unknown>)[validCat];
+     if (typeof raw !== 'number') continue; // skip percentile (NIT/JEE) rows
+     const cutoff = raw;
+     const delta = studentScore - cutoff;
+     if (delta < -REACH_BUFFER) continue; // not realistically reachable
+     out.push({
+       name: e.college,
+       course: e.course,
+       cutoff,
+       delta,
+       type: isGovernment(e.college) ? 'Government' : 'Self-Financing',
+     });
+   }
+
+   out.sort((a, b) => {
+     const aReach = a.delta < 0 ? 1 : 0;
+     const bReach = b.delta < 0 ? 1 : 0;
+     if (aReach !== bReach) return aReach - bReach;
+     return b.cutoff - a.cutoff;
+   });
+
+   return out;
+ };
+
  interface EligibleCoursesProps {
    group: StudentGroup;
    cutoffScore: number;
    percentage: number;
    neetScore?: number;
+   communityCategory?: string;
  }
  
  const getCoursesByGroup = (group: StudentGroup, cutoff: number, percentage: number, neet?: number): EligibleCourse[] => {
@@ -145,7 +204,7 @@
    return courses;
  };
  
- export const EligibleCourses = ({ group, cutoffScore, percentage, neetScore }: EligibleCoursesProps) => {
+ export const EligibleCourses = ({ group, cutoffScore, percentage, neetScore, communityCategory }: EligibleCoursesProps) => {
    const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
    const category = getGroupCategory(group);
  
@@ -172,6 +231,11 @@
  
    const selectedCourseData = courses.find(c => c.id === selectedCourse);
    const collegesForCourse = selectedCourse ? collegeData[selectedCourse] || collegeData.arts_science : [];
+   // For engineering, build a REAL list from cutoff data, filtered by the
+   // student's score + community — includes private colleges, not just govt.
+   const reachableEngineering = selectedCourse === 'engineering'
+     ? getReachableEngineeringColleges(cutoffScore, communityCategory)
+     : [];
  
    return (
      <div className="bg-white rounded-xl shadow-sm border p-4 md:p-6 animate-fade-in">
@@ -292,22 +356,67 @@
            <DialogHeader>
              <DialogTitle className="flex items-center gap-3">
                <span className="text-2xl">{selectedCourseData?.icon}</span>
-               {selectedCourseData?.name} - Government Colleges
+               {selectedCourseData?.name}{selectedCourse === 'engineering' ? ' — Colleges You Can Reach' : ' — Government Colleges'}
              </DialogTitle>
            </DialogHeader>
  
            <div className="p-2 bg-green-50 rounded-lg border border-green-200 mb-4">
              <p className="text-sm text-green-800">
-               🎓 <strong>FREE EDUCATION:</strong> These government colleges offer free/subsidized education through counseling.
+               {selectedCourse === 'engineering' ? (<><strong>🎓 FEES VARY:</strong> Government colleges are heavily subsidised (~₹7,500/year). Self-financing private colleges charge more but are obtained through the same TNEA counselling.</>) : (<><strong>🎓 FREE EDUCATION:</strong> These government colleges offer free/subsidized education through counseling.</>)}
              </p>
            </div>
  
            <div className="p-3 bg-amber-50 rounded-lg border border-amber-200 mb-4">
              <p className="text-xs text-amber-800 leading-relaxed">
-               <strong>This is a reference list of government colleges offering this course — not a list of colleges you are guaranteed admission to.</strong> Each college has its own cutoff that changes every year and differs by community. A college appearing here does NOT mean your marks qualify for it. Use the cutoff predictor and the official counselling seat matrix to check which of these your score can actually reach.
+               {selectedCourse === 'engineering' ? (<><strong>These are colleges — government and self-financing private — whose 2025 cutoff your score can realistically reach for your community.</strong> Cutoffs drift a few marks each year, so treat 'Reach' colleges as possible-but-not-certain. This app carries a sample of colleges; the official seat matrix at tneaonline.org has the full list.</>) : (<><strong>This is a reference list of government colleges offering this course — not a list of colleges you are guaranteed admission to.</strong> Each college has its own cutoff that changes every year and differs by community. A college appearing here does NOT mean your marks qualify for it. Use the cutoff predictor and the official counselling seat matrix to check which of these your score can actually reach.</>)}
              </p>
            </div>
  
+           {selectedCourse === 'engineering' ? (
+             /* REAL filtered list — government + private, by score + community */
+             reachableEngineering.length > 0 ? (
+               <div className="space-y-2">
+                 {reachableEngineering.map((c, idx) => (
+                   <div key={idx} className="p-3 bg-gray-50 rounded-xl border">
+                     <div className="flex items-start justify-between gap-2">
+                       <div className="min-w-0">
+                         <h4 className="font-semibold text-gray-900 text-sm">{c.name}</h4>
+                         <p className="text-xs text-gray-600 mt-0.5">{c.course}</p>
+                       </div>
+                       <span className={cn(
+                         'inline-block px-2 py-1 text-[10px] rounded font-bold flex-shrink-0',
+                         c.type === 'Government'
+                           ? 'bg-emerald-100 text-emerald-700'
+                           : 'bg-blue-100 text-blue-700',
+                       )}>
+                         {c.type}
+                       </span>
+                     </div>
+                     <div className="mt-2 pt-2 border-t flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
+                       <span className="text-gray-500">
+                         Last cutoff: <span className="font-bold text-gray-800">{c.cutoff}/200</span>
+                       </span>
+                       <span className={cn(
+                         'font-bold',
+                         c.delta >= 0 ? 'text-emerald-700' : 'text-amber-700',
+                       )}>
+                         {c.delta >= 0
+                           ? `You clear it by +${c.delta.toFixed(1)}`
+                           : `Reach — ${Math.abs(c.delta).toFixed(1)} below cutoff`}
+                       </span>
+                     </div>
+                   </div>
+                 ))}
+               </div>
+             ) : (
+               <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 leading-relaxed">
+                 None of the colleges in this app's sample list are within reach of your
+                 current score for {(communityCategory || 'OC').toUpperCase()}. This app only carries
+                 a sample of colleges — there are many more across Tamil Nadu, including
+                 lower-cutoff ones, in the official counselling seat matrix at tneaonline.org.
+               </div>
+             )
+           ) : (
            <div className="space-y-3">
              {collegesForCourse.map((college, idx) => (
                <div key={idx} className="p-4 bg-gray-50 rounded-xl border">
@@ -341,6 +450,7 @@
                </div>
              ))}
            </div>
+           )}
  
            <div className="mt-4 flex gap-3">
              <Button
