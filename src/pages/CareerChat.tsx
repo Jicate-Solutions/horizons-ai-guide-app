@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { supabase } from '@/integrations/supabase/client';
+import { streamChatBackend } from '@/lib/chatBackend';
 import {
   Sheet,
   SheetContent,
@@ -148,8 +149,6 @@ const CAREER_CATEGORIES_12TH = [
   'Hospitality & Tourism',
   'Agriculture & Food Tech'
 ];
-
-const CHAT_URL = '/api/career-chat';
 
 // Local AI career responses when API is unavailable
 function getLocalCareerReply(msg: string): string {
@@ -495,13 +494,9 @@ const CareerChat = () => {
       let apiSuccess = false;
       
       try {
-        const response = await fetch(CHAT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
-          })
-        });
+        const response = await streamChatBackend(
+          userMessages.map((m) => ({ role: m.role, content: m.content }))
+        );
 
         if (response.ok && response.body) {
           // Check if it's a streaming response

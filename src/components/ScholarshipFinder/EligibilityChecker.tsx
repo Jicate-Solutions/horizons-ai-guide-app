@@ -11,6 +11,7 @@ import { Sparkles, CheckCircle2, XCircle, AlertCircle, Loader2, TrendingUp, Awar
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Scholarship } from "./types";
+import { analyseEligibilityLocally } from "./localEligibility";
 
 interface EligibilityCheckerProps {
   open: boolean;
@@ -134,17 +135,31 @@ export function EligibilityChecker({ open, onOpenChange, scholarships }: Eligibi
       });
 
       if (error) throw error;
-      
+
       setAnalysis(data);
       setStep('results');
     } catch (error: any) {
-      console.error("Eligibility check error:", error);
-      toast({
-        title: "Analysis Failed",
-        description: error.message || "Failed to analyze eligibility. Please try again.",
-        variant: "destructive",
-      });
-      setStep('profile');
+      // Edge function unreachable / not deployed — fall back to the local,
+      // rule-based matcher so the checker still works for the student.
+      console.warn("AI eligibility unavailable, using local rules:", error);
+      try {
+        const localAnalysis = analyseEligibilityLocally(profile, scholarships);
+        setAnalysis(localAnalysis);
+        setStep('results');
+        toast({
+          title: "Showing rule-based results",
+          description:
+            "The AI service is temporarily unavailable, so we matched you against scholarship rules directly. Results are accurate but without AI-written tips.",
+        });
+      } catch (fallbackErr: any) {
+        console.error("Local eligibility also failed:", fallbackErr);
+        toast({
+          title: "Analysis Failed",
+          description: fallbackErr.message || "Could not analyze eligibility. Please try again.",
+          variant: "destructive",
+        });
+        setStep('profile');
+      }
     } finally {
       setIsLoading(false);
     }

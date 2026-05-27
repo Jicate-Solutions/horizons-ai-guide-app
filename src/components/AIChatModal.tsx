@@ -7,6 +7,7 @@ import { AIMessageRenderer } from "@/components/AIMessageRenderer";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { streamChatBackend } from "@/lib/chatBackend";
 
 interface Message {
   id?: string;
@@ -19,8 +20,6 @@ interface AIChatModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const CHAT_URL = '/api/career-chat';
 
 // Local responses when API is unavailable
 function getLocalChatReply(msg: string): string {
@@ -290,11 +289,9 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
     let apiSuccess = false;
     
     try {
-      const resp = await fetch(CHAT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: userMessages.map(m => ({ role: m.role, content: m.content })) }),
-      });
+      const resp = await streamChatBackend(
+        userMessages.map(m => ({ role: m.role, content: m.content }))
+      );
 
       if (resp.ok) {
         const contentType = resp.headers.get("content-type") || "";
