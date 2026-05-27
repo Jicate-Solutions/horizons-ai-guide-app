@@ -1,9 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { AversionSwipe } from './AICareerPredictor/AversionSwipe';
+import { PivotPathwayCard, type PivotMatch } from './AICareerPredictor/PivotPathwayCard';
 import {
   computeConfidence,
   CONFIDENCE_THRESHOLDS,
   COURSE_TAGS,
+  PIVOT_PATHWAYS,
   type AversionTag,
   type Priority,
   type Stream,
@@ -120,6 +122,8 @@ const AICareerPredictor: React.FC = () => {
   const [recommendations, setRecommendations] = useState<CourseMatch[]>([]);
   /** Aversions captured from the swipe deck. Hard-filter source. */
   const [aversions, setAversions] = useState<AversionTag[]>([]);
+  /** Pivot pathway surfaced when the top aspiration was hard-filtered. */
+  const [pivot, setPivot] = useState<PivotMatch | null>(null);
   
   // New state for features
   const [searchQuery, setSearchQuery] = useState('');
@@ -305,6 +309,84 @@ const AICareerPredictor: React.FC = () => {
   };
 
   /**
+   * Detect whether the student's top aspiration was hard-filtered out
+   * by their aversion choices, and return the pivot pathway if one
+   * exists in the editorial table. Returns null when no pivot applies.
+   *
+   * Strategy: walk the student's interests in priority order; for each,
+   * find the highest-scoring stream-eligible course in that family;
+   * if THAT course's aversionConflicts overlap the student's aversions,
+   * it has been filtered out — that's the aspiration to pivot from.
+   */
+  const findPivotMatch = (chosenAversions: AversionTag[]): PivotMatch | null => {
+    if (chosenAversions.length === 0 || formData.interests.length === 0) return null;
+    const aversionSet = new Set(chosenAversions);
+
+    // Stream-eligible course pool (same predicate as calculateRecommendations).
+    const streamPool = courseDatabase.filter((course) => {
+      if (formData.stream === 'pcm') return course.stream === 'pcm';
+      if (formData.stream === 'pcb') return course.stream === 'pcb';
+      if (formData.stream === 'pcmb') return ['pcm', 'pcb', 'pcmb'].includes(course.stream);
+      if (formData.stream === 'commerce_math') return ['commerce', 'commerce_math'].includes(course.stream);
+      if (formData.stream === 'commerce') return course.stream === 'commerce';
+      if (formData.stream === 'arts') return course.stream === 'arts';
+      return true;
+    });
+
+    for (const interestId of formData.interests) {
+      const cats = interestToCourseCategories[interestId] || [];
+      // Top-aspiration candidates for this interest: courses in any matching
+      // category that are aversion-filtered.
+      const filteredAspirations = streamPool
+        .filter((c) => cats.includes(c.category))
+        .filter((c) => {
+          const tags = COURSE_TAGS[c.id];
+          return tags?.aversionConflicts.some((t) => aversionSet.has(t));
+        });
+      if (!filteredAspirations.length) continue;
+
+      // Prefer a course that has a curated pivot pathway. Fall back to the
+      // first filtered aspiration with a known pathway.
+      for (const aspiration of filteredAspirations) {
+        const pathway = PIVOT_PATHWAYS.find((p) => p.fromCourseId === aspiration.id);
+        if (!pathway) continue;
+
+        // Resolve the alternative course IDs, dropping any that are not
+        // stream-eligible for this student (an Arts student shouldn't see
+        // a B.Tech alternative just because the table happens to list it).
+        const resolved = pathway.alternatives
+          .map((a) => streamPool.find((c) => c.id === a.courseId))
+          .filter((c): c is Course => Boolean(c));
+        if (!resolved.length) continue;
+
+        // Re-order the pathway's alternatives to match the resolved order.
+        const orderedPathway: typeof pathway = {
+          ...pathway,
+          alternatives: resolved.map((c) =>
+            pathway.alternatives.find((a) => a.courseId === c.id)!,
+          ),
+        };
+
+        // Compose a short, honest filter-reason explanation.
+        const tags = COURSE_TAGS[aspiration.id];
+        const blockingAversions = tags?.aversionConflicts.filter((t) => aversionSet.has(t)) ?? [];
+        const filterReason =
+          blockingAversions.length > 0
+            ? "your aversion choices rule it out"
+            : "it's not a realistic fit right now";
+
+        return {
+          aspiration,
+          filterReason,
+          pathway: orderedPathway,
+          resolvedAlternatives: resolved,
+        };
+      }
+    }
+    return null;
+  };
+
+  /**
    * Run the actual prediction: loading animation, calculate, show results.
    * Called both from the direct flow (high confidence) and after the
    * aversion swipe completes.
@@ -322,6 +404,7 @@ const AICareerPredictor: React.FC = () => {
 
     const results = calculateRecommendations();
     setRecommendations(results);
+    setPivot(findPivotMatch(aversions));
     setStep('results');
   };
 
@@ -800,6 +883,7 @@ const AICareerPredictor: React.FC = () => {
                         setFormStep(1);
                         setSelectedForCompare(new Set());
                         setAversions([]);
+                        setPivot(null);
                         clearFilters();
                       }}
                     >
@@ -988,13 +1072,36 @@ const AICareerPredictor: React.FC = () => {
                   )}
                 </CardContent>
 
+                {/* Pivot Pathway Card — appears when the student's top
+                    aspiration was filtered out (e.g. they swiped "patient_care"
+                    but their top interest was healthcare). Shown ABOVE the
+                    ranked list so the alternative is the first thing seen. */}
+                {pivot && (
+                  <CardContent className="pt-4 pb-0">
+                    <PivotPathwayCard
+                      pivot={pivot}
+                      onCourseClick={(c) => {
+                        const match = recommendations.find((r) => r.id === c.id)
+                          ?? ({ ...c, matchScore: 70, matchReasons: ['Suggested as an alternative to your top aspiration'] } as CourseMatch);
+                        setSelectedCourse(match);
+                      }}
+                    />
+                  </CardContent>
+                )}
+
                 {/* Course List */}
                 <CardContent className="pt-4">
                   <div className="space-y-3">
                     {filteredRecommendations.length === 0 ? (
                       <div className="text-center py-8 text-muted-foreground">
                         <GraduationCap className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                        <p>{t('predictor.showingResults')}</p>
+                        {pivot ? (
+                          <p>
+                            No exact matches survived your filters — but your <strong className="text-foreground">closest viable option</strong> is shown above.
+                          </p>
+                        ) : (
+                          <p>{t('predictor.showingResults')}</p>
+                        )}
                         <Button variant="link" onClick={clearFilters}>{t('predictor.clearFilters')}</Button>
                       </div>
                     ) : (
