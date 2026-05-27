@@ -1,10 +1,16 @@
 /**
  * AI Career Predictor v2 — pure scoring engine.
  *
- * No React, no DOM, no side effects. All inputs are typed, all outputs
- * are derived. Designed to be unit-tested first, wired to UI later.
+ * No React, no DOM, no side effects. Deterministic for a given input.
  *
- * Implements §3 (confidence), §4 (scoring), §6 (pivot) of the design.
+ * Signals used:
+ *   - stream eligibility (upstream filter — courses passed in are already eligible)
+ *   - interest matches
+ *   - priority alignment
+ *   - budget fit
+ *   - duration preference
+ *   - hard filters: aversion conflicts, percentage cut-offs, budget caps
+ *   - pivot pathway when the top aspiration was hard-filtered
  */
 
 import type {
@@ -15,7 +21,6 @@ import type {
   ScoreBreakdown,
   ScoredCourse,
   ScoringResult,
-  SkillDimension,
   UserProfile,
 } from './types';
 import type { Course } from '@/data/courseDatabase';
@@ -25,20 +30,13 @@ import { PIVOT_PATHWAYS } from './pivotPathways';
 // ─── Tunable constants — kept in one place on purpose ─────────────────
 
 export const CONFIDENCE_THRESHOLDS = {
-  /** ≥ this: no extra layers shown. */
+  /** ≥ this: no aversion check shown. */
   showResultsImmediately: 75,
   /** Below this: aversion check triggers. */
   needAversionBelow: 75,
-  /** Below this: aptitude quiz triggers (and aversion). */
-  needQuizBelow: 60,
   /** Below this: results page leads with "let's tighten this up". */
   tooLowForResultsBelow: 40,
 } as const;
-
-/** STEM-family interest IDs from the interest cards in AICareerPredictor.tsx. */
-const STEM_INTEREST_IDS = new Set([
-  'technology', 'science', 'data', 'healthcare', 'aviation', 'construction',
-]);
 
 const STREAM_INTEREST_MISMATCH: Record<string, string[]> = {
   arts: ['technology', 'data', 'science'],
@@ -51,15 +49,13 @@ const CONFLICTING_PRIORITY_SETS: Array<string[]> = [
   ['job_security', 'creativity'],
 ];
 
-// ─── i18n helper ──────────────────────────────────────────────────────
-
 const L = (key: string, en: string): Localised => ({ key, en });
 
-// ─── §3 — Confidence ──────────────────────────────────────────────────
+// ─── Confidence ───────────────────────────────────────────────────────
 
 /**
  * Calculate how much we should trust the self-reported answers as-is.
- * Used to decide whether to trigger the optional layers.
+ * Used to decide whether to trigger the aversion check.
  */
 export function computeConfidence(profile: UserProfile): ConfidenceReport {
   const { self } = profile;
@@ -86,7 +82,7 @@ export function computeConfidence(profile: UserProfile): ConfidenceReport {
 
   // Conflicting priorities
   for (const conflict of CONFLICTING_PRIORITY_SETS) {
-    if (conflict.every((p) => self.priorities.includes(p as never))) {
+    if (conflict.every((p) => (self.priorities as string[]).includes(p))) {
       score -= 15;
       reasons.push(L('predictor.conf.priority_conflict',
         'Some of your priorities pull in different directions.'));
@@ -99,16 +95,6 @@ export function computeConfidence(profile: UserProfile): ConfidenceReport {
     score -= 10;
     reasons.push(L('predictor.conf.no_budget',
       'A budget range helps filter out courses your family cannot fund.'));
-  }
-
-  // Inflated self-rated skills
-  if (self.selfSkills) {
-    const fives = Object.values(self.selfSkills).filter((v) => v === 5).length;
-    if (fives >= 3) {
-      score -= 20;
-      reasons.push(L('predictor.conf.skills_inflated',
-        'You rated several skills at the top — a quick puzzle will help us confirm.'));
-    }
   }
 
   // Stream–interest mismatch
@@ -124,14 +110,14 @@ export function computeConfidence(profile: UserProfile): ConfidenceReport {
 
   score = Math.max(0, Math.min(100, score));
 
-  const hasStemInterest = self.interests.some((i) => STEM_INTEREST_IDS.has(i));
-  const needsAptitudeQuiz = score < CONFIDENCE_THRESHOLDS.needQuizBelow && hasStemInterest;
-  const needsAversionCheck = score < CONFIDENCE_THRESHOLDS.needAversionBelow;
-
-  return { overall: score, reasons, needsAptitudeQuiz, needsAversionCheck };
+  return {
+    overall: score,
+    reasons,
+    needsAversionCheck: score < CONFIDENCE_THRESHOLDS.needAversionBelow,
+  };
 }
 
-// ─── §4 — Course scoring ──────────────────────────────────────────────
+// ─── Course scoring ───────────────────────────────────────────────────
 
 /** Map an interest card ID onto course categories it should boost. */
 const INTEREST_TO_CATEGORIES: Record<string, string[]> = {
@@ -167,10 +153,11 @@ const tagsFor = (courseId: string) => COURSE_TAGS[courseId] ?? FALLBACK_COURSE_T
  * Returns the upper bound in lakhs for comparison, or null on failure.
  */
 function parseFeesUpperLakh(fees: string): number | null {
-  const m = fees.match(/(\d+(?:\.\d+)?)\s*[-–to]+\s*(\d+(?:\.\d+)?)\s*Lakh/i)
-    ?? fees.match(/(\d+(?:\.\d+)?)\s*Lakh/i);
-  if (!m) return null;
-  return parseFloat(m[m.length - 1]);
+  const range = fees.match(/(\d+(?:\.\d+)?)\s*[-–to]+\s*(\d+(?:\.\d+)?)\s*Lakh/i);
+  if (range) return parseFloat(range[2]);
+  const single = fees.match(/(\d+(?:\.\d+)?)\s*Lakh/i);
+  if (single) return parseFloat(single[1]);
+  return null;
 }
 
 interface ScoreOne {
@@ -184,22 +171,18 @@ interface ScoreOne {
  * Returns a ScoredCourse with hardFiltered=true if a strict filter failed.
  */
 function scoreOne({ course, profile, filtersDisabled }: ScoreOne): ScoredCourse {
-  const { self, behaviour, objective, constraints } = profile;
+  const { self, behaviour, constraints } = profile;
   const tags = tagsFor(course.id);
   const reasons: Localised[] = [];
   let hardFiltered = false;
 
   // ── Hard filters ───────────────────────────────────────────────────
-  // Stream eligibility is already handled by the existing filter step;
-  // here we only check the new aversion/percentage/budget filters.
-
   if (!filtersDisabled && behaviour) {
     const blocking = tags.aversionConflicts.filter((t) => behaviour.aversions.includes(t));
     if (blocking.length) hardFiltered = true;
   }
 
   if (!filtersDisabled && self.percentage !== null) {
-    // If the course wants 70%+ and the student is below by >10, drop.
     const reqMatch = course.eligibility.match(/(\d{2})\s*%/);
     if (reqMatch) {
       const need = parseInt(reqMatch[1], 10);
@@ -207,20 +190,23 @@ function scoreOne({ course, profile, filtersDisabled }: ScoreOne): ScoredCourse 
     }
   }
 
-  if (!filtersDisabled && constraints?.maxBudgetLakh !== null && constraints?.maxBudgetLakh !== undefined) {
+  if (
+    !filtersDisabled
+    && constraints?.maxBudgetLakh !== null
+    && constraints?.maxBudgetLakh !== undefined
+  ) {
     const upper = parseFeesUpperLakh(course.feesRange);
     if (upper !== null && upper > constraints.maxBudgetLakh * 1.2) {
       hardFiltered = true;
     }
   }
 
-  // ── Score (always computed, even for filtered courses, for pivot UX) ─
+  // ── Score ─────────────────────────────────────────────────────────
   const breakdown: ScoreBreakdown = {
-    base: 50, interest: 0, objective: 0, priority: 0,
-    budget: 0, duration: 0, microTask: 0,
+    base: 50, interest: 0, priority: 0, budget: 0, duration: 0,
   };
 
-  // Interest match: +5 per overlap, capped at +30.
+  // Interest match: +6 per overlap, capped at +36.
   let interestHits = 0;
   for (const i of self.interests) {
     const cats = INTEREST_TO_CATEGORIES[i] ?? [];
@@ -228,36 +214,10 @@ function scoreOne({ course, profile, filtersDisabled }: ScoreOne): ScoredCourse 
       interestHits += 1;
     }
   }
-  breakdown.interest = Math.min(30, interestHits * 5);
+  breakdown.interest = Math.min(36, interestHits * 6);
   if (interestHits > 0) {
     reasons.push(L('predictor.reason.interest_match',
       `Matches ${interestHits} of your selected interest area${interestHits > 1 ? 's' : ''}.`));
-  }
-
-  // Objective fit: ±20 for STEM, modest verbal bonus for arts.
-  if (objective) {
-    const quant = objective.scores.quantitative ?? 50;
-    const logical = objective.scores.logical ?? 50;
-    const verbal = objective.scores.verbal ?? 50;
-    const stemScore = (quant + logical) / 2;
-
-    if (tags.stemFamily) {
-      if (stemScore >= 75) {
-        breakdown.objective = 20;
-        reasons.push(L('predictor.reason.objective_high',
-          'Your aptitude scores show this matches your real strengths.'));
-      } else if (stemScore >= 60) {
-        breakdown.objective = 8;
-      } else if (stemScore < 40) {
-        breakdown.objective = -15;
-        reasons.push(L('predictor.reason.objective_low',
-          'Your aptitude scores suggest this would be a tough fit right now.'));
-      }
-    } else if (tags.aptitudeDemands.includes('verbal') && verbal >= 70) {
-      breakdown.objective = 10;
-      reasons.push(L('predictor.reason.verbal_strong',
-        'Your verbal aptitude is a strong match here.'));
-    }
   }
 
   // Priority alignment: +3 per matching priority.
@@ -298,20 +258,6 @@ function scoreOne({ course, profile, filtersDisabled }: ScoreOne): ScoredCourse 
     }
   }
 
-  // Micro-task.
-  const mt = behaviour?.microTasks?.[course.id];
-  if (mt) {
-    if (mt.tolerance >= 4) {
-      breakdown.microTask = 6;
-      reasons.push(L('predictor.reason.microtask_loved',
-        'You enjoyed the hands-on preview of this work.'));
-    } else if (mt.tolerance <= 2) {
-      breakdown.microTask = -12;
-      reasons.push(L('predictor.reason.microtask_disliked',
-        'The hands-on preview suggested this isn\'t your cup of tea.'));
-    }
-  }
-
   let total = Object.values(breakdown).reduce((s, v) => s + v, 0);
   total = Math.max(0, Math.min(100, Math.round(total)));
 
@@ -329,7 +275,7 @@ function scoreOne({ course, profile, filtersDisabled }: ScoreOne): ScoredCourse 
   };
 }
 
-// ─── §6 — Pivot pathway injection ─────────────────────────────────────
+// ─── Pivot pathway injection ──────────────────────────────────────────
 
 /**
  * Find the course the student most aspired to but was hard-filtered out of,
@@ -342,8 +288,6 @@ function findPivot(
 ): ScoringResult['pivot'] {
   if (!profile.self.interests.length) return undefined;
 
-  // Look at the top interest first. Find the highest-scoring course for it
-  // that was hard-filtered out.
   const topInterest = profile.self.interests[0];
   const interestCats = INTEREST_TO_CATEGORIES[topInterest] ?? [];
 
@@ -392,7 +336,6 @@ export function scoreCourses({
 }: ScoreArgs): ScoringResult {
   const allScored = eligibleCourses.map((course) => scoreOne({ course, profile }));
 
-  // The ranked list excludes hard-filtered courses.
   const ranked = allScored
     .filter((s) => !s.hardFiltered)
     .sort((a, b) => b.matchScore - a.matchScore)
@@ -406,5 +349,5 @@ export function scoreCourses({
 // ─── Re-exports for convenience ───────────────────────────────────────
 export type {
   AversionTag, ConfidenceReport, Localised, PivotPathway,
-  ScoredCourse, ScoringResult, SkillDimension, UserProfile,
+  ScoredCourse, ScoringResult, UserProfile,
 };
