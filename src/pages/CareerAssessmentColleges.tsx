@@ -181,7 +181,7 @@ const CareerAssessmentColleges = () => {
                 <p className="text-sm font-bold text-gray-900">Career Predictor</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 text-violet-700">AI</span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Answer 7 questions → Get your ideal career match</p>
+              <p className="text-xs text-gray-500 mt-0.5">Tell us about you → real course matches for your stream, marks &amp; budget</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-violet-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
