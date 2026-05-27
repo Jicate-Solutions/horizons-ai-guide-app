@@ -1,4 +1,14 @@
 import React, { useState, useMemo } from 'react';
+import { AversionSwipe } from './AICareerPredictor/AversionSwipe';
+import {
+  computeConfidence,
+  CONFIDENCE_THRESHOLDS,
+  COURSE_TAGS,
+  type AversionTag,
+  type Priority,
+  type Stream,
+  type UserProfile,
+} from '@/data/predictor';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -102,12 +112,14 @@ type SortOption = 'match' | 'fees-asc' | 'fees-desc' | 'duration';
 const AICareerPredictor: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [step, setStep] = useState<'intro' | 'form' | 'loading' | 'results'>('intro');
+  const [step, setStep] = useState<'intro' | 'form' | 'aversion' | 'loading' | 'results'>('intro');
   const [formStep, setFormStep] = useState(1);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [selectedCourse, setSelectedCourse] = useState<CourseMatch | null>(null);
   const [recommendations, setRecommendations] = useState<CourseMatch[]>([]);
+  /** Aversions captured from the swipe deck. Hard-filter source. */
+  const [aversions, setAversions] = useState<AversionTag[]>([]);
   
   // New state for features
   const [searchQuery, setSearchQuery] = useState('');
@@ -246,10 +258,58 @@ const AICareerPredictor: React.FC = () => {
       };
     });
 
-    return scoredCourses.sort((a, b) => b.matchScore - a.matchScore).slice(0, 15);
+    // Hard filter: drop any course whose aversion-conflict tags overlap the
+    // student's selected aversions. This is the v2 strict filter — see
+    // src/data/predictor/courseTags.ts. If we haven't reached the aversion
+    // step (no aversions captured), this is a no-op.
+    const aversionSet = new Set(aversions);
+    const survivors = aversionSet.size === 0
+      ? scoredCourses
+      : scoredCourses.filter((c) => {
+          const tags = COURSE_TAGS[c.id];
+          if (!tags) return true; // courses with no editorial tag are kept
+          return !tags.aversionConflicts.some((t) => aversionSet.has(t));
+        });
+
+    return survivors.sort((a, b) => b.matchScore - a.matchScore).slice(0, 15);
   };
 
-  const handlePredict = async () => {
+  /** Build the v2 profile from the current form, for the confidence engine. */
+  const buildProfile = (): UserProfile => {
+    const interestsList = formData.interests;
+    const priorityIdToTag: Record<string, Priority> = {
+      salary: 'high_salary',
+      security: 'job_security',
+      balance: 'work_life_balance',
+      growth: 'growth',
+      helping: 'helping_others',
+    };
+    const pctRangeToNumber: Record<string, number> = {
+      above90: 92, '80to90': 85, '70to80': 75,
+      '60to70': 65, '50to60': 55, below50: 45,
+    };
+    return {
+      schemaVersion: 2,
+      language: 'en',
+      self: {
+        stream: (formData.stream as Stream) || '',
+        percentage: pctRangeToNumber[formData.percentage] ?? null,
+        interests: interestsList,
+        priorities: formData.priorities
+          .map((p) => priorityIdToTag[p])
+          .filter((p): p is Priority => Boolean(p)),
+        budgetINR: null,        // optional in v1; the budget filter still runs
+        durationYears: null,    // not exposed in this version of the form
+      },
+    };
+  };
+
+  /**
+   * Run the actual prediction: loading animation, calculate, show results.
+   * Called both from the direct flow (high confidence) and after the
+   * aversion swipe completes.
+   */
+  const runPrediction = async () => {
     setStep('loading');
     setLoadingMessageIndex(0);
     setLoadingProgress(0);
@@ -263,6 +323,25 @@ const AICareerPredictor: React.FC = () => {
     const results = calculateRecommendations();
     setRecommendations(results);
     setStep('results');
+  };
+
+  const handlePredict = async () => {
+    // Confidence gate: if answers look incoherent, take the student
+    // through the aversion swipe first. See src/data/predictor/scoring.ts.
+    const profile = buildProfile();
+    const { overall, needsAversionCheck } = computeConfidence(profile);
+    const shouldShowAversion =
+      needsAversionCheck || overall < CONFIDENCE_THRESHOLDS.showResultsImmediately;
+    if (shouldShowAversion) {
+      setStep('aversion');
+      return;
+    }
+    await runPrediction();
+  };
+
+  const handleAversionComplete = async (chosen: AversionTag[]) => {
+    setAversions(chosen);
+    await runPrediction();
   };
 
   // Get unique filter options from recommendations
@@ -649,6 +728,21 @@ const AICareerPredictor: React.FC = () => {
             </motion.div>
           )}
 
+          {/* Aversion Swipe Step (v2 — triggered by confidence gate) */}
+          {step === 'aversion' && (
+            <motion.div
+              key="aversion"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+            >
+              <AversionSwipe
+                onBack={() => setStep('form')}
+                onComplete={handleAversionComplete}
+              />
+            </motion.div>
+          )}
+
           {/* Loading Step */}
           {step === 'loading' && (
             <motion.div
@@ -705,6 +799,7 @@ const AICareerPredictor: React.FC = () => {
                         setStep('form');
                         setFormStep(1);
                         setSelectedForCompare(new Set());
+                        setAversions([]);
                         clearFilters();
                       }}
                     >
