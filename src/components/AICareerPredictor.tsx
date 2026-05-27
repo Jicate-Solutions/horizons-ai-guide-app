@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { AversionSwipe } from './AICareerPredictor/AversionSwipe';
 import { PivotPathwayCard, type PivotMatch } from './AICareerPredictor/PivotPathwayCard';
+import { AutomationTagCallout } from './AICareerPredictor/AutomationTagCallout';
 import {
   computeConfidence,
   CONFIDENCE_THRESHOLDS,
@@ -1236,6 +1237,9 @@ const AICareerPredictor: React.FC = () => {
                         </li>
                       ))}
                     </ul>
+                    {/* Qualitative automation outlook — quiet, informational.
+                        Pulled from src/data/predictor/courseTags.ts. */}
+                    <AutomationTagCallout courseId={selectedCourse.id} />
                   </div>
 
                   <div>

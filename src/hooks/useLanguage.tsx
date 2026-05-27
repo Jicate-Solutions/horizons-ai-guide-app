@@ -537,6 +537,23 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.scholarship2': 'How to apply for government education loans?',
     'chat.scholarship3': 'Merit-based scholarships for engineering students',
     'chat.scholarship4': 'Financial aid options for studying abroad',
+
+    // ── Colleges-tab entry cards ─────────────────────────────────
+    // (Used by src/pages/CareerAssessmentColleges.tsx)
+    'colleges.cards.sports.title': 'Sports Quota Eligibility',
+    'colleges.cards.sports.subtitle': '6 verified colleges · deadlines updated · check in 30 seconds',
+    'colleges.cards.syllabus.title': 'Syllabus Tracker',
+    'colleges.cards.syllabus.subtitle': 'Track every chapter for NEET / JEE / CLAT',
+    'colleges.cards.alerts.title': 'Exam Alerts',
+    'colleges.cards.alerts.subtitle': 'All deadlines — never miss a registration',
+    'colleges.cards.guide.title': 'AI Career Guide',
+    'colleges.cards.guide.subtitle': 'Ask any career question — get instant AI guidance',
+    'colleges.cards.predictor.title': 'Career Predictor',
+    'colleges.cards.predictor.subtitle': 'Tell us about you → real course matches for your stream, marks & budget',
+    'colleges.cards.rank.title': 'Rank Predictor',
+    'colleges.cards.rank.subtitle': 'Enter score → See rank & eligible colleges',
+    'colleges.cards.topicHub.title': 'Topic Hub',
+    'colleges.cards.topicHub.subtitle': 'Study Guide + Practice Test + PYQ — chapter by chapter',
   },
   ta: {
     // TopBar
@@ -1043,6 +1060,28 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.scholarship2': 'அரசு கல்விக் கடன்களுக்கு எப்படி விண்ணப்பிப்பது?',
     'chat.scholarship3': 'பொறியியல் மாணவர்களுக்கான தகுதி அடிப்படையிலான உதவித்தொகைகள்',
     'chat.scholarship4': 'வெளிநாட்டில் படிக்க நிதி உதவி விருப்பங்கள்',
+
+    // ── Colleges-tab entry cards ─────────────────────────────────
+    // ⚠ DRAFT translations — need native-speaker review before launch.
+    // Translator's notes:
+    //  - 'குரூப்' (group) is the everyday TN-Tamil word for "stream";
+    //    'பாடப்பிரிவு' is more formal but reads stiff to a 12th student.
+    //  - 'கோர்ஸ்' (transliterated 'course') is preferred over 'பாடநெறி'
+    //    for the youth UI register.
+    'colleges.cards.sports.title': 'விளையாட்டு கோட்டா தகுதி',
+    'colleges.cards.sports.subtitle': '6 சரிபார்க்கப்பட்ட கல்லூரிகள் · புதுப்பிக்கப்பட்ட காலக்கெடு · 30 விநாடியில் பாருங்கள்',
+    'colleges.cards.syllabus.title': 'பாடத்திட்ட ட்ராக்கர்',
+    'colleges.cards.syllabus.subtitle': 'NEET / JEE / CLAT-க்கான ஒவ்வொரு அத்தியாயத்தையும் கண்காணியுங்கள்',
+    'colleges.cards.alerts.title': 'தேர்வு அறிவிப்புகள்',
+    'colleges.cards.alerts.subtitle': 'அனைத்து கடைசி தேதிகளும் — பதிவை தவறவிட வேண்டாம்',
+    'colleges.cards.guide.title': 'AI தொழில் வழிகாட்டி',
+    'colleges.cards.guide.subtitle': 'எந்த தொழில் கேள்வியும் கேளுங்கள் — உடனடி AI வழிகாட்டுதல்',
+    'colleges.cards.predictor.title': 'தொழில் கணிப்பான்',
+    'colleges.cards.predictor.subtitle': 'உங்களைப் பற்றி சொல்லுங்கள் → உங்கள் குரூப், மதிப்பெண் மற்றும் பட்ஜெட்டுக்கு ஏற்ற நிஜமான கோர்ஸ்கள்',
+    'colleges.cards.rank.title': 'ரேங்க் கணிப்பான்',
+    'colleges.cards.rank.subtitle': 'மதிப்பெண்ணை உள்ளிடுங்கள் → ரேங்க் மற்றும் தகுதியான கல்லூரிகளைப் பாருங்கள்',
+    'colleges.cards.topicHub.title': 'டாபிக் ஹப்',
+    'colleges.cards.topicHub.subtitle': 'படிப்பு வழிகாட்டி + பயிற்சித் தேர்வு + PYQ — அத்தியாயம் வாரியாக',
   },
   // Hindi - Comprehensive translations
   hi: {
@@ -1159,6 +1198,23 @@ const translations: Record<Language, Record<string, string>> = {
     // Language Selector
     'lang.select': 'भाषा चुनें',
     'lang.current': 'वर्तमान भाषा',
+
+    // ── Colleges-tab entry cards ─────────────────────────────────
+    // ⚠ DRAFT translations — need native-speaker review before launch.
+    'colleges.cards.sports.title': 'स्पोर्ट्स कोटा पात्रता',
+    'colleges.cards.sports.subtitle': '6 सत्यापित कॉलेज · अपडेटेड डेडलाइन · 30 सेकंड में जांचें',
+    'colleges.cards.syllabus.title': 'सिलेबस ट्रैकर',
+    'colleges.cards.syllabus.subtitle': 'NEET / JEE / CLAT के हर चैप्टर को ट्रैक करें',
+    'colleges.cards.alerts.title': 'परीक्षा अलर्ट',
+    'colleges.cards.alerts.subtitle': 'सभी डेडलाइन — कोई भी रजिस्ट्रेशन न छूटे',
+    'colleges.cards.guide.title': 'AI करियर गाइड',
+    'colleges.cards.guide.subtitle': 'कोई भी करियर सवाल पूछें — तुरंत AI मार्गदर्शन',
+    'colleges.cards.predictor.title': 'करियर प्रेडिक्टर',
+    'colleges.cards.predictor.subtitle': 'अपने बारे में बताएं → अपनी स्ट्रीम, अंक और बजट के लिए असली कोर्स विकल्प',
+    'colleges.cards.rank.title': 'रैंक प्रेडिक्टर',
+    'colleges.cards.rank.subtitle': 'स्कोर डालें → रैंक और योग्य कॉलेज देखें',
+    'colleges.cards.topicHub.title': 'टॉपिक हब',
+    'colleges.cards.topicHub.subtitle': 'स्टडी गाइड + प्रैक्टिस टेस्ट + PYQ — चैप्टर के अनुसार',
   },
   // Telugu - Comprehensive translations
   te: {
@@ -1213,6 +1269,25 @@ const translations: Record<Language, Record<string, string>> = {
     'common.submit': 'സമർപ്പിക്കുക',
     'common.search': 'തിരയുക',
     'lang.select': 'ഭാഷ തിരഞ്ഞെടുക്കുക',
+
+    // ── Colleges-tab entry cards ─────────────────────────────────
+    // ⚠⚠ DRAFT translations — confidence noticeably lower than for
+    // Tamil/Hindi. STRONGLY recommend a Malayalam-native review pass
+    // before launch. Keys missing here will fall back to English.
+    'colleges.cards.sports.title': 'സ്പോർട്സ് ക്വോട്ട യോഗ്യത',
+    'colleges.cards.sports.subtitle': '6 പരിശോധിച്ച കോളേജുകൾ · പുതുക്കിയ ഡെഡ്‌ലൈൻ · 30 സെക്കൻഡിൽ പരിശോധിക്കുക',
+    'colleges.cards.syllabus.title': 'സിലബസ് ട്രാക്കർ',
+    'colleges.cards.syllabus.subtitle': 'NEET / JEE / CLAT-ന്റെ ഓരോ ചാപ്റ്ററും ട്രാക്ക് ചെയ്യുക',
+    'colleges.cards.alerts.title': 'പരീക്ഷാ അലേർട്ടുകൾ',
+    'colleges.cards.alerts.subtitle': 'എല്ലാ അവസാന തീയതികളും — ഒരു രജിസ്ട്രേഷനും നഷ്ടപ്പെടരുത്',
+    'colleges.cards.guide.title': 'AI കരിയർ ഗൈഡ്',
+    'colleges.cards.guide.subtitle': 'ഏത് കരിയർ ചോദ്യവും ചോദിക്കൂ — തൽക്ഷണ AI മാർഗനിർദ്ദേശം',
+    'colleges.cards.predictor.title': 'കരിയർ പ്രെഡിക്റ്റർ',
+    'colleges.cards.predictor.subtitle': 'നിങ്ങളെക്കുറിച്ച് പറയൂ → നിങ്ങളുടെ സ്ട്രീം, മാർക്ക്, ബജറ്റിന് യഥാർത്ഥ കോഴ്സ് നിർദ്ദേശങ്ങൾ',
+    'colleges.cards.rank.title': 'റാങ്ക് പ്രെഡിക്റ്റർ',
+    'colleges.cards.rank.subtitle': 'സ്കോർ നൽകുക → റാങ്കും യോഗ്യമായ കോളേജുകളും കാണുക',
+    'colleges.cards.topicHub.title': 'ടോപിക് ഹബ്',
+    'colleges.cards.topicHub.subtitle': 'പഠന ഗൈഡ് + പ്രാക്ടീസ് ടെസ്റ്റ് + PYQ — ചാപ്റ്റർ അനുസരിച്ച്',
   },
   // Bengali - Comprehensive translations
   bn: {

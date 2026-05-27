@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { useLanguage } from '@/hooks/useLanguage';
 import { CollegesPageLayout } from '@/components/CollegesPageLayout';
 import { cn } from '@/lib/utils';
 import {
@@ -66,6 +67,7 @@ const detectStream = (raw: string): StreamKey => {
 const CareerAssessmentColleges = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const meta = user?.user_metadata || {};
   const userName = (meta.display_name || '').split(' ')[0] || 'Student';
@@ -112,11 +114,11 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 flex-wrap">
-                <p className="text-sm font-bold text-gray-900">Sports Quota Eligibility</p>
+                <p className="text-sm font-bold text-gray-900">{t('colleges.cards.sports.title')}</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-900">FEATURED</span>
               </div>
               <p className="text-xs text-gray-600 mt-0.5">
-                6 verified colleges · deadlines updated · check in 30 seconds
+                {t('colleges.cards.sports.subtitle')}
               </p>
               <p className="text-[10px] text-amber-700 font-tamil mt-0.5">
                 விளையாட்டு கோட்டா தகுதி — 30 விநாடியில் பாருங்கள்
@@ -133,10 +135,10 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Syllabus Tracker</p>
+                <p className="text-sm font-bold text-gray-900">{t('colleges.cards.syllabus.title')}</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">NEW</span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Track every chapter for NEET / JEE / CLAT</p>
+              <p className="text-xs text-gray-500 mt-0.5">{t('colleges.cards.syllabus.subtitle')}</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
@@ -149,10 +151,10 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Exam Alerts</p>
+                <p className="text-sm font-bold text-gray-900">{t('colleges.cards.alerts.title')}</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700">NEW</span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">All deadlines — never miss a registration</p>
+              <p className="text-xs text-gray-500 mt-0.5">{t('colleges.cards.alerts.subtitle')}</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-red-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
@@ -164,8 +166,8 @@ const CareerAssessmentColleges = () => {
               <MessageCircle className="w-6 h-6" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-bold text-gray-900">AI Career Guide</p>
-              <p className="text-xs text-gray-500 mt-0.5">Ask any career question — get instant AI guidance</p>
+              <p className="text-sm font-bold text-gray-900">{t('colleges.cards.guide.title')}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{t('colleges.cards.guide.subtitle')}</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
@@ -178,10 +180,10 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Career Predictor</p>
+                <p className="text-sm font-bold text-gray-900">{t('colleges.cards.predictor.title')}</p>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-100 text-violet-700">AI</span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Tell us about you → real course matches for your stream, marks &amp; budget</p>
+              <p className="text-xs text-gray-500 mt-0.5">{t('colleges.cards.predictor.subtitle')}</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-violet-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
@@ -193,8 +195,8 @@ const CareerAssessmentColleges = () => {
               <TrendingUp className="w-6 h-6" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-bold text-gray-900">Rank Predictor</p>
-              <p className="text-xs text-gray-500 mt-0.5">Enter score → See rank & eligible colleges</p>
+              <p className="text-sm font-bold text-gray-900">{t('colleges.cards.rank.title')}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{t('colleges.cards.rank.subtitle')}</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
@@ -207,10 +209,10 @@ const CareerAssessmentColleges = () => {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Topic Hub</p>
+                <p className="text-sm font-bold text-gray-900">{t('colleges.cards.topicHub.title')}</p>
                 <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-600 text-white">START HERE</span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Study Guide + Practice Test + PYQ — chapter by chapter</p>
+              <p className="text-xs text-gray-500 mt-0.5">{t('colleges.cards.topicHub.subtitle')}</p>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </button>
