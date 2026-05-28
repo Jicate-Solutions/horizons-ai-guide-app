@@ -125,4 +125,33 @@ export const AVERSION_CARDS: AversionCard[] = [
     detail: L('predictor.aversion.sales_persuasion.detail',
       'Sales, marketing, hospitality and entrepreneurship lean on this skill.'),
   },
+  // ─── Discovery Expansion additions (May 2026) ────────────────────────────
+  // Three tags added alongside Batches 2 + 3 of the Discovery roadmap so the
+  // new niche careers (Forensic Science, Marine Engineering, Aerospace,
+  // Defence Studies) can be honestly filtered for students whose temperament
+  // would not suit those specific demands.
+  {
+    tag: 'travel_away',
+    emoji: '🧳',
+    headline: L('predictor.aversion.travel_away.headline',
+      'Months away from home for work'),
+    detail: L('predictor.aversion.travel_away.detail',
+      'Merchant navy, oil rigs, aerospace project sites and many defence postings require extended periods away from family.'),
+  },
+  {
+    tag: 'physical_training',
+    emoji: '🏃',
+    headline: L('predictor.aversion.physical_training.headline',
+      'Daily physical training, drills and fitness standards'),
+    detail: L('predictor.aversion.physical_training.detail',
+      'Defence, marine cadet programs and some uniformed services demand sustained PT and fitness discipline.'),
+  },
+  {
+    tag: 'graphic_content',
+    emoji: '🩸',
+    headline: L('predictor.aversion.graphic_content.headline',
+      'Working with crime scenes, autopsies, or graphic forensic evidence'),
+    detail: L('predictor.aversion.graphic_content.detail',
+      'Forensic science, pathology and some criminology work involve regular exposure to disturbing physical evidence.'),
+  },
 ];

@@ -66,7 +66,10 @@ export type AversionTag =
   | 'creative_pressure'
   | 'high_competition'
   | 'paperwork'
-  | 'sales_persuasion';
+  | 'sales_persuasion'
+  | 'travel_away'
+  | 'physical_training'
+  | 'graphic_content';
 
 export interface BehaviouralSignals {
   /** Tasks the student said they hate. STRICT FILTER, not a soft penalty. */

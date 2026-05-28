@@ -67,15 +67,22 @@ export type CareerFamily =
   | 'healthcare-nursing'
   | 'healthcare-physio'
   | 'healthcare-allied'
+  | 'healthcare-nutrition'
   | 'engineering-mechanical'
   | 'engineering-electronics'
   | 'engineering-civil'
   | 'engineering-mechatronics'
   | 'engineering-biotech'
+  | 'engineering-aerospace'
+  | 'engineering-marine'
+  | 'science-forensic'
+  | 'science-food-tech'
+  | 'science-fisheries'
   | 'commerce-ca-cma'
   | 'commerce-bcom'
   | 'commerce-bba'
   | 'law'
+  | 'defence-strategic'
   | 'arts-language'
   | 'agriculture';
 
@@ -4141,7 +4148,426 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Python programming + basic scripting', why: 'Security tooling is heavily Python — automation scripts, exploit prototypes, log analysis. Strong Python is a working necessity.', freeResource: 'freeCodeCamp Python, Automate the Boring Stuff with Python (free online)' },
     ],
     lastReviewed: '2026-05',
+  },  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 2: MODERN SCIENCES (Discovery Expansion, May 2026) ──────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Niche TN UG science courses students rarely consider. Each entry is in
+  // its own family — no dedup against existing careers — because each is a
+  // genuinely distinct domain (forensics ≠ biotech, food tech ≠ chemistry,
+  // fisheries ≠ agriculture, clinical nutrition ≠ general healthcare).
+  // First batch to exercise the new `graphic_content` aversion tag.
+
+  // ─── B.SC FORENSIC SCIENCE ─────────────────────────────────────────────────
+  {
+    id: 'forensic-scientist',
+    family: 'science-forensic',
+    interestTags: ['research', 'law'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['graphic_content', 'lab_practical', 'sitting_long'],
+    automation: 'human_facing',
+    automationNote: 'Forensic analysis combines scientific testing with court-defensible expert judgement — work that demands a human who can be cross-examined under oath. AI helps with pattern matching; the conclusions and testimony remain firmly human.',
+    title: 'Forensic Scientist (B.Sc Forensic Science)',
+    titleTa: 'நீதி அறிவியல் விஞ்ஞானி',
+    icon: '🔬',
+    color: 'from-stone-600 to-slate-700',
+    whatIsIt:
+      'A three-year B.Sc that trains graduates to apply science to crime investigation — DNA analysis, fingerprinting, ballistics, toxicology, document examination, digital forensics, forensic psychology basics. Career outcomes: state and central forensic science labs, police forensic units, private forensic labs, expert witness work, increasingly cyber-forensics roles. The work is part science, part courtroom — graduates testify under oath about their findings.',
+    eligibleStreams: ['pcb', 'pcm', 'pcmb'],
+    strongGroupCodes: ['208', '204', '102', '103'],
+    ugCourses: ['B.Sc Forensic Science', 'B.Sc Forensic Science & Criminology', 'B.Sc Cyber Forensics'],
+    entranceExams: ['None (direct admission)', 'CUET'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree, typically followed by M.Sc Forensic Science for serious career roles. Government forensic lab positions usually require the M.Sc and a recruitment exam.',
+    skillWeights: { mathematics: 5, language: 7, science: 8, creativity: 6, people: 4, physical: 2, digital: 7 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 5, prestige: 7, passion: 8, growth: 6, hometown: 7 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–5 LPA fresh at private forensic labs and as research assistants; government forensic scientist roles (post M.Sc + exam) pay ₹4–8 LPA fresh with strong job security.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years in senior government forensic roles; private cyber-forensics specialists can exceed this. Court expert witness work is paid separately and can be substantial.',
+      note: 'Modest starting salaries but extraordinary job security in the government track. Cyber-forensics is the fastest-growing specialisation — pays particularly well as corporate and law-enforcement demand grows.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady but limited volume in the government track; growing fast in cyber-forensics and private investigation labs.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission for most B.Sc programs; the bottleneck is the M.Sc + state forensic-scientist recruitment exam later.' },
+    collegeTiers: [
+      { label: 'Top forensic-science programs (AI estimate)', examples: ['Madras University', 'Madurai Kamaraj University', 'SRM University (Forensic Sciences)'], cutoffGuide: 'AI estimate — 75%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year at university programs; ₹1L+ at private universities.' },
+      { label: 'Strong colleges (AI estimate)', examples: ['Bharathidasan University', 'Periyar University Salem', 'a small number of TN private colleges'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹20K–60K / year' },
+      { label: 'Other options (AI estimate)', examples: ['Limited TN-wide availability — verify each program individually'], cutoffGuide: 'AI estimate — varies; 60%+.', feeRange: 'AI estimate — ₹15K–80K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Forensic Science in TN costs roughly ₹60K–4L total. The serious investment is the M.Sc that typically follows.',
+    backupOptions: ['M.Sc Forensic Science (typically required for government roles)', 'Cyber-forensics specialisation — fastest growing subfield', 'Police / law enforcement entry (some states have direct routes)', 'Pivot to general lab analyst, QA chemistry, or research roles', 'M.Sc + PhD academic route'],
+    honestCaveat: 'The CSI/Forensic Files version of this career is dramatically different from the day-to-day reality. Most forensic work is meticulous, slow lab testing — running 200 samples through standardised protocols — not solving murders. Court testimony is real but not glamorous: you spend hours being cross-examined on chain-of-custody documentation. Students drawn by the TV-show version often quit; those drawn by the science thrive. The graphic-content reality (crime scene photos, autopsy reports, decomposition descriptions) is constant — be honest with yourself about your tolerance before joining.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCB or PCM', titleTa: '+12 PCB/PCM 70%+', detail: 'Most B.Sc Forensic programs accept multiple streams. Strong Chemistry + Biology (or Chemistry + Physics) matters more than one specific group.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc Forensic Science + active lab practice', titleTa: 'B.Sc + ஆய்வக பயிற்சி', detail: 'Choose programs with serious lab access. Visit a forensic lab during the degree if at all possible — connections matter for M.Sc admissions and government recruitment.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.Sc Forensic Science + forensic-scientist recruitment exam', titleTa: 'M.Sc + அரசு தேர்வு', detail: 'For state forensic-lab roles. Alternative: cyber-forensics specialisation + private-sector role.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Honestly test your tolerance for graphic content', titleTa: 'வரைகலை உள்ளடக்க சகிப்புத்தன்மை சோதனை', detail: 'Watch a few real forensic documentaries (not crime dramas) — Forensic Files, autopsy-explanation YouTube channels. If you cannot watch comfortably for 30 minutes, this is not the right field.', priority: 'high' },
+      { title: 'Strengthen 12th Chemistry + Biology', titleTa: 'வேதியியல் + உயிரியல் வலுப்படுத்து', detail: 'The science foundation of all forensic work. Year 1 leans heavily on chemistry; weak fundamentals make it grindingly hard.', priority: 'high' },
+      { title: 'Read a forensic-science introduction', titleTa: 'அறிமுக புத்தகம் படிக்கவும்', detail: '"Forensic Science: An Introduction" by Saferstein gives an honest picture of the field. Cheap on Amazon India / available in libraries.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Chemistry — analytical chemistry specifically', why: 'The technical foundation of forensic toxicology, drug analysis, and chemical evidence work. Strong 12th Chemistry makes year 1 dramatically easier.', freeResource: 'NCERT Chemistry, MIT OpenCourseWare introductory chemistry' },
+      { skill: 'Clear, precise written English', why: 'Forensic reports become court evidence. A forensic scientist who writes ambiguously gets cases thrown out. Practice precise technical writing from year 1.', freeResource: 'BBC Learning English, online technical-writing tutorials' },
+      { skill: 'Attention to procedural detail', why: 'Chain-of-custody documentation is the most-tested topic in court. Methodical, accurate process-following is the career-defining habit.', freeResource: 'Any hobby that rewards process precision — laboratory home-experiments, methodical cooking, structured note-taking' },
+    ],
+    lastReviewed: '2026-05',
   },
+
+  // ─── B.TECH FOOD TECHNOLOGY ────────────────────────────────────────────────
+  {
+    id: 'food-technologist',
+    family: 'science-food-tech',
+    interestTags: ['research', 'engineering'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'field_outdoor'],
+    automation: 'ai_augmented',
+    automationNote: 'Automation has transformed food manufacturing, but the food technologist who designs the process, ensures food safety, and develops new products is irreplaceable. India\'s food-processing sector is among the fastest-growing in the world.',
+    title: 'Food Technologist (B.Tech Food Technology)',
+    titleTa: 'உணவு தொழில்நுட்ப நிபுணர்',
+    icon: '🍲',
+    color: 'from-amber-500 to-orange-600',
+    whatIsIt:
+      'A four-year B.Tech blending chemical engineering, microbiology and food science — process design, food safety (HACCP, FSSAI compliance), product development, packaging technology, sensory science, dairy/cereal/meat technology. Career outcomes: FMCG companies (ITC, Nestle, Britannia, Amul), dairy cooperatives, food-safety roles, food-tech startups, government food-quality labs.',
+    eligibleStreams: ['pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['102', '101', '208'],
+    ugCourses: ['B.Tech Food Technology', 'B.Tech Food Process Engineering', 'B.Sc Food Science & Technology'],
+    entranceExams: ['TNEA', 'TNAU (Agri)', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Strong placement at FMCG companies, dairy cooperatives, and food-tech startups during the final year. The FSSAI Food Safety Officer recruitment route is also well-trodden after the degree.',
+    skillWeights: { mathematics: 7, language: 5, science: 8, creativity: 5, people: 4, physical: 3, digital: 6 },
+    priorityFit: { salary: 6, security: 7, balance: 7, abroad: 6, prestige: 6, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–6 LPA fresh at FMCG companies; ₹4–7 LPA at top dairy cooperatives and food-tech startups. FSSAI Food Safety Officer roles ₹5–8 LPA fresh with government benefits.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for product development specialists, food-safety leads, and operations managers. Senior R&D roles at large FMCGs can exceed substantially.',
+      note: 'Modest at entry, but the food sector\'s structural growth (food-processing is among India\'s priority sectors) creates strong mid-career trajectories. Specialisation in dairy, packaging, or food-safety auditing materially boosts earnings.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and growing. India\'s food-processing sector expansion (post-Production Linked Incentive schemes), rising packaged-food consumption, and FSSAI regulation enforcement all create sustained hiring.' },
+    entryDifficulty: { score: 4, note: 'AI estimate — direct admission at most colleges. Top programs at IICPT Thanjavur and Anna University CFT are more selective.' },
+    collegeTiers: [
+      { label: 'Top food-tech programs (AI estimate)', examples: ['IICPT Thanjavur (Indian Institute of Crop Processing Technology)', 'Anna University CFT (Centre for Food Technology)', 'TNAU Coimbatore'], cutoffGuide: 'AI estimate — TNEA cutoff 175-195 / strong 12th marks typical.', feeRange: 'AI estimate — ₹40K–1.5L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Periyar University', 'Annamalai University', 'Karunya Institute', 'Sastra University'], cutoffGuide: 'AI estimate — 65%+ in 12th typical.', feeRange: 'AI estimate — ₹50K–2L / year' },
+      { label: 'Other TN colleges with Food Tech tracks (AI estimate)', examples: ['Several Anna University affiliated and private colleges'], cutoffGuide: 'AI estimate — 60%+ typical.', feeRange: 'AI estimate — ₹40K–1.5L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech Food Technology in TN costs roughly ₹2L–8L total. IICPT and government programs are dramatically cheaper than private universities.',
+    backupOptions: ['M.Tech Food Technology — research/academic route', 'FSSAI Food Safety Officer (state recruitment exam)', 'Pivot to general chemical engineering or biotech roles', 'Quality assurance / QC roles in pharma or chemicals', 'Food-tech startups (D2C food brands, agritech)'],
+    honestCaveat: 'Food Technology is process engineering applied to food — students who pictured restaurant chef work or food blogging end up disappointed. The work is industrial: stainless steel tanks, sterile production lines, HACCP audits, batch records. Engineers who genuinely enjoy industrial chemistry and process problem-solving thrive; those who wanted "food" without "technology" usually struggle. Visit a food-processing plant before committing if at all possible.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCM or PCB', titleTa: '+12 70%+', detail: 'TNEA / TNAU / JEE Main entry. Strong Chemistry + Mathematics matter most.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech Food Tech + industry exposure', titleTa: 'B.Tech + தொழில் அனுபவம்', detail: 'Choose programs with active industry tie-ups. Internships at FMCG companies during summer breaks transform placement outcomes.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Industry, FSSAI, or M.Tech', titleTa: 'தொழில் / FSSAI / M.Tech', detail: 'FMCG companies, FSSAI officer recruitment, or research-track M.Tech. Three credible exits.', window: 'Years 4–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a food-processing facility if possible', titleTa: 'உணவு பதப்படுத்தும் ஆலை பார்வை', detail: 'Many Amul, Aavin, ITC and Britannia facilities offer student tours. One visit transforms understanding of the field.', priority: 'high' },
+      { title: 'Strengthen Chemistry — organic + general', titleTa: 'வேதியியல் வலுப்படுத்துதல்', detail: 'Food science is applied chemistry. Strong 12th Chemistry on organic + general topics makes year 1 dramatically easier.', priority: 'high' },
+      { title: 'Read the FSSAI website intro pages', titleTa: 'FSSAI அறிமுகம்', detail: 'India\'s food regulator. Understanding what FSSAI does, and the role of food technologists in compliance, sets useful expectations.', priority: 'medium', link: 'https://www.fssai.gov.in' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Chemistry — particularly organic and biochemistry basics', why: 'The deep foundation of food technology. Strong 12th Chemistry directly translates into year 1 understanding.', freeResource: 'NCERT Chemistry, MIT OpenCourseWare biochemistry intro' },
+      { skill: 'Methodical, process-oriented thinking', why: 'Food production is about controlled, reproducible processes. Practising methodical step-by-step work (precision cooking, structured experiments) builds the right habit.', freeResource: 'Serious cooking with measurements and timing; following industrial-cooking YouTube channels' },
+      { skill: 'Basic Excel for batch records / quality data', why: 'Food-tech work involves constant data tracking — yields, defect rates, sensory scores. Comfort with Excel from year 1 is a real asset.', freeResource: 'Microsoft Excel free YouTube basics' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.F.SC FISHERIES SCIENCE ──────────────────────────────────────────────
+  {
+    id: 'fisheries-scientist',
+    family: 'science-fisheries',
+    interestTags: ['environment', 'research', 'govt'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['field_outdoor', 'lab_practical', 'travel_away'],
+    automation: 'human_facing',
+    automationNote: 'Fisheries science combines field work (fish farms, coastal surveys, hatcheries) with lab analysis and policy work. The hands-on nature of aquaculture and the judgement-heavy work of fisheries management remain firmly human. India\'s blue-economy push (PMMSY) drives sustained growth.',
+    title: 'Fisheries Scientist (B.F.Sc)',
+    titleTa: 'மீன்வளம் விஞ்ஞானி',
+    icon: '🐟',
+    color: 'from-cyan-600 to-blue-700',
+    whatIsIt:
+      'A four-year B.F.Sc (Bachelor of Fisheries Science) — aquaculture, marine biology, fish processing technology, fishery economics, fisheries extension. Career outcomes: TN Fisheries Department, ICAR research institutes, aquaculture companies, fisheries cooperatives, hatchery management, fish-processing exports, fisheries extension officer roles. India is the world\'s second-largest fish producer; the sector is rapidly modernising.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203'],
+    ugCourses: ['B.F.Sc (Bachelor of Fisheries Science)', 'B.Sc Aquaculture'],
+    entranceExams: ['TNAU (Agri)', 'None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year degree. Government fisheries officer recruitment via TNPSC after the degree; private sector aquaculture and fish-processing roles are open at graduation.',
+    skillWeights: { mathematics: 5, language: 5, science: 8, creativity: 5, people: 5, physical: 6, digital: 5 },
+    priorityFit: { salary: 5, security: 8, balance: 5, abroad: 5, prestige: 5, passion: 8, growth: 6, hometown: 6 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at private aquaculture and fish-processing firms; ₹4–7 LPA fresh at TN Fisheries Department roles via TNPSC.',
+      midCareerLPA: 'AI estimate — ₹7–14 LPA after 7+ years for senior aquaculture managers, research scientists, and government fisheries officers. Mid-career private hatchery roles and exports specialists can exceed.',
+      note: 'Modest but very secure salaries in the government track. The blue-economy growth means private aquaculture (shrimp farming, ornamental fish, value-added seafood) has rising upside.',
+    },
+    demand: { score: 7, note: 'AI estimate — moderate but growing. India\'s seafood exports (₹60,000+ Cr annually), aquaculture expansion, and the PMMSY (Pradhan Mantri Matsya Sampada Yojana) scheme create sustained demand.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — TN has the dedicated TNJFU and Fisheries College at Thoothukudi; seats are limited but cutoffs are accessible.' },
+    collegeTiers: [
+      { label: 'Top fisheries colleges in TN (AI estimate)', examples: ['Fisheries College & Research Institute Thoothukudi (TNJFU)', 'Fisheries College & Research Institute Ponneri (TNJFU)', 'Tamil Nadu Dr. J. Jayalalithaa Fisheries University main campus'], cutoffGuide: 'AI estimate — 70%+ in 12th PCB typical.', feeRange: 'AI estimate — ₹15K–60K / year (state university fees)' },
+      { label: 'Alternative TN options (AI estimate)', examples: ['B.Sc Aquaculture at some Annamalai University and Bharathidasan University programs'], cutoffGuide: 'AI estimate — 60%+ typical.', feeRange: 'AI estimate — ₹15K–50K / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['College of Fisheries CIFE Mumbai (ICAR)', 'KUFOS Kerala', 'College of Fisheries Mangalore'], cutoffGuide: 'AI estimate — national entrance test ICAR-AIEEA for some programs.', feeRange: 'AI estimate — varies; mostly affordable state programs' },
+    ],
+    costReality: 'AI estimate — a 4-year B.F.Sc in TN costs roughly ₹80K–3L total. State fisheries university fees are among the most affordable of any 4-year professional degree.',
+    backupOptions: ['M.F.Sc / M.Sc Fisheries — research and academic track', 'TNPSC Fisheries Officer recruitment exam', 'Aquaculture entrepreneurship (shrimp farms, ornamental fish, fish hatcheries)', 'Seafood exports — TN is a major exporter, roles in QC and operations', 'PhD + ICAR scientist track'],
+    honestCaveat: 'Fisheries Science is genuinely niche — most students have never heard of it, the colleges are few, and career visibility is low. The trade-off: dedicated TN-state fisheries university, near-zero competition, and a fast-growing sector. Field work involves real physical demands — coastal heat, salt water, fish handling, hatchery odors. Students who pictured a marine-biology research career often find the agricultural-extension reality different. Those drawn to applied aquaculture and food security find it deeply meaningful work.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCB', titleTa: '+12 PCB 65%+', detail: 'TNJFU / direct admission at most fisheries programs. Strong Biology is the main signal.', window: 'Now', phase: 'now' },
+      { title: 'Join B.F.Sc + active field exposure', titleTa: 'B.F.Sc + களப் பயிற்சி', detail: 'Hands-on time at TN coastal hatcheries (Mahabalipuram, Pulicat, Rameswaram) during the degree is essential. The TNJFU programs include this; verify with other programs.', window: 'Years 1–4', phase: 'next' },
+      { title: 'TNPSC Fisheries Officer OR private aquaculture OR M.F.Sc', titleTa: 'TNPSC / தனியார் / M.F.Sc', detail: 'Three credible exits. Government route (TNPSC) is highest security; private aquaculture is highest growth.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a coastal hatchery or aquaculture farm', titleTa: 'மீன் வளர்ப்பு மையம் பார்வை', detail: 'TN has many. A half-day visit transforms understanding of what the work involves day-to-day.', priority: 'high' },
+      { title: 'Strengthen Biology — especially aquatic and ecosystem topics', titleTa: 'உயிரியல் — நீர்வாழ்வு', detail: 'Year 1 leans on aquatic biology, fish anatomy, water chemistry. Strong 12th Biology with a head start on aquatic ecosystems compounds.', priority: 'high' },
+      { title: 'Read about India\'s blue economy and PMMSY', titleTa: 'நீலப் பொருளாதாரம் + PMMSY', detail: 'Understanding the policy context (PMMSY scheme, exports targets, aquaculture goals) sets realistic expectations and motivates the academic work.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Biology — aquatic ecosystems, fish physiology', why: 'The technical foundation of all fisheries work. Strong 12th Biology with curiosity about aquatic life makes year 1 dramatically easier.', freeResource: 'NCERT Biology — ecosystems chapters, ICAR free e-learning portal' },
+      { skill: 'Comfort with physical/outdoor work', why: 'Fisheries work involves real physical demands. Building stamina and tolerance for outdoor conditions before joining is honest preparation.', freeResource: 'Spend time at coastal areas, fish markets, hatcheries; build outdoor stamina through walking/swimming' },
+      { skill: 'Basic Tamil/local-language fluency', why: 'Fisheries extension work involves direct community engagement with fishing communities. Comfortable Tamil is a career multiplier.', freeResource: 'Daily Tamil reading and listening; coastal community visits build vocabulary naturally' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC CLINICAL NUTRITION & DIETETICS ───────────────────────────────────
+  {
+    id: 'clinical-nutritionist',
+    family: 'healthcare-nutrition',
+    interestTags: ['healthcare', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'sales_persuasion'],
+    automation: 'high_human_judgment',
+    automationNote: 'Apps can track calories; the clinical nutritionist who designs medical-nutrition therapy for a diabetic patient or counsels a child with an eating disorder cannot be automated. India\'s lifestyle-disease epidemic (diabetes, cardiac, obesity) drives sustained demand.',
+    title: 'Clinical Nutritionist & Dietitian (B.Sc Nutrition)',
+    titleTa: 'மருத்துவ ஊட்டச்சத்து நிபுணர்',
+    icon: '🥗',
+    color: 'from-green-500 to-emerald-600',
+    whatIsIt:
+      'A three-year B.Sc in Clinical Nutrition and Dietetics, typically followed by an M.Sc + Registered Dietitian (RD) qualification. Coursework spans biochemistry, human physiology, medical nutrition therapy, community nutrition, food science and counselling. Career outcomes: hospital dietitian, sports nutritionist, corporate wellness, private practice, public-health nutrition roles, increasingly health-tech and D2C wellness companies.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203'],
+    ugCourses: ['B.Sc Clinical Nutrition & Dietetics', 'B.Sc Nutrition & Dietetics', 'B.Sc Food Science & Nutrition'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree + typical M.Sc + Indian Dietetic Association (IDA) Registered Dietitian (RD) certification — full pathway typically 5-6 years to a senior clinical role.',
+    skillWeights: { mathematics: 5, language: 7, science: 8, creativity: 5, people: 8, physical: 2, digital: 5 },
+    priorityFit: { salary: 5, security: 6, balance: 8, abroad: 7, prestige: 6, passion: 8, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–4 LPA fresh as a hospital diet assistant or wellness-app nutritionist; ₹3–6 LPA fresh at corporate hospitals after the M.Sc + RD certification.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior hospital dietitians, sports nutritionists at pro teams, and senior corporate wellness consultants. Private practice can substantially exceed for established practitioners.',
+      note: 'Modest salaries in the early years (before M.Sc + RD) but strong long-term trajectory because demand is structural — India\'s lifestyle-disease burden creates a permanent need for clinical nutrition expertise. Private practice is the highest-earning route for those with strong patient relationships.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and growing. Hospital dietitian roles, corporate wellness programs, health-tech apps (HealthifyMe etc.), and private practice all expanding rapidly.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission at most colleges; among the most accessible health-science tracks.' },
+    collegeTiers: [
+      { label: 'Top nutrition programs in TN (AI estimate)', examples: ['Women\'s Christian College Chennai', 'Stella Maris Chennai', 'Ethiraj College Chennai', 'PSGR Krishnammal Coimbatore'], cutoffGuide: 'AI estimate — 70%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Mother Teresa Women\'s University Kodaikanal', 'Avinashilingam Coimbatore', 'Madurai Kamaraj University', 'Bharathiar University'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹20K–60K / year' },
+      { label: 'Other TN colleges with Nutrition tracks (AI estimate)', examples: ['Numerous TN women\'s colleges and home-science colleges'], cutoffGuide: 'AI estimate — 60%+ typical.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Clinical Nutrition in TN costs roughly ₹60K–2.5L total. M.Sc + RD certification adds another ₹50K–1.5L. Total full-pathway investment is modest compared to most medical careers.',
+    backupOptions: ['M.Sc Nutrition + Registered Dietitian (RD) — the standard career step', 'Sports nutrition specialisation (rising demand from pro teams, fitness industry)', 'Corporate wellness consulting', 'Health-tech apps (HealthifyMe, Cure.fit, GOQii)', 'Public health nutrition (government, NGOs, UN agencies)', 'Move abroad — Gulf countries actively hire Indian RDs'],
+    honestCaveat: 'Clinical nutrition is patient counselling — emotional work with people who often need to change difficult habits (diabetic patients, eating disorders, post-surgery recovery). Students who pictured a "give people meal plans" version of the work find the emotional labour of behavioural counselling unexpectedly heavy. The Instagram-influencer version of "nutrition coaching" is unrelated to clinical work; choose this degree only if you genuinely want medical-nutrition therapy, not "fitness nutrition" social media. Salary at entry is modest — the trajectory rewards patience.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCB', titleTa: '+12 PCB 65%+', detail: 'Direct admission. Strong Biology + Chemistry matter most.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc Nutrition + hospital exposure', titleTa: 'B.Sc + மருத்துவமனை பயிற்சி', detail: 'Programs with hospital tie-ups for internships are dramatically better. Year 3 clinical rotation is the most valuable part of the degree.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.Sc + Registered Dietitian (RD) certification', titleTa: 'M.Sc + RD சான்றிதழ்', detail: 'The Indian Dietetic Association (IDA) RD certification is the credential employers seek. M.Sc + RD typically takes 2-3 years.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Shadow a hospital dietitian if possible', titleTa: 'மருத்துவமனை ஊட்டச்சத்து நிபுணரை பின்தொடரவும்', detail: 'Many TN hospitals (Apollo, Fortis, MIOT, Vijaya) allow short shadowing. One day of observation clarifies the day-to-day work better than any brochure.', priority: 'high' },
+      { title: 'Strengthen Biology — especially nutrition and physiology', titleTa: 'உயிரியல் — ஊட்டச்சத்து + உடலியல்', detail: 'Year 1 leans heavily on human physiology and biochemistry. Strong 12th Biology with a head start on metabolism makes year 1 smoother.', priority: 'high' },
+      { title: 'Read about real clinical nutrition cases', titleTa: 'மருத்துவ வழக்கு ஆய்வுகள் படிக்கவும்', detail: 'NIN (National Institute of Nutrition) Hyderabad publishes case studies and dietary guidelines. Free, authoritative, and a real picture of the field.', priority: 'medium', link: 'https://www.nin.res.in' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Biology — physiology, biochemistry, metabolism', why: 'The deep foundation of clinical nutrition. Strong 12th Biology with curiosity about how the body uses food makes year 1 dramatically easier.', freeResource: 'NCERT Biology, free Khan Academy biochemistry, NIN dietary guidelines' },
+      { skill: 'Spoken English + Tamil (patient counselling)', why: 'Clinical nutrition is half medicine, half counselling. Confident, patient bilingual communication is the most career-defining soft skill.', freeResource: 'BBC Learning English, daily English reading, local Toastmasters clubs' },
+      { skill: 'Empathy and active-listening practice', why: 'Behavioural change is hard. The nutritionist who listens carefully to patients\' lives builds lasting trust. Practise deliberately.', freeResource: 'Volunteer with elderly-care or disability organisations for short stints; honest reflective journaling' },
+    ],
+    lastReviewed: '2026-05',
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 3: AERO, MARINE & DEFENCE (Discovery Expansion, May 2026) ───────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Three high-stakes specialised tracks. First batch to exercise the new
+  // `travel_away` aversion tag (Marine + Aerospace involve extended time
+  // away from home) and `physical_training` aversion tag (Marine cadets and
+  // Defence Studies students often face PT discipline as a cultural norm
+  // even when not pursuing the armed forces).
+  //
+  // Note: Defence Studies is an ACADEMIC discipline (history, strategy,
+  // geopolitics) — it is NOT a direct armed-forces entry. The honest
+  // caveat on that entry calls this out clearly.
+
+  // ─── B.E. AEROSPACE / AERONAUTICAL ENGINEERING ─────────────────────────────
+  {
+    id: 'aerospace-engineer',
+    family: 'engineering-aerospace',
+    interestTags: ['engineering', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['travel_away', 'sitting_long', 'maths_heavy'],
+    automation: 'high_human_judgment',
+    automationNote: 'Aerospace engineering remains among the most automation-resilient engineering fields — designing aircraft, satellites, and propulsion systems requires deep judgement under extreme safety constraints. ISRO\'s Gaganyaan, private spaceflight (Skyroot, Agnikul), and HAL programs all create sustained demand for Indian aerospace engineers.',
+    title: 'Aerospace / Aeronautical Engineer',
+    titleTa: 'விண்வெளி / விமான பொறியியல்',
+    icon: '🚀',
+    color: 'from-indigo-600 to-blue-700',
+    whatIsIt:
+      'A four-year B.E. covering aircraft design, propulsion systems, aerodynamics, avionics, satellite/spacecraft engineering, and structural analysis. Career outcomes: ISRO, HAL, DRDO, private aerospace companies (Skyroot, Agnikul, Pixxel), aviation MRO firms (Air India Engineering Services), global aerospace majors (Boeing, Airbus India, GE Aerospace Bangalore). Among the most technically demanding engineering tracks; rewards genuinely curious engineers.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.E. Aerospace Engineering', 'B.E. Aeronautical Engineering', 'B.Tech Aerospace Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.E. ISRO/HAL/DRDO recruitment via specific exams after graduation. Strong M.Tech / MS options abroad. Private aerospace startups increasingly hire UG graduates directly.',
+    skillWeights: { mathematics: 9, language: 5, science: 9, creativity: 6, people: 4, physical: 2, digital: 8 },
+    priorityFit: { salary: 7, security: 7, balance: 5, abroad: 8, prestige: 9, passion: 9, growth: 7, hometown: 5 },
+    competitiveBoardPct: { comfortable: 85, stretch: 75 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹4–7 LPA fresh in domestic aerospace roles; ₹6–12 LPA at top private aerospace startups and global firms\' India centers. ISRO/HAL/DRDO scientist roles ₹8–14 LPA fresh with exceptional benefits and security.',
+      midCareerLPA: 'AI estimate — ₹15–35 LPA after 7+ years for senior aerospace engineers in India; abroad opportunities (US, EU, Israel, Singapore) can multiply substantially. ISRO senior scientist roles at high ranks earn comparable to private with stronger pension/benefits.',
+      note: 'Among the most prestigious engineering tracks in India. The trade-off: limited number of employers (5-6 major) means specific opportunities, less geographic flexibility. ISRO/HAL stability is exceptional but typically comes with relocation away from TN.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong but specialised. India\'s space economy push, private spaceflight emergence (4-5 well-funded startups), and ongoing defence aerospace programs drive consistent hiring but volumes are smaller than CSE.' },
+    entryDifficulty: { score: 8, note: 'AI estimate — highly competitive at top programs. MIT Chennai\'s Aerospace, Madras Institute of Technology, and Hindustan Institute Aeronautical have rising cutoffs as the field grows in visibility.' },
+    collegeTiers: [
+      { label: 'Top aerospace programs in TN (AI estimate)', examples: ['MIT Chennai (Anna University Madras Institute of Technology) — historic aerospace lineage', 'Madras Institute of Technology Chromepet', 'Hindustan Institute of Technology and Science (HITS) Chennai'], cutoffGuide: 'AI estimate — TNEA cutoff 190+ typical / JEE Main strong.', feeRange: 'AI estimate — ₹50K–2L / year' },
+      { label: 'Strong aerospace programs (AI estimate)', examples: ['SRM University', 'Sastra University', 'Sri Krishna College of Technology Coimbatore', 'Karunya Institute'], cutoffGuide: 'AI estimate — TNEA cutoff 175-190.', feeRange: 'AI estimate — ₹1.5L–3.5L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['IIT Madras Aerospace (JEE Advanced)', 'IIT Bombay / Kanpur / Kharagpur Aerospace'], cutoffGuide: 'AI estimate — top IIT branches; JEE Advanced rank under ~3000 for general.', feeRange: 'AI estimate — ₹2.5L / year (IIT fees)' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Aerospace in TN costs roughly ₹2L–14L total. The earnings ceiling justifies the investment for students with genuine aerospace interest and strong fundamentals.',
+    backupOptions: ['M.Tech / MS Aerospace abroad (US, EU) — strong route for top performers', 'Pivot to general Mechanical Engineering roles if aerospace recruitment is tight', 'ISRO/HAL/DRDO recruitment exams', 'Private spaceflight startups (Skyroot, Agnikul, Pixxel, Bellatrix)', 'Aviation MRO and airline engineering departments'],
+    honestCaveat: 'Aerospace rewards students who genuinely love mathematics and physics — especially mechanics, thermodynamics, fluid dynamics. Students who joined because "rockets are cool" without that pull struggle once the maths-heavy years 2-3 hit (linear algebra, partial differential equations, control theory). The job market is also genuinely smaller than CSE — strong aerospace engineers find roles, but average ones often pivot to general mechanical or software roles. Project sites (test facilities, launch ranges, manufacturing plants) frequently require extended periods away from home.',
+    roadmap: [
+      { title: 'Score 85%+ in 12th PCM with very strong Maths + Physics', titleTa: '+12 PCM 85%+ (கணிதம் + பௌதீகம் வலுவாக)', detail: 'TNEA / JEE Main entry. Mathematics and Physics are the foundation of every aerospace course — score them as high as possible.', window: 'Now', phase: 'now' },
+      { title: 'Join B.E. Aerospace + research / project involvement', titleTa: 'B.E. + ஆராய்ச்சி திட்டங்கள்', detail: 'Get involved with student rocketry / UAV / aero modeling clubs from year 1. Personal projects matter enormously for ISRO/HAL/private aerospace recruitment.', window: 'Years 1–4', phase: 'next' },
+      { title: 'ISRO/HAL exam OR M.Tech abroad OR private aerospace startup', titleTa: 'ISRO / M.Tech / தனியார் வெளியீடு', detail: 'Three strong exits. ISRO/HAL via specific recruitment exams; M.Tech abroad for research careers; private spaceflight startups for the most ambitious.', window: 'Years 4–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Mathematics — calculus + linear algebra specifically', titleTa: 'கணிதம் வலுப்படுத்துதல்', detail: 'Aerospace is built on calculus and linear algebra. A head start before year 1 is a major advantage.', priority: 'high', freeResource: '3Blue1Brown YouTube (Essence of Calculus, Linear Algebra), Khan Academy advanced' },
+      { title: 'Strengthen Physics — particularly mechanics and fluid behaviour', titleTa: 'பௌதீகம் — இயக்கவியல் + திரவம்', detail: 'The physical intuition behind aerospace. Strong 12th Physics with extra reading on fluid dynamics makes year 1 dramatically smoother.', priority: 'high' },
+      { title: 'Follow ISRO + private Indian aerospace developments', titleTa: 'ISRO + தனியார் விண்வெளி தொடர்', detail: 'Knowing what ISRO, Skyroot, Agnikul, and Pixxel are doing builds context for choosing the right specialisation later.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Mathematics — calculus + linear algebra fundamentals', why: 'The single highest-ROI preparation. Aerospace is built on these two; arriving comfortable transforms year 1.', freeResource: '3Blue1Brown YouTube, MIT OpenCourseWare 18.01 + 18.06' },
+      { skill: 'Hands-on aero modeling (RC planes, drones, model rockets)', why: 'Practical familiarity with how flying things actually behave separates good aerospace students from textbook-only ones. Year 1 makes far more sense with hands-on context.', freeResource: 'Indian aero-modelling clubs, free Flite Test YouTube tutorials, accessible RC aircraft kits' },
+      { skill: 'Python programming for engineering simulation', why: 'Modern aerospace runs on computational tools. Python + NumPy + basic Matplotlib opens the door to MATLAB-style work and simulation skill development.', freeResource: 'freeCodeCamp Python, NumPy tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.E. MARINE ENGINEERING ───────────────────────────────────────────────
+  {
+    id: 'marine-engineer',
+    family: 'engineering-marine',
+    interestTags: ['engineering', 'travel'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['travel_away', 'physical_training', 'shift_work'],
+    automation: 'human_facing',
+    automationNote: 'Shipboard engineering remains firmly human — ships sail for weeks far from any technician support, with marine engineers responsible for engine room, propulsion, electrical systems and emergency response. The job is automation-resistant by physical necessity.',
+    title: 'Marine Engineer (B.E. Marine Engineering)',
+    titleTa: 'கப்பல் பொறியியல்',
+    icon: '⚓',
+    color: 'from-blue-700 to-indigo-800',
+    whatIsIt:
+      'A four-year B.E. specifically structured for the merchant navy. Coursework covers marine propulsion (steam, diesel, gas turbine), shipboard electrical systems, refrigeration & air conditioning, marine auxiliary machinery, naval architecture basics, ship operations, and the international maritime law and safety conventions (STCW, MARPOL, SOLAS). Graduates sit for the Marine Engineering Officer Class IV exam and join merchant ships as junior engineer officers. Career outcomes: international shipping companies, oil-and-gas offshore platforms, cruise lines, naval architecture firms, marine surveying, shipyard engineering, port operations.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102'],
+    ugCourses: ['B.E. Marine Engineering (DGS-approved)', 'B.Tech Naval Architecture & Marine Engineering'],
+    entranceExams: ['IMU-CET (Indian Maritime University)', 'JEE Main'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 4-year B.E. followed by the Marine Engineering Officer Class IV exam, then onboard appointment as junior engineer. Career progression to Chief Engineer is typically 8-12 years of sea service. The earnings trajectory is dramatic across that period.',
+    skillWeights: { mathematics: 8, language: 5, science: 7, creativity: 5, people: 5, physical: 7, digital: 7 },
+    priorityFit: { salary: 9, security: 7, balance: 3, abroad: 9, prestige: 7, passion: 7, growth: 8, hometown: 3 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹6–10 LPA tax-free fresh as a junior engineer on international shipping vessels (most marine officers receive salary tax-free under NRI status). Indian-flag vessels pay less.',
+      midCareerLPA: 'AI estimate — Second Engineer (5-7 years): ₹15–30 LPA tax-free. Chief Engineer (8-12 years): ₹30–80 LPA tax-free. Among the highest-earning engineering paths in India when sailing internationally.',
+      note: 'The financial trajectory is among the strongest in any UG path BUT it comes with extraordinary trade-offs: 6-9 months at sea per voyage, no contact with family for weeks at a time, no work-life balance during contracts, rotating night shifts, and physical/mental demands of shipboard life. The salary reflects these trade-offs.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong global demand for trained marine officers; chronic shortage of qualified Indian officers globally. Shipping is the literal backbone of global trade.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — moderate at TN colleges. IMU-CET is the standard entrance; the more selective filter is the mandatory medical examination (vision, hearing, physical fitness standards must be met before joining).' },
+    collegeTiers: [
+      { label: 'Top marine engineering colleges in TN (AI estimate)', examples: ['Indian Maritime University (IMU) Chennai Campus', 'Academy of Maritime Education and Training (AMET) University', 'Hindustan Institute Marine Engineering'], cutoffGuide: 'AI estimate — IMU-CET rank under ~1500 / JEE Main strong.', feeRange: 'AI estimate — ₹2L–6L / year (marine engineering programs are among the more expensive)' },
+      { label: 'Other DGS-approved colleges (AI estimate)', examples: ['CV Raman Global Marine College Chennai', 'Tolani Maritime Institute Pune (if relocating)'], cutoffGuide: 'AI estimate — IMU-CET / direct admission with strong marks.', feeRange: 'AI estimate — ₹3L–6L / year' },
+      { label: 'Critical: DGS approval check', examples: ['DGS (Directorate General of Shipping) approval is MANDATORY for the Class IV exam'], cutoffGuide: 'Confirm DGS approval status at https://www.dgshipping.gov.in before admitting to any college.', feeRange: 'Non-DGS-approved programs are functionally useless for the merchant navy career.' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Marine Engineering in TN costs roughly ₹8L–25L total. Education-loan-funded; the loan is typically repayable in 2-3 years of sailing because of the strong international earnings.',
+    backupOptions: ['Shore-based marine engineering roles (port operations, shipyard engineering, marine surveying)', 'Naval Architecture / Ship design (typically after M.Tech)', 'Oil-and-gas offshore platform engineering', 'Marine insurance / maritime law (after additional qualifications)', 'Pivot to general Mechanical Engineering if sea life is not viable'],
+    honestCaveat: 'Marine Engineering trades extraordinary income for genuinely difficult life conditions. Months at sea away from family, rotating watches, isolated working environments, and the physical/mental demands of shipboard life are real. Students enchanted by "travel the world" often discover that you mostly see the engine room, not exotic ports. The career suits people who genuinely enjoy mechanical systems, can tolerate isolation, and find the financial trade-off worth it. Verify your medical eligibility (vision, hearing, fitness) BEFORE joining — failing the merchant navy medical examination after the degree is genuinely heartbreaking. Verify DGS approval of the college — non-approved colleges produce graduates who cannot sail.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCM + pass medical examination', titleTa: '+12 PCM 70%+ + மருத்துவ பரிசோதனை', detail: 'IMU-CET or JEE Main entry. The mandatory medical examination (vision 6/6 with/without correction, hearing standards) is the single most important pre-step — get it done early.', window: 'Now', phase: 'now' },
+      { title: 'Join DGS-approved B.E. Marine Engineering', titleTa: 'DGS அங்கீகாரம் கொண்ட B.E.', detail: 'DGS approval is non-negotiable. Verify status at the DGS website before any college. The shipboard training cruise during the degree is essential.', window: 'Years 1–4', phase: 'next' },
+      { title: 'MEO Class IV exam + first ship as junior engineer officer', titleTa: 'MEO Class IV தேர்வு + முதல் கப்பல்', detail: 'The Marine Engineering Officer Class IV certification opens the actual career. First international voyage is typically 6-9 months.', window: 'Years 4–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Get a complete medical examination', titleTa: 'முழுமையான மருத்துவ பரிசோதனை', detail: 'Especially vision (corrected and uncorrected), color blindness test, hearing, and general fitness. The merchant navy standards are strict. Knowing your eligibility BEFORE committing 4 years is essential.', priority: 'high' },
+      { title: 'Verify DGS approval for any target college', titleTa: 'DGS அங்கீகாரம் சரிபார்', detail: 'Visit https://www.dgshipping.gov.in/Content/ApprovedTrainingInstitutes.aspx — only DGS-approved colleges produce employable marine engineers.', priority: 'high', link: 'https://www.dgshipping.gov.in' },
+      { title: 'Read honest accounts of life at sea', titleTa: 'கடல் வாழ்க்கை பற்றி நேர்மையான கதைகள் படிக்கவும்', detail: 'Find merchant navy officers on YouTube / blogs who honestly describe shipboard life — the lows as well as the highs. The trade-off becomes clear with first-hand accounts.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Mathematics + Physics (mechanics, thermodynamics)', why: 'Marine engineering is applied mechanical engineering with naval architecture flavor. Strong 12th Maths + Physics fundamentals are essential.', freeResource: 'NCERT Maths + Physics, MIT OpenCourseWare 8.01 + 8.02' },
+      { skill: 'Physical fitness and tolerance for hard work', why: 'Shipboard work is physically demanding. Building stamina, swimming, and general fitness before joining is honest preparation.', freeResource: 'Daily exercise routine, swimming, structured fitness work' },
+      { skill: 'Mechanical curiosity (how engines and machines work)', why: 'Marine engineers spend their careers troubleshooting machinery. Genuine curiosity about how engines work is the working temperament that makes this career enjoyable.', freeResource: 'Engineering Explained YouTube, How Things Work books, time spent with car/bike repairs' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.A. DEFENCE AND STRATEGIC STUDIES ────────────────────────────────────
+  {
+    id: 'defence-strategic-studies-graduate',
+    family: 'defence-strategic',
+    interestTags: ['govt', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['physical_training', 'memorisation', 'high_competition'],
+    automation: 'high_human_judgment',
+    automationNote: 'Strategic analysis, geopolitical assessment, and defence policy work all centre on contextual human judgement — exactly the work AI struggles with. The graduates who go on to think-tank, policy research and defence journalism roles do work that is fundamentally human.',
+    title: 'Defence & Strategic Studies (B.A.)',
+    titleTa: 'பாதுகாப்பு மற்றும் மூலோபாய ஆய்வு (B.A.)',
+    icon: '🛡️',
+    color: 'from-zinc-700 to-stone-800',
+    whatIsIt:
+      'A three-year B.A. that studies military history, defence policy, geopolitics, international relations, strategic thinking, internal security, and disaster management as academic disciplines. IMPORTANT: this is an ACADEMIC degree, NOT a direct entry route into the armed forces — the armed forces are entered via NDA (12th), CDS (post-graduation), or Agnipath. Career outcomes from the B.A. itself: civil services preparation (extremely common), defence journalism, think-tank research, internal-security roles in government, academic teaching, and corporate strategic analysis.',
+    eligibleStreams: ['arts', 'pcm', 'pcb', 'pcmb', 'commerce'],
+    strongGroupCodes: ['401', '402', '404', '405'],
+    ugCourses: ['B.A. Defence and Strategic Studies', 'B.A. Defence Studies', 'B.A. Strategic and Defence Studies'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year B.A. The strongest career trajectories typically involve a subsequent UPSC (Civil Services) attempt, M.A. + PhD academic route, or direct entry into defence journalism / policy think-tanks.',
+    skillWeights: { mathematics: 3, language: 8, science: 4, creativity: 5, people: 7, physical: 3, digital: 5 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 6, prestige: 8, passion: 8, growth: 6, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–4 LPA fresh in defence journalism, junior think-tank researcher, or academic teaching assistant roles. Direct B.A.-level employment in defence is limited.',
+      midCareerLPA: 'AI estimate — Strongest trajectory is via UPSC Civil Services (₹8–20 LPA at IAS/IPS junior levels, growing substantially). Defence journalism and policy think-tank seniors ₹10–25 LPA after 7+ years. Academic faculty in defence studies ₹8–18 LPA.',
+      note: 'The B.A. alone is a modest credential — its real value comes from what you do AFTER. Top earners use the degree as a stepping stone to UPSC, defence journalism with byline credibility, or policy think-tank research (ORF, Carnegie India, IDSA). Direct corporate employment is limited.',
+    },
+    demand: { score: 5, note: 'AI estimate — limited direct demand for the B.A. itself; strong demand for the SECONDARY career paths it feeds (civil services aspirants, defence journalists, think-tank researchers).' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission; widely available where offered. Madras University, Madurai Kamaraj University, and several private colleges run B.A. Defence Studies programs.' },
+    collegeTiers: [
+      { label: 'Top Defence Studies programs in TN (AI estimate)', examples: ['Madras University', 'Madurai Kamaraj University', 'Madras Christian College'], cutoffGuide: 'AI estimate — 60–70% in 12th typical.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'Alternative programs (AI estimate)', examples: ['Loyola College Chennai (related International Studies)', 'a small number of TN colleges with related programs'], cutoffGuide: 'AI estimate — 55–70%.', feeRange: 'AI estimate — ₹15K–80K / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['University of Madras has a strong tradition; nationally, Allahabad and Pune University Defence Studies are well-regarded'], cutoffGuide: 'AI estimate — varies; typically accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.A. Defence Studies in TN costs roughly ₹50K–2.5L total. Among the most affordable degrees on offer. The real investment is the post-graduation specialisation (M.A., UPSC preparation, or journalism credentials).',
+    backupOptions: ['UPSC Civil Services preparation — the most common destination', 'M.A. + PhD in Defence Studies → academic faculty career', 'Defence journalism (The Hindu, Indian Express, Times of India defence desks; print + TV)', 'Internal-security adjacent roles in state and central government', 'NDA / CDS / Agnipath if armed-forces interest is strong', 'Corporate strategic analysis (limited but exists at large consultancies)'],
+    honestCaveat: 'Defence Studies is an ACADEMIC degree — not a uniform, not a path to direct armed-forces commission. Students who join expecting "military training" find a classroom-based study of strategy, history, and policy. The strongest career trajectories require POST-graduation investment: UPSC preparation (2-3 year grind), M.A. + PhD (5+ years), or journalism credentials. Direct B.A.-level employment in defence is limited. Choose this only if you genuinely love reading military history and strategic theory, AND have a clear post-graduation plan. The PT-discipline culture in some Defence Studies programs (uniformed faculty, parade ground references) is genuine but does not translate to actual armed forces eligibility — that requires separate NDA/CDS routes.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th (any stream)', titleTa: '+12 60%+ (எந்த பாடப்பிரிவும்)', detail: 'Direct admission. Strong English + History + Civics backgrounds help most.', window: 'Now', phase: 'now' },
+      { title: 'Join B.A. Defence Studies + post-graduation planning from year 1', titleTa: 'B.A. + பட்டப்படிப்பு திட்டமிடல்', detail: 'The B.A. alone is not the destination. Decide by year 1 whether you target UPSC, journalism, or academia — and start building toward that.', window: 'Years 1–3', phase: 'next' },
+      { title: 'UPSC / M.A. / Defence journalism — pick one and commit', titleTa: 'UPSC / M.A. / பத்திரிகை', detail: 'Three credible exits. UPSC is the most common and most competitive. M.A. + PhD opens academia. Journalism opens defence-desk careers.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Read one military-history book and one geopolitics book', titleTa: 'இராணுவ வரலாறு + உலக அரசியல் புத்தகங்கள்', detail: 'Honest test of whether you actually enjoy the material. "India\'s Wars" by Arjun Subramaniam, "The Grand Chessboard" by Brzezinski — accessible starting points.', priority: 'high' },
+      { title: 'Decide your post-B.A. trajectory early', titleTa: 'B.A.-க்கு பிந்தைய திட்டம்', detail: 'UPSC, M.A., or defence journalism — they require very different preparation. The earlier you choose, the better positioned you are at graduation.', priority: 'high' },
+      { title: 'Daily news + editorial habit', titleTa: 'தினசரி செய்தி + ஆசிரியர் கட்டுரை', detail: 'Strategic studies students who read The Hindu editorials + foreign affairs sections daily compound through 3 years — and arrive at UPSC preparation already prepared.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — both written and read', why: 'Defence Studies is a reading-heavy and writing-heavy discipline. Strong English from year 1 transforms every course.', freeResource: 'The Hindu daily editorial reading, BBC Learning English, daily writing practice' },
+      { skill: 'Daily current-affairs and geopolitical news habit', why: 'The discipline rewards students who follow global events with curiosity. 30 minutes daily compounds over 3 years.', freeResource: 'The Hindu, Indian Express, The Diplomat, BBC News, free Brookings articles' },
+      { skill: 'Critical reading and structured argument', why: 'Defence policy work IS argument from evidence. Practising structured writing and argument from year 1 directly translates to career skill.', freeResource: 'Free online debate clubs, structured essay-writing exercises, IDSA free working papers' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
 
 ];
 
