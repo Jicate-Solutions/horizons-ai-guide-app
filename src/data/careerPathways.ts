@@ -66,8 +66,12 @@ export type CareerFamily =
   | 'healthcare-pharma'
   | 'healthcare-nursing'
   | 'healthcare-physio'
+  | 'healthcare-occupational'
   | 'healthcare-allied'
   | 'healthcare-nutrition'
+  | 'healthcare-optometry'
+  | 'healthcare-aslp'
+  | 'healthcare-prosthetics'
   | 'engineering-mechanical'
   | 'engineering-electronics'
   | 'engineering-civil'
@@ -5488,6 +5492,370 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Strong English — written and spoken', why: 'Psychology is communication-intensive — case notes, research papers, client counselling, presentations. Strong English from day 1 is the working necessity.', freeResource: 'BBC Learning English, daily reading practice, structured writing exercises' },
       { skill: 'Active listening and empathy practice', why: 'The single most career-defining skill in psychology. Practising attentive, non-judgemental listening (with friends, family, volunteer work) builds the foundation.', freeResource: 'Volunteer with elderly-care or counselling helplines, structured listening exercises' },
       { skill: 'Basic statistics — distributions, correlation, significance', why: 'Modern psychology is research-driven, and statistics is the language of psychological research. Strong fundamentals from year 1 ease coursework dramatically.', freeResource: 'Khan Academy statistics, free Coursera "Statistics in Psychology" courses' },
+    ],
+    lastReviewed: '2026-05',
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 6: HEALTHCARE MERIT-BASED PATHWAYS (Phase 2, May 2026) ──────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Six specialty health degrees deliberately positioned as ALTERNATIVES to
+  // NEET-dependent paths. None requires NEET — merit-based admission via
+  // 12th marks or college-specific entrance. Every entry is isNiche: true
+  // because none of these are on the typical TN family's default shortlist.
+  //
+  // Skill signatures are tuned to the ACTUAL day-to-day work of each role,
+  // not to a generic "healthcare" template:
+  //   - Pharm.D    → clinical pharmacy: high science + high people + language
+  //   - BOT        → activity design + cognitive rehab: high creativity + people
+  //   - B.Optom    → clinical eye care: balanced science + people + digital
+  //   - BASLP      → speech-hearing work: HIGHEST language + people in dataset
+  //   - BMLT       → lab + instruments: high science + digital, low people
+  //   - Prosthetics→ engineering-meets-therapy: highest creativity in batch
+
+  // ─── PHARM.D (DOCTOR OF PHARMACY) ──────────────────────────────────────────
+  {
+    id: 'pharmd-clinical-pharmacist',
+    family: 'healthcare-pharma',
+    isNiche: true,
+    interestTags: ['healthcare', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'memorisation', 'high_competition'],
+    automation: 'high_human_judgment',
+    automationNote: 'Clinical pharmacy combines deep pharmacology with bedside judgement — recommending dose adjustments for renal-impaired patients, identifying drug interactions, counselling patients on adherence. The clinical judgement and direct patient interaction make this among the most automation-resilient pharmacy roles. India\'s growing hospital pharmacy infrastructure (especially in corporate hospitals) creates emerging demand for Pharm.D graduates.',
+    title: 'Clinical Pharmacist (Pharm.D)',
+    titleTa: 'மருத்துவ மருந்தாளுநர் (Pharm.D)',
+    icon: '💊',
+    color: 'from-rose-600 to-pink-700',
+    whatIsIt:
+      'A six-year clinical pharmacy doctorate (5 years coursework + 1 year hospital internship) distinct from the 4-year B.Pharm route. Coursework spans clinical pharmacy, pharmacotherapeutics, hospital pharmacy, pharmacovigilance, drug information services, and direct patient counselling. Pharm.D graduates work bedside with doctors as part of the clinical team — NOT behind a retail counter. Career outcomes: corporate hospital clinical pharmacy (Apollo, Fortis, MIOT), pharmaceutical industry medical affairs, drug information centres, pharmacovigilance roles at CROs, clinical research, and increasingly the emerging hospital pharmacy modernisation segment.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203'],
+    ugCourses: ['Pharm.D (Doctor of Pharmacy)', 'Pharm.D (Post Baccalaureate) — for B.Pharm graduates'],
+    entranceExams: ['None (direct admission via 12th marks)', 'Some private institutions hold entrance tests'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 6-year program (5 academic years + 1 year hospital internship). Significantly longer than B.Pharm (4 years). The "Doctor of Pharmacy" credential is the strongest pharmacy qualification recognised in India and abroad, but the time investment is real.',
+    skillWeights: { mathematics: 5, language: 7, science: 9, creativity: 4, people: 8, physical: 2, digital: 6 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 8, prestige: 7, passion: 8, growth: 7, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–5 LPA fresh at corporate hospitals as clinical pharmacist; ₹4–7 LPA at pharma industry medical affairs / drug information roles; ₹6–10 LPA at CROs in pharmacovigilance.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for senior clinical pharmacists, drug information centre heads, and pharmacovigilance leads. Abroad opportunities (Gulf, US after FPGEE qualification) multiply substantially — Pharm.D travels well internationally.',
+      note: 'Modest at entry compared to the 6-year time investment, but the trajectory is strong because clinical pharmacy roles are still emerging in India — early Pharm.D graduates with hospital experience are positioned to lead growing pharmacy departments. International mobility is unusually strong for this credential.',
+    },
+    demand: { score: 6, note: 'AI estimate — moderate but structurally growing. Corporate hospitals increasingly establish clinical pharmacy teams; pharmacovigilance regulations are tightening; the modernisation of Indian hospital pharmacy creates emerging roles.' },
+    entryDifficulty: { score: 5, note: 'AI estimate — competitive at top institutions (JSS Ooty, Madras Medical College) but accessible at private universities. Cutoffs typically lower than NEET-based pharma equivalents.' },
+    collegeTiers: [
+      { label: 'Top Pharm.D programs in TN (AI estimate)', examples: ['JSS College of Pharmacy Ooty (PCI-approved, highly regarded)', 'Madras Medical College (Government program)', 'PSG College of Pharmacy Coimbatore', 'KMCH College of Pharmacy Coimbatore'], cutoffGuide: 'AI estimate — 75%+ in 12th PCB typical at top tier; government programs more selective.', feeRange: 'AI estimate — ₹60K–2.5L / year' },
+      { label: 'Strong private programs (AI estimate)', examples: ['SRM College of Pharmacy', 'Sastra School of Pharmacy', 'JKK Munirajah Medical Research Foundation'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹1.5L–3.5L / year' },
+      { label: 'Other TN Pharm.D programs (AI estimate)', examples: ['Several PCI-approved colleges across TN'], cutoffGuide: 'AI estimate — direct admission; PCI approval verification essential.', feeRange: 'AI estimate — ₹1L–3L / year' },
+    ],
+    costReality: 'AI estimate — a 6-year Pharm.D in TN costs roughly ₹4L–18L total. Significantly more expensive than B.Pharm (4 years, less per-year). PCI approval is non-negotiable — confirm before any college admission.',
+    backupOptions: ['Pharmaceutical industry medical affairs / regulatory roles', 'Pharmacovigilance at CROs (Contract Research Organisations)', 'Hospital pharmacy management positions', 'Move abroad after FPGEE / international pharmacy licensure', 'Drug information centre roles', 'Clinical research coordination', 'Academic career via M.Pharm/PhD route'],
+    honestCaveat: 'Pharm.D is a SIX-year commitment, not four — students often underestimate this. The work is genuinely clinical, NOT retail pharmacy: bedside rounds with doctors, patient counselling on serious medications, recommending dose adjustments for organ-impaired patients. Students who picked it imagining "easier than MBBS" while wanting NEET-free admission are disappointed by the workload — the pharmacology and clinical knowledge depth required is substantial. The clinical pharmacy job market in India is still maturing — strong graduates find roles, but average ones often pivot back to industry or community pharmacy. International mobility is strong; domestic ceiling is rising but not yet fully developed.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCB', titleTa: '+12 PCB 75%+', detail: 'Direct admission. Strong Chemistry + Biology matter most. NEET not required for most Pharm.D programs.', window: 'Now', phase: 'now' },
+      { title: 'Join PCI-approved Pharm.D + active hospital exposure', titleTa: 'Pharm.D + மருத்துவமனை பயிற்சி', detail: 'Choose only PCI-approved programs. The 5-year internal hospital rotations + final-year residency are the most career-defining components — engage actively.', window: 'Years 1–6', phase: 'next' },
+      { title: 'Clinical pharmacy role, industry, or abroad pathway', titleTa: 'மருத்துவமனை / தொழில் / வெளிநாடு', detail: 'Three credible exits: corporate hospital clinical pharmacy; pharma industry medical affairs / pharmacovigilance; international (after FPGEE for US, or Gulf-direct).', window: 'Years 6–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Verify the difference between Pharm.D and B.Pharm honestly', titleTa: 'Pharm.D மற்றும் B.Pharm வேறுபாடு', detail: 'Pharm.D = 6 years, clinical hospital focus. B.Pharm = 4 years, broader pharmacy. Confirm you genuinely want the clinical track before committing 2 extra years.', priority: 'high' },
+      { title: 'Confirm PCI approval of any target program', titleTa: 'PCI அங்கீகாரம் சரிபார்', detail: 'Pharmacy Council of India approval is mandatory for licensure. Visit https://www.pci.nic.in to verify.', priority: 'high', link: 'https://www.pci.nic.in' },
+      { title: 'Shadow a hospital pharmacist if possible', titleTa: 'மருத்துவமனை மருந்தாளர் பின்தொடரவும்', detail: 'Many TN corporate hospitals (Apollo, MIOT, KMCH) allow short shadowing. One day clarifies whether clinical pharmacy work suits you.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Chemistry + Biology — biochemistry, physiology, organic chemistry', why: 'Pharm.D builds on deep biochemistry and physiology. Strong 12th fundamentals make year 1 transition dramatically smoother.', freeResource: 'NCERT Chemistry + Biology, free MIT OpenCourseWare biochemistry intro' },
+      { skill: 'Communication — spoken English + Tamil for patient counselling', why: 'Clinical pharmacy IS communication — explaining complex medications to patients, presenting to doctors. Bilingual fluency is the working necessity.', freeResource: 'BBC Learning English, daily English news, local Toastmasters clubs' },
+      { skill: 'Reading scientific drug literature', why: 'Clinical pharmacists read package inserts, drug interaction databases, and clinical literature constantly. Comfort reading technical pharmacology is a career-defining habit.', freeResource: 'Free Drug Information Handbook excerpts, PubChem free database' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BOT (BACHELOR OF OCCUPATIONAL THERAPY) ────────────────────────────────
+  {
+    id: 'occupational-therapist',
+    family: 'healthcare-occupational',
+    isNiche: true,
+    interestTags: ['healthcare', 'education'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'creative_pressure', 'paperwork'],
+    automation: 'high_human_judgment',
+    automationNote: 'Occupational therapy combines clinical assessment with creative activity design — helping a stroke patient relearn buttoning a shirt, designing sensory-integration activities for an autistic child, fitting a hand splint for a tendon injury. The judgement is deeply individual and the work cannot be automated. India\'s growing awareness of developmental disabilities, autism, and geriatric rehabilitation creates structurally rising demand.',
+    title: 'Occupational Therapist (BOT)',
+    titleTa: 'தொழில் சார்ந்த சிகிச்சையாளர்',
+    icon: '🧩',
+    color: 'from-teal-500 to-cyan-600',
+    whatIsIt:
+      'A four-and-a-half year BOT (4 years coursework + 6 months internship) — DISTINCT from BPT. Where physiotherapy focuses on physical recovery (sports injuries, post-surgical mobility), occupational therapy focuses on enabling daily-life activities for people with developmental, mental health, or rehabilitation needs — children with autism or ADHD, adults recovering from stroke or hand injury, elderly people managing arthritis or dementia. Career outcomes: pediatric special-needs centres (rapidly growing in TN cities), hospital rehabilitation departments, schools (special education adjacency), private OT clinics, mental health hospitals, and increasingly autism-focused therapy centres.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203'],
+    ugCourses: ['BOT (Bachelor of Occupational Therapy)', 'Bachelor of Occupational Therapy (Hons.)'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 4.5-year degree (4 years coursework + 6 months internship). The All India OT Association (AIOTA) registration after the degree is the standard professional credential.',
+    skillWeights: { mathematics: 4, language: 7, science: 7, creativity: 7, people: 8, physical: 4, digital: 5 },
+    priorityFit: { salary: 4, security: 6, balance: 7, abroad: 8, prestige: 5, passion: 9, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at pediatric therapy centres and corporate hospital rehab departments; ₹3–5 LPA at established private OT clinics. School OT positions (special education adjacency) ₹3–5 LPA.',
+      midCareerLPA: 'AI estimate — ₹7–15 LPA after 7+ years for senior OTs, clinic owners, and specialist practitioners (hand therapy, pediatric autism, geriatric rehab). Successful private practice can substantially exceed. Abroad opportunities (Gulf, Australia, Canada) multiply earnings substantially — OT is in chronic global shortage.',
+      note: 'Modest entry pay but unusually strong abroad mobility — OT is a globally recognised profession with shortage in nearly every developed country. India\'s growing autism awareness and pediatric therapy infrastructure also create rising domestic demand.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and rapidly growing. Autism awareness expansion, pediatric therapy centre growth across TN cities, geriatric rehabilitation needs, and global OT shortage all create sustained demand.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission at most TN colleges. Awareness is the bottleneck — most students don\'t realise BOT exists alongside BPT.' },
+    collegeTiers: [
+      { label: 'Top BOT programs in TN (AI estimate)', examples: ['SRM College of Occupational Therapy (one of the older TN programs)', 'Christian Medical College Vellore Department of OT', 'Madras Medical Mission College of OT'], cutoffGuide: 'AI estimate — 70%+ in 12th PCB typical.', feeRange: 'AI estimate — ₹50K–2L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['KMCH College of Allied Health Sciences Coimbatore', 'PSG Institute of Medical Sciences', 'limited TN options — verify per program'], cutoffGuide: 'AI estimate — 60–70%.', feeRange: 'AI estimate — ₹1L–2.5L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['AIIPMR Mumbai (premier government OT program)', 'NIEPID Secunderabad', 'NIEPMD Chennai (some allied health programs)'], cutoffGuide: 'AI estimate — government programs more competitive.', feeRange: 'AI estimate — ₹15K–80K / year (government); varies abroad equivalents' },
+    ],
+    costReality: 'AI estimate — a 4.5-year BOT in TN costs roughly ₹2L–9L total. AIOTA registration after graduation has nominal fees. The professional credential travels well internationally.',
+    backupOptions: ['Master\'s in OT (specialisation: pediatrics, hand therapy, mental health, neurorehab)', 'Move abroad — strong demand in Gulf, Australia, Canada, UK', 'Private OT clinic ownership (after 5-7 years experience)', 'School-based OT roles (special education adjacency)', 'Pivot to general healthcare management or special education', 'Autism-focused therapy centre roles (rapidly growing field)'],
+    honestCaveat: 'BOT is NOT physiotherapy — students often don\'t understand the difference at admission. BPT works with broken legs, stroke mobility, and sports injuries; BOT works with autistic children\'s sensory needs, post-stroke daily-life skills, hand injury rehabilitation, and mental health patients learning routines. The work is emotionally demanding — patients are often children with disabilities or adults recovering from major life changes. Students drawn to therapeutic relationship-building thrive; those who picked it expecting "easier BPT" usually find the emotional labour heavier than expected. Pay in India is modest at entry; abroad mobility is the strongest financial lever.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCB', titleTa: '+12 PCB 65%+', detail: 'Direct admission. Strong Biology + Psychology interest help most.', window: 'Now', phase: 'now' },
+      { title: 'Join BOT + clinical exposure across populations', titleTa: 'BOT + பல வகை மருத்துவ பயிற்சி', detail: 'Internship rotations across pediatrics, neuro rehab, hand therapy, and mental health are essential. Decide specialisation by year 3.', window: 'Years 1–5', phase: 'next' },
+      { title: 'M.OT specialisation OR abroad pathway OR private clinic', titleTa: 'M.OT / வெளிநாடு / சொந்த மருத்துவமனை', detail: 'Three credible exits: master\'s for specialisation (best for academic / advanced clinical work); abroad for higher earnings; private clinic for entrepreneurial mobility after 5+ years.', window: 'Years 5–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit an OT clinic — confirm you understand what OT IS', titleTa: 'OT மருத்துவமனை பார்வை', detail: 'Most TN cities have pediatric OT clinics. A two-hour observation clarifies the work better than any brochure. Different from BPT in fundamental ways.', priority: 'high' },
+      { title: 'Read about autism, ADHD, and developmental disabilities', titleTa: 'வளர்ச்சி குறைபாடுகள் பற்றி படிக்கவும்', detail: 'OT works heavily with these populations. Reading honest accounts (parent blogs, autism advocacy resources) clarifies the daily reality of the work.', priority: 'high' },
+      { title: 'Strengthen Biology + observe people closely', titleTa: 'உயிரியல் + மக்களை கவனிக்கவும்', detail: 'OT combines clinical knowledge with deep observational skill — watching how people actually move, hold objects, navigate spaces. Both matter.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Biology — particularly neuroscience and anatomy', why: 'OT builds on understanding how the nervous system controls movement and behaviour. Strong 12th Biology directly translates to year 1.', freeResource: 'NCERT Biology, free Khan Academy neuroscience intro' },
+      { skill: 'Patience + observation + activity design', why: 'OT is creative therapeutic work — designing the right activity for the right patient. Practicing patience and observation through volunteering builds the foundation.', freeResource: 'Volunteer at special schools, pediatric clinics, geriatric care centres' },
+      { skill: 'Spoken English + Tamil — bilingual communication', why: 'OT is communication-intensive — explaining therapy to anxious parents, building rapport with children, briefing doctors. Bilingual fluency is essential.', freeResource: 'BBC Learning English, local volunteer work with mixed-language communities' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.OPTOM (BACHELOR OF OPTOMETRY) ───────────────────────────────────────
+  {
+    id: 'optometrist',
+    family: 'healthcare-optometry',
+    isNiche: true,
+    interestTags: ['healthcare', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'AI screening of retinal images is changing the field, but the optometrist who examines patients, prescribes corrections, fits contact lenses, and detects early disease still does work AI cannot fully replicate. India\'s diabetic retinopathy burden (₹25,000+ Cr diabetes-related vision care market) and the chronic shortage of trained eye-care professionals create sustained demand.',
+    title: 'Optometrist (B.Optom)',
+    titleTa: 'பார்வை நோய் நிபுணர் (B.Optom)',
+    icon: '👁️',
+    color: 'from-blue-500 to-indigo-600',
+    whatIsIt:
+      'A four-year B.Optom (3.5 years coursework + 6 months internship) training graduates as primary eye-care providers — comprehensive eye examinations, prescribing spectacles and contact lenses, vision therapy, low-vision rehabilitation, screening for eye diseases (referring to ophthalmologists for surgery). Career outcomes: hospital optometry departments (Aravind Eye Hospital, Sankara Nethralaya, LV Prasad), optical retail (Lenskart, Titan Eye+, Vision Express), private eye clinics, contact lens specialty roles, low-vision rehabilitation centres, and increasingly the corporate vision screening segment.',
+    eligibleStreams: ['pcb', 'pcmb', 'pcm'],
+    strongGroupCodes: ['208', '204', '101', '102'],
+    ugCourses: ['B.Optom (Bachelor of Optometry)', 'B.Sc Optometry'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 4-year degree (3.5 years coursework + 6 months internship). TN has strong optometry infrastructure — Aravind Eye, Sankara Nethralaya, and Elite School of Optometry are nationally regarded.',
+    skillWeights: { mathematics: 5, language: 6, science: 7, creativity: 4, people: 7, physical: 2, digital: 6 },
+    priorityFit: { salary: 5, security: 7, balance: 7, abroad: 8, prestige: 6, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at optical retail chains and small private clinics; ₹3–5 LPA at large eye hospitals (Aravind, Sankara). Specialty contact lens and low-vision roles typically ₹3.5–6 LPA.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior optometrists, specialty practice owners, and corporate optometry leads at chains. Abroad opportunities (Gulf, Australia, UK) multiply earnings substantially.',
+      note: 'Modest entry pay but strong long-term trajectory because India\'s vision care market is structurally growing — diabetes-related vision care alone is enormous. Private practice ownership after 7-10 years is a common high-earnings route.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and structurally growing. India has chronic shortage of trained optometrists; optical retail expansion (Lenskart\'s 2000+ stores, Titan Eye+, etc.) creates retail demand; diabetic eye care needs are rising rapidly.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission at most TN colleges; competitive at Elite School of Optometry and Sankara Nethralaya programs.' },
+    collegeTiers: [
+      { label: 'Top optometry programs in TN (AI estimate)', examples: ['Elite School of Optometry Chennai (Medical Research Foundation, attached to Sankara Nethralaya)', 'Aravind Eye Hospital School of Optometry Madurai/Coimbatore', 'Sankara Nethralaya Academy of Vision Studies'], cutoffGuide: 'AI estimate — 75%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹50K–1.5L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['SRM College of Optometry', 'KMCH School of Allied Health Sciences (Optometry track)', 'PSG Institute of Medical Sciences'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹1L–2.5L / year' },
+      { label: 'Other TN optometry programs (AI estimate)', examples: ['Several TN private medical colleges offer B.Optom'], cutoffGuide: 'AI estimate — 60%+ typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Optom in TN costs roughly ₹2L–6L total. Elite/Aravind/Sankara programs are competitive but offer strong industry pipelines.',
+    backupOptions: ['M.Optom / M.Sc Optometry — specialisation (pediatric optometry, low vision, contact lenses)', 'Optical retail management track (Lenskart, Titan Eye+, Vision Express)', 'Private optometry practice ownership', 'Move abroad — strong demand in Gulf, Australia, UK after credential evaluation', 'Corporate vision screening roles', 'Pivot to ophthalmology technician adjacent work', 'Vision research / academic career via PhD'],
+    honestCaveat: 'Optometry is primary eye care — NOT eye surgery. Optometrists prescribe, fit, and screen; ophthalmologists (MBBS + MS Ophthalmology, NEET-required) perform surgery. Students who joined imagining they\'d perform LASIK or cataract surgery are misled — that requires MBBS. The retail optometry track (Lenskart, Titan Eye+) is high-volume customer service work; the hospital track (Aravind, Sankara) is more clinical but pays modestly until specialisation. Both are real options, but require different temperaments. Strong abroad mobility is the unusual financial lever.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCB or PCM', titleTa: '+12 70%+', detail: 'Direct admission. Strong Biology + Physics (optics) matter most.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Optom + clinical rotations + retail exposure', titleTa: 'B.Optom + மருத்துவ + சில்லறை பயிற்சி', detail: 'Internship rotations across hospital optometry, retail optical, and specialty practice clarify which path suits you. Decide track by year 3.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Hospital, retail chain, M.Optom, or abroad', titleTa: 'மருத்துவமனை / சில்லறை / M.Optom / வெளிநாடு', detail: 'Four credible exits. Hospital for clinical depth; retail for management trajectory; M.Optom for specialisation; abroad for substantially higher earnings.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit Aravind Eye Hospital or Sankara Nethralaya', titleTa: 'அரவிந்த் / சங்கர நேத்ராலயா பார்வை', detail: 'TN has world-class eye hospitals. Visit one\'s OPD as an observer to understand actual day-to-day optometry work. Free reality check.', priority: 'high' },
+      { title: 'Strengthen 12th Physics (optics) + Biology', titleTa: 'பௌதீகம் (ஒளியியல்) + உயிரியல்', detail: 'Optometry builds on optics (Physics) AND ocular anatomy (Biology). Strong 12th Physics on optics chapters is unusually valuable for this degree.', priority: 'high' },
+      { title: 'Compare optometry vs ophthalmology realistically', titleTa: 'பார்வை நிபுணர் vs கண் சிகிச்சை நிபுணர்', detail: 'Confirm you want primary eye care (optometry) rather than surgery (ophthalmology, requires MBBS via NEET). Two different careers entirely.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Physics — particularly optics and refraction', why: 'Optometry is applied optics. Strong 12th Physics on optics (lenses, refraction, vision) directly translates into year 1 success.', freeResource: 'NCERT Physics optics chapters, free Khan Academy optics videos' },
+      { skill: 'Biology — particularly anatomy of the eye and visual neuroscience', why: 'Understanding ocular anatomy and visual processing is the clinical foundation. Strong 12th Biology + reading on the eye anatomy compounds.', freeResource: 'NCERT Biology, free anatomy textbook chapters on the eye' },
+      { skill: 'Patient communication — explaining vision concepts to anxious patients', why: 'Optometry is half clinical, half communication — explaining astigmatism or progressive lenses to nervous patients matters. Build comfort with clear bilingual explanation.', freeResource: 'Volunteer at eye camps if accessible; observation of optometrists explaining to patients' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BASLP (BACHELOR OF AUDIOLOGY & SPEECH-LANGUAGE PATHOLOGY) ─────────────
+  {
+    id: 'audiologist-slp',
+    family: 'healthcare-aslp',
+    isNiche: true,
+    interestTags: ['healthcare', 'education', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'memorisation', 'sitting_long'],
+    automation: 'high_human_judgment',
+    automationNote: 'Audiology and speech-language pathology are among the most automation-resilient health careers — diagnosing hearing loss in a non-verbal infant, designing speech therapy for a stroke patient, programming cochlear implant maps — all require contextual human judgement. India\'s 63 million population with disabling hearing loss (per WHO) and the chronic shortage of RCI-registered audiologists/SLPs create sustained, structurally rising demand.',
+    title: 'Audiologist & Speech-Language Pathologist (BASLP)',
+    titleTa: 'காது மற்றும் பேச்சு சிகிச்சையாளர் (BASLP)',
+    icon: '🗣️',
+    color: 'from-purple-600 to-fuchsia-700',
+    whatIsIt:
+      'A four-year BASLP (3 years coursework + 1 year internship) — a SINGLE degree training graduates in BOTH audiology (hearing assessment, hearing aids, cochlear implant mapping) AND speech-language pathology (speech therapy for stuttering, voice disorders, post-stroke aphasia, autism communication, pediatric speech delay). Distinct from psychology, distinct from special education. Career outcomes: hospital ENT departments, speech-hearing clinics, schools for the deaf, cochlear implant centres, autism therapy centres, hearing aid companies (Phonak, Widex, Cochlear), corporate hospital audiology, and academic research.',
+    eligibleStreams: ['pcb', 'pcmb', 'arts', 'commerce'],
+    strongGroupCodes: ['208', '204', '401', '402'],
+    ugCourses: ['BASLP (Bachelor of Audiology and Speech-Language Pathology)', 'B.Sc Speech and Hearing'],
+    entranceExams: ['None (direct admission)', 'AIISH Mysore entrance for the premier national program'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 4-year degree (3 years coursework + 1 year internship). RCI (Rehabilitation Council of India) registration after the degree is mandatory for clinical practice — non-negotiable credential.',
+    skillWeights: { mathematics: 4, language: 9, science: 7, creativity: 6, people: 9, physical: 2, digital: 5 },
+    priorityFit: { salary: 5, security: 7, balance: 7, abroad: 9, prestige: 6, passion: 9, growth: 7, hometown: 6 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at speech-hearing clinics and hospital audiology departments; ₹3–5 LPA at cochlear implant centres and corporate hospitals. Hearing aid company roles (Phonak, Widex) ₹3.5–6 LPA.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior audiologists, speech therapy clinic owners, and cochlear implant specialists. Abroad opportunities multiply EXTRAORDINARILY — UK, US, Australia, Gulf all face chronic audiologist shortages, and Indian-trained BASLP graduates are in high demand.',
+      note: 'Modest entry pay in India but the BEST abroad mobility of any non-NEET health degree. UK, US, Australia, Singapore, and Gulf all actively hire BASLP graduates — entire careers are built on the international pathway.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and rapidly growing. India\'s 63 million hearing-loss population, autism awareness expansion, cochlear implant programs (Tamil Nadu state\'s pediatric cochlear scheme), and global audiologist shortage all create chronic demand.' },
+    entryDifficulty: { score: 4, note: 'AI estimate — direct admission at most colleges; AIISH Mysore (premier national program) is highly competitive via entrance exam.' },
+    collegeTiers: [
+      { label: 'Top BASLP programs in TN (AI estimate)', examples: ['Sri Ramachandra Faculty of Audiology and Speech-Language Pathology Chennai', 'Madras ENT Research Foundation (MERF) Institute of Audiology', 'PSG Institute of Medical Sciences'], cutoffGuide: 'AI estimate — 70%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹60K–2L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Christian Medical College Vellore (BASLP program)', 'SRM College of Speech and Hearing', 'limited TN options — verify per program'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹80K–2.5L / year' },
+      { label: 'National alternative — PREMIER program', examples: ['AIISH Mysore (All India Institute of Speech and Hearing) — the national flagship, highly regarded internationally'], cutoffGuide: 'AI estimate — AIISH entrance exam, highly competitive.', feeRange: 'AI estimate — ₹15K–60K / year (government program)' },
+    ],
+    costReality: 'AI estimate — a 4-year BASLP in TN costs roughly ₹2.5L–8L total. AIISH Mysore is dramatically more affordable than private TN programs and carries stronger international recognition. RCI registration after graduation has nominal fees.',
+    backupOptions: ['M.Sc Audiology / M.Sc Speech-Language Pathology — specialisation', 'Cochlear implant specialty roles', 'Move abroad — exceptional demand in UK, US, Australia, Gulf', 'Private speech-hearing clinic ownership', 'School-based SLP roles (special education adjacency)', 'Hearing aid industry — Phonak, Widex, Cochlear, Bernafon hire SLP/Audiologists', 'PhD + academic career', 'Pivot to general healthcare or special education'],
+    honestCaveat: 'BASLP is a single degree training BOTH audiology AND speech therapy — at M.Sc level, students specialise in one. Choose this only if you genuinely enjoy long, patient one-on-one work — speech therapy with a stuttering child can be 6 months of progress measured in single sounds. Audiology work has more technology (hearing aids, audiometers, cochlear programming) but also deeply personal — telling parents their newborn is deaf is part of the job. The work is emotionally demanding. Abroad mobility is the strongest financial reason to choose this degree — domestic pay is modest. RCI registration is non-negotiable — verify your program is RCI-recognised before admission.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th (any stream)', titleTa: '+12 70%+ (எந்த பாடப்பிரிவும்)', detail: 'Direct admission accepting multiple streams. Strong English + Biology help most. AIISH Mysore entrance is the premier route.', window: 'Now', phase: 'now' },
+      { title: 'Join RCI-recognised BASLP + clinical exposure across populations', titleTa: 'RCI அங்கீகாரம் கொண்ட BASLP + பயிற்சி', detail: 'Confirm RCI recognition BEFORE admission. Internship rotations across pediatric speech, geriatric hearing, cochlear implant programs are essential.', window: 'Years 1–4', phase: 'next' },
+      { title: 'M.Sc specialisation OR abroad pathway OR private clinic', titleTa: 'M.Sc / வெளிநாடு / சொந்த மருத்துவமனை', detail: 'Three credible exits. M.Sc for clinical depth; abroad for substantially higher earnings; private clinic for entrepreneurial mobility after 5+ years.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Confirm RCI recognition of any target program', titleTa: 'RCI அங்கீகாரம் சரிபார்', detail: 'Non-RCI-recognised BASLP programs cannot lead to clinical registration. Verify at https://rehabcouncil.nic.in before admission.', priority: 'high', link: 'https://rehabcouncil.nic.in' },
+      { title: 'Visit a cochlear implant centre or speech-hearing clinic', titleTa: 'மருத்துவமனை பார்வை', detail: 'TN has several (MERF Chennai, KMCH Coimbatore audiology). One visit clarifies the dual nature of the work — audiology (technology) AND speech therapy (long sessions).', priority: 'high' },
+      { title: 'Strengthen English + observe speech patterns', titleTa: 'ஆங்கிலம் + பேச்சு கவனிக்கவும்', detail: 'BASLP coursework is heavily English-medium. Strong English is essential. Also start observing how children acquire language, how stutterers speak, how elderly people lose hearing — clinical observation skill builds early.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — written and spoken', why: 'BASLP coursework is English-medium and clinical work involves detailed documentation. Strong English from day 1 is the working necessity.', freeResource: 'BBC Learning English, daily English reading, structured writing practice' },
+      { skill: 'Patient observation + listening skill', why: 'The career-defining skill. Watching how children produce sounds, listening for subtle hearing patterns. Building deep observational discipline from year 1 compounds.', freeResource: 'Volunteer at schools for the deaf or speech-therapy clinics; observe carefully' },
+      { skill: 'Biology — particularly anatomy of ear, vocal tract, and brain', why: 'BASLP builds on anatomy of hearing and speech production. Strong 12th Biology + early reading on auditory neuroscience makes year 1 dramatically smoother.', freeResource: 'NCERT Biology, free Khan Academy auditory system videos' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC MEDICAL LABORATORY TECHNOLOGY (BMLT) ─────────────────────────────
+  {
+    id: 'medical-lab-technologist',
+    family: 'healthcare-allied',
+    isNiche: true,
+    interestTags: ['healthcare', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'graphic_content', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Lab automation has transformed medical testing, but the technologist who handles patient samples, runs complex tests, verifies abnormal results, and ensures quality remains firmly human. India\'s growing diagnostic chain industry (Dr Lal PathLabs, Thyrocare, Metropolis) and the corporate hospital lab expansion create sustained demand.',
+    title: 'Medical Lab Technologist (BMLT)',
+    titleTa: 'மருத்துவ ஆய்வக நிபுணர் (BMLT)',
+    icon: '🧪',
+    color: 'from-green-600 to-emerald-700',
+    whatIsIt:
+      'A four-year B.Sc training graduates in clinical laboratory science — clinical biochemistry, hematology, microbiology, immunology, histopathology, blood banking, molecular diagnostics. Career outcomes: hospital laboratories (corporate hospitals like Apollo, MIOT, KMCH), diagnostic chain companies (Dr Lal PathLabs, Thyrocare, Metropolis, SRL), research laboratories, blood banks, public health labs, and increasingly the molecular diagnostics and genomics segment.',
+    eligibleStreams: ['pcb', 'pcmb', 'pcm'],
+    strongGroupCodes: ['208', '204', '203', '101'],
+    ugCourses: ['B.Sc Medical Laboratory Technology (BMLT)', 'B.Sc Clinical Laboratory Technology'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 4-year degree (3.5 years coursework + 6 months internship). Diagnostic chain companies and corporate hospitals are the primary employers.',
+    skillWeights: { mathematics: 5, language: 4, science: 8, creativity: 3, people: 4, physical: 3, digital: 7 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 7, prestige: 5, passion: 7, growth: 6, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at diagnostic chain companies and small hospital labs; ₹3–5 LPA at corporate hospital laboratories. Molecular diagnostics roles ₹4–6 LPA at companies running PCR/genomic tests.',
+      midCareerLPA: 'AI estimate — ₹7–14 LPA after 7+ years for senior lab technologists, quality leads, and lab managers. Specialty molecular diagnostics and pathology assistant roles can substantially exceed.',
+      note: 'Modest entry pay but steady career trajectory. India\'s diagnostic industry expansion (post-2020 testing infrastructure investment) creates structural demand. Lab management and quality roles after 7-10 years bring higher pay.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from diagnostic chains, corporate hospitals, and the post-2020 expansion of testing infrastructure. The molecular diagnostics segment (PCR, genomics, infectious disease testing) is the high-growth sub-field.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available across TN. Among the most accessible health science tracks.' },
+    collegeTiers: [
+      { label: 'Top BMLT programs in TN (AI estimate)', examples: ['Christian Medical College Vellore (highly regarded)', 'JIPMER Puducherry (government program)', 'PSG Institute of Medical Sciences Coimbatore', 'KMCH College of Allied Health Sciences'], cutoffGuide: 'AI estimate — 70%+ in 12th PCB typical at top tier.', feeRange: 'AI estimate — ₹50K–2L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['SRM Medical College allied health programs', 'Sri Ramachandra Faculty of Allied Health Sciences', 'Sastra School of Health Sciences'], cutoffGuide: 'AI estimate — 60–70%.', feeRange: 'AI estimate — ₹80K–2L / year' },
+      { label: 'Other TN BMLT programs (AI estimate)', examples: ['Many TN colleges offer BMLT; verify NABL-aligned curriculum where possible'], cutoffGuide: 'AI estimate — accessible; 60%+ typical.', feeRange: 'AI estimate — ₹60K–1.5L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year BMLT in TN costs roughly ₹2L–6L total. Among the more affordable health science degrees. Some students pair with M.Sc Molecular Diagnostics for substantially higher trajectory.',
+    backupOptions: ['M.Sc Medical Lab Technology / Molecular Diagnostics — specialisation', 'Pivot to clinical research coordinator roles', 'Diagnostic chain management track (Dr Lal PathLabs, Thyrocare etc.)', 'Blood bank specialist roles', 'Move abroad — Gulf countries actively hire Indian-trained lab technologists', 'Quality assurance / lab accreditation roles (NABL)', 'Research lab assistant roles at biotech companies'],
+    honestCaveat: 'BMLT is laboratory work — students who enjoy people-facing healthcare end up bored quickly. The day-to-day involves handling biological samples (blood, urine, tissue) all day, working with hazardous chemicals, often standing for long shifts, sometimes night/early-morning shifts in 24-hour labs. The graphic content reality is real — students unprepared for blood draws, body fluid handling, and occasional autopsy-adjacent histopathology work struggle. Pay at entry is modest; the trajectory rewards specialisation (molecular diagnostics, blood banking, quality management). Lab work suits patient, methodical, detail-oriented temperaments.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCB or PCM', titleTa: '+12 65%+', detail: 'Direct admission. Strong Chemistry + Biology matter most. PCM students can pursue this with strong Chemistry.', window: 'Now', phase: 'now' },
+      { title: 'Join BMLT + active diagnostic chain or hospital lab internships', titleTa: 'BMLT + ஆய்வக பயிற்சி', detail: 'Summer internships at Dr Lal PathLabs, Thyrocare, or corporate hospital labs transform placement outcomes — hiring networks run through these.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Lab role + M.Sc specialisation OR abroad pathway', titleTa: 'வேலை + M.Sc / வெளிநாடு', detail: 'First role typically at diagnostic chain or hospital lab. M.Sc Molecular Diagnostics or abroad pathway (Gulf, US after certification) are the strongest acceleration steps.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a hospital lab or diagnostic chain centre', titleTa: 'ஆய்வக பார்வை', detail: 'TN has many. Honest observation of what lab technologists actually do all day (sample handling, instrument operation, result verification) clarifies the day-to-day reality.', priority: 'high' },
+      { title: 'Strengthen Chemistry + Biology — particularly biochemistry', titleTa: 'வேதியியல் + உயிரியல்', detail: 'BMLT is applied biochemistry. Strong 12th fundamentals on both subjects make year 1 dramatically easier.', priority: 'high' },
+      { title: 'Honest tolerance test for blood and biological samples', titleTa: 'மாதிரிகள் சகிப்புத்தன்மை', detail: 'BMLT involves daily handling of blood, urine, tissue. Confirm you can tolerate this reality — some students discover too late they cannot.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Chemistry + Biology — particularly biochemistry and microbiology basics', why: 'BMLT is applied biochemistry and microbiology. Strong 12th fundamentals directly translate into year 1 lab coursework.', freeResource: 'NCERT Chemistry + Biology, free MIT OpenCourseWare biochemistry intro' },
+      { skill: 'Methodical, detail-oriented work habit', why: 'Lab work demands precision. Practising deliberate, careful step-following (precision cooking, structured note-taking, methodical experiments) builds the right temperament.', freeResource: 'Any hobby rewarding precision; laboratory home-experiments; structured journaling' },
+      { skill: 'Basic computer / data entry fluency', why: 'Modern lab work involves Laboratory Information Systems (LIS), automated instruments, and digital result reporting. Comfort with computers from day 1 is a real asset.', freeResource: 'Free typing tutorials, basic Excel YouTube tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC PROSTHETICS AND ORTHOTICS ────────────────────────────────────────
+  {
+    id: 'prosthetist-orthotist',
+    family: 'healthcare-prosthetics',
+    isNiche: true,
+    interestTags: ['healthcare', 'engineering', 'design'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'lab_practical', 'creative_pressure'],
+    automation: 'high_human_judgment',
+    automationNote: 'Prosthetics and orthotics combines clinical assessment with custom device design — fitting an artificial limb after amputation, designing a spinal brace for scoliosis, fabricating a custom hand splint. The clinical-engineering hybrid work remains firmly human. India\'s 21 million people with disabilities (per Census 2011, growing) and the chronic shortage of trained prosthetists/orthotists create sustained demand.',
+    title: 'Prosthetist & Orthotist (B.Sc P&O)',
+    titleTa: 'செயற்கை உறுப்பு நிபுணர் (B.Sc P&O)',
+    icon: '🦾',
+    color: 'from-orange-600 to-amber-700',
+    whatIsIt:
+      'A four-year B.Sc Prosthetics & Orthotics — a UNIQUE hybrid of biomedical engineering and clinical patient care. Prosthetists design and fit artificial limbs (after amputation); orthotists design and fit supportive devices (braces, splints, supports for spine, foot, hand). Coursework spans anatomy, biomechanics, materials science, CAD/CAM, gait analysis, and direct patient fitting. Career outcomes: rehabilitation hospitals, NGO disability centres (Mobility India, Bhagwan Mahaveer Viklang Sahayata Samiti), private P&O clinics, prosthetic device companies (Ottobock, Ossur India operations), military hospitals (Artificial Limb Centres), and increasingly the 3D-printed prosthetic / sports prosthetic emerging segments.',
+    eligibleStreams: ['pcb', 'pcmb', 'pcm'],
+    strongGroupCodes: ['208', '204', '101', '102'],
+    ugCourses: ['B.Sc Prosthetics and Orthotics (BPO)', 'Bachelor of Prosthetics and Orthotics'],
+    entranceExams: ['None (direct admission via 12th marks)', 'AIIPMR Mumbai entrance for the premier national program'],
+    pathwayType: 'professional-track',
+    timeToCareer: 'A 4-year degree (3.5 years coursework + 6 months clinical practice). RCI (Rehabilitation Council of India) registration after graduation is mandatory for clinical practice.',
+    skillWeights: { mathematics: 6, language: 5, science: 7, creativity: 7, people: 7, physical: 5, digital: 6 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 8, prestige: 6, passion: 8, growth: 7, hometown: 6 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at rehabilitation hospitals and NGO disability centres; ₹3–5 LPA at established private P&O clinics. Prosthetic device company technical/sales roles ₹4–6 LPA.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior prosthetist-orthotists, clinic owners, and device company technical specialists. Abroad opportunities (US, UK, Australia, Gulf, Middle East after credential evaluation) multiply substantially — P&O is in chronic global shortage.',
+      note: 'Modest entry pay but exceptional abroad mobility — P&O is recognised as a clinical profession globally and the shortage in developed countries is significant. Domestic demand is growing through CSR-funded disability rehabilitation programs.',
+    },
+    demand: { score: 7, note: 'AI estimate — moderate but rapidly growing. India\'s disability rehabilitation infrastructure expansion, CSR-funded programs (Jaipur Foot, Mahaveer), military prosthetic needs, and the emerging 3D-printed prosthetic segment all create sustained demand.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission at most colleges. AIIPMR Mumbai (national flagship) is highly competitive. TN options are limited — verify per program.' },
+    collegeTiers: [
+      { label: 'National flagship (AI estimate)', examples: ['AIIPMR Mumbai (All India Institute of Physical Medicine and Rehabilitation) — premier national P&O program; RCI-recognised'], cutoffGuide: 'AI estimate — AIIPMR entrance exam; highly competitive but accessible.', feeRange: 'AI estimate — ₹15K–60K / year (government program)' },
+      { label: 'Strong TN programs (AI estimate)', examples: ['Limited TN-specific options — verify per program. Christian Medical College Vellore has related rehabilitation programs; Sri Ramachandra has allied health adjacencies'], cutoffGuide: 'AI estimate — direct admission with 65%+ in 12th typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['NIEPMD Chennai (National Institute for Empowerment of Persons with Multiple Disabilities) has related programs', 'Mobility India Bangalore (P&O training centre)', 'NILD Kolkata (National Institute for Locomotor Disabilities)'], cutoffGuide: 'AI estimate — various entry routes.', feeRange: 'AI estimate — varies; government programs affordable' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Sc P&O in TN costs roughly ₹3L–8L total. AIIPMR Mumbai is dramatically more affordable than private programs and carries stronger professional credentialing. The credential travels well internationally.',
+    backupOptions: ['Master\'s in Prosthetics & Orthotics — specialisation (pediatric, sports, military prosthetics)', 'Move abroad — strong demand in US (after ABC certification), UK, Australia, Gulf', 'Private P&O clinic ownership', 'Prosthetic device companies — Ottobock India, Ossur, Endolite (technical/sales roles)', 'Pivot to biomedical engineering or rehabilitation engineering', 'NGO disability sector — Jaipur Foot, Mahaveer, Mobility India', 'PhD + academic career in rehabilitation engineering'],
+    honestCaveat: 'Prosthetics & Orthotics is a HYBRID career — half clinical patient care, half engineering / fabrication / workshop work. Students often imagine only the engineering side (CAD design, 3D printing) and underestimate the clinical patient-fitting work (assessment, casting, alignment adjustments, gait training). Many patients are post-amputation, post-stroke, or living with congenital disabilities — the emotional dimension of the work is real. Workshop conditions involve resin chemistry, hot air, and physical fabrication labour. Students drawn to BOTH the technical craft AND the patient relationships thrive; those who picked it for "easier engineering" usually struggle with the clinical side. The unusually strong abroad mobility is the strongest financial lever.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCB or PCM', titleTa: '+12 65%+', detail: 'Direct admission. Strong Biology + Physics (mechanics) help most. Both PCB and PCM streams accepted.', window: 'Now', phase: 'now' },
+      { title: 'Join RCI-recognised B.Sc P&O + active clinical + workshop time', titleTa: 'RCI அங்கீகாரம் கொண்ட B.Sc + பயிற்சி', detail: 'Confirm RCI recognition. Internship rotations across pediatric, geriatric, and trauma P&O are essential. Workshop fabrication practice equally important.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Clinic role, master\'s, OR abroad pathway', titleTa: 'மருத்துவமனை / Master\'s / வெளிநாடு', detail: 'Three credible exits. Direct clinical role for hands-on experience; master\'s for specialisation; abroad for substantially higher earnings.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Confirm RCI recognition of any target program', titleTa: 'RCI அங்கீகாரம் சரிபார்', detail: 'Non-RCI-recognised P&O programs cannot lead to clinical registration. Verify at https://rehabcouncil.nic.in before admission.', priority: 'high', link: 'https://rehabcouncil.nic.in' },
+      { title: 'Visit a P&O clinic or rehabilitation centre', titleTa: 'புனர்வாழ்வு மையம் பார்வை', detail: 'Mobility India Bangalore, Mahaveer in TN cities, or CMC Vellore allow observer visits. The hybrid clinical-workshop nature of the work needs to be seen.', priority: 'high' },
+      { title: 'Strengthen Biology (anatomy) + Physics (mechanics)', titleTa: 'உயிரியல் + பௌதீகம்', detail: 'P&O builds on anatomy AND biomechanics. Strong 12th fundamentals on both make year 1 dramatically smoother.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Biology — particularly anatomy and biomechanics of limbs', why: 'P&O is applied anatomy + biomechanics. Strong 12th Biology on musculoskeletal anatomy, joints, and movement directly translates into year 1.', freeResource: 'NCERT Biology, free Khan Academy musculoskeletal anatomy videos' },
+      { skill: 'Hands-on tinkering — workshop, model-building, basic engineering', why: 'P&O involves significant fabrication work — casting, lamination, CAD/CAM, 3D printing. Practical comfort with tools is a major advantage.', freeResource: 'Local maker spaces, basic woodworking / model-building, school workshop time' },
+      { skill: 'Empathy + patient-facing communication', why: 'P&O patients are often dealing with major life adjustments (amputation, congenital disability). Building genuine empathy and clear bilingual communication is a career-defining habit.', freeResource: 'Volunteer at disability NGOs (Mahaveer, Mobility India local chapters), structured volunteering' },
     ],
     lastReviewed: '2026-05',
   },
