@@ -2348,6 +2348,461 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     ],
     lastReviewed: '2026-05',
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── DRAFT BATCH 2 (May 2026) — engineering expansion ─────────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // The three entries below are AI-generated drafts for three engineering
+  // disciplines distinct from software-engineer and mechanical-engineer (both
+  // of which already exist as verified entries). All TN-specific numbers are
+  // marked AI-estimate and gated behind the per-career acknowledgment UI.
+  //
+  // NOT included from the original ask:
+  //  - B.E. Mechanical:  already covered by the verified 'mechanical-engineer'
+  //                      pathway. Adding would create a duplicate.
+  //  - B.Tech IT:        already listed inside software-engineer.ugCourses.
+  //                      The existing career IS the bucket for it.
+
+  // ─── B.E. ECE (ELECTRONICS & COMMUNICATIONS) ───────────────────────────────
+  {
+    id: 'electronics-engineer',
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Routine PCB layout and basic firmware are accelerating with AI tools, but designing real electronics — semiconductors, RF, embedded control, 5G/6G systems — still needs strong engineers. The work that endures is hardware-software integration, where AI helps but cannot lead.',
+    title: 'Electronics & Communications Engineer',
+    titleTa: 'மின்னணு மற்றும் தகவல்தொடர்பு பொறியியலாளர்',
+    icon: '📡',
+    color: 'from-cyan-500 to-blue-600',
+    whatIsIt:
+      'Design and build the electronic systems behind phones, networks, semiconductors, satellites and embedded devices — combining hardware design with the software that runs on it.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.E / B.Tech ECE', 'B.E / B.Tech Electronics', 'B.E / B.Tech Telecom', 'B.E / B.Tech VLSI Design'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.E/B.Tech ECE directly. Working as an electronics or hardware engineer typically ~4 years from now. Many ECE graduates also pivot into software roles — that path adds no time.',
+    skillWeights: {
+      mathematics: 9,
+      language: 5,
+      science: 8,
+      creativity: 7,
+      people: 4,
+      physical: 3,
+      digital: 9,
+    },
+    priorityFit: {
+      salary: 7,
+      security: 7,
+      balance: 6,
+      abroad: 8,
+      prestige: 7,
+      passion: 7,
+      growth: 8,
+      hometown: 6,
+    },
+    competitiveBoardPct: { comfortable: 80, stretch: 70 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–6 LPA at most TN colleges; ₹6–12 LPA at top-tier campuses for core electronics roles. Software-leaning roles match CSE salaries.',
+      midCareerLPA: 'AI estimate — ₹10–25 LPA with 5–8 years in core electronics; semiconductor / VLSI specialists in Bangalore-Chennai corridor can exceed this.',
+      note: 'A genuine fork in ECE: students who go into "core" electronics (hardware, VLSI, embedded, RF) often start lower than CSE classmates, but the senior end can rival or exceed it. Students who pivot to software match CSE outcomes.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — core electronics demand is steady (semiconductors, telecom, defence, IoT). Many ECE graduates ultimately work in software due to broader hiring there — that flexibility is the field\'s strength.',
+    },
+    entryDifficulty: {
+      score: 6,
+      note: 'AI estimate — ECE seats are widely available across TN colleges via TNEA. Top branches (CEG, MIT Chrompet, PSG Tech, SSN) require strong TNEA cutoffs.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top government / Anna University campuses (AI estimate)',
+        examples: ['CEG Guindy', 'MIT Chrompet', 'GCT Coimbatore', 'TCE Madurai'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~193–198 (OC). Aim for 93%+ in PCM.',
+        feeRange: 'AI estimate — ₹15K–55K / year',
+      },
+      {
+        label: 'Strong private / autonomous colleges (AI estimate)',
+        examples: ['PSG Tech', 'SSN', 'Kongu', 'CIT Coimbatore'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~183–195 (OC).',
+        feeRange: 'AI estimate — ₹50K–1.8L / year',
+      },
+      {
+        label: 'Accessible private colleges (AI estimate)',
+        examples: ['Many TNEA-affiliated colleges across all districts'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~145–183 (OC) — seats widely available.',
+        feeRange: 'AI estimate — ₹40K–1.4L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 4-year B.E ECE in TN costs roughly ₹1L–8L total depending on college tier. Government colleges are dramatically cheaper. Fee waivers (first-graduate, 7.5% reservation, post-matric scholarships) reduce this significantly.',
+    backupOptions: [
+      'Software engineering roles (most ECE grads who pivot go here)',
+      'M.Tech / M.S. in VLSI, Embedded, RF',
+      'PSU jobs via GATE (BEL, ISRO, BHEL, BSNL)',
+      'Defence research (DRDO labs)',
+      'Telecom and semiconductor industry',
+    ],
+    honestCaveat:
+      'ECE is broad — that\'s a strength and a trap. Students who choose a specialisation (VLSI, embedded, RF, communication) by year 3 do well. Students who drift through 4 years without a focus end up in lower-paid generalist roles or competing with CSE grads in software without the same depth. Pick a track early.',
+    roadmap: [
+      {
+        title: 'Score well in 12th PCM (board + JEE / TNEA)',
+        titleTa: '+12 PCM-இல் நன்கு மதிப்பெண்',
+        detail: 'Strong Maths and Physics matter most. TNEA is the main TN route; JEE Main opens NITs and IIITs.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join B.E / B.Tech ECE (4 years) + pick a track by year 3',
+        titleTa: 'B.E ECE + சிறப்புத்துறை',
+        detail: 'VLSI, embedded systems, RF/wireless, telecom, or software — choose a focus by semester 5. The first 4 semesters are foundations.',
+        window: 'Years 1–4',
+        phase: 'next',
+      },
+      {
+        title: 'Job, M.Tech, or PSU exam',
+        titleTa: 'வேலை, M.Tech, அல்லது PSU தேர்வு',
+        detail: 'Core roles via campus placement, software roles via pivot, PSU roles via GATE, or M.Tech for specialisation.',
+        window: 'Years 4–6',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Confirm TNEA / JEE counselling registration',
+        titleTa: 'TNEA / JEE கவுன்சிலிங் பதிவு',
+        detail: 'TNEA is the main TN route. JEE Main opens NITs (Trichy is in TN). Confirm both windows.',
+        priority: 'high',
+      },
+      {
+        title: 'Learn Arduino / basic circuits while waiting',
+        titleTa: 'அர்டுயினோ / அடிப்படை சர்க்யூட்கள்',
+        detail: 'A cheap Arduino kit + free YouTube tutorials gives you a 4-year head start on hardware intuition.',
+        priority: 'high',
+      },
+      {
+        title: 'Strengthen Maths fundamentals — calculus & complex numbers',
+        titleTa: 'கணித அடிப்படைகள் வலுப்படுத்துதல்',
+        detail: 'Signals and systems (semester 3-4) leans heavily on calculus and complex numbers. A strong base here pays off all 4 years.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Basic electronics with Arduino / Raspberry Pi',
+        why: 'Hands-on tinkering is the strongest predictor of ECE success. Start in 12th if possible.',
+        freeResource: 'Arduino Project Hub (free), YouTube channels (GreatScott!, Andreas Spiess)',
+      },
+      {
+        skill: 'Programming — C and Python',
+        why: 'Embedded systems live in C. Software-pivot roles need Python. Both are essential by year 2.',
+        freeResource: 'NPTEL C programming, Python.org free tutorials',
+      },
+      {
+        skill: 'Strong Mathematics — calculus, linear algebra, complex numbers',
+        why: 'Signals, communications, control systems and VLSI all depend on this. Weakness here cascades.',
+        freeResource: 'NPTEL Engineering Mathematics, Khan Academy',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.E. CIVIL ENGINEERING ────────────────────────────────────────────────
+  {
+    id: 'civil-engineer',
+    needsCounsellorReview: true,
+    aversionConflicts: ['field_outdoor'],
+    automation: 'physical_skilled',
+    automationNote: 'Drawing and structural analysis are increasingly software-assisted (BIM, AutoCAD, ETABS, STAAD), but the built world is physical — buildings, bridges, water systems, roads — and someone has to design, supervise and verify them on site. Slow to automate, strong with experience.',
+    title: 'Civil Engineer',
+    titleTa: 'சிவில் பொறியியலாளர்',
+    icon: '🏗️',
+    color: 'from-stone-500 to-amber-700',
+    whatIsIt:
+      'Design, build, supervise and maintain the physical infrastructure people use every day — buildings, bridges, roads, water systems, dams, urban infrastructure.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.E / B.Tech Civil', 'B.E Construction Engineering', 'B.E Environmental Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.E/B.Tech Civil directly. Site engineer or junior design engineer roles open at graduation. Senior positions, consultancy or government engineering services typically need 5+ years of experience or further qualifications.',
+    skillWeights: {
+      mathematics: 8,
+      language: 5,
+      science: 7,
+      creativity: 7,
+      people: 6,
+      physical: 6,
+      digital: 6,
+    },
+    priorityFit: {
+      salary: 5,
+      security: 8,
+      balance: 5,
+      abroad: 7,
+      prestige: 6,
+      passion: 6,
+      growth: 6,
+      hometown: 8,
+    },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–5 LPA at site / junior engineer level. ₹4–8 LPA at top-tier construction companies (L&T, Tata Projects, Shapoorji) and consultancies.',
+      midCareerLPA: 'AI estimate — ₹8–20 LPA with 7–10 years experience as project engineer, design specialist, or consultant. Government engineering services (TNPSC AE, IES via GATE) offer secure ₹12–18 LPA-equivalent total packages.',
+      note: 'Civil engineering pays less than CSE/ECE on average but offers strong government job pathways (PWD, NHAI, Indian Railways, Indian Engineering Services). Site experience compounds — senior PMs and consultants are well-paid.',
+    },
+    demand: {
+      score: 6,
+      note: 'AI estimate — India\'s infrastructure spend is high, so demand for civil engineers is steady. Government jobs are particularly attractive. Private construction work depends on real estate cycles.',
+    },
+    entryDifficulty: {
+      score: 4,
+      note: 'AI estimate — civil seats are widely available across TN colleges. Cutoffs are typically below CSE/ECE. The competitive part is getting into government engineering services later via GATE / TNPSC.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top government / Anna University campuses (AI estimate)',
+        examples: ['CEG Guindy', 'MIT Chrompet', 'GCT Coimbatore', 'TCE Madurai'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~178–192 (OC). 88%+ in PCM is comfortable.',
+        feeRange: 'AI estimate — ₹15K–55K / year',
+      },
+      {
+        label: 'Strong private / autonomous colleges (AI estimate)',
+        examples: ['PSG Tech', 'SSN', 'Kongu', 'Coimbatore Institute of Technology'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~170–188 (OC).',
+        feeRange: 'AI estimate — ₹50K–1.5L / year',
+      },
+      {
+        label: 'Accessible private colleges (AI estimate)',
+        examples: ['Many TNEA-affiliated colleges across districts'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~130–175 (OC) — widely accessible.',
+        feeRange: 'AI estimate — ₹35K–1.2L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 4-year B.E Civil in TN costs roughly ₹1L–6L total depending on tier. Government colleges are dramatically cheaper. Fee waivers reduce this further for eligible students.',
+    backupOptions: [
+      'TNPSC Assistant Engineer (state PWD jobs)',
+      'IES via GATE (central government engineering services)',
+      'PSU jobs via GATE (NHAI, NTPC, Indian Railways)',
+      'M.Tech in structural / transportation / environmental',
+      'M.Plan (urban planning) — adjacent field',
+    ],
+    honestCaveat:
+      'Civil engineering involves real fieldwork — heat, dust, travel, supervision on construction sites — especially in the first 5 years. Students who specifically want a desk-only career should look elsewhere. The reward is direct: the bridges, buildings and roads you helped build are visible for decades. Government job paths are excellent for the security-minded.',
+    roadmap: [
+      {
+        title: 'Score 75%+ in 12th PCM',
+        titleTa: '+12 PCM-இல் 75%+',
+        detail: 'TNEA cutoffs for Civil are typically more accessible than CSE/ECE. Maths and Physics matter most.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join B.E Civil (4 years) + AutoCAD / STAAD by year 3',
+        titleTa: 'B.E சிவில் + AutoCAD',
+        detail: 'Master at least one industry software (AutoCAD, STAAD, ETABS, Revit) by graduation. Internships at construction firms in summers matter.',
+        window: 'Years 1–4',
+        phase: 'next',
+      },
+      {
+        title: 'GATE / TNPSC / private — choose your track',
+        titleTa: 'GATE / TNPSC / தனியார் — பாதை தேர்வு',
+        detail: 'GATE → IES or PSU = secure & well-paid. TNPSC AE = TN government. Private construction = faster start, harder grind.',
+        window: 'Years 4–6',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'TNEA counselling registration',
+        titleTa: 'TNEA கவுன்சிலிங் பதிவு',
+        detail: 'TNEA is the main TN route to government civil engineering colleges. Confirm the window for the current cycle.',
+        priority: 'high',
+      },
+      {
+        title: 'Learn AutoCAD basics before college',
+        titleTa: 'AutoCAD அடிப்படைகள்',
+        detail: 'Free AutoCAD student license + YouTube tutorials. Walking into year 1 with basic AutoCAD knowledge is a real head start.',
+        priority: 'high',
+      },
+      {
+        title: 'Visit a construction site if possible',
+        titleTa: 'கட்டுமான தளம் பார்வை',
+        detail: 'Civil engineering is a hands-on field — even one site visit clarifies what the work actually looks like day-to-day.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'AutoCAD (2D drawing)',
+        why: 'The industry-standard drawing tool — every civil engineer uses it. Free student license; start in 12th if possible.',
+        freeResource: 'Autodesk Education (free student license), YouTube tutorials',
+      },
+      {
+        skill: 'Strong fundamentals in Mathematics & Physics',
+        why: 'Structural mechanics, fluid mechanics, surveying — all flow from 12th PCM. Weakness here cascades through every semester.',
+        freeResource: 'NCERT Physics + Maths, NPTEL Engineering Mechanics',
+      },
+      {
+        skill: 'Spoken English + Tamil communication',
+        why: 'Civil engineers work with contractors (often Tamil-speaking) AND with consultants/clients (often English-speaking). Both languages are real assets.',
+        freeResource: 'BBC Learning English, local Toastmasters clubs',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.E. MECHATRONICS ─────────────────────────────────────────────────────
+  {
+    id: 'mechatronics-engineer',
+    needsCounsellorReview: true,
+    aversionConflicts: [],
+    automation: 'physical_skilled',
+    automationNote: 'Mechatronics IS the field automating other industries — robotics, automated factory lines, electric vehicles, IoT-driven manufacturing. The trained mechatronics engineer is who builds these systems, not who is replaced by them.',
+    title: 'Mechatronics / Robotics Engineer',
+    titleTa: 'மெக்காட்ரானிக்ஸ் / ரோபோடிக்ஸ் பொறியியலாளர்',
+    icon: '🤖',
+    color: 'from-purple-500 to-indigo-600',
+    whatIsIt:
+      'Design and build the systems that combine mechanical parts, electronics, control software and computing — robots, automated factory equipment, electric vehicle systems, drones, smart manufacturing lines.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.E / B.Tech Mechatronics', 'B.E Robotics & Automation', 'B.E Automation Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.E Mechatronics directly. Automation, robotics, automotive electronics or manufacturing engineer roles open at graduation. Tamil Nadu\'s automotive belt (Chennai-Hosur) is a major employer.',
+    skillWeights: {
+      mathematics: 8,
+      language: 5,
+      science: 8,
+      creativity: 8,
+      people: 4,
+      physical: 5,
+      digital: 9,
+    },
+    priorityFit: {
+      salary: 7,
+      security: 6,
+      balance: 6,
+      abroad: 7,
+      prestige: 7,
+      passion: 8,
+      growth: 9,
+      hometown: 6,
+    },
+    competitiveBoardPct: { comfortable: 78, stretch: 68 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–6 LPA at typical TN colleges; ₹5–10 LPA at top-tier campuses and automotive companies (TVS, Ashok Leyland, Hyundai, Renault-Nissan).',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA with 5–8 years in automation / robotics / EV roles. Specialists in industrial robotics or EV motor control can exceed this.',
+      note: 'Tamil Nadu\'s automotive cluster (Chennai-Hosur-Coimbatore) gives mechatronics graduates a real advantage. EV transition is creating new openings. Smaller graduate pool than core mechanical or ECE — less competition for specialised roles.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — strong and growing. Industrial automation, EV manufacturing, robotics, smart factories all hire mechatronics grads. TN\'s automotive belt is a major draw.',
+    },
+    entryDifficulty: {
+      score: 5,
+      note: 'AI estimate — fewer colleges offer Mechatronics than CSE/ECE/Mechanical, so seats are more limited. Cutoffs vary widely; top programmes (PSG Tech, SSN, CEG) are competitive.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top private / autonomous colleges (AI estimate)',
+        examples: ['PSG Tech', 'SSN', 'Kumaraguru', 'Hindustan Institute of Tech & Science'],
+        cutoffGuide: 'AI estimate — TNEA cutoff ~180–193 (OC); availability varies by year.',
+        feeRange: 'AI estimate — ₹60K–1.8L / year',
+      },
+      {
+        label: 'Anna University constituent / aided (AI estimate)',
+        examples: ['CEG Guindy (Production / Manufacturing branches)', 'GCT Coimbatore'],
+        cutoffGuide: 'AI estimate — competitive; check current TNEA cutoffs each year.',
+        feeRange: 'AI estimate — ₹15K–55K / year',
+      },
+      {
+        label: 'Accessible private colleges (AI estimate)',
+        examples: ['Several TN colleges with Mechatronics or Robotics specialisations'],
+        cutoffGuide: 'AI estimate — varies; many seats available below ~170 TNEA cutoff.',
+        feeRange: 'AI estimate — ₹50K–1.5L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 4-year B.E Mechatronics in TN costs roughly ₹1.5L–8L total depending on college tier. Government / aided colleges are dramatically cheaper. Mechatronics labs are equipment-heavy, so private college fees skew higher than CSE.',
+    backupOptions: [
+      'Software / embedded systems roles (transferable strongly)',
+      'Automotive companies (TVS, Ashok Leyland, Hyundai, Renault-Nissan)',
+      'EV start-ups (Ather, Ola Electric)',
+      'M.Tech in Robotics / Control Systems / EV',
+      'PSU jobs via GATE',
+    ],
+    honestCaveat:
+      'Mechatronics is the hybrid degree — broad and exciting, but a "jack of all trades" risk is real. Students who pick a focused specialisation by year 3 (industrial robotics, EV systems, embedded automation, control systems) do exceptionally well. Those who drift through without choosing tend to lose to focused Mechanical or ECE grads in their respective domains. The TN automotive cluster makes this a particularly strong fit for staying in TN.',
+    roadmap: [
+      {
+        title: 'Score 78%+ in 12th PCM',
+        titleTa: '+12 PCM-இல் 78%+',
+        detail: 'Strong Maths and Physics base needed — Mechatronics combines several engineering disciplines and the early semesters are dense.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join B.E Mechatronics (4 years) + pick a focus by year 3',
+        titleTa: 'B.E மெக்காட்ரானிக்ஸ் + சிறப்பு',
+        detail: 'Industrial robotics, EV systems, embedded automation, or control — pick one by semester 5. Internships at TN automotive companies are gold.',
+        window: 'Years 1–4',
+        phase: 'next',
+      },
+      {
+        title: 'Automotive / robotics / EV — choose your industry',
+        titleTa: 'வாகனத் தொழில் / ரோபோடிக்ஸ் / EV',
+        detail: 'TN automotive belt (TVS, Ashok Leyland, Hyundai), EV start-ups (Ather, Ola), or industrial automation (Siemens, ABB, Bosch). M.Tech is also a strong option.',
+        window: 'Years 4–6',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Confirm which TN colleges offer Mechatronics in current cycle',
+        titleTa: 'மெக்காட்ரானிக்ஸ் வழங்கும் கல்லூரிகள்',
+        detail: 'Fewer colleges offer Mechatronics than Mechanical or ECE. Confirm the specific colleges and their TNEA cutoffs early — gives you a realistic counselling plan.',
+        priority: 'high',
+      },
+      {
+        title: 'Learn Arduino / basic robotics with a starter kit',
+        titleTa: 'அர்டுயினோ / அடிப்படை ரோபோடிக்ஸ்',
+        detail: 'A ₹2,000 Arduino kit + free tutorials gets you genuinely tinkering with mechatronics concepts before year 1 even starts.',
+        priority: 'high',
+      },
+      {
+        title: 'Strengthen Mathematics + basic programming',
+        titleTa: 'கணிதம் + நிரலாக்கம் வலுப்படுத்துதல்',
+        detail: 'Control systems lean heavily on differential equations; embedded systems on C. A strong base in both is the year-1 advantage.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Arduino / Raspberry Pi tinkering',
+        why: 'The single most predictive skill for mechatronics success. Cheap, hands-on, transferable to every specialisation in the field.',
+        freeResource: 'Arduino Project Hub, YouTube channels (DroneBot Workshop, GreatScott!)',
+      },
+      {
+        skill: 'Programming — C, Python and basic embedded',
+        why: 'Mechatronics systems run on code. C for embedded, Python for prototyping and data — both are essential.',
+        freeResource: 'NPTEL C programming, Python.org tutorials, freeCodeCamp YouTube',
+      },
+      {
+        skill: 'Strong Mathematics — calculus, linear algebra, differential equations',
+        why: 'Control systems and robotics depend on this. Weakness here makes year 3-4 deeply painful.',
+        freeResource: 'NPTEL Engineering Mathematics, Khan Academy',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

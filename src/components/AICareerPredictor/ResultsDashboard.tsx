@@ -88,6 +88,17 @@ export const ResultsDashboard = ({
     matches[0]?.pathway.id ?? '',
   );
   const [showAll, setShowAll] = useState(false);
+  /**
+   * Per-career acknowledgment of the DRAFT-numbers gate. When a pathway has
+   * needsCounsellorReview = true, the tab section (which contains salaries,
+   * cutoffs and college lists) is hidden behind a "Show estimated figures"
+   * button until the student adds that pathway's id here. Switching to a
+   * different DRAFT career re-gates. Casual screenshots of the safe header
+   * alone capture no numbers.
+   */
+  const [acknowledgedDrafts, setAcknowledgedDrafts] = useState<Set<string>>(
+    new Set(),
+  );
 
   useEffect(() => {
     // A gentle, single celebratory burst — earned, not constant.
@@ -483,61 +494,102 @@ export const ResultsDashboard = ({
               {/* The detailed view, organized into tabs so a student takes in
                   one thing at a time instead of an overwhelming long scroll.
                   Tab state is keyed to the career so switching careers resets
-                  to the Overview tab. */}
-              <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid h-auto w-full grid-cols-2 gap-1 sm:grid-cols-4">
-                  <TabsTrigger
-                    value="overview"
-                    className="flex items-center gap-1.5 py-2 text-[12px]"
-                  >
-                    <Calculator className="h-3.5 w-3.5" />
-                    Overview
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="reality"
-                    className="flex items-center gap-1.5 py-2 text-[12px]"
-                  >
-                    <Scale className="h-3.5 w-3.5" />
-                    Reality Check
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="colleges"
-                    className="flex items-center gap-1.5 py-2 text-[12px]"
-                  >
-                    <Building2 className="h-3.5 w-3.5" />
-                    Colleges
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="plan"
-                    className="flex items-center gap-1.5 py-2 text-[12px]"
-                  >
-                    <ListChecks className="h-3.5 w-3.5" />
-                    Action Plan
-                  </TabsTrigger>
-                </TabsList>
+                  to the Overview tab.
 
-                {/* OVERVIEW — why this career scored what it did */}
-                <TabsContent value="overview" className="mt-4">
-                  <ScoreBreakdown match={activeMatch} defaultOpen />
-                </TabsContent>
+                  GATE: When the active pathway has needsCounsellorReview set
+                  AND the student has not yet acknowledged this specific
+                  career's draft status, hide the tabs entirely. The student
+                  taps an explicit button to reveal the estimated numbers.
+                  This protects against out-of-context screenshots — a
+                  casual capture of the header alone never includes numeric
+                  estimates. The acknowledgment is per-career, so switching
+                  to a different DRAFT career re-gates. */}
+              {activeMatch.pathway.needsCounsellorReview &&
+              !acknowledgedDrafts.has(activeMatch.pathway.id) ? (
+                <Card className="border-2 border-dashed border-amber-300 bg-amber-50/40">
+                  <CardContent className="px-5 py-6 text-center">
+                    <Info className="mx-auto mb-2 h-6 w-6 text-amber-600" />
+                    <h4 className="mb-1.5 text-base font-semibold text-amber-900">
+                      Estimated figures hidden
+                    </h4>
+                    <p className="mx-auto mb-4 max-w-md text-[13px] leading-relaxed text-amber-900/80">
+                      Salaries, fees, cutoffs and college examples for{' '}
+                      <strong>{activeMatch.pathway.title}</strong> are
+                      AI-generated drafts. They are hidden by default to
+                      prevent out-of-context sharing. Tap below to reveal them
+                      — and remember, these are guidance, not verified.
+                    </p>
+                    <Button
+                      variant="default"
+                      className="bg-amber-600 text-white hover:bg-amber-700"
+                      onClick={() =>
+                        setAcknowledgedDrafts((prev) => {
+                          const next = new Set(prev);
+                          next.add(activeMatch.pathway.id);
+                          return next;
+                        })
+                      }
+                    >
+                      Show estimated figures
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Tabs defaultValue="overview" className="w-full">
+                  <TabsList className="grid h-auto w-full grid-cols-2 gap-1 sm:grid-cols-4">
+                    <TabsTrigger
+                      value="overview"
+                      className="flex items-center gap-1.5 py-2 text-[12px]"
+                    >
+                      <Calculator className="h-3.5 w-3.5" />
+                      Overview
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="reality"
+                      className="flex items-center gap-1.5 py-2 text-[12px]"
+                    >
+                      <Scale className="h-3.5 w-3.5" />
+                      Reality Check
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="colleges"
+                      className="flex items-center gap-1.5 py-2 text-[12px]"
+                    >
+                      <Building2 className="h-3.5 w-3.5" />
+                      Colleges
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="plan"
+                      className="flex items-center gap-1.5 py-2 text-[12px]"
+                    >
+                      <ListChecks className="h-3.5 w-3.5" />
+                      Action Plan
+                    </TabsTrigger>
+                  </TabsList>
 
-                {/* REALITY CHECK — the honest picture */}
-                <TabsContent value="reality" className="mt-4">
-                  <RealityCheck pathway={activeMatch.pathway} />
-                </TabsContent>
+                  {/* OVERVIEW — why this career scored what it did */}
+                  <TabsContent value="overview" className="mt-4">
+                    <ScoreBreakdown match={activeMatch} defaultOpen />
+                  </TabsContent>
 
-                {/* COLLEGES — where to actually study this */}
-                <TabsContent value="colleges" className="mt-4">
-                  <CollegesForCareer pathway={activeMatch.pathway} />
-                </TabsContent>
+                  {/* REALITY CHECK — the honest picture */}
+                  <TabsContent value="reality" className="mt-4">
+                    <RealityCheck pathway={activeMatch.pathway} />
+                  </TabsContent>
 
-                {/* ACTION PLAN — the roadmap, 90-day plan and skills to build */}
-                <TabsContent value="plan" className="mt-4 space-y-4">
-                  <CareerRoadmap pathway={activeMatch.pathway} />
-                  <ActionItems pathway={activeMatch.pathway} />
-                  <BuildNowSkills pathway={activeMatch.pathway} />
-                </TabsContent>
-              </Tabs>
+                  {/* COLLEGES — where to actually study this */}
+                  <TabsContent value="colleges" className="mt-4">
+                    <CollegesForCareer pathway={activeMatch.pathway} />
+                  </TabsContent>
+
+                  {/* ACTION PLAN — the roadmap, 90-day plan and skills to build */}
+                  <TabsContent value="plan" className="mt-4 space-y-4">
+                    <CareerRoadmap pathway={activeMatch.pathway} />
+                    <ActionItems pathway={activeMatch.pathway} />
+                    <BuildNowSkills pathway={activeMatch.pathway} />
+                  </TabsContent>
+                </Tabs>
+              )}
             </motion.div>
           </div>
         </div>
