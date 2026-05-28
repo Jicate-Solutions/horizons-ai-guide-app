@@ -59,6 +59,7 @@ export type Stream = 'pcm' | 'pcmb' | 'pcb' | 'commerce' | 'arts' | 'vocational'
  */
 export type CareerFamily =
   | 'tech-software'
+  | 'tech-foundation-cs'
   | 'tech-data'
   | 'tech-business-systems'
   | 'tech-cybersecurity'
@@ -5856,6 +5857,367 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Biology — particularly anatomy and biomechanics of limbs', why: 'P&O is applied anatomy + biomechanics. Strong 12th Biology on musculoskeletal anatomy, joints, and movement directly translates into year 1.', freeResource: 'NCERT Biology, free Khan Academy musculoskeletal anatomy videos' },
       { skill: 'Hands-on tinkering — workshop, model-building, basic engineering', why: 'P&O involves significant fabrication work — casting, lamination, CAD/CAM, 3D printing. Practical comfort with tools is a major advantage.', freeResource: 'Local maker spaces, basic woodworking / model-building, school workshop time' },
       { skill: 'Empathy + patient-facing communication', why: 'P&O patients are often dealing with major life adjustments (amputation, congenital disability). Building genuine empathy and clear bilingual communication is a career-defining habit.', freeResource: 'Volunteer at disability NGOs (Mahaveer, Mobility India local chapters), structured volunteering' },
+    ],
+    lastReviewed: '2026-05',
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 8 (Phase 3a): COMMERCE/MGMT + COMPUTER SCIENCE/IT ───────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Six foundational + specialised degrees across two streams. isNiche flags
+  // applied per the user's explicit Phase 3 rule:
+  //   - General degrees (BBM, B.Sc CS, BCA, B.Sc IT) → isNiche: false
+  //   - Specialised variants (B.Com CS, B.Sc Data Science) → isNiche: true
+  //
+  // Skill weights mapped to the user's Quick Selection Matrix:
+  //   - Software & Coding (BCA, B.Sc CS, B.Sc IT) → logical thinking + math
+  //   - Banking & Corporate Finance (B.Com tracks) → numeracy + bookkeeping
+  //   - Data Science (specialised) → heavy math + digital + research
+  //   - Management (BBM) → people + balanced numeracy
+
+  // ─── B.COM CORPORATE SECRETARYSHIP (CS) ────────────────────────────────────
+  {
+    id: 'bcom-corporate-secretaryship',
+    family: 'commerce-bcom',
+    isNiche: true,
+    interestTags: ['finance', 'law'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'paperwork', 'sitting_long'],
+    automation: 'human_facing',
+    automationNote: 'Corporate secretarial work combines deep regulatory knowledge with judgement under legal liability — drafting board resolutions, ensuring SEBI/Companies Act compliance, advising directors on legal risk. The CS qualification is among the most automation-resilient corporate careers because the regulatory judgement carries personal legal accountability.',
+    title: 'B.Com Corporate Secretaryship (CS Track)',
+    titleTa: 'பி.காம் கார்ப்பரேட் செயலாளர்',
+    icon: '⚖️',
+    color: 'from-stone-600 to-slate-700',
+    whatIsIt:
+      'A three-year B.Com track focused on company law, secretarial practice, corporate governance, and regulatory compliance. Distinct from generic B.Com (accounting-heavy): graduates are trained for the Company Secretary (CS) qualification pathway and corporate governance roles. Career outcomes: corporate compliance officer, junior CS roles at listed companies (post CS qualification), CFO\'s office secretarial support, NCLT/legal compliance roles, and increasingly the ESG / corporate governance consulting segment. Most graduates pursue the ICSI (Institute of Company Secretaries of India) CS qualification post-degree.',
+    eligibleStreams: ['commerce', 'arts', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['301', '302', '304', '308'],
+    ugCourses: ['B.Com Corporate Secretaryship', 'B.Com (CS)', 'B.Com Company Secretaryship'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. The serious career investment is the ICSI Company Secretary qualification (Foundation + Executive + Professional levels) — typically 3-4 additional years for full qualification. CS Foundation can be cleared during the B.Com itself.',
+    skillWeights: { mathematics: 6, language: 8, science: 3, creativity: 4, people: 6, physical: 1, digital: 5 },
+    priorityFit: { salary: 6, security: 8, balance: 6, abroad: 5, prestige: 7, passion: 6, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh as compliance assistant at small/mid companies; ₹3.5–6 LPA at corporate compliance teams of listed companies after CS Foundation. Qualified CS (ICSI complete) ₹6–12 LPA fresh at top corporates.',
+      midCareerLPA: 'AI estimate — Qualified CS ₹12–28 LPA after 7+ years at senior compliance and corporate governance roles. CFO\'s office secretarial leads and listed-company CS heads can substantially exceed. Specialty: ESG and corporate governance consulting at Big 4 firms pays particularly well.',
+      note: 'Modest entry pay without CS qualification; substantial earnings ceiling for fully-qualified CS professionals. The ICSI qualification is the single most career-defining post-degree commitment.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong and stable. Companies Act 2013, SEBI compliance, listed-company requirements all create chronic demand for CS-qualified professionals. ESG compliance is the emerging growth area.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available; ICSI Foundation exam is the actual filter post-12th.' },
+    collegeTiers: [
+      { label: 'Top B.Com CS programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science Coimbatore', 'Sri Krishna College Coimbatore'], cutoffGuide: 'AI estimate — 75%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bishop Heber Trichy', 'Stella Maris College', 'D.G. Vaishnav College'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'Other TN colleges with B.Com CS tracks (AI estimate)', examples: ['Numerous TN aided and private colleges offer the CS track'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Com CS in TN costs roughly ₹60K–3L total. The major investment is the ICSI qualification (Foundation + Executive + Professional) which adds ₹50K–1.5L over 3-4 years post-degree.',
+    backupOptions: ['ICSI Company Secretary qualification — the standard career step', 'LL.B. + CS combination — strong corporate-law trajectory', 'CMA (Cost Management Accountant) — adjacent finance/compliance qualification', 'Pivot to general accounting / audit roles', 'Move into ESG / corporate governance consulting (Big 4)', 'Listed-company secretarial roles after qualification'],
+    honestCaveat: 'B.Com CS is a STEPPING STONE to the ICSI Company Secretary qualification — the degree alone is only modestly valuable. Students who don\'t commit to the ICSI exam grind (Foundation → Executive → Professional, often 4-5 years of part-time study alongside articleship) end up as generic compliance assistants earning modestly. The work is unusually paperwork-heavy and regulation-dense — students who hate reading dense legal text struggle quickly. The trade-off: exceptional job security and strong long-term earnings for those who complete the qualification.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th (any stream)', titleTa: '+12 70%+', detail: 'Direct admission. Commerce stream is the natural fit; PCM/PCB students with strong English also accepted.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Com CS + clear ICSI Foundation during degree', titleTa: 'B.Com + ICSI Foundation', detail: 'ICSI Foundation can be cleared while still in B.Com (1st or 2nd year). Clearing it early is the single biggest career accelerator. ICSI Executive level follows.', window: 'Years 1–3', phase: 'next' },
+      { title: 'ICSI Executive + Professional + Articleship', titleTa: 'ICSI முழுமைப்படுத்தல்', detail: 'Full CS qualification typically takes 3-4 years post-B.Com (Executive ~2 years, Articleship 15 months, Professional). Then qualified CS roles open up.', window: 'Years 3–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Understand the full ICSI qualification pathway', titleTa: 'ICSI வழி புரிதல்', detail: 'Visit https://www.icsi.edu and read about Foundation, Executive, Professional levels and articleship requirements. The B.Com CS is a starting point — the CS qualification is the destination.', priority: 'high', link: 'https://www.icsi.edu' },
+      { title: 'Strengthen 12th English + reading habit', titleTa: 'ஆங்கிலம் + படிக்கும் பழக்கம்', detail: 'CS work is heavily English reading-and-writing — Companies Act sections, SEBI circulars, board resolutions. Strong English from day 1 is essential.', priority: 'high' },
+      { title: 'Read business newspaper sections on corporate governance', titleTa: 'வணிக செய்தித்தாள்', detail: 'Economic Times, Business Standard, Mint corporate-governance coverage. Builds the regulatory awareness mindset early.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — written, particularly precise/formal style', why: 'CS documentation (board resolutions, compliance certificates) demands precise legal English. The career-defining skill.', freeResource: 'BBC Learning English, business writing courses, Economic Times daily reading' },
+      { skill: 'Patience for dense legal text', why: 'CS coursework + ICSI exams demand reading hundreds of pages of Companies Act and SEBI regulations. Building tolerance early is essential.', freeResource: 'Read business newspaper articles on regulation, free Bar Council India guides for non-lawyers' },
+      { skill: 'Basic accounting + finance literacy', why: 'CS work intersects constantly with finance — auditor coordination, board financial reporting. Strong commerce fundamentals matter.', freeResource: 'NCERT Accountancy, free Khan Academy finance basics' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BBM (BACHELOR OF BUSINESS MANAGEMENT) ─────────────────────────────────
+  {
+    id: 'bbm-graduate',
+    family: 'commerce-bba',
+    isNiche: false,
+    interestTags: ['finance'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'high_competition'],
+    automation: 'ai_augmented',
+    automationNote: 'General management work involves leading people, setting strategy, handling exceptions — the parts of work that resist automation. AI tools change WHAT managers do (more data-informed decisions) but don\'t replace the human judgement at the core. India\'s expanding mid-tier corporate sector creates sustained demand for trained business graduates.',
+    title: 'BBM (Bachelor of Business Management)',
+    titleTa: 'BBM — வணிக மேலாண்மை',
+    icon: '🏢',
+    color: 'from-blue-600 to-slate-700',
+    whatIsIt:
+      'A three-year general management degree similar to BBA but with slightly heavier organisational and managerial skills emphasis. Coursework spans organisational behaviour, marketing, HR, operations, business communication, business law, and applied management. Distinct from BBA mainly in branding and college-specific curriculum — career outcomes are nearly identical. Career outcomes: junior management trainee programs (corporate hospitals, retail chains, FMCG), HR coordinator roles, marketing executive, branch management training, family-business successor preparation, and MBA pipeline.',
+    eligibleStreams: ['commerce', 'arts', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['301', '302', '304', '308'],
+    ugCourses: ['BBM (Bachelor of Business Management)', 'BBA (interchangeable in many TN colleges)'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. The MBA after 2-3 years industry experience is the most common acceleration step.',
+    skillWeights: { mathematics: 5, language: 6, science: 3, creativity: 5, people: 7, physical: 2, digital: 5 },
+    priorityFit: { salary: 5, security: 6, balance: 6, abroad: 6, prestige: 6, passion: 6, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at corporate management trainee programs and entry HR / marketing roles; ₹3–5 LPA at established mid-tier corporates and retail chains. Significantly less than BBA from top programs.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior managers, branch heads, and family-business operators. MBA + senior corporate roles can substantially exceed.',
+      note: 'BBM is broadly equivalent to BBA in career outcomes — the choice depends on local college quality more than degree name. Salary trajectory is moderate; the MBA is the standard acceleration step.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady demand from mid-tier corporates, retail chains, family businesses. The market does not distinguish strongly between BBM and BBA graduates.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available. Among the most accessible business degree tracks.' },
+    collegeTiers: [
+      { label: 'Top BBM programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science Coimbatore', 'Stella Maris College'], cutoffGuide: 'AI estimate — 70%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bishop Heber Trichy', 'D.G. Vaishnav College', 'Sri Krishna College of Arts & Science', 'PSGR Krishnammal Coimbatore'], cutoffGuide: 'AI estimate — 60–70%.', feeRange: 'AI estimate — ₹20K–60K / year' },
+      { label: 'Other TN colleges with BBM (AI estimate)', examples: ['Numerous TN aided and private colleges offer BBM'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year BBM in TN costs roughly ₹60K–2.5L total. Among the more affordable foundation business degrees.',
+    backupOptions: ['MBA after 2-3 years industry experience — standard acceleration', 'Family business operation', 'Direct entry to retail / FMCG management trainee programs', 'Pivot to general commerce or BBA-track careers', 'Specialised PG diploma (Digital Marketing, HR, Supply Chain)', 'Civil services / banking exam preparation (BBM provides good foundation)'],
+    honestCaveat: 'BBM is functionally identical to BBA in most TN job markets — employers rarely distinguish between them. Choose based on local college quality, not degree name. The general management nature of the degree means it doesn\'t give you a specific edge — students who don\'t actively build skills (digital marketing, data analytics, communication, internship experience) during the 3 years end up competing for the same entry-level roles as B.Com graduates with no real differentiation. The MBA is where the real specialisation and salary uplift happens — the BBM is mainly preparation for that.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th (any stream)', titleTa: '+12 65%+', detail: 'Direct admission. Commerce + Arts streams natural fit; Science students also welcome with strong communication.', window: 'Now', phase: 'now' },
+      { title: 'Join BBM + active skill-building beyond curriculum', titleTa: 'BBM + பாடத்திற்கு வெளியே திறன்கள்', detail: 'Digital marketing certifications, data analytics basics, internships at corporates — these differentiate BBM graduates from peers. The degree alone is generic.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Management trainee + MBA pathway', titleTa: 'பயிற்சி வேலை + MBA', detail: 'First role typically as management trainee / HR coordinator / marketing executive. MBA at 2-3 years experience is the standard step up.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Decide BBM vs BBA based on COLLEGE quality', titleTa: 'பல்கலைக் கழக தரம் சரிபார்', detail: 'BBM and BBA are nearly identical career-wise. Pick the better-ranked TN college, not the more impressive-sounding degree name.', priority: 'high' },
+      { title: 'Start building real skills during admission wait', titleTa: 'திறன்கள் உருவாக்கம் தொடங்க', detail: 'Free Google Digital Marketing certification, Excel basics, English fluency. These compound dramatically through 3 years.', priority: 'high', freeResource: 'Google Digital Garage, Coursera audit, BBC Learning English' },
+      { title: 'Read about Indian business sectors', titleTa: 'இந்திய வணிக துறைகள் படிக்கவும்', detail: 'Mint, The Ken, Economic Times. Building industry awareness shapes which specialisation to pursue later.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Spoken + written English (business communication)', why: 'Management work IS communication. Strong English separates management trainees from administrative assistants from day 1.', freeResource: 'BBC Learning English, daily English news, local Toastmasters clubs' },
+      { skill: 'Excel + basic data analysis', why: 'Modern management work runs on data. Comfort with Excel and basic analytical thinking from day 1 is a real career advantage.', freeResource: 'Microsoft Excel free YouTube (Leila Gharani, ExcelIsFun)' },
+      { skill: 'Reading the business news daily', why: 'Builds industry awareness, vocabulary, and decision context that classroom learning doesn\'t provide. Compounds over 3 years dramatically.', freeResource: 'Economic Times, Business Standard, Mint daily reading' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC COMPUTER SCIENCE ─────────────────────────────────────────────────
+  {
+    id: 'bsc-computer-science',
+    family: 'tech-foundation-cs',
+    isNiche: false,
+    interestTags: ['tech'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'maths_heavy'],
+    automation: 'ai_augmented',
+    automationNote: 'AI coding tools change HOW software developers work, but the trained programmer who understands data structures, algorithms, and system design remains in chronic demand. The B.Sc CS foundation gives genuine theoretical grounding that pure bootcamp graduates often lack.',
+    title: 'B.Sc Computer Science',
+    titleTa: 'பி.எஸ்சி கணினி அறிவியல்',
+    icon: '💻',
+    color: 'from-indigo-500 to-blue-600',
+    whatIsIt:
+      'A three-year foundational degree in computer science — programming languages (C, C++, Java, Python), data structures and algorithms, operating systems, database management, software engineering, computer networks, theory of computation. Distinct from B.Tech CSE: 3 years instead of 4, more theoretical/academic emphasis, no JEE/TNEA required (direct admission via 12th marks). Career outcomes: junior software developer at IT services companies (TCS, Infosys, Wipro, Cognizant), web/mobile developer roles at startups, M.C.A. pathway, B.Ed Computer Science for teaching, or competitive exam preparation (UPSC, banking, SSC) with tech option.',
+    eligibleStreams: ['pcm', 'commerce', 'pcmb', 'pcb'],
+    strongGroupCodes: ['101', '102', '104', '301'],
+    ugCourses: ['B.Sc Computer Science', 'B.Sc (Hons.) Computer Science'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.C.A. (Master of Computer Applications) after the degree is the standard step up to senior software roles. Direct industry entry possible at smaller IT companies but salary trajectory is lower than B.Tech CSE.',
+    skillWeights: { mathematics: 7, language: 5, science: 6, creativity: 6, people: 3, physical: 1, digital: 8 },
+    priorityFit: { salary: 6, security: 7, balance: 6, abroad: 7, prestige: 6, passion: 7, growth: 8, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at IT services companies (TCS, Infosys via mass hiring); ₹3–5 LPA at mid-tier companies and startups. Significantly lower than B.Tech CSE because employers distinguish strongly.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for skilled developers and senior engineers. M.C.A. + strong work experience can substantially exceed. Abroad pathway opens with experience + skill specialisation.',
+      note: 'Entry salary is materially lower than B.Tech CSE — employers (especially IT services) explicitly distinguish between degree levels. The gap can be bridged by strong project portfolios, M.C.A., and specialisation. The trade-off vs B.Tech: 1 year saved, no JEE/TNEA grind, accessible from any stream.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from IT services companies (which hire B.Sc CS graduates by the thousands annually). The startup / product company segment prefers B.Tech but B.Sc graduates with strong portfolios also compete.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available across TN. Among the most accessible 3-year tech degrees.' },
+    collegeTiers: [
+      { label: 'Top B.Sc CS programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science Coimbatore', 'Stella Maris College'], cutoffGuide: 'AI estimate — 80%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bishop Heber Trichy', 'Ethiraj College', 'D.G. Vaishnav College', 'SRM Institute of Science and Technology'], cutoffGuide: 'AI estimate — 70–80%.', feeRange: 'AI estimate — ₹25K–1L / year' },
+      { label: 'Other TN colleges with B.Sc CS (AI estimate)', examples: ['Numerous TN aided and private colleges offer B.Sc CS'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–80K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc CS in TN costs roughly ₹75K–3L total. Among the more affordable tech degrees. M.C.A. (2 years follow-on) adds another ₹1L–4L.',
+    backupOptions: ['M.C.A. (Master of Computer Applications) — standard acceleration step', 'M.Sc Computer Science — research/academic track', 'Direct IT services placement (TCS NQT, Infosys assessment, Cognizant GenC)', 'Build strong project portfolio for product company entry', 'Move into data science / cybersecurity via specialised certifications', 'Civil services exam preparation with CS option subject', 'B.Ed Computer Science for school teaching career'],
+    honestCaveat: 'B.Sc Computer Science is foundational — the degree itself is generic. Strong students compete with B.Tech CSE graduates by building substantial project portfolios (GitHub repositories, open-source contributions, hackathon participation) during the degree. Students who treat the 3 years as just attending lectures end up as low-paid IT services hires with limited mobility. The M.C.A. is the standard step-up, but adds 2 more years of study. The trade-off vs B.Tech CSE is real: lower starting salary, but no JEE/TNEA grind, 1 year saved, and accessible from any stream.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th (PCM ideal, other streams welcome)', titleTa: '+12 70%+', detail: 'Direct admission. Strong Mathematics matters most. Commerce/PCB students with strong Maths also accepted.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc CS + AGGRESSIVE project portfolio building', titleTa: 'B.Sc CS + திட்டப் பணி', detail: 'From year 1, build projects on GitHub. Hackathons, open-source contributions, freelance projects. The portfolio differentiates strong B.Sc graduates from weak ones decisively.', window: 'Years 1–3', phase: 'next' },
+      { title: 'IT services placement, M.C.A., or specialised certification', titleTa: 'வேலை / M.C.A. / சான்றிதழ்', detail: 'Three credible exits. Direct IT services for income; M.C.A. for senior roles; specialised certifications (cloud, data, security) for niche acceleration.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Start a Python project — anything', titleTa: 'பைதான் திட்டம் ஆரம்பம்', detail: 'Build a simple project (todo app, web scraper, calculator). Free tools, free tutorials. The earliest project on GitHub compounds in value for 3 years.', priority: 'high', freeResource: 'freeCodeCamp Python, Codecademy, Real Python tutorials' },
+      { title: 'Strengthen Mathematics — algebra, basic statistics', titleTa: 'கணிதம் வலுப்படுத்துதல்', detail: 'CS coursework leans on math from year 1 (algorithms, discrete maths, statistics). Strong 12th Maths makes a real difference.', priority: 'high' },
+      { title: 'Set up a GitHub account and learn Git basics', titleTa: 'GitHub கணக்கு + Git', detail: 'Industry-standard version control. Free, essential. Comfort with Git from day 1 puts you ahead of classmates.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Python programming + algorithmic thinking', why: 'The single highest-ROI preparation. Comfort with one programming language from day 1 transforms every CS course.', freeResource: 'freeCodeCamp Python, Codecademy, free MIT 6.001x' },
+      { skill: 'Mathematics — discrete math, basic algorithms', why: 'CS is applied mathematics in many of its courses. Strong fundamentals reward you for the entire 3-year degree.', freeResource: 'Khan Academy algebra + discrete math, MIT OpenCourseWare 6.042' },
+      { skill: 'Logical thinking + puzzle-solving habits', why: 'CS coursework rewards systematic logical thinking. Practising puzzles (LeetCode easy problems, Project Euler beginner problems) builds the right reflexes.', freeResource: 'LeetCode (free tier), HackerRank, Project Euler' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.C.A. (BACHELOR OF COMPUTER APPLICATIONS) ────────────────────────────
+  {
+    id: 'bca-graduate',
+    family: 'tech-foundation-cs',
+    isNiche: false,
+    interestTags: ['tech'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'BCA emphasises applied software development — the day-to-day work of building applications, mobile apps, web systems. AI tools accelerate this work but don\'t replace the developer who designs, debugs, and integrates. India\'s IT services backbone hires BCA graduates in significant volumes.',
+    title: 'BCA (Bachelor of Computer Applications)',
+    titleTa: 'BCA — கணினி பயன்பாடுகள் இளங்கலை',
+    icon: '⌨️',
+    color: 'from-cyan-500 to-blue-600',
+    whatIsIt:
+      'A three-year applied computer science degree focused on software development, web development, mobile applications, database management, and IT applications. Distinct from B.Sc CS: more applied/development-focused, less theory; broader admission criteria (no specific stream requirement at many colleges). Career outcomes: software developer at IT services companies (TCS, Infosys, Wipro, Cognizant — significant volumes), web/mobile developer at startups, M.C.A. pathway, IT support and operations roles, freelance development work.',
+    eligibleStreams: ['pcm', 'commerce', 'arts', 'pcmb', 'pcb'],
+    strongGroupCodes: ['101', '102', '104', '301', '401'],
+    ugCourses: ['BCA (Bachelor of Computer Applications)', 'BCA (Hons.)'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.C.A. (2 years) is the standard step up. Direct industry entry common at IT services companies.',
+    skillWeights: { mathematics: 6, language: 5, science: 4, creativity: 5, people: 4, physical: 1, digital: 8 },
+    priorityFit: { salary: 6, security: 7, balance: 6, abroad: 6, prestige: 5, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at IT services companies (mass hiring through TCS NQT, Infosys, Cognizant entrance); ₹3–5 LPA at mid-tier companies. Slightly lower than B.Sc CS at top corporates but very similar at IT services level.',
+      midCareerLPA: 'AI estimate — ₹8–16 LPA after 7+ years for skilled developers. M.C.A. + experience + specialisation can substantially exceed. The IT services career ladder is well-defined: developer → senior developer → tech lead → architect.',
+      note: 'BCA is broadly equivalent to B.Sc CS at the entry IT services level. The trade-off vs B.Tech is more pronounced — significantly lower starting salaries at product companies. Strong portfolios and certifications bridge the gap.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from IT services companies. BCA + B.Sc CS together fill the bulk of TCS/Infosys/Cognizant/Wipro hiring annually.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — among the most accessible tech degrees. Widely available, broad stream admission, modest 12th marks suffice at many colleges.' },
+    collegeTiers: [
+      { label: 'Top BCA programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science Coimbatore', 'D.G. Vaishnav College'], cutoffGuide: 'AI estimate — 75%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Sri Krishna Arts & Science', 'PSGR Krishnammal Coimbatore', 'Ethiraj College', 'Bishop Heber Trichy'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹25K–1L / year' },
+      { label: 'Other TN colleges with BCA (AI estimate)', examples: ['Numerous TN aided and private colleges offer BCA'], cutoffGuide: 'AI estimate — widely accessible; 55%+ typical.', feeRange: 'AI estimate — ₹20K–1L / year' },
+    ],
+    costReality: 'AI estimate — a 3-year BCA in TN costs roughly ₹75K–3L total. Generally similar to or slightly higher than B.Sc CS. M.C.A. follow-on adds ₹1L–4L over 2 years.',
+    backupOptions: ['M.C.A. — standard acceleration', 'Direct IT services placement (TCS NQT, Infosys, Cognizant)', 'Specialised certifications (AWS, Azure, full-stack development, cybersecurity)', 'Pivot to data analytics / business analyst roles', 'Freelance web/mobile development', 'B.Ed Computer Science for school teaching', 'Civil services / banking exam preparation'],
+    honestCaveat: 'BCA is the most accessible tech degree in India — and the IT services job market reflects that, with modest starting salaries and high competition. Strong students differentiate via portfolios, certifications, internships, and specialisations. The career outcome is heavily driven by what the student DOES during the 3 years, not the degree certificate alone. The trade-off vs B.Tech CSE is real: significantly lower starting salaries at product companies, longer climb to senior roles. The M.C.A. is the standard step-up but adds 2 more years.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th (any stream)', titleTa: '+12 60%+', detail: 'Direct admission accepting all streams at most colleges. The most open tech entry.', window: 'Now', phase: 'now' },
+      { title: 'Join BCA + AGGRESSIVE project + certification work', titleTa: 'BCA + திட்டங்கள் + சான்றிதழ்கள்', detail: 'GitHub portfolio, web development projects, AWS/Azure free certifications. These differentiate BCA graduates from peers in the same hiring pools.', window: 'Years 1–3', phase: 'next' },
+      { title: 'IT services placement, M.C.A., or specialisation', titleTa: 'வேலை / M.C.A. / சிறப்பு வளர்ச்சி', detail: 'Three credible exits. Direct IT services for income; M.C.A. for senior roles; specialised certifications for niche acceleration.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Build one web project (HTML + CSS + JavaScript)', titleTa: 'வலை திட்டம் உருவாக்கவும்', detail: 'A simple personal website, calculator, or todo app. Free tutorials. The earliest project compounds.', priority: 'high', freeResource: 'freeCodeCamp web development, MDN Web Docs' },
+      { title: 'Start GitHub account + learn Git', titleTa: 'GitHub + Git கற்க', detail: 'Industry standard. Free, essential. Comfort from day 1 puts you ahead of classmates.', priority: 'high' },
+      { title: 'Strengthen 12th Mathematics — basic algebra', titleTa: 'கணிதம் வலுப்படுத்துதல்', detail: 'BCA leans on math less heavily than B.Sc CS, but algorithmic thinking still benefits from strong fundamentals.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'One programming language deeply — Python or JavaScript', why: 'Tool fluency is the working necessity. One language known well from day 1 makes every BCA course easier.', freeResource: 'freeCodeCamp, Codecademy, Real Python tutorials' },
+      { skill: 'Git + GitHub workflow', why: 'Industry standard version control. Comfortable Git from day 1 transforms how you work for the next decade.', freeResource: 'Free Git tutorials on freeCodeCamp, GitHub Skills' },
+      { skill: 'Reading documentation and Stack Overflow', why: 'Developers spend more time reading docs than writing code. Building this skill early compounds dramatically.', freeResource: 'MDN Web Docs, Stack Overflow, official language documentation' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC INFORMATION TECHNOLOGY (IT) ──────────────────────────────────────
+  {
+    id: 'bsc-information-technology',
+    family: 'tech-foundation-cs',
+    isNiche: false,
+    interestTags: ['tech'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'IT operations (network admin, database admin, system admin) are partially automated by modern cloud services, but the skilled IT professional who designs, configures, and troubleshoots systems remains essential. The shift to cloud-based IT increases demand for IT graduates who understand modern infrastructure.',
+    title: 'B.Sc Information Technology (IT)',
+    titleTa: 'பி.எஸ்சி தகவல் தொழில்நுட்பம்',
+    icon: '🌐',
+    color: 'from-sky-500 to-cyan-600',
+    whatIsIt:
+      'A three-year degree focused on the systems and applications side of computing — computer networks, database management systems, web technologies, system administration, IT infrastructure, cybersecurity basics, cloud computing introduction. Distinct from B.Sc CS (more programming/theory) and BCA (more application development): graduates are positioned for IT operations, system administration, network engineering, and database administration roles. Career outcomes: IT services companies (system / network roles), corporate IT departments, cloud operations roles, junior database administrator, IT support and infrastructure roles, increasingly DevOps and cloud engineering trajectories.',
+    eligibleStreams: ['pcm', 'commerce', 'arts', 'pcmb', 'pcb'],
+    strongGroupCodes: ['101', '102', '104', '301'],
+    ugCourses: ['B.Sc Information Technology (IT)', 'B.Sc Information Systems'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. Standard step-up paths include M.Sc IT, M.C.A., or specialised certifications (AWS, Azure, Cisco, RedHat).',
+    skillWeights: { mathematics: 5, language: 6, science: 5, creativity: 4, people: 5, physical: 2, digital: 9 },
+    priorityFit: { salary: 6, security: 7, balance: 7, abroad: 7, prestige: 5, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at IT services companies (system administration, network operations); ₹3–5 LPA at corporate IT departments. AWS / cloud certification holders ₹3.5–6 LPA at entry.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for senior system administrators, cloud engineers, and DevOps specialists. Cloud certifications + experience open the higher trajectory. Abroad pathway (Gulf, Singapore) very real for system/network specialists.',
+      note: 'Strong mid-career trajectory for those who specialise in cloud (AWS/Azure/GCP) or modern DevOps tooling. The vendor certification path matters more than the degree certificate in this field.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and structurally growing. Cloud migration, DevOps adoption, and cybersecurity needs create sustained demand. The cloud certification market is essentially infinite right now.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available across TN.' },
+    collegeTiers: [
+      { label: 'Top B.Sc IT programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science Coimbatore', 'D.G. Vaishnav College'], cutoffGuide: 'AI estimate — 75%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bishop Heber Trichy', 'Sri Krishna Arts & Science', 'PSGR Krishnammal Coimbatore', 'Ethiraj College'], cutoffGuide: 'AI estimate — 60–75%.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Other TN colleges with B.Sc IT (AI estimate)', examples: ['Numerous TN aided and private colleges offer B.Sc IT'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–80K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc IT in TN costs roughly ₹75K–3L total. The high-ROI investment is post-degree cloud certifications (AWS, Azure, GCP) — typically ₹15K–50K per cert with substantial earnings boost.',
+    backupOptions: ['Cloud certifications (AWS, Azure, GCP) — high-ROI specialisation', 'M.Sc IT / M.C.A. — academic acceleration', 'Direct IT services placement (TCS, Infosys, Wipro)', 'Corporate IT department roles', 'DevOps + cloud engineering pathway', 'Cybersecurity certification track (CEH, Security+)', 'Database administrator specialisation (Oracle, MSSQL)'],
+    honestCaveat: 'B.Sc IT graduates can struggle to find their identity in a job market where employers often prefer B.Sc CS (for development) or specialised certifications (for IT operations). The degree alone is generic — what differentiates B.Sc IT graduates is the cloud / DevOps / cybersecurity certifications and project experience built DURING the degree. Students who treat the 3 years as just classroom time end up competing for the same low-paid IT support roles. The cloud certification path is where the real career uplift happens.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th (any stream)', titleTa: '+12 65%+', detail: 'Direct admission. PCM ideal but commerce/arts students with strong digital interest also welcome.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc IT + AWS / Azure certification by year 3', titleTa: 'B.Sc IT + கிளவுட் சான்றிதழ்', detail: 'One cloud certification (AWS Solutions Architect Associate or Azure Fundamentals) during the degree transforms placement outcomes. Free AWS / Azure student programs available.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Cloud engineer / DevOps / network specialist role', titleTa: 'கிளவுட் / DevOps / பிணைய நிபுணர்', detail: 'Three credible specialisations. Cloud engineering has the strongest growth; DevOps the strongest mid-career trajectory; network/security specialist for stable govt-adjacent roles.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Set up Linux command-line basics', titleTa: 'லினக்ஸ் கட்டளை வரி', detail: 'IT work runs on Linux servers. Comfort with the command line is the foundational career skill.', priority: 'high', freeResource: 'OverTheWire Bandit (free game), LinuxJourney free course' },
+      { title: 'Create free AWS account + explore', titleTa: 'AWS கணக்கு உருவாக்கவும்', detail: 'AWS Free Tier lets you experiment without spending. Setting up your first EC2 instance is genuinely transformative for understanding cloud.', priority: 'high', link: 'https://aws.amazon.com/free' },
+      { title: 'Networking basics — TCP/IP, DNS, HTTP', titleTa: 'பிணைய அடிப்படைகள்', detail: 'You cannot manage what you don\'t understand. Strong networking fundamentals from day 1 unlock every IT course.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Linux command-line fluency', why: 'The working environment for nearly all IT operations. Comfort from day 1 is the foundational career skill.', freeResource: 'OverTheWire Bandit, LinuxJourney, free Linux Foundation introductory courses' },
+      { skill: 'Networking fundamentals (TCP/IP, DNS, HTTP)', why: 'You cannot configure, secure, or troubleshoot networks without understanding them. Strong fundamentals compound through every IT course.', freeResource: 'Free Cisco Networking Academy intro modules, Computer Networking from the Ground Up (Coursera audit)' },
+      { skill: 'Cloud platform exposure (AWS Free Tier)', why: 'Cloud is the future of IT. Hands-on AWS / Azure exposure during the degree, even at the free tier, transforms career outcomes.', freeResource: 'AWS Free Tier, AWS Skill Builder, Microsoft Learn (Azure)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC DATA SCIENCE / ARTIFICIAL INTELLIGENCE ───────────────────────────
+  {
+    id: 'bsc-data-science',
+    family: 'tech-data',
+    isNiche: true,
+    interestTags: ['tech', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'maths_heavy'],
+    automation: 'ai_augmented',
+    automationNote: 'Data science graduates BUILD the AI systems that automate other work. AI augments their productivity but does not replace the analytical judgement, model selection, and domain interpretation that data scientists provide. India\'s data-driven business shift creates exceptionally strong demand for trained data professionals.',
+    title: 'B.Sc Data Science / AI',
+    titleTa: 'பி.எஸ்சி தரவு அறிவியல் / AI',
+    icon: '📊',
+    color: 'from-violet-500 to-purple-700',
+    whatIsIt:
+      'A three-year specialised degree in data science and artificial intelligence — statistics, machine learning, Python data libraries (NumPy, Pandas, scikit-learn), data visualisation, big data tools introduction, AI model building. Distinct from B.Sc CS (broader programming) and from B.Tech AI & Data Science (4-year engineering version): more focused on data analysis and statistics, shorter time investment, accessible to broader streams. Career outcomes: junior data analyst at corporates, business intelligence roles, junior ML engineer at startups, data analytics consulting, M.Sc Data Science pathway, transitions to data scientist roles with experience.',
+    eligibleStreams: ['pcm', 'commerce', 'pcmb', 'pcb'],
+    strongGroupCodes: ['101', '102', '104', '301'],
+    ugCourses: ['B.Sc Data Science', 'B.Sc Artificial Intelligence', 'B.Sc Data Science & Analytics', 'B.Sc AI & Machine Learning'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Sc Data Science (1-2 years) is the standard step-up. Direct industry entry possible at analytics-focused corporates and startups.',
+    skillWeights: { mathematics: 9, language: 5, science: 6, creativity: 6, people: 3, physical: 1, digital: 9 },
+    priorityFit: { salary: 7, security: 7, balance: 6, abroad: 8, prestige: 7, passion: 8, growth: 9, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–5.5 LPA fresh at corporate analytics teams and junior data analyst roles; ₹4–7 LPA at analytics-focused startups and Big 4 data analytics teams. Lower than B.Tech AIDS (4-year) at entry but rises fast with portfolio work.',
+      midCareerLPA: 'AI estimate — ₹12–28 LPA after 7+ years for senior data analysts, business intelligence leads, and ML engineers. Specialty (NLP, computer vision, financial data science) can substantially exceed. Abroad opportunities multiply significantly.',
+      note: 'Among the highest-trajectory 3-year degrees in India right now because the demand-supply imbalance is severe — trained data professionals are in chronic shortage. The maths foundation matters more than the brand name of the college; weak math fundamentals limit career mobility regardless of where you study.',
+    },
+    demand: { score: 9, note: 'AI estimate — exceptionally strong. Every Indian corporate is building data teams; analytics consulting (Mu Sigma, Tiger Analytics), Big 4 data teams, fintech (Razorpay, PhonePe, Cred), and product startups all hire aggressively.' },
+    entryDifficulty: { score: 4, note: 'AI estimate — direct admission widely available but the field rewards genuine mathematical engagement. Top programs are increasingly competitive as the field grows in visibility.' },
+    collegeTiers: [
+      { label: 'Top B.Sc Data Science programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'Christ University (multi-campus, strong reputation)', 'Sri Krishna Arts & Science Coimbatore'], cutoffGuide: 'AI estimate — 80%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹40K–1.5L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['SRM Institute of Science and Technology', 'Sastra School of Computing', 'Hindustan Institute of Technology', 'D.G. Vaishnav College'], cutoffGuide: 'AI estimate — 70–80%.', feeRange: 'AI estimate — ₹80K–2.5L / year' },
+      { label: 'Other TN colleges with B.Sc Data Science (AI estimate)', examples: ['Growing number of TN colleges launch Data Science tracks annually; verify curriculum rigour per program'], cutoffGuide: 'AI estimate — 65%+ typical.', feeRange: 'AI estimate — ₹60K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Data Science in TN costs roughly ₹1.5L–6L total. The ROI is strong if you actually engage with the math foundations. M.Sc + abroad pathway adds substantial earnings later.',
+    backupOptions: ['M.Sc Data Science / M.Sc Statistics — specialisation', 'Direct analytics role at corporates (TCS Analytics, Tiger Analytics, Mu Sigma)', 'Pivot to general SDE / software roles if data market softens', 'Specialised certifications (Coursera ML, Google Data Analytics, AWS Machine Learning)', 'Move abroad — exceptional demand in US, UK, Canada, Australia', 'Quantitative finance / actuarial science adjacency', 'PhD + research-track data science career'],
+    honestCaveat: 'B.Sc Data Science rewards students who genuinely enjoy mathematics — linear algebra, probability, statistics, calculus. Students who picked it because "AI is the future" without that pull struggle once the maths-heavy foundation courses hit in years 1-2. The brand of "Data Science" attracts many; the discipline of statistical thinking sorts them out. The trade-off vs B.Tech AIDS is significant: shorter (3 vs 4 years), accessible from broader streams, but lower entry salaries at top tech firms. Strong portfolios and certifications bridge most of the gap. Be honest about the maths before committing.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th with strong Maths', titleTa: '+12 75%+ (கணிதம் வலுவாக)', detail: 'Direct admission. Mathematics is the single strongest predictor of data science performance — score it as high as possible.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc DS + AGGRESSIVE project / Kaggle work', titleTa: 'B.Sc + Kaggle திட்டங்கள்', detail: 'Build real data projects from year 1 — Kaggle competitions, GitHub portfolio, open-source contributions. Coursework alone is not enough for this competitive field.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.Sc DS, analytics role, OR abroad pathway', titleTa: 'M.Sc / பகுப்பாய்வு வேலை / வெளிநாடு', detail: 'Three credible exits. M.Sc for deeper specialisation; direct analytics role for income and growth; abroad pathway for higher earnings and frontier research.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Mathematics — linear algebra + statistics', titleTa: 'கணிதம் வலுப்படுத்துதல்', detail: 'Data science is 60% applied maths. A head start on linear algebra and statistics before year 1 is a major advantage.', priority: 'high', freeResource: '3Blue1Brown YouTube (Essence of Linear Algebra), Khan Academy statistics' },
+      { title: 'Try Andrew Ng\'s Machine Learning course (audit free)', titleTa: 'இலவச ML கோர்ஸ்', detail: 'The classic introduction to ML. 2-3 hours/week before year 1 clarifies whether ML genuinely interests you BEFORE committing 3 years.', priority: 'high', link: 'https://www.coursera.org/learn/machine-learning' },
+      { title: 'Set up Python + Pandas basics', titleTa: 'Python + Pandas', detail: 'The lingua franca of data work. Python + Pandas fluency from day 1 frees you to focus on the data, not the tools.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Mathematics — linear algebra + probability + statistics', why: 'The deep foundation of all data science. Students who arrive comfortable with these are dramatically more productive in years 1-3.', freeResource: '3Blue1Brown YouTube, Khan Academy, MIT OpenCourseWare 18.01 + 18.05' },
+      { skill: 'Python + Pandas + NumPy', why: 'The working tools of data science. Fluency from day 1 means you focus on the data analysis, not the syntax.', freeResource: 'freeCodeCamp Python, Pandas official tutorials, Real Python free articles' },
+      { skill: 'Kaggle learning + competition exposure', why: 'Kaggle is the platform where data science skills are visibly demonstrated. Even completing free beginner tutorials builds the right habits.', freeResource: 'Kaggle Learn (free), free Kaggle competition writeups, Titanic competition for beginners' },
     ],
     lastReviewed: '2026-05',
   },
