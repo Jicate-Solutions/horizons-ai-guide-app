@@ -87,6 +87,9 @@ export type CareerFamily =
   | 'commerce-bcom'
   | 'commerce-bba'
   | 'law'
+  | 'arts-criminology'
+  | 'creative-design'
+  | 'psychology'
   | 'defence-strategic'
   | 'arts-language'
   | 'agriculture';
@@ -5044,7 +5047,369 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Software fluency — design and CAD tools', why: 'Modern packaging engineering uses design software (Adobe Illustrator, ArtiosCAD for structural packaging, Esko software for prepress). Free / student-version comfort with basic tools is a real asset.', freeResource: 'Adobe student trials, free Inkscape, YouTube tutorials' },
     ],
     lastReviewed: '2026-05',
+  },  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 5: SPECIALISED ARTS & MANAGEMENT (Discovery Expansion) ──────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Final batch of the Discovery roadmap. Six careers with the highest
+  // tag-overlap risk in the entire dataset — every entry's skillWeights and
+  // interestTags were tuned with explicit attention to:
+  //   - Psychology vs BBA: different families (psychology vs commerce-bba),
+  //     completely different skill profile (psychology people: 9, science: 8;
+  //     BBA-style careers people: 5-7, science: 3-4).
+  //   - VisCom vs B.Des: same family (creative-design — they DO dedup), but
+  //     different secondary skill / aversion profiles (VisCom higher digital
+  //     and language; B.Des higher physical for prototyping work).
+  //   - BBA Logistics vs BBA Aviation vs existing BBA: all three share the
+  //     commerce-bba family (intentional dedup so a BBA-leaning student sees
+  //     ONE in Top, the others in Worth a Look). Skill weights distinguish
+  //     them sharply: Logistics math 7 + digital 7 (ops research); Aviation
+  //     people 8 + language 7 (service industry); General BBA balanced.
+  //   - Criminology vs Lawyer: different families (arts-criminology vs law),
+  //     different interest tags (research adds the academic / NCRB / IB
+  //     research dimension that pure lawyer doesn't capture).
+
+  // ─── B.A. CRIMINOLOGY ──────────────────────────────────────────────────────
+  {
+    id: 'criminologist',
+    family: 'arts-criminology',
+    interestTags: ['law', 'research', 'govt'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'graphic_content', 'sitting_long'],
+    automation: 'high_human_judgment',
+    automationNote: 'Criminology combines social-science research with contextual judgement work that AI cannot replicate — understanding why crime happens, designing intervention programs, evaluating police and prison policies. India\'s data-driven policing push (NCRB analytics, predictive policing pilots) creates emerging demand for analytically-trained criminologists.',
+    title: 'Criminologist (B.A. Criminology)',
+    titleTa: 'குற்றவியல் ஆய்வாளர்',
+    icon: '🔎',
+    color: 'from-slate-700 to-stone-800',
+    whatIsIt:
+      'A three-year B.A. that studies crime as a social phenomenon — criminological theory, criminal psychology, victimology, penology (prison studies), policing studies, juvenile justice, white-collar crime, cybercrime, and increasingly crime-data analysis. Distinct from law (which studies legal frameworks): criminology asks why crime happens and what works to prevent it. Career outcomes: NCRB and state crime-research roles, police-research positions, prison administration, juvenile justice, NGO work in restorative justice, academic research, and the emerging crime-analytics segment with state police forces.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '405', '301'],
+    ugCourses: ['B.A. Criminology', 'B.A. Criminology & Police Science', 'B.Sc Criminology & Forensic Science'],
+    entranceExams: ['None (direct admission)', 'CUET'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year B.A. Strong career trajectories typically require M.A. Criminology + UPSC / state PSC for government roles, or M.A. + PhD for academic and policy research careers.',
+    skillWeights: { mathematics: 4, language: 8, science: 5, creativity: 5, people: 7, physical: 2, digital: 6 },
+    priorityFit: { salary: 4, security: 6, balance: 6, abroad: 5, prestige: 6, passion: 8, growth: 5, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–4 LPA fresh as a research assistant, NGO researcher, or junior crime analyst. Government roles (post UPSC / state PSC) ₹6–10 LPA fresh with strong job security.',
+      midCareerLPA: 'AI estimate — ₹7–18 LPA after 7+ years for senior researchers, government criminologists, and academic faculty. PhD + research-institute roles (Lok Nayak Jayaprakash Narayan National Institute, ICSSR) can reach this range with strong publication record.',
+      note: 'Modest direct earnings — the B.A. itself is a foundational credential. Real career value emerges from POST-graduation specialisation: M.A. + PhD for academic / policy research, UPSC for civil services, or law-enforcement-adjacent roles via state recruitment.',
+    },
+    demand: { score: 5, note: 'AI estimate — limited direct demand for the B.A. itself; growing demand for analytically-trained criminologists in police data units, NGO research, and academic policy research. Cybercrime and white-collar crime specialisations have the strongest growth.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission at most TN universities offering the program; among the least-competitive social-science admissions.' },
+    collegeTiers: [
+      { label: 'Primary TN programs (AI estimate)', examples: ['Madras University Department of Criminology', 'Madurai Kamaraj University', 'Bharathiar University Coimbatore'], cutoffGuide: 'AI estimate — 60–70% in 12th typical.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bharathidasan University', 'Periyar University Salem', 'a small number of TN private universities with criminology tracks'], cutoffGuide: 'AI estimate — 55–70%.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['LNJN National Institute of Criminology and Forensic Science New Delhi (M.A. level)', 'Tata Institute of Social Sciences (TISS) — strong criminology adjacency'], cutoffGuide: 'AI estimate — entrance exams at PG level.', feeRange: 'AI estimate — varies; mostly affordable government programs' },
+    ],
+    costReality: 'AI estimate — a 3-year B.A. Criminology in TN costs roughly ₹50K–2.5L total. Among the most affordable degrees on offer. The real investment is the post-graduation specialisation track.',
+    backupOptions: ['M.A. Criminology + PhD academic route', 'UPSC Civil Services preparation (criminology is a strong optional subject)', 'State PSC police recruitment exams', 'NGO research in restorative justice and juvenile justice', 'Crime-data analytics roles emerging with state police forces', 'Cybercrime specialisation — fastest-growing sub-field', 'Pivot to law (LL.B. after B.A.) for legal-criminology crossover'],
+    honestCaveat: 'Criminology is an academic social-science discipline — NOT a direct entry route to becoming a detective, IPS officer, or crime-show investigator. Students who join expecting "CSI / detective work" find heavy theory reading (Durkheim, Merton, contemporary criminological theory), data analysis assignments, and policy research papers. The graphic-content reality is real — case studies routinely involve violence, abuse, and disturbing evidence. Real career trajectories require POST-graduation investment: PhD for academia, UPSC for civil services, or police-recruitment exams for law-enforcement adjacent roles. Choose this degree only if you genuinely enjoy theory + research, AND have a clear post-graduation plan.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th (any stream)', titleTa: '+12 60%+ (எந்த பாடப்பிரிவும்)', detail: 'Direct admission. Strong English + Civics + History backgrounds help most.', window: 'Now', phase: 'now' },
+      { title: 'Join B.A. Criminology + active research / internship work', titleTa: 'B.A. + ஆராய்ச்சி பயிற்சி', detail: 'Volunteer with NGOs working in juvenile justice or victim support; internships at NCRB, state crime-records bureaus, or research institutes are particularly valuable.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.A. + UPSC / PhD / law / crime-analytics — pick one', titleTa: 'M.A. + பல வழிகள்', detail: 'Four credible exits. UPSC + criminology optional is well-trodden; M.A. + PhD opens academia; LL.B. opens legal-criminology crossover; crime-analytics is the emerging private-sector path.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Read a foundational criminology text', titleTa: 'அடிப்படை குற்றவியல் புத்தகம்', detail: 'Sutherland & Cressey\'s "Principles of Criminology" or a modern equivalent. Tests honestly whether you enjoy the theoretical reading.', priority: 'high' },
+      { title: 'Honest tolerance test for graphic case material', titleTa: 'வரைகலை உள்ளடக்க சகிப்புத்தன்மை', detail: 'Real criminology coursework involves disturbing case studies. Reading honest crime journalism (not entertainment crime shows) for a few hours clarifies your tolerance.', priority: 'high' },
+      { title: 'Daily news + crime-data awareness', titleTa: 'தினசரி செய்தி + குற்ற தரவு', detail: 'NCRB annual reports, The Hindu and Indian Express crime coverage, IndiaJustice reports. Builds the data-aware criminologist mindset.', priority: 'medium', link: 'https://ncrb.gov.in' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — both written and read', why: 'Criminology is a reading-and-writing-heavy discipline. Strong English from day 1 transforms every course.', freeResource: 'The Hindu daily reading, BBC Learning English, structured writing practice' },
+      { skill: 'Basic statistics and data interpretation', why: 'Modern criminology is increasingly data-driven. Comfort with statistics (means, distributions, correlation) opens the high-growth crime-analytics roles.', freeResource: 'Khan Academy statistics, free Coursera statistics intros' },
+      { skill: 'Reading actual research papers', why: 'Criminology rewards students who engage with original research, not just textbook summaries. Practising paper-reading from year 1 compounds.', freeResource: 'Free abstracts on JSTOR, Google Scholar; ICSSR working papers' },
+    ],
+    lastReviewed: '2026-05',
   },
+
+  // ─── B.SC VISUAL COMMUNICATION ─────────────────────────────────────────────
+  {
+    id: 'visual-communication-graduate',
+    family: 'creative-design',
+    interestTags: ['design', 'media'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['maths_heavy', 'creative_pressure', 'high_competition'],
+    automation: 'ai_augmented',
+    automationNote: 'AI image and video generation has reshaped visual communication, but the trained communicator who knows brand storytelling, audience-fit design, and the practical realities of production cannot be automated. The strongest VisCom graduates use AI tools rather than competing with them — combining classical visual literacy with prompt and production fluency.',
+    title: 'Visual Communication Graduate (B.Sc VisCom)',
+    titleTa: 'காட்சி தொடர்பாடல் பட்டதாரி',
+    icon: '🎬',
+    color: 'from-pink-500 to-rose-600',
+    whatIsIt:
+      'A three-year B.Sc focused on the COMMUNICATION side of design — graphics, advertising, photography, videography and editing, animation basics, broadcast production, branding, digital media production. Output-focused: graduates produce communication artifacts (ads, videos, brand campaigns, social content) for clients. Distinct from B.Des (which focuses on the design PROCESS itself). Career outcomes: advertising agencies, digital marketing agencies, brand-side creative roles, OTT and streaming content production, social media content houses, freelance creative work, photography studios, animation studios.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '405'],
+    ugCourses: ['B.Sc Visual Communication', 'B.Sc Electronic Media', 'B.Sc Animation & Visual Effects'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year B.Sc. Active portfolio building during the degree is THE single highest-value activity — agencies and studios hire on portfolio first, marks second. Strong placements at year 3 from active-portfolio students.',
+    skillWeights: { mathematics: 3, language: 6, science: 3, creativity: 9, people: 6, physical: 3, digital: 8 },
+    priorityFit: { salary: 5, security: 5, balance: 5, abroad: 6, prestige: 6, passion: 9, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 60, stretch: 50 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–5 LPA fresh at advertising agencies and digital marketing firms; ₹3–6 LPA at brand-side creative roles and top OTT/streaming content houses. Freelance income varies widely.',
+      midCareerLPA: 'AI estimate — ₹8–25 LPA after 7+ years for creative directors, senior brand designers, and senior content producers. Successful freelancers and creator-economy participants can substantially exceed.',
+      note: 'Salary at entry is genuinely modest because portfolio matters more than degree. The trajectory is non-linear — strong creatives with good portfolios accelerate rapidly; weak portfolios stagnate regardless of degree. The brand-side and creator-economy upside is real for those who actually build a body of work.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from digital marketing agencies, OTT content explosion, brand-direct creative teams, and the broader creator economy. AI tools have changed the work but not reduced overall demand.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available. Most TN women\'s colleges and Christian colleges run strong VisCom programs.' },
+    collegeTiers: [
+      { label: 'Top VisCom programs in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College (MCC)', 'MOP Vaishnav College for Women', 'Women\'s Christian College Chennai'], cutoffGuide: 'AI estimate — 70%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Stella Maris College', 'Ethiraj College for Women', 'PSGR Krishnammal Coimbatore', 'Bishop Heber Trichy'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Other TN colleges with VisCom programs (AI estimate)', examples: ['Numerous TN private and aided colleges offer VisCom'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹20K–80K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc VisCom in TN costs roughly ₹75K–2.5L total. The bigger investment is in tools (camera, computer, Adobe Creative Cloud subscription) — typically ₹1–3L additional over the degree.',
+    backupOptions: ['M.A. Communication / M.Sc Electronic Media — academic specialisation', 'Direct portfolio + agency / studio roles', 'Independent creator economy (YouTube, Instagram, freelance creative)', 'Pivot to digital marketing (broader skill set)', 'M.A. Animation / VFX for animation studio careers', 'Brand-side creative roles after 3-5 years agency experience'],
+    honestCaveat: 'VisCom is a portfolio-driven career — your DEGREE counts dramatically less than your BODY OF WORK at graduation. Students who treat the degree as the destination rather than a foundation for active portfolio building stagnate. The early-career salary reality is modest; the breakthrough comes 3-5 years in for those who genuinely built strong portfolios during the degree. AI tools have shifted the work but not eliminated it — the strongest VisCom graduates are those who learn to use AI as a multiplier while maintaining classical visual literacy. Creative-deadline pressure is real and continuous; students who picked VisCom expecting low-stress work usually struggle.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th (any stream)', titleTa: '+12 60%+ (எந்த பாடப்பிரிவும்)', detail: 'Direct admission. Bring a small portfolio to interviews at top colleges — even amateur photography or design work makes you memorable.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc VisCom + AGGRESSIVE portfolio building', titleTa: 'B.Sc + பணி தொகுப்பு', detail: 'From year 1, build a portfolio. Volunteer with college fests, NGOs, small businesses. The portfolio you graduate with is more valuable than your degree certificate.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Agency, brand role, OR creator-economy launch', titleTa: 'ஏஜென்சி / பிராண்ட் / உள்ளடக்கம்', detail: 'Three credible exits. Agency role for learning craft fast; brand-side for stability; independent creator economy for those with strong personal brand.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Start building a real portfolio NOW', titleTa: 'பணி தொகுப்பு ஆரம்பம்', detail: 'Free tools — Canva, Figma, Adobe student trials, smartphone camera. The earlier you start producing, the further you\'ll be at graduation.', priority: 'high' },
+      { title: 'Pick ONE tool and learn it deeply', titleTa: 'ஒரு கருவியை ஆழமாக கற்க', detail: 'Photoshop, Figma, Adobe Premiere, or DaVinci Resolve — pick one based on what excites you and go deep before year 1.', priority: 'high', freeResource: 'YouTube tutorials, free Adobe trials, DaVinci Resolve free version' },
+      { title: 'Observe and analyse — develop the trained eye', titleTa: 'காட்சி கூர்மை', detail: 'Spend time analysing ads, brand campaigns, films — what works, what doesn\'t, why. The trained eye is the career-defining skill.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'One core design tool — Photoshop, Figma, Premiere, or similar', why: 'Tool fluency is the working necessity of VisCom. One tool deeply known is more valuable than five known shallowly.', freeResource: 'Adobe Student trials, Figma free tier, YouTube deep-tutorials' },
+      { skill: 'Visual analysis and design fundamentals', why: 'Composition, colour theory, typography — the foundations that separate trained designers from people who push buttons. Years 1-2 lean on these.', freeResource: 'Free Coursera design fundamentals courses, "The Non-Designer\'s Design Book" by Robin Williams' },
+      { skill: 'Spoken English + presentation skills', why: 'Designers pitch their work daily. Clear, confident presentation is the difference between great work going unused and average work getting approved.', freeResource: 'BBC Learning English, local Toastmasters clubs, design-presentation YouTube channels' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.DES (BACHELOR OF DESIGN) ────────────────────────────────────────────
+  {
+    id: 'design-graduate',
+    family: 'creative-design',
+    interestTags: ['design'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['maths_heavy', 'creative_pressure', 'sitting_long'],
+    automation: 'high_human_judgment',
+    automationNote: 'AI can generate visuals; the designer who researches users, defines the right problem to solve, and iterates toward a working product or experience cannot be automated. Design thinking — the structured methodology behind product design, UX design, and service design — is among the most automation-resilient creative work.',
+    title: 'Designer (B.Des — Bachelor of Design)',
+    titleTa: 'வடிவமைப்பு பட்டதாரி',
+    icon: '✏️',
+    color: 'from-purple-500 to-indigo-600',
+    whatIsIt:
+      'A four-year B.Des focused on the DESIGN PROCESS itself — user research, problem definition, ideation, prototyping, iteration, and final delivery. Distinct from B.Sc VisCom (which focuses on producing communication output): B.Des trains the systematic DESIGN THINKING methodology used by product designers, UX designers, industrial designers, and service designers. Career outcomes: product design at tech firms (Flipkart, Swiggy, Razorpay UX teams), industrial design at automotive and consumer-electronics companies, UX research, service design at consultancies, design-led startups, and increasingly design-strategy roles at FMCG and fintech brands.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '101', '102', '301'],
+    ugCourses: ['B.Des (Product Design)', 'B.Des (Communication Design)', 'B.Des (Industrial Design)', 'B.Des (Fashion Design)', 'B.Des (UX/UI Design)'],
+    entranceExams: ['UCEED', 'NID DAT', 'NIFT Entrance', 'None (direct admission for some private)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Des. Top tier (IIT design programs via UCEED, NID via DAT, NIFT) place strongly at year 4 — product/UX teams at tech firms, industrial design houses, fashion brands. Tier-2 programs require stronger portfolio work to bridge the gap.',
+    skillWeights: { mathematics: 4, language: 5, science: 4, creativity: 9, people: 6, physical: 4, digital: 7 },
+    priorityFit: { salary: 6, security: 6, balance: 6, abroad: 8, prestige: 7, passion: 9, growth: 8, hometown: 5 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹5–10 LPA fresh from IIT design / NID / NIFT to tier-1 tech firms and design consultancies; ₹3–6 LPA from tier-2 private B.Des programs. Strong portfolios bridge the college-tier gap.',
+      midCareerLPA: 'AI estimate — ₹15–40 LPA after 7+ years for senior product designers, UX leads, and design-strategy professionals at tech firms. Top design-consultancy partners and successful design-led founders substantially exceed.',
+      note: 'Strong mid-career trajectory at the top tier — design is among the highest-paid creative paths in India because product/UX work directly impacts business outcomes. The salary gap between top-tier (IIT/NID/NIFT) and tier-2 programs is real but bridgeable via portfolio quality.',
+    },
+    demand: { score: 8, note: 'AI estimate — exceptional demand for product / UX designers from Indian tech, fintech, and e-commerce. Industrial and service design also growing. Fashion design has cyclical demand but strong top-end.' },
+    entryDifficulty: { score: 7, note: 'AI estimate — top programs (IIT design, NID, NIFT) are highly competitive — UCEED and DAT require focused 6-12 month preparation. Tier-2 private B.Des programs accessible.' },
+    collegeTiers: [
+      { label: 'Top design programs (AI estimate)', examples: ['IIT Madras Design (B.Des via UCEED)', 'NID (National Institute of Design) — multiple campuses; entry via NID DAT', 'NIFT Chennai (entry via NIFT Entrance Exam)'], cutoffGuide: 'AI estimate — UCEED rank under 500 for IIT Madras; NID DAT clearance; NIFT entrance clearance.', feeRange: 'AI estimate — ₹2.5–4L / year (IIT/NID/NIFT)' },
+      { label: 'Strong private design programs (AI estimate)', examples: ['Sastra University B.Des', 'Hindustan Institute of Technology Design programs', 'Vellore Institute of Technology Design programs', 'Karunya University Design'], cutoffGuide: 'AI estimate — direct admission with strong 12th marks; some require portfolio.', feeRange: 'AI estimate — ₹2L–4L / year' },
+      { label: 'Other design programs in TN (AI estimate)', examples: ['Several TN private universities now offer B.Des — verify program quality per college'], cutoffGuide: 'AI estimate — direct admission; portfolio matters significantly.', feeRange: 'AI estimate — ₹1.5L–3.5L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Des in TN costs roughly ₹6L–16L total depending on college tier. IIT/NID/NIFT are dramatically more affordable per year than private B.Des programs. Tools and software add ₹1.5–4L over the degree.',
+    backupOptions: ['M.Des at top design institutions', 'Direct product/UX role at tech firm (portfolio-led hiring)', 'Pivot to design-strategy consulting', 'Design-led startup founding', 'Industrial design at automotive / consumer electronics firms', 'Move abroad — strong demand in US, EU, Singapore for Indian-trained designers'],
+    honestCaveat: 'B.Des rewards students who genuinely enjoy the design METHODOLOGY (research, ideation, iteration) — not just the outputs. Students who picked B.Des hoping for "fun creative work without engineering" find the structured-iteration aspect surprisingly demanding. The top-tier UCEED/NID/DAT preparation grind is real and competitive — students unwilling to invest in entrance preparation often end up at tier-2 programs where the placement reality is genuinely different. The trade-off vs B.Sc VisCom: B.Des is more rigorous, more competitive entry, but pays substantially better at career trajectory. Both are creative-pressure-heavy.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th + prepare for UCEED / NID DAT / NIFT', titleTa: '+12 70%+ + நுழைவுத் தேர்வுகள்', detail: 'Top tier requires focused entrance preparation (6-12 months). Tier-2 private programs offer direct admission.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Des + IMMERSIVE design practice', titleTa: 'B.Des + ஆழமான பயிற்சி', detail: 'Use the 4 years to build a deep portfolio across product design, UX, and one specialisation. Internships at tech firms / design consultancies during summer breaks are essential.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Tier-1 tech product role, design consultancy, or M.Des', titleTa: 'தொழில்நுட்ப / ஆலோசனை / M.Des', detail: 'Three strong exits. Product/UX role at tech firm for income and growth; consultancy for variety; M.Des for academic / specialisation depth.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Decide: UCEED/NID/NIFT track or direct admission?', titleTa: 'நுழைவுத் தேர்வு அல்லது நேரடி?', detail: 'Top tier requires entrance prep starting now. Tier-2 private B.Des skips this. The college-tier decision has real career implications — make it deliberately.', priority: 'high', link: 'https://www.uceed.iitb.ac.in' },
+      { title: 'Build a starter design portfolio', titleTa: 'வடிவமைப்பு தொகுப்பு ஆரம்பம்', detail: 'Sketches, redesigns of bad UIs you encounter, photographed prototypes of small products you make. Quality of thought matters more than polish at this stage.', priority: 'high' },
+      { title: 'Read "The Design of Everyday Things" by Don Norman', titleTa: 'வடிவமைப்பு புத்தகம்', detail: 'The foundational text of design thinking. Cheap on Amazon India / widely available in libraries. Genuinely transforms how you see designed products.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Sketching and visual thinking', why: 'Designers communicate through sketches throughout their career. Comfortable rapid sketching is more important than polished output at the foundation level.', freeResource: 'YouTube sketching-for-designers tutorials, free practice sketchbooks, "Sketching User Experiences" by Buxton' },
+      { skill: 'Design fundamentals — composition, colour, typography, hierarchy', why: 'The classical foundations that separate trained designers from amateurs. Strong foundations make every subsequent tool and trend easier to absorb.', freeResource: 'Free Coursera design fundamentals, "The Non-Designer\'s Design Book", design-fundamentals YouTube channels' },
+      { skill: 'Design research and observation', why: 'Modern design IS user research. Practising the discipline of observing how people actually use things builds the most career-defining design habit.', freeResource: 'IDEO\'s Design Kit (free), "The Design of Everyday Things" book, structured observation exercises' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BBA LOGISTICS & SUPPLY CHAIN ──────────────────────────────────────────
+  {
+    id: 'bba-logistics',
+    family: 'commerce-bba',
+    interestTags: ['finance', 'engineering'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'paperwork'],
+    automation: 'ai_augmented',
+    automationNote: 'AI has dramatically changed logistics — route optimisation, demand forecasting, inventory automation. The supply-chain manager who designs the system, negotiates with vendors, and manages crisis disruption (a port closure, a customs delay, a supplier failure) remains firmly human. India\'s e-commerce growth and the Make in India manufacturing push drive sustained demand.',
+    title: 'BBA Logistics & Supply Chain Management',
+    titleTa: 'BBA தளவாட மற்றும் விநியோகச் சங்கிலி',
+    icon: '🚚',
+    color: 'from-blue-600 to-indigo-700',
+    whatIsIt:
+      'A three-year BBA specialising in logistics operations, supply chain design, procurement, inventory management, warehousing, transportation systems, port operations, customs and international trade. Distinct from general BBA: heavier on operations research, quantitative methods, and supply-chain technology systems. Career outcomes: e-commerce logistics (Amazon, Flipkart, Delhivery), port and shipping operations, manufacturing supply-chain roles, third-party logistics providers, retail supply chain at FMCG companies, and increasingly the supply-chain consulting segment.',
+    eligibleStreams: ['commerce', 'pcm', 'arts'],
+    strongGroupCodes: ['301', '302', '304', '308', '101', '102'],
+    ugCourses: ['BBA Logistics & Supply Chain Management', 'BBA Logistics Management', 'B.Com Logistics & Supply Chain'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year BBA. Strong placement at e-commerce logistics firms during final year. The MBA in Supply Chain / Operations after 2-3 years of industry experience is a common acceleration step.',
+    skillWeights: { mathematics: 7, language: 6, science: 3, creativity: 4, people: 7, physical: 3, digital: 7 },
+    priorityFit: { salary: 6, security: 7, balance: 6, abroad: 6, prestige: 5, passion: 6, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–6 LPA fresh at e-commerce logistics firms (Amazon, Flipkart, Delhivery); ₹4–7 LPA at top 3PL providers (DHL, FedEx, Mahindra Logistics). Higher than generic BBA because of the quantitative / tech-adjacent skill premium.',
+      midCareerLPA: 'AI estimate — ₹12–25 LPA after 7+ years for senior supply-chain managers, logistics operations leads, and supply-chain consultants. Post-MBA roles at top consultancies (Big 4 supply-chain practices) substantially exceed.',
+      note: 'Pays above generic BBA because the analytical / tech-adjacent skill set translates directly into e-commerce and consulting roles. The MBA route from BBA Logistics is unusually high-ROI — operations is among the most in-demand MBA specialisations.',
+    },
+    demand: { score: 8, note: 'AI estimate — exceptionally strong. India\'s e-commerce growth, Make in India manufacturing push, and the broader logistics industry expansion (logistics market projected to triple by 2030) create sustained hiring at every level.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available. Most TN private universities now offer BBA Logistics tracks.' },
+    collegeTiers: [
+      { label: 'Top BBA Logistics programs in TN (AI estimate)', examples: ['AMET University (Academy of Maritime Education) — maritime logistics specialty', 'Sastra University BBA Logistics', 'SRM University BBA Logistics & Supply Chain'], cutoffGuide: 'AI estimate — 75%+ in 12th typical.', feeRange: 'AI estimate — ₹1.5L–3L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Vels University BBA Logistics', 'Hindustan Institute', 'Loyola Institute of Business Administration (LIBA)'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹1L–2.5L / year' },
+      { label: 'Other TN colleges with BBA Logistics tracks (AI estimate)', examples: ['Growing number of TN private universities offer BBA Logistics; verify program quality per college'], cutoffGuide: 'AI estimate — accessible; 60%+ typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 3-year BBA Logistics in TN costs roughly ₹2.5L–9L total. Strong ROI because of the e-commerce / consulting career tilt.',
+    backupOptions: ['MBA Operations / Supply Chain (post 2-3 years industry) — strongest acceleration', 'CSCP / CSCMP certifications (Certified Supply Chain Professional) — industry credential', 'Pivot to general BBA / commerce roles if logistics specialty loses appeal', 'E-commerce operations leadership track', 'Maritime / port operations specialisation', 'Move abroad — Gulf and Singapore logistics industries actively hire'],
+    honestCaveat: 'BBA Logistics rewards students who genuinely enjoy operations thinking, optimisation problems, and getting things done at scale. Students who picked it hoping for "BBA without the maths" find the quantitative components (operations research, inventory mathematics, forecasting) unexpectedly demanding. The day-to-day work involves real time pressure (a delayed truck, a stuck container, a vendor failure) — students looking for low-stress desk work usually find logistics surprisingly intense. The trade-off: among the highest-demand BBA specialisations, with genuine career mobility.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th (any stream)', titleTa: '+12 70%+', detail: 'Direct admission. Commerce and PCM streams equally welcome.', window: 'Now', phase: 'now' },
+      { title: 'Join BBA Logistics + active industry internships', titleTa: 'BBA + தொழில் பயிற்சி', detail: 'Summer internships at e-commerce logistics firms or 3PL providers transform placement outcomes. The hiring networks run through these.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Logistics role + CSCP certification + MBA (in that order)', titleTa: 'வேலை + சான்றிதழ் + MBA', detail: 'First role typically operations / coordinator. CSCP certification + 2-3 years experience + MBA Operations is the standard career acceleration sequence.', window: 'Years 3–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Mathematics + basic statistics', titleTa: 'கணிதம் + புள்ளியியல்', detail: 'BBA Logistics leans on operations research and inventory mathematics. Strong 12th Maths + a head start on basic statistics makes year 1 dramatically easier.', priority: 'high' },
+      { title: 'Read "The Goal" by Eliyahu Goldratt', titleTa: 'புத்தகம் — "The Goal"', detail: 'A novel that teaches operations / supply-chain thinking through a story. Cheap on Amazon India. Essential pre-reading.', priority: 'high' },
+      { title: 'Visit a logistics facility / warehouse if possible', titleTa: 'பெரிய கிடங்கு பார்வை', detail: 'Amazon, Flipkart, and major 3PL warehouses across TN sometimes offer student tours. Understanding the physical reality of logistics operations sharpens later coursework.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Excel + spreadsheet fluency for supply-chain data', why: 'Logistics work runs on spreadsheets — inventory tables, shipment trackers, cost models. Strong Excel from day 1 is a working necessity.', freeResource: 'Microsoft Excel free YouTube (Leila Gharani, ExcelIsFun)' },
+      { skill: 'Basic statistics — forecasting and distributions', why: 'Demand forecasting is at the core of supply chain. Comfort with basic statistical concepts (means, distributions, regression) directly translates into year 2-3 coursework.', freeResource: 'Khan Academy statistics, free Coursera Supply Chain Fundamentals' },
+      { skill: 'Understanding how e-commerce actually works', why: 'India\'s e-commerce economy is reshaping logistics. Reading about Amazon\'s supply-chain operations, Flipkart\'s last-mile delivery, etc. builds career-relevant intuition.', freeResource: 'The Ken supply-chain coverage, Bloomberg logistics articles, free Coursera courses' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BBA AVIATION MANAGEMENT ───────────────────────────────────────────────
+  {
+    id: 'bba-aviation',
+    family: 'commerce-bba',
+    interestTags: ['finance', 'travel'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['shift_work', 'sales_persuasion'],
+    automation: 'human_facing',
+    automationNote: 'Aviation operations remain heavily human despite automation in flight systems — ground operations, customer service, ramp coordination, airport management, and the broader aviation business all require trained human professionals. India\'s aviation expansion (UDAN scheme, new airport projects, fleet growth at IndiGo, Air India, Akasa) drives sustained demand.',
+    title: 'BBA Aviation Management',
+    titleTa: 'BBA விமான மேலாண்மை',
+    icon: '✈️',
+    color: 'from-sky-500 to-blue-600',
+    whatIsIt:
+      'A three-year BBA specialising in airline management, airport operations, aviation safety and regulations, ground handling, in-flight services, aviation marketing, and the broader aviation industry. Distinct from general BBA: industry-specific curriculum covering DGCA regulations, airline economics, airport operations, and aviation service standards. Career outcomes: airline ground operations (IndiGo, Air India, Akasa, Vistara), airport operations (GMR, Adani Airports), aviation customer service, cargo operations, aviation regulatory and compliance roles, and increasingly tourism-aviation crossover roles.',
+    eligibleStreams: ['commerce', 'arts', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['301', '302', '304', '308'],
+    ugCourses: ['BBA Aviation Management', 'BBA Airline & Airport Management', 'B.Sc Aviation Management'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year BBA. Strong placement at airlines and airport operators during final year. The aviation industry rewards experience — career trajectory accelerates with 3-5 years of direct industry exposure.',
+    skillWeights: { mathematics: 6, language: 7, science: 3, creativity: 4, people: 8, physical: 3, digital: 6 },
+    priorityFit: { salary: 6, security: 6, balance: 4, abroad: 8, prestige: 7, passion: 7, growth: 7, hometown: 5 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–5 LPA fresh at airline ground operations and airport service roles; ₹4–6 LPA at major airport operators and cargo operations. International airline career routes pay substantially higher.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for airport operations managers, airline operations leads, and senior aviation specialists. Aviation industry leadership roles at major airlines and airports significantly exceed.',
+      note: 'Modest entry pay but strong abroad mobility — aviation is a global industry, and TN aviation graduates frequently move to Gulf airlines and Singapore-based aviation careers. Shift work and irregular hours are real and continuous in early career.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from India\'s aviation expansion. UDAN scheme is creating tier-2 / tier-3 airports; major fleet growth at IndiGo, Air India, Akasa; new private airports. Demand will continue through this decade.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available. The bottleneck is awareness — most students don\'t consider aviation management as a structured BBA track.' },
+    collegeTiers: [
+      { label: 'Top BBA Aviation programs in TN (AI estimate)', examples: ['Hindustan Institute of Technology — Aviation Management', 'SRM University BBA Aviation', 'AMET University Aviation Management'], cutoffGuide: 'AI estimate — 70%+ in 12th typical.', feeRange: 'AI estimate — ₹1.5L–3L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Sri Sairam Institute of Aviation Management', 'Vels University BBA Aviation', 'Sastra University BBA Aviation'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹1L–2.5L / year' },
+      { label: 'Other TN aviation programs (AI estimate)', examples: ['Several TN private universities offer BBA Aviation tracks; verify program quality and industry partnerships per college'], cutoffGuide: 'AI estimate — accessible; 60%+ typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 3-year BBA Aviation in TN costs roughly ₹2.5L–9L total. Programs with active airline / airport industry partnerships (internship placement) materially improve ROI.',
+    backupOptions: ['Direct airline / airport operations role + industry-specific certifications', 'IATA (International Air Transport Association) certifications — industry credential', 'Pivot to general hospitality / tourism management', 'MBA Aviation / MBA general after 3-5 years industry experience', 'Move abroad — Gulf airlines, Singapore Airlines, and others actively hire Indian aviation graduates', 'Tourism management adjacent roles'],
+    honestCaveat: 'Aviation Management is a service industry — daily work involves direct customer interaction, irregular hours including night shifts and weekends, and the realities of airline operations (delays, frustrated passengers, weather disruptions). Students who picked aviation management hoping for "glamorous travel" find the operations reality (long hours at airports, customer complaint handling, regulatory paperwork) less glamorous than expected. Work-life balance during the first 3-5 years is genuinely difficult. The trade-off: strong abroad mobility, industry growth, and the global nature of aviation careers. The aviation-pilot route is separate (requires CPL training, not this degree) and should not be confused with aviation management.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th + good English skills', titleTa: '+12 65%+ + ஆங்கில திறன்', detail: 'Direct admission. Strong English is non-negotiable for aviation careers — communication is the core skill.', window: 'Now', phase: 'now' },
+      { title: 'Join BBA Aviation + airline / airport internships', titleTa: 'BBA + பயிற்சி', detail: 'Summer internships at airlines or airport operators during the degree are essential. The placement networks run heavily through these.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Airline / airport role + IATA certification + abroad pathway', titleTa: 'வேலை + சான்றிதழ் + வெளிநாடு', detail: 'First role typically at an airline ground ops or airport operator. IATA certifications + 3-5 years experience + abroad pathway (Gulf, Singapore) is the standard high-trajectory sequence.', window: 'Years 3–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Spoken English', titleTa: 'ஆங்கில திறன் வலுப்படுத்துதல்', detail: 'Aviation IS communication. Daily English practice, watching English news, reading aloud — all build the foundation career skill.', priority: 'high', freeResource: 'BBC Learning English, daily English news, free Coursera English communication courses' },
+      { title: 'Visit an airport — observe operations carefully', titleTa: 'விமான நிலையம் பார்வை', detail: 'A few hours at Chennai or Madurai airport, observing check-in, security, gate operations clarifies what "aviation management" actually involves. Free reality check.', priority: 'high' },
+      { title: 'Read about India\'s aviation industry and DGCA basics', titleTa: 'இந்திய விமான தொழில்', detail: 'Understanding airline economics, airport operations, and DGCA regulatory basics sets useful context. Industry trade publications are free online.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Spoken English + clear professional communication', why: 'Aviation careers are communication-intensive. Strong English from day 1 is non-negotiable — it separates ₹3 LPA careers from ₹6 LPA careers from the first job.', freeResource: 'BBC Learning English, Toastmasters clubs, daily English news consumption' },
+      { skill: 'Customer service mindset + empathy', why: 'Aviation IS service work. Practice handling difficult situations calmly (a frustrated customer, a confused traveller). The empathy + composure combination defines career advancement.', freeResource: 'Customer service YouTube training, role-play exercises with peers, retail / service part-time work' },
+      { skill: 'Basic geography + world awareness', why: 'Aviation is global. Knowing routes, airport codes, time zones, and basic world geography is the unglamorous but career-defining literacy.', freeResource: 'Geography quizzes, airline route maps, free aviation-industry YouTube channels' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC PSYCHOLOGY ───────────────────────────────────────────────────────
+  {
+    id: 'psychology-graduate',
+    family: 'psychology',
+    interestTags: ['healthcare', 'research', 'education'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'sitting_long', 'memorisation'],
+    automation: 'high_human_judgment',
+    automationNote: 'Clinical psychology, counselling, and behavioural research are among the most automation-resilient careers — they rely on contextual human empathy, deep listening, and the careful judgement of complex individual situations. India\'s mental health awareness growth (post-2020 in particular) and the Mental Healthcare Act\'s implementation create sustained and growing demand for trained psychology professionals.',
+    title: 'Psychologist (B.Sc Psychology)',
+    titleTa: 'உளவியல் பட்டதாரி',
+    icon: '🧠',
+    color: 'from-teal-500 to-emerald-600',
+    whatIsIt:
+      'A three-year B.Sc covering general psychology, abnormal psychology, biopsychology, social psychology, developmental psychology, statistics in psychology, and introduction to clinical / counselling / industrial-organisational specialisations. IMPORTANT: a B.Sc Psychology alone does NOT make you a clinical psychologist — that requires an M.Phil. Clinical Psychology + RCI registration (a 2-3 year additional commitment). Career outcomes from the B.Sc itself: research assistant, HR / talent roles in companies, school counsellor (with M.A. Counselling), market-research roles, mental-health support roles in NGOs. Strongest mid-career trajectories require M.A. or M.Phil. specialisation.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '405', '208', '204'],
+    ugCourses: ['B.Sc Psychology', 'B.A. Psychology', 'B.Sc Applied Psychology'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year B.Sc, but the full clinical career pathway typically takes 5-7 years (B.Sc + M.A./M.Sc + M.Phil. Clinical Psychology + RCI registration). The B.Sc alone is a foundational credential.',
+    skillWeights: { mathematics: 4, language: 7, science: 8, creativity: 5, people: 9, physical: 2, digital: 5 },
+    priorityFit: { salary: 4, security: 6, balance: 7, abroad: 7, prestige: 6, passion: 9, growth: 6, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–3.5 LPA fresh as a research assistant, HR executive, or school counsellor support role; ₹2.5–4.5 LPA in entry NGO mental-health roles. RCI-registered clinical psychologists (post M.Phil.) ₹4–7 LPA fresh, growing substantially.',
+      midCareerLPA: 'AI estimate — Clinical psychologists (RCI-registered) ₹8–18 LPA after 7+ years; private practice can substantially exceed. HR / organisational psychologists at corporate firms ₹10–20 LPA. Academic faculty ₹8–18 LPA after PhD.',
+      note: 'The B.Sc alone earns modestly because direct mental-health work requires the additional M.Phil. + RCI credentials. The real ROI emerges 5-7 years in for those who complete the clinical specialisation pathway. Mental health is one of the genuinely growing demand sectors in India — long-term career security is strong for those who specialise.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and growing. India\'s mental health awareness post-2020, corporate wellness programs, school counselling expansion, and the Mental Healthcare Act all create sustained demand. Chronic shortage of trained / registered clinical psychologists in India.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available; among the most accessible B.Sc tracks. Awareness is the bottleneck.' },
+    collegeTiers: [
+      { label: 'Top Psychology programs in TN (AI estimate)', examples: ['Women\'s Christian College Chennai', 'Madras Christian College (MCC)', 'Stella Maris College', 'Ethiraj College for Women'], cutoffGuide: 'AI estimate — 70%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Loyola College', 'PSGR Krishnammal Coimbatore', 'MOP Vaishnav College for Women', 'Bishop Heber Trichy'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Other TN colleges with Psychology programs (AI estimate)', examples: ['Numerous TN aided and private colleges offer Psychology'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹20K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Psychology in TN costs roughly ₹75K–2.5L total. The bigger investment is the M.A./M.Sc + M.Phil. specialisation that follows — typically ₹2–6L additional over 3-4 years for the full pathway.',
+    backupOptions: ['M.A. / M.Sc Psychology + M.Phil. Clinical Psychology + RCI registration — the full clinical pathway', 'M.A. Counselling Psychology — for school / corporate counselling roles', 'M.A. Industrial-Organisational Psychology — HR / corporate path', 'PhD + academic faculty career', 'Pivot to HR / talent acquisition (less specialised but B.Sc-accessible)', 'NGO mental-health support roles (rural mental health, community programs)', 'Move abroad — Gulf countries actively hire Indian-trained psychology graduates'],
+    honestCaveat: 'A B.Sc Psychology is NOT a license to practise clinical psychology — that requires M.Phil. + RCI registration, which is a 2-3 year additional commitment. Students who joined imagining "I want to be a therapist" need to know the full pathway is 5-7 years post-12th, not 3. Direct B.Sc-level employment is modest in pay and limited in scope. Clinical work also involves emotional labour — daily exposure to others\' suffering changes you. Students drawn to the science AND the long-term commitment thrive; those who picked it for "interesting subject" without that commitment usually pivot to HR or other careers. The science dimension is also real — biopsychology and statistics in psychology are more demanding than students expect.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th (any stream)', titleTa: '+12 65%+ (எந்த பாடப்பிரிவும்)', detail: 'Direct admission. Strong Biology + English help most; PCM students benefit from the statistics components.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc Psychology + DECIDE specialisation by year 2', titleTa: 'B.Sc + சிறப்பு பாடம் முடிவு', detail: 'Clinical, Counselling, Industrial-Organisational, or Academic — these require very different post-graduation paths. Decide by year 2 to align coursework and internships.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.A. / M.Sc + M.Phil. + RCI (for clinical) OR alternative specialisation', titleTa: 'M.A. + M.Phil. + RCI / மாற்று வழி', detail: 'Clinical pathway: M.Sc Clinical Psych + M.Phil. + RCI registration. HR pathway: M.A. I-O Psych + corporate role. Academic pathway: PhD. Each is 2-4 additional years.', window: 'Years 3–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Read one foundational psychology text', titleTa: 'அடிப்படை உளவியல் புத்தகம்', detail: '"The Man Who Mistook His Wife for a Hat" by Oliver Sacks, or any introductory psychology textbook. Tests honestly whether you find the discipline genuinely interesting.', priority: 'high' },
+      { title: 'Decide: clinical or non-clinical specialisation?', titleTa: 'மருத்துவ அல்லது பிற சிறப்பு?', detail: 'The clinical pathway (M.Phil. + RCI) is significantly longer and more demanding than non-clinical paths. Knowing your direction early shapes your B.Sc choices.', priority: 'high' },
+      { title: 'Strengthen 12th Biology + basic statistics', titleTa: 'உயிரியல் + புள்ளியியல்', detail: 'Year 1 leans heavily on biopsychology (brain, neurons) and introductory statistics. Strong fundamentals make a real difference.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — written and spoken', why: 'Psychology is communication-intensive — case notes, research papers, client counselling, presentations. Strong English from day 1 is the working necessity.', freeResource: 'BBC Learning English, daily reading practice, structured writing exercises' },
+      { skill: 'Active listening and empathy practice', why: 'The single most career-defining skill in psychology. Practising attentive, non-judgemental listening (with friends, family, volunteer work) builds the foundation.', freeResource: 'Volunteer with elderly-care or counselling helplines, structured listening exercises' },
+      { skill: 'Basic statistics — distributions, correlation, significance', why: 'Modern psychology is research-driven, and statistics is the language of psychological research. Strong fundamentals from year 1 ease coursework dramatically.', freeResource: 'Khan Academy statistics, free Coursera "Statistics in Psychology" courses' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
 
 
 
