@@ -4807,7 +4807,245 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Basic spreadsheet skills for quality data', why: 'Production work involves constant quality data — defect rates, yields, colour-fastness scores. Excel from day 1 is a useful base.', freeResource: 'Microsoft Excel free YouTube basics' },
     ],
     lastReviewed: '2026-05',
+  },  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 4b: NICHE INDUSTRIAL ENGINEERING (Discovery Expansion) ──────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // The genuinely niche tracks of the Discovery Expansion — courses many TN
+  // students have never heard of, taught at just one or two TN institutions
+  // each (CLRI Adyar for Leather, Alagappa CT Karaikudi for Ceramic, Anna
+  // University MIT/AC Tech for Rubber & Plastics, AC Tech for Printing).
+  // Each entry uses HEAVILY differentiated skillWeights from generic
+  // mechanical / chemical engineering — these are not "mechanical with a
+  // material name" but distinct applied-chemistry careers.
+
+  // ─── B.TECH CERAMIC TECHNOLOGY ─────────────────────────────────────────────
+  {
+    id: 'ceramic-technologist',
+    family: 'engineering-applied-chem',
+    interestTags: ['engineering', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'field_outdoor', 'sitting_long'],
+    automation: 'human_facing',
+    automationNote: 'Ceramic engineering combines deep materials chemistry with industrial process control — formulating refractories for steel plants, advanced ceramics for electronics, or biomedical ceramics for implants. The judgement-heavy materials work and direct involvement with high-temperature kiln operations remain firmly human.',
+    title: 'Ceramic Technologist (B.Tech Ceramic Technology)',
+    titleTa: 'மட்பாண்ட தொழில்நுட்ப நிபுணர்',
+    icon: '🏺',
+    color: 'from-orange-700 to-amber-800',
+    whatIsIt:
+      'A four-year B.Tech focused on the science and industry of ceramics, glass, and refractory materials — formulation, processing, kiln operations, advanced ceramics (electronic, biomedical, aerospace ceramics), refractories for steel/cement/glass industries, and increasingly nano-ceramics. Distinct from materials science: more applied, more industrial. Career outcomes: refractory companies (RHI Magnesita, Vesuvius India), tile and sanitaryware (Kajaria, Somany, Hindustan Sanitaryware), glass industry, advanced ceramics R&D, and the underserved electronics-ceramics segment (capacitors, piezoelectric devices).',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.Tech Ceramic Technology', 'B.Tech Ceramic Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Placement at refractory, ceramic-tile, and glass companies during final year. The niche nature means smaller hiring pool but also less competition — strong students rarely lack offers.',
+    skillWeights: { mathematics: 7, language: 4, science: 9, creativity: 5, people: 3, physical: 4, digital: 5 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 6, prestige: 5, passion: 7, growth: 6, hometown: 6 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–5 LPA fresh at TN ceramic/refractory/tile companies; ₹4–6.5 LPA at top corporate refractory and electronics-ceramics roles. Lower than mainstream engineering but rises steadily.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior process engineers, quality leads, and R&D specialists. Advanced ceramics R&D (electronics, biomedical, aerospace applications) can substantially exceed.',
+      note: 'Modest starting pay but unusually stable career path because of low supply of trained ceramic engineers in India. The advanced-ceramics segment (electronics-grade, biomedical, aerospace) pays well above the tile/sanitaryware mainstream.',
+    },
+    demand: { score: 7, note: 'AI estimate — moderate but very stable. India\'s refractory industry, ceramic tile sector (TN has Morbi-adjacent cluster around Vellore), and growing advanced-ceramics segment create consistent demand. The Atmanirbhar Bharat semiconductor push will increase advanced-ceramics hiring.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct TNEA admission widely available; the bottleneck is awareness — most students have never heard of the program, so seats are not heavily competed for despite quality programs being limited.' },
+    collegeTiers: [
+      { label: 'Primary TN program (AI estimate)', examples: ['Alagappa College of Technology (Anna University) Karaikudi — historic Ceramic Technology program; the dominant TN destination for this field'], cutoffGuide: 'AI estimate — TNEA cutoff 160-180 typical; substantially less competitive than mainstream engineering branches.', feeRange: 'AI estimate — ₹40K–1L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['IIT BHU Ceramic Engineering (top program nationally; JEE Advanced)', 'Government College of Engineering & Ceramic Technology Kolkata'], cutoffGuide: 'AI estimate — JEE Advanced for IIT BHU; state-level for Kolkata program.', feeRange: 'AI estimate — ₹2.5L / year (IIT BHU); ₹15K–50K / year (state)' },
+      { label: 'Note on TN availability', examples: ['Pure Ceramic Technology B.Tech programs are limited in TN — Alagappa CT Karaikudi is by far the most established. Verify program availability per college individually.'], cutoffGuide: '—', feeRange: '—' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech Ceramic Technology in TN at Alagappa CT costs roughly ₹2L–4L total. Genuinely one of the more affordable engineering degrees because of the established government-aided program structure.',
+    backupOptions: ['M.Tech Ceramic / Materials Engineering — opens advanced ceramics R&D', 'Pivot to general Materials Science or Metallurgy roles', 'Glass and refractory industry process engineering', 'Electronics-ceramics segment (capacitors, piezoelectrics, semiconductor substrates)', 'Cement industry — adjacent skill set, larger employer base in TN', 'Sanitaryware industry — Hindustan Sanitaryware, Cera have R&D roles'],
+    honestCaveat: 'Ceramic Technology is one of the most genuinely niche programs in TN engineering — small batch sizes, fewer alumni, less visibility on placement-portal job postings. The trade-off: low competition for seats, low competition for jobs because trained ceramic engineers are scarce. Plant work involves real industrial conditions — high temperatures around kilns, dust, hot environments. Students drawn to materials science thrive; those who picked it because of low cut-offs without genuine interest tend to drift. The advanced-ceramics segment (electronics, biomedical, aerospace) is where the field is heading and where the best pay sits.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCM', titleTa: '+12 PCM 65%+', detail: 'TNEA entry. Strong Chemistry matters most — ceramic engineering is fundamentally materials chemistry.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech Ceramic Technology + serious chemistry depth', titleTa: 'B.Tech + வேதியியல் ஆழம்', detail: 'Build genuine depth in inorganic chemistry, materials science, and process engineering. Internships at refractory or tile companies during summer breaks transform placement outcomes.', window: 'Years 1–4', phase: 'next' },
+      { title: 'M.Tech advanced ceramics OR industry role', titleTa: 'M.Tech / தொழில் வேலை', detail: 'M.Tech in advanced ceramics opens the high-pay electronics/biomedical/aerospace segments. Direct industry role for refractory/tile/sanitaryware companies is the standard path.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Chemistry — particularly inorganic', titleTa: 'வேதியியல் — கனிம வேதியியல்', detail: 'Ceramics IS inorganic chemistry applied to industry. Strong 12th Chemistry on solids, crystal structures and reactions makes year 1 dramatically easier.', priority: 'high' },
+      { title: 'Visit a ceramic tile or refractory plant if possible', titleTa: 'ஆலை பார்வை', detail: 'TN ceramic plants (Vellore area, parts of Salem) offer student tours. Understanding kiln operations and the physical reality of the work is essential before committing.', priority: 'high' },
+      { title: 'Read about advanced ceramics applications', titleTa: 'மேம்பட்ட மட்பாண்டம் பயன்பாடுகள்', detail: 'Most students think "ceramics = tiles." Understanding electronic ceramics, biomedical ceramics, and aerospace ceramics opens the high-growth segment of the field.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Inorganic chemistry — solid state and crystal structures', why: 'The technical foundation of all ceramic engineering. Strong 12th inorganic chemistry directly translates into year 1 materials coursework.', freeResource: 'NCERT Chemistry — solid state chapter, MIT OpenCourseWare 3.091 (Introduction to Solid-State Chemistry)' },
+      { skill: 'Hands-on tinkering with materials (pottery, glasswork)', why: 'Practical familiarity with how clay/glass actually behaves transforms classroom theory. Local pottery classes are excellent preparation.', freeResource: 'Local pottery studios, school art rooms, traditional craft exposure' },
+      { skill: 'Physics — thermodynamics and heat transfer basics', why: 'Kiln operations and material processing are fundamentally thermal. Strong 12th Physics on heat and thermodynamics is a real asset.', freeResource: 'NCERT Physics — thermodynamics chapter, Khan Academy thermal physics' },
+    ],
+    lastReviewed: '2026-05',
   },
+
+  // ─── B.TECH LEATHER TECHNOLOGY ─────────────────────────────────────────────
+  {
+    id: 'leather-technologist',
+    family: 'engineering-applied-chem',
+    interestTags: ['engineering', 'environment'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'field_outdoor', 'graphic_content'],
+    automation: 'human_facing',
+    automationNote: 'Leather processing combines chemistry, biology, and process control — automation handles repetitive steps but the chemistry decisions (tanning agents, dye chemistry, finish formulations) and quality work remain firmly human. India is among the world\'s top leather exporters; TN (Vellore, Ranipet, Ambur, Chennai) is the global hub for the Indian leather industry.',
+    title: 'Leather Technologist (B.Tech Leather Technology)',
+    titleTa: 'தோல் தொழில்நுட்ப நிபுணர்',
+    icon: '🐂',
+    color: 'from-amber-800 to-stone-900',
+    whatIsIt:
+      'A four-year B.Tech that applies chemistry, biology, and process engineering to the leather industry — beam-house operations, tanning chemistry (chrome and vegetable tannage), dyeing and finishing, leather chemistry research, footwear and leather-goods technology, environmental management of tannery effluent. Distinct from chemical engineering: it is specifically the science of converting hides to finished leather with deep environmental dimensions. Career outcomes: TN leather cluster companies (Florence Shoes, Farida Group, KH Group, Tata International), CLRI scientist roles, leather-export quality and process roles, tannery environmental management, and the emerging sustainable-leather and synthetic-leather R&D segment.',
+    eligibleStreams: ['pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['101', '102', '104', '208'],
+    ugCourses: ['B.Tech Leather Technology', 'B.Tech Footwear Science & Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Strong placement at TN leather cluster companies during final year. The CLRI (CSIR\'s Central Leather Research Institute) Chennai is the global research hub — internships there transform R&D career outcomes.',
+    skillWeights: { mathematics: 6, language: 4, science: 9, creativity: 5, people: 4, physical: 4, digital: 4 },
+    priorityFit: { salary: 5, security: 7, balance: 6, abroad: 6, prestige: 4, passion: 7, growth: 6, hometown: 8 },
+    competitiveBoardPct: { comfortable: 60, stretch: 50 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at TN leather cluster companies; ₹3.5–5.5 LPA at top leather export houses (Florence Shoes, Farida, Tata International). CLRI research positions ₹4–7 LPA for fresh graduates with strong academic record.',
+      midCareerLPA: 'AI estimate — ₹7–15 LPA after 7+ years for senior tannery managers, process engineers, and R&D specialists. Senior export-house roles and CLRI scientists can exceed substantially. Abroad opportunities (Bangladesh, Italy, China leather industries) multiply earnings for experienced professionals.',
+      note: 'Modest entry pay but TN\'s leather cluster (Vellore-Ranipet-Ambur belt is the world\'s largest tannery cluster) makes hometown work realistic across northern TN. The environmental-management and sustainable-leather segments are the growth areas — students who specialise there earn well.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady demand from TN leather cluster; growing demand from sustainable-leather R&D (synthetic leather alternatives are an active field). India\'s leather exports remain among the top globally.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct TNEA admission; among the LEAST competitive engineering branches for seat availability. Awareness is the bottleneck.' },
+    collegeTiers: [
+      { label: 'Primary TN program (AI estimate)', examples: ['AC Tech (Alagappa College of Technology, Anna University) Guindy — the historic and primary Leather Technology destination in TN, deeply integrated with CLRI'], cutoffGuide: 'AI estimate — TNEA cutoff 150-175 typical; substantially less competitive than mainstream engineering.', feeRange: 'AI estimate — ₹40K–1L / year' },
+      { label: 'Critical resource: CLRI Adyar', examples: ['Central Leather Research Institute (CLRI), Adyar Chennai — CSIR\'s flagship leather research institute. The global research hub for leather science. Internships and project work here transform careers — even more important than the college.'], cutoffGuide: 'CLRI itself does not offer B.Tech; it partners with AC Tech and others for industrial training, M.Tech and PhD work.', feeRange: 'CLRI summer internship programs are typically supported by stipends.' },
+      { label: 'National alternatives (if open to relocation)', examples: ['Harcourt Butler Technical University (HBTU) Kanpur Leather Technology', 'Government College of Engineering & Leather Technology Kolkata'], cutoffGuide: 'AI estimate — state-level entrance for non-TN programs.', feeRange: 'AI estimate — varies by state' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech Leather Technology in TN at AC Tech costs roughly ₹2L–4L total. Among the most affordable engineering degrees because of the established government-aided program structure. CLRI internship support is typically free with stipend.',
+    backupOptions: ['M.Tech Leather Technology — typically at CLRI / AC Tech', 'PhD + CSIR scientist track at CLRI (highly respected research path)', 'Pivot to general Chemical Engineering roles', 'Environmental engineering — leather effluent treatment is genuine specialty', 'Sustainable / synthetic leather R&D (active field, attracting global investment)', 'Footwear and leather-goods design adjacent to tech work'],
+    honestCaveat: 'Leather Technology is genuinely visceral — tannery work involves direct exposure to hides, animal byproducts, chromium chemistry, strong odors, and environmental conditions that many students find harder to tolerate than they expected. The work also has ethical dimensions students should think honestly about (animal sourcing, environmental impact of tanning chemicals, worker conditions in some plants). Students drawn to the chemistry and the sustainability challenges thrive; those who picked it for low cut-offs without that pull often quit. The trade-off: extraordinarily low competition, established TN industry employment, and a field where individual technical contribution genuinely matters because the talent pool is small. The "graphic content" aversion applies — hide processing involves butchery-adjacent materials.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th PCM or PCB', titleTa: '+12 60%+', detail: 'AC Tech direct admission via TNEA. Strong Chemistry matters most. Open to both PCM and PCB students.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech Leather Tech at AC Tech + CLRI exposure', titleTa: 'B.Tech + CLRI பயிற்சி', detail: 'CLRI Adyar is the global leader in leather research. Summer internships there during the degree are the highest-ROI single decision you can make.', window: 'Years 1–4', phase: 'next' },
+      { title: 'TN leather cluster role, CLRI research, OR sustainable-leather R&D', titleTa: 'வேலை / CLRI / சுற்றுச்சூழல்', detail: 'Three credible exits. Industry roles in Vellore-Ranipet-Ambur cluster; CLRI scientist track; or the emerging sustainable-leather R&D segment.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a tannery — honest test of tolerance', titleTa: 'பதனிடும் ஆலை பார்வை', detail: 'TN tanneries in Vellore/Ranipet/Ambur or Pallavaram offer student tours. The conditions, smells, and atmosphere are NOT for everyone. Honest reality check before committing 4 years.', priority: 'high' },
+      { title: 'Strengthen Chemistry — organic and biochemistry', titleTa: 'வேதியியல் — கரிம + உயிர் வேதியியல்', detail: 'Leather processing is applied biochemistry. Strong 12th Chemistry on organic and biochemistry topics directly translates into year 1 success.', priority: 'high' },
+      { title: 'Read about CLRI\'s research and the sustainable-leather movement', titleTa: 'CLRI ஆராய்ச்சி + நிலையான தோல்', detail: 'Understanding where the field is going (sustainability, synthetic alternatives, ethics) helps set realistic expectations and identify your specialisation early.', priority: 'medium', link: 'https://www.clri.org' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong organic chemistry + biochemistry basics', why: 'Leather processing is biochemistry applied to industry. The chemistry foundation determines whether year 1 makes sense or feels like a foreign language.', freeResource: 'NCERT Chemistry, free MIT OpenCourseWare biochemistry intro, CLRI online resources' },
+      { skill: 'Tolerance for industrial conditions', why: 'Tannery work involves real environmental challenges. Building tolerance through visits to industrial sites (not necessarily leather — any plant work) is honest preparation.', freeResource: 'Industrial-site visits, factory tours through local industry associations' },
+      { skill: 'Environmental chemistry awareness', why: 'Modern leather work is increasingly defined by environmental compliance (chromium recovery, effluent treatment). Comfort with environmental chemistry is a real career multiplier.', freeResource: 'Free environmental-engineering MOOCs, CPCB and TNPCB publications on tannery effluent' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.TECH RUBBER AND PLASTICS TECHNOLOGY ─────────────────────────────────
+  {
+    id: 'rubber-plastics-technologist',
+    family: 'engineering-applied-chem',
+    interestTags: ['engineering', 'environment'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Polymer science and rubber-plastic processing combine deep chemistry with industrial process control. AI helps with formulation optimisation but the chemistry judgement, recipe development, and quality work remain firmly human. India\'s polymer industry growth (packaging, automotive, medical devices) and the emerging bioplastics / circular-economy push drive sustained demand.',
+    title: 'Rubber & Plastics Technologist (B.Tech Polymer Technology)',
+    titleTa: 'ரப்பர் மற்றும் பிளாஸ்டிக் தொழில்நுட்ப நிபுணர்',
+    icon: '🧴',
+    color: 'from-emerald-700 to-teal-800',
+    whatIsIt:
+      'A four-year B.Tech in polymer science applied to industry — rubber technology (tyres, automotive seals, footwear, industrial rubber), plastics processing (injection moulding, extrusion, blow moulding), polymer chemistry and characterisation, composite materials, and the rapidly growing bioplastics / circular-economy field. Distinct from generic chemical engineering: specifically the science of long-chain molecules and their processing. Career outcomes: tyre companies (MRF, Apollo, JK), polymer producers (Reliance Industries, IOC), automotive component manufacturers, packaging industry (Berger, Asian Paints adjacent), medical-device polymer roles, and the emerging biopolymer / recycling R&D segment.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.Tech Rubber and Plastics Technology', 'B.Tech Polymer Technology', 'B.Tech Polymer Engineering & Technology'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Strong placement at tyre companies, polymer producers, and packaging companies during final year. The CIPET (Central Institute of Petrochemicals Engineering & Technology) Chennai partnership for some programs adds significant industry credibility.',
+    skillWeights: { mathematics: 7, language: 4, science: 9, creativity: 6, people: 4, physical: 3, digital: 6 },
+    priorityFit: { salary: 6, security: 7, balance: 6, abroad: 6, prestige: 5, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–6 LPA fresh at tyre companies (MRF, Apollo, CEAT) and polymer producers; ₹4–7 LPA at automotive component manufacturers. CIPET-trained graduates often command slight premiums in the industry.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for senior R&D specialists, polymer formulation experts, and process leads at tyre/automotive/medical-polymer companies. Senior CIPET-affiliated experts and bioplastics R&D specialists can exceed substantially.',
+      note: 'Stable mid-tier engineering pay with strong upside in specialisations. The bioplastics / recycling / circular-economy segment is the fastest-growing area — students who specialise there are unusually well-positioned given India\'s plastic-waste legislation (EPR rules).',
+    },
+    demand: { score: 7, note: 'AI estimate — steady demand from tyre, automotive, packaging, and polymer-producer industries. The rapid growth in bioplastics R&D, packaging EPR compliance, and medical-device polymers creates emerging premium roles.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct TNEA admission widely available. Less competition than mainstream engineering branches despite quality programs.' },
+    collegeTiers: [
+      { label: 'Primary TN programs (AI estimate)', examples: ['Madras Institute of Technology (MIT, Anna University) Chrompet — long-established Rubber & Plastics Technology program', 'AC Tech (Alagappa College of Technology, Anna University) Guindy — Polymer Technology program'], cutoffGuide: 'AI estimate — TNEA cutoff 165-185 typical.', feeRange: 'AI estimate — ₹40K–1.2L / year' },
+      { label: 'CIPET partnership programs (AI estimate)', examples: ['Some TN engineering colleges partner with CIPET Chennai for plastics/polymer programs; CIPET itself runs primarily M.Tech and diploma-level programs but partnership UG programs exist'], cutoffGuide: 'AI estimate — direct admission via TNEA; CIPET-partnered programs have industry-focus advantages.', feeRange: 'AI estimate — varies; ₹50K–1.5L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['HBTU Kanpur Rubber Technology', 'Cochin University of Science and Technology Polymer Tech', 'IIT Roorkee Polymer Engineering'], cutoffGuide: 'AI estimate — state-level or JEE Advanced depending on program.', feeRange: 'AI estimate — varies' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech Rubber & Plastics Technology in TN costs roughly ₹2L–5L total. The MIT and AC Tech government-aided programs are dramatically more affordable than private alternatives.',
+    backupOptions: ['M.Tech Polymer Engineering — typically at CIPET, IIT, or AC Tech', 'Bioplastics / sustainable-polymer R&D (rapidly growing segment)', 'Pivot to general chemical engineering or materials science roles', 'Packaging industry (EPR compliance is a growing specialty)', 'Automotive component manufacturing process roles', 'Medical-device polymer specialisation (high-pay niche)'],
+    honestCaveat: 'Rubber & Plastics Technology is genuinely chemistry-heavy — students who picked engineering hoping to avoid chemistry struggle quickly. The work is industrially-oriented (less academic than Ceramic, more applied than general Chemical Engineering). Plant work involves real industrial conditions — process odours, chemical handling, shift exposure during early career. The growth segments (bioplastics, recycling, medical polymers, EPR compliance) require students who genuinely engage with both chemistry AND environmental thinking. Students who treat the polymer side as an afterthought end up as generic process engineers rather than polymer specialists.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCM', titleTa: '+12 PCM 65%+', detail: 'TNEA / JEE Main entry. Strong Chemistry matters most — polymer technology is applied chemistry.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech Rubber/Plastics + serious polymer-chemistry depth', titleTa: 'B.Tech + பாலிமர் வேதியியல்', detail: 'Build genuine depth in polymer chemistry, characterisation, and processing. CIPET-linked internships or short courses during the degree materially boost industry credibility.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Tyre/polymer industry, M.Tech, OR bioplastics R&D', titleTa: 'தொழில் / M.Tech / உயிர் பிளாஸ்டிக்', detail: 'Three credible exits. Industry roles in established polymer companies; M.Tech for specialisation; or the emerging bioplastics/circular-economy R&D segment.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Chemistry — organic and physical chemistry', titleTa: 'வேதியியல் — கரிம + இயற்பியல் வேதியியல்', detail: 'Polymer science is built on organic chemistry (molecular structure) and physical chemistry (chain dynamics, phase behaviour). Strong 12th Chemistry on both topics is essential.', priority: 'high' },
+      { title: 'Visit a polymer or tyre manufacturing plant if possible', titleTa: 'பாலிமர் ஆலை பார்வை', detail: 'TN has many — MRF (Chennai), CEAT (adjacent regions), JK Tyre, Apollo Tyres operations. Student tours clarify the day-to-day work better than any brochure.', priority: 'high' },
+      { title: 'Read about India\'s EPR rules and bioplastics policy', titleTa: 'EPR + உயிர் பிளாஸ்டிக் கொள்கை', detail: 'The Extended Producer Responsibility rules and India\'s push toward sustainable polymers are reshaping the industry. Awareness positions you for the growth segments.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong organic chemistry — particularly polymerisation reactions', why: 'The deep technical foundation of polymer science. Strong 12th Chemistry on organic reactions, especially polymerisation mechanisms, transforms year 1.', freeResource: 'NCERT Chemistry — polymers chapter, free MIT OpenCourseWare polymer chemistry intro' },
+      { skill: 'Hands-on tinkering with plastics and polymers', why: 'Practical familiarity with how plastics actually behave (melt, flow, set) transforms classroom theory into intuition. Even hobbyist 3D-printing or polymer-clay work helps.', freeResource: '3D printing communities, polymer clay hobby work, observation of plastic-processing demonstrations' },
+      { skill: 'Environmental thinking + sustainability awareness', why: 'The growth segments of polymer engineering (bioplastics, recycling, EPR compliance) reward students who genuinely engage with sustainability. Not optional anymore.', freeResource: 'Free environmental-engineering MOOCs, India\'s plastic-waste rules documentation' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.E. PRINTING AND PACKAGING TECHNOLOGY ────────────────────────────────
+  {
+    id: 'printing-packaging-engineer',
+    family: 'engineering-printing-packaging',
+    interestTags: ['engineering', 'design'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['creative_pressure', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Digital printing and AI-driven packaging design have transformed the industry, but the engineer who specifies materials, runs the press, ensures colour-fidelity, and bridges between brand designers and factory operations cannot be automated. India\'s e-commerce growth has made packaging engineering one of the most demanded niche fields.',
+    title: 'Printing & Packaging Engineer (B.E. Printing & Packaging Tech)',
+    titleTa: 'அச்சு மற்றும் தொகுப்பு பொறியியலாளர்',
+    icon: '📦',
+    color: 'from-violet-500 to-fuchsia-600',
+    whatIsIt:
+      'A four-year B.E. that combines design sensibility with engineering — printing technology (offset, flexography, digital, gravure), packaging materials science (paper, plastic, glass, metal), package design and structural engineering, brand colour management, sustainable packaging, and the rapidly growing e-commerce packaging segment. Distinct from generic design or mechanical: graduates BUILD the printing presses and packaging lines that designers\' work runs on. Career outcomes: packaging companies (TCPL Packaging, Uflex, Huhtamaki PPL), printing companies (Manipal Technologies, Repro India), brand-side packaging engineering roles (FMCG companies\' packaging departments), e-commerce packaging operations (Amazon, Flipkart packaging optimisation), and the emerging sustainable-packaging R&D segment.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.E. Printing and Packaging Technology', 'B.Tech Packaging Technology', 'B.E. Printing Technology'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.E. Strong placement at packaging companies and FMCG packaging departments during final year. The e-commerce packaging segment (Amazon, Flipkart) has driven significant recent hiring.',
+    skillWeights: { mathematics: 6, language: 5, science: 6, creativity: 7, people: 5, physical: 4, digital: 7 },
+    priorityFit: { salary: 6, security: 7, balance: 7, abroad: 6, prestige: 5, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–5.5 LPA fresh at packaging and printing companies; ₹4–7 LPA at FMCG company packaging departments and e-commerce packaging operations. Sustainable-packaging R&D roles increasingly pay a premium.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for senior packaging engineers at FMCG companies, e-commerce packaging leads, and sustainable-packaging specialists. Senior packaging consultants and brand-side packaging heads can exceed substantially.',
+      note: 'Strong mid-career trajectory because the field combines engineering rigour with brand-design sensibility — a rare combination that commands premium pay. The sustainable-packaging segment is the fastest-growing area, driven by India\'s plastic-waste rules and global brand commitments to reduce packaging impact.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and structurally growing. E-commerce packaging operations, FMCG packaging redesigns, sustainable-packaging R&D, and the broader packaging industry expansion all create sustained hiring.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct TNEA admission widely available. Among the more accessible engineering branches despite genuinely strong career prospects.' },
+    collegeTiers: [
+      { label: 'Primary TN programs (AI estimate)', examples: ['AC Tech (Alagappa College of Technology, Anna University) Guindy — established Printing Technology program', 'SRM University — has Printing & Packaging tracks', 'Specific TN colleges with packaging tracks (verify per program)'], cutoffGuide: 'AI estimate — TNEA cutoff 160-180 typical.', feeRange: 'AI estimate — ₹50K–2L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Indian Institute of Packaging (IIP) Chennai — runs PG diploma + M.Tech in Packaging Technology; the dominant packaging-specific institute. Worth shortlisting as a follow-on after B.E.'], cutoffGuide: 'AI estimate — IIP entry typically at PG level via separate exam.', feeRange: 'AI estimate — IIP programs ₹1L–3L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['Jadavpur University Printing Engineering', 'PVG\'s College of Engineering Pune Printing Engg', 'Manipal Institute of Technology Printing & Media Engg'], cutoffGuide: 'AI estimate — state-level entrance or direct admission.', feeRange: 'AI estimate — varies' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Printing & Packaging in TN costs roughly ₹2L–8L total depending on college. AC Tech and government-aided programs are dramatically more affordable than private universities.',
+    backupOptions: ['IIP (Indian Institute of Packaging) PG Diploma or M.Tech in Packaging Technology', 'Pivot to brand-side packaging engineering at FMCG companies', 'E-commerce packaging operations (Amazon, Flipkart heavily hire)', 'Sustainable packaging R&D (emerging high-growth field)', 'Design-engineering crossover roles', 'Printing-industry production management', 'MBA after 3-5 years for senior brand or operations roles'],
+    honestCaveat: 'Printing & Packaging is unusually creative for an engineering degree — students who picked engineering specifically to AVOID creative pressure (deadlines tied to brand launches, colour-fidelity disputes, packaging-design iteration cycles) often find this surprisingly draining. Conversely, students who wanted design without the math find the engineering side (substrate chemistry, press mechanics, structural packaging engineering) more demanding than expected. The field rewards a genuine combination of engineering rigour AND aesthetic sensibility — and is one of the few engineering branches where that combination pays well. E-commerce packaging is the recent growth driver; sustainable packaging is the future.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th PCM', titleTa: '+12 PCM 65%+', detail: 'TNEA entry. Strong Chemistry and Maths matter; visual sensibility helps for the design side.', window: 'Now', phase: 'now' },
+      { title: 'Join B.E. Printing & Packaging + active brand exposure', titleTa: 'B.E. + பிராண்ட் தொடர்பு', detail: 'Internships at FMCG companies (packaging departments) and e-commerce packaging operations during summer breaks are particularly valuable — they bridge the engineering and brand sides.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Industry, IIP PG Diploma, or sustainability R&D', titleTa: 'தொழில் / IIP / நிலையான', detail: 'Three credible exits. Direct industry role; IIP PG Diploma for specialisation; or sustainable-packaging R&D for the emerging high-growth segment.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a printing press or packaging factory if possible', titleTa: 'அச்சு / தொகுப்பு ஆலை பார்வை', detail: 'TN has many printing and packaging plants. Student tours dramatically clarify the day-to-day work — the speed of modern presses surprises most first-time visitors.', priority: 'high' },
+      { title: 'Develop colour and design awareness', titleTa: 'வண்ணம் + வடிவமைப்பு உணர்வு', detail: 'Spend time observing packaging in supermarkets, e-commerce parcels, and brand designs. The trained eye is a real career advantage. Free design-fundamentals videos help.', priority: 'high' },
+      { title: 'Read about India\'s plastic-waste rules and EPR for packaging', titleTa: 'EPR + நிலையான தொகுப்பு', detail: 'The Extended Producer Responsibility rules are reshaping packaging engineering. Awareness positions you for the high-growth sustainability roles.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Visual / design literacy + colour theory basics', why: 'Printing and packaging engineering reward genuine aesthetic sensibility. Students who can engage with both engineering precision AND visual / brand design are dramatically more valuable.', freeResource: 'Free design-fundamentals courses (Coursera audit), packaging observation in stores, brand-design YouTube channels' },
+      { skill: 'Chemistry — particularly polymer and substrate chemistry', why: 'Packaging is fundamentally materials chemistry. Strong 12th Chemistry on polymers, paper, and substrate behaviour underpins the technical side of the work.', freeResource: 'NCERT Chemistry — polymers, free materials-chemistry MOOCs' },
+      { skill: 'Software fluency — design and CAD tools', why: 'Modern packaging engineering uses design software (Adobe Illustrator, ArtiosCAD for structural packaging, Esko software for prepress). Free / student-version comfort with basic tools is a real asset.', freeResource: 'Adobe student trials, free Inkscape, YouTube tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
 
 
 
