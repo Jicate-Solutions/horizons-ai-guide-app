@@ -153,6 +153,65 @@ export const CAREER_PIVOT_PATHWAYS: CareerPivotPathway[] = [
       },
     ],
   },
+
+  // ── Electronics Engineer — filtered out by sitting_long.
+  {
+    fromPathwayId: 'electronics-engineer',
+    label: 'Engineering careers with less time at a desk',
+    labelTa: 'குறைந்த டெஸ்க் நேரம் கொண்ட பொறியியல்',
+    alternatives: [
+      {
+        toPathwayId: 'mechatronics-engineer',
+        rationale:
+          'Hardware-software hybrid like ECE but more lab and shop-floor time. Strong fit if you liked electronics but want to be on your feet building systems, not seated at a workstation.',
+        closeness: 80,
+      },
+      {
+        toPathwayId: 'mechanical-engineer',
+        rationale:
+          'Manufacturing, design and shop-floor work — physical, hands-on engineering. Less day-to-day software than ECE, more time around real systems.',
+        closeness: 65,
+      },
+      {
+        toPathwayId: 'civil-engineer',
+        rationale:
+          'Infrastructure work — site supervision, project management, real-world impact. Trade-off: outdoor / site exposure replaces sitting.',
+        closeness: 55,
+      },
+    ],
+  },
+
+  // ── Civil Engineer — filtered out by field_outdoor.
+  {
+    fromPathwayId: 'civil-engineer',
+    label: 'Engineering careers with less site / outdoor exposure',
+    labelTa: 'குறைந்த வெளிக்களம் கொண்ட பொறியியல்',
+    alternatives: [
+      {
+        toPathwayId: 'mechanical-engineer',
+        rationale:
+          'Some shop-floor time but mostly indoor design, manufacturing and quality work. Less site exposure than civil, especially in the early years.',
+        closeness: 70,
+      },
+      {
+        toPathwayId: 'electronics-engineer',
+        rationale:
+          'Almost entirely lab- and office-based. If infrastructure interested you but outdoor work doesn\'t, ECE — especially embedded systems for smart-city / IoT — keeps the systems thinking, drops the site work.',
+        closeness: 60,
+      },
+      {
+        toPathwayId: 'software-engineer',
+        rationale:
+          'A clean pivot to an indoor desk career. Civil-engineering-trained software engineers do well in BIM, construction-tech and infrastructure SaaS — your domain knowledge is an asset.',
+        closeness: 55,
+      },
+    ],
+  },
+
+  // NOTE: mechatronics-engineer has no aversionConflicts in CAREER_PATHWAYS,
+  // so no pivot table entry is needed yet — the engine never hard-filters
+  // mechatronics for v1. If aversion tags are added to mechatronics later
+  // (e.g. 'sitting_long' becomes more honest), add a pivot here.
 ];
 
 /** Look up a pivot pathway by the career the student aspired to. */

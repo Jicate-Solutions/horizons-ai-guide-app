@@ -2803,6 +2803,468 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     ],
     lastReviewed: '2026-05',
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── DRAFT BATCH 3 (May 2026) — Bioscience & Allied Health ────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Three biology-side careers distinct from the verified pharmacist, nurse
+  // and doctor-mbbs entries. All TN-specific numbers are AI estimates and
+  // gated behind the per-career acknowledgment UI.
+  //
+  // NOT included from the original ask, with explanation:
+  //  - B.Pharm: already covered by the verified 'pharmacist' pathway.
+  //             Adding a duplicate "B.Pharm Graduate" career would surface
+  //             the same career twice in a student's ranked list.
+
+  // ─── BPT (BACHELOR OF PHYSIOTHERAPY) ───────────────────────────────────────
+  {
+    id: 'physiotherapist',
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care'],
+    automation: 'human_facing',
+    automationNote: 'Hands-on rehabilitation, sports physio and elderly care are inherently human. AI may help with assessment or exercise tracking, but the work of physically guiding recovery sits firmly with the trained physiotherapist.',
+    title: 'Physiotherapist (BPT)',
+    titleTa: 'உடல் சிகிச்சை நிபுணர்',
+    icon: '🦴',
+    color: 'from-teal-500 to-cyan-600',
+    whatIsIt:
+      'A 4.5-year clinical degree training you to assess, treat and rehabilitate patients through movement, exercise and manual therapy — hospitals, sports clinics, rehab centres, home-care practice or your own practice.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['902', '901'],
+    ugCourses: ['BPT (Bachelor of Physiotherapy)'],
+    entranceExams: ['NEET-UG'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'A 4-year academic degree + 6-month internship (4.5 years total). Practising physiotherapist roles open at graduation. Private practice typically starts after 3–5 years of clinical experience.',
+    skillWeights: {
+      mathematics: 3,
+      language: 6,
+      science: 8,
+      creativity: 5,
+      people: 9,
+      physical: 7,
+      digital: 4,
+    },
+    priorityFit: {
+      salary: 5,
+      security: 7,
+      balance: 7,
+      abroad: 8,
+      prestige: 6,
+      passion: 8,
+      growth: 7,
+      hometown: 8,
+    },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–4 LPA in hospitals fresh out of internship. ₹3–6 LPA at corporate hospitals and sports clinics.',
+      midCareerLPA: 'AI estimate — ₹6–15 LPA with 7+ years and a specialisation (sports, neuro, paediatric). Private practice can exceed this — depends on patient base.',
+      note: 'Physio salaries in India are modest until private practice or international moves. UK and Gulf physio roles pay multiples of Indian salaries, and Indian BPT is accepted (often with bridge exams). Sports and neuro physios earn most.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — growing demand from elderly care, sports, post-surgical rehab and lifestyle disorders. The Indian middle class is just beginning to use physio routinely.',
+    },
+    entryDifficulty: {
+      score: 5,
+      note: 'AI estimate — BPT entry typically requires NEET in Tamil Nadu but cut-offs are well below MBBS. Many private colleges admit on 12th merit. Significantly easier entry than MBBS/BDS.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top deemed / government colleges (AI estimate)',
+        examples: ['SRM IST', 'Saveetha Physiotherapy', 'Madras Medical College physio dept', 'Govt physio colleges in TN'],
+        cutoffGuide: 'AI estimate — NEET typically 250+ for top colleges; some take 12th merit.',
+        feeRange: 'AI estimate — ₹40K–2L / year',
+      },
+      {
+        label: 'Strong private medical-college affiliates (AI estimate)',
+        examples: ['Sri Ramachandra', 'Chettinad', 'PSG Coimbatore physio program'],
+        cutoffGuide: 'AI estimate — NEET 200+; some direct admission on 12th marks.',
+        feeRange: 'AI estimate — ₹60K–2.5L / year',
+      },
+      {
+        label: 'Accessible private colleges (AI estimate)',
+        examples: ['Several TN private physiotherapy colleges across districts'],
+        cutoffGuide: 'AI estimate — often 12th marks-based admission; widely accessible.',
+        feeRange: 'AI estimate — ₹50K–1.5L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 4.5-year BPT in TN costs roughly ₹2L–10L total depending on college. Government colleges are dramatically cheaper. Private colleges vary sharply.',
+    backupOptions: [
+      'MPT (Master of Physiotherapy) — specialisation in sports, neuro, ortho or paediatric',
+      'Move abroad — UK CPSM, US DPT bridge exams, Gulf clinical roles',
+      'Own private practice (after 3–5 years\' clinical experience)',
+      'Allied health roles in corporate hospitals',
+      'Personal training / sports rehab — combine BPT with fitness certifications',
+    ],
+    honestCaveat:
+      'BPT is direct patient work — many hours on your feet, hands-on with patients in pain or recovery. Students who don\'t want close patient contact should look elsewhere. Indian salaries are modest until private practice or international moves; the meaningful work and abroad-mobility are the real attractions.',
+    roadmap: [
+      {
+        title: 'Score 75%+ in 12th PCB',
+        titleTa: '+12 PCB-இல் 75%+',
+        detail: 'NEET is the main entry route for BPT in TN. Some colleges allow 12th-merit admission.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join BPT (4 years + 6-month internship)',
+        titleTa: 'BPT சேருங்கள் (4 ஆண்டுகள் + 6 மாத பயிற்சி)',
+        detail: 'Choose a hospital-attached college if possible — clinical exposure during the degree matters more than the college\'s rank.',
+        window: 'Years 1–5',
+        phase: 'next',
+      },
+      {
+        title: 'Specialise (MPT) OR work + private practice OR abroad',
+        titleTa: 'MPT அல்லது வேலை அல்லது வெளிநாடு',
+        detail: 'MPT lifts your earning ceiling sharply. Going abroad (UK/Gulf) multiplies salaries. Private practice takes 3-5 years of clinical experience first.',
+        window: 'Years 5–8',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Register for NEET',
+        titleTa: 'NEET பதிவு',
+        detail: 'NEET is the main route to TN BPT colleges. Confirm the registration window for the current cycle.',
+        priority: 'high',
+        link: 'https://neet.nta.nic.in',
+      },
+      {
+        title: 'Shadow a physiotherapist for half a day',
+        titleTa: 'உடல் சிகிச்சை நிபுணரை ஒரு நாள் பார்க்கவும்',
+        detail: 'Most local physios will let a 12th student observe for half a day. This single experience tells you whether the work suits you better than any brochure can.',
+        priority: 'high',
+      },
+      {
+        title: 'Build basic biology + human anatomy fundamentals',
+        titleTa: 'அடிப்படை உயிரியல் + உடற்கூற்றியல்',
+        detail: 'BPT is anatomy-heavy from semester 1. Strong 12th Biology fundamentals make year 1 dramatically smoother.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Human anatomy basics',
+        why: 'Anatomy is the foundation of all physio practice. Strong 12th Biology + a head start on anatomy makes year 1 significantly easier.',
+        freeResource: 'NCERT Biology — human physiology chapters, free Kenhub anatomy basics',
+      },
+      {
+        skill: 'Physical fitness — your own body awareness',
+        why: 'You\'ll teach patients movement and exercise. Being comfortable in your own body matters — many strong physios were athletes or dancers first.',
+        freeResource: 'Local gym, free YouTube workout channels (Fitness Blender, Yoga With Adriene)',
+      },
+      {
+        skill: 'Spoken English + Tamil patient communication',
+        why: 'Physio is one-on-one work with patients. Confident, kind communication in both languages is the hidden multiplier between an okay physio and a thriving one.',
+        freeResource: 'BBC Learning English, local Toastmasters clubs',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC. ALLIED HEALTH SCIENCES ──────────────────────────────────────────
+  {
+    id: 'allied-health-professional',
+    needsCounsellorReview: true,
+    aversionConflicts: ['shift_work', 'lab_practical'],
+    automation: 'ai_augmented',
+    automationNote: 'Diagnostic imaging is being assisted by AI in scan interpretation, but the technologist who performs the scan, positions the patient and ensures quality is irreplaceable. Allied health roles work alongside AI tools, not against them.',
+    title: 'Allied Health Sciences Professional',
+    titleTa: 'மருத்துவத் துணைத் தொழில் நிபுணர்',
+    icon: '🩺',
+    color: 'from-blue-500 to-cyan-600',
+    whatIsIt:
+      'An umbrella for the technical clinical roles that make hospitals run: medical lab technology (MLT), radiology and imaging, cardiac care technology, anaesthesia technology, respiratory therapy, dialysis technology. 3–4 year B.Sc. degrees, hospital-based work.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['902', '901'],
+    ugCourses: [
+      'B.Sc Medical Lab Technology (MLT)',
+      'B.Sc Radiology / Medical Imaging',
+      'B.Sc Cardiac Care Technology',
+      'B.Sc Anaesthesia Technology',
+      'B.Sc Respiratory Therapy',
+      'B.Sc Dialysis Technology',
+    ],
+    entranceExams: ['NEET-UG', 'None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'A 3-4 year degree depending on specialisation (most are 3 + 1 year internship). Practising technologist roles open at graduation. Specialisation via M.Sc. opens senior or academic roles.',
+    skillWeights: {
+      mathematics: 4,
+      language: 5,
+      science: 8,
+      creativity: 4,
+      people: 6,
+      physical: 5,
+      digital: 6,
+    },
+    priorityFit: {
+      salary: 5,
+      security: 8,
+      balance: 5,
+      abroad: 7,
+      prestige: 5,
+      passion: 6,
+      growth: 6,
+      hometown: 8,
+    },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–4 LPA fresh in TN hospitals; ₹3–5 LPA at top corporate hospitals (Apollo, Fortis, MIOT).',
+      midCareerLPA: 'AI estimate — ₹5–12 LPA with 7+ years and specialisation. Abroad (Gulf, UK, Singapore) typically multiplies these significantly.',
+      note: 'Allied health salaries in India are modest but steady — hospitals always need technologists. The earnings ceiling is lower than nursing or doctor paths in India; abroad mobility is the main upside.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — every diagnostic and clinical procedure needs a trained technologist. Cardiac and radiology technologists are particularly in demand as those specialties expand.',
+    },
+    entryDifficulty: {
+      score: 3,
+      note: 'AI estimate — most allied health programs are direct-admission via 12th marks; some take NEET. Far easier entry than MBBS / BDS / Nursing.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top medical college affiliates (AI estimate)',
+        examples: ['Sri Ramachandra', 'Madras Medical Mission', 'Apollo Allied Health', 'PSG Coimbatore'],
+        cutoffGuide: 'AI estimate — 75%+ in 12th typical; some programs require NEET.',
+        feeRange: 'AI estimate — ₹50K–2L / year',
+      },
+      {
+        label: 'Government / aided medical colleges (AI estimate)',
+        examples: ['Madras Medical College allied health depts', 'Government MLT programs'],
+        cutoffGuide: 'AI estimate — 70%+ typical for direct admission.',
+        feeRange: 'AI estimate — ₹15K–60K / year',
+      },
+      {
+        label: 'Private specialised colleges (AI estimate)',
+        examples: ['Many private colleges across TN offering allied health'],
+        cutoffGuide: 'AI estimate — widely accessible; often 60%+ minimum.',
+        feeRange: 'AI estimate — ₹50K–1.5L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 3-4 year allied health B.Sc. in TN costs roughly ₹50K–8L total depending on specialisation and college. Government colleges are dramatically more affordable.',
+    backupOptions: [
+      'M.Sc. in your specialisation — academic and senior clinical roles',
+      'Move abroad (Gulf, UK, Singapore, Australia) — typically with bridge exams',
+      'Hospital administration roles after 5+ years of clinical experience',
+      'Cross-train into nursing or pharmacy if scope feels limited',
+      'Medical equipment company technical/sales roles',
+    ],
+    honestCaveat:
+      'Allied health is a deeply useful career — every hospital needs these technologists — but the salary ceiling in India is real. Career progression often requires either specialisation (M.Sc.) or moving abroad. Shift work is common in hospital settings. The route is also less culturally celebrated than MBBS/Nursing in TN families; be ready to explain the choice clearly.',
+    roadmap: [
+      {
+        title: 'Score 70%+ in 12th PCB',
+        titleTa: '+12 PCB-இல் 70%+',
+        detail: 'Most allied health programs admit on 12th merit. Some specific specialisations (Radiology, Cardiac Care) may need NEET.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join your specialisation (3 years + 1-year internship)',
+        titleTa: 'சிறப்புத்துறை சேருங்கள்',
+        detail: 'MLT, Radiology, Cardiac Care, Anaesthesia, Respiratory or Dialysis — each is a distinct career. Choose based on what excites you, not just availability.',
+        window: 'Years 1–4',
+        phase: 'next',
+      },
+      {
+        title: 'Specialise (M.Sc.), or move abroad, or hospital admin',
+        titleTa: 'M.Sc. / வெளிநாடு / நிர்வாகம்',
+        detail: 'M.Sc. for senior clinical or academic roles. Abroad bridge exams (UK HCPC, Gulf licensing) multiply salaries. Hospital administration is the longer-term India path.',
+        window: 'Years 4–7',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Pick the right specialisation early',
+        titleTa: 'சரியான சிறப்புத்துறை',
+        detail: 'MLT (lab-based), Radiology (imaging), Cardiac Care (procedures), Anaesthesia Tech (OT), Respiratory Therapy (ICU), Dialysis (clinics) — these are different careers, not just different names.',
+        priority: 'high',
+      },
+      {
+        title: 'Visit / shadow at a hospital department',
+        titleTa: 'மருத்துவமனை துறை பார்வை',
+        detail: 'Even half a day spent watching a lab tech or radiology tech work tells you whether the day-to-day suits you. Worth the effort.',
+        priority: 'high',
+      },
+      {
+        title: 'Confirm NEET vs direct-admission for your chosen program',
+        titleTa: 'NEET அல்லது நேரடி சேர்க்கை',
+        detail: 'Some allied health specialisations (especially Radiology and Cardiac Care in top colleges) require NEET. Confirm for your shortlist.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Strong Biology + Chemistry fundamentals',
+        why: 'Every allied health specialisation builds on these. Strong 12th fundamentals make every semester smoother.',
+        freeResource: 'NCERT Biology + Chemistry, Khan Academy',
+      },
+      {
+        skill: 'Patience and steady hands',
+        why: 'Diagnostic and procedure technology rewards careful, methodical work over fast work. Practise being unhurried with detailed tasks.',
+        freeResource: 'Any hobby that requires precision — drawing, electronics, embroidery, model-building',
+      },
+      {
+        skill: 'Spoken English + Tamil patient communication',
+        why: 'Allied health roles interact with patients constantly — anxious, often elderly, sometimes language-mixed. Confident bilingual communication is a real advantage.',
+        freeResource: 'BBC Learning English, local Toastmasters clubs',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.TECH BIOTECHNOLOGY ──────────────────────────────────────────────────
+  {
+    id: 'biotechnologist',
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical'],
+    automation: 'ai_augmented',
+    automationNote: 'AI is changing biotech research dramatically — protein folding, drug discovery, genomic analysis. The result is more research done per person, not fewer biotechnologists. Strong fit for students excited by computational + biological work.',
+    title: 'Biotechnologist / Biotech Engineer',
+    titleTa: 'உயிரித் தொழில்நுட்ப பொறியியலாளர்',
+    icon: '🧬',
+    color: 'from-green-500 to-lime-600',
+    whatIsIt:
+      'A 4-year engineering degree applying biology to industry: pharma R&D, agritech, food technology, genetic engineering, biofuels, vaccine development. Distinct from medicine — you work with cells, processes and lab equipment, not patients.',
+    eligibleStreams: ['pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['902', '101', '102'],
+    ugCourses: ['B.Tech Biotechnology', 'B.E Bio-Medical Engineering', 'B.Tech Industrial Biotechnology', 'B.Sc Biotech + M.Sc Biotech'],
+    entranceExams: ['TNEA', 'JEE Main', 'NEET-UG'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'After 12th you join a 4-year B.Tech Biotechnology directly. Junior research / lab engineer roles open at graduation, though most strong biotech careers in India involve an M.Tech or M.Sc. on top — meaningful work often starts ~6 years from now.',
+    skillWeights: {
+      mathematics: 6,
+      language: 5,
+      science: 9,
+      creativity: 7,
+      people: 4,
+      physical: 4,
+      digital: 7,
+    },
+    priorityFit: {
+      salary: 4,
+      security: 6,
+      balance: 6,
+      abroad: 8,
+      prestige: 6,
+      passion: 8,
+      growth: 7,
+      hometown: 5,
+    },
+    competitiveBoardPct: { comfortable: 80, stretch: 70 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA at most TN colleges; ₹4–7 LPA at top-tier campuses. Notably lower than CSE / ECE for the same college tier.',
+      midCareerLPA: 'AI estimate — ₹6–18 LPA with 5–8 years; specialisation in computational biology or pharma R&D leadership can exceed. PhD + abroad pathway pays substantially more.',
+      note: 'Honest reality: biotech salaries in India are below mainstream engineering for the same effort. The strongest financial paths involve either pharma industry (Dr. Reddy\'s, Biocon, Serum Institute) or moving abroad for PhD + research. Students who pick biotech for love of the science do well; those who pick it expecting CSE salaries are disappointed.',
+    },
+    demand: {
+      score: 6,
+      note: 'AI estimate — steady demand from pharma R&D, agritech and biotech start-ups. Lower-volume hiring than software, so a strong college matters more than in CSE.',
+    },
+    entryDifficulty: {
+      score: 5,
+      note: 'AI estimate — TNEA / JEE entry comparable to other engineering disciplines. Top tier (CEG, MIT Chrompet, SSN, SRM) is competitive; many private colleges offer biotech with accessible cut-offs.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top government / autonomous (AI estimate)',
+        examples: ['CEG Guindy', 'SSN', 'PSG Tech (Biotech)', 'SASTRA'],
+        cutoffGuide: 'AI estimate — TNEA / JEE cut-offs comparable to mid-tier engineering branches.',
+        feeRange: 'AI estimate — ₹15K–2L / year',
+      },
+      {
+        label: 'Strong private (AI estimate)',
+        examples: ['Anna University constituent colleges', 'B.S. Abdur Rahman', 'Vellore Institute', 'SRM Biotech'],
+        cutoffGuide: 'AI estimate — accessible TNEA / JEE / direct admission for most.',
+        feeRange: 'AI estimate — ₹80K–2.5L / year',
+      },
+      {
+        label: 'Accessible private (AI estimate)',
+        examples: ['Many TN private engineering colleges with biotech branches'],
+        cutoffGuide: 'AI estimate — widely accessible; many seats below ~170 TNEA cutoff.',
+        feeRange: 'AI estimate — ₹50K–1.5L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 4-year B.Tech Biotech in TN costs roughly ₹1L–10L total depending on college tier. Government colleges are dramatically cheaper. Lab-heavy programs at private colleges trend toward the upper range.',
+    backupOptions: [
+      'M.Tech / M.Sc. Biotechnology — improves placement substantially',
+      'Pharma industry R&D (Dr. Reddy\'s, Biocon, Serum Institute, Cipla)',
+      'PhD abroad (US/EU) — best long-term financial path',
+      'Bioinformatics + computational biology — combines biotech with software',
+      'Quality control / regulatory roles in pharma and food companies',
+      'Pivot to software engineering — many biotech grads do this through self-taught coding',
+    ],
+    honestCaveat:
+      'Be honest with yourself: biotech in India pays less than CSE / ECE for similar effort, and the strongest financial paths require either an MS/PhD abroad or many years in pharma R&D. The reward is the work itself — students who love biology and lab science thrive; those who picked biotech because it "sounded scientific" without that genuine pull regret the choice. The lab_practical aversion is built in for a reason: B.Tech Biotech is deeply lab-heavy from year 1.',
+    roadmap: [
+      {
+        title: 'Score 80%+ in 12th PCB / PCMB (or strong PCM)',
+        titleTa: '+12 PCB / PCMB-இல் 80%+',
+        detail: 'Biology and Chemistry depth matters most; Maths is needed for the engineering-side coursework.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join B.Tech Biotech (4 years) + at least 1 research internship',
+        titleTa: 'B.Tech உயிரித் தொழில்நுட்பம் + ஆராய்ச்சி பயிற்சி',
+        detail: 'Internships at research institutes (IISc, CSIR labs) or pharma companies during summers shape your trajectory far more than the college brand.',
+        window: 'Years 1–4',
+        phase: 'next',
+      },
+      {
+        title: 'M.Tech / M.Sc. — OR pharma industry — OR PhD abroad',
+        titleTa: 'M.Tech / தொழில் / PhD',
+        detail: 'In India, an M.Tech / M.Sc. roughly doubles your earning ceiling. For the best long-term careers, PhD abroad is the strongest path.',
+        window: 'Years 4–6',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Be honest with yourself about salary expectations',
+        titleTa: 'சம்பள எதிர்பார்ப்புகள் பற்றி நேர்மை',
+        detail: 'Talk to a biotech graduate working 3-5 years. Their starting and current salaries are crucial reality. If lower salary kills your motivation, biotech is not for you — that is honest, not a failure.',
+        priority: 'high',
+      },
+      {
+        title: 'Confirm TNEA / JEE / NEET registration',
+        titleTa: 'TNEA / JEE / NEET பதிவு',
+        detail: 'Different colleges accept different entrance routes for biotech. Confirm your specific shortlist.',
+        priority: 'high',
+      },
+      {
+        title: 'Begin reading recent biotech / pharma news',
+        titleTa: 'உயிரித் தொழில்நுட்பம் / மருந்தியல் செய்திகள்',
+        detail: 'Follow industry developments to see what actually excites you — drug discovery, agritech, vaccines, gene therapy, fermentation? The intuition built now shapes your specialisation later.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Strong Biology + Chemistry fundamentals',
+        why: 'Every biotech subject builds on these. Weakness here cascades through the entire degree.',
+        freeResource: 'NCERT Biology + Chemistry, Khan Academy',
+      },
+      {
+        skill: 'Basic programming — Python preferred',
+        why: 'Modern biotech is computational. Python opens bioinformatics, computational biology and ML-for-biology roles — all of which pay better than wet-lab roles.',
+        freeResource: 'Python.org tutorials, freeCodeCamp YouTube, Rosalind bioinformatics problems',
+      },
+      {
+        skill: 'Reading scientific papers',
+        why: 'Biotech is research-driven. Comfort reading and interpreting papers is the difference between someone who follows the field and someone who shapes it.',
+        freeResource: 'PubMed (free abstracts), bioRxiv preprints, "How to Read a Paper" guides',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
