@@ -197,6 +197,19 @@ export interface CareerPathway {
 
   /** Freshness marker */
   lastReviewed: string;
+
+  /**
+   * v2 — DRAFT MARKER. When true, the TN-specific numeric fields on this
+   * pathway (collegeTiers, salaryReality, costReality, demand, etc.) are
+   * AI-generated drafts that have NOT yet been audited by a counsellor.
+   * The UI shows a visible "pending counsellor review" banner on the
+   * detail card so students know which figures are verified and which
+   * are estimates. Flip to false after a counsellor has signed off on
+   * the numbers for this career. Skill weights, priority fit, skills-
+   * to-build and roadmap structure are model-derived and don't need to
+   * gate this flag — only the TN-specific quantitative claims do.
+   */
+  needsCounsellorReview?: boolean;
 }
 
 /**
@@ -1598,6 +1611,739 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
         skill: 'Biology fundamentals',
         why: 'Understanding how drugs act on the body builds on 12th Biology.',
         freeResource: 'NCERT Biology — human physiology chapters especially',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── DRAFT BATCH (May 2026) — pending counsellor review ───────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // The five entries below are AI-generated drafts. Their TN-specific
+  // quantitative fields (cutoff guidance, fee ranges, salary ranges, college
+  // examples, demand notes) need to be audited by a counsellor before being
+  // treated as authoritative. The needsCounsellorReview flag is honoured by
+  // the UI, which shows a clear "AI estimate, pending review" banner on the
+  // detail card. Once a career is reviewed, flip its flag to false (or
+  // remove it) and the banner disappears for that career.
+
+  // ─── B.COM (BACHELOR OF COMMERCE) ──────────────────────────────────────────
+  {
+    id: 'bcom-graduate',
+    needsCounsellorReview: true,
+    aversionConflicts: [],
+    automation: 'ai_augmented',
+    automationNote: 'Routine book-keeping and basic accounting are automating, but the broader B.Com graduate path opens into finance, banking, GST practice, audit support and further study (M.Com, MBA, ACCA) — many of which remain firmly human.',
+    title: 'B.Com Graduate',
+    titleTa: 'வணிக இளங்கலை',
+    icon: '📊',
+    color: 'from-emerald-500 to-teal-600',
+    whatIsIt:
+      'A three-year commerce degree that opens doors into accounting, banking, taxation, GST practice, finance jobs, government exams and further study like M.Com, MBA, CA, ACCA or CMA.',
+    eligibleStreams: ['commerce'],
+    strongGroupCodes: ['301', '320'],
+    ugCourses: ['B.Com (General)', 'B.Com (Hons.)', 'B.Com (CA)', 'B.Com (Bank Mgmt)'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'A 3-year direct-admission degree. Many B.Com graduates start working within 3 years of finishing 12th — though stronger careers usually come after a further qualification (M.Com, MBA, ACCA, CA inter).',
+    skillWeights: {
+      mathematics: 7,
+      language: 7,
+      science: 2,
+      creativity: 4,
+      people: 6,
+      physical: 1,
+      digital: 6,
+    },
+    priorityFit: {
+      salary: 6,
+      security: 7,
+      balance: 7,
+      abroad: 6,
+      prestige: 5,
+      passion: 5,
+      growth: 7,
+      hometown: 8,
+    },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — typically ₹2–4 LPA fresh, more with skills (Tally, Excel, GST) or further qualifications.',
+      midCareerLPA: 'AI estimate — ₹6–15 LPA after 5+ years, especially with M.Com / MBA / CA / ACCA add-ons.',
+      note: 'A B.Com alone rarely commands a high salary; the leverage comes from layering qualifications or specialised skills (GST practice, audit, financial analysis) on top.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — steady demand from finance teams, tax practices, banks and government exam aspirants. Bottom-of-the-funnel work is being automated.',
+    },
+    entryDifficulty: {
+      score: 3,
+      note: 'Seats are widely available across TN with direct admission. The competitive part is choosing a college and specialisation that opens doors.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top autonomous / aided colleges (AI estimate)',
+        examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science', 'St. Joseph\'s College Trichy'],
+        cutoffGuide: 'AI estimate — direct admission; cut-off marks typically 80%+ at top tier.',
+        feeRange: 'AI estimate — ₹15K–60K / year',
+      },
+      {
+        label: 'Strong city colleges (AI estimate)',
+        examples: ['Stella Maris (Women)', 'Ethiraj (Women)', 'D.G. Vaishnav', 'Bishop Heber Trichy'],
+        cutoffGuide: 'AI estimate — 70–80% typical for direct admission.',
+        feeRange: 'AI estimate — ₹15K–80K / year',
+      },
+      {
+        label: 'Government / aided district colleges (AI estimate)',
+        examples: ['Government Arts Colleges across districts', 'Many aided colleges in tier-2 towns'],
+        cutoffGuide: 'AI estimate — wide access, cut-off as low as 60%.',
+        feeRange: 'AI estimate — ₹2K–25K / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 3-year B.Com in TN costs roughly ₹10K–2L total depending on college. Government colleges are extremely affordable; aided autonomous colleges sit in the middle. The bigger cost is what you do AFTER the degree.',
+    backupOptions: [
+      'CMA (cost & management accountant) — registered alongside B.Com',
+      'ACCA — international qualification, doable during B.Com',
+      'MBA after 2-3 years of work experience',
+      'Banking exams (IBPS, SBI PO)',
+    ],
+    honestCaveat:
+      'A B.Com on its own without further study or specialised skills genuinely struggles in the TN job market. Plan from day one to add at least one of: M.Com, MBA, CA inter, CMA, ACCA, or strong applied skills (advanced Excel, Tally, GST, accounting software). The degree is a foundation, not a destination.',
+    roadmap: [
+      {
+        title: 'Pass 12th Commerce with 70%+',
+        titleTa: '+12-இல் 70%+ பெறுங்கள்',
+        detail: 'Direct admission; marks matter for top colleges but not for getting a seat somewhere.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join B.Com (3 years)',
+        titleTa: 'பி.காம் சேருங்கள் (3 ஆண்டுகள்)',
+        detail: 'Pick a college with strong placement and ideally autonomous syllabus. Add Tally, advanced Excel, GST practice on the side.',
+        window: 'Years 1–3',
+        phase: 'next',
+      },
+      {
+        title: 'Specialise — CA Inter, CMA, M.Com, MBA, or ACCA',
+        titleTa: 'CA இன்டர், CMA, எம்.காம், அல்லது MBA',
+        detail: 'A B.Com alone rarely lands strong roles. Stack one professional qualification on top while you study or after.',
+        window: 'Years 3–5',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Pick the right specialisation',
+        titleTa: 'சரியான சிறப்புப் பாடத்தைத் தேர்ந்தெடுக்கவும்',
+        detail: 'B.Com General, B.Com (CA), B.Com (Bank Mgmt) and B.Com (Hons.) open slightly different doors. Match it to whether you want corporate jobs, banking, or a CA/CMA path.',
+        priority: 'high',
+      },
+      {
+        title: 'Open a free Tally and Excel account',
+        titleTa: 'டாலி மற்றும் எக்செல் கற்க தொடங்கவும்',
+        detail: 'Tally is the most-asked tool in TN commerce job interviews. YouTube has full free courses. Start in week 1.',
+        priority: 'high',
+      },
+      {
+        title: 'Decide on CA / CMA / ACCA early',
+        titleTa: 'CA / CMA / ACCA பற்றி முன்கூட்டியே முடிவெடுக்கவும்',
+        detail: 'These run in parallel with B.Com. Start the foundation paper in Year 1 if you\'re serious — it makes years 4–5 dramatically smoother.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Advanced Excel',
+        why: 'The #1 skill TN commerce graduates lack — and the #1 skill that lifts your starting salary.',
+        freeResource: 'Microsoft Excel free YouTube courses (Leila Gharani, ExcelIsFun)',
+      },
+      {
+        skill: 'Tally Prime',
+        why: 'Standard accounting software across small and mid-size TN businesses. Knowing it makes you instantly hireable for entry roles.',
+        freeResource: 'Tally Education free courses, YouTube',
+      },
+      {
+        skill: 'Spoken English & business writing',
+        why: 'A B.Com candidate who can write a clear email and present confidently stands out immediately.',
+        freeResource: 'BBC Learning English, free MOOCs',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BBA (BACHELOR OF BUSINESS ADMINISTRATION) ─────────────────────────────
+  {
+    id: 'bba-graduate',
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'AI is changing how reports are written and meetings are summarised, but the work of leading teams, building client relationships and making business calls remains human. The strongest BBAs combine business judgement with comfort using new tools.',
+    title: 'BBA Graduate',
+    titleTa: 'வணிக நிர்வாக இளங்கலை',
+    icon: '💼',
+    color: 'from-amber-500 to-orange-600',
+    whatIsIt:
+      'A three-year management degree that builds business foundations — marketing, HR, finance, operations — and feeds into MBA, family business, sales, banking, and corporate roles.',
+    eligibleStreams: ['commerce', 'pcm', 'arts'],
+    strongGroupCodes: ['301', '320'],
+    ugCourses: ['BBA', 'BBA (Hons.)', 'BBM', 'Integrated BBA + MBA'],
+    entranceExams: ['CUET', 'None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'A 3-year direct-admission degree. BBA + an MBA (typically 2 years after some work experience) is the strongest combined path; entry corporate roles open after BBA alone.',
+    skillWeights: {
+      mathematics: 6,
+      language: 8,
+      science: 2,
+      creativity: 7,
+      people: 9,
+      physical: 2,
+      digital: 7,
+    },
+    priorityFit: {
+      salary: 6,
+      security: 5,
+      balance: 6,
+      abroad: 7,
+      prestige: 7,
+      passion: 6,
+      growth: 8,
+      hometown: 6,
+    },
+    competitiveBoardPct: { comfortable: 75, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — typically ₹3–5 LPA at strong city colleges, less in tier-2.',
+      midCareerLPA: 'AI estimate — ₹8–25 LPA after MBA + 5–7 years experience.',
+      note: 'BBA alone is often a stepping stone to MBA or family business. Pure BBA salaries cluster around entry corporate roles unless paired with strong communication, internships, or further study.',
+    },
+    demand: {
+      score: 6,
+      note: 'AI estimate — many graduates, so the differentiator is the college tier, internships, and English fluency. Demand for management graduates is steady, not exceptional.',
+    },
+    entryDifficulty: {
+      score: 4,
+      note: 'Most TN BBA programs are direct-admission. Top-tier programs (Christ, Loyola, Stella Maris BBA) are mildly competitive.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top autonomous colleges (AI estimate)',
+        examples: ['Loyola College Chennai', 'Madras Christian College', 'Stella Maris (Women)', 'PSG College of Arts & Science'],
+        cutoffGuide: 'AI estimate — 85%+ in 12th typically expected at top tier.',
+        feeRange: 'AI estimate — ₹40K–1.2L / year',
+      },
+      {
+        label: 'Strong private colleges (AI estimate)',
+        examples: ['SRM Easwari', 'Ethiraj College for Women', 'D.G. Vaishnav', 'PSGR Krishnammal'],
+        cutoffGuide: 'AI estimate — 70–85% range; direct admission.',
+        feeRange: 'AI estimate — ₹50K–1.5L / year',
+      },
+      {
+        label: 'Accessible private colleges (AI estimate)',
+        examples: ['Many TN affiliated colleges across districts'],
+        cutoffGuide: 'AI estimate — wide access, often 60%+ minimum.',
+        feeRange: 'AI estimate — ₹30K–1L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 3-year BBA in TN typically costs ₹1L–4.5L total, with sharp variation by college tier. An MBA on top adds ₹2L–25L depending on programme.',
+    backupOptions: [
+      'MBA after 2 years of work experience',
+      'Banking exams (IBPS PO, SBI PO)',
+      'Family business / entrepreneurship',
+      'Switch to ACCA or CMA for finance specialisation',
+    ],
+    honestCaveat:
+      'BBA without strong English, without internships, and from a non-tier-1 college genuinely struggles. The degree is most valuable for those who plan an MBA, run/inherit a family business, or grind out internships and communication skills during the 3 years.',
+    roadmap: [
+      {
+        title: 'Pass 12th with 75%+ for top colleges',
+        titleTa: '+12-இல் 75%+ பெறுங்கள்',
+        detail: 'Direct admission for most; top autonomous colleges look at 12th marks and English skills.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join BBA (3 years) + 2-3 internships',
+        titleTa: 'BBA + இன்டர்ன்ஷிப்கள்',
+        detail: 'Internships matter more than marks for placements. Aim for at least 2 in years 2-3 — marketing, sales, HR, ops.',
+        window: 'Years 1–3',
+        phase: 'next',
+      },
+      {
+        title: 'MBA, work, or family business',
+        titleTa: 'MBA, வேலை, அல்லது குடும்ப தொழில்',
+        detail: 'MBA from a good college after 2 years of work multiplies BBA returns sharply. Otherwise enter the workforce and grow.',
+        window: 'Years 3–6',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Choose a specialisation track',
+        titleTa: 'சிறப்புப் பாடத்தைத் தேர்ந்தெடுக்கவும்',
+        detail: 'BBA Marketing, Finance, HR, IB and General have different outcomes. Pick based on what excites you, not what sounds prestigious.',
+        priority: 'high',
+      },
+      {
+        title: 'Sharpen English — speaking AND writing',
+        titleTa: 'ஆங்கிலம் — பேசவும் எழுதவும்',
+        detail: 'The single biggest determinant of BBA placement outcomes. Daily 30 minutes — podcasts, free MOOCs, mock interviews.',
+        priority: 'high',
+      },
+      {
+        title: 'Find an internship within Semester 2',
+        titleTa: 'செமஸ்டர் 2-க்குள் இன்டர்ன்ஷிப்',
+        detail: 'Even unpaid; even at a small TN firm. The discipline of working in a real business changes how you view classes.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Spoken English fluency',
+        why: 'The single skill that most separates a placed BBA from one that struggles. Worth more than any GPA point.',
+        freeResource: 'BBC Learning English, English Speeches YouTube, Toastmasters clubs',
+      },
+      {
+        skill: 'PowerPoint + storytelling',
+        why: 'Every business role involves communicating ideas. Practise pitching things you care about for 2 minutes with 3 slides.',
+        freeResource: 'YouTube — "How to make a pitch deck", free Canva',
+      },
+      {
+        skill: 'Reading business news weekly',
+        why: 'You need to know how Indian businesses think. 30 minutes a week of Mint or The Ken is enough.',
+        freeResource: 'Mint, The Ken (free articles), The Morning Context',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── CMA (COST & MANAGEMENT ACCOUNTANT) ────────────────────────────────────
+  {
+    id: 'cost-management-accountant',
+    needsCounsellorReview: true,
+    aversionConflicts: ['paperwork', 'high_competition'],
+    automation: 'ai_augmented',
+    automationNote: 'Routine cost reporting is being automated, but cost analysis, pricing decisions, and management accounting judgement remain firmly human. CMAs increasingly use AI tools to do more analysis per hour, not less.',
+    title: 'Cost & Management Accountant (CMA)',
+    titleTa: 'செலவு மற்றும் மேலாண்மை கணக்காளர்',
+    icon: '💰',
+    color: 'from-cyan-500 to-blue-600',
+    whatIsIt:
+      'A professional qualification from ICMAI (Institute of Cost Accountants of India) focused on cost accounting, financial management, and strategic decision-making in manufacturing and service businesses. Structurally similar to CA.',
+    eligibleStreams: ['commerce', 'pcm', 'pcmb', 'arts'],
+    strongGroupCodes: ['301', '320'],
+    ugCourses: ['CMA Foundation → Intermediate → Final (alongside B.Com if desired)'],
+    entranceExams: ['None (direct admission)'],
+    pathwayType: 'professional-track',
+    timeToCareer:
+      'Professional track registered directly after 12th. Foundation → Intermediate → Final + 3 years of practical training. Realistic time to qualified CMA: 4–5 years from 12th, though many take longer.',
+    skillWeights: {
+      mathematics: 8,
+      language: 6,
+      science: 2,
+      creativity: 4,
+      people: 5,
+      physical: 1,
+      digital: 7,
+    },
+    priorityFit: {
+      salary: 8,
+      security: 8,
+      balance: 6,
+      abroad: 6,
+      prestige: 7,
+      passion: 6,
+      growth: 8,
+      hometown: 7,
+    },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹4–8 LPA on qualifying. ₹6–12 LPA at larger firms in Chennai / Bangalore / Coimbatore.',
+      midCareerLPA: 'AI estimate — ₹15–35 LPA in 8–10 years; senior cost controllers and management roles can reach much higher.',
+      note: 'CMA salaries are typically a step below CA at the same experience level but the work-life balance and entry difficulty are slightly easier. Manufacturing and PSU companies value CMAs particularly highly.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — strong steady demand from manufacturing, PSUs and large corporates. Less well-known to small businesses than CA, so brand-recognition is a soft headwind early.',
+    },
+    entryDifficulty: {
+      score: 7,
+      note: 'AI estimate — passing rates are low (typically 10–20% for finals), but lower than CA. A multi-year commitment with real attrition.',
+    },
+    collegeTiers: [
+      {
+        label: 'Direct ICMAI registration (no college tier)',
+        examples: ['Register directly with ICMAI', 'Most students study alongside B.Com at any college'],
+        cutoffGuide: 'No cut-off. Eligibility is 12th pass (any stream).',
+        feeRange: 'AI estimate — total ICMAI fees across all 3 levels: ₹50K–1L',
+      },
+    ],
+    costReality:
+      'AI estimate — total cost is dominated by ICMAI fees (~₹50K–1L for all 3 levels) plus optional coaching (₹30K–1.5L). Far cheaper than an MBA. The hidden cost is the years of study during your 20s.',
+    backupOptions: [
+      'B.Com (do in parallel as an academic backup)',
+      'CA — switch path if cost-accounting feels narrow',
+      'MBA Finance — broader credential if CMA Final attempts don\'t clear',
+      'Corporate finance / FP&A roles',
+    ],
+    honestCaveat:
+      'CMA is structurally identical to CA — multi-year commitment, low pass rates, real attrition. Have a clean Plan B in place from day one (usually a B.Com running alongside). Manufacturing firms and PSUs are the best landing spots; pure-services firms tend to prefer CA.',
+    roadmap: [
+      {
+        title: 'Pass 12th in any stream',
+        titleTa: '+12 எந்த குரூப்பிலும் தேர்ச்சி',
+        detail: 'No specific marks needed — eligibility is just 12th pass. Maths is helpful but not required.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Clear CMA Foundation (8 months minimum) then Intermediate',
+        titleTa: 'CMA அடிப்படை, பின்பு இடைநிலை',
+        detail: 'Foundation papers run every June and December. Pair with a B.Com for backup safety.',
+        window: 'Years 1–3',
+        phase: 'next',
+      },
+      {
+        title: 'CMA Final + 3 years practical training',
+        titleTa: 'CMA இறுதி + பயிற்சி',
+        detail: 'Final papers + the mandatory practical training. Together these decide your starting role.',
+        window: 'Years 3–5',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Register for CMA Foundation with ICMAI',
+        titleTa: 'CMA அடிப்படை பதிவு',
+        detail: 'Registration is direct on the icmai.in portal. The Foundation course must be completed before sitting the exam.',
+        priority: 'high',
+        link: 'https://icmai.in',
+      },
+      {
+        title: 'Enrol in a B.Com (parallel safety net)',
+        titleTa: 'பி.காம் (இணை பாதுகாப்பு)',
+        detail: 'Run B.Com in parallel. If CMA proves not to be your path, you still have a degree to build on.',
+        priority: 'high',
+      },
+      {
+        title: 'Build a 6-day study discipline early',
+        titleTa: 'ஆரம்பத்திலேயே படிப்பு ஒழுக்கம்',
+        detail: 'CMA succeeds for those who study consistently every week, not who burst-study before exams. Set a routine in month 1.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Cost accounting fundamentals',
+        why: 'The core of every CMA paper. Strong fundamentals in year 1 compound through every subsequent level.',
+        freeResource: 'ICMAI study material (free PDF), YouTube playlists by CMA toppers',
+      },
+      {
+        skill: 'Advanced Excel for costing',
+        why: 'CMAs spend their working lives in Excel — cost sheets, budgets, variance analyses. Strong Excel from year 1 pays off forever.',
+        freeResource: 'Microsoft Excel free YouTube courses',
+      },
+      {
+        skill: 'Reading manufacturing & PSU business news',
+        why: 'CMAs work where things are made. Following manufacturing news weekly builds intuition for the firms that will hire you.',
+        freeResource: 'Mint, Business Line, Economic Times manufacturing section',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC. AGRICULTURE ─────────────────────────────────────────────────────
+  {
+    id: 'agriculture-graduate',
+    needsCounsellorReview: true,
+    aversionConflicts: ['field_outdoor'],
+    automation: 'physical_skilled',
+    automationNote: 'Farming itself is increasingly augmented by precision tools, drones, and data — but the trained agriculturist is who decides what to plant, when, and how. Strong demand from agribusiness, government extension services, food companies, and farm-tech start-ups.',
+    title: 'Agricultural Scientist / Officer (B.Sc. Agri)',
+    titleTa: 'வேளாண்மை விஞ்ஞானி / அதிகாரி',
+    icon: '🌾',
+    color: 'from-green-500 to-emerald-600',
+    whatIsIt:
+      'A four-year B.Sc. (Hons.) Agriculture degree that opens roles in government agriculture departments, agribusiness, banks (agriculture officer), seed/fertiliser companies, and competitive exams like ICAR, NABARD, and IBPS-AFO.',
+    eligibleStreams: ['pcb', 'pcmb', 'pcm'],
+    strongGroupCodes: ['902', '901'],
+    ugCourses: ['B.Sc. (Hons.) Agriculture', 'B.Sc. Horticulture', 'B.Sc. Forestry', 'B.Sc. Agricultural Engineering'],
+    entranceExams: ['TNAU (Agri)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'A 4-year direct degree at a TN agricultural university. Government agriculture officer or bank agriculture officer roles are typically reachable within 5–6 years of finishing 12th.',
+    skillWeights: {
+      mathematics: 5,
+      language: 5,
+      science: 8,
+      creativity: 5,
+      people: 7,
+      physical: 7,
+      digital: 5,
+    },
+    priorityFit: {
+      salary: 6,
+      security: 8,
+      balance: 7,
+      abroad: 5,
+      prestige: 6,
+      passion: 7,
+      growth: 7,
+      hometown: 9,
+    },
+    competitiveBoardPct: { comfortable: 80, stretch: 70 },
+    salaryReality: {
+      startingLPA: 'AI estimate — Agriculture officer in nationalised banks: ₹6–10 LPA. Government extension services: ₹4–6 LPA. Private agribusiness: ₹3–7 LPA.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA in banks or government, ₹8–18 LPA in agribusiness with experience and specialisation.',
+      note: 'Bank Agriculture Officer roles (IBPS-AFO) are some of the most secure, well-paid jobs available to B.Sc. Agriculture graduates — they should be on every student\'s radar from year 1.',
+    },
+    demand: {
+      score: 7,
+      note: 'AI estimate — government extension services, agriculture banks, seed/fertiliser firms, food processing and farm-tech start-ups all hire. Tamil Nadu has strong agricultural employment.',
+    },
+    entryDifficulty: {
+      score: 6,
+      note: 'AI estimate — TNAU and its constituent colleges are competitive (similar to engineering counselling). Other state agricultural universities are also options.',
+    },
+    collegeTiers: [
+      {
+        label: 'TNAU constituent colleges (AI estimate)',
+        examples: ['TNAU Coimbatore (HQ)', 'Agricultural College Madurai', 'Killikulam', 'Trichy', 'Vazhavachanur'],
+        cutoffGuide: 'AI estimate — TNAU counselling cut-offs typically equivalent to 85%+ in PCB/PCMB.',
+        feeRange: 'AI estimate — ₹30K–60K / year (heavily subsidised)',
+      },
+      {
+        label: 'Other Tamil Nadu agricultural colleges (AI estimate)',
+        examples: ['Annamalai University', 'Bharathiar / Bharathidasan affiliates'],
+        cutoffGuide: 'AI estimate — 70%+ typical; more accessible.',
+        feeRange: 'AI estimate — ₹40K–1L / year',
+      },
+      {
+        label: 'Private agricultural colleges (AI estimate)',
+        examples: ['Several private agri colleges across TN'],
+        cutoffGuide: 'AI estimate — accessible, often 60%+.',
+        feeRange: 'AI estimate — ₹50K–2L / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 4-year B.Sc. Agriculture at TNAU costs roughly ₹1.5L–3L total. Private colleges are 2-3x more expensive. Government and aided colleges are dramatically more affordable.',
+    backupOptions: [
+      'Bank Agriculture Officer (IBPS AFO) — major and secure',
+      'ICAR JRF (research career)',
+      'NABARD Grade A / B exam',
+      'M.Sc. Agriculture → academia or specialised industry',
+      'Agribusiness / farm-tech start-ups',
+    ],
+    honestCaveat:
+      'B.Sc. Agriculture is one of the most underrated degrees in TN — strong government and banking prospects, hometown-friendly, secure. The trade-off is that many roles involve field work (heat, travel to remote areas) — students who specifically dislike outdoor / field work should look elsewhere.',
+    roadmap: [
+      {
+        title: 'Score 80%+ in 12th PCB / PCMB',
+        titleTa: '+12 PCB / PCMB-இல் 80%+',
+        detail: 'TNAU counselling rewards strong board marks. Biology and Chemistry especially.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join B.Sc. Agriculture (4 years)',
+        titleTa: 'B.Sc. வேளாண்மை சேருங்கள் (4 ஆண்டுகள்)',
+        detail: 'Aim for TNAU constituent colleges via TNEA-equivalent agricultural counselling. Government colleges are cheap and well-respected.',
+        window: 'Years 1–4',
+        phase: 'next',
+      },
+      {
+        title: 'Specialise via job exam OR M.Sc.',
+        titleTa: 'வேலை தேர்வு அல்லது M.Sc.',
+        detail: 'IBPS Agriculture Officer (banks), NABARD, government extension services, or M.Sc./ICAR research. Decide in year 3.',
+        window: 'Years 4–6',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Register for TNAU counselling',
+        titleTa: 'TNAU கவுன்சிலிங் பதிவு',
+        detail: 'TNAU runs its own counselling. Registration windows usually open mid-year — confirm the current cycle on tnau.ac.in.',
+        priority: 'high',
+        link: 'https://tnau.ac.in',
+      },
+      {
+        title: 'Visit a TNAU campus / constituent college',
+        titleTa: 'TNAU வளாகத்திற்குச் செல்லவும்',
+        detail: 'A campus visit clarifies what agriculture really involves day-to-day. Especially valuable if you\'ve only seen farming from a distance.',
+        priority: 'medium',
+      },
+      {
+        title: 'Begin reading about Indian agriculture',
+        titleTa: 'இந்திய வேளாண்மை பற்றி படிக்கத் தொடங்கவும்',
+        detail: 'Farm news, government schemes, agritech start-ups. Build the intuition early — it pays off in interviews and career choices later.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Biology + Chemistry fundamentals',
+        why: 'B.Sc. Agriculture leans heavily on plant biology, soil chemistry, and biochemistry. Strong 12th fundamentals make year 1 smoother.',
+        freeResource: 'NCERT Biology + Chemistry, Khan Academy',
+      },
+      {
+        skill: 'Spoken English + Tamil communication',
+        why: 'Agriculture officers work with farmers AND with bank/government systems — both languages matter. Confident communication is the hidden multiplier.',
+        freeResource: 'Local Toastmasters clubs, BBC Learning English',
+      },
+      {
+        skill: 'Curiosity about technology in farming',
+        why: 'Agritech (precision farming, drones, satellite data) is the biggest growth area for B.Sc. Ag graduates over the next decade. Familiarity helps.',
+        freeResource: 'Follow Indian agritech start-ups (Cropin, DeHaat) on LinkedIn',
+      },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── BA ENGLISH ────────────────────────────────────────────────────────────
+  {
+    id: 'ba-english-graduate',
+    needsCounsellorReview: true,
+    aversionConflicts: [],
+    automation: 'creative_judgment',
+    automationNote: 'AI writes faster than any human — but it also makes editorial judgement, taste, and clear thinking more valuable, not less. The strongest BA English graduates work WITH AI tools in roles like content strategy, editing, communications, and teaching.',
+    title: 'BA English Graduate',
+    titleTa: 'ஆங்கில இளங்கலை',
+    icon: '📖',
+    color: 'from-rose-500 to-pink-600',
+    whatIsIt:
+      'A three-year arts degree in English literature, language, and communication — opens paths into content writing, teaching, journalism, civil services, publishing, communications, further study (M.A., B.Ed., MBA), and civil-services preparation.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: [],
+    ugCourses: ['BA English (Literature)', 'BA English (Functional / Communicative)', 'Integrated MA English'],
+    entranceExams: ['CUET', 'None (direct admission)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer:
+      'A 3-year direct-admission degree. Many graduates work within 3 years of finishing 12th, but the strongest careers usually involve further study (M.A., B.Ed., journalism school) or a focused skill build (content, communications, exam prep).',
+    skillWeights: {
+      mathematics: 2,
+      language: 10,
+      science: 2,
+      creativity: 9,
+      people: 8,
+      physical: 1,
+      digital: 6,
+    },
+    priorityFit: {
+      salary: 4,
+      security: 6,
+      balance: 7,
+      abroad: 6,
+      prestige: 6,
+      passion: 8,
+      growth: 6,
+      hometown: 7,
+    },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — content roles: ₹3–6 LPA. Teaching (B.Ed. needed): ₹2.5–4.5 LPA. Journalism: ₹2.5–5 LPA. Civil services qualifies for Group I/II salaries on success.',
+      midCareerLPA: 'AI estimate — content / communications / editing: ₹8–18 LPA with 5+ years. Senior teaching, civil services: variable but secure.',
+      note: 'BA English salaries depend heavily on the path chosen. Content strategy and tech-writing pay best; teaching and journalism are more about meaning than money.',
+    },
+    demand: {
+      score: 6,
+      note: 'AI estimate — strong demand for clear writers in content, communications, edtech, and product. Teaching demand is steady; print journalism is shrinking but digital-native journalism is growing.',
+    },
+    entryDifficulty: {
+      score: 3,
+      note: 'AI estimate — direct admission across most TN colleges. Top tier (Stella Maris, MCC, Loyola) is mildly competitive.',
+    },
+    collegeTiers: [
+      {
+        label: 'Top arts colleges (AI estimate)',
+        examples: ['Stella Maris (Women)', 'Madras Christian College', 'Loyola College', 'Women\'s Christian College'],
+        cutoffGuide: 'AI estimate — 80%+ in 12th typically expected at top tier.',
+        feeRange: 'AI estimate — ₹30K–80K / year',
+      },
+      {
+        label: 'Strong autonomous colleges (AI estimate)',
+        examples: ['Ethiraj College for Women', 'Bishop Heber Trichy', 'PSG College of Arts & Science'],
+        cutoffGuide: 'AI estimate — 65–80%; direct admission.',
+        feeRange: 'AI estimate — ₹15K–60K / year',
+      },
+      {
+        label: 'Government / aided colleges (AI estimate)',
+        examples: ['Government Arts Colleges across TN districts', 'Many aided colleges'],
+        cutoffGuide: 'AI estimate — widely accessible; cut-offs as low as 50–60%.',
+        feeRange: 'AI estimate — ₹2K–20K / year',
+      },
+    ],
+    costReality:
+      'AI estimate — a 3-year BA English in TN costs roughly ₹6K–2.5L total, with sharp variation. Government colleges are extremely affordable; top autonomous colleges sit in the middle.',
+    backupOptions: [
+      'M.A. + B.Ed. for teaching career',
+      'M.A. + UGC NET for college teaching',
+      'Civil services prep (UPSC / TNPSC)',
+      'Content / communications / edtech roles',
+      'M.A. Mass Communication for journalism',
+    ],
+    honestCaveat:
+      'A BA English from a non-tier-1 college, without strong communication skills built deliberately during the 3 years, genuinely struggles in the TN job market. The degree is what you make of it — graduates who read widely, write often, build a portfolio, and learn one digital skill (SEO, social media, video editing) do very well. Those who only attend classes struggle.',
+    roadmap: [
+      {
+        title: 'Pass 12th — any stream qualifies',
+        titleTa: '+12 — எந்த குரூப்பும் ஏற்கப்படும்',
+        detail: 'BA English is open to all streams. Top colleges look at 12th English marks and overall percentage.',
+        window: 'Now',
+        phase: 'now',
+      },
+      {
+        title: 'Join BA English (3 years) + build a writing portfolio',
+        titleTa: 'BA ஆங்கிலம் + எழுத்து போர்ட்ஃபோலியோ',
+        detail: 'The 3 years are an opportunity to read 50+ books and write 100+ pieces. The portfolio matters more than the marks for placements.',
+        window: 'Years 1–3',
+        phase: 'next',
+      },
+      {
+        title: 'Specialise — M.A., B.Ed., content, journalism, or civil services',
+        titleTa: 'சிறப்பு — M.A. / B.Ed. / பத்திரிக்கை / சிவில் சர்வீஸ்',
+        detail: 'BA English alone is a foundation. Pair it with at least one focused specialisation by year 3.',
+        window: 'Years 3–5',
+        phase: 'later',
+      },
+    ],
+    ninetyDayPlan: [
+      {
+        title: 'Start a writing habit — 200 words daily',
+        titleTa: 'எழுத்துப் பழக்கம் — தினசரி 200 வார்த்தைகள்',
+        detail: 'A Substack, a blog, even Notes on your phone. Consistency builds the muscle that any English-graduate role demands.',
+        priority: 'high',
+      },
+      {
+        title: 'Read at least one book and one long article weekly',
+        titleTa: 'வாரம் ஒரு புத்தகம், ஒரு கட்டுரை',
+        detail: 'BA English is a slow-build degree. The students who read the most outside the syllabus consistently win placements and exams.',
+        priority: 'high',
+      },
+      {
+        title: 'Decide your specialisation track by semester 4',
+        titleTa: 'செமஸ்டர் 4-க்குள் சிறப்புப் பாதை',
+        detail: 'Teaching, content, journalism, civil services — the four common landings. Pick one to lean into mid-degree.',
+        priority: 'medium',
+      },
+    ],
+    buildNowSkills: [
+      {
+        skill: 'Writing clearly under deadline',
+        why: 'The single skill that monetises an English degree. Practise writing tight 500-word pieces with a 60-minute timer.',
+        freeResource: 'On Writing Well (Zinsser, free PDFs available), free Substack accounts',
+      },
+      {
+        skill: 'Reading widely outside the syllabus',
+        why: 'Range — across fiction, non-fiction, journalism, history — is what separates a good BA English graduate from a forgettable one.',
+        freeResource: 'Library card, Project Gutenberg, free Substack newsletters',
+      },
+      {
+        skill: 'One digital skill — SEO / social / video editing',
+        why: 'Pairing English with one digital ability is the most reliable way to land a modern content / communications role.',
+        freeResource: 'Free YouTube courses on Canva, CapCut, basic SEO',
       },
     ],
     lastReviewed: '2026-05',

@@ -13,6 +13,7 @@ import {
   Building2,
   ListChecks,
   Download,
+  Info,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -394,6 +395,25 @@ export const ResultsDashboard = ({
                   </div>
                 </div>
                 <CardContent className="space-y-3 p-5">
+                  {/* DRAFT marker — appears for careers whose TN-specific
+                      numeric fields (cutoffs, fees, salaries, college lists)
+                      have not yet been audited by a counsellor. The flag
+                      lives on the CareerPathway itself; once a counsellor
+                      signs off, the flag flips and this banner disappears
+                      for that career. */}
+                  {activeMatch.pathway.needsCounsellorReview && (
+                    <div className="flex items-start gap-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2.5">
+                      <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                      <p className="text-[12px] leading-relaxed text-amber-900">
+                        <strong>AI estimate, pending counsellor review.</strong>{' '}
+                        The specific numbers on this career (cutoffs, fees,
+                        salary ranges, college examples) are AI-generated
+                        drafts. Treat them as guidance and verify on the
+                        official source before deciding.
+                      </p>
+                    </div>
+                  )}
+
                   <p className="text-[15px] leading-relaxed text-gray-700">
                     {activeMatch.pathway.whatIsIt}
                   </p>

@@ -97,15 +97,23 @@ export const CAREER_PIVOT_PATHWAYS: CareerPivotPathway[] = [
     label: 'Finance careers without committing to CA',
     labelTa: 'CA-வுக்கு உறுதியளிக்காமல் நிதிக் தொழில்கள்',
     alternatives: [
-      // Note: B.Com / CMA / BBA-Finance are not in CAREER_PATHWAYS yet.
-      // The closest current entry is software-engineer (FinTech is a
-      // common landing for STEM-leaning students). Keep this short
-      // until the careers table grows.
       {
-        toPathwayId: 'software-engineer',
+        toPathwayId: 'cost-management-accountant',
         rationale:
-          'If numbers attract you but the CA grind does not, FinTech and quant engineering are strong adjacent paths — CSE leads into them through internships and conversions.',
-        closeness: 55,
+          'Same family — cost & management accounting. Slightly lower pass-rate pressure than CA, with manufacturing firms and PSUs valuing CMAs particularly highly. Many students run CMA alongside a B.Com.',
+        closeness: 88,
+      },
+      {
+        toPathwayId: 'bcom-graduate',
+        rationale:
+          'A B.Com with strong Excel, Tally and GST skills is a real finance career on its own — and leaves the door open to CA/CMA later if you change your mind.',
+        closeness: 75,
+      },
+      {
+        toPathwayId: 'bba-graduate',
+        rationale:
+          'BBA Finance + an MBA later is the management-side route to finance — more focus on business decisions, less on technical accounting.',
+        closeness: 65,
       },
     ],
   },
@@ -136,6 +144,12 @@ export const CAREER_PIVOT_PATHWAYS: CareerPivotPathway[] = [
         rationale:
           'Both careers reward careful reading of rules and clear writing. CA work involves less courtroom pressure and less rote memorisation — but the entrance grind is still real.',
         closeness: 60,
+      },
+      {
+        toPathwayId: 'bcom-graduate',
+        rationale:
+          'A B.Com keeps the door open to business law via M.B.L. or company secretary route later, without committing 5 years upfront to LL.B.',
+        closeness: 55,
       },
     ],
   },
