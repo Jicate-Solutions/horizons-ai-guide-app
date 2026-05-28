@@ -167,6 +167,18 @@ export interface CareerPathway {
   /** The uncomfortable truth a good counsellor would still say */
   honestCaveat: string;
 
+  // ─── BEHAVIOURAL HARD FILTERS (v2) ─────────────────────────────────────────
+  /**
+   * Aversion tags this career inherently demands tolerance for. If a student
+   * marks any of these aversions in the swipe deck, the career is removed
+   * from results — a hard filter, not a soft penalty. Tags should ONLY be
+   * included if the career is genuinely about that activity (a software
+   * engineer truly does sit at a desk all day; a doctor truly does care for
+   * sick people). Conservatism here matters: every tag potentially hides an
+   * aspirational career from a student. Empty list = no behavioural conflicts.
+   */
+  aversionConflicts?: import('./predictor/types').AversionTag[];
+
   // ─── ACTION ────────────────────────────────────────────────────────────────
   roadmap: RoadmapStage[];
   ninetyDayPlan: NinetyDayAction[];
@@ -269,6 +281,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── SOFTWARE ENGINEER ─────────────────────────────────────────────────────
   {
     id: 'software-engineer',
+    aversionConflicts: ['sitting_long'],
     title: 'Software Engineer',
     titleTa: 'மென்பொருள் பொறியியலாளர்',
     icon: '💻',
@@ -448,6 +461,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── DOCTOR (MBBS) ─────────────────────────────────────────────────────────
   {
     id: 'doctor-mbbs',
+    aversionConflicts: ['patient_care', 'shift_work', 'high_competition'],
     title: 'Doctor (MBBS)',
     titleTa: 'மருத்துவர் (MBBS)',
     icon: '🩺',
@@ -624,6 +638,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── CHARTERED ACCOUNTANT ──────────────────────────────────────────────────
   {
     id: 'chartered-accountant',
+    aversionConflicts: ['paperwork', 'high_competition'],
     title: 'Chartered Accountant (CA)',
     titleTa: 'பட்டயக் கணக்காளர் (CA)',
     icon: '📊',
@@ -775,6 +790,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── MECHANICAL / CORE ENGINEER ────────────────────────────────────────────
   {
     id: 'mechanical-engineer',
+    aversionConflicts: [],
     title: 'Mechanical Engineer',
     titleTa: 'இயந்திரப் பொறியியலாளர்',
     icon: '⚙️',
@@ -940,6 +956,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── NURSE / ALLIED HEALTH ─────────────────────────────────────────────────
   {
     id: 'nurse',
+    aversionConflicts: ['shift_work', 'patient_care'],
     title: 'Nurse (B.Sc Nursing)',
     titleTa: 'செவிலியர் (B.Sc Nursing)',
     icon: '🏥',
@@ -1093,6 +1110,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── LAWYER ────────────────────────────────────────────────────────────────
   {
     id: 'lawyer',
+    aversionConflicts: ['memorisation', 'public_speaking', 'high_competition'],
     title: 'Lawyer / Advocate',
     titleTa: 'வழக்கறிஞர்',
     icon: '⚖️',
@@ -1249,6 +1267,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── DATA SCIENTIST / ANALYST ──────────────────────────────────────────────
   {
     id: 'data-scientist',
+    aversionConflicts: ['sitting_long', 'maths_heavy'],
     title: 'Data Scientist / Analyst',
     titleTa: 'தரவு அறிவியலாளர்',
     icon: '📈',
@@ -1407,6 +1426,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   // ─── PHARMACIST ────────────────────────────────────────────────────────────
   {
     id: 'pharmacist',
+    aversionConflicts: ['lab_practical'],
     title: 'Pharmacist (B.Pharm / Pharm.D)',
     titleTa: 'மருந்தாளர்',
     icon: '💊',

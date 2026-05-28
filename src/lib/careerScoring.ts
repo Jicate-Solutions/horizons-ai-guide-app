@@ -66,6 +66,14 @@ export interface StudentProfile {
   firstGeneration?: string;
   /** How soon income is needed: 'flexible' | 'within3' | 'soon' */
   earningUrgency?: string;
+
+  // ─── BEHAVIOURAL HARD FILTERS (v2 — aversion swipe deck) ────────────────
+  /**
+   * Aversion tags the student selected on the swipe deck. Each tag is
+   * a hard filter: careers whose `aversionConflicts` overlap this list
+   * are removed from results entirely. Empty / missing = no filtering.
+   */
+  aversions?: import('@/data/predictor/types').AversionTag[];
 }
 
 // ─── Outputs ─────────────────────────────────────────────────────────────────
@@ -556,6 +564,25 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
   // Safety net: if the stream somehow matches nothing, fall back to the full
   // list rather than showing the student an empty result.
   if (eligible.length === 0) eligible = CAREER_PATHWAYS;
+
+  // BEHAVIOURAL HARD FILTER (v2). Drop any pathway whose aversionConflicts
+  // overlap the student's selected aversions. Confidence-gated upstream, so
+  // most students never see this kick in. When it does, the filter is strict
+  // by design — see the aversion swipe deck for the student-facing UX.
+  if (profile.aversions && profile.aversions.length > 0) {
+    const aversionSet = new Set(profile.aversions);
+    eligible = eligible.filter((p) => {
+      const conflicts = p.aversionConflicts ?? [];
+      return !conflicts.some((t) => aversionSet.has(t));
+    });
+    // Safety net: if the filter removed everything, fall back to the
+    // pre-filter list rather than showing the student an empty page. The
+    // pivot pathway card (Push 3) will surface the closest viable option.
+    if (eligible.length === 0) {
+      eligible = getPathwaysForStream(profile.stream);
+      if (eligible.length === 0) eligible = CAREER_PATHWAYS;
+    }
+  }
 
   const matches: CareerMatch[] = eligible.map((pathway) => {
     const skill = scoreSkillAlignment(profile, pathway);

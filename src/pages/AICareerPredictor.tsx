@@ -40,6 +40,15 @@ import RealSituationStep from '@/components/AICareerPredictor/RealSituationStep'
 import AcademicPerformance from '@/components/AICareerPredictor/AcademicPerformance';
 import WizardProgress from '@/components/AICareerPredictor/WizardProgress';
 import ResultsDashboard from '@/components/AICareerPredictor/ResultsDashboard';
+import { AversionSwipe } from '@/components/AICareerPredictor/AversionSwipe';
+import {
+  computeConfidence,
+  CONFIDENCE_THRESHOLDS,
+  type AversionTag,
+  type Priority as PredictorPriority,
+  type Stream as PredictorStream,
+  type UserProfile as PredictorUserProfile,
+} from '@/data/predictor';
 
 const stepVariants = {
   initial: { opacity: 0, x: 30 },
@@ -125,6 +134,11 @@ const AICareerPredictor = () => {
   const [showResults, setShowResults] = useState(false);
   const [loadingStage, setLoadingStage] = useState(0);
 
+  // Aversion swipe (v2) — only shown when computeConfidence drops below the
+  // threshold, between step 8 and the loading screen.
+  const [showAversionDeck, setShowAversionDeck] = useState(false);
+  const [aversions, setAversions] = useState<AversionTag[]>([]);
+
   // On mount, offer to restore a previous result.
   const [hasSavedResult, setHasSavedResult] = useState(false);
   useEffect(() => {
@@ -181,6 +195,40 @@ const AICareerPredictor = () => {
       decisionOwner,
       firstGeneration,
       earningUrgency,
+      // BEHAVIOURAL HARD FILTER — aversions selected on the swipe deck (v2).
+      aversions: aversions.length > 0 ? aversions : undefined,
+    };
+  };
+
+  /**
+   * Build the v2 predictor profile used only for the confidence calculation
+   * (which decides whether the aversion swipe deck should trigger). Maps the
+   * live wizard's TN-specific shape (group code, ranked priority IDs, etc.)
+   * onto the predictor's generic UserProfile shape.
+   */
+  const buildPredictorProfile = (): PredictorUserProfile => {
+    const priorityIdToTag: Record<string, PredictorPriority> = {
+      salary: 'high_salary',
+      security: 'job_security',
+      balance: 'work_life_balance',
+      growth: 'growth',
+      passion: 'helping_others',
+      // 'abroad', 'prestige', 'hometown' have no clean predictor analogue;
+      // they simply don't contribute to the conflict-detection heuristic.
+    };
+    return {
+      schemaVersion: 2,
+      language: 'en',
+      self: {
+        stream: (selectedStream || '') as PredictorStream,
+        percentage: PERCENTAGE_BAND_TO_NUMBER[percentage] ?? null,
+        interests: selectedInterests,
+        priorities: rankedPriorities
+          .map((p) => priorityIdToTag[p])
+          .filter((p): p is PredictorPriority => Boolean(p)),
+        budgetINR: null,
+        durationYears: null,
+      },
     };
   };
 
@@ -299,8 +347,29 @@ const AICareerPredictor = () => {
   };
 
   const handleNext = () => {
-    if (step < TOTAL_STEPS) setStep(step + 1);
-    else runAnalysis();
+    if (step < TOTAL_STEPS) {
+      setStep(step + 1);
+      return;
+    }
+    // Step 8 → final action. Confidence-gate: if the self-reported answers
+    // look coherent, run the analysis straight away. Otherwise show the
+    // aversion swipe deck first, then run the analysis from its onComplete.
+    const { needsAversionCheck } = computeConfidence(buildPredictorProfile());
+    if (needsAversionCheck && aversions.length === 0) {
+      setShowAversionDeck(true);
+    } else {
+      runAnalysis();
+    }
+  };
+
+  /**
+   * Called when the student finishes (or skips) the aversion swipe deck.
+   * Records the aversions and proceeds directly to the analysis.
+   */
+  const handleAversionComplete = (chosen: AversionTag[]) => {
+    setAversions(chosen);
+    setShowAversionDeck(false);
+    runAnalysis();
   };
   const handleBack = () => {
     if (step > 0) setStep(step - 1);
@@ -312,6 +381,10 @@ const AICareerPredictor = () => {
     setNarrative('');
     setPerCareerNotes({});
     setStep(0);
+    // Behavioural filters reset too so re-running with different inputs
+    // doesn't silently inherit stale aversions.
+    setAversions([]);
+    setShowAversionDeck(false);
   };
 
   // ─── Results view ─────────────────────────────────────────────────────────
@@ -325,6 +398,21 @@ const AICareerPredictor = () => {
         onBack={() => setShowResults(false)}
         onRetake={handleRetake}
       />
+    );
+  }
+
+  // ─── Aversion swipe (v2) ──────────────────────────────────────────────────
+  // Shown only when the confidence calculator flagged the student's answers
+  // as inconsistent (broad / conflicting / stream-mismatched interests etc.).
+  // Skipping is allowed — the deck has its own "Skip to results" button.
+  if (showAversionDeck) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+        <AversionSwipe
+          onBack={() => setShowAversionDeck(false)}
+          onComplete={handleAversionComplete}
+        />
+      </div>
     );
   }
 
