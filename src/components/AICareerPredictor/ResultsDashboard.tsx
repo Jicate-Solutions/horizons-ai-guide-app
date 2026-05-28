@@ -54,6 +54,8 @@ interface ResultsDashboardProps {
   narrativeDegraded?: boolean;
   /** v2: aspiration filtered out by aversions — drives the pivot card. */
   filteredAspiration?: CareerMatch | null;
+  /** v2: aversions the student selected — used to filter pivot alternatives. */
+  studentAversions?: import('@/data/predictor').AversionTag[];
   onBack: () => void;
   onRetake: () => void;
 }
@@ -80,6 +82,7 @@ export const ResultsDashboard = ({
   perCareerNotes,
   narrativeDegraded,
   filteredAspiration,
+  studentAversions,
   onBack,
   onRetake,
 }: ResultsDashboardProps) => {
@@ -308,6 +311,7 @@ export const ResultsDashboard = ({
             {filteredAspiration && (
               <CareerPivotCard
                 filteredAspiration={filteredAspiration}
+                studentAversions={studentAversions}
                 onSelectAlternative={(id) => {
                   if (matches.some((m) => m.pathway.id === id)) selectCareer(id);
                 }}

@@ -88,6 +88,8 @@ interface SavedResult {
   narrativeDegraded?: boolean;
   /** Aspiration filtered out by aversions (v2) — drives pivot card on restore. */
   filteredAspiration?: CareerMatch | null;
+  /** Aversions student selected (v2) — needed by the pivot filter on restore. */
+  aversions?: AversionTag[];
   savedAt: string;
 }
 
@@ -311,6 +313,7 @@ const AICareerPredictor = () => {
         perCareerNotes: notes,
         narrativeDegraded: degraded,
         filteredAspiration: aspiration ?? null,
+        aversions,
         savedAt: new Date().toISOString(),
       };
       localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(toSave));
@@ -333,6 +336,7 @@ const AICareerPredictor = () => {
         setPerCareerNotes(parsed.perCareerNotes || {});
         setNarrativeDegraded(!!parsed.narrativeDegraded);
         setFilteredAspiration(parsed.filteredAspiration ?? null);
+        setAversions(parsed.aversions ?? []);
         setShowResults(true);
       }
     } catch {
@@ -406,6 +410,7 @@ const AICareerPredictor = () => {
         perCareerNotes={perCareerNotes}
         narrativeDegraded={narrativeDegraded}
         filteredAspiration={filteredAspiration}
+        studentAversions={aversions}
         onBack={() => setShowResults(false)}
         onRetake={handleRetake}
       />

@@ -2968,7 +2968,13 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'allied-health-professional',
     needsCounsellorReview: true,
-    aversionConflicts: ['shift_work', 'lab_practical'],
+    // Aversion-tag update: dropped 'lab_practical' because the official
+    // course list below contains no wet-lab specialisations (MLT was the
+    // only one and has been removed). Kept 'shift_work' because most
+    // hospital-based specialisations rotate. Note: Medical Record Science
+    // is desk/admin and doesn't fit shift_work either — but tagging this
+    // career with no aversions would underplay the reality of the other 8.
+    aversionConflicts: ['shift_work'],
     automation: 'ai_augmented',
     automationNote: 'Diagnostic imaging is being assisted by AI in scan interpretation, but the technologist who performs the scan, positions the patient and ensures quality is irreplaceable. Allied health roles work alongside AI tools, not against them.',
     title: 'Allied Health Sciences Professional',
@@ -2976,16 +2982,19 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     icon: '🩺',
     color: 'from-blue-500 to-cyan-600',
     whatIsIt:
-      'An umbrella for the technical clinical roles that make hospitals run: medical lab technology (MLT), radiology and imaging, cardiac care technology, anaesthesia technology, respiratory therapy, dialysis technology. 3–4 year B.Sc. degrees, hospital-based work.',
+      'An umbrella for the technical clinical roles that make modern hospitals run — cardiac procedures, accident & emergency response, operation theatre and anaesthesia support, dialysis, intensive care, respiratory therapy, physician-assistant work, medical record science, and radiology imaging. 3–4 year B.Sc. degrees, mostly hospital-based work, strong abroad mobility for several specialisations.',
     eligibleStreams: ['pcb', 'pcmb'],
     strongGroupCodes: ['902', '901'],
     ugCourses: [
-      'B.Sc Medical Lab Technology (MLT)',
-      'B.Sc Radiology / Medical Imaging',
-      'B.Sc Cardiac Care Technology',
-      'B.Sc Anaesthesia Technology',
-      'B.Sc Respiratory Therapy',
+      'B.Sc Cardiac Technology',
+      'B.Sc Accident & Emergency Care Technology',
+      'B.Sc Operation Theatre & Anaesthesia Technology',
       'B.Sc Dialysis Technology',
+      'B.Sc Physician Assistant',
+      'B.Sc Respiratory Therapy',
+      'B.Sc Medical Record Science',
+      'B.Sc Critical Care Technology',
+      'B.Sc Radiology Imaging Technology',
     ],
     entranceExams: ['NEET-UG', 'None (direct admission)'],
     pathwayType: 'direct-after-12th',
@@ -3082,7 +3091,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       {
         title: 'Pick the right specialisation early',
         titleTa: 'சரியான சிறப்புத்துறை',
-        detail: 'MLT (lab-based), Radiology (imaging), Cardiac Care (procedures), Anaesthesia Tech (OT), Respiratory Therapy (ICU), Dialysis (clinics) — these are different careers, not just different names.',
+        detail: 'Cardiac Technology, A&E Care, OT & Anaesthesia, Dialysis, Physician Assistant, Respiratory Therapy, Medical Record Science, Critical Care and Radiology Imaging — each is a distinct career with different day-to-day work. Choose based on the work that draws you, not just the name that sounds prestigious.',
         priority: 'high',
       },
       {

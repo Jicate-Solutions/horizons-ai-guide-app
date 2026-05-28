@@ -8,10 +8,20 @@ import {
 } from '@/data/careerPivotPathways';
 import { CAREER_PATHWAYS } from '@/data/careerPathways';
 import type { CareerMatch } from '@/lib/careerScoring';
+import type { AversionTag } from '@/data/predictor';
 
 interface CareerPivotCardProps {
   /** The CareerMatch that was hard-filtered out by aversions. */
   filteredAspiration: CareerMatch;
+  /**
+   * All aversions the student selected on the swipe deck. The pivot's
+   * curated alternatives are cross-checked against this list, and any
+   * alternative whose own aversionConflicts overlap is dropped before
+   * display — so a student who hates BOTH sitting_long and field_outdoor
+   * never sees Software (sitting) or Civil (field) as a "viable
+   * alternative" just because those happened to be in the pivot table.
+   */
+  studentAversions?: AversionTag[];
   /** Called when a student taps an alternative career card. */
   onSelectAlternative?: (pathwayId: string) => void;
 }
@@ -22,11 +32,14 @@ interface CareerPivotCardProps {
  * career. The aspiration is acknowledged by name, NOT silently
  * discarded.
  *
- * Returns null when no curated pivot exists for the filtered career —
- * that's intentional. We'd rather omit the card than guess.
+ * Returns null when no curated pivot exists for the filtered career
+ * OR when every curated alternative is itself filtered out by the
+ * student's full aversion list — that's intentional. We'd rather omit
+ * the card than recommend a career the student already said they'd hate.
  */
 export function CareerPivotCard({
   filteredAspiration,
+  studentAversions = [],
   onSelectAlternative,
 }: CareerPivotCardProps) {
   const aspiration = filteredAspiration.pathway;
@@ -35,7 +48,21 @@ export function CareerPivotCard({
   );
   if (!pivot) return null;
 
-  const resolved = resolvePivotAlternatives(pivot, CAREER_PATHWAYS);
+  const allResolved = resolvePivotAlternatives(pivot, CAREER_PATHWAYS);
+
+  // AVERSION-AWARE FILTER: drop any alternative whose own aversionConflicts
+  // collide with the student's full aversion list. This avoids the edge
+  // case where, e.g., a student who hates both sitting_long AND
+  // field_outdoor gets pivoted from Civil → Software (Software has the
+  // sitting aversion they also swiped on).
+  const aversionSet = new Set(studentAversions);
+  const resolved = aversionSet.size === 0
+    ? allResolved
+    : allResolved.filter(({ pathway }) => {
+        const conflicts = pathway.aversionConflicts ?? [];
+        return !conflicts.some((t) => aversionSet.has(t));
+      });
+
   if (resolved.length === 0) return null;
 
   return (
