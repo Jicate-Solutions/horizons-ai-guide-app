@@ -1639,10 +1639,16 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     icon: '📊',
     color: 'from-emerald-500 to-teal-600',
     whatIsIt:
-      'A three-year commerce degree that opens doors into accounting, banking, taxation, GST practice, finance jobs, government exams and further study like M.Com, MBA, CA, ACCA or CMA.',
+      'A three-year commerce degree that opens doors into accounting, banking, taxation, GST practice, finance jobs, government exams and further study like M.Com, MBA, CA, ACCA or CMA. B.Com comes in several distinct specialisations — General (broad foundation in accounting, corporate law and taxation), Computer Applications (commerce + Tally, e-commerce, databases), Accounting & Finance (investment analysis, cost auditing, portfolio management), Banking & Insurance (operations, risk management, insurance systems), and Financial Marketing Analytics (stock markets, derivatives, financial data). The track you pick shapes the doors that open later.',
     eligibleStreams: ['commerce'],
     strongGroupCodes: ['301', '320'],
-    ugCourses: ['B.Com (General)', 'B.Com (Hons.)', 'B.Com (CA)', 'B.Com (Bank Mgmt)'],
+    ugCourses: [
+      'B.Com (General) — core foundation in accounting, corporate laws, taxation',
+      'B.Com (Computer Applications) / B.Com CA — commerce + Tally, e-commerce, databases',
+      'B.Com (Accounting & Finance) — investment analysis, cost auditing, portfolio management',
+      'B.Com (Banking & Insurance) — operations, risk management, insurance systems',
+      'B.Com (Financial Marketing Analytics) — stock markets, derivatives, financial data',
+    ],
     entranceExams: ['None (direct admission)'],
     pathwayType: 'direct-after-12th',
     timeToCareer:
@@ -1737,7 +1743,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       {
         title: 'Pick the right specialisation',
         titleTa: 'சரியான சிறப்புப் பாடத்தைத் தேர்ந்தெடுக்கவும்',
-        detail: 'B.Com General, B.Com (CA), B.Com (Bank Mgmt) and B.Com (Hons.) open slightly different doors. Match it to whether you want corporate jobs, banking, or a CA/CMA path.',
+        detail: 'Five tracks each open different doors: General (broad foundation → CA/MBA route), Computer Applications (Tally + databases → corporate accounting / fintech ops), Accounting & Finance (analyst roles, portfolio mgmt), Banking & Insurance (PSU bank exams, insurance career), and Financial Marketing Analytics (capital markets, derivatives). Match the track to what you actually want to do, not just the college that admits you first.',
         priority: 'high',
       },
       {
@@ -2068,7 +2074,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     whatIsIt:
       'A four-year B.Sc. (Hons.) Agriculture degree that opens roles in government agriculture departments, agribusiness, banks (agriculture officer), seed/fertiliser companies, and competitive exams like ICAR, NABARD, and IBPS-AFO.',
     eligibleStreams: ['pcb', 'pcmb', 'pcm'],
-    strongGroupCodes: ['902', '901'],
+    strongGroupCodes: ['208', '204', '203'],
     ugCourses: ['B.Sc. (Hons.) Agriculture', 'B.Sc. Horticulture', 'B.Sc. Forestry', 'B.Sc. Agricultural Engineering'],
     entranceExams: ['TNAU (Agri)'],
     pathwayType: 'direct-after-12th',
@@ -2830,7 +2836,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     whatIsIt:
       'A 4.5-year clinical degree training you to assess, treat and rehabilitate patients through movement, exercise and manual therapy — hospitals, sports clinics, rehab centres, home-care practice or your own practice.',
     eligibleStreams: ['pcb', 'pcmb'],
-    strongGroupCodes: ['902', '901'],
+    strongGroupCodes: ['208', '204', '203'],
     ugCourses: ['BPT (Bachelor of Physiotherapy)'],
     entranceExams: ['NEET-UG'],
     pathwayType: 'direct-after-12th',
@@ -2984,7 +2990,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     whatIsIt:
       'An umbrella for the technical clinical roles that make modern hospitals run — cardiac procedures, accident & emergency response, operation theatre and anaesthesia support, dialysis, intensive care, respiratory therapy, physician-assistant work, medical record science, and radiology imaging. 3–4 year B.Sc. degrees, mostly hospital-based work, strong abroad mobility for several specialisations.',
     eligibleStreams: ['pcb', 'pcmb'],
-    strongGroupCodes: ['902', '901'],
+    strongGroupCodes: ['208', '204', '203'],
     ugCourses: [
       'B.Sc Cardiac Technology',
       'B.Sc Accident & Emergency Care Technology',
@@ -3141,7 +3147,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
     whatIsIt:
       'A 4-year engineering degree applying biology to industry: pharma R&D, agritech, food technology, genetic engineering, biofuels, vaccine development. Distinct from medicine — you work with cells, processes and lab equipment, not patients.',
     eligibleStreams: ['pcm', 'pcb', 'pcmb'],
-    strongGroupCodes: ['902', '101', '102'],
+    strongGroupCodes: ['208', '101', '102'],
     ugCourses: ['B.Tech Biotechnology', 'B.E Bio-Medical Engineering', 'B.Tech Industrial Biotechnology', 'B.Sc Biotech + M.Sc Biotech'],
     entranceExams: ['TNEA', 'JEE Main', 'NEET-UG'],
     pathwayType: 'direct-after-12th',
