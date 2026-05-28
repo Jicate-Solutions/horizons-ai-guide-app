@@ -865,8 +865,20 @@ export function topCareerMatchesWithDiscovery(
   const topMatches = familyLeaders.slice(0, topN);
   const topFamilyKeys = new Set(topMatches.map(familyKey));
 
+  // ─── Worth a Look — STRICT structural filter ──────────────────────────────
+  // The discovery section is reserved EXCLUSIVELY for niche careers (the ones
+  // students don't already know about). This is a hard structural boundary,
+  // NOT a score threshold: a high-scoring mainstream career like Software
+  // Engineer or MBBS can never appear in Worth a Look, even if its family
+  // didn't win a Top Matches slot. The point of the section is discovery,
+  // and a mainstream career is by definition not a discovery.
+  //
+  // The flag is `isNiche` on each pathway — required at compile time so no
+  // career can slip in without explicit classification. See the CareerPathway
+  // interface in src/data/careerPathways.ts for the full classification rule.
   const discoveryMatches = familyLeaders
     .filter((m) => !topFamilyKeys.has(familyKey(m)))
+    .filter((m) => m.pathway.isNiche === true)
     .slice(0, discoveryN);
 
   // Same filteredAspiration logic as the pivot helper, kept here so callers

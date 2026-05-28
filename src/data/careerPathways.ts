@@ -186,6 +186,32 @@ export interface CareerPathway {
   family?: CareerFamily;
 
   /**
+   * Niche flag — REQUIRED structural classification. Decides eligibility
+   * for the "Worth a Look" discovery section.
+   *
+   *   isNiche: false  → Mainstream career every TN family already knows
+   *                     about (CSE, MBBS, Mechanical, generic B.Com, BBA,
+   *                     CA, B.Pharm, BA English, etc.). These appear in
+   *                     Top Matches when they fit, but NEVER in Worth a
+   *                     Look — that section is reserved for true discovery.
+   *
+   *   isNiche: true   → Specialised / under-considered career students
+   *                     usually don't know about (Ceramic Tech, Leather
+   *                     Tech, Cyber Security, Forensic Science, Allied
+   *                     Health roles, BBA Logistics, etc.). These can
+   *                     appear in BOTH Top Matches (when score earns it)
+   *                     AND Worth a Look (when they didn't make Top but
+   *                     are a strong fit worth surfacing).
+   *
+   * This is a HARD STRUCTURAL boundary, not a score-based threshold.
+   * No mainstream career can ever pollute the discovery section even
+   * if it ranks high. Field is required at compile time so no career
+   * can be added without explicit classification — see the topCareer-
+   * MatchesWithDiscovery filter in src/lib/careerScoring.ts.
+   */
+  isNiche: boolean;
+
+  /**
    * Interest tags — the wizard interest IDs this career genuinely aligns
    * with. Drives the dedicated 8-point interest-match scoring component
    * (Phase 0.5, May 2026). Optional during the transition; pathways
@@ -406,6 +432,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'software-engineer',
     family: 'tech-software',
+    isNiche: false,
     interestTags: ['tech', 'engineering'],
     aversionConflicts: ['sitting_long'],
     automation: 'ai_augmented',
@@ -590,6 +617,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'doctor-mbbs',
     family: 'healthcare-medical',
+    isNiche: false,
     interestTags: ['healthcare', 'research'],
     aversionConflicts: ['patient_care', 'shift_work', 'high_competition'],
     automation: 'high_human_judgment',
@@ -771,6 +799,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'chartered-accountant',
     family: 'commerce-ca-cma',
+    isNiche: false,
     interestTags: ['finance'],
     aversionConflicts: ['paperwork', 'high_competition'],
     automation: 'ai_augmented',
@@ -927,6 +956,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'mechanical-engineer',
     family: 'engineering-mechanical',
+    isNiche: false,
     interestTags: ['engineering'],
     aversionConflicts: [],
     automation: 'physical_skilled',
@@ -1097,6 +1127,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'nurse',
     family: 'healthcare-nursing',
+    isNiche: false,
     interestTags: ['healthcare'],
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'human_facing',
@@ -1255,6 +1286,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'lawyer',
     family: 'law',
+    isNiche: false,
     interestTags: ['law', 'govt'],
     aversionConflicts: ['memorisation', 'public_speaking', 'high_competition'],
     automation: 'high_human_judgment',
@@ -1416,6 +1448,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'data-scientist',
     family: 'tech-data',
+    isNiche: false,
     interestTags: ['tech', 'research'],
     aversionConflicts: ['sitting_long', 'maths_heavy'],
     automation: 'ai_augmented',
@@ -1579,6 +1612,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'pharmacist',
     family: 'healthcare-pharma',
+    isNiche: false,
     interestTags: ['healthcare', 'research'],
     aversionConflicts: ['lab_practical'],
     automation: 'ai_augmented',
@@ -1756,6 +1790,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-general',
     family: 'commerce-bcom',
+    isNiche: false,
     interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork'],
@@ -1814,6 +1849,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-computer-applications',
     family: 'commerce-bcom',
+    isNiche: false,
     interestTags: ['finance', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
@@ -1872,6 +1908,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-accounting-finance',
     family: 'commerce-bcom',
+    isNiche: false,
     interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork', 'maths_heavy'],
@@ -1930,6 +1967,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-banking-insurance',
     family: 'commerce-bcom',
+    isNiche: false,
     interestTags: ['finance', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork', 'shift_work'],
@@ -1988,6 +2026,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-financial-marketing-analytics',
     family: 'commerce-bcom',
+    isNiche: true,
     interestTags: ['finance', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['high_competition'],
@@ -2046,6 +2085,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bba-graduate',
     family: 'commerce-bba',
+    isNiche: false,
     interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
@@ -2194,6 +2234,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'cost-management-accountant',
     family: 'commerce-ca-cma',
+    isNiche: true,
     interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork', 'high_competition'],
@@ -2331,6 +2372,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'agriculture-graduate',
     family: 'agriculture',
+    isNiche: true,
     interestTags: ['environment', 'research', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['field_outdoor'],
@@ -2481,6 +2523,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ba-english-graduate',
     family: 'arts-language',
+    isNiche: false,
     interestTags: ['education', 'media'],
     needsCounsellorReview: true,
     aversionConflicts: [],
@@ -2644,6 +2687,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'electronics-engineer',
     family: 'engineering-electronics',
+    isNiche: false,
     interestTags: ['engineering', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
@@ -2793,6 +2837,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'civil-engineer',
     family: 'engineering-civil',
+    isNiche: false,
     interestTags: ['engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['field_outdoor'],
@@ -2942,6 +2987,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'mechatronics-engineer',
     family: 'engineering-mechatronics',
+    isNiche: true,
     interestTags: ['engineering', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: [],
@@ -3103,6 +3149,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'physiotherapist',
     family: 'healthcare-physio',
+    isNiche: false,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['patient_care'],
@@ -3265,6 +3312,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'cardiac-technologist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
@@ -3322,6 +3370,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ae-care-technologist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
@@ -3379,6 +3428,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ot-anaesthesia-technologist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work'],
@@ -3436,6 +3486,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'dialysis-technologist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
@@ -3493,6 +3544,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'physician-assistant',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['patient_care', 'high_competition'],
@@ -3550,6 +3602,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'respiratory-therapist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
@@ -3607,6 +3660,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'medical-record-scientist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: [],
@@ -3664,6 +3718,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'critical-care-technologist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
@@ -3721,6 +3776,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'radiology-imaging-technologist',
     family: 'healthcare-allied',
+    isNiche: true,
     interestTags: ['healthcare', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work'],
@@ -3778,6 +3834,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'biotechnologist',
     family: 'engineering-biotech',
+    isNiche: true,
     interestTags: ['research', 'healthcare', 'engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical'],
@@ -3935,6 +3992,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'btech-aids',
     family: 'tech-data',
+    isNiche: true,
     interestTags: ['tech', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long', 'maths_heavy'],
@@ -3992,6 +4050,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'btech-csbs',
     family: 'tech-business-systems',
+    isNiche: true,
     interestTags: ['tech', 'finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
@@ -4049,6 +4108,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'robotics-automation-engineer',
     family: 'engineering-mechatronics',
+    isNiche: true,
     interestTags: ['engineering', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical'],
@@ -4106,6 +4166,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'btech-cybersecurity',
     family: 'tech-cybersecurity',
+    isNiche: true,
     interestTags: ['tech', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
@@ -4170,6 +4231,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'forensic-scientist',
     family: 'science-forensic',
+    isNiche: true,
     interestTags: ['research', 'law'],
     needsCounsellorReview: true,
     aversionConflicts: ['graphic_content', 'lab_practical', 'sitting_long'],
@@ -4227,6 +4289,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'food-technologist',
     family: 'science-food-tech',
+    isNiche: true,
     interestTags: ['research', 'engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical', 'field_outdoor'],
@@ -4284,6 +4347,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'fisheries-scientist',
     family: 'science-fisheries',
+    isNiche: true,
     interestTags: ['environment', 'research', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['field_outdoor', 'lab_practical', 'travel_away'],
@@ -4341,6 +4405,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'clinical-nutritionist',
     family: 'healthcare-nutrition',
+    isNiche: true,
     interestTags: ['healthcare', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['patient_care', 'sales_persuasion'],
@@ -4410,6 +4475,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'aerospace-engineer',
     family: 'engineering-aerospace',
+    isNiche: true,
     interestTags: ['engineering', 'research', 'defence'],
     needsCounsellorReview: true,
     aversionConflicts: ['travel_away', 'sitting_long', 'maths_heavy'],
@@ -4467,6 +4533,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'marine-engineer',
     family: 'engineering-marine',
+    isNiche: true,
     interestTags: ['engineering', 'travel', 'defence'],
     needsCounsellorReview: true,
     aversionConflicts: ['travel_away', 'physical_training', 'shift_work'],
@@ -4524,6 +4591,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'defence-strategic-studies-graduate',
     family: 'defence-strategic',
+    isNiche: true,
     interestTags: ['defence', 'research', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['physical_training', 'memorisation', 'high_competition'],
@@ -4588,6 +4656,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'industrial-engineer',
     family: 'engineering-industrial-ops',
+    isNiche: true,
     interestTags: ['engineering', 'finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long', 'paperwork'],
@@ -4645,6 +4714,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'manufacturing-engineer',
     family: 'engineering-industrial-ops',
+    isNiche: true,
     interestTags: ['engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['field_outdoor'],
@@ -4702,6 +4772,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'metallurgical-engineer',
     family: 'engineering-materials',
+    isNiche: true,
     interestTags: ['engineering', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical', 'field_outdoor'],
@@ -4759,6 +4830,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'textile-technologist',
     family: 'engineering-textiles',
+    isNiche: true,
     interestTags: ['engineering', 'design'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical'],
@@ -4825,6 +4897,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ceramic-technologist',
     family: 'engineering-applied-chem',
+    isNiche: true,
     interestTags: ['engineering', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical', 'field_outdoor', 'sitting_long'],
@@ -4882,6 +4955,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'leather-technologist',
     family: 'engineering-applied-chem',
+    isNiche: true,
     interestTags: ['engineering', 'environment'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical', 'field_outdoor', 'graphic_content'],
@@ -4939,6 +5013,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'rubber-plastics-technologist',
     family: 'engineering-applied-chem',
+    isNiche: true,
     interestTags: ['engineering', 'environment'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical', 'sitting_long'],
@@ -4996,6 +5071,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'printing-packaging-engineer',
     family: 'engineering-printing-packaging',
+    isNiche: true,
     interestTags: ['engineering', 'design'],
     needsCounsellorReview: true,
     aversionConflicts: ['creative_pressure', 'sitting_long'],
@@ -5072,6 +5148,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'criminologist',
     family: 'arts-criminology',
+    isNiche: true,
     interestTags: ['law', 'research', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['memorisation', 'graphic_content', 'sitting_long'],
@@ -5129,6 +5206,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'visual-communication-graduate',
     family: 'creative-design',
+    isNiche: true,
     interestTags: ['design', 'media'],
     needsCounsellorReview: true,
     aversionConflicts: ['maths_heavy', 'creative_pressure', 'high_competition'],
@@ -5186,6 +5264,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'design-graduate',
     family: 'creative-design',
+    isNiche: true,
     interestTags: ['design'],
     needsCounsellorReview: true,
     aversionConflicts: ['maths_heavy', 'creative_pressure', 'sitting_long'],
@@ -5243,6 +5322,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bba-logistics',
     family: 'commerce-bba',
+    isNiche: true,
     interestTags: ['finance', 'engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long', 'paperwork'],
@@ -5300,6 +5380,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bba-aviation',
     family: 'commerce-bba',
+    isNiche: true,
     interestTags: ['finance', 'travel'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'sales_persuasion'],
@@ -5357,6 +5438,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'psychology-graduate',
     family: 'psychology',
+    isNiche: true,
     interestTags: ['healthcare', 'research', 'education'],
     needsCounsellorReview: true,
     aversionConflicts: ['patient_care', 'sitting_long', 'memorisation'],
