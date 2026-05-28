@@ -38,6 +38,8 @@ import CareerRoadmap from './CareerRoadmap';
 import ActionItems from './ActionItems';
 import BuildNowSkills from './BuildNowSkills';
 import PathwayTypeBanner from './PathwayTypeBanner';
+import PathwayAutomationTag from './PathwayAutomationTag';
+import CareerPivotCard from './CareerPivotCard';
 import { generateCareerPredictorPDF } from './generateCareerPredictorPDF';
 
 interface ResultsDashboardProps {
@@ -49,6 +51,8 @@ interface ResultsDashboardProps {
   perCareerNotes?: Record<string, string>;
   /** True if the AI narrative degraded (rate-limit etc.) — shown subtly */
   narrativeDegraded?: boolean;
+  /** v2: aspiration filtered out by aversions — drives the pivot card. */
+  filteredAspiration?: CareerMatch | null;
   onBack: () => void;
   onRetake: () => void;
 }
@@ -74,6 +78,7 @@ export const ResultsDashboard = ({
   narrative,
   perCareerNotes,
   narrativeDegraded,
+  filteredAspiration,
   onBack,
   onRetake,
 }: ResultsDashboardProps) => {
@@ -285,6 +290,18 @@ export const ResultsDashboard = ({
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(320px,380px)_1fr]">
           {/* ─── LEFT: career selector column ───────────────────────── */}
           <div className="lg:sticky lg:top-4 lg:self-start">
+            {/* Pivot pathway — shown when the aversion deck filtered out the
+                student's top aspiration. Tapping an alternative selects it in
+                the right-hand detail pane. */}
+            {filteredAspiration && (
+              <CareerPivotCard
+                filteredAspiration={filteredAspiration}
+                onSelectAlternative={(id) => {
+                  if (matches.some((m) => m.pathway.id === id)) selectCareer(id);
+                }}
+              />
+            )}
+
             <h2 className="mb-2 flex items-center gap-2 text-lg font-bold">
               <Trophy className="h-5 w-5 text-amber-500" />
               Your Top Matches
@@ -396,6 +413,10 @@ export const ResultsDashboard = ({
                     pathway={activeMatch.pathway}
                     variant="full"
                   />
+
+                  {/* QUALITATIVE automation outlook — informational, not a score.
+                      Returns null for untagged pathways so we don't bluff. */}
+                  <PathwayAutomationTag pathway={activeMatch.pathway} />
 
                   {/* The UG course(s) that lead here */}
                   <div className="flex flex-wrap items-center gap-1.5 pt-0.5">

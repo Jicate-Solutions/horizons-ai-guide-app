@@ -651,6 +651,55 @@ export function topCareerMatches(profile: StudentProfile, n = 5): CareerMatch[] 
 }
 
 /**
+ * Pivot-aware companion to topCareerMatches.
+ *
+ * When the aversion swipe deck eliminates a high-priority career — usually
+ * the student's *most aspirational* career, like MBBS — the standard
+ * matches list silently omits it. That is the wrong UX: the student should
+ * see that their aspiration is acknowledged AND get a curated alternative.
+ *
+ * This function returns the regular ranked matches AND, separately, the
+ * highest-scoring stream-eligible career that the AVERSION FILTER removed,
+ * so the UI can surface a "Closest viable option" card on the dashboard.
+ *
+ * The pivot pathway lookup itself lives in
+ * src/data/careerPivotPathways.ts — that file is the editorial source
+ * for the alternatives we suggest.
+ */
+export interface TopMatchesResult {
+  matches: CareerMatch[];
+  /** The aspiration that got hard-filtered out, if any. */
+  filteredAspiration?: CareerMatch;
+}
+
+export function topCareerMatchesWithPivot(
+  profile: StudentProfile,
+  n = 5,
+): TopMatchesResult {
+  const matches = topCareerMatches(profile, n);
+
+  // Detect filtered aspiration: re-score WITHOUT the aversion filter, then
+  // find the highest-scoring pathway whose aversionConflicts collide with
+  // the student's choices. That's the career we should pivot from.
+  if (!profile.aversions || profile.aversions.length === 0) {
+    return { matches };
+  }
+  const aversionSet = new Set(profile.aversions);
+  const unfiltered = scoreCareers({ ...profile, aversions: undefined })
+    .filter((m) => m.isImmediatePath);
+
+  const filteredAspiration = unfiltered.find((m) => {
+    const conflicts = m.pathway.aversionConflicts ?? [];
+    return conflicts.some((t) => aversionSet.has(t));
+  });
+
+  return {
+    matches,
+    filteredAspiration,
+  };
+}
+
+/**
  * A human-readable, one-paragraph explanation of HOW the engine works.
  * Surfaced in the UI so students (and reviewers) can see the method, not just
  * the number. Transparency is the point.

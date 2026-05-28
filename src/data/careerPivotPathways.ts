@@ -1,0 +1,149 @@
+/**
+ * Career Pivot Pathways — for the LIVE engine.
+ *
+ * ╔════════════════════════════════════════════════════════════════╗
+ * ║  STATUS: DRAFT — needs counsellor review before going live.    ║
+ * ║  A wrong pivot ("MBBS isn't realistic, try Nursing") needs to  ║
+ * ║  be accurate counselling advice, not a confident algorithm     ║
+ * ║  guess. Please audit each entry. Bad pivots are worse than     ║
+ * ║  no pivots.                                                    ║
+ * ╚════════════════════════════════════════════════════════════════╝
+ *
+ * Surfaced on the results dashboard when the student's top aspiration
+ * was hard-filtered out (currently: by the aversion swipe deck). The
+ * card acknowledges what they wanted and offers concrete alternatives
+ * — never silently discards the aspiration.
+ *
+ * Authoring rules:
+ *  - `fromPathwayId`   MUST be an id in CAREER_PATHWAYS.
+ *  - `toPathwayId` of each alternative MUST also be in CAREER_PATHWAYS.
+ *  - `closeness` is relative (0-100), only used for sorting within
+ *    this pathway — not an absolute match score.
+ *  - Rationales are plain and honest. No marketing language.
+ *  - 2-4 alternatives per aspiration. More is paralysis.
+ *
+ * Why only some pathways have pivots:
+ *  The live CAREER_PATHWAYS table currently has 8 careers. We can only
+ *  pivot to other entries in that table. As CAREER_PATHWAYS grows,
+ *  more pivots become possible — add them here when the destination
+ *  pathway exists.
+ */
+
+import type { CareerPathway } from './careerPathways';
+
+export interface CareerPivotPathway {
+  /** The aspiration the student is being pivoted from. */
+  fromPathwayId: string;
+  /** Shown above the pivot block as a friendly heading. */
+  label: string;
+  /** Optional Tamil heading; UI falls back to English when absent. */
+  labelTa?: string;
+  /** Ordered list of alternatives, highest closeness first. */
+  alternatives: CareerPivotAlternative[];
+}
+
+export interface CareerPivotAlternative {
+  /** Must match an id in CAREER_PATHWAYS. */
+  toPathwayId: string;
+  /** Plain-language reason — honest, not marketing. */
+  rationale: string;
+  /** Relative closeness to the original aspiration, 0-100. */
+  closeness: number;
+}
+
+/**
+ * Resolve a pivot pathway's alternatives to real CareerPathway objects.
+ * Used by the UI so the pivot card can render the full career name,
+ * icon, color etc. without duplicating that data here.
+ */
+export function resolvePivotAlternatives(
+  pivot: CareerPivotPathway,
+  allPathways: CareerPathway[],
+): Array<{ alt: CareerPivotAlternative; pathway: CareerPathway }> {
+  return pivot.alternatives
+    .map((alt) => {
+      const pathway = allPathways.find((p) => p.id === alt.toPathwayId);
+      return pathway ? { alt, pathway } : null;
+    })
+    .filter((x): x is { alt: CareerPivotAlternative; pathway: CareerPathway } => x !== null);
+}
+
+export const CAREER_PIVOT_PATHWAYS: CareerPivotPathway[] = [
+  // ── Doctor (MBBS) — the most common aspiration that gets filtered out
+  //    by the patient_care, shift_work or high_competition aversions.
+  {
+    fromPathwayId: 'doctor-mbbs',
+    label: 'Closer to medicine without MBBS',
+    labelTa: 'MBBS இல்லாமல் மருத்துவத்திற்கு நெருக்கமாக',
+    alternatives: [
+      {
+        toPathwayId: 'nurse',
+        rationale:
+          'Direct patient care, fast entry, strong international demand. Can advance to M.Sc. Nursing and Nurse Practitioner roles — work alongside doctors, not under them.',
+        closeness: 85,
+      },
+      {
+        toPathwayId: 'pharmacist',
+        rationale:
+          'Deep in the medicine world without the NEET grind. Clinical pharmacy in hospitals is growing fast — counselling patients, managing therapies, working with doctors.',
+        closeness: 75,
+      },
+    ],
+  },
+
+  // ── Chartered Accountant — filtered out by paperwork or high_competition.
+  {
+    fromPathwayId: 'chartered-accountant',
+    label: 'Finance careers without committing to CA',
+    labelTa: 'CA-வுக்கு உறுதியளிக்காமல் நிதிக் தொழில்கள்',
+    alternatives: [
+      // Note: B.Com / CMA / BBA-Finance are not in CAREER_PATHWAYS yet.
+      // The closest current entry is software-engineer (FinTech is a
+      // common landing for STEM-leaning students). Keep this short
+      // until the careers table grows.
+      {
+        toPathwayId: 'software-engineer',
+        rationale:
+          'If numbers attract you but the CA grind does not, FinTech and quant engineering are strong adjacent paths — CSE leads into them through internships and conversions.',
+        closeness: 55,
+      },
+    ],
+  },
+
+  // ── Data Scientist — filtered out by sitting_long or maths_heavy.
+  {
+    fromPathwayId: 'data-scientist',
+    label: 'Working with data without a desk-only role',
+    labelTa: 'டெஸ்க் மட்டுமே இல்லாமல் டேட்டாவுடன் வேலை செய்தல்',
+    alternatives: [
+      {
+        toPathwayId: 'software-engineer',
+        rationale:
+          'Software engineering is broader than data work — backend, infrastructure, mobile, embedded all involve less continuous mathematics and more variety in the day.',
+        closeness: 70,
+      },
+    ],
+  },
+
+  // ── Lawyer — filtered out by memorisation, public_speaking or high_competition.
+  {
+    fromPathwayId: 'lawyer',
+    label: 'Reasoning-heavy careers without the bar exam grind',
+    labelTa: 'பார் தேர்வு கடினமின்றி தர்க்க அடிப்படையிலான தொழில்கள்',
+    alternatives: [
+      {
+        toPathwayId: 'chartered-accountant',
+        rationale:
+          'Both careers reward careful reading of rules and clear writing. CA work involves less courtroom pressure and less rote memorisation — but the entrance grind is still real.',
+        closeness: 60,
+      },
+    ],
+  },
+];
+
+/** Look up a pivot pathway by the career the student aspired to. */
+export function getPivotPathway(
+  fromPathwayId: string,
+): CareerPivotPathway | undefined {
+  return CAREER_PIVOT_PATHWAYS.find((p) => p.fromPathwayId === fromPathwayId);
+}

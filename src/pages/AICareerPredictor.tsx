@@ -26,6 +26,7 @@ import {
 import type { Stream, SkillId, PriorityId } from '@/data/careerPathways';
 import {
   topCareerMatches,
+  topCareerMatchesWithPivot,
   type StudentProfile,
   type CareerMatch,
 } from '@/lib/careerScoring';
@@ -85,6 +86,8 @@ interface SavedResult {
   narrative?: string;
   perCareerNotes?: Record<string, string>;
   narrativeDegraded?: boolean;
+  /** Aspiration filtered out by aversions (v2) — drives pivot card on restore. */
+  filteredAspiration?: CareerMatch | null;
   savedAt: string;
 }
 
@@ -138,6 +141,8 @@ const AICareerPredictor = () => {
   // threshold, between step 8 and the loading screen.
   const [showAversionDeck, setShowAversionDeck] = useState(false);
   const [aversions, setAversions] = useState<AversionTag[]>([]);
+  /** Aspiration that got filtered out by aversions — drives the pivot card. */
+  const [filteredAspiration, setFilteredAspiration] = useState<CareerMatch | null>(null);
 
   // On mount, offer to restore a previous result.
   const [hasSavedResult, setHasSavedResult] = useState(false);
@@ -239,8 +244,10 @@ const AICareerPredictor = () => {
 
     // 1) DETERMINISTIC ENGINE — this is the source of truth and never fails.
     const profile = buildProfile();
-    const computed = topCareerMatches(profile, 5);
+    const { matches: computed, filteredAspiration: aspiration } =
+      topCareerMatchesWithPivot(profile, 5);
     setMatches(computed);
+    setFilteredAspiration(aspiration ?? null);
     setLoadingStage(1);
 
     // Brief, honest staged loading — the engine is instant, but a moment of
@@ -303,6 +310,7 @@ const AICareerPredictor = () => {
         narrative: narrativeText,
         perCareerNotes: notes,
         narrativeDegraded: degraded,
+        filteredAspiration: aspiration ?? null,
         savedAt: new Date().toISOString(),
       };
       localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(toSave));
@@ -324,6 +332,7 @@ const AICareerPredictor = () => {
         setNarrative(parsed.narrative || '');
         setPerCareerNotes(parsed.perCareerNotes || {});
         setNarrativeDegraded(!!parsed.narrativeDegraded);
+        setFilteredAspiration(parsed.filteredAspiration ?? null);
         setShowResults(true);
       }
     } catch {
@@ -385,6 +394,7 @@ const AICareerPredictor = () => {
     // doesn't silently inherit stale aversions.
     setAversions([]);
     setShowAversionDeck(false);
+    setFilteredAspiration(null);
   };
 
   // ─── Results view ─────────────────────────────────────────────────────────
@@ -395,6 +405,7 @@ const AICareerPredictor = () => {
         narrative={narrative}
         perCareerNotes={perCareerNotes}
         narrativeDegraded={narrativeDegraded}
+        filteredAspiration={filteredAspiration}
         onBack={() => setShowResults(false)}
         onRetake={handleRetake}
       />

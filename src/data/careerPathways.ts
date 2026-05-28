@@ -179,6 +179,16 @@ export interface CareerPathway {
    */
   aversionConflicts?: import('./predictor/types').AversionTag[];
 
+  /**
+   * Qualitative outlook on how this career is reshaping under automation.
+   * Deliberately NOT a score — see AI_PREDICTOR_V2_DESIGN.md §7 for why.
+   * Editorial; reviewed annually. Shown as a one-line callout on the
+   * results dashboard.
+   */
+  automation?: import('./predictor/types').AutomationTag;
+  /** One-line editorial explainer shown next to the automation tag. */
+  automationNote?: string;
+
   // ─── ACTION ────────────────────────────────────────────────────────────────
   roadmap: RoadmapStage[];
   ninetyDayPlan: NinetyDayAction[];
@@ -282,6 +292,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'software-engineer',
     aversionConflicts: ['sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'AI tools handle more boilerplate every year, but the work of designing, debugging and shipping real systems still needs strong engineers — your specialisation matters more than ever.',
     title: 'Software Engineer',
     titleTa: 'மென்பொருள் பொறியியலாளர்',
     icon: '💻',
@@ -462,6 +474,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'doctor-mbbs',
     aversionConflicts: ['patient_care', 'shift_work', 'high_competition'],
+    automation: 'high_human_judgment',
+    automationNote: 'AI helps doctors read scans, flag risks and draft notes — but the diagnosis, the call, and the conversation with the patient remain firmly human. One of the most automation-resilient careers.',
     title: 'Doctor (MBBS)',
     titleTa: 'மருத்துவர் (MBBS)',
     icon: '🩺',
@@ -639,6 +653,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'chartered-accountant',
     aversionConflicts: ['paperwork', 'high_competition'],
+    automation: 'ai_augmented',
+    automationNote: 'Routine book-keeping, reconciliation and basic tax returns are automating fast. Audit judgment, advisory work and complex tax remain firmly human — specialise early.',
     title: 'Chartered Accountant (CA)',
     titleTa: 'பட்டயக் கணக்காளர் (CA)',
     icon: '📊',
@@ -791,6 +807,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'mechanical-engineer',
     aversionConflicts: [],
+    automation: 'physical_skilled',
+    automationNote: 'Tools change — robotics, CAD, simulation — but the trade of designing and running real physical systems is slow to automate. Demand stays steady in manufacturing, energy and infrastructure.',
     title: 'Mechanical Engineer',
     titleTa: 'இயந்திரப் பொறியியலாளர்',
     icon: '⚙️',
@@ -957,6 +975,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'nurse',
     aversionConflicts: ['shift_work', 'patient_care'],
+    automation: 'human_facing',
+    automationNote: 'Care of another person is the work — the bedside, the conversation, the watchfulness. AI may handle records and monitors, but it does not replace the nurse.',
     title: 'Nurse (B.Sc Nursing)',
     titleTa: 'செவிலியர் (B.Sc Nursing)',
     icon: '🏥',
@@ -1111,6 +1131,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'lawyer',
     aversionConflicts: ['memorisation', 'public_speaking', 'high_competition'],
+    automation: 'high_human_judgment',
+    automationNote: 'Document review and research are accelerating with AI tools, but arguing in court, drafting strategy and advising clients remain firmly human work. Litigators are particularly safe.',
     title: 'Lawyer / Advocate',
     titleTa: 'வழக்கறிஞர்',
     icon: '⚖️',
@@ -1268,6 +1290,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'data-scientist',
     aversionConflicts: ['sitting_long', 'maths_heavy'],
+    automation: 'ai_augmented',
+    automationNote: 'The toolset is changing fastest of any field — AI now writes much of the code and tunes many of the models. The work that endures is asking the right questions and judging whether the model can be trusted.',
     title: 'Data Scientist / Analyst',
     titleTa: 'தரவு அறிவியலாளர்',
     icon: '📈',
@@ -1427,6 +1451,8 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'pharmacist',
     aversionConflicts: ['lab_practical'],
+    automation: 'ai_augmented',
+    automationNote: 'Dispensing is steadily automating in larger pharmacies, but clinical pharmacy — counselling patients, checking interactions, hospital pharmacy roles — is growing. Specialise toward clinical work.',
     title: 'Pharmacist (B.Pharm / Pharm.D)',
     titleTa: 'மருந்தாளர்',
     icon: '💊',
