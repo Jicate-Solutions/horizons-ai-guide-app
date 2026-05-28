@@ -549,7 +549,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
             </div>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-4">
             {messages.map((msg, i) => (
               <div
                 key={i}
@@ -561,16 +561,16 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm ${
+                  className={`max-w-[92%] sm:max-w-[80%] rounded-2xl px-4 py-3 text-[15px] leading-relaxed shadow-sm ${
                     msg.role === "user"
                       ? "bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-br-md"
                       : "bg-muted text-foreground rounded-bl-md border border-border/50"
                   }`}
                 >
                   {msg.role === 'assistant' ? (
-                    <AIMessageRenderer content={msg.content} className="text-sm" />
+                    <AIMessageRenderer content={msg.content} />
                   ) : (
-                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                    <p className="whitespace-pre-wrap break-words">{msg.content}</p>
                   )}
                   {msg.imageUrl && (
                     <div className="mt-2 relative group">

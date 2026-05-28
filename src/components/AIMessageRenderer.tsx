@@ -7,141 +7,166 @@ interface AIMessageRendererProps {
   className?: string;
 }
 
+/**
+ * Premium mobile-first markdown renderer for AI chat output.
+ *
+ * Design principles:
+ *  - Regular body weight (not semibold). Heavy weight on every paragraph was
+ *    the #1 reason the chat felt visually loud and exhausting on mobile.
+ *  - leading-relaxed (1.625) is the sweet spot for narrow phone bubbles —
+ *    looser leading (1.75) made paragraphs feel disconnected.
+ *  - Bullets are plain • and counter numbers, not rounded-full chrome.
+ *  - First-child margin resets so bubble padding controls the top spacing,
+ *    not the markdown content.
+ */
 export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps) => {
   return (
-    <div className={cn("prose prose-sm max-w-none", className)}>
+    <div
+      className={cn(
+        "text-[15px] leading-relaxed text-foreground/90 break-words",
+        // First and last children should not push the bubble padding around
+        "[&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
+        className,
+      )}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          // Headings with professional styling - underlined and numbered appearance
+          // ─── Headings ───────────────────────────────────────────────────
           h1: ({ children }) => (
-            <h1 className="text-xl font-bold text-foreground mt-5 mb-3 pb-2 border-b-2 border-primary first:mt-0">
+            <h1 className="text-lg font-semibold text-foreground mt-4 mb-2 first:mt-0">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-lg font-semibold text-foreground mt-5 mb-3 pb-1.5 border-b border-primary/40 first:mt-0">
+            <h2 className="text-base font-semibold text-foreground mt-4 mb-2 first:mt-0">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="text-base font-semibold text-foreground mt-4 mb-2 pb-1 border-b border-border/60 first:mt-0">
+            <h3 className="text-[15px] font-semibold text-foreground mt-3 mb-1.5 first:mt-0">
               {children}
             </h3>
           ),
-          
-          // Paragraphs with optimized typography
+
+          // ─── Paragraphs — regular weight, generous line-height ──────────
           p: ({ children }) => (
-            <p className="text-[15px] leading-[1.75] tracking-[0.01em] text-black font-semibold mb-3 last:mb-0">
+            <p className="mb-3 last:mb-0 text-foreground/90">
               {children}
             </p>
           ),
-          
-          // Bold text stands out
+
+          // ─── Emphasis ───────────────────────────────────────────────────
           strong: ({ children }) => (
-            <strong className="font-bold text-black">{children}</strong>
+            <strong className="font-semibold text-foreground">{children}</strong>
           ),
-          
-          // Italic for emphasis
           em: ({ children }) => (
-            <em className="italic text-black">{children}</em>
+            <em className="italic text-foreground/85">{children}</em>
           ),
-          
-          // Professional unordered lists
+
+          // ─── Lists — clean bullets, tight spacing ───────────────────────
           ul: ({ children }) => (
-            <ul className="my-4 space-y-3 pl-0 list-none">{children}</ul>
+            <ul className="my-2 space-y-1.5 pl-1 list-none">{children}</ul>
           ),
-          
-          // Professional ordered lists with counter
           ol: ({ children }) => (
-            <ol className="my-4 space-y-3 pl-0 list-none [counter-reset:list-counter]">{children}</ol>
+            <ol className="my-2 space-y-1.5 pl-1 list-none [counter-reset:list-counter]">
+              {children}
+            </ol>
           ),
-          
-          // List items with styled bullets
-          li: ({ children }) => {
+          li: ({ children, ...props }) => {
+            // remark-gfm gives ordered list items an ordered flag we can use
+            const isOrdered = (props as { ordered?: boolean }).ordered;
             return (
-              <li className="flex items-start gap-3 text-[15px] leading-[1.75] text-black font-semibold">
-                <span className="flex-shrink-0 mt-1">
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary/10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  </span>
-                </span>
-                <span className="flex-1">{children}</span>
+              <li
+                className={cn(
+                  "flex gap-2.5 text-foreground/90",
+                  isOrdered &&
+                    "[counter-increment:list-counter] before:content-[counter(list-counter)'.'] before:flex-shrink-0 before:font-medium before:text-primary before:min-w-[1.25rem]",
+                )}
+              >
+                {!isOrdered && (
+                  <span
+                    aria-hidden
+                    className="flex-shrink-0 mt-[0.55em] w-1.5 h-1.5 rounded-full bg-primary/70"
+                  />
+                )}
+                <span className="flex-1 min-w-0">{children}</span>
               </li>
             );
           },
-          
-          // Code blocks with syntax highlighting style
+
+          // ─── Inline code ────────────────────────────────────────────────
           code: ({ children, className }) => {
             const isInline = !className;
             if (isInline) {
               return (
-                <code className="px-1.5 py-0.5 rounded bg-muted text-primary text-sm font-mono">
+                <code className="px-1.5 py-0.5 rounded bg-muted text-primary text-[0.875em] font-mono break-words">
                   {children}
                 </code>
               );
             }
             return (
-              <code className="block p-3 rounded-lg bg-muted text-foreground text-sm font-mono overflow-x-auto my-3">
+              <code className="block p-3 rounded-lg bg-muted text-foreground text-[13px] font-mono overflow-x-auto my-2.5 leading-relaxed">
                 {children}
               </code>
             );
           },
-          
-          // Pre blocks for code
           pre: ({ children }) => (
-            <pre className="my-3 rounded-lg overflow-hidden">{children}</pre>
+            <pre className="my-2.5 rounded-lg overflow-hidden">{children}</pre>
           ),
-          
-          // Blockquotes for important notes
+
+          // ─── Blockquote ─────────────────────────────────────────────────
           blockquote: ({ children }) => (
-            <blockquote className="my-3 pl-4 border-l-4 border-accent bg-accent/20 py-2 pr-3 rounded-r-lg text-black font-semibold italic">
+            <blockquote className="my-3 pl-3 border-l-[3px] border-primary/50 text-foreground/80 italic">
               {children}
             </blockquote>
           ),
-          
-          // Links styled professionally
+
+          // ─── Links ──────────────────────────────────────────────────────
           a: ({ children, href }) => (
-            <a 
-              href={href} 
-              target="_blank" 
+            <a
+              href={href}
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 underline underline-offset-2 decoration-primary/50 hover:decoration-primary transition-colors"
+              className="text-primary underline underline-offset-2 decoration-primary/40 hover:decoration-primary break-words"
             >
               {children}
             </a>
           ),
-          
-          // Horizontal rules
-          hr: () => (
-            <hr className="my-4 border-t border-border" />
-          ),
-          
-          // Tables for structured data — Mobile-optimized with visible borders
+
+          // ─── Horizontal rule ────────────────────────────────────────────
+          hr: () => <hr className="my-4 border-t border-border" />,
+
+          // ─── Tables — horizontally scrollable on mobile ─────────────────
           table: ({ children }) => (
-            <div className="my-3 -mx-2 sm:mx-0">
-              <div className="overflow-x-auto rounded-lg border-2 border-black shadow-sm" style={{ WebkitOverflowScrolling: 'touch' }}>
-                <table className="min-w-full border-collapse" style={{ minWidth: '320px' }}>{children}</table>
+            <div className="my-3 -mx-1 sm:mx-0">
+              <div
+                className="overflow-x-auto rounded-lg border border-border"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                <table className="w-full text-[13px] border-collapse">{children}</table>
               </div>
-              <p className="text-[10px] text-gray-400 mt-1 text-right sm:hidden">← Swipe to see more →</p>
+              <p className="text-[10px] text-muted-foreground mt-1 text-right sm:hidden">
+                ← swipe →
+              </p>
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="bg-emerald-100">{children}</thead>
+            <thead className="bg-muted/60">{children}</thead>
           ),
-          tbody: ({ children }) => (
-            <tbody className="bg-white">{children}</tbody>
-          ),
+          tbody: ({ children }) => <tbody>{children}</tbody>,
           tr: ({ children }) => (
-            <tr className="border-b border-black last:border-b-0 even:bg-gray-50">{children}</tr>
+            <tr className="border-b border-border last:border-b-0">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="px-2.5 py-2.5 sm:px-3 text-left text-[11px] sm:text-xs font-bold text-emerald-900 uppercase tracking-wider border-r border-black last:border-r-0 border-b-2 border-black whitespace-nowrap">
+            <th className="px-2.5 py-2 text-left font-semibold text-foreground border-r border-border last:border-r-0 whitespace-nowrap">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-2.5 py-2 sm:px-3 text-[13px] sm:text-sm text-gray-800 font-medium border-r border-black last:border-r-0">{children}</td>
+            <td className="px-2.5 py-2 text-foreground/85 border-r border-border last:border-r-0 align-top">
+              {children}
+            </td>
           ),
         }}
       >
