@@ -104,10 +104,16 @@ export const CAREER_PIVOT_PATHWAYS: CareerPivotPathway[] = [
         closeness: 88,
       },
       {
-        toPathwayId: 'bcom-graduate',
+        toPathwayId: 'bcom-accounting-finance',
         rationale:
-          'A B.Com with strong Excel, Tally and GST skills is a real finance career on its own — and leaves the door open to CA/CMA later if you change your mind.',
-        closeness: 75,
+          'The B.Com track closest to CA work — investment analysis, cost auditing, portfolio management. Strong Excel + a CFA or CMA later builds a real finance career without the CA pass-rate grind.',
+        closeness: 78,
+      },
+      {
+        toPathwayId: 'bcom-general',
+        rationale:
+          'A broader B.Com keeps the most options open — strong with Tally, Excel and GST skills, with the door still open to CA/CMA later if you change your mind.',
+        closeness: 70,
       },
       {
         toPathwayId: 'bba-graduate',
@@ -146,9 +152,9 @@ export const CAREER_PIVOT_PATHWAYS: CareerPivotPathway[] = [
         closeness: 60,
       },
       {
-        toPathwayId: 'bcom-graduate',
+        toPathwayId: 'bcom-general',
         rationale:
-          'A B.Com keeps the door open to business law via M.B.L. or company secretary route later, without committing 5 years upfront to LL.B.',
+          'A broad B.Com keeps the door open to business law via M.B.L. or company secretary route later, without committing 5 years upfront to LL.B.',
         closeness: 55,
       },
     ],
