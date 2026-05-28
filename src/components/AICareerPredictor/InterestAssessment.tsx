@@ -21,6 +21,7 @@ const interests = [
   { id: "law", icon: "⚖️", label: "Law & Justice", description: "Courts, legal rights, advocacy" },
   { id: "environment", icon: "🌱", label: "Environment & Sustainability", description: "Climate, conservation" },
   { id: "education", icon: "🎓", label: "Teaching & Education", description: "Shaping young minds" },
+  { id: "defence", icon: "🛡️", label: "Military & Defence", description: "Armed forces, strategy, national security" },
 ];
 
 const containerVariants = {

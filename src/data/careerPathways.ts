@@ -119,7 +119,8 @@ export type InterestId =
   | 'engineering'
   | 'law'
   | 'environment'
-  | 'education';
+  | 'education'
+  | 'defence';
 
 
 export interface RoadmapStage {
@@ -4401,7 +4402,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'aerospace-engineer',
     family: 'engineering-aerospace',
-    interestTags: ['engineering', 'research'],
+    interestTags: ['engineering', 'defence'],
     needsCounsellorReview: true,
     aversionConflicts: ['travel_away', 'sitting_long', 'maths_heavy'],
     automation: 'high_human_judgment',
@@ -4515,7 +4516,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'defence-strategic-studies-graduate',
     family: 'defence-strategic',
-    interestTags: ['govt', 'research'],
+    interestTags: ['defence', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['physical_training', 'memorisation', 'high_competition'],
     automation: 'high_human_judgment',
