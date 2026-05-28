@@ -75,6 +75,11 @@ export type CareerFamily =
   | 'engineering-biotech'
   | 'engineering-aerospace'
   | 'engineering-marine'
+  | 'engineering-industrial-ops'
+  | 'engineering-materials'
+  | 'engineering-applied-chem'
+  | 'engineering-textiles'
+  | 'engineering-printing-packaging'
   | 'science-forensic'
   | 'science-food-tech'
   | 'science-fisheries'
@@ -4402,7 +4407,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'aerospace-engineer',
     family: 'engineering-aerospace',
-    interestTags: ['engineering', 'defence'],
+    interestTags: ['engineering', 'research', 'defence'],
     needsCounsellorReview: true,
     aversionConflicts: ['travel_away', 'sitting_long', 'maths_heavy'],
     automation: 'high_human_judgment',
@@ -4459,7 +4464,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'marine-engineer',
     family: 'engineering-marine',
-    interestTags: ['engineering', 'travel'],
+    interestTags: ['engineering', 'travel', 'defence'],
     needsCounsellorReview: true,
     aversionConflicts: ['travel_away', 'physical_training', 'shift_work'],
     automation: 'human_facing',
@@ -4516,7 +4521,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'defence-strategic-studies-graduate',
     family: 'defence-strategic',
-    interestTags: ['defence', 'research'],
+    interestTags: ['defence', 'research', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['physical_training', 'memorisation', 'high_competition'],
     automation: 'high_human_judgment',
@@ -4567,7 +4572,243 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Critical reading and structured argument', why: 'Defence policy work IS argument from evidence. Practising structured writing and argument from year 1 directly translates to career skill.', freeResource: 'Free online debate clubs, structured essay-writing exercises, IDSA free working papers' },
     ],
     lastReviewed: '2026-05',
+  },  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 4a: NICHE INDUSTRIAL ENGINEERING — PART 1 (May 2026) ────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // First half of the niche industrial track. Each entry's skillWeights are
+  // tuned to differentiate it from generic Mechanical Engineering (which has
+  // math 8, science 8, physical 4, digital 6). Two pairs share a family for
+  // dedup: industrial + manufacturing (factory-ops twins) and metallurgy +
+  // ceramics (materials-science twins, finished in 4b).
+
+  // ─── B.E. INDUSTRIAL ENGINEERING ───────────────────────────────────────────
+  {
+    id: 'industrial-engineer',
+    family: 'engineering-industrial-ops',
+    interestTags: ['engineering', 'finance'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'paperwork'],
+    automation: 'ai_augmented',
+    automationNote: 'Industrial engineering IS the discipline of automating and optimising other work. AI tools extend what one IE can do; they do not replace the judgement of designing a better process or supply chain. India\'s Industry 4.0 transition drives sustained demand.',
+    title: 'Industrial Engineer',
+    titleTa: 'தொழில்துறை பொறியியலாளர்',
+    icon: '📈',
+    color: 'from-indigo-500 to-blue-600',
+    whatIsIt:
+      'A four-year B.E. focused on the science of running operations efficiently — operations research, supply chain optimisation, work-study and ergonomics, quality management (Six Sigma), production planning, and increasingly data-driven decision systems. The "white-collar engineer" — much of the work happens at a desk with data and stakeholders, not at a workbench. Career outcomes: operations management, supply chain analyst, consulting (Big 4 operations advisory), production planning, manufacturing optimisation roles.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102'],
+    ugCourses: ['B.E. Industrial Engineering', 'B.Tech Industrial Engineering & Management', 'B.E. Industrial Engineering & Operations Research'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.E. Strong placement at manufacturing companies (automotive, FMCG), supply-chain consulting firms, and increasingly e-commerce operations roles. MBA after 2-3 years is the most common acceleration step.',
+    skillWeights: { mathematics: 8, language: 6, science: 5, creativity: 6, people: 7, physical: 2, digital: 8 },
+    priorityFit: { salary: 7, security: 7, balance: 7, abroad: 7, prestige: 6, passion: 6, growth: 8, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–6 LPA fresh at manufacturing companies; ₹5–9 LPA at Big 4 operations consulting and supply-chain roles at top firms. Higher than entry-level mechanical because of the analytical/consulting tilt.',
+      midCareerLPA: 'AI estimate — ₹12–28 LPA after 7+ years for operations managers, senior consultants, and supply-chain leads. MBA + 5-7 years of IE experience can substantially exceed this in consulting.',
+      note: 'Industrial Engineering pays well at mid-career because the analytical skills translate directly into consulting, operations management, and supply-chain leadership. The MBA route from IE is unusually high-ROI.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand across manufacturing, e-commerce logistics, consulting, and supply-chain analytics. India\'s manufacturing push (Make in India, PLI schemes) creates sustained hiring.' },
+    entryDifficulty: { score: 5, note: 'AI estimate — direct TNEA admission. Programs are less common than CSE or general mechanical so seats are limited.' },
+    collegeTiers: [
+      { label: 'Top Industrial Engineering programs in TN (AI estimate)', examples: ['Anna University CEG Chennai', 'PSG College of Technology Coimbatore', 'NIT Trichy (Industrial Engineering elective in Production Engg)'], cutoffGuide: 'AI estimate — TNEA cutoff 185+ typical; NIT via JEE Main.', feeRange: 'AI estimate — ₹40K–1.5L / year' },
+      { label: 'Strong colleges (AI estimate)', examples: ['Thiagarajar College of Engineering Madurai', 'Sastra University', 'Sri Sairam Engineering'], cutoffGuide: 'AI estimate — TNEA cutoff 170-185.', feeRange: 'AI estimate — ₹1L–3L / year' },
+      { label: 'Other TN colleges with IE / Production Engineering tracks (AI estimate)', examples: ['Several Anna University affiliated colleges'], cutoffGuide: 'AI estimate — TNEA cutoff 150-170.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Industrial Engineering in TN costs roughly ₹2L–10L total. Strong ROI because of the analytical/consulting career tilt.',
+    backupOptions: ['MBA after 2-3 years — IE + MBA is unusually high-ROI', 'Pivot to general mechanical / production engineering roles', 'Supply chain / logistics analyst roles at e-commerce companies', 'Big 4 operations consulting (Deloitte, EY, PwC, KPMG)', 'Six Sigma + Lean certifications + senior operations roles'],
+    honestCaveat: 'Industrial Engineering is less hands-on than mechanical or manufacturing — much of the work is at a desk, analysing data, building dashboards, talking to stakeholders. Students who imagined "engineering" as designing physical things often find IE feels more like business analytics. The career rewards students who genuinely enjoy data-driven problem-solving and process thinking. Many IE students eventually pivot fully into consulting or operations management roles where the engineering label fades.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCM', titleTa: '+12 PCM 75%+', detail: 'TNEA / JEE Main entry. Strong Mathematics matters more than Physics for IE.', window: 'Now', phase: 'now' },
+      { title: 'Join B.E. IE + strong analytical skill-building', titleTa: 'B.E. IE + பகுப்பாய்வு திறன்', detail: 'Master Excel, Power BI / Tableau, basic Python during the degree. Six Sigma green belt by year 4 is standard. Internships at manufacturing companies are essential.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Operations role, consulting, or MBA — pick one', titleTa: 'வேலை / ஆலோசனை / MBA', detail: 'Industrial engineers split into three trajectories. Pick by year 3 based on what you actually enjoyed.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Start learning Excel + basic data analysis', titleTa: 'எக்செல் + தரவு பகுப்பாய்வு', detail: 'IE is data-driven. Comfort with spreadsheets and basic data manipulation from year 1 is the single highest-ROI prep skill.', priority: 'high' },
+      { title: 'Read one book on operations / supply chain', titleTa: 'செயல்பாடுகள் / விநியோகச் சங்கிலி புத்தகம்', detail: '"The Goal" by Eliyahu Goldratt is the classic IE introduction — a novel that teaches operations thinking. Cheap on Amazon India.', priority: 'high' },
+      { title: 'Visit a manufacturing facility if possible', titleTa: 'உற்பத்தி வசதி பார்வை', detail: 'Many TN factories (TVS, Hyundai, Ford suppliers) offer student tours. Understanding the physical reality of operations sharpens later coursework.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Mathematics — statistics + linear programming basics', why: 'Operations research is built on these. Strong 12th Maths with a head start on statistics dramatically eases year 2-3 OR courses.', freeResource: 'NCERT Maths, Khan Academy statistics, MIT OpenCourseWare introductory OR' },
+      { skill: 'Excel + spreadsheet fluency', why: 'IE work happens in spreadsheets — supply chain models, capacity calculations, ROI analyses. Strong Excel from day 1 is a working necessity.', freeResource: 'Microsoft Excel free YouTube (Leila Gharani, ExcelIsFun)' },
+      { skill: 'Reading about how factories and supply chains actually work', why: 'IE coursework makes far more sense with industry context. Strong supply-chain intuition compounds for a decade.', freeResource: 'Bloomberg supply-chain coverage, The Goal (book), free Coursera Supply Chain Foundations' },
+    ],
+    lastReviewed: '2026-05',
   },
+
+  // ─── B.E. MANUFACTURING ENGINEERING ────────────────────────────────────────
+  {
+    id: 'manufacturing-engineer',
+    family: 'engineering-industrial-ops',
+    interestTags: ['engineering'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['field_outdoor'],
+    automation: 'human_facing',
+    automationNote: 'Manufacturing engineers DESIGN automation systems — they extend automation rather than being displaced by it. Lean manufacturing, Industry 4.0 implementation, and CNC programming all remain firmly human work. India\'s manufacturing-growth push creates strong demand.',
+    title: 'Manufacturing Engineer',
+    titleTa: 'உற்பத்தி பொறியியலாளர்',
+    icon: '🏭',
+    color: 'from-zinc-500 to-slate-600',
+    whatIsIt:
+      'A four-year B.E. focused on the engineering of making things at scale — CNC programming, CAD/CAM, lean manufacturing, production planning, quality control, automated production lines, additive manufacturing (3D printing). The hands-on counterpart to Industrial Engineering — most of the work happens on a factory floor or in a CAD/CAM environment. Career outcomes: production engineer, manufacturing technologist, CNC programmer, lean / continuous-improvement engineer, plant engineering roles at automotive, electronics, FMCG, defence manufacturing.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102'],
+    ugCourses: ['B.E. Manufacturing Engineering', 'B.E. Production Engineering', 'B.Tech Manufacturing Engineering & Technology'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.E. Strong placement at manufacturing companies in years 7-8 (final placement season). Career path typically starts on the factory floor and progresses to plant management.',
+    skillWeights: { mathematics: 7, language: 4, science: 7, creativity: 5, people: 5, physical: 5, digital: 7 },
+    priorityFit: { salary: 6, security: 7, balance: 6, abroad: 6, prestige: 5, passion: 6, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–5.5 LPA fresh at TN manufacturing companies (automotive, electronics, FMCG); ₹4–7 LPA at top corporate manufacturing operations.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for plant engineers, production managers, and lean / continuous-improvement leads. Senior plant managers at large facilities can exceed substantially.',
+      note: 'Steady earnings, strong job security in the manufacturing-heavy TN economy (automotive cluster Chennai, electronics manufacturing). Less prestige than CSE, but stable factory-based career.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and structural. TN is one of India\'s leading manufacturing states; demand from automotive (Chennai cluster), electronics, FMCG, and defence manufacturing is consistent.' },
+    entryDifficulty: { score: 4, note: 'AI estimate — direct TNEA admission widely available. Cutoffs lower than CSE but the field has strong placement.' },
+    collegeTiers: [
+      { label: 'Top Manufacturing Engineering programs (AI estimate)', examples: ['Anna University CEG / MIT', 'PSG Tech Coimbatore', 'NIT Trichy', 'Thiagarajar College of Engineering'], cutoffGuide: 'AI estimate — TNEA cutoff 180-195 typical.', feeRange: 'AI estimate — ₹40K–1.5L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Sastra University', 'SSN College', 'Kongu Engineering College Erode', 'Coimbatore Institute of Technology'], cutoffGuide: 'AI estimate — TNEA cutoff 165-185.', feeRange: 'AI estimate — ₹1L–3L / year' },
+      { label: 'Other TN colleges with Manufacturing Engineering (AI estimate)', examples: ['Many Anna University affiliated colleges'], cutoffGuide: 'AI estimate — TNEA cutoff 145-170.', feeRange: 'AI estimate — ₹70K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Manufacturing Engineering in TN costs roughly ₹2L–10L total. TN\'s manufacturing strength means hometown jobs are realistic — a real cost saving vs students who relocate for tech jobs.',
+    backupOptions: ['M.Tech Manufacturing / Industrial Engineering — senior plant roles', 'CNC / CAM specialisation certifications', 'Pivot to mechanical / production engineering roles', 'Lean Six Sigma certifications + senior operations roles', 'Manufacturing-tech startups (additive manufacturing, robotics)'],
+    honestCaveat: 'Manufacturing engineering is genuinely hands-on — students who picked engineering hoping to avoid factory floors are in the wrong field. Work conditions include factory noise, heat in some plants, rotating-shift exposure during the first 2-3 years, and physical presence at the production line. Students who genuinely enjoy seeing physical things being made thrive; those who imagined air-conditioned offices usually pivot away. Pay starts modest but the trajectory is steady, and TN\'s manufacturing density means hometown work is realistic.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCM', titleTa: '+12 PCM 70%+', detail: 'TNEA / JEE Main entry. Strong Maths + Physics matter most.', window: 'Now', phase: 'now' },
+      { title: 'Join B.E. Manufacturing + hands-on practical exposure', titleTa: 'B.E. + நடைமுறை பயிற்சி', detail: 'Choose programs with active machine shops, CNC labs, and CAD/CAM software access. Coursework alone is not enough — practical comfort with workshops is the differentiator.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Plant engineer role + Lean Six Sigma certification', titleTa: 'வேலை + Lean Six Sigma', detail: 'First role typically on factory floor as production / plant engineer. Lean Six Sigma green belt is the standard mid-career accelerator.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a manufacturing facility', titleTa: 'உற்பத்தி வசதி பார்வை', detail: 'TN automotive cluster (Hyundai Sriperumbudur, TVS Hosur, Royal Enfield Chennai), electronics manufacturing — many allow student tours. Essential reality check.', priority: 'high' },
+      { title: 'Learn basic CAD software over the summer', titleTa: 'CAD மென்பொருள் தொடக்கம்', detail: 'AutoCAD or SolidWorks (free student versions) — basic 2D and 3D drafting before year 1 puts you ahead of classmates seeing it for the first time.', priority: 'high' },
+      { title: 'Strengthen Physics + basic mechanics', titleTa: 'பௌதீகம் + இயக்கவியல்', detail: 'The foundation of manufacturing engineering. Strong 12th Physics makes year 1 dramatically easier.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'CAD software (AutoCAD / SolidWorks)', why: 'The working tool of manufacturing engineers. Free student versions; comfort before year 1 is a major advantage in design / drafting coursework.', freeResource: 'Autodesk Student license (free), SolidWorks free trial, YouTube CAD tutorials' },
+      { skill: 'Mechanical curiosity — how machines and tools actually work', why: 'Manufacturing engineering rewards genuine curiosity about machinery. Time spent in workshops, garages, or maker spaces builds real intuition.', freeResource: 'Engineering Explained YouTube, "How It\'s Made" series, local maker spaces' },
+      { skill: 'Basic Excel for production data', why: 'Plant work involves constant data tracking — yields, defect rates, downtime. Comfort with Excel from year 1 is a real asset.', freeResource: 'Microsoft Excel free YouTube basics' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.E. METALLURGICAL ENGINEERING ────────────────────────────────────────
+  {
+    id: 'metallurgical-engineer',
+    family: 'engineering-materials',
+    interestTags: ['engineering', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'field_outdoor'],
+    automation: 'human_facing',
+    automationNote: 'Metallurgy is materials-science applied to industry — designing new alloys, controlling steel-mill operations, ensuring metal quality. The science-judgement combination remains firmly human. India\'s defence (DRDO), steel (SAIL, Tata Steel), automotive, and aerospace industries all employ metallurgists.',
+    title: 'Metallurgical Engineer',
+    titleTa: 'உலோகவியல் பொறியியலாளர்',
+    icon: '⚙️',
+    color: 'from-amber-700 to-orange-800',
+    whatIsIt:
+      'A four-year B.E. covering extractive metallurgy (turning ore into metal), physical metallurgy (structure-property relationships), mechanical metallurgy (deformation and failure), and materials engineering (alloy design, heat treatment, corrosion). Career outcomes: SAIL, Tata Steel, JSW, defence metallurgy (DRDO labs), automotive metallurgy (engine and transmission alloys), aerospace metallurgy (HAL, ISRO), and increasingly advanced-materials startups. The classical engineering discipline — among India\'s oldest and most-respected.',
+    eligibleStreams: ['pcm'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.E. Metallurgical Engineering', 'B.Tech Metallurgical & Materials Engineering', 'B.E. Materials Science & Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.E. Strong placement at steel majors and defence labs in final year. Career progression to senior plant metallurgist or research scientist typically 7-10 years.',
+    skillWeights: { mathematics: 7, language: 4, science: 9, creativity: 5, people: 3, physical: 5, digital: 5 },
+    priorityFit: { salary: 6, security: 8, balance: 6, abroad: 7, prestige: 7, passion: 7, growth: 6, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹4–7 LPA fresh at steel majors (SAIL, Tata Steel, JSW) and at defence labs (DRDO); ₹3.5–6 LPA at smaller foundries and automotive metallurgy roles. PSU steel positions include exceptional benefits (housing, medical, pension).',
+      midCareerLPA: 'AI estimate — ₹12–25 LPA after 7+ years for senior plant metallurgists, research scientists, and corrosion specialists. Abroad opportunities (Middle East steel, Australian mining, German automotive metallurgy) can multiply substantially.',
+      note: 'PSU steel sector remains a defining destination — among the most stable, well-respected industrial careers in India. The trade-off is geographic: most steel mills are in eastern India (Jamshedpur, Bhilai, Rourkela), requiring relocation from TN for the headline jobs.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady and structural. India\'s steel demand growth, defence-metallurgy investment (advanced alloys for missiles, submarines, aircraft), and the corrosion / failure-analysis niche all create consistent hiring.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — moderate competition. Fewer TN colleges offer metallurgy than other branches, so seats are limited but cutoffs are reasonable.' },
+    collegeTiers: [
+      { label: 'Top Metallurgical programs (AI estimate)', examples: ['Anna University CEG Chennai', 'NIT Trichy Metallurgical & Materials', 'Government College of Engineering Salem'], cutoffGuide: 'AI estimate — TNEA cutoff 180+ for top tier; NIT via JEE Main.', feeRange: 'AI estimate — ₹40K–1.5L / year' },
+      { label: 'Other programs in TN (AI estimate)', examples: ['Limited — verify each program individually'], cutoffGuide: 'AI estimate — TNEA cutoff 155-180 where offered.', feeRange: 'AI estimate — ₹80K–2L / year' },
+      { label: 'National alternatives (if open to relocation)', examples: ['IIT Madras Metallurgical & Materials (JEE Advanced)', 'IIT BHU Metallurgical Engineering', 'NIT Rourkela / Warangal'], cutoffGuide: 'AI estimate — top IITs are highly competitive; NITs more accessible.', feeRange: 'AI estimate — ₹2L–2.5L / year (IIT/NIT fees)' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Metallurgical Engineering in TN costs roughly ₹2L–10L total. PSU steel jobs typically pay off the loan in 2-3 years.',
+    backupOptions: ['M.Tech Metallurgical Engineering — research, R&D roles', 'PhD + DRDO scientist / academic faculty track', 'Steel plant engineering roles (SAIL, Tata Steel, JSW)', 'Corrosion engineering specialisation — strong in oil-and-gas', 'Pivot to general mechanical engineering if metallurgy roles are tight', 'Move abroad — Middle East steel, Australian mining, German automotive metallurgy actively hire'],
+    honestCaveat: 'Metallurgy is genuinely science-heavy — students who picked it imagining "regular engineering" find years 1-2 surprisingly chemistry-and-physics-intensive (thermodynamics, phase diagrams, crystallography). Plant work involves real foundry conditions — heat, dust, shift rotation in early career. The PSU steel career is genuinely rewarding for those drawn to materials science, but the geographic concentration (Jharkhand, Chhattisgarh, Odisha) is a significant trade-off for TN students. Defence-metallurgy roles (DRDO) keep you near major cities but are competitive entry.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCM', titleTa: '+12 PCM 75%+', detail: 'TNEA / JEE Main entry. Strong Chemistry + Physics matter more for metallurgy than for most other engineering branches.', window: 'Now', phase: 'now' },
+      { title: 'Join B.E. Metallurgy + active lab + plant exposure', titleTa: 'B.E. + ஆய்வகம் + ஆலை பயிற்சி', detail: 'Choose colleges with active metallurgical labs (furnaces, microscopes, testing equipment). Industrial summer internships at SAIL / Tata Steel are essential.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Steel plant / DRDO / M.Tech', titleTa: 'எஃகு ஆலை / DRDO / M.Tech', detail: 'Three credible exits. Steel sector for stability; DRDO for defence research; M.Tech / PhD for academic and R&D careers.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Chemistry — particularly inorganic and physical chemistry', titleTa: 'வேதியியல் வலுப்படுத்துதல்', detail: 'Metallurgy is fundamentally applied chemistry. Strong 12th Chemistry directly translates into year 1 understanding.', priority: 'high' },
+      { title: 'Read about India\'s steel and defence-metallurgy sectors', titleTa: 'எஃகு + பாதுகாப்பு உலோகவியல்', detail: 'Understanding what SAIL, Tata Steel, JSW, and DRDO actually do builds context that classroom theory alone misses.', priority: 'high' },
+      { title: 'Visit a steel plant or foundry if possible', titleTa: 'எஃகு ஆலை அல்லது வார்ப்படை பார்வை', detail: 'Smaller foundries operate across TN. One visit clarifies the physical reality of the work — heat, noise, scale.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Chemistry — physical, inorganic, and basic thermodynamics', why: 'The deep foundation of all metallurgical work. Strong 12th Chemistry with a head start on thermodynamics is the single highest-ROI prep.', freeResource: 'NCERT Chemistry, MIT OpenCourseWare introductory thermodynamics' },
+      { skill: 'Hands-on tinkering with metals (if accessible)', why: 'Welding, basic blacksmithing, or even careful soldering builds intuition that pure book study cannot. Local fabrication shops can be a learning resource.', freeResource: 'YouTube — basic welding tutorials, machining basics; visit fabrication shops' },
+      { skill: 'Reading about materials science and engineering applications', why: 'The "why metallurgy matters" context — knowing why aerospace needs nickel superalloys or why submarines need HY-100 steel makes coursework click.', freeResource: 'Materials Science basics on Khan Academy, Smithsonian materials articles, free DRDO public information' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.TECH TEXTILE TECHNOLOGY ─────────────────────────────────────────────
+  {
+    id: 'textile-technologist',
+    family: 'engineering-textiles',
+    interestTags: ['engineering', 'design'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical'],
+    automation: 'ai_augmented',
+    automationNote: 'Textile production is heavily automated, but the technologist who designs new yarns, sets up dyeing chemistry, ensures fabric quality, and bridges between fashion designers and factories cannot be automated. India is the world\'s second-largest textile producer; TN (Tiruppur, Coimbatore, Erode) is a global textile hub.',
+    title: 'Textile Technologist (B.Tech Textile Technology)',
+    titleTa: 'ஜவுளி தொழில்நுட்ப நிபுணர்',
+    icon: '🧵',
+    color: 'from-fuchsia-500 to-pink-600',
+    whatIsIt:
+      'A four-year B.Tech covering fibre science (cotton, polyester, wool, blends), yarn manufacturing (spinning), fabric production (weaving, knitting), wet processing (dyeing, printing, finishing), textile chemistry, garment manufacturing technology, and increasingly technical textiles (medical, automotive, defence applications). Career outcomes: textile manufacturing companies (Aditya Birla, Welspun, Trident, Arvind), garment exporters (heavy concentration in Tiruppur), quality and process roles, fashion industry technical roles, technical textiles R&D.',
+    eligibleStreams: ['pcm', 'pcb'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.Tech Textile Technology', 'B.Tech Textile Chemistry', 'B.E. Textile Engineering', 'B.Tech Apparel Technology'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Strong placement at TN textile cluster companies (Tiruppur, Coimbatore, Erode) during final year. The technical-textiles sub-field is the fastest-growing specialisation.',
+    skillWeights: { mathematics: 5, language: 5, science: 8, creativity: 6, people: 4, physical: 3, digital: 6 },
+    priorityFit: { salary: 5, security: 7, balance: 7, abroad: 7, prestige: 5, passion: 7, growth: 6, hometown: 9 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4.5 LPA fresh at TN textile companies; ₹3.5–6 LPA at large textile groups and garment exporters. Technical textiles (medical, automotive applications) pay above the textile average.',
+      midCareerLPA: 'AI estimate — ₹7–18 LPA after 7+ years for production heads, quality leads, and technical-textile specialists. Senior export-house roles can exceed substantially. Abroad (Bangladesh, Vietnam, Middle East) garment industry opportunities multiply.',
+      note: 'Modest at entry but TN\'s textile cluster (Tiruppur is among India\'s largest garment-export hubs) makes hometown jobs unusually realistic — a significant advantage for students from western/southern TN. Technical textiles is the high-growth segment.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from TN\'s textile cluster; structural growth in technical textiles. The PLI scheme for textiles drives sustained hiring.' },
+    entryDifficulty: { score: 4, note: 'AI estimate — direct TNEA admission. Top programs at Anna University BIT and PSG Tech are more selective.' },
+    collegeTiers: [
+      { label: 'Top textile engineering programs (AI estimate)', examples: ['Anna University BIT Campus Tiruchirappalli', 'PSG College of Technology Coimbatore', 'Kumaraguru College of Technology Coimbatore'], cutoffGuide: 'AI estimate — TNEA cutoff 165-185 typical.', feeRange: 'AI estimate — ₹50K–1.5L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Sona College of Technology Salem', 'Bannari Amman Institute Sathyamangalam', 'Karunya Institute Coimbatore'], cutoffGuide: 'AI estimate — TNEA cutoff 150-170.', feeRange: 'AI estimate — ₹1L–2.5L / year' },
+      { label: 'Other TN colleges with textile tracks (AI estimate)', examples: ['Several colleges in textile-cluster cities (Coimbatore, Tiruppur, Erode, Karur)'], cutoffGuide: 'AI estimate — accessible; 60%+ typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech Textile Technology in TN costs roughly ₹2L–8L total. The hometown-employment advantage in textile-cluster cities (Coimbatore, Tiruppur, Erode) is a real ongoing cost saving.',
+    backupOptions: ['M.Tech Textile / Fibre Science — technical textiles specialisation', 'Move into garment-export operations (Tiruppur is global hub)', 'Fashion industry technical roles (production, quality)', 'Technical textiles R&D (medical, automotive, defence)', 'MBA in operations / supply chain after 3-5 years industry experience'],
+    honestCaveat: 'Textile Technology is engineering applied to textiles — students who pictured fashion-design work end up disappointed. The day-to-day involves textile chemistry, yarn engineering, dye process control, and quality testing. Factory work conditions in the textile cluster include heat, fibre dust, and shift rotation in early career. Students who genuinely enjoy textile science thrive; those who wanted "fashion without the math" usually struggle. The TN textile cluster employment density makes this one of the very few engineering branches where hometown jobs are realistic across western and southern TN.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCM or PCB', titleTa: '+12 70%+', detail: 'TNEA / JEE Main entry. Strong Chemistry helps more than Maths for textile chemistry tracks.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech Textile + textile-cluster internships', titleTa: 'B.Tech + பயிற்சி', detail: 'Summer internships at TN textile cluster companies (Tiruppur, Coimbatore) are essential — placement networks run through these.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Mill role, technical textiles, or M.Tech', titleTa: 'ஆலை வேலை / தொழில்நுட்ப ஜவுளி / M.Tech', detail: 'Three credible exits. Production roles at mills; technical-textiles R&D; M.Tech for specialisation in advanced textiles.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Visit a textile mill if possible', titleTa: 'ஜவுளி ஆலை பார்வை', detail: 'TN textile cluster (Coimbatore, Tiruppur) is large enough that arranged tours are realistic. One visit clarifies the day-to-day reality.', priority: 'high' },
+      { title: 'Strengthen Chemistry — especially organic and polymer basics', titleTa: 'வேதியியல் (கரிம வேதியியல்)', detail: 'Textile chemistry is the technical core. Strong 12th Chemistry with a head start on polymers makes year 1 smoother.', priority: 'high' },
+      { title: 'Read about technical textiles and India\'s textile-PLI scheme', titleTa: 'தொழில்நுட்ப ஜவுளி + PLI', detail: 'The high-growth segment of the field. Understanding government textile policy and technical-textiles applications sets realistic expectations.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Chemistry — particularly organic chemistry and polymers', why: 'The technical foundation of textile science. Strong 12th Chemistry directly translates into yarn / dye / fibre coursework.', freeResource: 'NCERT Chemistry, free polymer chemistry intros on YouTube' },
+      { skill: 'Visual / pattern observation', why: 'Textile quality work involves spotting subtle pattern defects, colour variations, and weave irregularities. Practising careful visual observation matters.', freeResource: 'Time spent at fabric stores, textile museums; visual-attention exercises' },
+      { skill: 'Basic spreadsheet skills for quality data', why: 'Production work involves constant quality data — defect rates, yields, colour-fastness scores. Excel from day 1 is a useful base.', freeResource: 'Microsoft Excel free YouTube basics' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
 
 
 ];
