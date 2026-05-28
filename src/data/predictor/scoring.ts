@@ -38,10 +38,43 @@ export const CONFIDENCE_THRESHOLDS = {
   tooLowForResultsBelow: 40,
 } as const;
 
+/**
+ * Stream → list of interest IDs that DON'T fit that stream.
+ *
+ * Interest IDs here MUST match the IDs used by the live wizard's
+ * InterestAssessment component (src/components/AICareerPredictor/
+ * InterestAssessment.tsx). Wizard IDs are: tech, healthcare, finance,
+ * design, research, govt, travel, media, engineering, law, environment,
+ * education. A mismatch using IDs the wizard does not produce will
+ * silently never fire — that was the v1.1 bug.
+ *
+ * Authoring rule: include an interest here only if a student in this
+ * stream pursuing that interest is genuinely a stream-mismatch (i.e.
+ * they would need to switch streams or take a much longer / harder
+ * route to reach it). Conservative tagging — false positives nudge
+ * students into the aversion deck unnecessarily.
+ */
 const STREAM_INTEREST_MISMATCH: Record<string, string[]> = {
-  arts: ['technology', 'data', 'science'],
-  commerce: ['science', 'healthcare', 'aviation', 'construction'],
-  commerce_math: ['healthcare'],
+  // Science (Maths): Maths/Physics/Chem. Can do tech, engineering,
+  // research, environment. Finance/law/design/media are real
+  // stream-mismatches; education depends on the subject.
+  pcm:           ['finance', 'law', 'design', 'media'],
+  // Pure Bio (no Maths): Healthcare, research, environment fit. Tech,
+  // engineering, finance, law all require crossing streams or a much
+  // longer route.
+  pcb:           ['finance', 'law', 'tech', 'design', 'media', 'engineering'],
+  // Bio + Maths: broadest science stream — only the clearly non-STEM
+  // interests are mismatches.
+  pcmb:          ['finance', 'law', 'design', 'media'],
+  // Commerce: business/finance/law fit. Healthcare/research/engineering
+  // need a different stream.
+  commerce:      ['healthcare', 'research', 'engineering', 'tech', 'environment'],
+  // Commerce with Maths: same as commerce but tech and research are
+  // a less acute mismatch (Math base helps).
+  commerce_math: ['healthcare', 'research', 'engineering'],
+  // Arts: humanities/media/law fit. Hard STEM and healthcare are
+  // mismatches.
+  arts:          ['tech', 'research', 'healthcare', 'engineering', 'finance'],
 };
 
 const CONFLICTING_PRIORITY_SETS: Array<string[]> = [
@@ -113,7 +146,10 @@ export function computeConfidence(profile: UserProfile): ConfidenceReport {
   return {
     overall: score,
     reasons,
-    needsAversionCheck: score < CONFIDENCE_THRESHOLDS.needAversionBelow,
+    // Inclusive: confidence AT OR BELOW the threshold triggers the deck.
+    // The previous strict `<` left students who tripped exactly enough
+    // rules to land at the boundary slipping through without the deck.
+    needsAversionCheck: score <= CONFIDENCE_THRESHOLDS.needAversionBelow,
   };
 }
 

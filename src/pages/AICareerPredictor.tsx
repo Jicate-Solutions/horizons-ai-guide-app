@@ -223,6 +223,16 @@ const AICareerPredictor = () => {
       // 'abroad', 'prestige', 'hometown' have no clean predictor analogue;
       // they simply don't contribute to the conflict-detection heuristic.
     };
+    // Wizard budget IDs come from SituationForm.tsx: 'below2', '2to5',
+    // '5to10', '10to20', 'noconstraint'. The confidence rule only cares
+    // whether the student told us anything about budget (null vs not-null);
+    // a sentinel object is sufficient. Hardcoding null here previously
+    // meant every student was penalised -10 for "budget missing" even
+    // though step 6 requires them to fill it. See bug-fix notes in the
+    // commit that introduced this.
+    const budgetSentinel = budget
+      ? { min: 0, max: 0 }
+      : null;
     return {
       schemaVersion: 2,
       language: 'en',
@@ -233,7 +243,7 @@ const AICareerPredictor = () => {
         priorities: rankedPriorities
           .map((p) => priorityIdToTag[p])
           .filter((p): p is PredictorPriority => Boolean(p)),
-        budgetINR: null,
+        budgetINR: budgetSentinel,
         durationYears: null,
       },
     };
