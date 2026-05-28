@@ -60,6 +60,8 @@ export type Stream = 'pcm' | 'pcmb' | 'pcb' | 'commerce' | 'arts' | 'vocational'
 export type CareerFamily =
   | 'tech-software'
   | 'tech-data'
+  | 'tech-business-systems'
+  | 'tech-cybersecurity'
   | 'healthcare-medical'
   | 'healthcare-pharma'
   | 'healthcare-nursing'
@@ -3904,7 +3906,243 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       },
     ],
     lastReviewed: '2026-05',
+  },  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 1: NEXT-GEN TECH (Discovery Expansion, May 2026) ────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // First of 5 batches adding niche/high-value TN UG courses students often
+  // don't know exist. All four sit in the tech-adjacent space but each is a
+  // genuinely distinct career — uniquely-tuned skillWeights ensure they
+  // surface for the right students, not as generic CS variants. All DRAFT
+  // pending counsellor review.
+
+  // ─── B.TECH ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AIDS) ──────────────────
+  {
+    id: 'btech-aids',
+    family: 'tech-data',
+    interestTags: ['tech', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'maths_heavy'],
+    automation: 'ai_augmented',
+    automationNote: 'AIDS graduates build the AI systems that automate other work. The field itself is one of the strongest hedges against automation — those who shape AI are not displaced by it. Strong fit for students excited by mathematics, statistics, and the rapidly changing ML/DL landscape.',
+    title: 'B.Tech AI & Data Science (AIDS)',
+    titleTa: 'பி.டெக் செயற்கை நுண்ணறிவு மற்றும் தரவு அறிவியல்',
+    icon: '🤖',
+    color: 'from-violet-500 to-indigo-600',
+    whatIsIt:
+      'A four-year B.Tech specialising in machine learning, deep learning, statistics, big data engineering and AI applications. Distinct from general CSE — graduates are trained from year 1 in maths-heavy ML foundations, statistical inference, and modern AI tooling (PyTorch, TensorFlow, MLOps). Career outcomes: ML engineer, data scientist, AI researcher, applied scientist roles at tech firms and startups.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.Tech AI & Data Science', 'B.E. AI & Machine Learning', 'B.Tech AI & ML'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Strong placement in 7th-8th semester at tech firms. ML/AI roles typically pay above general CSE because of the specialised skill premium. Many graduates also pursue M.Tech/MS abroad.',
+    skillWeights: { mathematics: 9, language: 6, science: 7, creativity: 6, people: 4, physical: 1, digital: 9 },
+    priorityFit: { salary: 9, security: 7, balance: 6, abroad: 9, prestige: 8, passion: 7, growth: 9, hometown: 6 },
+    competitiveBoardPct: { comfortable: 85, stretch: 75 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹6–14 LPA fresh at tier-1 tech firms; ₹4–8 LPA at mid-tier. Top performers at FAANG-tier and AI-focused startups can reach ₹20+ LPA fresh.',
+      midCareerLPA: 'AI estimate — ₹20–60 LPA after 5-7 years for strong performers; senior AI/ML engineers and applied scientists routinely exceed this. International (US, EU) opportunities multiply substantially.',
+      note: 'Among the highest-earning UG paths in India right now BUT the variance is huge — the gap between a strong AIDS graduate and an average one is wider than in most fields. The maths-and-statistics foundation matters more than the brand name of the college.',
+    },
+    demand: { score: 9, note: 'AI estimate — exceptionally strong. The AI/ML hiring wave shows no sign of slowing; demand from tech, fintech, healthcare-tech and AI-focused startups outstrips trained supply.' },
+    entryDifficulty: { score: 7, note: 'AI estimate — competitive at top TN colleges. Anna University AIDS programs and top private engineering colleges have rising cutoffs as the field grows in popularity.' },
+    collegeTiers: [
+      { label: 'Top AIDS programs (AI estimate)', examples: ['Anna University CEG / MIT', 'PSG Tech Coimbatore', 'SSN College of Engineering', 'Thiagarajar College of Engineering'], cutoffGuide: 'AI estimate — TNEA cutoff 195+ (out of 200) typical at top tier.', feeRange: 'AI estimate — ₹50K–2L / year' },
+      { label: 'Strong private engineering colleges (AI estimate)', examples: ['SRM University', 'VIT (entry via VITEEE)', 'Sastra University', 'Kongu Engineering College'], cutoffGuide: 'AI estimate — TNEA cutoff 180-195; private exams vary.', feeRange: 'AI estimate — ₹1.5L–4L / year' },
+      { label: 'Other TN colleges with AIDS specialisation (AI estimate)', examples: ['Many Anna University affiliated colleges now offer the track'], cutoffGuide: 'AI estimate — TNEA cutoff 160-180 typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech AIDS in TN costs roughly ₹2L–16L total depending on college. Government-aided colleges (CEG, MIT) are dramatically cheaper than top private institutions. ROI is strong if you actually engage with the maths.',
+    backupOptions: ['M.Tech / MS in AI/ML (India or abroad — strong abroad mobility)', 'Pivot to general SDE roles if ML market softens', 'Kaggle/research publications during UG as alternative credentials', 'AI-focused startups (often hire on portfolio + projects more than CGPA)'],
+    honestCaveat: 'AIDS rewards students who genuinely enjoy mathematics — linear algebra, probability, statistics, calculus. Students who picked it because "AI is the future" without that pull often struggle once the maths-heavy foundation courses hit in years 1-2. The brand of "AI" attracts many; the discipline of statistical thinking sorts them out. Be honest with yourself about the maths before committing.',
+    roadmap: [
+      { title: 'Score 80%+ in 12th PCM (especially strong in Mathematics)', titleTa: '+12 PCM 80%+ (கணிதம் வலுவாக)', detail: 'TNEA / JEE Main entry. Maths is the single strongest predictor of AIDS performance — score it well.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech AIDS + active project work', titleTa: 'B.Tech AIDS + திட்டப் பணி', detail: 'Build real ML projects from year 1 — Kaggle competitions, GitHub portfolio, open-source contributions. Coursework alone is not enough.', window: 'Years 1–4', phase: 'next' },
+      { title: 'M.Tech/MS abroad OR top tech firm OR AI-focused startup', titleTa: 'M.Tech / MS / தொடக்க நிறுவனம்', detail: 'Three credible exits. Strong students go abroad; pragmatic students take tier-1 placements; ambitious students join an AI startup.', window: 'Years 4–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Mathematics — especially probability + linear algebra', titleTa: 'கணிதம் வலுப்படுத்துதல்', detail: 'AIDS is 60% applied maths. A head start on linear algebra and probability before year 1 starts is a real advantage.', priority: 'high', freeResource: '3Blue1Brown linear algebra series, Khan Academy probability' },
+      { title: 'Try a free intro ML course over summer', titleTa: 'இலவச ML கோர்ஸ்', detail: 'Andrew Ng\'s Coursera Machine Learning (audit free). 2-3 hours/week before year 1 clarifies whether ML genuinely interests you.', priority: 'high' },
+      { title: 'Set up Python + start with simple scripts', titleTa: 'பைதான் தொடங்க', detail: 'Python fluency is essential. Free tutorials on freeCodeCamp / Codecademy build the comfort.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Mathematics — linear algebra + probability fundamentals', why: 'The deep foundation of ML. Students who arrive in year 1 already comfortable with vectors, matrices and probability distributions are dramatically more productive.', freeResource: '3Blue1Brown YouTube (Essence of Linear Algebra, Essence of Calculus), Khan Academy' },
+      { skill: 'Python programming', why: 'The lingua franca of AI/ML. Comfortable Python from day 1 frees you to focus on the maths.', freeResource: 'freeCodeCamp Python, Codecademy Python, Real Python tutorials' },
+      { skill: 'Reading data analysis case studies', why: 'Real-world AI is messy data + careful thinking, not just algorithms. Reading case studies builds judgement.', freeResource: 'Kaggle competition writeups, Distill.pub articles, Towards Data Science (free)' },
+    ],
+    lastReviewed: '2026-05',
   },
+
+  // ─── B.TECH COMPUTER SCIENCE & BUSINESS SYSTEMS (CSBS) ─────────────────────
+  {
+    id: 'btech-csbs',
+    family: 'tech-business-systems',
+    interestTags: ['tech', 'finance'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'CSBS sits at the tech-business interface — the work of translating between engineering teams and business stakeholders is among the most automation-resilient tech roles. Strong fit for students who like tech but also enjoy working with people.',
+    title: 'B.Tech Computer Science & Business Systems (CSBS)',
+    titleTa: 'பி.டெக் கணினி அறிவியல் மற்றும் வணிக அமைப்புகள்',
+    icon: '💼',
+    color: 'from-blue-500 to-cyan-600',
+    whatIsIt:
+      'A four-year B.Tech (designed jointly with TCS) blending core computer science with business systems — finance, operations, design thinking, supply chain analytics. Distinct from CSE: graduates are trained from year 1 for tech-business hybrid roles like technology consulting, product management, business analyst, fintech operations. Career outcomes: consulting (Big 4 tech advisory), product roles, fintech, enterprise tech.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.Tech Computer Science & Business Systems', 'B.Tech CSBS'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Placement profile differs from CSE — fewer pure-coding roles, more consulting / product / business-analyst pathways. Strong corporate hiring through partner companies including TCS.',
+    skillWeights: { mathematics: 7, language: 7, science: 4, creativity: 6, people: 7, physical: 1, digital: 8 },
+    priorityFit: { salary: 8, security: 7, balance: 7, abroad: 7, prestige: 7, passion: 6, growth: 8, hometown: 7 },
+    competitiveBoardPct: { comfortable: 80, stretch: 70 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹5–10 LPA fresh at tier-1 tech consulting (TCS, Infosys, Deloitte tech advisory); ₹4–7 LPA at mid-tier. Product/consulting roles often start lower than pure SDE but reach higher mid-career.',
+      midCareerLPA: 'AI estimate — ₹15–40 LPA in 7-10 years for senior consultants, product managers and fintech leads. Top performers in product / consulting can exceed substantially.',
+      note: 'Strong long-term earnings ceiling because the tech-business interface is hard to automate AND hard to replace. The trade-off vs CSE: typically lower starting salaries, higher mid-career trajectory for those who lean into business work.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from consulting firms, fintech, enterprise tech. The TCS partnership in many CSBS programs creates direct hiring pipelines.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — competitive but slightly less than top CSE. CSBS is newer; awareness is growing.' },
+    collegeTiers: [
+      { label: 'Top CSBS programs (AI estimate)', examples: ['PSG Tech Coimbatore', 'SSN College', 'Sri Sairam Engineering', 'Sastra University'], cutoffGuide: 'AI estimate — TNEA cutoff 185-195 typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+      { label: 'Strong private colleges (AI estimate)', examples: ['SRM University', 'Hindustan Institute', 'Kongu Engineering College'], cutoffGuide: 'AI estimate — TNEA cutoff 170-185.', feeRange: 'AI estimate — ₹1.5L–3L / year' },
+      { label: 'Other CSBS offering colleges (AI estimate)', examples: ['Growing number of Anna University affiliated colleges'], cutoffGuide: 'AI estimate — TNEA cutoff 155-175 typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year CSBS in TN costs roughly ₹3L–12L total. The TCS-tied programs often include guaranteed placement interviews, which materially improves ROI.',
+    backupOptions: ['MBA after 2-3 years (CSBS is excellent MBA prep)', 'Pivot to pure software roles if business work loses appeal', 'Consulting (Big 4) recruitment', 'Product management entry roles', 'Fintech operations / analyst roles'],
+    honestCaveat: 'CSBS works best for students who are genuinely curious about both tech AND business — not just "tech but easier than CSE." Students who joined hoping for less coding find the business modules unexpectedly demanding (operations, finance, statistics). The double-hybrid nature is its strength but requires real engagement with both sides.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCM with balanced Maths + language', titleTa: '+12 PCM 75%+ (கணிதம் + மொழி சமநிலை)', detail: 'CSBS leans on both quantitative AND communication skills more than pure CSE. Strong language scores matter.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech CSBS + parallel business reading', titleTa: 'B.Tech CSBS + வணிக படிப்பு', detail: 'Read one business book per semester (HBR articles, Drucker, Lean Startup). The business curriculum benefits from outside reading.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Consulting / product / MBA — pick one', titleTa: 'ஆலோசனை / தயாரிப்பு / MBA', detail: 'CSBS opens multiple paths. Decide by year 3 based on what you actually enjoyed — tech, business strategy, or product thinking.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Confirm the CSBS program is TCS-tied (where applicable)', titleTa: 'TCS பிணைப்பு உறுதிசெய்', detail: 'TCS-tied CSBS programs typically offer guaranteed interviews. Standalone CSBS programs vary in placement. Confirm before committing.', priority: 'high' },
+      { title: 'Read "The Lean Startup" or similar over summer', titleTa: 'வணிக புத்தகம் படிக்கவும்', detail: 'Understanding how tech companies actually operate is the missing context that makes year 1 business modules click.', priority: 'high' },
+      { title: 'Start Python + spreadsheet basics', titleTa: 'பைதான் + எக்செல்', detail: 'Both are essential. Free courses are enough — comfort by day 1 is the advantage.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Spoken + written English (business communication)', why: 'CSBS roles are communication-intensive. Students who arrive fluent in business English pull ahead of equally-smart classmates who struggle to express ideas.', freeResource: 'BBC Learning English, daily English newspaper editorial reading' },
+      { skill: 'Spreadsheet fluency (advanced Excel)', why: 'Business analyst, consulting and product roles all run on spreadsheets. Strong Excel from year 1 is a career-defining base skill.', freeResource: 'Microsoft Excel free YouTube courses (Leila Gharani, ExcelIsFun)' },
+      { skill: 'Reading how tech companies work', why: 'Builds the business intuition that classroom modules can\'t. 30 minutes a week of business news compounds rapidly.', freeResource: 'The Ken, Mint, Stratechery, Lenny\'s Newsletter (some free)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.E. ROBOTICS & AUTOMATION ────────────────────────────────────────────
+  {
+    id: 'robotics-automation-engineer',
+    family: 'engineering-mechatronics',
+    interestTags: ['engineering', 'tech'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical'],
+    automation: 'human_facing',
+    automationNote: 'Robotics engineers design the systems that automate other industries — among the most automation-resilient engineering roles. India\'s manufacturing automation push (Make in India, Industry 4.0) drives sustained demand.',
+    title: 'B.E. Robotics & Automation Engineer',
+    titleTa: 'பி.இ. ரோபோடிக்ஸ் மற்றும் தானியங்கி பொறியியல்',
+    icon: '🦾',
+    color: 'from-orange-500 to-red-600',
+    whatIsIt:
+      'A four-year B.E. focused on robot systems, control engineering, industrial automation, computer vision and AI-driven robotics. Distinct from Mechatronics: more emphasis on autonomous systems, machine learning for robotics, software-control over mechanical-systems integration. Career outcomes: robotics engineer, automation engineer, industrial controls specialist, robotics R&D roles.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.E. Robotics & Automation', 'B.Tech Robotics & Automation Engineering'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year degree. Placement strong at automation-focused manufacturing firms (automotive, electronics assembly, FMCG). Robotics-specific roles at startups and R&D centres also growing.',
+    skillWeights: { mathematics: 8, language: 4, science: 6, creativity: 7, people: 4, physical: 3, digital: 9 },
+    priorityFit: { salary: 7, security: 7, balance: 5, abroad: 8, prestige: 7, passion: 8, growth: 8, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3.5–6 LPA fresh in TN manufacturing/automation roles; ₹5–9 LPA at automation-focused tech firms and robotics startups.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA after 7+ years for specialised robotics engineers. Abroad opportunities (US, Japan, Germany) multiply substantially because robotics is a global specialty.',
+      note: 'Pays in the upper-middle of engineering tracks. The earnings ceiling rises sharply with deep specialisation (computer vision, autonomous systems, surgical robotics).',
+    },
+    demand: { score: 8, note: 'AI estimate — strong and structurally growing. India\'s Industry 4.0 push and global automation trend create sustained demand. TN has automotive (Chennai cluster) and electronics manufacturing concentrations.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — direct TNEA admission. Robotics programs are less common than CSE or general mechanical, so seats are limited but cutoffs are moderate.' },
+    collegeTiers: [
+      { label: 'Top Robotics programs (AI estimate)', examples: ['Anna University MIT', 'PSG Tech Coimbatore', 'Sastra University', 'SRM University'], cutoffGuide: 'AI estimate — TNEA cutoff 180-195 typical.', feeRange: 'AI estimate — ₹60K–2.5L / year' },
+      { label: 'Strong private engineering colleges (AI estimate)', examples: ['VIT (via VITEEE)', 'Hindustan Institute', 'Kongu Engineering College', 'SSN College'], cutoffGuide: 'AI estimate — TNEA cutoff 165-185.', feeRange: 'AI estimate — ₹1.5L–3.5L / year' },
+      { label: 'Other TN colleges with Robotics specialisation (AI estimate)', examples: ['Growing number; verify program quality per college'], cutoffGuide: 'AI estimate — TNEA cutoff 150-175 typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.E. Robotics & Automation in TN costs roughly ₹2L–14L total. Hands-on programs with actual robotics labs (not just classroom theory) cost more but produce stronger graduates.',
+    backupOptions: ['M.Tech Robotics / Control Systems', 'Move abroad — strong demand in US, Japan, Germany, Korea', 'Pivot to general mechatronics or industrial automation roles', 'Robotics startups and R&D (Asimov Robotics, Difacto, GreyOrange, Addverb)', 'PLC / SCADA programming roles in industry'],
+    honestCaveat: 'Robotics is hands-on AND software-heavy. Students who joined imagining only "cool robots" find the deep maths (control theory, kinematics), the long debugging cycles, and the project work demanding. Students who genuinely enjoy building things AND coding thrive. The hands-on lab work is essential — choose a college with real robotics labs, not just curriculum on paper.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCM', titleTa: '+12 PCM 70%+', detail: 'TNEA / JEE Main entry. Strong Maths + Physics matter more than Chemistry for robotics.', window: 'Now', phase: 'now' },
+      { title: 'Join B.E. Robotics & active project work + ROS/Arduino', titleTa: 'B.E. ரோபோடிக்ஸ் + திட்டங்கள்', detail: 'Build personal projects from year 1 — Arduino, ROS (Robot Operating System), basic computer vision. Coursework alone is not enough.', window: 'Years 1–4', phase: 'next' },
+      { title: 'M.Tech, abroad, OR robotics startup', titleTa: 'M.Tech / வெளிநாடு / தொடக்க நிறுவனம்', detail: 'Indian robotics startups (GreyOrange, Difacto, Addverb) and abroad M.Tech are the strongest paths into specialised work.', window: 'Years 4–7', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Confirm the program has actual robotics labs', titleTa: 'ரோபோடிக்ஸ் ஆய்வகங்கள் உள்ளனவா?', detail: 'Some colleges teach robotics on paper without serious lab work. Visit or ask current students. Hands-on time matters enormously here.', priority: 'high' },
+      { title: 'Start an Arduino starter kit over summer', titleTa: 'Arduino தொடக்க கருவி', detail: 'A ₹2-3K starter kit teaches more in 2 weeks than 1 semester of theory alone. Build small projects — LED patterns, sensor readings, simple motors.', priority: 'high' },
+      { title: 'Watch ROS (Robot Operating System) intro tutorials', titleTa: 'ROS அறிமுகம்', detail: 'ROS is the dominant robotics software framework. Familiarity before year 1 puts you ahead of classmates who first see it in year 3.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Mathematics — calculus + linear algebra (for kinematics)', why: 'Robot motion is fundamentally calculus and linear algebra. Students with strong fundamentals in these breeze through kinematics; students without struggle for years.', freeResource: '3Blue1Brown YouTube (linear algebra, calculus), Khan Academy' },
+      { skill: 'Hands-on tinkering with Arduino / electronics kits', why: 'The single highest-ROI preparation. Practical comfort with sensors, motors and microcontrollers transforms year 1 from confusing to obvious.', freeResource: 'Arduino starter kit (~₹2-3K) + free Paul McWhorter YouTube tutorials' },
+      { skill: 'Python programming (especially with NumPy)', why: 'Robotics increasingly runs on Python — ROS bindings, computer vision (OpenCV), ML libraries. Strong Python from year 1 is essential.', freeResource: 'freeCodeCamp Python, Real Python tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.TECH CYBER SECURITY ─────────────────────────────────────────────────
+  {
+    id: 'btech-cybersecurity',
+    family: 'tech-cybersecurity',
+    interestTags: ['tech', 'govt'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long'],
+    automation: 'human_facing',
+    automationNote: 'Cyber security is inherently adversarial — attackers innovate continuously, requiring human creativity to defend. Among the most automation-resilient tech roles. India\'s data-protection laws (DPDP Act) and corporate cyber spend create sustained demand.',
+    title: 'B.Tech Cyber Security',
+    titleTa: 'பி.டெக் இணைய பாதுகாப்பு',
+    icon: '🔒',
+    color: 'from-slate-700 to-zinc-800',
+    whatIsIt:
+      'A four-year B.Tech specialising in network security, cryptography, ethical hacking, digital forensics, secure software development, and security operations. Distinct from general CSE: graduates are trained from year 1 in offensive security thinking, defensive architecture, and the legal/compliance side of cyber. Career outcomes: security analyst, penetration tester, SOC engineer, security consultant, government / defence cyber roles.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['102', '101'],
+    ugCourses: ['B.Tech Cyber Security', 'B.Tech Information Security', 'B.E. Cyber Security & Forensics'],
+    entranceExams: ['TNEA', 'JEE Main'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 4-year B.Tech. Strong placement at security firms, banks, IT services security divisions, and growing government cyber agencies. Certifications (CEH, OSCP, CISSP later) significantly boost earnings.',
+    skillWeights: { mathematics: 8, language: 6, science: 6, creativity: 7, people: 5, physical: 1, digital: 9 },
+    priorityFit: { salary: 8, security: 8, balance: 6, abroad: 7, prestige: 7, passion: 8, growth: 9, hometown: 7 },
+    competitiveBoardPct: { comfortable: 80, stretch: 70 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹4–8 LPA fresh at TN security firms and IT services; ₹6–12 LPA at top corporate security teams (banks, fintech, MNCs). Certifications fast-track this.',
+      midCareerLPA: 'AI estimate — ₹15–35 LPA after 7+ years for skilled penetration testers, security architects, and CISO-track professionals. Abroad opportunities pay dramatically more — cyber is a global specialty.',
+      note: 'Among the strongest mid-career trajectories in tech because trained security professionals are in chronic shortage. Specialisation (cloud security, application security, OT/IoT security) multiplies earnings further.',
+    },
+    demand: { score: 9, note: 'AI estimate — extreme demand. India\'s DPDP Act enforcement, rising ransomware threats, and corporate cyber budgets create a chronic shortage of trained security professionals at every level.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — competitive but the program is newer than CSE. Top cyber security programs at PSG, SRM, VIT etc. have rising cutoffs but seats are widely available.' },
+    collegeTiers: [
+      { label: 'Top cyber security programs (AI estimate)', examples: ['Anna University MIT', 'PSG Tech Coimbatore', 'SRM University', 'SSN College'], cutoffGuide: 'AI estimate — TNEA cutoff 185-195 typical.', feeRange: 'AI estimate — ₹80K–2.5L / year' },
+      { label: 'Strong private colleges (AI estimate)', examples: ['VIT (via VITEEE)', 'Sastra University', 'Hindustan Institute', 'Kongu Engineering College'], cutoffGuide: 'AI estimate — TNEA cutoff 170-185.', feeRange: 'AI estimate — ₹1.5L–3.5L / year' },
+      { label: 'Other TN colleges with Cyber Security tracks (AI estimate)', examples: ['Growing number of Anna University affiliated colleges'], cutoffGuide: 'AI estimate — TNEA cutoff 160-180 typical.', feeRange: 'AI estimate — ₹80K–2L / year' },
+    ],
+    costReality: 'AI estimate — a 4-year B.Tech Cyber Security in TN costs roughly ₹3L–14L total. Certifications during/after the degree (CEH, OSCP, Security+) cost additional ₹15K–80K but materially boost placement outcomes.',
+    backupOptions: ['Industry certifications (CEH, OSCP, Security+) — bypass college brand to some extent', 'Government / defence cyber roles (CDAC, NIC, ISRO, defence research)', 'M.Tech / MS in Information Security', 'Move abroad — extreme demand in US, UK, EU, Australia', 'Bug bounty hunting (legitimate side income / portfolio building)'],
+    honestCaveat: 'Cyber security rewards students who enjoy puzzle-solving, are persistent (debugging exploits takes hours), and can think adversarially — "how would someone misuse this?" Students who picked it because "hacking sounds cool" without that pull usually find the actual work — log analysis, policy compliance, incident reports — surprisingly tedious. The exciting parts (penetration testing, exploit research) are a small fraction of most jobs. Be honest about whether you find the boring parts interesting too.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCM', titleTa: '+12 PCM 75%+', detail: 'TNEA / JEE Main entry. Strong Maths + curiosity about systems matter more than any one subject.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Tech Cyber Security + active CTF participation', titleTa: 'B.Tech இணைய பாதுகாப்பு + CTF', detail: 'Capture-the-Flag competitions are the standard way security students build real skill. Free platforms (TryHackMe, HackTheBox, PicoCTF) — start in year 1.', window: 'Years 1–4', phase: 'next' },
+      { title: 'Industry certs + first security role', titleTa: 'சான்றிதழ்கள் + வேலை', detail: 'CEH (entry), OSCP (technical). One cert during the degree typically lifts placement salary by 30-50%.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Try TryHackMe / PicoCTF free over the summer', titleTa: 'TryHackMe / PicoCTF', detail: 'Both are free platforms with beginner-friendly cyber security puzzles. A few hours weekly tells you whether the work suits you BEFORE committing 4 years.', priority: 'high', link: 'https://tryhackme.com' },
+      { title: 'Read "The Cuckoo\'s Egg" or "Sandworm"', titleTa: 'புத்தகம் படிக்கவும்', detail: 'Classic real-world cyber security narratives. Builds the mindset before formal coursework.', priority: 'high' },
+      { title: 'Start Linux command-line basics', titleTa: 'லினக்ஸ் கட்டளை வரி', detail: 'Almost all cyber security work happens on Linux. Comfort with the terminal before year 1 is a major advantage.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Linux command-line fluency', why: 'The basic working environment for nearly all security work. Comfort with the terminal makes year 1 dramatically easier.', freeResource: 'OverTheWire Bandit (free Linux puzzle game), LinuxJourney free course' },
+      { skill: 'Networking fundamentals (TCP/IP, DNS, HTTP)', why: 'You cannot secure what you do not understand. Strong networking fundamentals from year 1 compound through every course.', freeResource: 'Computer Networking from the Ground Up (Coursera, audit free), free Cisco Networking Academy intro modules' },
+      { skill: 'Python programming + basic scripting', why: 'Security tooling is heavily Python — automation scripts, exploit prototypes, log analysis. Strong Python is a working necessity.', freeResource: 'freeCodeCamp Python, Automate the Boring Stuff with Python (free online)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
