@@ -44,8 +44,15 @@ import CareerPivotCard from './CareerPivotCard';
 import { generateCareerPredictorPDF } from './generateCareerPredictorPDF';
 
 interface ResultsDashboardProps {
-  /** Ranked matches from the deterministic scoring engine */
+  /** Ranked matches from the deterministic scoring engine (combined list — used for activeId, share, save). */
   matches: CareerMatch[];
+  /**
+   * Phase 0 (May 2026): family-de-duplicated split. If omitted (e.g. on
+   * localStorage restore from a pre-Phase-0 saved result), the dashboard
+   * derives the split itself from `matches` using the family field.
+   */
+  topMatches?: CareerMatch[];
+  discoveryMatches?: CareerMatch[];
   /** Optional warm narrative from the AI layer (presentation only) */
   narrative?: string;
   /** Optional per-career one-liners from the AI layer, keyed by career title */
@@ -78,6 +85,8 @@ const bandLabel: Record<CareerMatch['band'], string> = {
 
 export const ResultsDashboard = ({
   matches,
+  topMatches: topMatchesProp,
+  discoveryMatches: discoveryMatchesProp,
   narrative,
   perCareerNotes,
   narrativeDegraded,
@@ -128,8 +137,64 @@ export const ResultsDashboard = ({
     );
   }
 
-  const top3 = matches.slice(0, 3);
-  const rest = matches.slice(3);
+  /**
+   * Family-de-duplicated split for the Top Matches + Worth a Look sections.
+   *
+   * If the caller passed topMatches / discoveryMatches (the normal Phase 0+
+   * path from AICareerPredictor.tsx), use them directly.
+   *
+   * Otherwise (e.g. localStorage restore from a pre-Phase-0 saved result),
+   * derive the split here by bucketing `matches` by the `family` field on
+   * each pathway. Pathways with no family act as singleton families.
+   *
+   * The "rest" collapsible (existing UI for additional same-family options)
+   * is preserved — it now expands to show the secondary family members so a
+   * student curious about other B.Com tracks (after one is featured in Top)
+   * can still reach all of them without the family taking 5 slots up top.
+   */
+  const familyKey = (m: CareerMatch) =>
+    m.pathway.family ?? `__singleton_${m.pathway.id}`;
+
+  let topMatches: CareerMatch[];
+  let discoveryMatches: CareerMatch[];
+  let restWithinFamilies: CareerMatch[];
+
+  if (topMatchesProp && topMatchesProp.length > 0) {
+    // Caller-provided split (the normal path).
+    topMatches = topMatchesProp;
+    discoveryMatches = discoveryMatchesProp ?? [];
+    const featuredKeys = new Set(
+      [...topMatches, ...discoveryMatches].map(familyKey),
+    );
+    const featuredIds = new Set(
+      [...topMatches, ...discoveryMatches].map((m) => m.pathway.id),
+    );
+    // Secondary family members: same family as a featured card but a
+    // different pathway. These are what the collapsible reveals.
+    restWithinFamilies = matches.filter(
+      (m) => featuredKeys.has(familyKey(m)) && !featuredIds.has(m.pathway.id),
+    );
+  } else {
+    // Fallback: re-derive the split from matches alone.
+    const byFamily = new Map<string, CareerMatch[]>();
+    for (const m of matches) {
+      const k = familyKey(m);
+      if (!byFamily.has(k)) byFamily.set(k, []);
+      byFamily.get(k)!.push(m);
+    }
+    const familyLeaders = Array.from(byFamily.values()).map((arr) => arr[0]);
+    familyLeaders.sort((a, b) => b.score - a.score);
+    topMatches = familyLeaders.slice(0, 5);
+    const topFamilyKeys = new Set(topMatches.map(familyKey));
+    discoveryMatches = familyLeaders
+      .filter((m) => !topFamilyKeys.has(familyKey(m)))
+      .slice(0, 5);
+    const featuredIds = new Set(
+      [...topMatches, ...discoveryMatches].map((m) => m.pathway.id),
+    );
+    restWithinFamilies = matches.filter((m) => !featuredIds.has(m.pathway.id));
+  }
+
   const activeMatch =
     matches.find((m) => m.pathway.id === activeId) ?? matches[0];
 
@@ -320,14 +385,15 @@ export const ResultsDashboard = ({
 
             <h2 className="mb-2 flex items-center gap-2 text-lg font-bold">
               <Trophy className="h-5 w-5 text-amber-500" />
-              Your Top Matches
+              Top Matches
             </h2>
             <p className="mb-3 text-[13px] text-muted-foreground">
-              Tap any career to see its full breakdown.
+              The best fit per career family for your profile. Tap any to see
+              the full breakdown.
             </p>
 
             <div className="space-y-2.5">
-              {top3.map((match, index) => (
+              {topMatches.map((match, index) => (
                 <motion.div
                   key={match.pathway.id}
                   variants={itemVariants}
@@ -340,26 +406,61 @@ export const ResultsDashboard = ({
               ))}
             </div>
 
-            {/* Remaining matches */}
-            {rest.length > 0 && (
+            {/* "Worth a Look" — next-best family-leaders that didn't make Top.
+                This is where niche / less-mainstream careers surface for
+                students who would otherwise never see them. Hidden entirely
+                when empty so the dashboard stays clean for narrow profiles. */}
+            {discoveryMatches.length > 0 && (
+              <>
+                <h2 className="mb-2 mt-6 flex items-center gap-2 text-lg font-bold">
+                  <Sparkles className="h-5 w-5 text-violet-500" />
+                  Worth a Look
+                </h2>
+                <p className="mb-3 text-[13px] text-muted-foreground">
+                  Less-mainstream paths your profile also fits — sometimes the
+                  best career is one you didn't know to ask about.
+                </p>
+                <div className="space-y-2.5">
+                  {discoveryMatches.map((match, index) => (
+                    <motion.div
+                      key={match.pathway.id}
+                      variants={itemVariants}
+                      initial="initial"
+                      animate="animate"
+                      transition={{ delay: index * 0.08 }}
+                    >
+                      <MatchRow
+                        match={match}
+                        index={topMatches.length + index}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* Within-family secondary cards — e.g. other B.Com tracks when
+                B.Com General is featured. Lets students reach every member
+                of a family without the family monopolising the Top section. */}
+            {restWithinFamilies.length > 0 && (
               <Collapsible open={showAll} onOpenChange={setShowAll}>
                 <CollapsibleTrigger asChild>
-                  <Button variant="outline" className="mt-2.5 w-full gap-2">
+                  <Button variant="outline" className="mt-3 w-full gap-2">
                     <ChevronDown
                       className={`h-4 w-4 transition-transform ${showAll ? 'rotate-180' : ''}`}
                     />
                     {showAll
-                      ? 'Hide other options'
-                      : `See ${rest.length} more option${rest.length > 1 ? 's' : ''}`}
+                      ? 'Hide other options in these families'
+                      : `See ${restWithinFamilies.length} other option${restWithinFamilies.length > 1 ? 's' : ''} in these families`}
                   </Button>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="mt-2.5 space-y-2.5">
-                    {rest.map((match, i) => (
+                    {restWithinFamilies.map((match, i) => (
                       <MatchRow
                         key={match.pathway.id}
                         match={match}
-                        index={top3.length + i}
+                        index={topMatches.length + discoveryMatches.length + i}
                       />
                     ))}
                   </div>

@@ -27,6 +27,7 @@ import type { Stream, SkillId, PriorityId } from '@/data/careerPathways';
 import {
   topCareerMatches,
   topCareerMatchesWithPivot,
+  topCareerMatchesWithDiscovery,
   type StudentProfile,
   type CareerMatch,
 } from '@/lib/careerScoring';
@@ -131,6 +132,15 @@ const AICareerPredictor = () => {
   // Results
   const [isLoading, setIsLoading] = useState(false);
   const [matches, setMatches] = useState<CareerMatch[]>([]);
+  /**
+   * Phase 0 (May 2026): family-de-duplicated split.
+   * - topMatches: family-diverse top section ("Top Matches")
+   * - discoveryMatches: next-best family-leaders ("Worth a Look")
+   * The combined list is also stored in `matches` for activeId lookups,
+   * share text, and localStorage compatibility.
+   */
+  const [topMatches, setTopMatches] = useState<CareerMatch[]>([]);
+  const [discoveryMatches, setDiscoveryMatches] = useState<CareerMatch[]>([]);
   const [narrative, setNarrative] = useState<string>('');
   const [perCareerNotes, setPerCareerNotes] = useState<Record<string, string>>(
     {},
@@ -256,9 +266,19 @@ const AICareerPredictor = () => {
 
     // 1) DETERMINISTIC ENGINE — this is the source of truth and never fails.
     const profile = buildProfile();
-    const { matches: computed, filteredAspiration: aspiration } =
-      topCareerMatchesWithPivot(profile, 5);
+    const {
+      topMatches: tops,
+      discoveryMatches: discoveries,
+      filteredAspiration: aspiration,
+    } = topCareerMatchesWithDiscovery(profile, 5, 5);
+    // The combined list is what activeId lookups, share text, and saved
+    // results use. Top section is rendered from `tops`; Worth a Look from
+    // `discoveries`. Putting tops first preserves the dashboard's default
+    // activeMatch behaviour (open the #1 best fit first).
+    const computed = [...tops, ...discoveries];
     setMatches(computed);
+    setTopMatches(tops);
+    setDiscoveryMatches(discoveries);
     setFilteredAspiration(aspiration ?? null);
     setLoadingStage(1);
 
@@ -401,6 +421,8 @@ const AICareerPredictor = () => {
   const handleRetake = () => {
     setShowResults(false);
     setMatches([]);
+    setTopMatches([]);
+    setDiscoveryMatches([]);
     setNarrative('');
     setPerCareerNotes({});
     setStep(0);
@@ -416,6 +438,8 @@ const AICareerPredictor = () => {
     return (
       <ResultsDashboard
         matches={matches}
+        topMatches={topMatches}
+        discoveryMatches={discoveryMatches}
         narrative={narrative}
         perCareerNotes={perCareerNotes}
         narrativeDegraded={narrativeDegraded}

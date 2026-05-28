@@ -700,6 +700,87 @@ export function topCareerMatchesWithPivot(
 }
 
 /**
+ * Family-de-duplicated ranking with a separate Discovery section.
+ *
+ * Problem: as the career dataset grows past ~25 entries with multiple
+ * specialisations per family (5 B.Com tracks, 9 Allied Health roles), the
+ * naive top-N starts being dominated by variants of the same career. A
+ * Commerce student's top-5 becomes 5 B.Com tracks; a PCB student's becomes
+ * 5 Allied Health specialisations. That defeats the point of "discovery."
+ *
+ * This function returns two complementary lists:
+ *
+ *   - topMatches: the highest-scoring pathway PER family, sorted by score
+ *     and capped at topN. By construction this is family-diverse — no two
+ *     entries share a family.
+ *
+ *   - discoveryMatches: the next-best family-leaders that did NOT make the
+ *     top list, capped at discoveryN. This is where the niche careers
+ *     surface — students see "Worth a Look" paths they would have missed
+ *     entirely if the engine had ranked variants of one family at the top.
+ *
+ * Pathways without a `family` field are treated as their own singleton
+ * family (their id becomes their family key), so they always get a fair
+ * shot at Top — they only get de-duped if they explicitly share a family
+ * with another pathway.
+ *
+ * This is the entry point Phase 0 uses for the new Results dashboard.
+ * Older callers can keep using topCareerMatches / topCareerMatchesWithPivot.
+ */
+export interface TopMatchesWithDiscoveryResult {
+  topMatches: CareerMatch[];
+  discoveryMatches: CareerMatch[];
+  /** Same semantics as topCareerMatchesWithPivot — preserved for the pivot card. */
+  filteredAspiration?: CareerMatch;
+}
+
+export function topCareerMatchesWithDiscovery(
+  profile: StudentProfile,
+  topN = 5,
+  discoveryN = 5,
+): TopMatchesWithDiscoveryResult {
+  const all = scoreCareers(profile).filter((m) => m.isImmediatePath);
+
+  // Bucket by family. Pathways with no family act as a singleton via their id.
+  const familyKey = (m: CareerMatch) =>
+    m.pathway.family ?? `__singleton_${m.pathway.id}`;
+
+  const byFamily = new Map<string, CareerMatch[]>();
+  for (const m of all) {
+    const k = familyKey(m);
+    if (!byFamily.has(k)) byFamily.set(k, []);
+    byFamily.get(k)!.push(m);
+  }
+
+  // Each family's first entry is its highest-scoring member (scoreCareers
+  // returned them sorted by score already).
+  const familyLeaders = Array.from(byFamily.values()).map((arr) => arr[0]);
+  familyLeaders.sort((a, b) => b.score - a.score);
+
+  const topMatches = familyLeaders.slice(0, topN);
+  const topFamilyKeys = new Set(topMatches.map(familyKey));
+
+  const discoveryMatches = familyLeaders
+    .filter((m) => !topFamilyKeys.has(familyKey(m)))
+    .slice(0, discoveryN);
+
+  // Same filteredAspiration logic as the pivot helper, kept here so callers
+  // can use a single function for everything the dashboard needs.
+  let filteredAspiration: CareerMatch | undefined;
+  if (profile.aversions && profile.aversions.length > 0) {
+    const aversionSet = new Set(profile.aversions);
+    const unfiltered = scoreCareers({ ...profile, aversions: undefined })
+      .filter((m) => m.isImmediatePath);
+    filteredAspiration = unfiltered.find((m) => {
+      const conflicts = m.pathway.aversionConflicts ?? [];
+      return conflicts.some((t) => aversionSet.has(t));
+    });
+  }
+
+  return { topMatches, discoveryMatches, filteredAspiration };
+}
+
+/**
  * A human-readable, one-paragraph explanation of HOW the engine works.
  * Surfaced in the UI so students (and reviewers) can see the method, not just
  * the number. Transparency is the point.
