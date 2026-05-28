@@ -88,6 +88,30 @@ export type EntranceExam =
   | 'CA Foundation'
   | 'None (direct admission)';
 
+/**
+ * InterestId — the 12 interest categories the wizard's Step 3 asks the
+ * student to pick from. Each career carries an `interestTags` array of
+ * these ids so interest matching is explicit (not a brittle keyword
+ * search over the career's prose). See `scoreInterestMatch` in
+ * src/lib/careerScoring.ts for the math.
+ *
+ * Source of truth for labels lives in InterestAssessment.tsx — keep
+ * these two in sync if the wizard's interest list ever changes.
+ */
+export type InterestId =
+  | 'tech'
+  | 'healthcare'
+  | 'finance'
+  | 'design'
+  | 'research'
+  | 'govt'
+  | 'travel'
+  | 'media'
+  | 'engineering'
+  | 'law'
+  | 'environment'
+  | 'education';
+
 
 export interface RoadmapStage {
   /** Short title, e.g. "Score 90%+ in Board exams" */
@@ -142,6 +166,19 @@ export interface CareerPathway {
    * the top selection if scored high enough).
    */
   family?: CareerFamily;
+
+  /**
+   * Interest tags — the wizard interest IDs this career genuinely aligns
+   * with. Drives the dedicated 8-point interest-match scoring component
+   * (Phase 0.5, May 2026). Optional during the transition; pathways
+   * without tags get a neutral half-credit on the component (so they are
+   * not punished, but they also do not benefit from interest signal).
+   *
+   * Rule of thumb: 1-3 tags per career. List the interests a student who
+   * picked them would genuinely be excited by this career — not every
+   * tag that could remotely apply. Over-tagging makes the signal noise.
+   */
+  interestTags?: InterestId[];
 
   // ─── ELIGIBILITY ───────────────────────────────────────────────────────────
   /** Streams from which this career is directly reachable after 12th */
@@ -351,6 +388,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'software-engineer',
     family: 'tech-software',
+    interestTags: ['tech', 'engineering'],
     aversionConflicts: ['sitting_long'],
     automation: 'ai_augmented',
     automationNote: 'AI tools handle more boilerplate every year, but the work of designing, debugging and shipping real systems still needs strong engineers — your specialisation matters more than ever.',
@@ -534,6 +572,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'doctor-mbbs',
     family: 'healthcare-medical',
+    interestTags: ['healthcare', 'research'],
     aversionConflicts: ['patient_care', 'shift_work', 'high_competition'],
     automation: 'high_human_judgment',
     automationNote: 'AI helps doctors read scans, flag risks and draft notes — but the diagnosis, the call, and the conversation with the patient remain firmly human. One of the most automation-resilient careers.',
@@ -714,6 +753,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'chartered-accountant',
     family: 'commerce-ca-cma',
+    interestTags: ['finance'],
     aversionConflicts: ['paperwork', 'high_competition'],
     automation: 'ai_augmented',
     automationNote: 'Routine book-keeping, reconciliation and basic tax returns are automating fast. Audit judgment, advisory work and complex tax remain firmly human — specialise early.',
@@ -869,6 +909,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'mechanical-engineer',
     family: 'engineering-mechanical',
+    interestTags: ['engineering'],
     aversionConflicts: [],
     automation: 'physical_skilled',
     automationNote: 'Tools change — robotics, CAD, simulation — but the trade of designing and running real physical systems is slow to automate. Demand stays steady in manufacturing, energy and infrastructure.',
@@ -1038,6 +1079,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'nurse',
     family: 'healthcare-nursing',
+    interestTags: ['healthcare'],
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'human_facing',
     automationNote: 'Care of another person is the work — the bedside, the conversation, the watchfulness. AI may handle records and monitors, but it does not replace the nurse.',
@@ -1195,6 +1237,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'lawyer',
     family: 'law',
+    interestTags: ['law', 'govt'],
     aversionConflicts: ['memorisation', 'public_speaking', 'high_competition'],
     automation: 'high_human_judgment',
     automationNote: 'Document review and research are accelerating with AI tools, but arguing in court, drafting strategy and advising clients remain firmly human work. Litigators are particularly safe.',
@@ -1355,6 +1398,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'data-scientist',
     family: 'tech-data',
+    interestTags: ['tech', 'research'],
     aversionConflicts: ['sitting_long', 'maths_heavy'],
     automation: 'ai_augmented',
     automationNote: 'The toolset is changing fastest of any field — AI now writes much of the code and tunes many of the models. The work that endures is asking the right questions and judging whether the model can be trusted.',
@@ -1517,6 +1561,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'pharmacist',
     family: 'healthcare-pharma',
+    interestTags: ['healthcare', 'research'],
     aversionConflicts: ['lab_practical'],
     automation: 'ai_augmented',
     automationNote: 'Dispensing is steadily automating in larger pharmacies, but clinical pharmacy — counselling patients, checking interactions, hospital pharmacy roles — is growing. Specialise toward clinical work.',
@@ -1693,6 +1738,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-general',
     family: 'commerce-bcom',
+    interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork'],
     automation: 'ai_augmented',
@@ -1750,6 +1796,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-computer-applications',
     family: 'commerce-bcom',
+    interestTags: ['finance', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
     automation: 'ai_augmented',
@@ -1807,6 +1854,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-accounting-finance',
     family: 'commerce-bcom',
+    interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork', 'maths_heavy'],
     automation: 'ai_augmented',
@@ -1864,6 +1912,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-banking-insurance',
     family: 'commerce-bcom',
+    interestTags: ['finance', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork', 'shift_work'],
     automation: 'ai_augmented',
@@ -1921,6 +1970,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bcom-financial-marketing-analytics',
     family: 'commerce-bcom',
+    interestTags: ['finance', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['high_competition'],
     automation: 'ai_augmented',
@@ -1978,6 +2028,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'bba-graduate',
     family: 'commerce-bba',
+    interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
     automation: 'ai_augmented',
@@ -2125,6 +2176,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'cost-management-accountant',
     family: 'commerce-ca-cma',
+    interestTags: ['finance'],
     needsCounsellorReview: true,
     aversionConflicts: ['paperwork', 'high_competition'],
     automation: 'ai_augmented',
@@ -2261,6 +2313,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'agriculture-graduate',
     family: 'agriculture',
+    interestTags: ['environment', 'research', 'govt'],
     needsCounsellorReview: true,
     aversionConflicts: ['field_outdoor'],
     automation: 'physical_skilled',
@@ -2410,6 +2463,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ba-english-graduate',
     family: 'arts-language',
+    interestTags: ['education', 'media'],
     needsCounsellorReview: true,
     aversionConflicts: [],
     automation: 'creative_judgment',
@@ -2572,6 +2626,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'electronics-engineer',
     family: 'engineering-electronics',
+    interestTags: ['engineering', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['sitting_long'],
     automation: 'ai_augmented',
@@ -2720,6 +2775,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'civil-engineer',
     family: 'engineering-civil',
+    interestTags: ['engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['field_outdoor'],
     automation: 'physical_skilled',
@@ -2868,6 +2924,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'mechatronics-engineer',
     family: 'engineering-mechatronics',
+    interestTags: ['engineering', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: [],
     automation: 'physical_skilled',
@@ -3028,6 +3085,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'physiotherapist',
     family: 'healthcare-physio',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['patient_care'],
     automation: 'human_facing',
@@ -3189,6 +3247,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'cardiac-technologist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'human_facing',
@@ -3245,6 +3304,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ae-care-technologist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'human_facing',
@@ -3301,6 +3361,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'ot-anaesthesia-technologist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work'],
     automation: 'human_facing',
@@ -3357,6 +3418,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'dialysis-technologist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'human_facing',
@@ -3413,6 +3475,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'physician-assistant',
     family: 'healthcare-allied',
+    interestTags: ['healthcare', 'research'],
     needsCounsellorReview: true,
     aversionConflicts: ['patient_care', 'high_competition'],
     automation: 'high_human_judgment',
@@ -3469,6 +3532,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'respiratory-therapist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'human_facing',
@@ -3525,6 +3589,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'medical-record-scientist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: [],
     automation: 'ai_augmented',
@@ -3581,6 +3646,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'critical-care-technologist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work', 'patient_care'],
     automation: 'high_human_judgment',
@@ -3637,6 +3703,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'radiology-imaging-technologist',
     family: 'healthcare-allied',
+    interestTags: ['healthcare', 'tech'],
     needsCounsellorReview: true,
     aversionConflicts: ['shift_work'],
     automation: 'ai_augmented',
@@ -3693,6 +3760,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
   {
     id: 'biotechnologist',
     family: 'engineering-biotech',
+    interestTags: ['research', 'healthcare', 'engineering'],
     needsCounsellorReview: true,
     aversionConflicts: ['lab_practical'],
     automation: 'ai_augmented',

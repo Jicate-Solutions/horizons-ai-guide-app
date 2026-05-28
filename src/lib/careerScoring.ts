@@ -131,17 +131,37 @@ export function isImmediatePath(pathway: CareerPathway): boolean {
 }
 
 // ─── Weights — fixed and documented ──────────────────────────────────────────
-// These add up to 100. Changing them changes every score, so they live here,
-// named and commented, rather than being scattered as magic numbers.
+// These add up to 96. The remaining 4 points of headroom are reserved for the
+// keyword interest nudge below (a small additive bonus, NOT a core component).
+// Changing any of these changes every score, so they live here, named and
+// commented, rather than being scattered as magic numbers.
+//
+// Phase 0.5 rebalance (May 2026):
+//   skillAlignment    40 → 35  (skills still dominate, but slightly less)
+//   priorityFit       30 → 27  (priorities still strong, slightly tempered)
+//   groupStrength     15 → 13  (group fit still gates eligibility hard)
+//   academicReadiness 15 → 13  (academic still meaningful)
+//   interestMatch      —  → 8  (NEW: explicit interest-tag matching)
+//   keyword nudge      3 → 4   (fallback nudge, additive, see interestNudge)
+//
+// Rationale: without an explicit interest component, a student's Step 3
+// "I'm interested in X" answer only nudged scores by ±3 via brittle keyword
+// matching. The new 8-point interestMatch component reads each career's
+// `interestTags` field directly, so picking 'research' interest substantially
+// lifts every research-tagged career. This is the change that lets niche
+// careers (Forensic Science, AIDS, Aerospace) actually surface for the
+// students whose interests they fit.
 const WEIGHTS = {
   /** How well self-rated skills match what the career actually needs */
-  skillAlignment: 40,
+  skillAlignment: 35,
   /** How well the career delivers on what the student says they value */
-  priorityFit: 30,
+  priorityFit: 27,
   /** Whether the student's 12th group is a strong (not just eligible) fit */
-  groupStrength: 15,
+  groupStrength: 13,
   /** Whether expected marks are realistic for the mainstream pathway */
-  academicReadiness: 15,
+  academicReadiness: 13,
+  /** Whether the career's interest tags match what the student selected */
+  interestMatch: 8,
 } as const;
 
 // Priority rank → importance multiplier. #1 priority counts most.
@@ -377,9 +397,85 @@ function scoreAcademicReadiness(
   };
 }
 
-// ─── Light interest nudge ────────────────────────────────────────────────────
-// Interests are free-form, so they only apply a SMALL, capped bonus when an
-// interest keyword obviously relates to the career. They never dominate.
+// ─── Component 5: Interest match (Phase 0.5) ─────────────────────────────────
+// The explicit interest signal. Each career carries an `interestTags` array
+// listing the wizard interest IDs it genuinely aligns with. We compute the
+// fraction of the student's picked interests that the career covers and
+// award up to WEIGHTS.interestMatch (8) points proportionally.
+//
+// Key properties:
+//   - Honours WHAT the student picked, not what the career "looks like" in
+//     prose. A career tagged ['tech', 'research'] gives full credit to a
+//     student who picked both, partial credit if they only picked one.
+//   - Caps at 1.0 even if the career's tags exceed the student's picks
+//     — picking ONLY 'tech' on a career tagged ['tech', 'engineering']
+//     still earns full credit because the career covers what they care
+//     about.
+//   - Untagged pathways (no `interestTags` field) get a neutral 50%
+//     so they're never penalised for being a legacy/incoming entry. As
+//     of Phase 0.5 all 31 existing careers are tagged; this is a guard
+//     for any new pathway added before its tags are set.
+//   - No interests picked → neutral 50% (so the student is not punished
+//     for skipping the interest step in an unusual flow).
+function scoreInterestMatch(
+  profile: StudentProfile,
+  pathway: CareerPathway,
+): ScoreComponent {
+  const tags = pathway.interestTags ?? [];
+  const interests = profile.interests ?? [];
+
+  // Untagged pathway → neutral half-credit (guard for new entries).
+  if (tags.length === 0) {
+    return {
+      label: 'Interest match',
+      labelTa: 'ஆர்வப் பொருத்தம்',
+      earned: round(WEIGHTS.interestMatch * 0.5),
+      max: WEIGHTS.interestMatch,
+      reason:
+        'This career has not been tagged with interests yet, so this is scored neutrally.',
+    };
+  }
+
+  // Student picked no interests → neutral half-credit.
+  if (interests.length === 0) {
+    return {
+      label: 'Interest match',
+      labelTa: 'ஆர்வப் பொருத்தம்',
+      earned: round(WEIGHTS.interestMatch * 0.5),
+      max: WEIGHTS.interestMatch,
+      reason: 'No interests were picked, so this is scored neutrally.',
+    };
+  }
+
+  const interestSet = new Set(interests);
+  const matches = tags.filter((t) => interestSet.has(t)).length;
+  const fraction = Math.min(1.0, matches / interests.length);
+  const earned = fraction * WEIGHTS.interestMatch;
+
+  const reason =
+    matches === 0
+      ? `None of the interests you picked align with what this career involves — an honest mismatch.`
+      : matches === interests.length
+        ? `Every interest you picked aligns with this career.`
+        : `${matches} of your ${interests.length} interests align with this career.`;
+
+  return {
+    label: 'Interest match',
+    labelTa: 'ஆர்வப் பொருத்தம்',
+    earned: round(earned),
+    max: WEIGHTS.interestMatch,
+    reason,
+  };
+}
+
+// ─── Light interest nudge (secondary signal) ─────────────────────────────────
+// The legacy keyword-matching signal, kept as a small additive bonus alongside
+// the new explicit interestMatch component. Fires when the student's picked
+// interest keyword appears in the career's text (title / what-it-is / UG
+// courses). Capped at +4 in Phase 0.5 (was +3). Useful for pathways whose
+// interestTags don't capture every angle — e.g. a student interested in
+// 'travel' getting a small boost on a career whose description mentions
+// hospitality even if 'travel' isn't an explicit tag.
 function interestNudge(profile: StudentProfile, pathway: CareerPathway): number {
   if (!profile.interests || profile.interests.length === 0) return 0;
   const haystack = (
@@ -395,7 +491,7 @@ function interestNudge(profile: StudentProfile, pathway: CareerPathway): number 
     const key = interest.toLowerCase().split(/[\s_-]+/);
     return key.some((k) => k.length > 3 && haystack.includes(k));
   });
-  return hit ? 3 : 0; // capped at +3, applied after the weighted total
+  return hit ? 4 : 0; // capped at +4, applied after the weighted total
 }
 
 // ─── Life-fit adjustment ─────────────────────────────────────────────────────
@@ -523,12 +619,14 @@ function buildHeadline(
     'Priority fit': `This career delivers on what you said matters most to you.`,
     'Group fit': `Your 12th group is a natural foundation for this path.`,
     'Academic readiness': `Your expected marks put the mainstream route well within reach.`,
+    'Interest match': `This career sits squarely in the areas you said you're interested in.`,
   };
   const headlineTaMap: Record<string, string> = {
     'Skill alignment': `உங்கள் திறன்கள் இந்தத் தொழிலுக்கு நன்றாகப் பொருந்துகின்றன.`,
     'Priority fit': `உங்களுக்கு முக்கியமானதை இந்தத் தொழில் வழங்குகிறது.`,
     'Group fit': `உங்கள் 12-ஆம் வகுப்புக் குழு இந்தப் பாதைக்கு ஏற்றது.`,
     'Academic readiness': `உங்கள் எதிர்பார்க்கப்படும் மதிப்பெண்கள் இந்தப் பாதைக்குப் போதுமானவை.`,
+    'Interest match': `நீங்கள் தேர்ந்தெடுத்த ஆர்வங்களுக்கு இந்தத் தொழில் நெருக்கமாக உள்ளது.`,
   };
 
   const watchOutMap: Record<string, string> = {
@@ -536,6 +634,7 @@ function buildHeadline(
     'Priority fit': `This career may not fully deliver on your top priority — read the reality check before deciding.`,
     'Group fit': `Your group can reach this career, but it is not the most direct route — check the roadmap carefully.`,
     'Academic readiness': `The mainstream route will be competitive at your expected marks — the backup options matter here.`,
+    'Interest match': `The interests you picked don't strongly point at this career — worth asking whether you're considering it for the right reason.`,
   };
 
   return {
@@ -589,9 +688,10 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
     const priority = scorePriorityFit(profile, pathway);
     const group = scoreGroupStrength(profile, pathway);
     const academic = scoreAcademicReadiness(profile, pathway);
+    const interest = scoreInterestMatch(profile, pathway);
     const lifeFit = scoreLifeFit(profile, pathway);
 
-    // The 4 core components sum to 100. Life fit is a separate, transparent
+    // The 5 core components sum to 96. Life fit is a separate, transparent
     // adjustment: its neutral midpoint is 5/10, so (earned - 5) swings the
     // final score by -5..+5 — enough to honestly reorder careers for a
     // student's real situation, never enough to overpower the core match.
@@ -599,8 +699,13 @@ export function scoreCareers(profile: StudentProfile): CareerMatch[] {
 
     // Breakdown shows every component, including life fit, so the student
     // (or a reviewer) can see exactly why the number is what it is.
-    const breakdown = [skill, priority, group, academic, lifeFit];
-    const base = skill.earned + priority.earned + group.earned + academic.earned;
+    const breakdown = [skill, priority, group, academic, interest, lifeFit];
+    const base =
+      skill.earned +
+      priority.earned +
+      group.earned +
+      academic.earned +
+      interest.earned;
     const nudge = interestNudge(profile, pathway);
     const score = clamp(round(base + nudge + lifeFitAdjustment), 5, 99);
 
@@ -786,6 +891,6 @@ export function topCareerMatchesWithDiscovery(
  * the number. Transparency is the point.
  */
 export const SCORING_METHODOLOGY = {
-  en: `Every match score is calculated, not guessed. We compare your self-rated skills against what each career actually needs (40%), how well the career delivers on the priorities you ranked (30%), whether your 12th group is a strong foundation for it (15%), and whether your expected marks make the mainstream route realistic (15%). On top of that, a small "life fit" adjustment reflects your real situation — how soon you need to earn, and whether you are the first in your family at college — because a career that does not fit your life is not a good recommendation, however well it matches your skills. Careers your 12th group cannot lead to are never shown. Careers that need a completed degree first — like the civil services or a government teaching post — are shown separately as "longer paths to plan for", never mixed in with courses you can join right after 12th. The same answers always give the same result.`,
-  ta: `ஒவ்வொரு பொருத்த மதிப்பெண்ணும் ஊகிக்கப்படவில்லை — கணக்கிடப்படுகிறது. உங்கள் திறன்கள் (40%), உங்கள் முன்னுரிமைகள் (30%), உங்கள் 12-ஆம் வகுப்புக் குழு (15%), மற்றும் எதிர்பார்க்கப்படும் மதிப்பெண்கள் (15%) ஆகியவற்றுடன், உங்கள் உண்மையான சூழ்நிலையை (எவ்வளவு விரைவில் சம்பாதிக்க வேண்டும் என்பது போன்றவை) பிரதிபலிக்கும் சிறிய "வாழ்க்கைப் பொருத்தம்" சரிசெய்தலும் சேர்க்கப்படுகிறது. உங்கள் குழுவால் அடைய முடியாத தொழில்கள் காட்டப்படாது. முதலில் பட்டப்படிப்பு தேவைப்படும் தொழில்கள் தனியாகக் காட்டப்படும்.`,
+  en: `Every match score is calculated, not guessed. We compare your self-rated skills against what each career actually needs (35%), how well the career delivers on the priorities you ranked (27%), whether your 12th group is a strong foundation for it (13%), whether your expected marks make the mainstream route realistic (13%), and how well the career sits in the interest areas you picked (8%). A small "life fit" adjustment then reflects your real situation — how soon you need to earn, and whether you are the first in your family at college — because a career that does not fit your life is not a good recommendation, however well it matches your skills. Careers your 12th group cannot lead to are never shown. The same answers always give the same result.`,
+  ta: `ஒவ்வொரு பொருத்த மதிப்பெண்ணும் ஊகிக்கப்படவில்லை — கணக்கிடப்படுகிறது. உங்கள் திறன்கள் (35%), உங்கள் முன்னுரிமைகள் (27%), உங்கள் 12-ஆம் வகுப்புக் குழு (13%), எதிர்பார்க்கப்படும் மதிப்பெண்கள் (13%), மற்றும் நீங்கள் தேர்ந்தெடுத்த ஆர்வங்கள் (8%) ஆகியவை சேர்ந்து மதிப்பெண்ணை உருவாக்குகின்றன. கூடுதலாக, "வாழ்க்கைப் பொருத்தம்" சரிசெய்தலும் சேர்க்கப்படுகிறது. உங்கள் குழுவால் அடைய முடியாத தொழில்கள் காட்டப்படாது.`,
 };
