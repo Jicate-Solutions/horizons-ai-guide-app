@@ -1304,7 +1304,7 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       'Advise clients, argue cases and work with the law — in courts, companies or government. Entered via a 5-year integrated law degree right after 12th.',
     eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
     strongGroupCodes: ['304', '404', '305'],
-    ugCourses: ['BA LLB (5-year integrated)', 'BBA LLB', 'B.Com LLB', 'LLB (after any degree)'],
+    ugCourses: ['BA LLB (5-year integrated)', 'BBA LLB (5-year integrated)', 'B.Com LLB (5-year integrated)', 'B.Sc LLB (5-year integrated)', 'BCA LLB (5-year integrated)'],
     entranceExams: ['CLAT', 'CUET'],
     pathwayType: 'direct-after-12th',
     timeToCareer:
@@ -6218,6 +6218,317 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Mathematics — linear algebra + probability + statistics', why: 'The deep foundation of all data science. Students who arrive comfortable with these are dramatically more productive in years 1-3.', freeResource: '3Blue1Brown YouTube, Khan Academy, MIT OpenCourseWare 18.01 + 18.05' },
       { skill: 'Python + Pandas + NumPy', why: 'The working tools of data science. Fluency from day 1 means you focus on the data analysis, not the syntax.', freeResource: 'freeCodeCamp Python, Pandas official tutorials, Real Python free articles' },
       { skill: 'Kaggle learning + competition exposure', why: 'Kaggle is the platform where data science skills are visibly demonstrated. Even completing free beginner tutorials builds the right habits.', freeResource: 'Kaggle Learn (free), free Kaggle competition writeups, Titanic competition for beginners' },
+    ],
+    lastReviewed: '2026-05',
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 10 (Phase 4): 5-YEAR INTEGRATED LAW PATHWAYS ────────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Five 5-year integrated LL.B variants, all directly-after-12th routes.
+  //
+  // CRITICAL ELIGIBILITY GATE: 3-year LL.B is a POST-GRADUATE program. It is
+  // NOT a valid route for 12th-standard profiles. Only the 5-year integrated
+  // programs appear here, and the existing `lawyer` entry has been cleaned
+  // up (this commit) to remove its outdated "LLB (after any degree)" UG
+  // course reference.
+  //
+  // All five entries share the existing `law` family with the generic
+  // `lawyer` entry — they dedup via family, surfacing the best-fit law track
+  // for each student. A STEM student sees B.Sc LL.B or BCA LL.B in Top; an
+  // Arts student sees B.A. LL.B; a Commerce student sees B.Com LL.B.
+  //
+  // isNiche split (per user's explicit Phase 4 rule):
+  //   - B.A. LL.B, B.Com LL.B, BBA LL.B → mainstream (isNiche: false)
+  //   - B.Sc LL.B, BCA LL.B             → niche (isNiche: true)
+  //     The two niche tracks will surface in Worth a Look for STEM
+  //     students whose best-fit family-leader didn't win a Top slot.
+
+  // ─── B.A. LL.B. (5-year integrated) ────────────────────────────────────────
+  {
+    id: 'ba-llb-integrated',
+    family: 'law',
+    isNiche: false,
+    interestTags: ['law', 'govt'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'public_speaking', 'high_competition'],
+    automation: 'high_human_judgment',
+    automationNote: 'Litigation, civil services, and judiciary work involve contextual human judgement under legal accountability — among the most automation-resilient career paths. AI accelerates research and document review; the argument, advocacy, and adjudication remain firmly human.',
+    title: 'B.A. LL.B. (5-Year Integrated)',
+    titleTa: 'பி.ஏ. LL.B. (5 ஆண்டு ஒருங்கிணைந்த)',
+    icon: '⚖️',
+    color: 'from-amber-700 to-stone-800',
+    whatIsIt:
+      'A five-year integrated law degree combining humanities subjects (political science, sociology, history, economics) with core law subjects (constitutional, criminal, civil, contract, family law). The dominant 5-year LL.B variant in India. Best-suited for students aiming at litigation, judiciary (after judicial services exam), civil services (UPSC + criminal-law option), legal academia, human rights work, and public-interest law. Career outcomes: litigation practice in district / High Court / Supreme Court, judiciary (judicial services exam), UPSC civil services, legal academia, public-policy / human-rights NGOs, government legal posts.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '405', '301'],
+    ugCourses: ['B.A. LL.B. (Hons.) — 5-year integrated', 'B.A. LL.B. (General) — 5-year integrated'],
+    entranceExams: ['CLAT', 'AILET', 'TNDALU counselling', 'LSAT India'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 5-year integrated degree. After graduation, Bar Council enrollment + (typically) 1-2 years of junior work in a litigation chamber before independent practice. Judiciary route adds 1-2 years of judicial services exam preparation.',
+    skillWeights: { mathematics: 3, language: 9, science: 2, creativity: 7, people: 8, physical: 2, digital: 4 },
+    priorityFit: { salary: 5, security: 6, balance: 4, abroad: 5, prestige: 8, passion: 9, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh as junior in litigation chamber (the standard apprenticeship route); ₹6–12 LPA fresh at top corporate law firms (for top NLU / top tier graduates); ₹4–7 LPA fresh in govt legal posts. The variance is exceptionally wide based on college tier.',
+      midCareerLPA: 'AI estimate — ₹12–40+ LPA after 7+ years for established litigators with strong client base; ₹20–80+ LPA for senior associates / partners at top corporate law firms; ₹10–20 LPA for judicial services officers (with security and pension). Litigation income at senior levels can be exceptional but is highly variable.',
+      note: 'Earnings trajectory is unusually variable — top NLU graduates at tier-1 corporate firms enter at 5x what district-court juniors earn. The judicial services route offers exceptional security and respect with predictable income. Litigation rewards persistence; the first 5 years are typically lean.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady demand. India\'s legal market is structurally large (1.5+ million lawyers); top corporate law firms hire selectively; judiciary expansion (subordinate courts) creates sustained recruitment.' },
+    entryDifficulty: { score: 7, note: 'AI estimate — CLAT (top NLUs) is highly competitive; TNDALU and state-level admissions accessible; private law college admission widely available with moderate marks.' },
+    collegeTiers: [
+      { label: 'National Law Universities (NLUs) — top tier via CLAT (AI estimate)', examples: ['NLSIU Bangalore (top NLU)', 'NALSAR Hyderabad', 'NLU Delhi (via AILET)', 'NLUJ Jodhpur', 'WBNUJS Kolkata'], cutoffGuide: 'AI estimate — CLAT rank under 200 for top NLUs.', feeRange: 'AI estimate — ₹2L–3.5L / year (NLUs)' },
+      { label: 'TN state law program (AI estimate)', examples: ['TNDALU (Tamil Nadu Dr. Ambedkar Law University) Chennai — state flagship', 'School of Excellence in Law (SOEL), TNDALU'], cutoffGuide: 'AI estimate — TNDALU counselling via 12th marks + CLAT consideration.', feeRange: 'AI estimate — ₹15K–60K / year (state university fees)' },
+      { label: 'Strong private law programs (AI estimate)', examples: ['SASTRA School of Law', 'SRM School of Law', 'Sai University School of Law', 'Symbiosis Law School Pune (if open to relocation)'], cutoffGuide: 'AI estimate — direct admission with strong marks + CLAT optional.', feeRange: 'AI estimate — ₹2L–5L / year (private)' },
+    ],
+    costReality: 'AI estimate — a 5-year B.A. LL.B. in TN costs roughly ₹1L–25L total depending on college tier. TNDALU is dramatically more affordable than private NLUs; the placement gap between top NLU and tier-2 college is real but bridgeable via strong moot court / publication / internship record.',
+    backupOptions: ['Judicial services exam (state-by-state, often the most secure route)', 'UPSC Civil Services (law as optional or general)', 'Litigation practice in district / High Court (long apprenticeship route)', 'In-house legal counsel at corporates after 3-5 years of practice', 'Legal academia (LL.M. + PhD)', 'Move into corporate compliance / regulatory roles', 'Public policy think tanks (Vidhi, CCS, Carnegie India)'],
+    honestCaveat: 'B.A. LL.B. rewards students who genuinely enjoy reading dense legal texts, argumentation, and the historical / sociological context of law. The "Suits / corporate lawyer luxury life" media image is misleading — that lifestyle is the top 5% of graduates, mostly from top NLUs. The bottom 50% practise in district courts for years on modest earnings. The judiciary route offers more predictable security but requires sustained exam preparation. The work is heavily reading + writing + speaking — students who hate any of those three usually struggle.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th + decide CLAT vs direct admission', titleTa: '+12 70%+ + CLAT முடிவு', detail: 'Strong English + General Knowledge + Legal Aptitude preparation if targeting top NLUs. CLAT requires 6-12 months focused preparation.', window: 'Now', phase: 'now' },
+      { title: 'Join 5-year B.A. LL.B. + active moot court + internships', titleTa: '5 ஆண்டு B.A. LL.B. + நீதிமன்ற பயிற்சி', detail: 'Moot court participation, legal-aid clinic work, and chamber / firm internships across the 5 years are dramatically more important than academic marks for placement.', window: 'Years 1–5', phase: 'next' },
+      { title: 'Litigation, judiciary, civil services, or corporate', titleTa: 'வழக்கு / நீதி / UPSC / நிறுவனம்', detail: 'Four credible exits. Litigation for autonomy; judicial services for security; UPSC for civil services; corporate firm for income. Decide trajectory by year 4 to align preparation.', window: 'Years 5–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen English reading + legal aptitude basics', titleTa: 'ஆங்கிலம் + சட்ட திறன்', detail: 'CLAT and the broader law-school experience reward strong English and analytical reading. The Hindu daily editorial + free CLAT prep materials build the foundation.', priority: 'high' },
+      { title: 'Read about the Indian legal system', titleTa: 'இந்திய சட்ட அமைப்பு', detail: '"Indian Polity" by Laxmikanth (Bar council exam standard) + "Court on Trial" by Aparna Chandra et al. give the institutional context most students lack.', priority: 'high' },
+      { title: 'Decide your target tier — NLU, TNDALU, or private?', titleTa: 'NLU / TNDALU / தனியார்', detail: 'NLU requires CLAT prep. TNDALU is the strong, affordable TN state option. Private colleges accept direct admission. Decide early to align preparation.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — written and spoken, particularly precise/formal style', why: 'Law is built on language. The career-defining skill from day 1 of law school.', freeResource: 'BBC Learning English, daily English news editorial reading, structured argumentative writing practice' },
+      { skill: 'Current affairs + Indian polity awareness', why: 'CLAT and the broader career reward students who follow law-and-politics news daily. Compounds dramatically through 5 years.', freeResource: 'The Hindu, Indian Express, LiveLaw, Bar and Bench (free legal news)' },
+      { skill: 'Critical reading + structured argument', why: 'Law school IS reading and argument. Practising structured essay-writing and oral argument early translates directly to law school success.', freeResource: 'Free debate clubs, structured writing exercises, NLSIU blog and CLPR papers (free)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.COM. LL.B. (5-year integrated) ──────────────────────────────────────
+  {
+    id: 'bcom-llb-integrated',
+    family: 'law',
+    isNiche: false,
+    interestTags: ['law', 'finance'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'public_speaking', 'paperwork'],
+    automation: 'high_human_judgment',
+    automationNote: 'Tax law, M&A work, and corporate compliance combine deep regulatory knowledge with judgement under client accountability. The technical work is partially AI-augmented (document review, due diligence); the strategic advice and negotiation remain firmly human. India\'s corporate sector expansion and complex tax regime (GST, transfer pricing, international tax) create sustained demand.',
+    title: 'B.Com. LL.B. (5-Year Integrated)',
+    titleTa: 'பி.காம். LL.B. (5 ஆண்டு ஒருங்கிணைந்த)',
+    icon: '💼',
+    color: 'from-emerald-700 to-slate-800',
+    whatIsIt:
+      'A five-year integrated degree combining commerce (accounting, taxation, business law, economics) with core law subjects. Distinct from B.A. LL.B.: stronger preparation for corporate, tax, M&A, and financial services law. Career outcomes: tax law practice (Big 4 tax teams — Deloitte, EY, PwC, KPMG); corporate law firms with finance focus (Cyril Amarchand, AZB, Khaitan, Trilegal); M&A and capital markets practices; in-house counsel at banks / NBFCs / fintech; corporate compliance and ESG roles; tax consultancy. Less suited for pure litigation than B.A. LL.B.',
+    eligibleStreams: ['commerce', 'arts', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['301', '302', '304', '308', '401'],
+    ugCourses: ['B.Com. LL.B. (Hons.) — 5-year integrated', 'B.Com. LL.B. (General) — 5-year integrated'],
+    entranceExams: ['CLAT', 'AILET', 'TNDALU counselling', 'LSAT India'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 5-year integrated degree. Strong placement at corporate law firms during the final years. Tax law specialisation typically adds 1-2 years of articleship / chartered firm experience.',
+    skillWeights: { mathematics: 7, language: 7, science: 2, creativity: 5, people: 6, physical: 1, digital: 5 },
+    priorityFit: { salary: 8, security: 7, balance: 5, abroad: 6, prestige: 7, passion: 7, growth: 8, hometown: 6 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–6 LPA fresh in tax consultancy and mid-tier firms; ₹8–18 LPA fresh at Big 4 tax teams and tier-1 corporate law firms (for top NLU / top private graduates); ₹6–12 LPA in-house at banks / fintech.',
+      midCareerLPA: 'AI estimate — ₹20–60+ LPA after 7+ years for senior associates at tier-1 corporate firms and Big 4 tax partners; ₹15–35 LPA for in-house corporate counsel leads; ₹25–80+ LPA at partner level. The corporate/tax law trajectory is among the highest-earning legal career paths.',
+      note: 'Earnings trajectory is among the highest in the legal profession because the work is closely tied to corporate finance. The trade-off vs litigation: less autonomy, more structured corporate hours, less courtroom drama. Best for students drawn to the business+law intersection rather than pure litigation.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from Big 4 (Deloitte, EY, PwC, KPMG tax teams), tier-1 corporate law firms, and the expanding fintech / startup legal segments. GST and international tax complexity continues to drive hiring.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — competitive at top NLUs and Symbiosis; TNDALU and private programs accessible. Less competitive than top B.A. LL.B. seats at NLUs.' },
+    collegeTiers: [
+      { label: 'Top integrated B.Com. LL.B. programs (AI estimate)', examples: ['NLU Jodhpur (B.Com. LL.B. Hons. — well-regarded)', 'Symbiosis Law School Pune (B.B.A. LL.B. + B.Com. LL.B.)', 'GNLU Gandhinagar', 'NMIMS School of Law (Mumbai)'], cutoffGuide: 'AI estimate — CLAT rank under 1500 for top NLU integrated programs.', feeRange: 'AI estimate — ₹2L–4L / year (NLUs); ₹3L–5L (Symbiosis)' },
+      { label: 'TN options (AI estimate)', examples: ['TNDALU School of Excellence in Law (offers integrated tracks)', 'SASTRA School of Law', 'SRM School of Law', 'limited TN options for the B.Com integrated specifically — verify per program'], cutoffGuide: 'AI estimate — TNDALU counselling; private direct admission.', feeRange: 'AI estimate — ₹15K–60K (state); ₹2L–4L (private)' },
+      { label: 'Strong national alternatives (AI estimate)', examples: ['ILS Pune', 'Jindal Global Law School Sonipat (high-end private)', 'NIRMA University Ahmedabad'], cutoffGuide: 'AI estimate — varies; some via CLAT, some via own exam.', feeRange: 'AI estimate — ₹2L–8L / year (varies by institution)' },
+    ],
+    costReality: 'AI estimate — a 5-year B.Com. LL.B. costs roughly ₹1.5L–30L total depending on college tier. The ROI is strong if placed at tier-1 corporate or Big 4 — placement quality matters dramatically more here than for B.A. LL.B.',
+    backupOptions: ['Big 4 tax practice (Deloitte, EY, PwC, KPMG)', 'Tier-1 corporate law firms (Cyril, AZB, Khaitan, Trilegal, S&R)', 'In-house counsel at banks, NBFCs, fintech', 'Chartered Accountancy + LL.B. combination (rare but powerful)', 'Tax tribunal practice (income tax, GST appellate work)', 'Corporate compliance / regulatory consulting', 'M&A boutique firms', 'Move abroad — UK / US tax law adjacent paths after qualification'],
+    honestCaveat: 'B.Com. LL.B. is the corporate/tax law track — students who imagined courtroom-drama lawyer life are in the wrong degree. The work is heavily document-based, hours are long during deal cycles (M&A, capital markets), and the early career is corporate-firm grind. The earnings ceiling is among the highest in law BUT the work-life balance trade-off is real. Choose this if you genuinely enjoy the business + finance + law intersection — not because "easier than B.A. LL.B." (it isn\'t).',
+    roadmap: [
+      { title: 'Score 70%+ in 12th + CLAT preparation', titleTa: '+12 70%+ + CLAT', detail: 'CLAT score determines top NLU integrated B.Com. LL.B. admission. Strong English + Maths + General Knowledge required.', window: 'Now', phase: 'now' },
+      { title: 'Join integrated B.Com. LL.B. + corporate firm internships', titleTa: 'B.Com LL.B. + நிறுவன பயிற்சி', detail: 'Internships at tax firms (Big 4) and corporate law firms during years 3-5 are essential. Tier-1 placement comes through internship networks.', window: 'Years 1–5', phase: 'next' },
+      { title: 'Big 4 tax, corporate firm, in-house, or chartered firm', titleTa: 'Big 4 / நிறுவன / உள்நிலை / பட்டய நிறுவனம்', detail: 'Four credible exits. Big 4 tax for structured corporate career; tier-1 firm for highest income; in-house for balance; chartered firm for the tax tribunal route.', window: 'Years 5–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Mathematics + Commerce fundamentals', titleTa: 'கணிதம் + வணிக அடிப்படை', detail: 'B.Com. LL.B. leans on accounting, taxation, and quantitative analysis. Strong 12th Mathematics and basic accounting knowledge make year 1 dramatically smoother.', priority: 'high' },
+      { title: 'Read about Indian corporate law and tax landscape', titleTa: 'நிறுவன சட்டம் + வரி', detail: 'Companies Act 2013, GST regime, basic income tax structure. Free resources from CBDT, MCA, and Bar and Bench corporate-law coverage.', priority: 'high' },
+      { title: 'Decide tax vs corporate vs M&A trajectory early', titleTa: 'பாதை முடிவு', detail: 'These three sub-tracks require different internship choices. Early clarity helps align preparation through the 5 years.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English + Mathematics — both equally important', why: 'B.Com. LL.B. uniquely requires BOTH strong English (for law) and strong quantitative skills (for tax / corporate finance). Most law students underestimate the math.', freeResource: 'BBC Learning English, NCERT Mathematics (Class 12), free Khan Academy commerce' },
+      { skill: 'Basic accounting + financial literacy', why: 'Corporate and tax law work demands fluency in financial statements, balance sheets, and tax computations. Strong commerce fundamentals are a working necessity.', freeResource: 'NCERT Accountancy, free Coursera Finance Foundations' },
+      { skill: 'Current business + tax news reading', why: 'Business Standard, Mint, Economic Times tax-and-policy coverage. Builds the regulatory awareness mindset critical for corporate / tax careers.', freeResource: 'Economic Times, Mint, Business Standard daily reading' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.B.A. LL.B. (5-year integrated) ──────────────────────────────────────
+  {
+    id: 'bba-llb-integrated',
+    family: 'law',
+    isNiche: false,
+    interestTags: ['law', 'finance'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'public_speaking', 'high_competition'],
+    automation: 'high_human_judgment',
+    automationNote: 'Corporate law work — drafting commercial contracts, negotiating deals, advising boards on governance — combines deep regulatory knowledge with management context. AI tools accelerate research; the strategic advice and stakeholder management remain firmly human. India\'s corporate expansion drives sustained demand for management-and-law trained graduates.',
+    title: 'B.B.A. LL.B. (5-Year Integrated)',
+    titleTa: 'பி.பி.ஏ. LL.B. (5 ஆண்டு ஒருங்கிணைந்த)',
+    icon: '🏛️',
+    color: 'from-blue-700 to-slate-800',
+    whatIsIt:
+      'A five-year integrated degree combining management (marketing, HR, operations, strategy, organisational behaviour) with core law subjects. Distinct from B.Com. LL.B.: emphasises management thinking over accounting/tax depth; better suited for corporate legal departments, in-house counsel work, and startup legal advisory than pure tax practice. Career outcomes: corporate legal departments (in-house counsel at large companies), corporate law firms (especially M&A and commercial law), startup legal advisors, business consultancy with legal expertise, corporate governance / ESG specialists, MBA + LL.B. dual qualification careers.',
+    eligibleStreams: ['commerce', 'arts', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['301', '302', '304', '308', '401'],
+    ugCourses: ['B.B.A. LL.B. (Hons.) — 5-year integrated', 'B.B.A. LL.B. (General) — 5-year integrated'],
+    entranceExams: ['CLAT', 'AILET', 'TNDALU counselling', 'LSAT India', 'Symbiosis SET'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 5-year integrated degree. Strong placement at corporate legal departments and tier-2 corporate law firms. The integrated management background gives an edge in startup and business-strategy adjacent legal work.',
+    skillWeights: { mathematics: 6, language: 7, science: 2, creativity: 5, people: 7, physical: 1, digital: 5 },
+    priorityFit: { salary: 7, security: 7, balance: 6, abroad: 6, prestige: 7, passion: 7, growth: 8, hometown: 6 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–6 LPA fresh at corporate legal departments and mid-tier firms; ₹7–15 LPA fresh at top corporate firms (for Symbiosis / top NLU graduates); ₹5–10 LPA at consultancy firms with legal expertise.',
+      midCareerLPA: 'AI estimate — ₹18–40+ LPA after 7+ years for senior in-house counsel and corporate firm associates; ₹25–60+ LPA at senior corporate partner / general counsel level. The corporate-management-law combination is among the strongest mid-career trajectories.',
+      note: 'Strong mid-career trajectory because the management background gives BBA LL.B. graduates an unusual ability to communicate with both business and legal teams. The "translator between business and legal" role is highly valued in growing companies.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from corporate legal departments, mid-tier law firms, and the startup ecosystem (which needs management-savvy legal advisors). Symbiosis Law School established this track as a recognised career path in India.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — competitive at Symbiosis (via SET) and top NLU integrated programs; TNDALU and private programs accessible.' },
+    collegeTiers: [
+      { label: 'Top BBA LL.B. programs (AI estimate)', examples: ['Symbiosis Law School Pune (the established benchmark for BBA LL.B. in India)', 'NLU Jodhpur (B.B.A. LL.B. Hons.)', 'NMIMS School of Law Mumbai'], cutoffGuide: 'AI estimate — SET / CLAT competitive entrance; Symbiosis SET particularly important.', feeRange: 'AI estimate — ₹3L–5L / year (Symbiosis); ₹2L–4L (NLUs)' },
+      { label: 'TN options (AI estimate)', examples: ['TNDALU School of Excellence in Law (offers integrated tracks)', 'SASTRA School of Law', 'SRM School of Law', 'Sai University School of Law'], cutoffGuide: 'AI estimate — TNDALU counselling; private direct admission with good marks.', feeRange: 'AI estimate — ₹15K–60K (state); ₹2L–4L (private)' },
+      { label: 'Strong national alternatives (AI estimate)', examples: ['NIRMA University Ahmedabad', 'ILS Pune', 'Jindal Global Law School Sonipat (high-end private)', 'KIIT School of Law Bhubaneswar'], cutoffGuide: 'AI estimate — varies; some via CLAT, some via own exam.', feeRange: 'AI estimate — ₹2L–8L / year' },
+    ],
+    costReality: 'AI estimate — a 5-year BBA LL.B. costs roughly ₹1.5L–25L total depending on college tier. Symbiosis is the recognised premium track; TNDALU is the affordable state option. Placement quality matters significantly for ROI.',
+    backupOptions: ['Corporate legal department in-house roles', 'Tier-1 corporate law firms (M&A, commercial law focus)', 'Startup legal advisory (especially fintech, edtech, SaaS)', 'Management consultancy with legal specialisation', 'Corporate governance / ESG specialist roles', 'MBA after 2-3 years for senior corporate / strategy career', 'Move into business operations leadership with legal background'],
+    honestCaveat: 'BBA LL.B. positions graduates for the CORPORATE LEGAL track — not litigation, not judiciary, not civil services prep. Students who joined imagining "lawyer + manager" career often discover the work is more legal than managerial in early years (the MBA-style management work typically comes mid-career or after additional qualification). The track suits students drawn to the business-and-law intersection who want corporate stability rather than litigation autonomy. Salary trajectory is strong but the early career hours can be demanding at top firms.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th + entrance exam preparation', titleTa: '+12 70%+ + நுழைவுத் தேர்வு', detail: 'CLAT for NLUs; Symbiosis SET for Symbiosis Law School. Strong English + General Knowledge + basic Quant required.', window: 'Now', phase: 'now' },
+      { title: 'Join integrated BBA LL.B. + corporate department internships', titleTa: 'BBA LL.B. + நிறுவன பயிற்சி', detail: 'Internships at corporate legal departments (Infosys, TCS, ITC, Reliance legal teams) and tier-2 law firms during years 3-5 are essential.', window: 'Years 1–5', phase: 'next' },
+      { title: 'In-house counsel, corporate firm, or startup legal advisory', titleTa: 'உள்நிலை / நிறுவன / தொடக்க நிறுவனம்', detail: 'Three credible exits. In-house for stability and corporate exposure; tier-1 firm for income and prestige; startup advisory for growth and equity.', window: 'Years 5–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen English + basic business literacy', titleTa: 'ஆங்கிலம் + வணிக அடிப்படை', detail: 'BBA LL.B. demands strong English (for law) AND business communication (for management). Reading Mint / Business Standard daily builds both.', priority: 'high' },
+      { title: 'Decide CLAT vs SET vs direct admission early', titleTa: 'நுழைவுத் தேர்வு முடிவு', detail: 'CLAT, Symbiosis SET, and direct private admission require different preparation. Choose target early to focus.', priority: 'high' },
+      { title: 'Read about corporate law and Companies Act basics', titleTa: 'நிறுவன சட்டம்', detail: 'Companies Act 2013 overview, basic contract law, intro to SEBI regulations. Builds the corporate-law context most students enter without.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English + business communication style', why: 'BBA LL.B. graduates are valued specifically for their ability to communicate clearly with both legal and business audiences. Strong English from day 1 is the working necessity.', freeResource: 'BBC Learning English, business writing courses, Toastmasters clubs' },
+      { skill: 'Basic business literacy + commerce fundamentals', why: 'The integrated BBA portion demands business understanding. Strong 12th commerce knowledge (or active reading for PCM/PCB students) makes year 1 management courses easier.', freeResource: 'NCERT Business Studies (Class 11-12), free Coursera business foundations courses' },
+      { skill: 'Current corporate + business news reading', why: 'Mint, Economic Times, The Ken corporate coverage. Builds the business context that classroom learning misses.', freeResource: 'Economic Times, Mint, Business Standard daily reading' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC. LL.B. (5-year integrated) — STEM LAW NICHE ──────────────────────
+  {
+    id: 'bsc-llb-integrated',
+    family: 'law',
+    isNiche: true,
+    interestTags: ['law', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'public_speaking', 'sitting_long'],
+    automation: 'high_human_judgment',
+    automationNote: 'Patent law and intellectual-property work combine deep scientific understanding with legal judgement — drafting patent specifications, prosecuting patent applications, litigating IP disputes. The science-law hybrid is among the most automation-resilient legal specialisations because it requires expertise that pure lawyers and pure scientists individually lack. India\'s rising R&D activity and pharmaceutical sector drive sustained demand.',
+    title: 'B.Sc. LL.B. (5-Year Integrated)',
+    titleTa: 'பி.எஸ்சி. LL.B. (5 ஆண்டு ஒருங்கிணைந்த)',
+    icon: '🧬',
+    color: 'from-violet-700 to-indigo-800',
+    whatIsIt:
+      'A five-year integrated degree combining pure sciences (physics, chemistry, biology, biotechnology depending on track) with core law subjects, plus deep specialisation in intellectual property law, patent law, environmental law, and pharma / biotech regulatory law. Distinct from B.A. LL.B.: graduates can technically understand pharmaceutical patents, biotechnology IP, environmental compliance assessments, and chemistry-related dispute work — capabilities pure law graduates cannot replicate. Career outcomes: patent attorney (after PA agent qualification), pharmaceutical / biotech regulatory law, environmental law practice, IP litigation, technology transfer offices at universities, R&D legal teams at pharma companies, intellectual-property boutique law firms.',
+    eligibleStreams: ['pcb', 'pcmb', 'pcm'],
+    strongGroupCodes: ['208', '204', '203', '101', '102', '104'],
+    ugCourses: ['B.Sc. LL.B. (Hons.) — 5-year integrated', 'B.Sc. LL.B. (Biotechnology) — 5-year integrated', 'B.Sc. LL.B. (Forensic Science) — 5-year integrated'],
+    entranceExams: ['CLAT', 'AILET', 'TNDALU counselling', 'LSAT India'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 5-year integrated degree. Patent Agent examination (after Bar Council enrollment) opens the patent attorney route. The science-law specialisation typically commands a salary premium at IP-focused firms.',
+    skillWeights: { mathematics: 7, language: 7, science: 8, creativity: 6, people: 5, physical: 1, digital: 6 },
+    priorityFit: { salary: 7, security: 7, balance: 6, abroad: 8, prestige: 7, passion: 8, growth: 8, hometown: 5 },
+    competitiveBoardPct: { comfortable: 80, stretch: 70 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹4–7 LPA fresh at IP-focused law firms and patent attorney offices; ₹6–12 LPA at pharmaceutical / biotech company legal teams; ₹8–15 LPA at top IP boutiques (K&S Partners, Anand & Anand, Remfry & Sagar) for top-tier graduates.',
+      midCareerLPA: 'AI estimate — ₹20–50+ LPA after 7+ years for senior patent attorneys, IP litigators, and pharmaceutical legal counsel. Specialised patent attorneys with strong science backgrounds command premium because the talent pool is small. Abroad opportunities (US, UK patent law via further qualification) multiply substantially.',
+      note: 'Among the highest-paying legal specialisations in India because the science-law hybrid talent is genuinely scarce. The patent attorney route after the Patent Agent exam is the highest-trajectory specialisation. The trade-off vs general corporate law: more specialised, narrower employer base, but less commoditised.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong specialty demand from IP-focused firms, pharmaceutical companies, biotech firms, and the emerging technology-transfer / startup IP advisory segments. India\'s rising patent filings (USPTO, IPO) drive sustained patent attorney demand.' },
+    entryDifficulty: { score: 6, note: 'AI estimate — competitive at top NLUs and at the few colleges offering the integrated B.Sc. LL.B. specifically. Symbiosis and NLU Jodhpur are the established programs.' },
+    collegeTiers: [
+      { label: 'Top integrated B.Sc. LL.B. programs (AI estimate)', examples: ['NLU Jodhpur (B.Sc. LL.B. Hons. — one of the most established integrated science-law programs)', 'GNLU Gandhinagar', 'NMIMS School of Law Mumbai'], cutoffGuide: 'AI estimate — CLAT rank competitive; specialised programs have smaller intake.', feeRange: 'AI estimate — ₹2L–4L / year (NLUs)' },
+      { label: 'TN and strong regional options (AI estimate)', examples: ['TNDALU School of Excellence in Law (verify specific integrated science-law track availability)', 'SASTRA School of Law', 'SRM School of Law', 'limited B.Sc. LL.B. specifically — verify per program'], cutoffGuide: 'AI estimate — TNDALU counselling; private direct admission.', feeRange: 'AI estimate — ₹15K–60K (state); ₹2L–5L (private)' },
+      { label: 'Strong national alternatives (AI estimate)', examples: ['ILS Pune', 'Symbiosis Law School Pune (offers B.Sc. LL.B. track)', 'Jindal Global Law School Sonipat'], cutoffGuide: 'AI estimate — varies; some via CLAT, Symbiosis via SET.', feeRange: 'AI estimate — ₹2L–6L / year' },
+    ],
+    costReality: 'AI estimate — a 5-year B.Sc. LL.B. costs roughly ₹1.5L–30L total depending on college. Patent Agent exam preparation adds ₹20K–60K post-degree. The premium pay at IP boutiques and pharma legal teams justifies the investment for genuinely science-curious students.',
+    backupOptions: ['Patent Agent exam → Patent Attorney career', 'Pharmaceutical company legal / regulatory affairs (Dr Reddy\'s, Sun Pharma, Cipla, Lupin)', 'Biotech / life sciences regulatory law', 'IP boutique law firms (K&S Partners, Anand & Anand, Remfry & Sagar, Lex Orbis)', 'Environmental law practice', 'Technology transfer offices at universities and research institutes', 'Move abroad — US Patent Bar (after USPTO eligibility) opens substantially higher US patent attorney earnings'],
+    honestCaveat: 'B.Sc. LL.B. is a NICHE specialisation — fewer colleges offer it, narrower employer base, and the patent attorney career requires additional Patent Agent qualification after the degree. Students who joined imagining "easier law via science background" are mistaken — the science modules are genuinely rigorous (it\'s a full B.Sc. component, not a token science) AND the law modules are full law-school depth. The trade-off vs B.A. LL.B.: more specialised, harder to switch out of into general litigation, but substantially higher earnings ceiling for those who commit to IP / pharma / biotech law. Best for genuinely science-curious students who enjoy reading research papers AND legal text.',
+    roadmap: [
+      { title: 'Score 80%+ in 12th PCM or PCB + CLAT preparation', titleTa: '+12 80%+ + CLAT', detail: 'Strong science background is essential — the B.Sc. portion is real. CLAT score determines top NLU integrated B.Sc. LL.B. admission.', window: 'Now', phase: 'now' },
+      { title: 'Join integrated B.Sc. LL.B. + IP firm internships', titleTa: 'B.Sc. LL.B. + IP பயிற்சி', detail: 'Internships at IP boutiques and pharma legal teams during years 3-5 are essential. The IP career runs on specialised network and patent-drafting experience.', window: 'Years 1–5', phase: 'next' },
+      { title: 'Patent Agent qualification + IP attorney career', titleTa: 'காப்புரிமை முகவர் தேர்வு', detail: 'Patent Agent exam (after Bar Council enrollment) is the standard step into patent attorney work. Pharma legal and biotech regulatory paths are alternative non-PA specialisations.', window: 'Years 5–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Honestly assess science aptitude AND legal interest', titleTa: 'அறிவியல் + சட்ட ஆர்வம் சோதனை', detail: 'B.Sc. LL.B. demands genuine engagement with BOTH disciplines. Test honestly via reading both — a Nature article AND a Bar and Bench legal opinion — and confirm both interest you.', priority: 'high' },
+      { title: 'Strengthen 12th Physics + Chemistry + Biology AND English', titleTa: 'அறிவியல் + ஆங்கிலம்', detail: 'Both science marks AND English proficiency matter dramatically for this specialty. CLAT scoring leans on English; the B.Sc. modules demand strong science.', priority: 'high' },
+      { title: 'Read about Indian IP landscape and patent system', titleTa: 'காப்புரிமை அமைப்பு', detail: 'Free IPO India resources, SpicyIP blog (free), introduction to patent claim structure. Builds the IP context most law students enter without.', priority: 'medium', link: 'https://www.ipindia.gov.in' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Science (PCM or PCB) + English — both equally important', why: 'B.Sc. LL.B. uniquely requires genuine depth in both science and English. Most students underestimate one or the other.', freeResource: 'NCERT Science textbooks, BBC Learning English, structured technical writing practice' },
+      { skill: 'Reading scientific research papers', why: 'Patent and IP work demands fluency in reading scientific literature. Practising research-paper reading early translates directly into patent-drafting capability.', freeResource: 'Free Nature abstracts, free PubMed articles, structured paper-reading exercises' },
+      { skill: 'Logical / analytical reasoning + claim structure', why: 'Patent claims are highly structured logical statements. Practising logical decomposition (puzzles, formal logic problems) builds the right cognitive habits.', freeResource: 'Free LSAT logic games, formal logic textbooks, IP-specific case law from SpicyIP' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.C.A. LL.B. (5-year integrated) — TECH LAW NICHE ─────────────────────
+  {
+    id: 'bca-llb-integrated',
+    family: 'law',
+    isNiche: true,
+    interestTags: ['law', 'tech'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'public_speaking', 'sitting_long'],
+    automation: 'high_human_judgment',
+    automationNote: 'Cyber law and data privacy work combine deep technical understanding with legal judgement — interpreting the DPDP Act in context of actual data flows, drafting cybersecurity incident responses, prosecuting cybercrime cases that require understanding the technical attack vector. The technology-law hybrid is among the most automation-resilient legal specialisations precisely because pure lawyers cannot understand the technical substance, and pure technologists cannot apply legal reasoning.',
+    title: 'B.C.A. LL.B. (5-Year Integrated)',
+    titleTa: 'பி.சி.ஏ. LL.B. (5 ஆண்டு ஒருங்கிணைந்த)',
+    icon: '🔐',
+    color: 'from-cyan-700 to-blue-800',
+    whatIsIt:
+      'A five-year integrated degree combining computer applications (programming, networks, cybersecurity basics, database management) with core law subjects, plus deep specialisation in cyber law, data privacy law, intellectual property in software, fintech regulation, and emerging-technology law. Distinct from B.Sc. LL.B.: focused on digital technology rather than pure sciences. Career outcomes: cybercrime prosecution / defence specialty, data privacy compliance (especially post-DPDP Act 2023), fintech legal advisory (Razorpay, Cred, PhonePe legal teams), technology law boutique firms, software-IP work, e-commerce / platform law specialty, and increasingly the AI / algorithmic-accountability legal segment.',
+    eligibleStreams: ['pcm', 'commerce', 'arts', 'pcmb', 'pcb'],
+    strongGroupCodes: ['101', '102', '104', '301', '401'],
+    ugCourses: ['B.C.A. LL.B. (Hons.) — 5-year integrated', 'B.C.A. LL.B. (Cyber Law specialisation) — 5-year integrated'],
+    entranceExams: ['CLAT', 'AILET', 'TNDALU counselling', 'LSAT India', 'Symbiosis SET'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 5-year integrated degree. Strong placement at fintech legal teams, e-commerce platforms, and emerging cyber law practices. The DPDP Act 2023 has created exceptional demand for trained data privacy professionals — graduates entering this space are positioned at a structurally favourable moment.',
+    skillWeights: { mathematics: 6, language: 7, science: 4, creativity: 6, people: 5, physical: 1, digital: 8 },
+    priorityFit: { salary: 7, security: 7, balance: 6, abroad: 8, prestige: 7, passion: 8, growth: 9, hometown: 5 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹4–7 LPA fresh at fintech legal teams and tech-focused law firms; ₹6–12 LPA fresh at top tech-law specialists and platform legal departments; ₹8–15 LPA at top corporate firms\' technology practices (for top NLU graduates).',
+      midCareerLPA: 'AI estimate — ₹18–40+ LPA after 7+ years for senior cyber law specialists, data privacy officers (DPOs), and technology-law partners. The DPDP Act enforcement is creating chronic shortage of trained data privacy professionals — early specialists are positioned exceptionally well. Move-abroad opportunities (EU GDPR practice, US tech law) multiply substantially.',
+      note: 'Among the fastest-growing and highest-trajectory legal specialisations because of the structural shift — every Indian company over a certain size now needs DPDP Act compliance, and the trained tech-law talent pool is small. The early-career timing is genuinely favourable for graduates entering this space in 2026-2030.',
+    },
+    demand: { score: 9, note: 'AI estimate — exceptionally strong. DPDP Act 2023 compliance creates chronic demand for data protection officers; fintech expansion requires legal teams that understand both regulation and technology; cybercrime is growing; AI law is emerging as a major specialty. The talent pool is small relative to demand.' },
+    entryDifficulty: { score: 5, note: 'AI estimate — competitive at top NLUs and Symbiosis; TNDALU and private programs accessible. The integrated B.C.A. LL.B. track is newer than B.A./B.Com integrated, with fewer colleges offering it specifically.' },
+    collegeTiers: [
+      { label: 'Top BCA LL.B. programs (AI estimate)', examples: ['Symbiosis Law School Pune (offers BCA LL.B. track)', 'NLU Jodhpur (offers technology-law focused integrated tracks)', 'NMIMS School of Law Mumbai', 'NIRMA University Ahmedabad'], cutoffGuide: 'AI estimate — SET / CLAT competitive entrance; tech-law track availability varies.', feeRange: 'AI estimate — ₹3L–5L / year (Symbiosis); ₹2L–4L (NLUs)' },
+      { label: 'TN options (AI estimate)', examples: ['TNDALU School of Excellence in Law (verify integrated BCA LL.B. track availability)', 'SASTRA School of Law', 'SRM School of Law (has tech-law adjacencies)', 'limited B.C.A. LL.B. specifically in TN — verify per program'], cutoffGuide: 'AI estimate — TNDALU counselling; private direct admission.', feeRange: 'AI estimate — ₹15K–60K (state); ₹2L–4L (private)' },
+      { label: 'Strong national alternatives (AI estimate)', examples: ['Jindal Global Law School Sonipat (cybersecurity law / technology law specialisation)', 'ILS Pune', 'KIIT School of Law'], cutoffGuide: 'AI estimate — varies by institution.', feeRange: 'AI estimate — ₹2L–8L / year' },
+    ],
+    costReality: 'AI estimate — a 5-year B.C.A. LL.B. costs roughly ₹1.5L–25L total. The premium pay at fintech / data privacy / tech-law roles justifies the investment for genuinely tech-curious students. The DPDP Act timing makes this one of the highest-ROI legal specialisations available right now.',
+    backupOptions: ['Data Protection Officer (DPO) roles — exceptional demand post-DPDP Act 2023', 'Fintech legal teams (Razorpay, PhonePe, Cred, BharatPe, Slice)', 'Cybercrime law practice (defence + prosecution)', 'Technology IP / software law specialty', 'E-commerce / platform law (Amazon, Flipkart legal teams)', 'AI / algorithmic accountability law (emerging specialty)', 'Move abroad — EU GDPR practice, US tech law', 'Cybersecurity consulting with legal expertise'],
+    honestCaveat: 'B.C.A. LL.B. is a NICHE technology-law specialisation — fewer colleges offer it, narrower employer base initially, BUT the structural demand timing is exceptionally favourable. Students who joined imagining "easier law via tech background" are mistaken — both the BCA technical modules AND the law modules are full depth. The trade-off vs B.A. LL.B.: more specialised, much higher growth trajectory in the next 5-10 years, but requires genuine technical engagement. Students who hate coding find the BCA portion painful regardless of how interesting the law portion is. Best for students drawn to the cybersecurity / data-privacy / fintech-regulation intersection.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th + entrance exam preparation', titleTa: '+12 75%+ + நுழைவுத் தேர்வு', detail: 'CLAT, Symbiosis SET, or AILET preparation. Strong English + General Knowledge + basic Quant + Tech awareness all matter.', window: 'Now', phase: 'now' },
+      { title: 'Join integrated B.C.A. LL.B. + tech-law internships', titleTa: 'BCA LL.B. + தொழில்நுட்ப பயிற்சி', detail: 'Internships at fintech legal teams, cybersecurity firms with legal practices, and data privacy consultancies during years 3-5 are essential. The DPDP Act creates new internship opportunities continually.', window: 'Years 1–5', phase: 'next' },
+      { title: 'Data Privacy Officer, fintech legal, OR cyber law specialty', titleTa: 'தரவு பாதுகாப்பு / FinTech / சைபர் சட்டம்', detail: 'Three credible exits. DPO roles are growing fastest; fintech legal teams pay well at entry; pure cyber law (criminal practice) offers strong autonomy.', window: 'Years 5–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Honestly assess BOTH coding aptitude AND legal interest', titleTa: 'குறியீடு + சட்ட ஆர்வம் சோதனை', detail: 'BCA LL.B. demands engagement with BOTH. Test honestly: try a free Python tutorial AND read a SpicyIP/Bar and Bench legal opinion. Both must engage you.', priority: 'high' },
+      { title: 'Read about the DPDP Act 2023 and India\'s data privacy landscape', titleTa: 'DPDP சட்டம் + தரவு பாதுகாப்பு', detail: 'India\'s data protection law has reshaped legal demand. Understanding the DPDP Act and its enforcement context positions you for the highest-growth career segment.', priority: 'high', link: 'https://www.meity.gov.in' },
+      { title: 'Set up Python basics + understand basic networking', titleTa: 'பைதான் + பிணைய அடிப்படை', detail: 'BCA portion is real. Comfort with one programming language and basic networking concepts before year 1 dramatically eases the tech modules.', priority: 'medium', freeResource: 'freeCodeCamp Python, free Cisco Networking Academy intro' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English + basic tech literacy', why: 'B.C.A. LL.B. graduates are valued specifically for the rare combination of legal English fluency AND technical understanding. Strong English is the working necessity.', freeResource: 'BBC Learning English, daily news editorial reading, free MOOC tech-fundamentals courses' },
+      { skill: 'Programming exposure — Python or one introductory language', why: 'The BCA portion demands genuine technical engagement. Familiarity with at least one programming language before year 1 dramatically reduces the learning curve.', freeResource: 'freeCodeCamp Python, Codecademy free tier, Khan Academy programming intro' },
+      { skill: 'Current cyber law + privacy news reading', why: 'The field is changing rapidly with DPDP Act, AI regulation discussions, and cybercrime evolution. Daily reading builds the career awareness most law students lack.', freeResource: 'MediaNama, SpicyIP, Bar and Bench tech-law coverage, free EU GDPR resources' },
     ],
     lastReviewed: '2026-05',
   },
