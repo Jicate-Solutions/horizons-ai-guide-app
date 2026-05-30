@@ -142,17 +142,36 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
           // ─── Horizontal rule ────────────────────────────────────────────
           hr: () => <hr className="my-4 border-t border-border" />,
 
-          // ─── Tables — horizontally scrollable on mobile ─────────────────
+          // ─── Tables — mobile-first horizontal scroll ────────────────────
+          // The fix sequence:
+          //  1. Wrapper has overflow-x-auto and is the scroll container.
+          //  2. The <table> uses min-w-full (NOT w-full). w-full caps the
+          //     table at 100% of parent and creates layout conflicts when
+          //     cell content demands more; min-w-full guarantees the table
+          //     is AT LEAST 100% but can grow with content while the wrapper
+          //     scrolls horizontally.
+          //  3. <td> does NOT have whitespace-nowrap — cell content wraps
+          //     so a 3-4 column table fits cleanly on a 380px viewport.
+          //     <th> keeps whitespace-nowrap so headers stay legible as
+          //     fixed labels.
+          //  4. Cell padding + font shrink on mobile: text-[11px]/px-2/py-1.5
+          //     (mobile) → text-[13px]/px-2.5/py-2 (sm+). This gives ~30%
+          //     more horizontal room without sacrificing desktop polish.
+          //  5. Negative -mx-1 on outermost wrapper eats half the bubble's
+          //     16px padding to give the table extra breathing width while
+          //     still leaving 12px effective gutter on each side.
           table: ({ children }) => (
             <div className="my-3 -mx-1 sm:mx-0">
               <div
-                className="overflow-x-auto rounded-lg border border-border"
+                className="overflow-x-auto rounded-lg border border-border max-w-full"
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
-                <table className="w-full text-[13px] border-collapse">{children}</table>
+                <table className="min-w-full text-[11px] sm:text-[13px] border-collapse">
+                  {children}
+                </table>
               </div>
-              <p className="text-[10px] text-muted-foreground mt-1 text-right sm:hidden">
-                ← swipe →
+              <p className="text-[10px] text-muted-foreground mt-1.5 italic pl-1 sm:hidden">
+                ← swipe table to see more →
               </p>
             </div>
           ),
@@ -164,12 +183,12 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
             <tr className="border-b border-border last:border-b-0">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="px-2.5 py-2 text-left font-semibold text-foreground border-r border-border last:border-r-0 whitespace-nowrap">
+            <th className="px-2 py-1.5 sm:px-2.5 sm:py-2 text-left font-semibold text-foreground border-r border-border last:border-r-0 whitespace-nowrap">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-2.5 py-2 text-foreground/85 border-r border-border last:border-r-0 align-top">
+            <td className="px-2 py-1.5 sm:px-2.5 sm:py-2 text-foreground/85 border-r border-border last:border-r-0 align-top">
               {children}
             </td>
           ),
