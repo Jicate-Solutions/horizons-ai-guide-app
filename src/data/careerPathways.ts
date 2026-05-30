@@ -88,6 +88,9 @@ export type CareerFamily =
   | 'science-forensic'
   | 'science-food-tech'
   | 'science-fisheries'
+  | 'science-pure-traditional'
+  | 'science-bio-research'
+  | 'creative-fashion'
   | 'commerce-ca-cma'
   | 'commerce-bcom'
   | 'commerce-bba'
@@ -96,6 +99,8 @@ export type CareerFamily =
   | 'creative-design'
   | 'psychology'
   | 'defence-strategic'
+  | 'arts-civil-services'
+  | 'arts-social-work'
   | 'arts-language'
   | 'agriculture';
 
@@ -6529,6 +6534,608 @@ export const CAREER_PATHWAYS: CareerPathway[] = [
       { skill: 'Strong English + basic tech literacy', why: 'B.C.A. LL.B. graduates are valued specifically for the rare combination of legal English fluency AND technical understanding. Strong English is the working necessity.', freeResource: 'BBC Learning English, daily news editorial reading, free MOOC tech-fundamentals courses' },
       { skill: 'Programming exposure — Python or one introductory language', why: 'The BCA portion demands genuine technical engagement. Familiarity with at least one programming language before year 1 dramatically reduces the learning curve.', freeResource: 'freeCodeCamp Python, Codecademy free tier, Khan Academy programming intro' },
       { skill: 'Current cyber law + privacy news reading', why: 'The field is changing rapidly with DPDP Act, AI regulation discussions, and cybercrime evolution. Daily reading builds the career awareness most law students lack.', freeResource: 'MediaNama, SpicyIP, Bar and Bench tech-law coverage, free EU GDPR resources' },
+    ],
+    lastReviewed: '2026-05',
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ─── BATCH 9 (Phase 3b): PURE SCIENCES + CREATIVE + ARTS/HUMANITIES ────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Ten foundational + specialised degrees completing Phase 3.
+  //
+  // isNiche per user's Phase 3 rule:
+  //   - General foundation degrees (Maths, Physics, Chemistry, Tamil,
+  //     Economics, Public Admin) → isNiche: false
+  //   - Specialised tracks (Microbiology, Biochemistry, Costume Design,
+  //     B.S.W.) → isNiche: true
+  //
+  // Family decisions:
+  //   - science-pure-traditional: Maths/Physics/Chemistry (they compete for
+  //     the same PCM-research student type; family dedup picks best fit)
+  //   - science-bio-research: Microbiology + Biochemistry (distinct from
+  //     engineering-biotech; pure-science research track)
+  //   - creative-fashion: Costume Design (distinct from engineering-textiles
+  //     which is manufacturing-focused)
+  //   - arts-civil-services: Economics + Public Admin (both serve civil
+  //     services / govt-prep aspirant student type)
+  //   - arts-social-work: B.S.W. (own family; distinct from psychology)
+  //   - arts-language: B.A. Tamil joins existing B.A. English
+
+  // ─── B.SC MATHEMATICS ──────────────────────────────────────────────────────
+  {
+    id: 'bsc-mathematics',
+    family: 'science-pure-traditional',
+    isNiche: false,
+    interestTags: ['research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'maths_heavy'],
+    automation: 'ai_augmented',
+    automationNote: 'Pure mathematics underpins data science, actuarial work, quantitative finance, and AI — all rapidly growing fields. Strong math graduates are increasingly valuable as the foundational thinkers behind algorithmic systems.',
+    title: 'B.Sc Mathematics',
+    titleTa: 'பி.எஸ்சி கணிதம்',
+    icon: '∑',
+    color: 'from-amber-600 to-orange-700',
+    whatIsIt:
+      'A three-year foundational degree in pure mathematics — algebra, calculus, real analysis, linear algebra, differential equations, probability, statistics, and number theory. The training is theoretical and rigorous. Career outcomes: M.Sc Mathematics / Statistics (most common acceleration), actuarial science (after Institute of Actuaries of India qualification), quantitative finance roles at banks / hedge funds, data science via additional certifications, teaching at school/college level, civil services with Mathematics optional, and increasingly AI/ML engineering roles for those who add programming skills.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.Sc Mathematics', 'B.Sc (Hons.) Mathematics', 'B.Sc Mathematics with Computer Applications'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Sc + specialisation (actuarial, data science, statistics) is the standard step up — typically 5-7 years to a strong career position.',
+    skillWeights: { mathematics: 9, language: 5, science: 6, creativity: 5, people: 3, physical: 1, digital: 6 },
+    priorityFit: { salary: 6, security: 7, balance: 7, abroad: 7, prestige: 7, passion: 8, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at IT services analytics teams and entry analyst roles; ₹4–7 LPA after Actuarial Science papers cleared at insurance companies; data analyst roles ₹3.5–6 LPA with applied skills.',
+      midCareerLPA: 'AI estimate — ₹10–25 LPA after 7+ years for actuaries, data scientists, and senior analysts; ₹15–40+ LPA for fully-qualified actuaries (FIAI) and quantitative finance specialists; ₹7–12 LPA for college lecturers post NET/SET.',
+      note: 'B.Sc Mathematics is a STEPPING STONE to specialised post-graduate / professional paths — the degree alone is generic. The actuarial path (long but highly paid), data science path, and academic research path are the three main career uplifts. Strong mathematics ability is increasingly valued in AI/ML engineering.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady demand from analytics, actuarial, and data science sectors. The path is academic — most strong graduates pursue M.Sc + specialisation.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available. Strong 12th Maths is essential for actual success in the degree.' },
+    collegeTiers: [
+      { label: 'Top B.Sc Mathematics in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science', 'Stella Maris College', 'Ramakrishna Mission Vivekananda College'], cutoffGuide: 'AI estimate — 80%+ in 12th PCM at top tier; Mathematics-specific cutoff matters most.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bishop Heber Trichy', 'D.G. Vaishnav College', 'Ethiraj College', 'Sri Krishna Arts & Science Coimbatore'], cutoffGuide: 'AI estimate — 70–80%.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'Other TN colleges (AI estimate)', examples: ['Numerous TN aided and private colleges offer B.Sc Mathematics'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Maths in TN costs roughly ₹60K–2.5L total. The serious investment is M.Sc / Actuarial / specialised certifications afterwards.',
+    backupOptions: ['M.Sc Mathematics / M.Sc Statistics — academic specialisation', 'Institute of Actuaries of India — actuarial qualification (long but highly paid)', 'Data science certifications (Coursera ML, Google Data Analytics)', 'CA / CMA pivot using strong quantitative skills', 'B.Ed Mathematics for school teaching', 'Civil services with Mathematics optional', 'IIT JAM for IIT M.Sc admission', 'Quantitative finance roles with self-taught programming'],
+    honestCaveat: 'B.Sc Mathematics rewards genuinely mathematics-curious students — those who enjoy proofs, abstract reasoning, and problem-solving as ends in themselves. Students who pick it as a "general science backup" usually struggle in years 2-3 (real analysis, abstract algebra are properly difficult). The degree alone has modest direct job market — the real career uplift comes from M.Sc + specialisation or vocational qualification (actuarial, data science). Strong programming skills added during the degree multiply career options dramatically.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCM with strong Maths', titleTa: '+12 PCM 75%+', detail: 'Strong Mathematics in 12th predicts B.Sc Maths success. Direct admission.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc Maths + Python + actuarial / data path decision', titleTa: 'B.Sc + Python + பாதை முடிவு', detail: 'Add Python programming early. By year 2, decide trajectory: actuarial, data science, academic research, or teaching — each requires different preparation.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.Sc / Actuarial papers / Data Science role', titleTa: 'M.Sc / Actuarial / Data Science', detail: 'Three credible exits. M.Sc for academic/research path; actuarial for high earnings (long road); data science via certifications for fastest applied career start.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Maths foundations rigorously', titleTa: 'கணித அடிப்படை', detail: 'Real analysis and abstract algebra in year 2-3 are tough; strong 12th calculus, algebra, and trigonometry make a major difference.', priority: 'high' },
+      { title: 'Start Python programming basics', titleTa: 'பைதான் ஆரம்பம்', detail: 'Free tutorials. Python opens data science and modern math applications. Begin while waiting for college start.', priority: 'high', freeResource: 'freeCodeCamp Python, MIT OCW 6.001x' },
+      { title: 'Read about Actuarial Science career', titleTa: 'Actuarial தொழில் படிக்கவும்', detail: 'India\'s actuarial profession is small but highly paid. Visit https://www.actuariesindia.org and understand the qualification pathway early.', priority: 'medium', link: 'https://www.actuariesindia.org' },
+    ],
+    buildNowSkills: [
+      { skill: 'Deep Mathematics — calculus, linear algebra, probability', why: 'The foundation of every career path from B.Sc Maths. Strong fundamentals reward you for the entire 3-year degree and beyond.', freeResource: '3Blue1Brown YouTube, Khan Academy, MIT OCW 18.01-18.06' },
+      { skill: 'Python programming + numerical computing', why: 'Modern math careers (data science, quant finance, AI) all use Python. Comfort from day 1 is the single biggest applied-skill multiplier.', freeResource: 'freeCodeCamp, Real Python, NumPy/SciPy tutorials' },
+      { skill: 'Problem-solving stamina — competitive math habit', why: 'Math degrees reward students who enjoy difficult problems. Building daily practice habit pays compound returns.', freeResource: 'Brilliant.org free problems, Project Euler, IIT JAM previous papers' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC PHYSICS ──────────────────────────────────────────────────────────
+  {
+    id: 'bsc-physics',
+    family: 'science-pure-traditional',
+    isNiche: false,
+    interestTags: ['research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['sitting_long', 'lab_practical', 'maths_heavy'],
+    automation: 'ai_augmented',
+    automationNote: 'Physics graduates work in DRDO, ISRO, defence research, semiconductor industry, and increasingly AI/ML where strong physics intuition (statistical mechanics, optimisation, signal processing) is genuinely valuable. The work is technical and human-judgement intensive.',
+    title: 'B.Sc Physics',
+    titleTa: 'பி.எஸ்சி பௌதிகம்',
+    icon: '⚛️',
+    color: 'from-blue-700 to-indigo-800',
+    whatIsIt:
+      'A three-year foundational degree in physics — classical mechanics, electromagnetism, quantum mechanics, thermodynamics, optics, statistical physics, electronics, and modern physics. The training combines rigorous mathematics with experimental laboratory work. Career outcomes: M.Sc + PhD academic path (IISc, IIT, TIFR — for the genuinely research-inclined), DRDO / ISRO scientist roles (after entry exams), defence research (DRDO labs), semiconductor / electronics industry, science teaching at school/college level, data science via post-degree specialisation, and the emerging quantum computing / photonics segments.',
+    eligibleStreams: ['pcm', 'pcmb'],
+    strongGroupCodes: ['101', '102', '104'],
+    ugCourses: ['B.Sc Physics', 'B.Sc (Hons.) Physics', 'B.Sc Physics with Electronics'],
+    entranceExams: ['None for direct admission', 'IIT JAM for IIT M.Sc admission post-degree'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Sc + PhD is the academic-research path (7-9 years total). DRDO / ISRO entry typically after M.Sc + scientist exams.',
+    skillWeights: { mathematics: 7, language: 5, science: 9, creativity: 5, people: 3, physical: 2, digital: 6 },
+    priorityFit: { salary: 6, security: 7, balance: 7, abroad: 7, prestige: 8, passion: 8, growth: 7, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at IT services and entry analyst roles; ₹4.5–8 LPA after M.Sc at semiconductor / electronics companies; ₹6–10 LPA at DRDO/ISRO entry scientist positions after M.Sc + scientist entry exam.',
+      midCareerLPA: 'AI estimate — ₹12–25 LPA for senior DRDO/ISRO scientists with security and pension; ₹15–35 LPA in semiconductor industry (Intel, TI, Qualcomm India); academic ₹8–18 LPA at college lecturer / assistant professor level. Strong abroad opportunities (US PhD scholarships, European research positions).',
+      note: 'Physics is fundamentally an ACADEMIC degree — the career trajectory depends heavily on M.Sc / PhD pursuit. Direct industry entry pays modestly. The academic / DRDO / ISRO route offers strong security and prestige with moderate income.',
+    },
+    demand: { score: 6, note: 'AI estimate — moderate but specialised. Academic positions limited (PhD oversupply globally); DRDO/ISRO selective; semiconductor industry growing. Strong physics graduates increasingly valued in AI/ML.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available. Top colleges (Loyola, MCC) competitive.' },
+    collegeTiers: [
+      { label: 'Top B.Sc Physics in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College (renowned physics dept)', 'PSG College of Arts & Science', 'Ramakrishna Mission Vivekananda College'], cutoffGuide: 'AI estimate — 80%+ in 12th PCM at top tier.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['American College Madurai', 'Bishop Heber Trichy', 'Stella Maris College', 'D.G. Vaishnav College'], cutoffGuide: 'AI estimate — 70–80%.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'National flagship (if open to relocation)', examples: ['IISER Pune/Kolkata/Mohali/Tirupati/Bhopal (5-year Integrated BS-MS via IISER Aptitude Test) — premier research-track programs'], cutoffGuide: 'AI estimate — IAT competitive.', feeRange: 'AI estimate — ₹15K–80K / year (govt)' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Physics in TN costs roughly ₹60K–2.5L total. M.Sc + PhD pursuit adds 5-7 years; PhD in India typically funded via fellowships.',
+    backupOptions: ['M.Sc Physics — academic specialisation', 'IIT JAM → IIT M.Sc → research', 'DRDO / ISRO entry-level scientist (after M.Sc + exam)', 'Semiconductor industry roles', 'B.Ed Physics for school teaching', 'Data science via post-degree specialisation', 'Civil services with Physics optional', 'Abroad PhD (US, Europe, Germany funded programs)'],
+    honestCaveat: 'B.Sc Physics is an academic-research-oriented degree. Direct industry job market is limited; the real career path runs through M.Sc + (typically) PhD. Students who picked it as "general science with prestige" struggle if they don\'t commit to the academic pursuit. The DRDO/ISRO route offers excellent stability but is selective. Strong mathematical ability is essential — physics IS applied mathematics in many of its courses. Students who hate maths struggle quickly.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCM', titleTa: '+12 PCM 75%+', detail: 'Strong Maths + Physics required. Direct admission at most TN colleges; IISER (5-year integrated) via IAT requires separate prep.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc + commit to M.Sc OR strong applied skills', titleTa: 'B.Sc + M.Sc / பயன்பாட்டுத் திறன்', detail: 'Two credible directions: academic (commit to M.Sc + PhD pursuit) OR applied (build Python / programming during degree for data science / industry entry).', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.Sc + research / DRDO scientist / industry / abroad PhD', titleTa: 'M.Sc + ஆராய்ச்சி / DRDO / தொழில் / வெளிநாடு', detail: 'Four credible exits. Academic research is the prestige route; DRDO/ISRO for stable government science career; industry for income; abroad PhD for frontier research.', window: 'Years 3–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Maths AND Physics rigorously', titleTa: 'கணிதம் + பௌதிகம்', detail: 'Physics degrees demand strong both. Solve problem sets daily — Irodov, HC Verma, NCERT exemplar problems.', priority: 'high' },
+      { title: 'Consider IISER (5-year integrated BS-MS) via IAT', titleTa: 'IISER + IAT பற்றி', detail: 'If genuinely academic-research inclined, IISER programs are the strongest national alternative to standalone B.Sc — visit https://www.iiseradmission.in.', priority: 'high', link: 'https://www.iiseradmission.in' },
+      { title: 'Start Python programming', titleTa: 'பைதான் ஆரம்பம்', detail: 'Modern physics careers (data science adjacency, scientific computing) all use Python. Begin while waiting for college start.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Deep Maths + Physics fundamentals', why: 'Physics IS applied maths. Strong 12th calculus, vectors, and Physics problem-solving are foundational for the entire degree.', freeResource: '3Blue1Brown YouTube, MIT OpenCourseWare 8.01-8.04, free Khan Academy physics' },
+      { skill: 'Python + scientific computing (NumPy, matplotlib)', why: 'Modern physics careers all use computational tools. Comfort with Python + numerical libraries from day 1 is a major asset.', freeResource: 'freeCodeCamp Python, SciPy lecture notes (free)' },
+      { skill: 'Problem-solving stamina', why: 'Physics rewards students who enjoy difficult, multi-step problems. Daily problem-solving practice is the career-defining habit.', freeResource: 'NCERT exemplar problems, JEE Advanced previous papers, Irodov (used books cheap)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC CHEMISTRY ────────────────────────────────────────────────────────
+  {
+    id: 'bsc-chemistry',
+    family: 'science-pure-traditional',
+    isNiche: false,
+    interestTags: ['research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'graphic_content', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Chemistry graduates work in pharmaceutical QC/QA, FMCG R&D, petrochemicals, and environmental testing — all sectors where lab work and chemical judgement remain firmly human despite automation of routine testing.',
+    title: 'B.Sc Chemistry',
+    titleTa: 'பி.எஸ்சி வேதியியல்',
+    icon: '⚗️',
+    color: 'from-emerald-700 to-teal-800',
+    whatIsIt:
+      'A three-year foundational degree in chemistry — organic chemistry, inorganic chemistry, physical chemistry, analytical chemistry, and laboratory techniques. The training is heavily laboratory-based with rigorous theoretical foundations. Career outcomes: M.Sc Chemistry / specialised disciplines (organic, analytical, biochemistry, environmental), pharmaceutical quality control / quality assurance (Sun Pharma, Dr Reddy\'s, Cipla, Pfizer India), FMCG R&D (HUL, ITC, Nestle), petrochemical industry, environmental testing labs, forensic science adjacency, and teaching.',
+    eligibleStreams: ['pcb', 'pcm', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203', '101'],
+    ugCourses: ['B.Sc Chemistry', 'B.Sc (Hons.) Chemistry', 'B.Sc Industrial Chemistry'],
+    entranceExams: ['None (direct admission via 12th marks)', 'IIT JAM for IIT M.Sc post-degree'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Sc Chemistry is the standard step up. Direct industry entry at pharmaceutical and FMCG QC labs possible.',
+    skillWeights: { mathematics: 5, language: 5, science: 8, creativity: 4, people: 3, physical: 3, digital: 5 },
+    priorityFit: { salary: 5, security: 6, balance: 6, abroad: 6, prestige: 6, passion: 7, growth: 6, hometown: 7 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at pharmaceutical QC/QA roles; ₹3–5 LPA at FMCG R&D entry roles; ₹2.5–4 LPA at environmental testing labs.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA after 7+ years for senior QC/QA managers, R&D leads, and academic positions. Pharmaceutical industry mid-career and specialty analytical chemistry roles pay well.',
+      note: 'Modest entry pay; trajectory rewards M.Sc + specialisation. The pharmaceutical industry (TN has significant pharma manufacturing) is the largest single employer of chemistry graduates.',
+    },
+    demand: { score: 6, note: 'AI estimate — steady demand from pharmaceutical, FMCG, and chemical industries. Specialised tracks (analytical, biochemistry, environmental) have stronger trajectories.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available. Among the most accessible pure-science degrees.' },
+    collegeTiers: [
+      { label: 'Top B.Sc Chemistry in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'PSG College of Arts & Science', 'Ramakrishna Mission Vivekananda College'], cutoffGuide: 'AI estimate — 75%+ in 12th PCB/PCM at top tier.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Stella Maris College', 'Bishop Heber Trichy', 'D.G. Vaishnav College', 'American College Madurai'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'Other TN colleges (AI estimate)', examples: ['Numerous TN colleges offer B.Sc Chemistry'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Chemistry in TN costs roughly ₹60K–2.5L total. Among the more affordable pure-science degrees.',
+    backupOptions: ['M.Sc Chemistry — academic specialisation', 'Pharmaceutical industry QC/QA / R&D roles', 'FMCG R&D (HUL, ITC, Nestle, Marico)', 'Environmental testing labs (NABL-accredited)', 'B.Ed Chemistry for school teaching', 'Pivot to forensic science via PG diploma', 'Petroleum industry analytical roles', 'IIT JAM for IIT M.Sc admission'],
+    honestCaveat: 'B.Sc Chemistry involves significant laboratory work — handling chemicals, solvents, sometimes hazardous reagents. Students averse to hands-on lab work or with chemical sensitivities struggle. The pharmaceutical QC/QA path is the largest employer but the work can be repetitive (testing the same products to specification). Strong specialisation via M.Sc + applied skills opens better trajectories. The degree alone has modest direct job market.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCB or PCM', titleTa: '+12 70%+', detail: 'Strong Chemistry + Biology / Maths matter. Direct admission widely available.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc + active lab work + pharma internships', titleTa: 'B.Sc + ஆய்வக + பயிற்சி', detail: 'Summer internships at pharmaceutical companies (Dr Reddy\'s, Cipla, Sun Pharma) transform placement outcomes — most hiring runs through this network.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Pharma QC role, M.Sc, or specialisation pivot', titleTa: 'Pharma QC / M.Sc / சிறப்பு', detail: 'Three credible exits. Direct industry for income; M.Sc for senior roles; specialisation (analytical, environmental, biochem) for differentiation.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen Chemistry fundamentals — particularly organic', titleTa: 'வேதியியல் அடிப்படை', detail: 'Organic chemistry is the toughest year 1-2 subject; strong 12th fundamentals make it dramatically easier.', priority: 'high' },
+      { title: 'Tolerance test for laboratory work', titleTa: 'ஆய்வக சகிப்புத்தன்மை', detail: 'Chemistry involves daily lab work — handling chemicals, smells, lab safety. Confirm tolerance before committing.', priority: 'high' },
+      { title: 'Read about pharmaceutical and FMCG R&D careers', titleTa: 'மருந்து தொழில் படிக்கவும்', detail: 'Career destinations matter for motivation. Understanding the pharma manufacturing landscape (especially in TN) clarifies the practical career path.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Deep Chemistry fundamentals — organic, inorganic, physical', why: 'The foundation of every chemistry career. Strong 12th NCERT + supplementary practice translates directly into year 1 success.', freeResource: 'NCERT Chemistry, free MIT OpenCourseWare 5.111 (intro chemistry)' },
+      { skill: 'Methodical, precise lab work habit', why: 'Chemistry is precision work — measuring, recording, repeating. Building deliberate, careful habit pays compound returns through the degree and career.', freeResource: 'School chemistry lab time, free lab technique videos on YouTube' },
+      { skill: 'Basic computer + data fluency', why: 'Modern lab work involves Laboratory Information Systems (LIS), instrument software, and Excel data analysis. Comfort with these from day 1 is a real asset.', freeResource: 'Microsoft Excel free YouTube tutorials, basic Python data tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC MICROBIOLOGY ─────────────────────────────────────────────────────
+  {
+    id: 'bsc-microbiology',
+    family: 'science-bio-research',
+    isNiche: true,
+    interestTags: ['healthcare', 'research'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'graphic_content', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Microbiology graduates work in clinical diagnostic labs, pharmaceutical R&D, food microbiology, and increasingly the molecular diagnostics segment that grew explosively after 2020. India\'s biopharmaceutical and food safety sectors continue to expand.',
+    title: 'B.Sc Microbiology',
+    titleTa: 'பி.எஸ்சி நுண்ணுயிரியல்',
+    icon: '🦠',
+    color: 'from-lime-700 to-green-800',
+    whatIsIt:
+      'A three-year specialised B.Sc focused on the study of microorganisms — bacteriology, virology, mycology, parasitology, immunology, molecular microbiology, and microbial biotechnology. Distinct from biotechnology (which is more engineering / industrial application focused). Career outcomes: clinical diagnostic laboratory roles, pharmaceutical R&D (Sun Pharma, Dr Reddy\'s, Biocon, Serum Institute), food microbiology (Nestle, ITC, Britannia QC labs), molecular diagnostics roles (post-2020 expansion segment), public health research, vaccine industry, and academic research after M.Sc.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203'],
+    ugCourses: ['B.Sc Microbiology', 'B.Sc (Hons.) Microbiology', 'B.Sc Industrial Microbiology'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Sc Microbiology is the standard step up. Clinical diagnostic lab entry possible directly.',
+    skillWeights: { mathematics: 4, language: 5, science: 8, creativity: 4, people: 3, physical: 3, digital: 6 },
+    priorityFit: { salary: 5, security: 6, balance: 6, abroad: 7, prestige: 6, passion: 8, growth: 7, hometown: 6 },
+    competitiveBoardPct: { comfortable: 70, stretch: 60 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at clinical diagnostic labs (Dr Lal PathLabs, Thyrocare, Metropolis) and pharma QC; ₹3–5 LPA at food microbiology QC labs; ₹4–6 LPA at molecular diagnostics roles after specialised training.',
+      midCareerLPA: 'AI estimate — ₹8–15 LPA after 7+ years for senior microbiologists, R&D specialists, and lab managers; ₹12–25 LPA in pharmaceutical R&D leadership and vaccine industry. Abroad opportunities multiply substantially post-M.Sc.',
+      note: 'Moderate entry pay; trajectory rewards M.Sc + specialisation (molecular microbiology, virology, immunology). The post-2020 expansion of molecular diagnostics infrastructure created sustained demand.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from clinical diagnostic chains, pharmaceutical R&D, and the expanding molecular diagnostics / vaccine industry segments.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available; top private colleges and some research-oriented programs competitive.' },
+    collegeTiers: [
+      { label: 'Top B.Sc Microbiology in TN (AI estimate)', examples: ['Christian Medical College Vellore (medical microbiology track)', 'Madras Christian College', 'Stella Maris College', 'Sri Krishna Arts & Science Coimbatore'], cutoffGuide: 'AI estimate — 75%+ in 12th PCB at top tier.', feeRange: 'AI estimate — ₹25K–1L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Loyola College', 'D.G. Vaishnav College', 'Ethiraj College', 'PSGR Krishnammal Coimbatore'], cutoffGuide: 'AI estimate — 65–75%.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Other TN colleges (AI estimate)', examples: ['Several TN colleges offer B.Sc Microbiology'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Microbiology in TN costs roughly ₹60K–3L total. M.Sc + specialisation typically adds ₹1L–4L.',
+    backupOptions: ['M.Sc Microbiology / Virology / Immunology', 'Clinical diagnostic chain laboratory roles', 'Pharmaceutical R&D (Sun Pharma, Dr Reddy\'s, Biocon, Serum Institute)', 'Food microbiology QC (Nestle, ITC, Britannia)', 'Molecular diagnostics specialist (post-COVID growth segment)', 'Vaccine industry roles (BBIL, SII)', 'Public health research / WHO-adjacent NGO roles', 'Move abroad — Gulf, UK, US biotech sectors after M.Sc'],
+    honestCaveat: 'B.Sc Microbiology involves heavy lab work with biological samples — bacterial cultures, sometimes hazardous pathogens (with biosafety training). Students with chemical / biological sensitivities or aversion to handling living micro-organisms struggle. The pharmaceutical and food QC paths can be repetitive (same test protocols). Career growth requires M.Sc specialisation — the degree alone has modest entry-level market. Strong abroad mobility post-specialisation is a real lever.',
+    roadmap: [
+      { title: 'Score 70%+ in 12th PCB', titleTa: '+12 PCB 70%+', detail: 'Strong Biology + Chemistry required. Direct admission widely available.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc + active diagnostic lab + research internships', titleTa: 'B.Sc + ஆய்வக + ஆராய்ச்சி பயிற்சி', detail: 'Internships at diagnostic chains (Dr Lal, Thyrocare) AND research institutes (CCMB Hyderabad, NIBMG Kalyani if accessible) transform placement quality.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Clinical lab role, M.Sc, or pharma R&D pivot', titleTa: 'ஆய்வக / M.Sc / R&D', detail: 'Three credible exits. Direct lab role for income; M.Sc for specialisation and career uplift; pharma R&D for the strongest mid-career trajectory.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Biology + Chemistry', titleTa: 'உயிரியல் + வேதியியல்', detail: 'Microbiology builds on cellular biology + biochemistry foundations. Strong 12th fundamentals dramatically ease year 1.', priority: 'high' },
+      { title: 'Visit a clinical diagnostic lab', titleTa: 'மருத்துவ ஆய்வக பார்வை', detail: 'TN has many. Honest observation clarifies the day-to-day reality — repetitive testing, sample handling, instrument operation.', priority: 'medium' },
+      { title: 'Read about post-COVID molecular diagnostics boom', titleTa: 'COVID பிறகு PCR / Molecular', detail: 'The molecular diagnostics segment expanded enormously after 2020. Understanding this context shapes specialisation choices early.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Biology — particularly cell biology and biochemistry', why: 'Microbiology builds on cellular biology. Strong 12th NCERT + supplementary reading translates directly into year 1 success.', freeResource: 'NCERT Biology, free MIT OpenCourseWare 7.012 (intro biology), Khan Academy cell biology' },
+      { skill: 'Methodical, sterile-technique lab habit', why: 'Microbiology demands precise aseptic technique. Building deliberate, careful habit early pays compound returns.', freeResource: 'School lab time with proper technique focus, free lab safety videos' },
+      { skill: 'Basic data / instrument literacy', why: 'Modern microbiology uses PCR machines, automated culture systems, and data analysis software. Comfort with these from day 1 is a real asset.', freeResource: 'Free YouTube PCR principle videos, basic Excel data tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC BIOCHEMISTRY ─────────────────────────────────────────────────────
+  {
+    id: 'bsc-biochemistry',
+    family: 'science-bio-research',
+    isNiche: true,
+    interestTags: ['research', 'healthcare'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['lab_practical', 'graphic_content', 'sitting_long'],
+    automation: 'ai_augmented',
+    automationNote: 'Biochemistry graduates work in clinical chemistry labs, pharmaceutical R&D, biotechnology, and increasingly the precision medicine / personalised diagnostics segments. The work combines deep chemistry + biology knowledge with bench research skill.',
+    title: 'B.Sc Biochemistry',
+    titleTa: 'பி.எஸ்சி உயிர் வேதியியல்',
+    icon: '🧬',
+    color: 'from-fuchsia-700 to-pink-800',
+    whatIsIt:
+      'A three-year specialised B.Sc focused on the chemistry of living systems — metabolism, enzymes, molecular biology, genetics, immunology, clinical biochemistry, and protein chemistry. Sits at the intersection of chemistry and biology. Career outcomes: clinical biochemistry laboratory roles (hospital labs, diagnostic chains), pharmaceutical R&D (focus on drug metabolism, formulation), biotechnology research, clinical research (CROs like Syngene, Quintiles), academic research after M.Sc + PhD, forensic toxicology adjacency, and emerging precision-medicine / personalised diagnostics segments.',
+    eligibleStreams: ['pcb', 'pcmb'],
+    strongGroupCodes: ['208', '204', '203'],
+    ugCourses: ['B.Sc Biochemistry', 'B.Sc (Hons.) Biochemistry', 'B.Sc Biochemistry & Molecular Biology'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Sc Biochemistry is the standard step up. Clinical biochemistry lab entry possible directly.',
+    skillWeights: { mathematics: 5, language: 5, science: 9, creativity: 4, people: 3, physical: 3, digital: 6 },
+    priorityFit: { salary: 5, security: 6, balance: 6, abroad: 8, prestige: 7, passion: 8, growth: 7, hometown: 5 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at hospital biochemistry labs and diagnostic chains; ₹3.5–6 LPA at clinical research organisations (Syngene, Quintiles); ₹3–5 LPA at pharmaceutical R&D entry roles.',
+      midCareerLPA: 'AI estimate — ₹10–20 LPA after 7+ years for senior biochemists, R&D specialists, and clinical research leads; ₹15–30+ LPA in pharmaceutical formulation R&D and CRO senior roles. Strong abroad mobility (US, UK, Germany biotech) after M.Sc + PhD.',
+      note: 'Among the strongest abroad-mobility pure-science degrees because biochemistry skills translate globally. The PhD + abroad pathway is the strongest financial lever. Domestic CRO industry (Syngene, Quintiles, Reliance Life Sciences) is the largest direct employer.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from pharmaceutical R&D, clinical research organisations, biotechnology, and the emerging precision medicine segment.' },
+    entryDifficulty: { score: 4, note: 'AI estimate — direct admission widely available but the field benefits from genuinely strong PCB foundations.' },
+    collegeTiers: [
+      { label: 'Top B.Sc Biochemistry in TN (AI estimate)', examples: ['Christian Medical College Vellore (medical biochemistry track)', 'Stella Maris College', 'Madras Christian College', 'PSG College of Arts & Science'], cutoffGuide: 'AI estimate — 80%+ in 12th PCB at top tier.', feeRange: 'AI estimate — ₹25K–1L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['Loyola College', 'D.G. Vaishnav College', 'Ethiraj College', 'PSGR Krishnammal Coimbatore'], cutoffGuide: 'AI estimate — 70–80%.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'Other TN colleges (AI estimate)', examples: ['Several TN colleges offer B.Sc Biochemistry'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹15K–60K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc Biochemistry in TN costs roughly ₹60K–3L total. M.Sc + PhD pursuit adds substantial time; PhD typically funded via fellowships.',
+    backupOptions: ['M.Sc Biochemistry / Clinical Biochemistry / Molecular Biology', 'Clinical research at CROs (Syngene, Quintiles, Reliance Life Sciences)', 'Pharmaceutical R&D — drug metabolism, formulation', 'Hospital biochemistry laboratory roles', 'Biotechnology R&D positions', 'Forensic toxicology via PG diploma', 'Move abroad — strong US, UK, Germany biotech demand post-M.Sc + PhD', 'Academic research career via PhD'],
+    honestCaveat: 'B.Sc Biochemistry is a rigorous chemistry-biology hybrid — students who picked it imagining "easier than chemistry or biology alone" usually struggle because it demands BOTH disciplines. Lab work is heavy with biological samples + chemical reagents. The career trajectory genuinely rewards M.Sc + (often) PhD; the degree alone has modest entry-level market in India. International mobility post-research-degree is among the strongest of any pure science.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th PCB', titleTa: '+12 PCB 75%+', detail: 'Strong Biology + Chemistry equally important. Direct admission widely available.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc + research-lab exposure + CRO internships', titleTa: 'B.Sc + ஆராய்ச்சி + CRO பயிற்சி', detail: 'Summer internships at research institutes (CCMB, NIBMG) AND CROs (Syngene India) transform career outcomes — the research network matters.', window: 'Years 1–3', phase: 'next' },
+      { title: 'M.Sc + CRO / pharma R&D / academic PhD / abroad', titleTa: 'M.Sc + R&D / PhD / வெளிநாடு', detail: 'Four credible exits. CRO/pharma for direct income; academic PhD for research career; abroad PhD for frontier work and strong earnings.', window: 'Years 3–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Biology + Chemistry equally', titleTa: 'உயிரியல் + வேதியியல்', detail: 'Biochemistry demands both. Strong 12th fundamentals across BOTH subjects dramatically ease year 1.', priority: 'high' },
+      { title: 'Read about CRO industry and precision medicine', titleTa: 'CRO + Precision Medicine', detail: 'India\'s CRO industry is enormous (Syngene, Quintiles, Reliance Life Sciences). Understanding this practical destination shapes early specialisation.', priority: 'medium' },
+      { title: 'Tolerance test for lab work', titleTa: 'ஆய்வக சகிப்புத்தன்மை', detail: 'Biochemistry involves daily handling of biological samples + chemicals. Confirm tolerance before committing.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Biology + Chemistry — particularly biochemistry adjacencies', why: 'Biochemistry builds on cellular biology AND organic chemistry foundations. Strong 12th in BOTH translates directly into year 1.', freeResource: 'NCERT Biology + Chemistry, free MIT OpenCourseWare 5.07 (biological chemistry)' },
+      { skill: 'Methodical lab technique + accuracy habit', why: 'Biochemistry experiments demand precision — pipetting accuracy, sterile technique, careful measurement. Building habit early pays for the career.', freeResource: 'School chemistry / biology lab time, free lab technique videos' },
+      { skill: 'Basic bioinformatics + computational biology exposure', why: 'Modern biochemistry uses bioinformatics tools (BLAST, sequence analysis, structural biology software). Early comfort opens substantial career options.', freeResource: 'Free Coursera Introduction to Genomic Technologies, NCBI free tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.SC COSTUME DESIGN & FASHION ─────────────────────────────────────────
+  {
+    id: 'bsc-costume-design-fashion',
+    family: 'creative-fashion',
+    isNiche: true,
+    interestTags: ['design', 'media'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['creative_pressure', 'sitting_long', 'memorisation'],
+    automation: 'high_human_judgment',
+    automationNote: 'Fashion design combines creative vision, garment construction craft, and cultural intuition — among the most automation-resilient creative careers. AI tools accelerate mood-board creation and trend analysis but cannot replace designer judgement on form, fabric, and fit.',
+    title: 'B.Sc Costume Design & Fashion',
+    titleTa: 'பி.எஸ்சி ஆடை வடிவமைப்பு',
+    icon: '👗',
+    color: 'from-pink-600 to-rose-700',
+    whatIsIt:
+      'A three-year design-focused degree spanning fashion illustration, pattern making, garment construction, draping, textile science, apparel merchandising, fashion CAD, costume history, and fashion marketing. Distinct from Textile Technology (which is engineering / manufacturing focused) — this is creative-led work. Career outcomes: fashion designer at brands and labels (W, Biba, Fabindia, regional designers), apparel merchandising (export houses like Shahi, Gokaldas), costume design for film/television (especially Tamil/Malayalam film industry), boutique entrepreneurship, fashion styling, retail buying, fashion journalism, and M.Des / NIFT progression for senior roles.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '301', '208'],
+    ugCourses: ['B.Sc Costume Design & Fashion (CDF)', 'B.Sc Fashion Design', 'B.Sc Apparel Design & Merchandising'],
+    entranceExams: ['None for direct admission', 'NIFT entrance for NIFT programs separately'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.Des / NIFT M.F.M. is the standard step up. Direct industry entry common at apparel export houses and boutique design studios.',
+    skillWeights: { mathematics: 3, language: 5, science: 2, creativity: 9, people: 6, physical: 4, digital: 6 },
+    priorityFit: { salary: 5, security: 4, balance: 5, abroad: 6, prestige: 6, passion: 9, growth: 7, hometown: 6 },
+    competitiveBoardPct: { comfortable: 60, stretch: 50 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–3.5 LPA fresh at apparel export houses (Shahi Exports, Gokaldas Exports, Arvind) and boutique studios; ₹3–5 LPA at established fashion brands (W, Biba, Fabindia, Westside design teams); film costume assistant roles ₹2.5–5 LPA but project-based.',
+      midCareerLPA: 'AI estimate — ₹8–25+ LPA after 7+ years for senior designers, design managers at brands, and boutique owners. Successful independent designers and brand owners can substantially exceed. Film costume design (Tamil/Malayalam industry) varies enormously by project but established designers earn very well.',
+      note: 'Income is highly variable — heavily dependent on talent, network, and portfolio quality. The top 10% (established designers, successful boutique owners) earn very well; the bottom 50% struggle in modest apparel-house roles. Passion-driven career — financial outcomes follow creative vision and entrepreneurial ability.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from apparel exports (TN has major garment hub at Tirupur), fashion brands, and film industry. Boutique entrepreneurship is the entrepreneurial wild card.' },
+    entryDifficulty: { score: 3, note: 'AI estimate — direct admission widely available at non-NIFT colleges. NIFT entrance for NIFT programs separately competitive.' },
+    collegeTiers: [
+      { label: 'NIFT (national flagship — separate entrance)', examples: ['NIFT Chennai (national premier program)', 'NIFT Hyderabad, Bangalore, Mumbai (if open to relocation)'], cutoffGuide: 'AI estimate — NIFT entrance competitive; NIFT degree opens premium career paths.', feeRange: 'AI estimate — ₹1.5L–3L / year (NIFT)' },
+      { label: 'Top B.Sc CDF in TN (AI estimate)', examples: ['PSG College of Arts & Science Coimbatore', 'PSGR Krishnammal College for Women Coimbatore', 'Avinashilingam University Coimbatore', 'Ethiraj College Chennai'], cutoffGuide: 'AI estimate — 65%+ in 12th typical; portfolio review at some colleges.', feeRange: 'AI estimate — ₹30K–1L / year' },
+      { label: 'Other TN programs (AI estimate)', examples: ['Stella Maris College', 'Queen Mary\'s College', 'SDNB Vaishnav College', 'Several women\'s colleges in TN have strong CDF programs'], cutoffGuide: 'AI estimate — widely accessible.', feeRange: 'AI estimate — ₹25K–80K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.Sc CDF in TN costs roughly ₹1L–3.5L total. Personal investment in fabrics, materials, sewing supplies, and design tools (₹20K–60K over 3 years) is significant — often underestimated.',
+    backupOptions: ['NIFT M.F.M. / M.Des — premium specialisation', 'Apparel export house design / merchandising career', 'Boutique entrepreneurship', 'Film / TV costume design (Tamil cinema, Malayalam cinema growing)', 'Fashion styling for celebrities / influencers', 'Fashion retail buying / visual merchandising', 'Fashion journalism / blogging', 'Move into adjacent fields: interior design, accessories design'],
+    honestCaveat: 'Fashion is a passion career with highly variable financial outcomes. The "designer life" media image (red carpet, fashion weeks) is the top 5% — most graduates work modest hours at apparel export houses or boutique studios on modest pay. The career rewards genuine creative talent + strong work ethic + entrepreneurial ability. Students who picked it as a "general degree" without specific design passion struggle quickly. Personal expense for materials and tools is real and often underestimated. NIFT degree opens substantially better career paths than non-NIFT — worth the entrance exam preparation if genuinely committed.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th + start portfolio building', titleTa: '+12 60%+ + Portfolio', detail: 'Direct admission. Start building a design portfolio (sketches, mood boards, garment construction attempts) — colleges with portfolio review value this; the design industry runs on portfolios.', window: 'Now', phase: 'now' },
+      { title: 'Join B.Sc CDF + boutique / export-house internships', titleTa: 'B.Sc + பயிற்சி', detail: 'Internships at boutiques, apparel export houses (Tirupur, Bangalore), or film costume teams during years 2-3 are essential — the industry runs on relationships.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Apparel house, boutique, NIFT M.F.M., or entrepreneurship', titleTa: 'நிறுவனம் / Boutique / NIFT / சொந்த தொழில்', detail: 'Four credible exits. Apparel house for income and structure; boutique for autonomy; NIFT M.F.M. for premium career uplift; own brand for entrepreneurial growth.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Honest portfolio + creative talent assessment', titleTa: 'திறமை சோதனை', detail: 'Sketch garments daily for 30 days. The honest portfolio at end of 3 months tells you whether creative talent is genuinely there — fashion rewards talent.', priority: 'high' },
+      { title: 'Consider NIFT entrance preparation', titleTa: 'NIFT நுழைவு', detail: 'NIFT degree opens substantially better paths. The entrance has creative + GAT papers — preparation guides and previous papers available free.', priority: 'high' },
+      { title: 'Read about Indian fashion industry honestly', titleTa: 'இந்திய ஃபேஷன் தொழில்', detail: 'Vogue India, BoF India, Lifestyle Insider — build awareness of the actual Indian fashion ecosystem before committing.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Drawing + design fundamentals — sketching, colour theory, composition', why: 'Fashion design IS visual communication. Daily drawing practice + colour theory + composition is the career-defining habit from day 1.', freeResource: 'Free Proko drawing tutorials, Skillshare free trials, Pinterest mood board practice' },
+      { skill: 'Basic garment construction — hand sewing, machine sewing', why: 'Designers must understand HOW garments come together. Hands-on construction practice (even basic) builds the right intuition.', freeResource: 'Free YouTube sewing tutorials, local tailor mentorship if possible' },
+      { skill: 'Fashion CAD basics — Adobe Illustrator / CorelDRAW intro', why: 'Modern fashion work uses Adobe Illustrator and pattern-CAD software. Early comfort with these tools is a real career asset.', freeResource: 'Free Adobe Illustrator tutorials on YouTube, free Inkscape (open source alternative)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.A. TAMIL ────────────────────────────────────────────────────────────
+  {
+    id: 'ba-tamil',
+    family: 'arts-language',
+    isNiche: false,
+    interestTags: ['education', 'media'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['public_speaking', 'maths_heavy'],
+    automation: 'high_human_judgment',
+    automationNote: 'Tamil language work — teaching, literature, journalism, translation, film script work, cultural preservation — is among the most culturally embedded and automation-resilient careers. India\'s commitment to regional language preservation creates sustained government and academic demand.',
+    title: 'B.A. Tamil',
+    titleTa: 'பி.ஏ. தமிழ்',
+    icon: '📜',
+    color: 'from-red-700 to-orange-800',
+    whatIsIt:
+      'A three-year B.A. degree in Tamil language and literature — Sangam literature, medieval Tamil literature, modern Tamil literature, Tamil grammar (Tholkappiyam, Nannool), linguistics, Tamil culture, and comparative literature. Career outcomes: school teaching (Tamil teacher, especially TN government schools), B.Ed Tamil → permanent teaching positions, Tamil Nadu government service (TNPSC Group 2, 4 — Tamil knowledge is a real advantage), Tamil journalism (Dinakaran, Dinamalar, Hindu Tamil), Tamil film industry script writing, government translation roles, Tamil literature academic career (M.A. + PhD), Tamil cultural preservation roles, and competitive exam preparation with Tamil optional.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '405'],
+    ugCourses: ['B.A. Tamil', 'B.A. Tamil Literature', 'B.A. (Hons.) Tamil'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. B.Ed Tamil for teaching career adds 2 years. M.A. Tamil for academic/research career. TNPSC preparation typically begins in parallel.',
+    skillWeights: { mathematics: 2, language: 10, science: 1, creativity: 6, people: 6, physical: 1, digital: 3 },
+    priorityFit: { salary: 4, security: 7, balance: 7, abroad: 4, prestige: 6, passion: 8, growth: 6, hometown: 9 },
+    competitiveBoardPct: { comfortable: 55, stretch: 45 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹1.5–3 LPA fresh at private school teaching (Tamil teacher); ₹2–3.5 LPA at private Tamil-language media roles (regional newspapers, online media); TN government teaching positions (after TET + B.Ed) typically ₹4–7 LPA with strong job security.',
+      midCareerLPA: 'AI estimate — ₹6–12 LPA for senior government Tamil teachers (Pay Commission scales), college lecturers; ₹8–18 LPA for established Tamil journalists at major outlets; established Tamil film script writers earn variably but well.',
+      note: 'Modest pay; the trade-off is exceptional cultural rootedness and strong job security via government teaching positions. The career rewards genuine love for Tamil language and literature — students who picked it as a backup struggle.',
+    },
+    demand: { score: 6, note: 'AI estimate — steady demand from Tamil Nadu government schools (chronic Tamil teacher shortage in many districts), Tamil media, and the growing Tamil digital content / OTT segment.' },
+    entryDifficulty: { score: 1, note: 'AI estimate — among the most accessible degrees. Strong Tamil + reasonable 12th marks sufficient at most colleges.' },
+    collegeTiers: [
+      { label: 'Top B.A. Tamil in TN (AI estimate)', examples: ['Pachaiyappa\'s College Chennai (renowned Tamil department)', 'Presidency College Chennai', 'Madurai Kamaraj University constituent colleges', 'Annamalai University'], cutoffGuide: 'AI estimate — 60%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹10K–40K / year (state aided)' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bharathidasan University constituent colleges', 'Periyar University programs', 'Mother Teresa Women\'s University (KKBT)', 'Tamil University Thanjavur'], cutoffGuide: 'AI estimate — 55–65%.', feeRange: 'AI estimate — ₹10K–30K / year' },
+      { label: 'Other TN colleges (AI estimate)', examples: ['Numerous TN colleges have B.A. Tamil departments'], cutoffGuide: 'AI estimate — very widely accessible.', feeRange: 'AI estimate — ₹10K–25K / year' },
+    ],
+    costReality: 'AI estimate — a 3-year B.A. Tamil in TN costs roughly ₹30K–1.2L total. Among the most affordable degree paths. B.Ed (2 years) for teaching career adds ₹50K–2L.',
+    backupOptions: ['B.Ed Tamil → TN government teacher (TET + recruitment exam)', 'M.A. Tamil → college lecturer (NET/SET + UGC NET qualification)', 'TNPSC Group 2 / 4 (Tamil knowledge advantage)', 'Tamil journalism (Dinakaran, Dinamalar, Hindu Tamil, OTT content)', 'Tamil film industry — script writing, dialogue writing, lyrics', 'Government translation roles', 'Tamil academic research (PhD pathway)', 'UPSC civil services with Tamil literature optional'],
+    honestCaveat: 'B.A. Tamil rewards students who genuinely love the language, literature, and culture — those who picked it as a "backup degree" or because "easy" find the literature coursework (medieval grammar, Sangam poetry analysis) properly demanding. Pay in private sector is modest; the career relies heavily on government teaching positions which require additional B.Ed + TET qualification (2-3 additional years). For students with strong Tamil literary inclination AND willingness to pursue government teaching, this is a stable, deeply respected career path.',
+    roadmap: [
+      { title: 'Score 55%+ in 12th with strong Tamil', titleTa: '+12 தமிழ் 55%+', detail: 'Direct admission. Strong Tamil language + literature in 12th is the real predictor.', window: 'Now', phase: 'now' },
+      { title: 'Join B.A. + B.Ed track decision OR M.A. academic track', titleTa: 'B.A. + B.Ed / M.A.', detail: 'Two main directions: teaching (B.A. + B.Ed + TET) or academic / media (M.A. + specialisation). Decide by year 2 to align preparation.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Govt teacher, media, M.A. lecturer, or TNPSC officer', titleTa: 'ஆசிரியர் / ஊடகம் / விரிவுரையாளர் / TNPSC', detail: 'Four credible exits. Government teaching for stability; Tamil media for creative work; M.A. + lectureship for academic career; TNPSC for general government service.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Tamil literature foundation', titleTa: 'தமிழ் இலக்கிய அடிப்படை', detail: 'Strong understanding of basic Sangam poets, Bharati, modern Tamil literature dramatically eases year 1 coursework.', priority: 'high' },
+      { title: 'Read Tamil newspapers daily', titleTa: 'தமிழ் செய்தித்தாள் தினமும்', detail: 'Hindu Tamil, Dinamani — builds modern Tamil vocabulary and current-affairs awareness simultaneously. Free habit.', priority: 'high' },
+      { title: 'Decide teaching vs academic vs media vs TNPSC track', titleTa: 'பாதை முடிவு', detail: 'Each requires different preparation. Early clarity helps align electives, internships, and exam preparation across the 3 years.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Deep Tamil language + literature reading habit', why: 'B.A. Tamil rewards genuine literary engagement. Daily reading of Tamil literature (classical + modern) is the career-defining habit.', freeResource: 'Free Tamil literature digitised at projectmadurai.org, Wikisource Tamil, Hindu Tamil daily' },
+      { skill: 'Strong English alongside Tamil — for multi-lingual career options', why: 'Tamil-only careers limit options. English fluency alongside expands media, government, and academic options dramatically.', freeResource: 'BBC Learning English, daily English news, Hindu English alongside Hindu Tamil' },
+      { skill: 'Computer basics + Tamil typing', why: 'Modern Tamil work (journalism, government, content creation) requires Tamil typing (Anjal/Bamini layouts) and basic computer fluency.', freeResource: 'Free Tamil typing tutorials, Microsoft Office free YouTube tutorials' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.A. ECONOMICS ────────────────────────────────────────────────────────
+  {
+    id: 'ba-economics',
+    family: 'arts-civil-services',
+    isNiche: false,
+    interestTags: ['finance', 'govt'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['maths_heavy', 'sitting_long', 'memorisation'],
+    automation: 'ai_augmented',
+    automationNote: 'Economics graduates work as analysts, policy researchers, civil services aspirants, and quantitative roles where AI tools accelerate routine analysis but cannot replace economic judgement, model interpretation, and policy reasoning. India\'s expanding economic policy / research infrastructure creates sustained demand.',
+    title: 'B.A. Economics',
+    titleTa: 'பி.ஏ. பொருளாதாரம்',
+    icon: '📈',
+    color: 'from-indigo-700 to-blue-800',
+    whatIsIt:
+      'A three-year degree spanning microeconomics, macroeconomics, public finance, Indian economic systems, mathematical economics, statistics for economics, development economics, and international trade. Quantitative-intensive compared to other B.A. degrees. Career outcomes: civil services preparation (Economics is among the most popular UPSC optional subjects), RBI Grade B / SEBI / IRDAI officer roles, M.A. Economics → analyst roles at banks (HDFC, ICICI, Axis), think tanks (NCAER, CPR, Carnegie India, Vidhi), economic journalism (Mint, Economic Times), MBA pipeline (Economics is among the strongest BBA-alternative MBA prep degrees), and the growing economic consulting / development economics segment.',
+    eligibleStreams: ['commerce', 'arts', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['301', '302', '304', '401', '101'],
+    ugCourses: ['B.A. Economics', 'B.A. (Hons.) Economics', 'B.A. Economics with Statistics'],
+    entranceExams: ['None for direct admission', 'DUET / IIT JAM Economics for premier programs separately'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. M.A. Economics is the standard step up. Civil services / RBI Grade B preparation typically runs parallel in years 2-3.',
+    skillWeights: { mathematics: 7, language: 7, science: 3, creativity: 4, people: 5, physical: 1, digital: 5 },
+    priorityFit: { salary: 6, security: 7, balance: 6, abroad: 7, prestige: 7, passion: 7, growth: 8, hometown: 6 },
+    competitiveBoardPct: { comfortable: 75, stretch: 65 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹3–5 LPA fresh at banking analyst entry roles and economic consultancies; ₹4–7 LPA at think tank junior research positions; ₹6–10 LPA at Big 4 economic consulting entry roles for top graduates.',
+      midCareerLPA: 'AI estimate — ₹12–28 LPA after 7+ years for senior bank analysts, economic policy researchers, and Big 4 senior consultants; ₹15–35+ LPA at investment banks and consulting partner-track roles; RBI Grade B officers ₹12–25 LPA with exceptional benefits and security. UPSC IAS officers — separate pay scale with extraordinary career impact.',
+      note: 'Strong mid-career trajectory because Economics is genuinely versatile — banking, consulting, civil services, journalism, academia, MBA pipeline all open. Among the strongest B.A. options for analytical students with quantitative inclination.',
+    },
+    demand: { score: 8, note: 'AI estimate — strong demand from banking, consulting, think tanks, civil services preparation pipeline, and the economic journalism / research segments.' },
+    entryDifficulty: { score: 5, note: 'AI estimate — direct admission widely available; top programs (LSR, Stephens, Presidency Kolkata) highly competitive; TN top colleges competitive.' },
+    collegeTiers: [
+      { label: 'Top B.A. Economics in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College (renowned Economics department)', 'PSG College of Arts & Science Coimbatore', 'Stella Maris College'], cutoffGuide: 'AI estimate — 85%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹25K–1L / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['American College Madurai', 'Bishop Heber Trichy', 'D.G. Vaishnav College', 'Sri Krishna Arts & Science Coimbatore'], cutoffGuide: 'AI estimate — 70–85%.', feeRange: 'AI estimate — ₹20K–80K / year' },
+      { label: 'National premier programs (if open to relocation)', examples: ['Indian Statistical Institute (ISI) — premier 3-year B.Stat / B.Math + Economics via entrance', 'LSR / SRCC / Stephens (Delhi via DUET)', 'Presidency University Kolkata'], cutoffGuide: 'AI estimate — ISI entrance and DU CUET competitive.', feeRange: 'AI estimate — ₹15K–60K / year (most are aided)' },
+    ],
+    costReality: 'AI estimate — a 3-year B.A. Economics in TN costs roughly ₹60K–3L total. Civil services / RBI preparation adds ₹30K–1.5L over 2-3 years.',
+    backupOptions: ['M.A. Economics — academic specialisation', 'RBI Grade B officer / SEBI / IRDAI / NABARD officer exams', 'UPSC Civil Services (Economics as optional)', 'MBA from IIM / top schools (Economics is strong CAT-prep background)', 'Investment banking analyst roles (HSBC, ICICI Securities)', 'Big 4 economic consulting', 'Think tank research positions', 'Economic journalism (Mint, Economic Times, Indian Express)', 'Move abroad — strong UK, US, European demand for Indian Economics graduates'],
+    honestCaveat: 'B.A. Economics is unusually quantitative for a B.A. degree — students who avoided 12th Maths usually struggle in years 2-3 (mathematical economics, econometrics). The career rewards genuine analytical inclination plus reading discipline (economic theory + current Indian policy). Best for students who enjoy BOTH numbers and policy analysis. Civil services preparation alongside the degree is the most common route — committing to that requires sustained 2-3 years of focused study.',
+    roadmap: [
+      { title: 'Score 75%+ in 12th with strong Maths', titleTa: '+12 75%+ + கணிதம்', detail: 'Strong Maths matters for Economics (mathematical economics, econometrics in years 2-3). Direct admission.', window: 'Now', phase: 'now' },
+      { title: 'Join B.A. Eco + UPSC/RBI prep + analyst internships', titleTa: 'B.A. Eco + தேர்வு தயாரிப்பு + பயிற்சி', detail: 'Banking internships, think tank exposure, and parallel UPSC/RBI preparation transform outcomes. Decide track by year 2.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Bank analyst, M.A., RBI/UPSC, MBA, or abroad', titleTa: 'வேலை / M.A. / UPSC / MBA / வெளிநாடு', detail: 'Five credible exits. Bank/consulting for income; M.A. for academic depth; RBI Grade B for security; UPSC for civil services; MBA for management trajectory; abroad for frontier work.', window: 'Years 3–5', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Strengthen 12th Mathematics + Economics fundamentals', titleTa: 'கணிதம் + பொருளாதாரம்', detail: 'Strong 12th Maths is the foundation of the degree. NCERT Economics + supplementary reading on Indian economy helps.', priority: 'high' },
+      { title: 'Read business + economics news daily', titleTa: 'வணிக + பொருளாதாரம் செய்தி', detail: 'Mint, Economic Times, Indian Express economy coverage. Builds vocabulary and analytical context.', priority: 'high', freeResource: 'Mint, Economic Times, Indian Express daily reading' },
+      { title: 'Consider ISI / national programs', titleTa: 'ISI + தேசிய திட்டங்கள்', detail: 'Indian Statistical Institute and DU economics programs are premier alternatives. Worth exploring if genuinely committed to economics career.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong Mathematics — calculus, statistics, basic linear algebra', why: 'Economics degree leans on mathematics from year 2. Strong 12th fundamentals reward you for the entire 3-year degree.', freeResource: 'Khan Academy calculus + statistics, free MIT OpenCourseWare 18.05 (intro probability)' },
+      { skill: 'Strong English + analytical reading', why: 'Economics reading (textbooks, journal articles, policy papers) is heavily English. Strong written and analytical English is essential.', freeResource: 'BBC Learning English, daily Mint editorial reading, free Coursera economics courses' },
+      { skill: 'Current Indian economy + global economics awareness', why: 'Economics rewards students who follow real-world economic developments. Daily news reading from year 1 compounds dramatically through the degree.', freeResource: 'Mint, Economic Times, RBI bulletin (free), Economic Survey of India (free annual document)' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.A. PUBLIC ADMINISTRATION / POLITICAL SCIENCE ────────────────────────
+  {
+    id: 'ba-public-administration',
+    family: 'arts-civil-services',
+    isNiche: false,
+    interestTags: ['govt', 'law'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['memorisation', 'maths_heavy', 'sitting_long'],
+    automation: 'high_human_judgment',
+    automationNote: 'Public administration, governance, and policy work involve contextual human judgement under political and institutional accountability — among the most automation-resilient careers. India\'s expanding governance infrastructure and policy-research ecosystem create sustained demand.',
+    title: 'B.A. Public Administration / Political Science',
+    titleTa: 'பி.ஏ. பொது நிர்வாகம் / அரசியல் அறிவியல்',
+    icon: '🏛️',
+    color: 'from-slate-700 to-stone-800',
+    whatIsIt:
+      'A three-year B.A. spanning political theory, Indian government and politics, comparative government, international relations, public administration, public policy, constitutional law, and Indian federalism. Distinct from B.A. Economics: less quantitative, more focused on governance and political institutions. Career outcomes: UPSC civil services preparation (THE dominant route for this degree — among the most popular IAS/IPS aspirant backgrounds), TNPSC group exams, state government administrative services, NGO policy work, think tanks (Vidhi, CPR, Carnegie India, ORF), political consulting (I-PAC, Showtime), journalism (political reporting), academic research career, and the emerging public policy / governance consulting segment.',
+    eligibleStreams: ['arts', 'commerce', 'pcm', 'pcb', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '405'],
+    ugCourses: ['B.A. Public Administration', 'B.A. Political Science', 'B.A. Political Science & Public Administration', 'B.A. Government'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree. UPSC civil services preparation typically runs parallel in years 2-3, with serious preparation continuing 1-2 years post-degree. M.A. for academic / research career.',
+    skillWeights: { mathematics: 3, language: 8, science: 2, creativity: 5, people: 6, physical: 1, digital: 4 },
+    priorityFit: { salary: 5, security: 8, balance: 6, abroad: 5, prestige: 8, passion: 7, growth: 7, hometown: 7 },
+    competitiveBoardPct: { comfortable: 65, stretch: 55 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2.5–4 LPA fresh at NGO policy roles and think tank junior research; ₹3.5–6 LPA at political consulting entry roles; ₹4–7 LPA at media political reporting positions; UPSC/TNPSC selected: government pay scales with exceptional security and pension.',
+      midCareerLPA: 'AI estimate — ₹10–22 LPA for senior NGO leaders, think tank research heads, and political consultants; senior IAS/IPS officers — separate government pay scale with extraordinary career impact, perks, and pension; ₹12–25 LPA for senior political journalists. The civil services trajectory is the strongest single career uplift for this degree.',
+      note: 'Civil services is the dominant career destination — degree is largely PREPARATION for that path. UPSC selection completely transforms life trajectory; not selecting limits the degree to modest direct outcomes. Honest career planning requires being clear about the UPSC commitment.',
+    },
+    demand: { score: 7, note: 'AI estimate — steady demand for civil services preparation, NGO sector, think tanks, and political consulting. Civil services is the dominant trajectory and is structurally consistent.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — direct admission widely available. Among the most accessible B.A. degrees.' },
+    collegeTiers: [
+      { label: 'Top B.A. Political Science / Public Admin in TN (AI estimate)', examples: ['Loyola College Chennai', 'Madras Christian College', 'Stella Maris College', 'Presidency College Chennai'], cutoffGuide: 'AI estimate — 70%+ in 12th typical at top tier.', feeRange: 'AI estimate — ₹15K–60K / year (state aided)' },
+      { label: 'Strong programs (AI estimate)', examples: ['Bishop Heber Trichy', 'Annamalai University', 'Madurai Kamaraj University constituent colleges', 'Bharathidasan University programs'], cutoffGuide: 'AI estimate — 60–70%.', feeRange: 'AI estimate — ₹15K–40K / year' },
+      { label: 'National premier programs (if open to relocation)', examples: ['Hindu College / Stephens / LSR / Hansraj (DU via CUET)', 'Presidency University Kolkata', 'JNU School of Social Sciences (PG)'], cutoffGuide: 'AI estimate — CUET competitive for DU; JNU PG.', feeRange: 'AI estimate — varies; central universities affordable' },
+    ],
+    costReality: 'AI estimate — a 3-year B.A. Political Science in TN costs roughly ₹50K–2L total. Civil services preparation (coaching + materials + multiple attempts) adds ₹50K–4L depending on path.',
+    backupOptions: ['UPSC Civil Services (Political Science / Public Admin optional)', 'TNPSC Group 1 / 2 (state administrative services)', 'M.A. Political Science → college lecturer (NET/SET)', 'NGO leadership / development sector', 'Think tank research positions (Vidhi, CPR, Carnegie India)', 'Political consulting (I-PAC, Showtime, Inclusive Minds)', 'Political journalism (Indian Express, The Wire, Print, Indian Express Tamil)', 'Government policy advisor roles (after experience)', 'Academic research / PhD pathway'],
+    honestCaveat: 'B.A. Political Science / Public Administration is essentially the UPSC civil services preparation degree in India\'s academic culture. Students who DON\'T commit to civil services (3-5 years of sustained preparation, multiple attempts) often end up underutilising the degree — direct private-sector outcomes are modest. The honest career path requires deciding early: civil services pursuit, NGO/think tank sector, or academic/journalism. Each requires sustained focus. The "easy general degree" framing is misleading — the literature is dense (constitutional law, political theory, comparative government), and the dominant career destinations all require substantial post-degree commitment.',
+    roadmap: [
+      { title: 'Score 65%+ in 12th + Indian Polity reading habit', titleTa: '+12 65%+ + இந்திய அரசியல்', detail: 'Direct admission. Reading Laxmikanth\'s Indian Polity early gives a 2-year head start on UPSC preparation.', window: 'Now', phase: 'now' },
+      { title: 'Join B.A. + serious UPSC OR NGO/think tank exposure', titleTa: 'B.A. + UPSC / NGO', detail: 'Decide track by year 2: civil services (intensive prep), NGO sector (volunteering + leadership), think tank (research + writing), or journalism (writing portfolio). Each requires different preparation.', window: 'Years 1–3', phase: 'next' },
+      { title: 'Civil services, NGO, think tank, journalism, or academia', titleTa: 'அரசு / NGO / Think Tank / ஊடகம் / பேராசிரியர்', detail: 'Five credible exits. Civil services is the highest-impact route; NGO/think tank for purpose-driven work; journalism for narrative work; academia via PhD.', window: 'Years 3–8', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Read "Indian Polity" by Laxmikanth (UPSC standard)', titleTa: 'லக்ஷ்மிகாந்த் இந்திய அரசியல்', detail: 'The single most influential UPSC reference. Starting in 12th gives a 2-year head start. Available at every bookstore + free PDFs widely accessible.', priority: 'high' },
+      { title: 'Read English newspapers daily — focus on policy / governance', titleTa: 'ஆங்கில செய்தித்தாள் தினமும்', detail: 'The Hindu (especially editorial + governance coverage), Indian Express. UPSC selection runs on current-affairs depth.', priority: 'high' },
+      { title: 'Decide UPSC commitment level honestly', titleTa: 'UPSC முடிவு', detail: 'UPSC is 3-5 years of sustained study with no guaranteed selection. Honest assessment of commitment in year 1 prevents 5 years of half-hearted preparation.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English — written and spoken, particularly editorial style', why: 'UPSC, journalism, NGO leadership, and academic careers all run on strong English. The career-defining skill from day 1.', freeResource: 'The Hindu daily reading, BBC Learning English, structured essay-writing practice' },
+      { skill: 'Indian Polity + Constitution fundamentals', why: 'Foundational knowledge that everything else builds on. Strong Polity knowledge is non-negotiable for UPSC and useful for every adjacent career.', freeResource: 'NCERT Political Science (Class 9-12), Laxmikanth "Indian Polity", PRS India free legislative briefings' },
+      { skill: 'Daily current affairs + analysis habit', why: 'UPSC, journalism, think tank work all reward sustained current-affairs awareness with analytical depth (not just headlines).', freeResource: 'The Hindu editorial, PRS India, India Foundation papers, free PIB releases' },
+    ],
+    lastReviewed: '2026-05',
+  },
+
+  // ─── B.S.W. (BACHELOR OF SOCIAL WORK) ──────────────────────────────────────
+  {
+    id: 'bsw-graduate',
+    family: 'arts-social-work',
+    isNiche: true,
+    interestTags: ['healthcare', 'education', 'govt'],
+    needsCounsellorReview: true,
+    aversionConflicts: ['patient_care', 'travel_away', 'creative_pressure'],
+    automation: 'high_human_judgment',
+    automationNote: 'Social work — counselling, community development, NGO management, child welfare, mental health support, disability rehabilitation — is among the most automation-resilient careers. The relational human work cannot be replaced. India\'s expanding CSR sector, mental health awareness, and NGO ecosystem create sustained demand.',
+    title: 'B.S.W. (Bachelor of Social Work)',
+    titleTa: 'பி.எஸ்.டபிள்யூ. — சமூகப் பணி இளங்கலை',
+    icon: '🤝',
+    color: 'from-cyan-700 to-teal-800',
+    whatIsIt:
+      'A three-year applied degree spanning social psychology, community organisation, social work methods (case work, group work, community work), counselling techniques, NGO management, disability rehabilitation, child welfare, mental health social work, and project management for development work. Heavy on field internships. Career outcomes: NGO leadership roles, corporate CSR teams (Tata Sustainability, Infosys Foundation, Wipro Cares), government social welfare departments (Child Welfare Committees, Anti-Human Trafficking units), counsellor roles at schools / hospitals / mental health institutions, project management at international development organisations (UNICEF, Save the Children, Plan India), disability rehabilitation centres, and the M.S.W. specialisation pipeline (medical social work, psychiatric social work, community development).',
+    eligibleStreams: ['arts', 'commerce', 'pcb', 'pcm', 'pcmb'],
+    strongGroupCodes: ['401', '402', '404', '208', '301'],
+    ugCourses: ['B.S.W. (Bachelor of Social Work)', 'B.A. Social Work'],
+    entranceExams: ['None (direct admission via 12th marks)'],
+    pathwayType: 'direct-after-12th',
+    timeToCareer: 'A 3-year degree (includes substantial field internships). M.S.W. for specialisation and senior roles. NGO / CSR entry possible directly.',
+    skillWeights: { mathematics: 3, language: 7, science: 4, creativity: 6, people: 9, physical: 3, digital: 4 },
+    priorityFit: { salary: 4, security: 6, balance: 6, abroad: 7, prestige: 6, passion: 9, growth: 6, hometown: 6 },
+    competitiveBoardPct: { comfortable: 60, stretch: 50 },
+    salaryReality: {
+      startingLPA: 'AI estimate — ₹2–3.5 LPA fresh at small NGOs and entry community development roles; ₹3–5 LPA at established NGOs (CRY, Goonj, Pratham); ₹4–7 LPA at corporate CSR teams and international development organisations. School / hospital counsellor positions ₹3–6 LPA.',
+      midCareerLPA: 'AI estimate — ₹8–18 LPA for senior NGO leaders, project managers, and CSR team leads; ₹10–25 LPA at international development organisations (UNICEF, World Bank consultants, Save the Children); ₹12–25 LPA for senior corporate CSR heads at large companies. Strong abroad opportunities — social work is a globally recognised credential.',
+      note: 'Pay is modest at entry; the trajectory rewards specialisation (M.S.W. medical social work, psychiatric social work) AND mission-driven students. Corporate CSR + international development pathways are the strongest financial routes.',
+    },
+    demand: { score: 7, note: 'AI estimate — strong demand from corporate CSR (India\'s 2% mandatory CSR creates structural demand), NGOs, government welfare departments, and the mental health support sector.' },
+    entryDifficulty: { score: 2, note: 'AI estimate — among the most accessible degrees. Personal motivation matters more than marks.' },
+    collegeTiers: [
+      { label: 'Top B.S.W. in TN (AI estimate)', examples: ['Loyola College Chennai (renowned social work program)', 'Madras Christian College', 'Stella Maris College', 'Holy Cross College Trichy'], cutoffGuide: 'AI estimate — 65%+ in 12th typical at top tier; some colleges value motivation interview.', feeRange: 'AI estimate — ₹25K–80K / year' },
+      { label: 'Strong programs (AI estimate)', examples: ['American College Madurai', 'Bishop Heber Trichy', 'Sri Krishna Arts & Science Coimbatore', 'Bharathidasan University programs'], cutoffGuide: 'AI estimate — 55–65%.', feeRange: 'AI estimate — ₹15K–60K / year' },
+      { label: 'National premier programs (if open to relocation)', examples: ['Tata Institute of Social Sciences (TISS) Mumbai — premier B.S.W. via TISSNET (highly regarded internationally)', 'Delhi School of Social Work', 'Christ University Bangalore'], cutoffGuide: 'AI estimate — TISSNET competitive; Christ entrance separately.', feeRange: 'AI estimate — ₹30K–1.5L / year (TISS); ₹1.5L–3L (Christ)' },
+    ],
+    costReality: 'AI estimate — a 3-year B.S.W. in TN costs roughly ₹50K–2.5L total. TISS is dramatically more affordable than private universities and carries the strongest international recognition. M.S.W. (especially TISS) is the standard career uplift step.',
+    backupOptions: ['M.S.W. specialisation (medical, psychiatric, community, child & family) — standard career uplift', 'NGO leadership and project management', 'Corporate CSR team roles (Tata, Infosys Foundation, Wipro, ITC Mission Sunehra Kal)', 'Government social welfare departments and committees', 'School / college / hospital counsellor positions', 'International development organisations (UNICEF, Save the Children, Plan India, Action Aid)', 'Mental health support roles (especially after M.S.W. psychiatric)', 'Move abroad — strong UK, Canada, Australia demand for trained social workers'],
+    honestCaveat: 'B.S.W. is a passion + purpose career — students who picked it for "easy general degree" without genuine commitment to social work usually struggle through the heavy field-internship coursework. The work involves emotionally demanding situations (child welfare cases, mental health crises, community organising in difficult conditions). Pay at entry is modest; the career rewards mission-driven students who build through M.S.W. + specialisation. Corporate CSR + international development pathways pay well at mid-career; pure NGO sector pays modestly throughout.',
+    roadmap: [
+      { title: 'Score 60%+ in 12th + volunteering experience', titleTa: '+12 60%+ + தன்னார்வத் தொண்டு', detail: 'Direct admission. Volunteer at local NGOs, community programs, or government welfare schemes during 12th — clarifies whether social work suits you AND builds the early portfolio.', window: 'Now', phase: 'now' },
+      { title: 'Join B.S.W. + DEEP field internships', titleTa: 'B.S.W. + பட்டறை பயிற்சி', detail: 'Field internships are the heart of B.S.W. coursework. Choose progressively challenging placements (small NGO → established NGO → corporate CSR or government) to build broad understanding.', window: 'Years 1–3', phase: 'next' },
+      { title: 'NGO role, M.S.W., corporate CSR, or international development', titleTa: 'NGO / M.S.W. / CSR / International', detail: 'Four credible exits. Direct NGO for hands-on community work; M.S.W. for specialisation and career uplift (TISS is premier); corporate CSR for income and structure; international development for highest impact and pay.', window: 'Years 3–6', phase: 'later' },
+    ],
+    ninetyDayPlan: [
+      { title: 'Volunteer at a local NGO or community program for 90 days', titleTa: 'தன்னார்வத் தொண்டு 90 நாட்கள்', detail: 'The honest reality test. 90 days of weekly volunteering tells you whether social work\'s emotional demands suit your temperament — before you commit to a 3-year degree.', priority: 'high' },
+      { title: 'Read about TISS Mumbai + TISSNET', titleTa: 'TISS + TISSNET பற்றி', detail: 'TISS is the premier Indian institution for social work. The B.S.W. at TISS opens substantially different career paths. Visit https://www.tiss.edu and understand TISSNET preparation.', priority: 'high', link: 'https://www.tiss.edu' },
+      { title: 'Strengthen English + observational sensitivity', titleTa: 'ஆங்கிலம் + கவனிப்பு', detail: 'Social work is communication-heavy; strong English opens substantially better opportunities. Building observational sensitivity early (noticing how people actually live, what they actually need) is the career-defining habit.', priority: 'medium' },
+    ],
+    buildNowSkills: [
+      { skill: 'Strong English + Tamil — bilingual communication for community work', why: 'Social work IS communication. Strong bilingual fluency dramatically expands which communities you can work with.', freeResource: 'BBC Learning English, daily news reading in both languages, structured volunteer work with mixed-language communities' },
+      { skill: 'Genuine community engagement habit', why: 'Social work rewards students who engage authentically with communities. Building deliberate community-volunteering habit from school years is the career-defining preparation.', freeResource: 'Local NGOs, government welfare program volunteering, community library work, school-based outreach' },
+      { skill: 'Basic counselling + active listening', why: 'Core skill across nearly every social work career path. Practising deep listening (not interrupting, asking open-ended questions, sitting with discomfort) is the foundation.', freeResource: 'Free Coursera "Foundations of Positive Psychology", free counselling skills videos on YouTube, structured peer-listening practice' },
     ],
     lastReviewed: '2026-05',
   },
