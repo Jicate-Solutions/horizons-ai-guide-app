@@ -1,4 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { trackError } from '@/lib/telemetry';
 
 interface Props {
   children: ReactNode;
@@ -22,6 +23,8 @@ class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error('[VAZHIKATTI] Error caught by boundary:', error, info.componentStack);
+    // Report to Sentry if configured (no-op otherwise).
+    trackError(error, { componentStack: info.componentStack });
   }
 
   render() {

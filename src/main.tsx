@@ -1,6 +1,11 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { initTelemetry } from "./lib/telemetry";
+
+// Initialize telemetry FIRST so any startup errors are captured.
+// Safe to call without config — silently inert if env vars missing.
+initTelemetry();
 
 createRoot(document.getElementById("root")!).render(<App />);
 

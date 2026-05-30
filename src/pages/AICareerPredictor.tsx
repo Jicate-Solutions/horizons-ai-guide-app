@@ -18,6 +18,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { trackEvent, Events } from '@/lib/telemetry';
 import {
   groupToStream,
   skillCategories,
@@ -281,6 +282,23 @@ const AICareerPredictor = () => {
     setDiscoveryMatches(discoveries);
     setFilteredAspiration(aspiration ?? null);
     setLoadingStage(1);
+
+    // ─── Telemetry: wizard completion ─────────────────────────────────
+    // Captures the highest-signal event in the app — a student finished
+    // the 8-step wizard and got results. Properties let us see which
+    // streams convert best, which aspirations get filtered, how often
+    // Worth a Look surfaces options. No PII.
+    trackEvent(Events.WizardCompleted, {
+      stream: profile.stream,
+      expectedMarks: profile.expectedMarks,
+      topMatchesCount: tops.length,
+      discoveryCount: discoveries.length,
+      topMatchId: tops[0]?.pathway.id,
+      topMatchScore: tops[0]?.confidenceScore,
+      aspirationFiltered: !!aspiration,
+      interestsCount: profile.interests?.length || 0,
+      aversionsCount: profile.aversions?.length || 0,
+    });
 
     // Brief, honest staged loading — the engine is instant, but a moment of
     // "calculating" reads better than a flash.
