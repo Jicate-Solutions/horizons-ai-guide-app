@@ -1656,10 +1656,10 @@ Be empathetic and respect Indian family values while helping the student communi
                           </div>
                         )}
                         <div
-                          className={`max-w-[92%] sm:max-w-[80%] rounded-2xl shadow-lg ${
+                          className={`min-w-0 max-w-[85%] sm:max-w-[78%] rounded-2xl shadow-lg break-words ${
                             message.role === 'user'
-                              ? 'bg-gradient-to-br from-emerald-600 to-green-700 text-white shadow-emerald-200/50 px-5 py-4'
-                              : 'bg-white border border-gray-100 text-gray-800 shadow-gray-100/50 px-5 py-4'
+                              ? 'bg-gradient-to-br from-emerald-600 to-green-700 text-white shadow-emerald-200/50 p-4'
+                              : 'bg-white border border-gray-100 text-gray-800 shadow-gray-100/50 p-4'
                           }`}
                         >
                           {message.role === 'assistant' ? (

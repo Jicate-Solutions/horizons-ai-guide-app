@@ -23,7 +23,12 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
   return (
     <div
       className={cn(
-        "text-[15px] leading-relaxed text-foreground/90 break-words",
+        "text-[15px] leading-relaxed text-foreground/90",
+        // CRITICAL: min-w-0 + break-words so the renderer never demands more
+        // width than its bubble parent. Without min-w-0 a flex grandparent
+        // (chat bubble) silently ignores its own max-width and overflows the
+        // viewport — which is exactly the bug we hit on mobile.
+        "min-w-0 break-words [overflow-wrap:anywhere]",
         // First and last children should not push the bubble padding around
         "[&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
         className,
@@ -79,7 +84,7 @@ export const AIMessageRenderer = ({ content, className }: AIMessageRendererProps
             return (
               <li
                 className={cn(
-                  "flex gap-2.5 text-foreground/90",
+                  "flex gap-2.5 text-foreground/90 min-w-0",
                   isOrdered &&
                     "[counter-increment:list-counter] before:content-[counter(list-counter)'.'] before:flex-shrink-0 before:font-medium before:text-primary before:min-w-[1.25rem]",
                 )}

@@ -561,7 +561,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
                   </div>
                 )}
                 <div
-                  className={`max-w-[92%] sm:max-w-[80%] rounded-2xl px-4 py-3 text-[15px] leading-relaxed shadow-sm ${
+                  className={`min-w-0 max-w-[85%] sm:max-w-[78%] rounded-2xl p-4 text-[15px] leading-relaxed shadow-sm break-words ${
                     msg.role === "user"
                       ? "bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-br-md"
                       : "bg-muted text-foreground rounded-bl-md border border-border/50"
