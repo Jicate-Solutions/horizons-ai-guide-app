@@ -102,7 +102,7 @@ const GovernmentExams = () => {
         <div className="relative z-10">
           {/* Nav */}
           <div className="container mx-auto px-4 pt-4 flex items-center gap-3">
-            <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
+            <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
               <ArrowLeft className="w-5 h-5 text-white" />
             </button>
           </div>
