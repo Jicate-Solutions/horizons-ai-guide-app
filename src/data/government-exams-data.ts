@@ -2885,26 +2885,40 @@ export const getExamById = (categoryId: string, examId: string): Exam | undefine
 
 // Official Syllabus URLs for all exams
 export const officialSyllabusUrls: Record<string, string> = {
+  // ── Defence ────────────────────────────────────────────────────────────────
   'nda': 'https://upsc.gov.in/sites/default/files/NDA-NA(II)2025Notif_Engl.pdf',
   'agniveer-army': 'https://joinindianarmy.nic.in/writereaddata/Portal/Images/AGNIVEER_SYLLABUS.pdf',
   'agniveer-navy': 'https://www.joinindiannavy.gov.in/files/Agniveer_SSR_Syllabus.pdf',
   'agniveer-airforce': 'https://agnipathvayu.cdac.in/AV/downloadSyllabus',
   'coastguard': 'https://joinindiancoastguard.gov.in/syllabus',
-  'bsf-constable': 'https://www.bsf.gov.in/exam-notification',
-  'crpf-constable': 'https://crpf.gov.in/recruitment.htm',
-  'cisf-constable': 'https://cisfrectt.in',
+  // BSF — official recruitment portal; syllabus PDF is published with each notification
+  'bsf-constable': 'https://rectt.bsf.gov.in/',
+  // CRPF — official recruitment & syllabus page
+  'crpf-constable': 'https://crpfindia.com/Syllabus',
+  // CISF — official recruitment portal syllabus page
+  'cisf-constable': 'https://cisfrectt.in/Syllabus',
+  // ── Railway ────────────────────────────────────────────────────────────────
   'rrb-ntpc': '/rrb-ntpc-2026-syllabus.pdf',
   'rrb-group-d': 'https://www.rrbapply.gov.in/syllabus',
   'rpf-constable': 'https://www.rrbapply.gov.in/syllabus',
+  // ── SSC ────────────────────────────────────────────────────────────────────
   'ssc-chsl': '/ssc-chsl-2026-syllabus.pdf',
-  'ssc-mts': 'https://ssc.gov.in',
+  // SSC MTS — official syllabus page on SSC portal
+  'ssc-mts': 'https://ssc.gov.in/portal/syllabus/Multi-Tasking-Non-Technical-Staff-and-Havaldar',
   'ssc-gd': 'https://ssc.gov.in/portal/pdf/GD_Constable_2025_Notification.pdf',
-  'ssc-steno': 'https://ssc.gov.in',
+  // SSC Stenographer — official syllabus page on SSC portal
+  'ssc-steno': 'https://ssc.gov.in/portal/syllabus/Stenographer-Grade-C-D',
+  // ── State / TN ─────────────────────────────────────────────────────────────
   'tnpsc-group4': '/tnpsc-group4-syllabus.pdf',
-  'tn-police-constable': 'https://www.tnusrb.tn.gov.in',
-  'tn-forest-guard': 'https://www.tnfusrc.gov.in',
+  // TNUSRB — official syllabus downloads page
+  'tn-police-constable': 'https://www.tnusrb.tn.gov.in/syllabus',
+  // TNFUSRC — official forest recruitment syllabus page
+  'tn-forest-guard': 'https://www.forests.tn.gov.in/pages/view/recruitment-notifications',
+  // ── Central / Other ────────────────────────────────────────────────────────
   'india-post-gds': '/india-post-gds-2026-syllabus.pdf',
   'army-clerk': 'https://joinindianarmy.nic.in/writereaddata/Portal/Images/SYLLABUS_Clerk.pdf',
-  'nvs-lab-attendant': 'https://navodaya.gov.in/nvs/en/Recruitment',
-  'kvs-non-teaching': 'https://kvsangathan.nic.in/RecruitmentNotices',
+  // NVS — official non-teaching recruitment & syllabus page
+  'nvs-lab-attendant': 'https://navodaya.gov.in/nvs/en/Recruitment/Non-Teaching-Rectt',
+  // KVS — official non-teaching recruitment notices page
+  'kvs-non-teaching': 'https://kvsangathan.nic.in/recruitment-notice',
 };
