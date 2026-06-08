@@ -306,36 +306,52 @@ const GovernmentExamDetail = () => {
               </CardContent></Card>
             ) : (
               Object.entries(exam.syllabus).map(([key, sections]) => (
-                sections.map((section, sIdx) => (
-                  <Card key={`${key}-${sIdx}`} className="overflow-hidden">
-                    <button className="w-full p-3.5 text-left flex items-center gap-3" onClick={() => toggleSection(`${key}-${sIdx}`)}>
-                      <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center flex-shrink-0">
-                        <BookOpen className="w-4 h-4 text-indigo-500" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-gray-800 dark:text-gray-100 truncate">{section.title}</p>
-                        <p className="text-xs text-gray-400">{section.topics.length} {ta ? 'தலைப்புகள்' : 'topics'}</p>
-                      </div>
-                      <ChevronDown className={cn("w-4 h-4 text-gray-300 transition-transform", expandedSections.has(`${key}-${sIdx}`) && "rotate-180")} />
-                    </button>
-                    <AnimatePresence>
-                      {expandedSections.has(`${key}-${sIdx}`) && (
-                        <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
-                          <div className="px-3.5 pb-3.5 border-t border-gray-50 dark:border-slate-800 pt-2.5">
-                            <ul className="space-y-1.5">
+                <div key={key} className="space-y-2">
+                  {/* Paper / Group header */}
+                  <div className="px-1 pt-1">
+                    <p className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide leading-tight">{key}</p>
+                  </div>
+                  {sections.map((section, sIdx) => (
+                    <Card key={`${key}-${sIdx}`} className="overflow-hidden">
+                      <button className="w-full p-3.5 text-left flex items-center gap-3" onClick={() => toggleSection(`${key}-${sIdx}`)}>
+                        <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center flex-shrink-0">
+                          <BookOpen className="w-4 h-4 text-indigo-500" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-bold text-gray-800 dark:text-gray-100 truncate">{ta ? (section.nameTamil || section.name) : section.name}</p>
+                          <p className="text-xs text-gray-400">{section.topics.length} {ta ? 'தலைப்புகள்' : 'topics'}</p>
+                        </div>
+                        <ChevronDown className={cn("w-4 h-4 text-gray-300 transition-transform", expandedSections.has(`${key}-${sIdx}`) && "rotate-180")} />
+                      </button>
+                      <AnimatePresence>
+                        {expandedSections.has(`${key}-${sIdx}`) && (
+                          <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
+                            <div className="px-3.5 pb-3.5 border-t border-gray-50 dark:border-slate-800 pt-2.5 space-y-3">
                               {section.topics.map((topic, tIdx) => (
-                                <li key={tIdx} className="text-xs text-gray-600 dark:text-gray-400 flex items-start gap-2">
-                                  <span className="w-1 h-1 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
-                                  <span>{topic.name}</span>
-                                </li>
+                                <div key={tIdx}>
+                                  <p className="text-xs font-semibold text-gray-700 dark:text-gray-200 mb-1 flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0" />
+                                    {ta ? (topic.nameTamil || topic.name) : topic.name}
+                                  </p>
+                                  {topic.subtopics && topic.subtopics.length > 0 && (
+                                    <ul className="ml-4 space-y-0.5">
+                                      {topic.subtopics.map((sub, subIdx) => (
+                                        <li key={subIdx} className="text-xs text-gray-500 dark:text-gray-400 flex items-start gap-1.5">
+                                          <span className="text-gray-300 mt-0.5">•</span>
+                                          <span>{sub}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
                               ))}
-                            </ul>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </Card>
-                ))
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </Card>
+                  ))}
+                </div>
               ))
             )}
           </div>
